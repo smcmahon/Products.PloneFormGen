@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    lang="en"
+    metal:use-macro="here/prefs_main_template/macros/master"
+    i18n:domain="plone">
+
+<metal:block metal:fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_content"
+    tal:define="pfgTool python: modules['Products.CMFCore.utils'].getToolByName(here, 'formgen_tool');">
+
+    <div id="content" class="documentEditable" i18n:domain="ploneformgen"
+         tal:condition="python:checkPermission('Manage portal', here)">
+
+        <h5 class="hiddenStructure">Views</h5>
+
+        <ul class="contentViews">
+            <li>
+            <a href="prefs_pfg_permits"
+                i18n:translate="label_ploneformgen_permissions">Permissions</a>
+            </li>
+            <li class="selected">
+            <a href="prefs_pfg_addressing"
+                i18n:translate="label_ploneformgen_addressing">Mail Addressing</a>
+            </li>
+            <li>
+            <a href="prefs_pfg_mtemplate"
+                i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
+            </li>
+        </ul>
+
+        <div class="contentActions">
+            &nbsp;
+        </div>
+
+        <div class="documentContent" id="region-content">
+                <a name="documentContent"></a>
+
+        <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+            Portal status message
+        </div>
+
+        <div class="configlet">
+            <h1 i18n:translate="heading_ploneformgen_addressing">PloneFormGen Mail Addressing Defaults</h1>
+
+            <a href=""
+              class="link-parent"
+              tal:attributes="href string: $portal_url/plone_control_panel"
+              i18n:translate="label_up_to_plone_setup"
+              i18n:domain="plone">
+              Up to Site Setup
+            </a>
+
+            <p class="documentDescription" i18n:translate="description_ploneformgen_addressing">
+                Set defaults for addressing fields for new mail-action adapters.
+                Please note that your input here is not verified.
+                So, make sure you use valid addresses.
+            </p>
+    
+            <form action="" method="post" tal:attributes="action template_id">
+
+                <input type="hidden" name="form.submitted" value="1" />
+                
+                <div class="field">
+	                <label for="recipient_email" i18n:translate="label_ploneformgen_recipient_email">Recipient Address</label>
+					<br />
+					<input type="text" name="recipient_email" id="recipient_email" value="email"
+						tal:attributes="value pfgTool/getDefaultMailRecipient;
+							tabindex tabindex/next;"
+						/>
+
+                </div>
+
+                <div class="field">
+	                <label for="recipient_name" i18n:translate="label_ploneformgen_recipient_name">Recipient Name</label>
+					<br />
+					<input type="text" name="recipient_name" id="recipient_name" value="name"
+						tal:attributes="value pfgTool/getDefaultMailRecipientName;
+	                    	tabindex tabindex/next;"
+						/>
+                </div>
+
+                <div class="field">
+	                <label for="cc_recipients" i18n:translate="label_ploneformgen_cc_recipients">CC Recipients</label>
+					<br />
+	                <textarea name="cc_recipients" id="cc_recipients" rows="5"
+	                    tal:attributes="tabindex tabindex/next;"
+	                    tal:content="python: '\n'.join(pfgTool.getDefaultMailCC())">
+	                    CC Recipients
+	                </textarea>
+                </div>
+
+                <div class="field">
+	                <label for="bcc_recipients" i18n:translate="label_ploneformgen_bcc_recipients">BCC Recipients</label>
+					<br />
+	                <textarea name="bcc_recipients" id="bcc_recipients" rows="5"
+	                    tal:attributes="tabindex tabindex/next;"
+	                    tal:content="python: '\n'.join(pfgTool.getDefaultMailBCC())">
+	                    BCC Recipients
+	                </textarea>
+                </div>
+
+                <div class="formControls">
+                <input class="context"
+                    tabindex=""
+                    type="submit"
+                    value="Apply Changes"
+                    i18n:domain="plone"
+                    i18n:attributes="value label_apply_changes;"
+                    tal:attributes="tabindex tabindex/next;"
+                    />
+                </div>
+            </form>
+
+        </div>
+        </div>
+      </div>
+
+      <div id="content" class="documentEditable"
+           tal:condition="python:not checkPermission('Manage portal', here)">
+        <tal:block replace="here/raiseUnauthorized" />
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+  <head><title></title></head>
+  <body>
+
+    <!-- Fieldset End Widgets -->
+
+    <metal:view_macro define-macro="view">
+          <span tal:replace="structure string:</fieldset>" />
+    </metal:view_macro>
+ 
+    <metal:define define-macro="edit">
+          <span tal:replace="structure string:</fieldset>" />
+    </metal:define>
+
+    <div metal:define-macro="search">
+          <div>Fieldset End</div>
+    </div>
+
+  </body>
+
+</html>
+

@@ -1,0 +1,437 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneFormGen 0.2\n"
+"POT-Creation-Date: 2006-09-04 22:26+0200\n"
+"PO-Creation-Date: 2006-09-04 22:26+0200\n"
+"Last-Translator: Jan Pokorny\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: cs\n"
+"Language-Name: Czech\n"
+"Preferred-Encodings: utf-8 latin2\n"
+"Domain: plone\n"
+"PO-Revision-Date: 2007-07-15 15:12+0100\n"
+
+#. Default: "This item is in use by someone else and cannot be modified"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "description_webdav_locked"
+msgstr "S touto položkou nyní pracuje někdo jiný a nelze ji proto upravovat."
+
+#. Default: "Edit ${itemtype}"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "heading_edit_item"
+msgstr "Editovat ${itemtype}"
+
+#. Default: "Cancel"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_cancel"
+msgstr "Storno"
+
+#. Default: "File type"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_file_type"
+msgstr "Typ souboru"
+
+#. Default: "Next"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_next"
+msgstr "Další"
+
+#. Default: "Previous"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_previous"
+msgstr "Předchozí"
+
+#. Default: "Size"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_size"
+msgstr "Velikost"
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Formulář"
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Složka, která obsahuje pole formuláře a pomocné jeho soubory."
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr "Složka, která generuje z obsažených polí formulář."
+
+#. Default: "Mailer Adapter"
+#: content/formMailerAdapter.py
+msgid "Mailer Adapter"
+msgstr "Mailer (odesílání pošty)"
+
+#. Default: " A form action adapter that will e-mail form input. "
+#: content/formMailerAdapter.py
+msgid " A form action adapter that will e-mail form input. "
+msgstr "Poštovní adaptér, která odešle e-mailem výstup z formuláře."
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "Adaptér pro odesílání vyplněného formuláře."
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "Uložení vyplněných údajů"
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr "Adaptér pro uložení vyplněných údajů ve formátu s oddělovači."
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "Poděkování"
+
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "Stránka s poděkováním, která může zobrazit vyplněná data."
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "Stránka s poděkováním, která může zobrazit vyplněná data."
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "Pole - ano/ne"
+
+#. Default: " Boolean (checkbox) field "
+#: content/fields.py
+msgid " Boolean (checkbox) field "
+msgstr "Pole - ano/ne"
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "Pole - ano/ne"
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "Pole - datum/čas"
+
+#. Default: " Date/Time Entry Field "
+#: content/fields.py
+msgid " Date/Time Entry Field "
+msgstr "Pole umožňující zadat datum a čas."
+
+#. Default: "A date/time field. Time component is optional."
+#: content/fields.py
+msgid "A date/time field. Time component is optional."
+msgstr "Pole umožňující zadat datum a čas. Zadání času není povinné."
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "Pole - soubor"
+
+#. Default: " File (upload) field "
+#: content/fields.py
+msgid " File (upload) field "
+msgstr "Pole umožňující odeslání souboru na server."
+
+#. Default: "A file field"
+#: content/fields.py
+msgid "A file field"
+msgstr "Pole umožňující odeslání souboru na server."
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "Pole - desetinné číslo"
+
+#. Default: " Fixed-Point (float) entry field "
+#: content/fields.py
+msgid " Fixed-Point (float) entry field "
+msgstr "Pole umožňující zápis desetinného čísla."
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "Pole umožňující zápis desetinného čísla."
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "Pole - celé číslo"
+
+#. Default: " A integer entry field "
+#: content/fields.py
+msgid " Integer entry field "
+msgstr "Pole umožňující zápis celého čísla."
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "Pole umožňující zápis celého čísla."
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "Pole - popisek"
+
+#. Default: " Label-Only field (no input component) "
+#: content/fields.py
+msgid " Label-Only field (no input component) "
+msgstr "Popisek slouží k umístění needitovatelného textu do formuláře."
+
+#. Default: "A Label (No Input) field"
+#: content/fields.py
+msgid "A Label (No Input) field"
+msgstr "Popisek slouží k umístění needitovatelného textu do formuláře."
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "Pole - řádky"
+
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#: content/fields.py
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "Pole sloužící k zápisu textových rádků. Text se v tomto poli nezalamuje."
+
+#. Default: "A lines field. This appears as a textarea without wordwrap."
+#: content/fields.py
+msgid "A lines field. This appears as a textarea without wordwrap."
+msgstr "Pole sloužící k zápisu textových rádků. Text se v tomto poli nezalamuje."
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "Pole - vícenásobný výběr"
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr "Pole umožňující výběr více než jedné položky ze seznamu."
+
+#. Default: "A multiple-selection field"
+#: content/fields.py
+msgid "A multiple-selection field"
+msgstr "Pole umožňující výběr více než jedné položky ze seznamu."
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "Pole - heslo"
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr "Pole umožňující zadání hesla. Zapisované znaky jsou maskovány."
+
+#. Default: "A password field (input masked)"
+#: content/fields.py
+msgid "A password field (input masked)"
+msgstr "Pole umožňující zadání hesla. Zapisované znaky jsou maskovány."
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "Pole - formátovaný text"
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr "Pole umožňující zápis formátovaného textu ve visuálním editoru."
+
+#. Default: "A rich text area field"
+#: content/fields.py
+msgid "A rich text area field"
+msgstr "Pole umožňující zápis formátovaného textu ve visuálním editoru."
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "Pole - výběr"
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr "Pole umožňující výběr jedné položky ze seznamu."
+
+#. Default: "A selection field"
+#: content/fields.py
+msgid "A selection field"
+msgstr "Pole umožňující výběr jedné položky ze seznamu."
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "Pole - řetězec"
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr "Pole umožňující zápis krátkého textu."
+
+#. Default: " A string field "
+#: content/fields.py
+msgid "A string field"
+msgstr "Pole umožňující zápis krátkého textu."
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "Pole - textová oblast"
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr "Pole umožňující zápis delšího neformátovaného textu."
+
+#. Default: "A text area field"
+#: content/fields.py
+msgid "A text area field"
+msgstr "Pole umožňující zápis delšího neformátovaného textu."
+
+#. Default: "default"
+#: content/form.py
+#: content/formMailerAdapter.py
+#: content/fields.py
+msgid "default"
+msgstr "výchozí"
+
+#. Default: "decoration"
+#: content/form.py
+msgid "decoration"
+msgstr "doprovodný text"
+
+#. Default: "no-input"
+#: content/fields.py
+msgid "no-input"
+msgstr "bez vstupu"
+
+#. Default: "overrides"
+#: content/form.py
+#: content/fields.py
+msgid "overrides"
+msgstr "doplňování"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr "adresování"
+
+#. Default: "message"
+#: content/formMailerAdapter.py
+msgid "message"
+msgstr "zpráva"
+
+#. Default: "template"
+#: content/formMailerAdapter.py
+msgid "template"
+msgstr "šablona"
+
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "hlavička"
+
+#. Default: "encryption"
+#: content/formMailerAdapter.py
+msgid "encryption"
+msgstr "šifrování"
+
+#. String Field
+#. Default: "Field Help"
+#: content/fields.py
+msgid "label_fieldhelp_text"
+msgstr "Nápověda"
+
+#. String Field
+#. Default: "Field Label"
+#: content/fields.py
+msgid "label_fieldlabel_text"
+msgstr "Popisek pole"
+
+#. Default: "Captcha Field"
+#: content/fields.py
+msgid "Captcha field"
+msgstr "Captcha"
+
+#. Default: " Captcha field (code verification) "
+#: content/fields.py
+msgid " Captcha field (code verification) "
+msgstr "Captcha (ověření ochranného kódu)"
+
+#. Default: "A Captcha field"
+#: content/fields.py
+msgid "A Captcha field"
+msgstr "Captcha"
+
+#. Default: "A Captcha field"
+#: content/fields.py
+msgid "A Captcha field"
+msgstr "Captcha"
+
+#. Default: "background"
+#: content/fields.py
+msgid "background"
+msgstr "pozadí"
+
+#. Default: "text"
+#: content/fields.py
+msgid "text"
+msgstr "text"
+
+#. Default: "others"
+#: content/fields.py
+msgid "others"
+msgstr "další"
+
+#. Captcha field
+#. Default: "Copy the security code provided in the picture."
+#: skins/PloneFormGen.widget_captcha.pt
+msgid "label_captcha_order_text"
+msgstr "Přepište ochranný kód zobrazený na obrázku"
+
+#. Custom script adapter
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr "Adaptér uživatelského skriptu"
+
+#.Fieldset folder
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr "Skupina polí"
+
+#.Fieldset folder
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr "Složka, která může seskupit pole do logické skupiny (fieldset)."
+
+#. RichText Field
+#: content/fieldset.py
+msgid "Rich Label Field"
+msgstr "Formátovaný popisek"
+
+#. RichText Field
+#: content/fieldset.py
+msgid "A rich-text label"
+msgstr "Popisek s formátovaným textem"
+
+#. RichText Field
+#: content/fieldset.py
+msgid " Rich-text label field "
+msgstr "Popisek s formátovaným textem"
+
+#. Text returned from captcha validator
+#. portal_skins/PFGCaptchas/pfg_captcha_validator
+msgid "Wrong code. Please try again"
+msgstr "Nesprávný kód. Zkuste opsat kód znovu."
+

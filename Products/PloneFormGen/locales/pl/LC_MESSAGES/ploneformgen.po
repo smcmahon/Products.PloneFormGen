@@ -1,0 +1,1197 @@
+# Polish translation for PloneFormGen (ploneformgen domain)
+# Łukasz Lichota <lukasz.lichota@webservice.pl> (Webservice.pl, 2006/2007)
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneFormGen 0.2\n"
+"POT-Creation-Date: 2006-09-04 22:26+0200\n"
+"PO-Creation-Date: 2006-01-04 22:26+0200\n"
+"Last-Translator: Łukasz Lichota\n"
+"Language-Team: webservice.pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pl\n"
+"Language-Name: Polish\n"
+"Preferred-Encodings: utf-8 latin2\n"
+"Domain: ploneformgen\n"
+"PO-Revision-Date: 2007-01-09 15:12+0100\n"
+
+#. Default: "${items} inputs saved"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "items_saved"
+msgstr ""
+
+#. Default: "Click here to get the saved input"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_click_to_get_input"
+msgstr "Kliknij tu żeby zobaczyć zapisane dane"
+
+#. Form Folder
+#. Default: "Submit Button Label"
+msgid "label_submitlabel_text"
+msgstr "Etykieta przycisku 'Zapisz'"
+
+
+#. Form Folder
+#. Default: "Show Cancel Button"
+msgid "label_showcancel_text"
+msgstr "Pokaż przycisk 'Anuluj'"
+
+
+#. Form Folder
+#. Default: "Action Adapter"
+msgid "label_actionadapter_text"
+msgstr "Akcja"
+
+
+#. Form Folder
+#. Default: "
+#. To make your form do something useful when submitted:
+#. add one or more form action adapters to the form folder,
+#. configure them, then return to this
+#. form and select the active ones.
+#. Default: "
+msgid "help_actionadapter_text"
+msgstr "Żeby twój formularz robił coś użytecznego dodaj jednego (lub więcej) kontrolera akcji do tego formularza, skonfiguruj go a następnie wróć do formularza i wybierz kontrolery, który chcesz do niego przypisać"
+
+
+#. Form Folder
+#. Default: "Form Prologue"
+msgid "label_prologue_text"
+msgstr "Tekst wstępny"
+
+
+#. Form Folder
+#. Default: "This text will be displayed above the form fields."
+msgid "help_prologue_text"
+msgstr "Ten tekst będzie wyświetlony na górze formularza"
+
+
+#. Form Folder
+#. Default: "Form Epilogue"
+msgid "label_epilogue_text"
+msgstr "Tekst końcowy"
+
+
+#. Form Folder
+#. Default: "The text will be displayed after the form fields."
+msgid "help_epilogue_text"
+msgstr "Ten tekst będzie wyświetlony na dole formularza"
+
+
+#. Form Folder
+#. Default: "Thanks Page"
+msgid "label_thankspage_text"
+msgstr "Podziękowania"
+
+
+#. Form Folder
+#. Default: "
+#. Default: Pick a contained page you wish to show on a successful
+#. Default: form submit. (If none are available, add one.) Choose none to simply display the form
+#. Default: field values.
+#. Default: "
+msgid "help_thankspage_text"
+msgstr "Wybierz stronę, która zostanie wyświetlona po pomyślnym wysłaniu formularza (jeśli żadna nie jest dostępna możesz dodać nową). Wybierz 'żadna' ('none') jeśli chcesz by zotały wyświetlone jedynie dane, które zostaly wysłane"
+
+
+#. Form Folder
+#. Default: "Custom Success Action"
+msgid "label_thankspageoverride_text"
+msgstr "Akcja po pomyślnym wysłaniu formularza"
+
+
+#. Form Folder
+#. Default: "
+#. Default: Use this field in place of a thanks-page designation
+#. Default: to determine final action after calling
+#. Default: your action adapter (if you have one). You would usually use this for a custom
+#. Default: success template or script.
+#. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
+#. Default: action type and argument,
+#. Default: complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
+#. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
+#. Default: redirect to 'thanks-page'.
+#. Default: "
+msgid "help_thankspageoverride_text"
+msgstr "Użyj tego pola zamiast wybierania strony z podziękowaniami w celu określenia dodatkowych (końcowych) działań do wykonania po głównej akcji fomularza (o ile taka jest określnona) w przypadku pomyślnego jego wysłania. Zwykle użycie tego pola polega na podaniu skryptu lub szablonu, który zostanie wykonany po pomyślnym wysłaniu formularza. Jeśli pole nie jest potrzebne zostaw go puste. W przeciwnym wypadku (tak jakbyś podawał typ akcji i argument dla CMFFormController)) wpisz typ akcji do wykonania (np. 'redirect_to' lub 'traverse_to') i wyrażenie TALES. Na przykład wpisanie \"redirect_to:string:thanks-page\" spowoduje przekierowanie do 'thanks-page'." 
+
+
+# Form Folder
+# label="Custom Form Action",
+msgid "label_formactionoverride_text"
+msgstr "Akcja po wysłaniu formularza"
+
+
+# Form Folder
+# description="""
+#        Use this field to override the form action attribute.
+#        Specify a URL to which the form will post.
+#        This will bypass form validation, success action
+#        adapter and thanks page.
+#    """
+msgid "help_formactionoverride_text"
+msgstr "Użyj tego by nadpisać (podmienić) akcję po wysłaniu fomularza. Podaj URL, do którego zostaną przekazane dane. W ten sposób pominięte zostanie sprawdzanie pól, akcja po pomyślnym wykonaniu i strona z podziękowaniami"
+
+
+# Form Folder
+#. Default "Form Setup Script"
+msgid "label_OnDisplayOverride_text"
+msgstr "Skrypt konfiguracji formularza"
+
+# Form Folder
+# description="""
+# A TALES expression that will be called when the form is displayed.
+# Leave empty if unneeded.
+# The most common use of this field is to call a python script that sets
+# defaults for multiple fields by pre-populating request.form.
+# Any value returned by the expression is ignored.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """,
+msgid "help_OnDisplayOverride_text"
+msgstr "Wyrażnie TALES, które zostanie wywołane kiedy formularz jest wyświetlany. Zostaw puste jeśli nie jest potrzebne. Najczęściej pole jest używane by wywołać skrypt pythona, który ustawia domyślne wartości dla pól wielokrotnego wyboru (przez użycie request.form). Wartość zwraca przez podane wyrażenie będzie zignorowana. UWAGA: błedy w wykonaniu tego wyrażenia spowodują błąd wyświetlenia formularza."
+
+# Form Folder
+# label="After Validation Script",
+msgid "label_AfterValidationOverride_text"
+msgstr "Skrypt powalidacyjny"
+
+# Form Folder
+# description="""
+# A TALES expression that will be called after the form is 
+# successfully validated, but before calling an action adapter
+# (if any) or displaying a thanks page.
+# Form input will be in the request.form dictionary.
+# Leave empty if unneeded.
+# The most common use of this field is to call a python script
+# to clean up form input or to script an alternative action.
+# Any value returned by the expression is ignored.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_AfterValidationOverride_text"
+msgstr "Wyrażnie TALES, które zostanie wywołane po tym jak pomyślnie zostanie sprawdzona poprawność pól formularza, ale przed wykonaniem głównej akcji formularza (jeśli jest taka) i przed wyświetleniem podziękowań. Dane formularza będą w zmiennej request.form (dictionary). Jeśli nie potrzebujesz pola zostaw go puste. Najczęstszym wykorzystaniem tego pola jest wywołanie skryptu pythona, który obrobi dane formularza lub wykonanie alternatywnej akcji. Wartość zwracana przez to wyrażenie jest ignorowana. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+# label="Header Injection"
+msgid "label_headerInjection_text"
+msgstr "Modyfikacja nagłówka (header injection)"
+
+# description="""
+# This override field allows you to insert content into the xhtml
+# head. The typical use is to add custom CSS or JavaScript.
+# Specify a TALES expression returning a string. The string will
+# be inserted with no interpretation.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_headerInjection_text"
+msgstr "Pole umożliwia dodanie zawartości do sekcji 'head' (nagłówka) strony (pliku xhtml). Typowe zastosowanie to dodanie własnych styli CSS lub JavaScriptu. Należy podać wyrażenie TALES zwracające string (ciąg znakowy). String zostanie wstawiony do nagłówka strony bez modyfikacji. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+#. String Field
+#. Default: "Field Label"
+msgid "label_fieldlabel_text"
+msgstr "Etykieta pola"
+
+
+#. String Field
+#. Default: "Field Help"
+msgid "label_fieldhelp_text"
+msgstr "Pomoc"
+
+
+#. String Field
+#. Default: "Required"
+msgid "label_required_text"
+msgstr "Wymagane"
+
+
+#. String Field
+#. Default: "Hidden"
+msgid "label_hidden_text"
+msgstr "Ukryte"
+
+
+#. String Field
+#. Default: "Default"
+msgid "label_fgdefault_text"
+msgstr "Domyślne"
+
+
+#. String Field
+#. Default: "
+#. Default: The value the field should contain when the form is first displayed.
+#. Default: Note that this may be overriden dynamically.
+#. Default: "
+msgid "help_fgdefault_text"
+msgstr "Domyślna wartość jaką powinno zawierać pole po wyświetleniu formularza. Zauważ, że to może być nadpisane dynamicznie."
+
+
+#. String Field
+#. Default: "Max Length"
+msgid "label_fgmaxlength_text"
+msgstr "Maksymalna długość"
+
+
+#. String Field
+#. Default:
+#. The maximum number of characters the user will be able to input.
+#. Use 0 for no limit.
+msgid "help_fgmaxlength_text"
+msgstr "Maksymalna liczba znaków jakie użytkownik będzie mógł wprowadzić. 0 oznacza brak limitów."
+
+
+#. String Field
+#. Default: "Size"
+msgid "label_fgsize_text"
+msgstr "Rozmiar"
+
+
+#. String Field
+#. Default: "The size of the text-entry box, in characters."
+msgid "help_fgsize_text"
+msgstr "Rozmiar tekstu jaki można wprowadzić (w znakach)."
+
+
+#. String Field
+#. Default: "Validator"
+msgid "label_fgstringvalidator_text"
+msgstr "Validator"
+
+
+#. String Field
+#. Default: "Tests input against simple string patterns."
+msgid "help_fgstringvalidator_text"
+msgstr "Sprawdź czy podany tekst pasuje do wzorca."
+
+
+#. String Field
+#. Default: "Plone 2.5 Note"
+msgid "label_plone25note_text"
+msgstr "Uwaga dla Plone 2.5"
+
+
+#. String Field
+#. Default: "
+#. Default: TALES overrides are disabled when viewing the field. They should work when viewing the form.
+#. Default: "
+msgid "help_plone25note_text"
+msgstr "Nadpisanie TALES jest wyłączone podczas wyświetlania pola. Powinno działać podczas wyświetlania formularza."
+
+#. String Field
+#. Default: "Default Expression"
+msgid "label_fgtdefault_text"
+msgstr "Domyślne wyrażenie"
+
+#. String Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a string.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtdefault_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która będzie wartością domyślną dla pola. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić string (ciąg znaków). UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+#. String Field
+#. Default: "Custom Validator"
+msgid "label_fgtvalidator_text"
+msgstr "Własny validator"
+
+#. String Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is validated.
+#. Default: Validate against 'value', which will contain the field input.
+#. Default: Return False if valid; if not valid return a string error message.
+#. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
+#. Default: require "eggs" for input.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtvalidator_text"
+msgstr "Wyrażenie TALES, które zostanie obliczone gdy sprawdzana jest wartość pola. Sprawdzana wartość wejściowa jest w zmiennej 'value'. Zwróć 'False' jesli jest poprawna, jeśli nie poprawna zwróć komunikat błędu. Na przykład: \"python: test(value=='eggs', False, 'input must be eggs')\" będzie sprawdzać czy podaną wartością wejściową jest wyraz 'eggs'. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+#. Integer Field
+#. Default: "Minimum Acceptable Value"
+msgid "label_minval_text"
+msgstr "Mimalna akceptowalna wartość"
+
+
+#. Integer Field
+#. Default: "
+#. Default: The form will not accept values less than the number you enter here.
+#. Default: "
+msgid "help_minval_text"
+msgstr "Wartości mniejsze od podanej tutaj nie zostaną zaakceptowane."
+
+
+#. Integer Field
+#. Default: "Maximum Acceptable Value"
+msgid "label_maxval_text"
+msgstr "Maksymalna akceptowalna wartość"
+
+
+#. Integer Field
+#. Default: "
+#. Default: The form will not accept values greater than the number you enter here.
+#. Default: "
+msgid "help_maxval_text"
+msgstr "Wartości większe od podanej tutaj nie zostaną zaakceptowane."
+
+
+#. Boolean Field
+#. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond
+#. Default: putting a 'required' marker next to the label. If you wish to require a
+#. Default: particular input, choose a validator below.
+#. Default: "
+msgid "help_boolrequired_text"
+msgstr "UWAGA: Dla pola wyboru typu tak/nie (checkbox) zaznaczenie opcji 'wymagane' nie zrobi nic poza dodaniem znaczka 'wymagane' obok etykiety. Jeśli chcesz wymagać podania określonej wartości wybierz validator poniżej."
+
+
+#. Boolean Field
+#. Default: "Validator"
+msgid "label_fgbooleanvalidator_text"
+msgstr "Validator"
+
+
+#. Boolean Field
+#. Default: "Choose a validator to require a particular response."
+msgid "help_fgbooleanvalidator_text"
+msgstr "Wybierz validator wymagający podania określonej odpowiedzi."
+
+
+#. Date/Time Field
+#. Default: "Show Time Selection Options"
+msgid "label_fgshowhm_text"
+msgstr "Pokaż opcje wyboru czasu."
+
+
+#. Lines Field
+#. Default: "Default"
+msgid "label_fglinesdefault_text"
+msgstr "Domyślne"
+
+
+#. Lines Field
+#. Default: "
+#. Default: The values the field should contain when the form is first displayed.
+#. Default: Use one value per line.
+#. Default: Note that this may be overriden dynamically.
+#. Default: "
+msgid "help_fglinesdefault_text"
+msgstr "Domyślne wartości jakie powinno zawierać pole po wyświetleniu formularza. Użyj jednej wartości w jednej linii. Zauważ, że to może być nadpisane dynamicznie."
+
+
+#. Lines Field
+#. Default: "Rows"
+msgid "label_rows_text"
+msgstr "Wiersze"
+
+
+#. Lines Field
+#. Default: "Default Expression"
+msgid "label_fgtlinesdefault_text"
+msgstr "Domyślne wyrażenie"
+
+
+#. Lines Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtlinesdefault_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która będzie wartością domyślną dla pola. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić liste albo tuple. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+#. Selection Field
+#. Default: "Options"
+msgid "label_fgvocabulary_text"
+msgstr "opcje"
+
+
+#. Selection Field
+#. Default: "
+#. Default: Use one line per option.
+#. Default: Note that this may be overriden dynamically.
+#. Default: [Note, you may optionally use a "value|label" format.]
+#. Default: "
+msgid "help_fgvocabulary_text"
+msgstr "Podaj jedną opcję w linii. Zauważ, że może to być nadpisane dynamicznie. [Zauważ też, żę możesz opcjonalnie użyć formatu 'wartość|etykieta'.]"
+
+
+
+#. Selection Field
+#. Default: "Presentation Widget"
+msgid "label_fgformat_text"
+msgstr "Wygląd pola w formularzu"
+
+
+#. Selection Field
+#. Default: "Options Vocabulary"
+msgid "label_fgtvocabulary_text"
+msgstr "Opcje"
+
+
+#. Selection Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field options.
+#. Default: Leave empty if unneeded.
+#. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtvocabulary_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która będzie wartością domyślną dla pola. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić listę tupli (klucz,wartość). UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+#. Multi-Select Field
+#. Default: "Presentation Widget"
+msgid "label_fgmsformat_text"
+msgstr "Wygląd pola w formularzu"
+
+
+#. Text Field
+#. Default: "Default"
+msgid "label_fgtextdefault_text"
+msgstr "Domyślne"
+
+
+#. Text Field
+#. Default: "
+#. Default: The text the field should contain when the form is first displayed.
+#. Default: Note that this may be overriden dynamically.
+#. Default: "
+msgid "help_fgtextdefault_text"
+msgstr "Domyślna wartość jaką powinno zawierać pole po wyświetleniu formularza. Zauważ, że to może być nadpisane dynamicznie."
+
+
+#. Text Field
+#. Default: "Default Expression"
+msgid "label_fgtlistdefault_text"
+msgstr "Domyślne wyrażenie"
+
+
+#. Text Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtlistdefault_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która będzie wartością domyślną dla pola. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić liste albo tuple. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+#. File Field
+#. Default: "Maximum Upload Size (Megabytes)"
+msgid "label_filemaxmb_text"
+msgstr "Maksymalny rozmiar wysyłanego pliku (w magebajtach)"
+
+
+#. File Field
+#. Default: "Set to 0 for no limit."
+msgid "help_filemaxmb_text"
+msgstr "0 oznacza brak limitów."
+
+# Rich Text Field
+# description="""Input tests using HTMLTidy (if installed).""",
+msgid "help_fgrtvalidator_text"
+msgstr "Sprawdzanie wartości wejściowej przy użyciu HTMLTidy (jeśli jest zainstalowane)"
+
+#. Mailer Adapter
+#. Default: "Recipient's full name"
+msgid "label_formmailer_recipient_fullname"
+msgstr "Pełna nazwa adresata"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: The full name of the recipient of the mailed form.
+#. Default: "
+msgid "help_formmailer_recipient_fullname"
+msgstr "Pełna nazwa adresata, do którego zostaną wysłane dane."
+
+
+#. Mailer Adapter
+#. Default: "Recipient's e-mail address"
+msgid "label_formmailer_recipient_email"
+msgstr "Adres e-mail odbiorcy"
+
+
+#. Mailer Adapter
+#. Default: "The recipients e-mail address."
+msgid "help_formmailer_recipient_email"
+msgstr "Adres e-mail odbiorcy"
+
+
+#. Mailer Adapter
+#. Default: "Extract Recipient From"
+msgid "label_formmailer_to_extract"
+msgstr "Pobierz adresata z"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the To header. If you choose anything other
+#. Default: than "None", this will override the "Recipient's e-mail address"
+#. Default: setting above.
+#. Default: Only selection fields are eligible for this use because they
+#. Default: may be validated against your specified options.
+#. Default: "
+msgid "help_formmailer_to_extract"
+msgstr "Wybierz pole formularza, z którego chcesz pobrać dane do pola 'Do' maila. Jeśli wybierzesz inną opcję niż 'None' zastąpi ona ustawienia \"Adres e-mail odbiorcy\" powyżej. Tylko pola wyboru nadają się do tego zastosowania, bo tylko dla nich można sprawdzić czy zawierają wyspecyfikowane przez ciebie opcje."
+
+
+#. Mailer Adapter
+#. Default: "CC Recipients"
+msgid "label_formmailer_cc_recipients"
+msgstr "Kopia do"
+
+
+#. Mailer Adapter
+#. Default: "E-mail addresses which receive a carbon copy."
+msgid "help_formmailer_cc_recipients"
+msgstr "Adresy e-mail, na które ma być wysłana kopia maila."
+
+
+#. Mailer Adapter
+#. Default: "BCC Recipients"
+msgid "label_formmailer_bcc_recipients"
+msgstr "Ukryta kopia do"
+
+
+#. Mailer Adapter
+#. Default: "E-mail addresses which receive a blind carbon copy."
+msgid "help_formmailer_bcc_recipients"
+msgstr "Adresy e-mail, na które ma być wysłana 'ukryta' kopia maila."
+
+
+#. Mailer Adapter
+#. Default: "Extract Reply-To From"
+msgid "label_formmailer_replyto_extract"
+msgstr "Pobierz wartość dla pola 'Odpowiedz-Do' z"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the Reply-To header. NOTE: You should
+#. Default: activate e-mail address verification for the designated
+#. Default: field.
+#. Default: "
+msgid "help_formmailer_replyto_extract"
+msgstr "Wybierz pole, z którego ma być pobrana wartość dla pola 'Odpowiedz-Do' maila. UWAGA: Powinieneś aktywować sprawdzanie czy wpisana wartość pola jest adresem email."
+
+#. Mailer Adapter
+#. Default: "Subject"
+msgid "label_formmailer_subject"
+msgstr "Temat"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Subject line of message. This is used if you
+#. Default: do not specify a subject field or if the field
+#. Default: is empty.
+#. Default: "
+msgid "help_formmailer_subject"
+msgstr "Temat wiadomości. Jest używane jeśli nie dodasz pola 'temat' albo to pole jest puste."
+
+
+#. Mailer Adapter
+#. Default: "Extract Subject From"
+msgid "label_formmailer_subject_extract"
+msgstr "Pobierz watość dla pola 'Temat'"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the mail subject line.
+#. Default: "
+msgid "help_formmailer_subject_extract"
+msgstr "Podaj pole formularza, z którego ma być pobrana wartość dla pola 'Temat' maila."
+
+#. Mailer Adapter
+#. Default: "Body (prepended)"
+msgid "label_formmailer_body_pre"
+msgstr "Treść (wstęp)"
+
+
+#. Mailer Adapter
+#. Default: "Text prepended to fields listed in mail-body"
+msgid "help_formmailer_body_pre"
+msgstr "Tekst dodany na początku maila"
+
+
+#. Mailer Adapter
+#. Default: "Body (appended)"
+msgid "label_formmailer_body_post"
+msgstr "Treść (dodana na końcu)"
+
+
+#. Mailer Adapter
+#. Default: "Text appended to fields listed"
+msgid "help_formmailer_body_post"
+msgstr "Tekst dodany na końcu maila"
+
+
+#. Mailer Adapter
+#. Default: "Body (signature)"
+msgid "label_formmailer_body_footer"
+msgstr "Treść (podpis)"
+
+
+#. Mailer Adapter
+#. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
+msgid "help_formmailer_body_footer"
+msgstr "Tekst dodany jako stopka na dole."
+
+
+#. Mailer Adapter
+#. Default: "Mail-Body Template"
+msgid "label_formmailer_body_pt"
+msgstr "Szablon treści-maila"
+
+
+#. Mailer Adapter
+#. Default: "This is a Zope Page Template used for rendering of the mail-body. You don't need to modify it, but if you know TAL (Zope's Template Attribute Language) you have the full power to customize your outgoing mails."
+msgid "help_formmailer_body_pt"
+msgstr "To jest Zope Page Template (szablon stron Zope) do utworzenie treści maila. Nie musisz go modyfikować, ale jesli znasz TAL (Zope's Template Attribute Language) masz spore możliwości dostosowywania formatu i wyglądu maila"
+
+
+#. Mailer Adapter
+#. Default: "Mail-Body Type"
+msgid "label_formmailer_body_type"
+msgstr "Typ zawartości maila"
+
+
+#. Mailer Adapter
+#. Default: "Set the mime-type of the mail-body. Change this setting only if you know exactly what you are doing. Leave it blank for default behaviour."
+msgid "help_formmailer_body_type"
+msgstr "Ustaw typ mime zawartości maila. Użyj tej opcji tylko jeśli dobrze wiesz co robisz. Zostaw je domyślne jeśli wystarczy Ci domyśne zachowanie."
+
+
+#. Mailer Adapter
+#. Default: "HTTP Headers"
+msgid "label_xinfo_headers_text"
+msgstr "Nagłówki HTTP"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Pick any items from the HTTP headers that
+#. Default: you'd like to insert as X- headers in the
+#. Default: message.
+#. Default: "
+msgid "help_xinfo_headers_text"
+msgstr "Wybierz nagłówki HTTP, które chcesz wstawić jako X- nagłówki w wiadomości"
+
+
+#. Mailer Adapter
+#. Default: "Additional Headers"
+msgid "label_formmailer_additional_headers"
+msgstr "Dodatkowe nagłówki"
+
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Additional e-mail-header lines.
+#. Default: Only use RFC822-compliant headers.
+#. Default: "
+msgid "help_formmailer_additional_headers"
+msgstr "Dodatkowe nagłówki (jeden w linii). Używaj tylko nagłówków zgodnych z RFC822"
+
+#. Mailer Adapter
+#. Default "Key-Id"
+msgid "label_gpg_key_id"
+msgstr ""
+
+#. Mailer Adapter
+#. Default """
+#. Default Give your key-id, e-mail address or
+#. Default whatever works to match a public key from current keyring.
+#. Default It will be used to encrypt the message body.
+#. Default Contact the site administrator if you need to 
+#. Default install a new public key.
+#. Default Note that you will probably wish to change your message
+#. Default template to plain text if you're using encryption.
+#. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
+#. Default """
+msgid "help_gpg_key_id"
+msgstr ""
+
+
+#####
+# Mailer adapter overrides schema
+
+# "Subject Expression"
+msgid "label_subject_override_text"
+msgstr "Temat - wyrażenie TALES"
+
+# A TALES expression that will be evaluated to override any value
+# otherwise entered for the e-mail subject header.
+# Leave empty if unneeded. Your expression should evaluate as a string.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+msgid "help_subject_override_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która zastąpi jakiekolwiek inne wartości wpisane jako temat maila. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić stringa (ciąg znaków). UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+# "Sender Expression"
+msgid "label_sender_override_text"
+msgstr "Nadawca - wyrażenie TALES"
+
+
+# A TALES expression that will be evaluated to override the "From" header.
+# Leave empty if unneeded. Your expression should evaluate as a string.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+msgid "help_sender_override_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która zastąpi wartoścć pola 'Od' maila. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić stringa (ciąg znaków). UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+# "Recipient Expression"
+msgid "label_recipient_override_text"
+msgstr "Odbiorca - wyrażenie TALES"
+
+# A TALES expression that will be evaluated to override any value
+# otherwise entered for the recipient e-mail address. You are strongly
+# cautioned against using unvalidated data from the request for this purpose.
+# Leave empty if unneeded. Your expression should evaluate as a string.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+msgid "help_recipient_override_text"
+msgstr "Wyrażenie TALES, które zwraca wartość, która zastąpi jakiekolwiek inne wartości wpisane jako adres emial odbiorcy. Ostrzegamy przed używaniem niesprawdzonych danych wejściowych do tego celu. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić stringa (ciąg znaków). UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
+
+
+#. Save Data Adapter
+#. Default: "Extra Data"
+msgid "label_savedataextra_text"
+msgstr "Dodatkowe dane"
+
+
+#. Save Data Adapter
+#. Default: "
+#. Default: Pick any extra data you'd like saved with the form input.
+#. Default: "
+msgid "help_savedataextra_text"
+msgstr "Podaj dodatkowe dane jakie chcesz zapisać razem z danymi z formularza"
+
+
+#. Save Data Adapter
+#. Default: "Download Format"
+msgid "label_downloadformat_text"
+msgstr "Format zapisu"
+
+
+# "Include Column Names",
+msgid "label_usecolumnnames_text"
+msgstr "Dodaj nazwy kolumn"
+
+
+# "Do you wish to have column names on the first line of downloaded input?",
+msgid "help_usecolumnnames_text"
+msgstr "Czy dodać nazwy kolumn w pierszej linii?"
+
+#. Save Data Adapter
+#. Default: "Saved Form Input"
+msgid "label_savedatainput_text"
+msgstr "Zapisane z wejścia"
+
+#. Save Data Adapter
+#  value="Clear Saved Input"
+msgid "clear-save-input"
+msgstr "Wyczyść zapisane z wejścia"
+
+#. Thanks Page
+#. Default: "Show All Fields"
+msgid "label_showallfields_text"
+msgstr "Pokaż wszystkie pola"
+
+
+#. Thanks Page
+#. Default: "
+#. Default: Check this to display input for all fields
+#. Default: (except label and file fields). If you check
+#. Default: this, the choices in the pick box below
+#. Default: will be ignored.
+#. Default: "
+msgid "help_showallfields_text"
+msgstr "Zaznacz tą opcję jeśli chcesz żeby wszystkie pola (oprócz etykiet i wysłanych plików) zostały wyświetlone. Jeśli wybierzesz tą opcję wybory pojedynczych pól poniżej zostaną zignorowane."
+
+
+#. Thanks Page
+#. Default: "Show Responses"
+msgid "label_showfields_text"
+msgstr "Pokaż odpowiedzi"
+
+
+#. Thanks Page
+#. Default: "
+#. Default: Pick the fields whose inputs you'd like to display on
+#. Default: the success page.
+#. Default: "
+msgid "help_showfields_text"
+msgstr "Wybierz pola, których wartości maja zostać wyświetlone."
+
+
+#. Thanks Page
+#. Default: "Include Empties"
+msgid "label_includeEmpties_text"
+msgstr "Dodaj puste"
+
+
+#. Thanks Page
+#. Default: "
+#. Default: Check this to display fields titles
+#. Default: for fields that received no input. Uncheck
+#. Default: to leave fields with no input off the list.
+#. Default: "
+msgid "help_includeEmpties_text"
+msgstr "Zaznacz tą opcję żeby wyświetlić nazwy dla pól, w których nic nie zostało wpisane. Brak zaznaczenia spowoduje nie dołączanie pustych pól do listy"
+
+
+#. Thanks Page
+#. Default: "Thanks Prologue"
+msgid "label_thanksprologue_text"
+msgstr "Wstęp"
+
+
+#. Thanks Page
+#. Default: "This text will be displayed above the selected field inputs."
+msgid "help_thanksprologue_text"
+msgstr "Tekst, który zostanie wyświetlony na początku strony z podziękowaniami."
+
+
+#. Thanks Page
+#. Default: "Thanks Epilogue"
+msgid "label_thanksepilogue_text"
+msgstr "Zakończenie"
+
+
+#. Thanks Page
+#. Default: "The text will be displayed after the field inputs."
+msgid "help_thanksepilogue_text"
+msgstr "Tekst, który zostanie wyświetlony na dole strony z podziękowaniami."
+
+#. Thanks Page
+#. Default: "No Submit Message"
+msgid "label_nosubmit_text"
+msgstr "Brak wysłanej wiadomości"
+
+#. Thanks Page
+# description = """
+# The text to display if the browser reaches this
+# thanks page without submitting a form. Typically, this
+# would direct the reader to the form.
+# """
+msgid "help_nosubmit_text"
+msgstr "Tekst, ktory zostanie wyświetlony kiedy przeglądarka dotrze do tej strony z podziękowaniami bez wcześniejszego wysłania formularza. Zazwyczaj to przekieruje bezpośrednio do formularza."
+
+
+# *** Vocabularies
+
+# default="None"
+msgid "vocabulary_none_text"
+msgstr "żaden"
+
+# default="Is an E-Mail Address"
+msgid "vocabulary_isemailaddress_text"
+msgstr "Czy jest adresem E-Mail"
+
+# default="Contains only printable characters"
+msgid "vocabulary_onlyprintable_text"
+msgstr "Zawiera jedynie możliwe do narysowania znaki"
+
+# default="Is a well-formed URL"
+msgid "vocabulary_isurl_text"
+msgstr "Jest poprawnym adresm URL"
+
+# default="Is a valid US phone number"
+msgid "vocabulary_isusphone_text"
+msgstr "Jest poprawnym numerem telefonu w USA"
+
+# default="Is a valid international phone number"
+msgid "vocabulary_isintphone_text"
+msgstr "Jest poprawnym międzynarodowym numerem telefonu"
+
+# default="Is a valid zip code"
+msgid "vocabulary_iszipcode_text"
+msgstr "Jest poprawnym kodem pocztowym"
+
+
+# default="Is checked"
+msgid "vocabulary_ischecked_text"
+msgstr "Jest zaznaczone"
+
+# default="Is not checked"
+msgid "vocabulary_isnotchecked_text"
+msgstr "Nie jest zaznaczone"
+
+
+# default="Flexible (radio for short, select for longer)"
+msgid "vocabulary_flex_text"
+msgstr "Elastyczne (przyciski dla krótkich, lista wyboru dla dłuższych)"
+
+# default="Selection list"
+msgid "vocabulary_selection_text"
+msgstr "Lista wyboru"
+
+# default="Radio buttons"
+msgid "vocabulary_radio_text"
+msgstr "Przyciski 'radio'"
+
+# default="Checkbox list"
+msgid "vocabulary_checkbox_text"
+msgstr "Lista typu checkbox (pól wyboru tak/nie)"
+
+# save data adapter
+# default='Posting Date/Time'
+msgid "vocabulary_postingdt_text"
+msgstr "Data i czas wysłania"
+
+# default='Tab-Separated Values'
+msgid "vocabulary_tsv_text"
+msgstr "Wartości odseparowane znakami tabulacji"
+
+# default='Comma-Separated Values'
+msgid "vocabulary_csv_text"
+msgstr "Wartości odseparowane przecinkami"
+
+# default='Is Tidy HTML (fails on errors and warnings)')
+msgid "vocabulary_istidyhtml_text"
+msgstr "Jest poprawnym HTML (niepowodzenie w przypadku błędów i ostrzeżeń)"
+
+# default='Tidy HTML With Cleanup (fails on errors, cleans up rest)')
+msgid "vocabulary_istidyhtmlwithcleanup_text"
+msgstr "Czysty HTML z porządkowaniem (niepowodzenie w przypadku błędów, reszta porządkowana)"
+
+#. Rich Label Field
+#. Default: 'Label body',
+msgid "label_fglabelbody_text"
+msgstr "Treść etykiety"
+
+#. Rich Label Field
+#. Default "The text to display in the form."
+msgid "help_fglabelbody_text"
+msgstr "Tekst, który będzie wyświetlony w formularzu."
+
+
+#########
+# Custom Script Adapter
+
+# 'Proxy role',
+msgid "label_script_proxy"
+msgstr "Funkcja proxy"
+
+# """ Role under which to run the script. """,
+msgid "help_script_proxy"
+msgstr "Funkcja jaką pełnił będzie skrypt"
+
+# 'Script body'
+msgid "label_script_body"
+msgstr "Treść skryptu"
+
+# """ Write your script here. """
+msgid  "help_script_body"
+msgstr "Napisz tutaj swój skrypt"
+
+################# captcha field
+#########
+#. Captcha field
+#. Default: "Copy the security code provided in the picture."
+#: skins/PloneFormGen.widget_captcha.pt
+msgid "label_captcha_order_text"
+msgstr "Przekopiuj kod bezpieczeństwa pokazany na obrazku"
+
+#. Captcha Field
+#. Default: "Background color"
+msgid "label_colorrgb_text"
+msgstr "Kolor tła"
+
+#. Captcha Field
+#. Default: "Enter color RGB values using this format: r,g,b (for example: 255,0,23).
+#. Default: If you leave the field blank then default color is white. "
+msgid "help_colorrgb_text"
+msgstr "Wprowadź wartości RGB koloru używając podanego formatu: r,g,b (np. 255,0,23). Jeśli zostawisz pole puste to domyślnym kolorem będzie biały"
+
+#. Captcha Field
+#. Default: "Add grid"
+msgid "label_fgisgrid_text"
+msgstr "Dodaj siatkę"
+
+#. Captcha Field
+#. Default: "Add a grid of lines, with a given foreground color.
+#. Default: The size is given in pixels. The background color is as specified above"
+msgid "help_fgisgrid_text"
+msgstr "Dodaj siatkę (o podanym kolorze). Kolor tła jest taki jak podany wyżej"
+
+#. Captcha Field
+#. Default: "Grid color"
+msgid "label_fggridcolor_text"
+msgstr "Kolor siatki"
+
+#. Captcha Field
+#. Default: "Enter color RGB values using this format: r,g,b (for example: 255,0,23).
+#. Default: If you leave the field blank then default color is white."
+msgid "help_fggridcolor_text"
+msgstr "Wprowadź wartości RGB koloru używając podanego formatu: r,g,b (np. 255,0,23). Jeśli zostawisz pole puste to domyślnym kolorem będzie biały"
+
+#. Captcha Field
+#. Default: "Grid width (size of squares)"
+msgid "label_fggridwidth_text"
+msgstr "Grubość siatki (rozmiar kwadratów siatki)"
+
+#. Captcha Field
+#. Default: "Width of grid squares in pixels (must be a number greater than 0). Default is 16px."
+msgid "help_fggridwidth_text"
+msgstr "Rozmiar kwadratów siatki w pikselach (musi być większy od 0). Domyślnie 16px"
+
+#. Captcha Field
+#. Default: "Add dots"
+msgid "label_fgisdotted_text"
+msgstr "Dodaj kropki"
+
+#. Captcha Field
+#. Default: "Add random placed colored dots. "
+msgid "help_fgisdotted_text"
+msgstr "Dodaj losowo rozmieszczone kolorowe kropki"
+                
+#. Captcha Field
+#. Default: "Dots colors"
+msgid "label_fgdotscolors_text"
+msgstr "Kolory kropek"
+
+#. Captcha Field
+#. Default: "Enter dots colors. Each color should be 
+#. Default:  in RGB format: r,g,b (for example: 255,0,23).
+#. Default:  Multiply colors should be separeted with semicolons.
+#. Default:  Eg. '255,0,0;0,255,0' - indicates red and green
+#. Default:  If you leave the field blank then default colors are white and black. "
+msgid "help_fgdotscolors_text"
+msgstr "Podaj kolory kropek. Każdy kolor powinien być w formacie r,g,b (np. 255,0,23). Poszczególne kolory powinny być oddzielone średnikami. Np. '255,0,0;0,255,0' oznacza kolor czerwony i zielony. Jeśli zostawisz pole puste wtedy domyślnymi kolorami są czarny i biały"
+     
+#. Captcha Field
+#. Default: "Dots size"
+msgid "label_fgdotssize_text"
+msgstr "Rozmiar kropek"
+   
+#. Captcha Field
+#. Default: "Dots size in pixels. Default is 4."
+msgid "help_fgdotssize_text"
+msgstr "Rozmiar kropek w pikselach. Domyślnie 4"
+   
+#. Captcha Field
+#. Default: "Number of dots"
+msgid "label_fgnumberofdots_text"
+msgstr "Liczba kropek."
+
+#. Captcha Field
+#. Default: "Number of dots that will appear. Default is 400."
+msgid "help_fgnumberofdots_text"
+msgstr "Liczba kropek. Domyślna liczba to 400"
+
+#. Captcha Field
+#. Default: "Set abstract image"
+msgid "label_fghasabstractimage_text"
+msgstr "Ustaw abstrakcyjny obrazek"
+
+#. Captcha Field
+#. Default: " Set a random abstract image as backgrond. NOTE: If you choose this option background color,
+#. Default:  grid and dots will not be visible (will be coverd by image)"
+msgid "help_fghasabstractimage_text"
+msgstr "Ustaw abstrakcyjny obrazek jako tło. UWAGA: Jeśli wybierzesz tą opcję kolor tła, siatka i kropki będą niewidoczne (zostaną zasłonięte przez obrazek)"
+
+#. Captcha Field
+#. Default: "Set nature image"
+msgid "label_fghasnatureimage_text"
+msgstr "Ustaw obrazek natury"
+
+#. Captcha Field
+#. Default: " Set a random nature image as backgrond. NOTE: Is you choose this option background color,
+#. Default: grid, dots and abstract image will not be visible (will be covered by nature image)"
+msgid "help_fghasnatureimage_text"
+msgstr "Ustaw obrazek natury jako tło. UWAGA: Jeśli wybierzesz tą opcję kolor tła, siatka, kropki i obrazek abstraktycjny będą niewidoczne (zostaną zasłonięte przez obrazek natury)"
+
+#. Captcha Field
+#. Default: "Text color"
+msgid "label_fgtextcolor_text"
+msgstr "Kolor tekstu"
+
+#. Captcha Field
+#. Default: "Enter color RGB values using this format: r,g,b (for example: 255,0,23).
+#. Default  If you leave the field blank then default color is black. "
+msgid "help_fgtextcolor_text"
+msgstr "Wprowadź wartości RGB koloru używając podanego formatu: r,g,b (np. 255,0,23). Jeśli zostawisz pole puste to domyślnym kolorem będzie czarny"
+
+#. Captcha Field
+#. Default: "Text border size"
+msgid "label_fgtextbordersize_text"
+msgstr "Grubość konturu (obwódki) tekstu"
+
+#. Captcha Field
+#. Default: "Text border size in pixels. Default is 1px. "
+msgid "help_fgtextbordersize_text"
+msgstr "Grubość konturu (obwódki) tekstu. Domyślnie 1px."
+
+#. Captcha Field
+#. Default: "Text border color"
+msgid "label_fgtextbordercolor_text"
+msgstr "Kolor konturu (odwódki) tekstu"
+
+#. Captcha Field
+#. Default: "Enter color RGB values using this format: r,g,b (for example: 255,0,23).
+#. Default: If you leave the field blank then default color is white. "
+msgid "help_fgtextbordercolor_text"
+msgstr "Wprowadź wartości RGB koloru używając podanego formatu: r,g,b (np. 255,0,23). Jeśli zostawisz pole puste to domyślnym kolorem będzie biały"
+
+#. Captcha Field
+#. Default: "Add wave distortion"
+msgid "label_fgiswavedistortion_text"
+msgstr "Dodaj falowe zniekształcenie"
+
+#. Captcha Field
+#. Default: "Warp the image using a random composition of sine waves."
+msgid "help_fgiswavedistortion_text"
+msgstr "Zniekształć obrazek (pofaluj go) poprzez nałożenie sinusoidalnych fal"
+
+#. Captcha Field
+#. Default: "Add block shifting distortion"
+msgid "label_fgisshifdistortion_text"
+msgstr "Dodaj losowe przesunięcia bloków"
+
+#. Captcha Field
+#. Default: "Randomly select and shift blocks of the image"
+msgid "help_fgisshiftdistortion_text"
+msgstr "Zniekształć obrazek przez losowe wybranie i przesunięcie bloków obrazka"
+
+#. Captcha Field
+#. Default: "Vocabulary"
+msgid "label_fgwordssource_text"
+msgstr "Słownictwo"
+
+#. Captcha Field
+#. Default: "Choose vocabulary source. It can be a set of simple english words or words
+#. Default:  made of random letters"
+msgid "text_fgwordssource_text"
+msgstr "Wybierz źródło słowictwa. Mogą to być proste angielskie słowa lub słowa złożone z losowych liter"        
+
+#. Captcha Field
+#. Default: "Random text"
+msgid "vocabulary_random_text"
+msgstr "Losowy tekst"
+
+#. Captcha Field
+#. Default: "Simple english words"
+msgid "vocabulary_englishwords_text"
+msgstr "Proste angielskie słowa"

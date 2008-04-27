@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <head><title></title></head>
+
+  <body>
+    <metal:fill fill-slot="main">
+      <metal:main_macro>
+
+            <div tal:condition="exists:request/form/fieldset">
+          
+              <div metal:use-macro="here/document_actions/macros/document_actions">
+                  Document actions (print, sendto etc)
+              </div>
+        
+              <h1 tal:content="object_title" class="documentFirstHeading">
+                Title or id
+              </h1>
+          
+              <div metal:use-macro="here/document_byline/macros/byline">
+                Get the byline - contains details about author and modification date.
+              </div>
+        
+              <p class="documentDescription"
+                 tal:content="here/Description"
+                 tal:condition="here/Description">
+                  Description
+              </p>
+        
+              <p tal:replace="structure here/thanksPrologue | nothing" />
+      
+                <blockquote>
+                    <dl>
+                        <tal:block repeat="field python:here.displayInputs(request)">
+                            <dt tal:content="field/label" />
+                            <dd tal:content="structure field/value" />
+                        </tal:block>
+                    </dl>
+                </blockquote>
+      
+              <p tal:replace="structure here/thanksEpilogue | nothing" />
+
+            </div>
+
+        <div tal:condition="not: exists:request/form/fieldset" tal:replace="structure here/noSubmitMessage | nothing">
+          No input was received.
+        </div>
+
+      </metal:main_macro>
+    </metal:fill>
+  </body>
+</html>

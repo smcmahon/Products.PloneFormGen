@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+  <head><title></title></head>
+  <body>
+
+    <!-- Fieldset Start Widgets -->
+
+    <metal:view_macro define-macro="view">
+          <span tal:replace="structure string:<fieldset>" />
+    </metal:view_macro>
+ 
+    <metal:define define-macro="edit">
+          <span tal:replace="structure python:'<fieldset class=\x22PFGFieldsetWidget\x22 id=\x22pfg-fieldsetname-%s\x22>' % field.getName()" />
+          <tal:block condition="widget/show_legend">
+              <span tal:replace="structure string:<legend>" />
+              <span tal:content="python:widget.Label(here)" />
+              <span tal:replace="structure string:</legend>" />
+          </tal:block>
+          <div class="formHelp"
+               tal:define="description python:widget.Description(here)"
+               tal:content="structure description"
+               tal:attributes="id string:${fieldName}_help"
+               i18n:translate="">
+            Help
+          </div>
+    </metal:define>
+
+    <div metal:define-macro="search">
+          <div>Fieldset Start</div>
+    </div>
+
+  </body>
+
+</html>
+

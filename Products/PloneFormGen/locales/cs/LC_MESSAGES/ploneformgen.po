@@ -1,0 +1,820 @@
+# PloneFormGen
+# Steve McMahon <steve@dcn.org>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneFormGen\n"
+"POT-Creation-Date: 2006-09-18 21:00+0000\n"
+"PO-Revision-Date: 2007-05-12 20:51+0100\n"
+"Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
+"Language-Team:  <info@corenet.cz>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: cs\n"
+"Language-Name: Czech\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: ploneformgen\n"
+
+#. Default: "${items} inputs saved"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "items_saved"
+msgstr "Počet uložených záznamů: ${items}"
+
+#. Default: "Click here to get the saved input"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_click_to_get_input"
+msgstr "Uložené záznamy můžete získat klepnutím zde."
+
+#. Form Folder
+#. Default: "Submit Button Label"
+msgid "label_submitlabel_text"
+msgstr "Název tlačítka pro uložení formuláře"
+
+#. Form Folder
+#. Default: "Show Cancel Button"
+msgid "label_showcancel_text"
+msgstr "Zobrazit tlačítko \"Storno\" ?"
+
+#. Form Folder
+#. Default: "Action Adapter"
+msgid "label_actionadapter_text"
+msgstr "Způsob zpracování vyplněného formuláře"
+
+#. Form Folder
+#. Default: "
+#. Default: To make your form do something useful when submitted: add an appropriate
+#. Default: form action adapter to the form folder, configure it, then return to this
+#. Default: form and select it below.
+#. Default: "
+msgid "help_actionadapter_text"
+msgstr "Pokud má tento formulář dělat něco užitečného, musí být napojen na nějakou akci, která se provede po \"odeslání\" formuláře. Do složky formuláře můžete přidat vybranou akci, vrátit do tohoto nastavení a zvolit ji jako  zpracovatele vyplněného formuláře. Příkladem předpřipravených akcí jsou: odeslání emailem nebo uložení do CSV."
+
+#. Form Folder
+#. Default: "Form Prologue"
+msgid "label_prologue_text"
+msgstr "Text před formulářem"
+
+#. Form Folder
+#. Default: "This text will be displayed above the form fields."
+msgid "help_prologue_text"
+msgstr "Tento text bude zobrazen před poli formuláře"
+
+#. Thanks Page
+#. Default: "Thanks Epilogue"
+msgid "label_epilogue_text"
+msgstr "Text za formulářem"
+
+#. Form Folder
+#. Default: "The text will be displayed after the form fields."
+msgid "help_epilogue_text"
+msgstr "Tento text bude zobrazen za celým formulářem (za tlačítky pro uloženi/storno)."
+
+#. Form Folder
+#. Default: "Thanks Page"
+msgid "label_thankspage_text"
+msgstr "Zakončovací stránka"
+
+#. Form Folder
+#. Default: "
+#. Default: Pick a contained page you wish to show on a successful
+#. Default: form submit. (If none are available, add one.) Choose none to simply display the form
+#. Default: field values.
+#. Default: "
+msgid "help_thankspage_text"
+msgstr "Zde můžete vybrat jednu ze zakončovacích stránek (stránka s poděkovaním za vyplnění formuláře). Pokud zde není žádná stránka uvedena, přidejte ji do formuláře, pak se vraťte do tohoto nastavení a zvolte ji jako zakončovací stránku. Nevyberete-li žádnou stránku, bude zobrazen pouze seznam vyplněných polí."
+
+#. Form Folder
+#. Default: "Custom Success Action"
+msgid "label_thankspageoverride_text"
+msgstr "Akce po úspěšném zpracování formuláře"
+
+#. Form Folder
+#. Default: "
+#. Default: Use this field in place of a thanks-page designation
+#. Default: to determine final action after calling
+#. Default: your action adapter (if you have one). You would usually use this for a custom
+#. Default: success template or script.
+#. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
+#. Default: action type and argument,
+#. Default: complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
+#. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
+#. Default: redirect to 'thanks-page'.
+#. Default: "
+msgid "help_thankspageoverride_text"
+msgstr "Do tohoto pole můžete zadat výraz, který bude použit pro přesměrování po úspěšném vyplnění formuláře a zpracování uložených dat. Můžete ho použít namísto vytváření vlastní zakončovací stránky. Nejčastěji bude v tomto poli uloženo přesměrování na vlastní šablonu nebo skript. Pole může zůstat prázdné. Pokud jej však chcete využít, zadejte prosím akci a parametr tak, jak je používán v CMFFormController produktu. Příklad: \"redirect_to:string:thanks-page\" přesměruje uživatele na šablonu nebo skript \"thanks-page\"."
+
+# Form Folder
+# label="Custom Form Action",
+msgid "label_formactionoverride_text"
+msgstr "Akce po vyplnění formuláře"
+
+# Form Folder
+# description="""
+#        Use this field to override the form action attribute.
+#        Specify a URL to which the form will post.
+#        This will bypass form validation, success action
+#        adapter and thanks page.
+#    """
+msgid "help_formactionoverride_text"
+msgstr "Do tohoto pole můžete zadat URL, kam bude formulář přesměrován ke zpracování. Pokud tuto variantu použijete, pak nebude formulář zkontrolován proti chybám, nebude bráno v úvahu pole, určující zpracování formuláře, ani zakončovací stránka s poděkováním."
+
+# Form Folder
+#. Default "Form Setup Script"
+msgid "label_OnDisplayOverride_text"
+msgstr "Skript pro předvyplnění formuláře"
+
+# Form Folder
+# description="""
+# A TALES expression that will be called when the form is displayed.
+# Leave empty if unneeded.
+# The most common use of this field is to call a python script that sets
+# defaults for multiple fields by pre-populating request.form.
+# Any value returned by the expression is ignored.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """,
+msgid "help_OnDisplayOverride_text"
+msgstr "Zde uvedený TALES výraz bude vykonán vždy při zobrazení formuláře. Pokud jej nepotřebujete, nevyplňujte. Nejčastěji můžete toto pole použít pro předvyplnění formuláře tak, že naplníte proměnnou request.form. Pokud skript vrátí nějakou hodnotu, bude ignorována. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+# Form Folder
+# label="After Validation Script",
+msgid "label_AfterValidationOverride_text"
+msgstr "Po-validační skript"
+
+# Form Folder
+# description="""
+# A TALES expression that will be called after the form is
+# successfully validated, but before calling an action adapter
+# (if any) or displaying a thanks page.
+# Form input will be in the request.form dictionary.
+# Leave empty if unneeded.
+# The most common use of this field is to call a python script
+# to clean up form input or to script an alternative action.
+# Any value returned by the expression is ignored.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_AfterValidationOverride_text"
+msgstr "TALES výraz, který je volán poté, co je formulář zkontrolován ale předtím, než se zavolá zpracovávací akce (pokud existuje) nebo závěrečná stránka (například s poděkováním). Zadané hodnoty formuláře jsou ve skriptu k dispozici jako slovník (python dictionary) request.form. Pokud tuto funkci nepotřebujete, ponechte pole prázdné. Nejčastější využití tohoto pole je zavolání python skriptu, který pročístí nebo transformuje zadaná data případně provede přesměrování na alternativní akci.  Pokud skript vrátí nějakou hodnotu, bude ignorována. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+# label="Header Injection"
+msgid "label_headerInjection_text"
+msgstr "Vložení údajů do hlavičky"
+
+# description="""
+# This override field allows you to insert content into the xhtml
+# head. The typical use is to add custom CSS or JavaScript.
+# Specify a TALES expression returning a string. The string will
+# be inserted with no interpretation.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_headerInjection_text"
+msgstr "Zde je možné vložit nějaké doplňující informce do XHTML hlavičky stránky. Nejčastější využití je vložení CSS nebo Javascriptu. Zadejte prosím TALES výraz, jehož výstup bude vložen do hlavičky jako řetězec bez jakýchkoli dalších úprav. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+#. String Field
+#. Default: "Field Label"
+msgid "label_fieldlabel_text"
+msgstr "Nadpis pole"
+
+#. String Field
+#. Default: "Field Help"
+msgid "label_fieldhelp_text"
+msgstr "Popis (nápověda) pole"
+
+#. String Field
+#. Default: "Required"
+msgid "label_required_text"
+msgstr "Vyžadováno"
+
+#. String Field
+#. Default: "Hidden"
+msgid "label_hidden_text"
+msgstr "Skryté"
+
+#. String Field
+#. Default: "Default"
+msgid "label_fgdefault_text"
+msgstr "Výchozí hodnota"
+
+#. String Field
+#. Default: "
+#. Default: The value the field should contain when the form is first displayed.
+#. Default: Note that this may be overriden dynamically.
+#. Default: "
+msgid "help_fgdefault_text"
+msgstr "Výchozí hodnota, kterou má pole obsahovat v okamžiku zobrazení formuláře. Tato hodnota může být změněna dynamicky skriptem."
+
+#. String Field
+#. Default: "Max Length"
+msgid "label_fgmaxlength_text"
+msgstr "Maximální délka"
+
+#. String Field
+#. Default: "The maximum number of characters the user will be able to input."
+msgid "help_fgmaxlength_text"
+msgstr "Maximální počet znaků, který může uživatel vložit do tohoto pole."
+
+#. String Field
+#. Default: "Size"
+msgid "label_fgsize_text"
+msgstr "Velikost"
+
+#. String Field
+#. Default: "The size of the text-entry box, in characters."
+msgid "help_fgsize_text"
+msgstr "Velikost vstupního pole (počet znaků)"
+
+#. String Field
+#. Default: "Validator"
+msgid "label_fgstringvalidator_text"
+msgstr "Validátor"
+
+#. String Field
+#. Default: "Tests input against simple string patterns."
+msgid "help_fgstringvalidator_text"
+msgstr "Zkontroluje pole oproti jednoduchému řetězcovému vzoru"
+
+#. String Field
+#. Default: "Plone 2.5 Note"
+msgid "label_plone25note_text"
+msgstr "Poznámka pro Plone 2.5"
+
+#. String Field
+#. Default: "
+#. Default: TALES overrides are disabled when viewing the field. They should work when viewing the form.
+#. Default: "
+msgid "help_plone25note_text"
+msgstr "TALES výrazy, které předefinovávají vlastnosti pole, jsou v tomto pohledu dočasně zakázány. Mely by fungovat při zobrazení formuláře."
+
+#. String Field
+#. Default: "Default Expression"
+msgid "label_fgtdefault_text"
+msgstr "Předvyplnění formuláře"
+
+#. String Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a string.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtdefault_text"
+msgstr "TALES výraz, který bude vykonán v okamžiku zobrazení formuláře. Slouží k naplnění pole výchozí hodnotou. Pokud tuto funkci nepožadujete, ponechte pole prázdné.  Skript by měl vrátit řetězec.POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+#. String Field
+#. Default: "Custom Validator"
+msgid "label_fgtvalidator_text"
+msgstr "Validátor"
+
+#. String Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is validated.
+#. Default: Validate against 'value', which will contain the field input.
+#. Default: Return False if valid; if not valid return a string error message.
+#. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
+#. Default: require "eggs" for input.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtvalidator_text"
+msgstr "TALES výraz, který bude vyhodnocen v okamžiku kontroly (validace) formuláře. Validuje se oproti proměnné 'value', která obsahuje hodnotu v daném poli. Skript má vrátit False, pokud je hodnota v pořádku; pokud není má vrátit text chyby. Příklad:  \"python: test(value=='eggs', False, 'musíte zadat text eggs')\" bude vyžadovat od uživatele zadáná textu \"eggs\".  POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+#. Integer Field
+#. Default: "Minimum Acceptable Value"
+msgid "label_minval_text"
+msgstr "Nejnižší povolená hodnota"
+
+#. Integer Field
+#. Default: "
+#. Default: The form will not accept values less than the number you enter here.
+#. Default: "
+msgid "help_minval_text"
+msgstr "Formulář neakceptuje hodnotu nižší než je tato hodnota."
+
+#. Integer Field
+#. Default: "Maximum Acceptable Value"
+msgid "label_maxval_text"
+msgstr "Nejvyšší povolená hodnota"
+
+#. Integer Field
+#. Default: "
+#. Default: The form will not accept values greater than the number you enter here.
+#. Default: "
+msgid "help_maxval_text"
+msgstr "Formulář neakceptuje hodnotu větší než je tato hodnota."
+
+#. Boolean Field
+#. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond
+#. Default: putting a 'required' marker next to the label. If you wish to require a
+#. Default: particular input, choose a validator below.
+#. Default: "
+msgid "help_boolrequired_text"
+msgstr "POZOR: Pro zaškrtávací pole nedělá příznak \"Vyžadováno\" nic jiného než zobrazení textu \"Vyžadováno\" u nadpisu pole. Pokud potřebujete, aby uživatel zadal nějakou hodnotu, použijte prosím validátor."
+
+#. Boolean Field
+#. Default: "Validator"
+msgid "label_fgbooleanvalidator_text"
+msgstr "Validátor"
+
+#. Boolean Field
+#. Default: "Choose a validator to require a particular response."
+msgid "help_fgbooleanvalidator_text"
+msgstr "Vyberte validátor podle požadovaného zadání od uživatele."
+
+#. Date/Time Field
+#. Default: "Show Time Selection Options"
+msgid "label_fgshowhm_text"
+msgstr "Zobrazit možnost zadání času"
+
+#. Lines Field
+#. Default: "Default"
+msgid "label_fglinesdefault_text"
+msgstr "Výchozí"
+
+#. Lines Field
+#. Default: "
+#. Default: The values the field should contain when the form is first displayed.
+#. Default: Use one value per line.
+#. Default: Note that this may be overriden dynamically.
+#. Default: "
+msgid "help_fglinesdefault_text"
+msgstr "Hodnoty, které bude pole obsahovat v okamžiku zobrazení formuláře. Zadejte jednu hodnotu na řádek. Prosím pozor, tato hodnota může být předefinována skriptem."
+
+#. Lines Field
+#. Default: "Rows"
+msgid "label_rows_text"
+msgstr "Počet řádků"
+
+#. Lines Field
+#. Default: "Default Expression"
+msgid "label_fgtlinesdefault_text"
+msgstr "Výchozí výraz"
+
+#. Lines Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtlinesdefault_text"
+msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře. Pokud toto chování nepotřebujete, ponechte pole prázdné.  Výsledkem výrazu by měl být python seznam (list) nebo tuple. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+#. Selection Field
+#. Default: "Options"
+msgid "label_fgvocabulary_text"
+msgstr "Možnosti"
+
+#. Selection Field
+#. Default: "
+#. Default: Use one line per option.
+#. Default: Note that this may be overriden dynamically.
+#. Default: [Note, you may optionally use a "value|label" format.]
+#. Default: "
+msgid "help_fgvocabulary_text"
+msgstr "Zadejte jednu hodnotu na každý řádek. Tato hodnota může být dynamicky předefinována skriptem. Poznámka: můžete použít syntaxi \"hodnota|nadpis\"."
+
+#. Selection Field
+#. Default: "Presentation Widget"
+msgid "label_fgformat_text"
+msgstr "Vzhled pole"
+
+#. Selection Field
+#. Default: "Options Vocabulary"
+msgid "label_fgtvocabulary_text"
+msgstr "Slovník hodnot"
+
+#. Selection Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field options.
+#. Default: Leave empty if unneeded.
+#. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtvocabulary_text"
+msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře a měl by vrátit seznam možností, zobrazených uživateli. Pokud tuto funkci nepotřebujete, ponechte pole prázdné. Tento výraz by měl vrátit seznam (list) tuple. Příklad: python:[('hodnota1','Nadpis 1'), ('hodnota2','Nadpis 2'),]POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+#. Multi-Select Field
+#. Default: "Presentation Widget"
+msgid "label_fgmsformat_text"
+msgstr "Vzhled pole"
+
+#. Text Field
+#. Default: "Default"
+msgid "label_fgtextdefault_text"
+msgstr "Výchozí hodnota"
+
+#. Text Field
+#. Default: "
+#. Default: The text the field should contain when the form is first displayed.
+#. Default: Note that this may be overriden dynamically.
+#. Default: "
+msgid "help_fgtextdefault_text"
+msgstr "Text, který bude vložen to tohto pole v okamžiku prvního zobrazení formuláře. Tato hodnota může být předefinována skriptem."
+
+#. Text Field
+#. Default: "Default Expression"
+msgid "label_fgtlistdefault_text"
+msgstr "Výchozí výraz"
+
+#. Text Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtlistdefault_text"
+msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře a může vrátit výchozí hodnotu pro toto pole. Skript by měl vrátit sezna (list) nebo tuple. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+
+#. File Field
+#. Default: "Maximum Upload Size (Megabytes)"
+msgid "label_filemaxmb_text"
+msgstr "Maximální velikost suboru (Megabyte)"
+
+#. File Field
+#. Default: "Set to 0 for no limit."
+msgid "help_filemaxmb_text"
+msgstr "Zadejte 0, pokud nemá být velikost omezena."
+
+# Rich Text Field
+# description="""Input tests using HTMLTidy (if installed).""",
+msgid "help_fgrtvalidator_text"
+msgstr "Zkontrolovat zadanou hodnotu pomocí HTMLTidy (je li instalováno)"
+
+#. Mailer Adapter
+#. Default: "Recipient's full name"
+msgid "label_formmailer_recipient_fullname"
+msgstr "Jméno příjemce"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: The full name of the recipient of the mailed form.
+#. Default: "
+msgid "help_formmailer_recipient_fullname"
+msgstr "Celé jméno příjemce formuláře."
+
+#. Mailer Adapter
+#. Default: "Recipient's e-mail address"
+msgid "label_formmailer_recipient_email"
+msgstr "Emailová adresa příjemce"
+
+#. Mailer Adapter
+#. Default: "The recipients e-mail address."
+msgid "help_formmailer_recipient_email"
+msgstr "E-mail adresa příjemce formuláře"
+
+#. Mailer Adapter
+#. Default: "Extract Recipient From"
+msgid "label_formmailer_to_extract"
+msgstr "Detekce příjemce formuláře z pole"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the To header. If you choose anything other
+#. Default: than "None", this will override the "Recipient's e-mail address"
+#. Default: setting above.
+#. Default: Only selection fields are eligible for this use because they
+#. Default: may be validated against your specified options.
+#. Default: "
+msgid "help_formmailer_to_extract"
+msgstr "Vyberte prosím pole formuláře, které obsahuje email příjemce formuláře (pole To:). Vyberete-li nějakou hodnotu, pak nebude brána v úvahu hodnota pole \"Emailová adresa příjemce\". "
+
+#. Mailer Adapter
+#. Default: "CC Recipients"
+msgid "label_formmailer_cc_recipients"
+msgstr "CC Příjemci"
+
+#. Mailer Adapter
+#. Default: "E-mail addresses which receive a carbon copy."
+msgid "help_formmailer_cc_recipients"
+msgstr "Emailové adresy příjemců kopie zprávy."
+
+#. Mailer Adapter
+#. Default: "BCC Recipients"
+msgid "label_formmailer_bcc_recipients"
+msgstr "BCC příjemci"
+
+#. Mailer Adapter
+#. Default: "E-mail addresses which receive a blind carbon copy."
+msgid "help_formmailer_bcc_recipients"
+msgstr "Emailové adresy příjemců slepé kopie zprávy."
+
+#. Mailer Adapter
+#. Default: "Extract Reply-To From"
+msgid "label_formmailer_replyto_extract"
+msgstr "Detekce Reply-To hlavičky z pole"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the Reply-To header. NOTE: You should
+#. Default: activate e-mail address verification for the designated
+#. Default: field.
+#. Default: "
+msgid "help_formmailer_replyto_extract"
+msgstr "Vyberte pole, ze kterého bude získána hodnota pole Reply-To (adresa, kam má jít odpověď). Doporučení: měli byste zapnout validaci email adresy pro toto pole."
+
+#. Mailer Adapter
+#. Default: "Subject"
+msgid "label_formmailer_subject"
+msgstr "Předmět zprávy"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Subject line of message. This is used if you
+#. Default: do not specify a subject field or if the field
+#. Default: is empty.
+#. Default: "
+msgid "help_formmailer_subject"
+msgstr "Předmět zprávy. Používá se v případě, že není definováno pole předmětu zprávy nebo je toto pole prázdné."
+
+#. Mailer Adapter
+#. Default: "Extract Subject From"
+msgid "label_formmailer_subject_extract"
+msgstr "Detekce Předmětu z pole:"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the mail subject line.
+#. Default: "
+msgid "help_formmailer_subject_extract"
+msgstr "Vyberte pole, ze kterého bude získán předmět zprávy"
+
+#. Mailer Adapter
+#. Default: "Body (prepended)"
+msgid "label_formmailer_body_pre"
+msgstr "Předtělo zprávy"
+
+#. Mailer Adapter
+#. Default: "Text prepended to fields listed in mail-body"
+msgid "help_formmailer_body_pre"
+msgstr "Text, který bude zobrazen před seznamem polí v těle zprávy"
+
+#. Mailer Adapter
+#. Default: "Body (appended)"
+msgid "label_formmailer_body_post"
+msgstr "Text za seznamem polí"
+
+#. Mailer Adapter
+#. Default: "Text appended to fields listed"
+msgid "help_formmailer_body_post"
+msgstr "Text, který bude zobrazen za seznamem polí v těle zprávy"
+
+#. Mailer Adapter
+#. Default: "Body (signature)"
+msgid "label_formmailer_body_footer"
+msgstr "Patička (podpis)"
+
+#. Mailer Adapter
+#. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
+msgid "help_formmailer_body_footer"
+msgstr "Text použitý jako patička ve zprávě. Od těla zprávy je oddělena čárkovanou čarou."
+
+#. Mailer Adapter
+#. Default: "Mail-Body Template"
+msgid "label_formmailer_body_pt"
+msgstr "Šablona těla zprávy"
+
+#. Mailer Adapter
+#. Default: "This is a Zope Page Template used for rendering of the mail-body. You don't need to modify it, but if you know TAL (Zope's Template Attribute Language) you have the full power to customize your outgoing mails."
+msgid "help_formmailer_body_pt"
+msgstr "Zope Page Template, které se použije pro tělo zprávy. Není nutné ji modifikovat, ale pokud znáte TAL můžete si libovolně přizpůsobit text odesílané zprávy."
+
+#. Mailer Adapter
+#. Default: "Mail-Body Type"
+msgid "label_formmailer_body_type"
+msgstr "Typ těla e-mailu"
+
+#. Mailer Adapter
+#. Default: "Set the mime-type of the mail-body. Change this setting only if you know exactly what you are doing. Leave it blank for default behaviour."
+msgid "help_formmailer_body_type"
+msgstr "Nastavte mime-type těla e-mailu. Toto pole prosím nastavujte jen v případě, že dobře víte co děláte. Pokud ho ponecháte prázdné, bude použita výchozí hodnota."
+
+#. Mailer Adapter
+#. Default: "HTTP Headers"
+msgid "label_xinfo_headers_text"
+msgstr "HTTP hlavičky"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Pick any items from the HTTP headers that
+#. Default: you'd like to insert as X- headers in the
+#. Default: message.
+#. Default: "
+msgid "help_xinfo_headers_text"
+msgstr "Vyberte z následujících HTTP hlaviček, které z nich chcete zahrnout jako X-Headers do e-mail zprávy."
+
+#. Mailer Adapter
+#. Default: "Additional Headers"
+msgid "label_formmailer_additional_headers"
+msgstr "Doplňující hlavičky"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Additional e-mail-header lines.
+#. Default: Only use RFC822-compliant headers.
+#. Default: "
+msgid "help_formmailer_additional_headers"
+msgstr "Doplňující hlavičky e-mailu. Používejte prosím pouze RFC822 kompatibilní hlavičky. "
+
+#. Mailer Adapter
+#. Default "Key-Id"
+msgid "label_gpg_key_id"
+msgstr "ID klíče (Key-Id)"
+
+#. Mailer Adapter
+#. Default """
+#. Default Give your key-id, e-mail address or
+#. Default whatever works to match a public key from current keyring.
+#. Default It will be used to encrypt the message body.
+#. Default Contact the site administrator if you need to
+#. Default install a new public key.
+#. Default Note that you will probably wish to change your message
+#. Default template to plain text if you're using encryption.
+#. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
+#. Default """
+msgid "help_gpg_key_id"
+msgstr "Zadejte prosím key-id, emailovou adresu nebo něco , co se má použít pro ověření veřejného klíče. Hodnota bude použita pro dek=odování těla zprávy. Kontaktujte prosím administrátora portálu, pokud potřebujete nainstlovat nový veřejný klíč. Uvědomte si prosím, že bude pravděpodobně nutné změnit vzor e-mail zprávy na prostý text, pokud budete chtít používat kódování zpráv.NEZAPOMEŇTE GPG OTESTOVAT PŘEDTÍM, NEŽ FUNKCI ZVEŘEJNÍTE"
+
+#. Save Data Adapter
+#. Default: "Extra Data"
+msgid "label_savedataextra_text"
+msgstr "Doplňující data"
+
+#. Save Data Adapter
+#. Default: "
+#. Default: Pick any extra data you'd like saved with the form input.
+#. Default: "
+msgid "help_savedataextra_text"
+msgstr "Vyberte, které položky mají výt uloženy spolu s vyplněným formulářem"
+
+#. Save Data Adapter
+#. Default: "Download Format"
+msgid "label_downloadformat_text"
+msgstr "Formát stažených dat"
+
+#. Save Data Adapter
+#. Default: "Saved Form Input"
+msgid "label_savedatainput_text"
+msgstr "Uložený vyplněný formulář"
+
+#  value="Clear Saved Input"
+#. Save Data Adapter
+msgid "clear-save-input"
+msgstr "Adaptér pro uložení dat"
+
+#. Thanks Page
+#. Default: "Show All Fields"
+msgid "label_showallfields_text"
+msgstr "Zobrazit všechna pole"
+
+#. Thanks Page
+#. Default: "
+#. Default: Check this to display input for all fields
+#. Default: (except label and file fields). If you check
+#. Default: this, the choices in the pick box below
+#. Default: will be ignored.
+#. Default: "
+msgid "help_showallfields_text"
+msgstr "Zaškrtněte toto políčko pokud chcete zobrazit vstup pro všechna pole (kromě label a souborů). Pokud toto pole zaškrtnete, pak se nepoužije výběr z polí níže."
+
+#. Thanks Page
+#. Default: "Show Responses"
+msgid "label_showfields_text"
+msgstr "Zobrazit odpovědi"
+
+#. Thanks Page
+#. Default: "
+#. Default: Pick the fields whose inputs you'd like to display on
+#. Default: the success page.
+#. Default: "
+msgid "help_showfields_text"
+msgstr "Vyberte pole, která se mají zobrazit na stránce po úspěšném vyplnění formuláře."
+
+#. Thanks Page
+#. Default: "Include Empties"
+msgid "label_includeEmpties_text"
+msgstr "Zahrnout prázdná pole"
+
+#. Thanks Page
+#. Default: "
+#. Default: Check this to display fields titles
+#. Default: for fields that received no input. Uncheck
+#. Default: to leave fields with no input off the list.
+#. Default: "
+msgid "help_includeEmpties_text"
+msgstr "Zaškrtněte tot pole pokud chcete zobrazit i pole, které nebyly vyplněny."
+
+#. Thanks Page
+#. Default: "Thanks Prologue"
+msgid "label_thanksprologue_text"
+msgstr "Poděkování (nad)"
+
+#. Thanks Page
+#. Default: "This text will be displayed above the selected field inputs."
+msgid "help_thanksprologue_text"
+msgstr "Tento text bude zobrazen nad seznamem polí s vyplněným formulářem."
+
+#. Thanks Page
+#. Default: "The text will be displayed after the field inputs."
+msgid "help_thanksepilogue_text"
+msgstr "Tento text bude zobrazen pod vyplněným formulářem"
+
+#. Thanks Page
+#. Default: "No Submit Message"
+msgid "label_nosubmit_text"
+msgstr "Zpráva při nevyplněném formuláři"
+
+# description = """
+# The text to display if the browser reaches this
+# thanks page without submitting a form. Typically, this
+# would direct the reader to the form.
+# """
+#. Thanks Page
+msgid "help_nosubmit_text"
+msgstr "Tento text bude zobrazen pokud někdo zobrazí stránku s poděkováním bez toho, aby vyplnil formulář. To se může stát pokud například zadá do adresy přímo adresu této stránky."
+
+# *** Vocabularies
+# default="None"
+msgid "vocabulary_none_text"
+msgstr "Není"
+
+# default="Is an E-Mail Address"
+msgid "vocabulary_isemailaddress_text"
+msgstr "Je e-mail"
+
+# default="Contains only printable characters"
+msgid "vocabulary_onlyprintable_text"
+msgstr "Obsahuje pouze tisknutelné znaky"
+
+# default="Is a well-formed URL"
+msgid "vocabulary_isurl_text"
+msgstr "Je URL"
+
+# default="Is a valid US phone number"
+msgid "vocabulary_isusphone_text"
+msgstr "Je platné US telefonní číslo"
+
+# default="Is a valid international phone number"
+msgid "vocabulary_isintphone_text"
+msgstr "Je platné mezinárodní telefonní číslo"
+
+# default="Is a valid zip code"
+msgid "vocabulary_iszipcode_text"
+msgstr "Je platné PSČ"
+
+# default="Is checked"
+msgid "vocabulary_ischecked_text"
+msgstr "Je zaškrtnuto"
+
+# default="Is not checked"
+msgid "vocabulary_isnotchecked_text"
+msgstr "Není zaškrtnuto"
+
+# default="Flexible (radio for short, select for longer)"
+msgid "vocabulary_flex_text"
+msgstr "Proměnný (radio \"1 z n\" pole pro malý počet položek, výběr z položek pro velký počet položek)"
+
+# default="Selection list"
+msgid "vocabulary_selection_text"
+msgstr "Výběr z položek"
+
+# default="Radio buttons"
+msgid "vocabulary_radio_text"
+msgstr "Výběr 1 z n (radio)"
+
+# default="Checkbox list"
+msgid "vocabulary_checkbox_text"
+msgstr "Zaškrtávací pole"
+
+# save data adapter
+# default='Posting Date/Time'
+msgid "vocabulary_postingdt_text"
+msgstr "Datum uložení formuláře"
+
+# default='Tab-Separated Values'
+msgid "vocabulary_tsv_text"
+msgstr "Tabulátorem oddělené hodnoty"
+
+# default='Comma-Separated Values'
+msgid "vocabulary_csv_text"
+msgstr "CSV (čárkami oddělené hodnoty)"
+
+# default='Is Tidy HTML (fails on errors and warnings)')
+msgid "vocabulary_istidyhtml_text"
+msgstr "Obsahuje jen čisté HTML (musí být zadáno čísté HTML)"
+
+# default='Tidy HTML With Cleanup (fails on errors, cleans up rest)')
+msgid "vocabulary_istidyhtmlwithcleanup_text"
+msgstr "Obsahuje čisté HTML po automatickém pročištění"
+

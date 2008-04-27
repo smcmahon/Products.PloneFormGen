@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="colnames here/getColumnNames;
+                       results here/getSavedFormInput;
+                       Batch python:modules['Products.CMFPlone'].Batch;
+                       b_size python:10;
+                       b_start python:0;
+                       b_start request/b_start | b_start;">
+
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1 tal:content="object_title" class="documentFirstHeading">
+            Title or id
+        </h1>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
+
+        <div
+         tal:condition="results" 
+         tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
+        
+            <tal:block tal:condition="batch/prevlist">
+                <div metal:use-macro="here/batch_macros/macros/navigation" />
+            </tal:block>
+
+            <dl tal:repeat="row batch" class="comment">
+                <tal:block
+                 tal:repeat="cname colnames"
+                 tal:define="rowdict python:here.rowAsColDict(row, colnames)">
+                 
+                    <dt tal:content="cname">column name</dt>
+                    <dd tal:content="python: rowdict.get(cname, '')">data</dd>
+                    
+                </tal:block>
+            </dl>
+
+            <tal:block tal:condition="batch/nextlist">
+                <div metal:use-macro="here/batch_macros/macros/navigation" />
+            </tal:block>
+        </div>
+        
+    </tal:main-macro>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SmallContent 0.0.1\n"
+"Last-Translator: Shimizukawa <sample@example.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: plone\n"
+
+#
+# Portal Types
+#
+
+#. Default: "SmallContent"
+#: portal type title of SmallContent
+msgid "SmallContent"
+msgstr "SmallContent"
+
+#. Default: "A small content."
+#: portal type description of SmallContent
+msgid "small_content_description"
+msgstr "A small content."
+
+#. Default: "No image presented."
+#: Target SmallContent has no image
+msgid "text_empty_smallcontent"
+msgstr "No image presented."

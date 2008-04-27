@@ -1,0 +1,409 @@
+# Polish translation for PloneFormGen
+# Filip Franik, Łukasz Lichota <lukasz.lichota@webservice.pl> (Webservice.pl, 2006/2007)
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneFormGen 0.2\n"
+"POT-Creation-Date: 2006-09-04 22:26+0200\n"
+"PO-Revision-Date: 2006-10-27 15:12+0100\n"
+"Last-Translator: Łukasz Lichota\n"
+"Language-Team: webservice.pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pl\n"
+"Language-Name: Polish\n"
+"Preferred-Encodings: utf-8 latin2\n"
+"Domain: plone\n"
+"PO-Creation-Date: 2006-09-04 22:26+0200\n"
+
+#. Default: " A form action adapter that will e-mail form input. "
+#: content/formMailerAdapter.py
+msgid " A form action adapter that will e-mail form input. "
+msgstr "Wysyłanie e-maila zawierający dane z formularza."
+
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#: content/fields.py
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "Pole służące do podawania linii tekstu. Gdy tekst jest zbyt długi, nie zostanie złamany do następnej linii."
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr "Pole umożliwia podanie krótkiego tekstu (do ok 100 znaków)."
+
+#. Default: " Boolean (checkbox) field "
+#: content/fields.py
+msgid " Boolean (checkbox) field "
+msgstr "Pole wyboru typu Tak/Nie"
+
+#. Default: " Date/Time Entry Field "
+#: content/fields.py
+msgid " Date/Time Entry Field "
+msgstr "Pole umożliwiające podanie daty i czasu."
+
+#. Default: " File (upload) field "
+#: content/fields.py
+msgid " File (upload) field "
+msgstr "Pole umożliwiające zapis pliku na serwerze."
+
+#. Default: " Fixed-Point (float) entry field "
+#: content/fields.py
+msgid " Fixed-Point (float) entry field "
+msgstr "Pole umożliwiające podanie liczby rzeczywistej."
+
+#. Default: " A integer entry field "
+#: content/fields.py
+msgid " Integer entry field "
+msgstr "Pole umożliwiające podanie liczby całkowitej."
+
+#. Default: " Label-Only field (no input component) "
+#: content/fields.py
+msgid " Label-Only field (no input component) "
+msgstr "Etykieta służąca do umieszczenia w formularzu nieedytowalnego tekstu"
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr "Pole umożliwia wybrania więcej niż jednego elementu z listy, za pomocą zaznaczania lub odznaczania kratek."
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr "Pole umożliwiające podanie hasła. Widok jest maskowany."
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr "Pole umożliwiające podanie dużej ilości sformatowanego tekstu."
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr "Umożliwia wybór jednego elementu z listy."
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr "Pole umożliwia podanie dłuższego niesformatowanego tekstu."
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "Pole wyboru typu Tak/Nie"
+
+#. Default: "A Label (No Input) field"
+#: content/fields.py
+msgid "A Label (No Input) field"
+msgstr "Etykieta służąca do umieszczenia w formularzu nieedytowalnego tekstu"
+
+#. Default: "A date/time field. Time component is optional."
+#: content/fields.py
+msgid "A date/time field. Time component is optional."
+msgstr "Pole umożliwiające podanie daty i czasu. Podanie czasu nie jest konieczne."
+
+#. Default: "A file field"
+#: content/fields.py
+msgid "A file field"
+msgstr "Pole umożliwiające zapis pliku na serwerze."
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "Pole umożliwiające podanie liczby rzeczywistej."
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Folder, który może zawierać pola formularza"
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr "Folder, który generuje formularz z pól jakie zawiera"
+
+#. Fieldset folder
+#. Default: "A folder which groups form fields as a fieldset."
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr "Folder, który może zawierać pol formularza jako zbiory pól (fieldset)"
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr "Zapisanie danych z wejścia (oddzielonych znakami tabulacji)."
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "Pole umożliwiające podanie liczby całkowitej."
+
+#. Default: "A lines field. This appears as a textarea without wordwrap."
+#: content/fields.py
+msgid "A lines field. This appears as a textarea without wordwrap."
+msgstr "Pole służące do podawania linii tekstu. Gdy tekst jest zbyt długi, nie zostanie złamany do następnej linii."
+
+#. Default: "A multiple-selection field"
+#: content/fields.py
+msgid "A multiple-selection field"
+msgstr "Pole umożliwia wybrania więcej niż jednego elementu z listy, za pomocą zaznaczania lub odznaczania kratek."
+
+#. Default: "A password field (input masked)"
+#: content/fields.py
+msgid "A password field (input masked)"
+msgstr "Pole umożliwiające podanie hasła. Widok jest maskowany."
+
+#. Default: "A rich text area field"
+#: content/fields.py
+msgid "A rich text area field"
+msgstr "Pole umożliwiające podanie dużej ilości sformatowanego tekstu."
+
+#. Default: "A selection field"
+#: content/fields.py
+msgid "A selection field"
+msgstr "Umożliwia wybór jednego elementu z listy."
+
+#. Default: " A string field "
+#: content/fields.py
+msgid "A string field"
+msgstr "Pole umożliwia podanie krótkiego tekstu (do ok 100 znaków)."
+
+#. Default: "A text area field"
+#: content/fields.py
+msgid "A text area field"
+msgstr "Pole umożliwia podanie dłuższego niesformatowanego tekstu."
+
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "Strona z podziękowaniami, która może wyświetlać dane z formularza"
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "Strona z podziękowaniami, która może wyświetlać dane z formularza"
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "Akcje po wysłaniu formularza."
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "Pole: Wyboru Tak/Nie"
+
+#. Custom script adapter
+#. Default: "Custom Script Adapter"
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr "akcja: skrypt"
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "Pole: Data/Czas"
+
+#. Default: "Executes a Python script for form data."
+#: content/customScriptAdapter.py
+msgid "Executes a Python script for form data."
+msgstr ""
+
+#. Fieldset folder
+#. Default: "Fieldset Folder"
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr "zbiór pól"
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "Pole: Plik"
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "Pole: Liczba rzeczywista"
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Formularz"
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "Pole: Liczba całkowita"
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "Pole: Etykieta"
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "Pole: Linie"
+
+#. Default: "Mailer Adapter"
+#: content/formMailerAdapter.py
+msgid "Mailer Adapter"
+msgstr "Akcja: wysłanie e-Maila"
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "Pole: Wielokrotny Wybór"
+
+#. Default: "No proxy role"
+#: content/customScriptAdapter
+msgid "No proxy role"
+msgstr ""
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "Pole: Hasło"
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "Pole: Formatowany Tekst"
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "Akcja: Zapis danych"
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "Pole: Wyboru"
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "Pole: Tekst (krótki)"
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "Pole: Tekst (długi)"
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "Podziękowania"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr "adresowanie"
+
+#. Default: "decoration"
+#: content/form.py
+msgid "decoration"
+msgstr "dekoracje"
+
+#. Default: "default"
+#: content/form.py
+#: content/formMailerAdapter.py
+#: content/fields.py
+msgid "default"
+msgstr "domyślne"
+
+#. Default: "This item is in use by someone else and cannot be modified"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "description_webdav_locked"
+msgstr "Ktoś aktualnie używa tej strony i nie może być ona wyświetlona"
+
+#. Default: "encryption"
+#: content/formMailerAdapter.py
+msgid "encryption"
+msgstr "szyfrowanie"
+
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "nagłówki"
+
+#. Default: "Edit ${itemtype}"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "heading_edit_item"
+msgstr "Edytuj ${itemtype}"
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
+msgid "help_fgbooleanfalsestring_text"
+msgstr ""
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
+msgid "help_fgbooleantruestring_text"
+msgstr ""
+
+#. Default: "Cancel"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_cancel"
+msgstr "Anuluj"
+
+#. Default: "False Display String"
+msgid "label_fgbooleanfalsestring_text"
+msgstr ""
+
+#. Default: "True Display String"
+msgid "label_fgbooleantruestring_text"
+msgstr ""
+
+#. String Field
+#. Default: "Field Help"
+#: content/fields.py
+msgid "label_fieldhelp_text"
+msgstr "Pomoc"
+
+#. String Field
+#. Default: "Field Label"
+#: content/fields.py
+msgid "label_fieldlabel_text"
+msgstr "Etykieta Pola"
+
+#. Default: "File type"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_file_type"
+msgstr "Typ pliku"
+
+#. Default: "Next"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_next"
+msgstr "Dalej"
+
+#. Default: "Previous"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_previous"
+msgstr "Wstecz"
+
+#. Default: "Size"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_size"
+msgstr "Rozmiar"
+
+#. Default: "message"
+#: content/formMailerAdapter.py
+msgid "message"
+msgstr "wiadomość"
+
+#. Default: "no-input"
+#: content/fields.py
+msgid "no-input"
+msgstr "brak wejścia"
+
+#. Default: "overrides"
+#: content/form.py
+#: content/fields.py
+msgid "overrides"
+msgstr "nadpisania"
+
+#. Default: "template"
+#: content/formMailerAdapter.py
+msgid "template"
+msgstr "szablon"
+

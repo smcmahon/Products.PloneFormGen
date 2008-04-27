@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+  <head><title></title></head>
+  <body>
+
+    <!-- Rich Label Widget
+        This widget isn't anything more than a placeholder. Unmodified Archetypes macros
+        won't allow for a field without a label. So, to minimize intervention, this is
+        handled in fg_edit_macros
+    -->
+
+    <metal:view_macro define-macro="view">
+	      <span tal:replace="structure field/default"/>
+    </metal:view_macro>
+
+    <metal:define define-macro="edit">
+      <metal:use use-macro="field_macro | here/widgets/field/macros/edit">
+        <metal:fill fill-slot="widget_body">
+	      <span tal:replace="structure field/default"/>
+        </metal:fill>
+      </metal:use>
+    </metal:define>
+
+    <div metal:define-macro="search">
+      <div metal:use-macro="here/widget_richlabel/macros/edit">
+      </div>
+    </div>
+
+  </body>
+
+</html>
+
