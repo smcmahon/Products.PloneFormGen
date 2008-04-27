@@ -1,5 +1,0 @@
-[default]
-title=Set PloneFormGen permissions
-
-[actions]
-action.success = traverse_to:string:prefs_pfg_permits

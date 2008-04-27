@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = open(os.path.join("Products", "PloneFormGen", "version.txt")).read().strip()
 
 setup(name='Products.PloneFormGen',
       version=version,
       description="",
-      long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=open(os.path.join("Products", "PloneFormGen", "README.txt")).read() + "\n" +
+                       open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read() + "\n" +,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Programming Language :: Python",
