@@ -1,0 +1,415 @@
+# translation of plone-ploneformgen-nl.po to Dutch
+# Atopia <info@atopia.nl>, 2006.
+# Jean-Paul Ladage <j.ladage@zestsoftware.nl>, 2007.
+# Jarno de Wit <Jarno.de.Wit@pareto.nl>, 2007.
+# Gettext Message File for PloneFormGen
+msgid ""
+msgstr ""
+"Project-Id-Version: plone-ploneformgen-nl\n"
+"POT-Creation-Date: 2006-09-04 22:26+0200\n"
+"PO-Revision-Date: 2007-09-28 12:16+0200\n"
+"Last-Translator: Jarno de Wit <Jarno.de.Wit@pareto.nl>\n"
+"Language-Team: Dutch\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: nl\n"
+"Language-Name: Dutch\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"PO-Creation-Date: 2006-09-04 22:26+0200\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Default: " A form action adapter that will e-mail form input. "
+#: content/formMailerAdapter.py
+msgid " A form action adapter that will e-mail form input. "
+msgstr "Een formulieractie die de invoer via e-mail verzendt."
+
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#: content/fields.py
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "Een invoerveld voor regels tekst. Dit wordt getoond als een textarea zonder wordwrap."
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr " Een tekst veld "
+
+#. Default: " Boolean (checkbox) field "
+#: content/fields.py
+msgid " Boolean (checkbox) field "
+msgstr " Aan/uit veld "
+
+#. Default: " Date/Time Entry Field "
+#: content/fields.py
+msgid " Date/Time Entry Field "
+msgstr " Datum/tijd-invoerveld "
+
+#. Default: " File (upload) field "
+#: content/fields.py
+msgid " File (upload) field "
+msgstr " Een bestand (upload) veld "
+
+#. Default: " Fixed-Point (float) entry field "
+#: content/fields.py
+msgid " Fixed-Point (float) entry field "
+msgstr " Decimale getallen veld "
+
+#. Default: " A integer entry field "
+#: content/fields.py
+msgid " Integer entry field "
+msgstr " Geheel getal veld (zonder decimaal)"
+
+#. Default: " Label-Only field (no input component) "
+#: content/fields.py
+msgid " Label-Only field (no input component) "
+msgstr " Label (geen invoerveld) "
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr " Multi selectie veld "
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr " Wachtwoord veld (invoer wordt verborgen) "
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr " Opgemaakte tekst veld (visuele editor) "
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr " Selectie veld (radioknoppen of selectie) "
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr " Tekstvak veld (textarea) "
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "Een Aan/uit veld"
+
+#. Default: "A Label (No Input) field"
+#: content/fields.py
+msgid "A Label (No Input) field"
+msgstr "Een label (geen invoerveld)"
+
+#. Default: "A date/time field. Time component is optional."
+#: content/fields.py
+msgid "A date/time field. Time component is optional."
+msgstr "Een datum/tijd-veld. Tijdcomponent is optioneel."
+
+#. Default: "A file field"
+#: content/fields.py
+msgid "A file field"
+msgstr "Een bestand veld"
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "Een veld voor getal met vaste komma"
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Een map die formuliervelden bevat."
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr "Een map die een formulier creeert aan de hand van de formuliervelden die erin zitten."
+
+#. Default: "A folder which groups form fields as a fieldset."
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr "Een map voor het groeperen van velden."
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr "Een formulier actie die de ingevoerde gegevens zal opslaan in een met tabs gescheiden formaat."
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "Een veld voor een heel getal (zonder decimaal)"
+
+#. Default: "A lines field. This appears as a textarea without wordwrap."
+#: content/fields.py
+msgid "A lines field. This appears as a textarea without wordwrap."
+msgstr "Een veld voor invoer van een lijst. Ieder item op een nieuwe regel."
+
+#. Default: "A multiple-selection field"
+#: content/fields.py
+msgid "A multiple-selection field"
+msgstr "Een veld waarin meerdere opties geselecteerd kunnen worden."
+
+#. Default: "A password field (input masked)"
+#: content/fields.py
+msgid "A password field (input masked)"
+msgstr "Een wachtwoordveld (input wordt verborgen)"
+
+#. Default: "A rich text area field"
+#: content/fields.py
+msgid "A rich text area field"
+msgstr "Een veld voor opgemaakte tekst"
+
+#. Default: "A selection field"
+#: content/fields.py
+msgid "A selection field"
+msgstr "Een selectie veld"
+
+#. Default: " A string field "
+#: content/fields.py
+msgid "A string field"
+msgstr "Een tekst veld"
+
+#. Default: "A text area field"
+#: content/fields.py
+msgid "A text area field"
+msgstr "Een textvak veld"
+
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "Een 'Bedankt' pagina die de invoer van het formulier toont"
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "Een 'Bedankt' pagina die de invoer van het formulier toont."
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "Een actie die uitgevoerd wordt bij het verzenden van een formulier."
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "Ja/nee veld"
+
+#. Default: "Custom Script Adapter"
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr "Script actie"
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "Datum/tijd veld"
+
+#. Default: "Executes a Python script for form data."
+#: content/customScriptAdapter.py
+msgid "Executes a Python script for form data."
+msgstr "Voert een Python script uit voor het verwerken van de ingevulde gegevens."
+
+#. Default: "Fieldset Folder"
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr "Groep"
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "Bestandsveld"
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "Decimaal getal veld"
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Formulier"
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "Geheel getal veld"
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "Label"
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "Lijst veld"
+
+#. Default: "Mailer Adapter"
+#: content/formMailerAdapter.py
+msgid "Mailer Adapter"
+msgstr "E-mailactie"
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "Multi selectie veld"
+
+#. Default: "No proxy role"
+#: content/customScriptAdapter
+msgid "No proxy role"
+msgstr "Geen proxy rol"
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "Wachtwoord veld"
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "Opgemaakte tekst veld"
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "Opslag actie"
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "Selectie veld"
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "Tekst veld"
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "tekstvak veld"
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "'Bedankt' pagina"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr "adressering"
+
+#. Default: "decoration"
+#: content/form.py
+msgid "decoration"
+msgstr "decoratie"
+
+#. Default: "default"
+#: content/form.py
+#: content/formMailerAdapter.py
+#: content/fields.py
+msgid "default"
+msgstr "standaard"
+
+#. Default: "This item is in use by someone else and cannot be modified"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "description_webdav_locked"
+msgstr "Dit item is momenteel door iemand anders in gebruik en kan niet worden gewijzigd."
+
+#. Default: "encryption"
+#: content/formMailerAdapter.py
+msgid "encryption"
+msgstr "versleuteling"
+
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "Headers"
+
+#. Default: "Edit ${itemtype}"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "heading_edit_item"
+msgstr "\"Bewerken ${itemtype}\""
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
+msgid "help_fgbooleanfalsestring_text"
+msgstr "Tekst die wordt gebruikt op de 'bedankt' pagina, indien deze optie niet is aangevinkt."
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
+msgid "help_fgbooleantruestring_text"
+msgstr "Tekst die wordt gebruikt op de 'bedankt' pagina, indien deze optie is aangevinkt."
+
+#. Default: "Cancel"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_cancel"
+msgstr "Annuleren"
+
+#. Default: "False Display String"
+msgid "label_fgbooleanfalsestring_text"
+msgstr "'Aan' tekst"
+
+#. Default: "True Display String"
+msgid "label_fgbooleantruestring_text"
+msgstr "'Uit' tekst"
+
+#. String Field
+#. Default: "Field Help"
+#: content/fields.py
+msgid "label_fieldhelp_text"
+msgstr "Help veld"
+
+#. String Field
+#. Default: "Field Label"
+#: content/fields.py
+msgid "label_fieldlabel_text"
+msgstr "Label veld"
+
+#. Default: "File type"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_file_type"
+msgstr "Bestandstype"
+
+#. Default: "Next"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_next"
+msgstr "Volgende"
+
+#. Default: "Previous"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_previous"
+msgstr "Vorige"
+
+#. Default: "Size"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_size"
+msgstr "Grootte"
+
+#. Default: "message"
+#: content/formMailerAdapter.py
+msgid "message"
+msgstr "bericht"
+
+#. Default: "no-input"
+#: content/fields.py
+msgid "no-input"
+msgstr "geen invoer"
+
+#. Default: "overrides"
+#: content/form.py
+#: content/fields.py
+msgid "overrides"
+msgstr "overschrijven"
+
+#. Default: "template"
+#: content/formMailerAdapter.py
+msgid "template"
+msgstr "sjabloon"
+
+#. Rich Label Field
+#. Default: 'Rich Label Field',
+msgid "Rich Label Field"
+msgstr "Label met opmaak"
+

@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <head><title></title></head>
+
+  <body>
+    <metal:fill fill-slot="main">
+      <metal:main_macro>
+
+        <dl>
+          <tal:block repeat="field here/fgFields">
+            <tal:block tal:define="fname field/getName">
+              <dt tal:content="field/widget/label" />
+              <dd tal:content="python:request.form.get(fname, 'No Input')" />
+            </tal:block>
+          </tal:block>
+        </dl>
+      
+      </metal:main_macro>
+    </metal:fill>
+  </body>
+</html>

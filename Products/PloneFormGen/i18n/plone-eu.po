@@ -1,0 +1,401 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2007-12-08 18:31+0100\n"
+"Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Domain: plone\n"
+"Language-Code: eu\n"
+"Language-Name: Basque\n"
+
+#. Default: "This item is in use by someone else and cannot be modified"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "description_webdav_locked"
+msgstr "Beste norbait ari da elementu hau aldatzen eta ezin duzu aldatu"
+
+#. Default: "Edit ${itemtype}"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "heading_edit_item"
+msgstr "${itemtype} editatu"
+
+#. Default: "Cancel"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_cancel"
+msgstr "Utzi"
+
+#. Default: "File type"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_file_type"
+msgstr "Fitxategi-mota"
+
+#. Default: "Next"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_next"
+msgstr "Hurrengoa"
+
+#. Default: "Previous"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_previous"
+msgstr "Aurrekoa"
+
+#. Default: "Size"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_size"
+msgstr "Tamaina"
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Datu-orria"
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Zuk aukeratutako eremuak eduki ditzakeen datu-orria"
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr "Barruan dituen eremuak formulario bezala erakusten dituen karpeta"
+
+#. Default: "Mailer Adapter"
+#: content/formMailerAdapter.py
+msgid "Mailer Adapter"
+msgstr "E-posta ekintza"
+
+#. Default: " A form action adapter that will e-mail form input. "
+#: content/formMailerAdapter.py
+msgid " A form action adapter that will e-mail form input. "
+msgstr "Formularioa bidaltzean, datuak e-postaz bidaliko dituen ekintza"
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "Formularioa bidaltzean egiteko ekintza"
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "Datuak gordetzeko ekintza"
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr "Formularioa bidaltzean, datuak tabulazioz banatutako formatuan gordeko dituen ekintza."
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "Eskertza orria"
+
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "Bidalitako datuak erakutsiko dituen Eskertza-orria."
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "Bidalitako datuak erakutsiko dituen Eskertza-orria."
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "Eremu boolearra"
+
+#. Default: " Boolean (checkbox) field "
+#: content/fields.py
+msgid " Boolean (checkbox) field "
+msgstr "Eremu boolearra (aukeraketa kutxa)"
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "Aukeraketa kutxa boolearra"
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "Data/Ordua eremua"
+
+#. Default: " Date/Time Entry Field "
+#: content/fields.py
+msgid " Date/Time Entry Field "
+msgstr "Data/Ordua adierazteko eremua"
+
+#. Default: "A date/time field. Time component is optional."
+#: content/fields.py
+msgid "A date/time field. Time component is optional."
+msgstr "Data/ordua adierazteko eremua. Ordua aukerazkoa da."
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "Fitxategi eremua"
+
+#. Default: " File (upload) field "
+#: content/fields.py
+msgid " File (upload) field "
+msgstr "Fitxategi bat kargatzeko eremua"
+
+#. Default: "A file field"
+#: content/fields.py
+msgid "A file field"
+msgstr "Fitxategi eremua"
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "Komadun zenbakizko balioen eremua"
+
+#. Default: " Fixed-Point (float) entry field "
+#: content/fields.py
+msgid " Fixed-Point (float) entry field "
+msgstr "Komadun zenbakizko balioen eremua (adibidez: 7.5)"
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "Komadun zenbakizko balioen eremua"
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "Zenbakizko eremua"
+
+#. Default: " A integer entry field "
+#: content/fields.py
+msgid " Integer entry field "
+msgstr "Zenbaki bat idazteko eremua"
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "Zenbakizko eremua"
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "Etiketa eremua"
+
+#. Default: " Label-Only field (no input component) "
+#: content/fields.py
+msgid " Label-Only field (no input component) "
+msgstr "Etiketa bakarrik erakutsiko da, ezin da baliorik sartu"
+
+#. Default: "A Label (No Input) field"
+#: content/fields.py
+msgid "A Label (No Input) field"
+msgstr "Etiketa eremua"
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "Lerroak"
+
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#: content/fields.py
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "Lerroak idazteko eremua. Lerro salto gabeko testu-kutxa bat bezala ikusiko da."
+
+#. Default: "A lines field. This appears as a textarea without wordwrap."
+#: content/fields.py
+msgid "A lines field. This appears as a textarea without wordwrap."
+msgstr "Lerroak idazteko eremua. Lerro salto gabeko testu-kutxa bat bezala ikusiko da."
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "Aukera-anitzeko kutxa"
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr "Balio bat baino gehiago aukeratu daitekeen eremua"
+
+#. Default: "A multiple-selection field"
+#: content/fields.py
+msgid "A multiple-selection field"
+msgstr "Aukera-anitzeko kutxa"
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "Pasahitz-eremua"
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr "Pasahitza gordetzeko eremua (idaztean karaktereak ordezkatu egingo dira)"
+
+#. Default: "A password field (input masked)"
+#: content/fields.py
+msgid "A password field (input masked)"
+msgstr "Pasahitz-eremua"
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "Testu-eremua"
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr "Editore grafiko batekin editatuko den testua"
+
+#. Default: "A rich text area field"
+#: content/fields.py
+msgid "A rich text area field"
+msgstr "Testu-eremua"
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "Aukeraketa-kutxa"
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr "Balio bakar bat aukeratzeko kutxa"
+
+#. Default: "A selection field"
+#: content/fields.py
+msgid "A selection field"
+msgstr "Aukeraketa-kutxa"
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "Esaldi-eremua"
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr "Esaldi bakar bat idazteko eremua"
+
+#. Default: " A string field "
+#: content/fields.py
+msgid "A string field"
+msgstr "Esaldi eremua"
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "Testu hutsezko kutxa"
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr "Testu hutsa idazteko kutxa bat"
+
+#. Default: "A text area field"
+#: content/fields.py
+msgid "A text area field"
+msgstr "Testu hutsezko kutxa"
+
+#. Default: "default"
+#: content/form.py
+#: content/formMailerAdapter.py
+#: content/fields.py
+msgid "default"
+msgstr "defektuzkoa"
+
+#. Default: "decoration"
+#: content/form.py
+msgid "decoration"
+msgstr "itxura"
+
+#. Default: "no-input"
+#: content/fields.py
+msgid "no-input"
+msgstr "ez da ezer idatzi"
+
+#. Default: "overrides"
+#: content/form.py
+#: content/fields.py
+msgid "overrides"
+msgstr "Balioak gainidatzi"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr "helbideraketa"
+
+#. Default: "message"
+#: content/formMailerAdapter.py
+msgid "message"
+msgstr "mezua"
+
+#. Default: "template"
+#: content/formMailerAdapter.py
+msgid "template"
+msgstr "txantiloia"
+
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "goiburukoak"
+
+#. Default: "encryption"
+#: content/formMailerAdapter.py
+msgid "encryption"
+msgstr "enkriptatzea"
+
+#. String Field
+#. Default: "Field Help"
+#: content/fields.py
+msgid "label_fieldhelp_text"
+msgstr "Eremuaren laguntza"
+
+#. String Field
+#. Default: "Field Label"
+#: content/fields.py
+msgid "label_fieldlabel_text"
+msgstr "Eremuaren izenburua"
+
+#. Default: "Fieldset Folder"
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr "Eremuak biltzeko karpeta"
+
+#. Default: "A folder which groups form fields as a fieldset."
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr "Eremuak 'fieldset' baten batzen dituen karpeta"
+
+#. Default: "Custom Script Adapter"
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr "Script pertsonalizatuaren ekintza"
+
+#. Default: "Executes a Python script for form data."
+#: content/customScriptAdapter.py
+msgid "Executes a Python script for form data."
+msgstr "Formulariotik jasotako datuekin script bat exekutatzen duen ekintza"
+
+#. Default: "No proxy role"
+#: content/customScriptAdapter
+msgid "No proxy role"
+msgstr "Proxy-rolik ez"
+
+#. Default: "True Display String"
+msgid "label_fgbooleantruestring_text"
+msgstr "Egiazkoa Testu-katea erakutsi"
+
+#. Default: "False Display String"
+msgid "label_fgbooleanfalsestring_text"
+msgstr "Faltsua Testu-katea erakutsi"
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
+msgid "help_fgbooleanfalsestring_text"
+msgstr "E-postan eta eskertza-orrian eremuak hutsik utzitakoan agertuko den testua"
+
+#. Rich Label Field
+#. Default: 'Rich Label Field',
+msgid "Rich Label Field"
+msgstr ""
+

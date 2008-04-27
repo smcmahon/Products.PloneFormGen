@@ -1,0 +1,449 @@
+""" A form action adapter that saves form submissions for download """
+
+__author__  = 'Steve McMahon <steve@dcn.org>'
+__docformat__ = 'plaintext'
+
+from AccessControl import ClassSecurityInfo
+
+from BTrees.IOBTree import IOBTree
+
+from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CMFPlone.utils import base_hasattr, safe_hasattr
+
+from Products.Archetypes.public import *
+from Products.Archetypes.utils import contentDispositionHeader
+from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+from Products.ATContentTypes.content.base import registerATCT
+
+from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen.config import *
+from Products.PloneFormGen.content.actionAdapter import \
+    FormActionAdapter, FormAdapterSchema
+
+import logging
+
+from DateTime import DateTime
+import csv
+from StringIO import StringIO
+
+try:
+    # 3.0+
+    from zope.contenttype import guess_content_type
+except ImportError:
+    try:
+        # 2.5
+        from zope.app.content_types import guess_content_type
+    except ImportError:
+        # 2.1
+        from OFS.content_types import guess_content_type
+
+logger = logging.getLogger("PloneFormGen")    
+
+
+ExLinesField = LinesField
+
+
+class FormSaveDataAdapter(FormActionAdapter):
+    """A form action adapter that will save form input data and 
+       return it in csv- or tab-delimited format."""
+
+    schema = FormAdapterSchema.copy() + Schema((
+        LinesField('ExtraData',
+            widget=MultiSelectionWidget(
+                label='Extra Data',
+                description="""
+                    Pick any extra data you'd like saved with the form input.
+                    """,
+                format='checkbox',
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_savedataextra_text",
+                description_msgid = "help_savedataextra_text",
+                ),
+            vocabulary = 'vocabExtraDataDL',
+            ),
+        StringField('DownloadFormat',
+            searchable=0,
+            required=1,
+            default='csv',
+            vocabulary = 'vocabFormatDL',
+            widget=SelectionWidget(
+                label='Download Format',
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_downloadformat_text",
+                ),
+            ),
+        BooleanField("UseColumnNames",
+            required=False,
+            searchable=False,
+            widget=BooleanWidget(
+                label = "Include Column Names",
+                description = "Do you wish to have column names on the first line of downloaded input?",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_usecolumnnames_text",
+                description_msgid = "help_usecolumnnames_text",
+                ),
+            ),
+        ExLinesField('SavedFormInput',
+            edit_accessor='getSavedFormInputForEdit',
+            mutator='setSavedFormInput',
+            searchable=0,
+            required=0,
+            primary=1,
+            schemata="saved data",
+            read_permission=DOWNLOAD_SAVED_PERMISSION,
+            widget=TextAreaWidget(
+                label="Saved Form Input",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_savedatainput_text",
+                description_msgid = "help_savedatainput_text",
+                ),
+            ),
+    ))
+
+    schema.moveField('execCondition', pos='bottom')
+    if not HAS_PLONE30:
+        finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
+
+    meta_type      = 'FormSaveDataAdapter'
+    portal_type    = 'FormSaveDataAdapter'
+    archetype_name = 'Save Data Adapter'
+
+    if HAS_PLONE30:
+        immediate_view = 'fg_savedata_view_p3'
+        default_view   = 'fg_savedata_view_p3'
+        suppl_views    = ('fg_savedata_tabview_p3', 'fg_savedata_recview_p3',)
+    else:
+        immediate_view = 'fg_savedata_view'
+        default_view   = 'fg_savedata_view'
+        suppl_views    = ('fg_savedata_tabview', 'fg_savedata_recview',)
+
+    security       = ClassSecurityInfo()
+
+
+    def initializeArchetype(self, **kwargs):
+        """ the trick of using a textarea widget with a lines field
+            is causing a bad interpretation of the default. (It's
+            getting represented as a string.)
+        """
+
+        FormActionAdapter.initializeArchetype(self, **kwargs)
+        
+        self.SavedFormInput = []
+
+
+    def _migrateStorage(self):
+        # we're going to use an IOBTree for storage. we need to
+        # consider the possibility that self is from an
+        # older version that uses the native Archetypes storage
+        # in the SavedFormInput field.
+        
+        if not base_hasattr(self, '_inputStorage'):
+            self._inputStorage = IOBTree()
+            self._inputItems = 0
+        
+        if len(self.SavedFormInput):
+            for row in self.SavedFormInput:
+                self._inputStorage[self._inputItems] = row
+                self._inputItems += 1
+            self.SavedFormInput = []                
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInput')
+    def getSavedFormInput(self):
+        """ returns saved input as an iterable;
+            each row is a sequence of fields.
+        """
+
+        if base_hasattr(self, '_inputStorage'):
+            return self._inputStorage.values()
+        else:
+            return self.SavedFormInput
+
+
+    security.declareProtected(ModifyPortalContent, 'getSavedFormInputForEdit')
+    def getSavedFormInputForEdit(self, **kwargs):
+        """ returns saved as CSV text """
+
+        sbuf = StringIO()
+        writer = csv.writer(sbuf)
+        for row in self.getSavedFormInput():
+            writer.writerow( row )
+        res = sbuf.getvalue()
+        sbuf.close()
+
+        return res
+
+
+    security.declareProtected(ModifyPortalContent, 'setSavedFormInput')
+    def setSavedFormInput(self, value, **kwargs):
+        """ expects value as csv text string, stores as list of lists """
+
+        self._migrateStorage()
+
+        self._inputStorage.clear()
+        self._inputItems = 0
+
+        if len(value):
+            sbuf = StringIO( value )
+            reader = csv.reader(sbuf)
+            for row in reader:
+                if row:
+                    self._inputStorage[self._inputItems] = row
+                    self._inputItems += 1
+            sbuf.close()
+
+        # logger.debug("setSavedFormInput: %s items" % self._inputItems)
+
+
+    security.declareProtected(ModifyPortalContent, 'clearSavedFormInput')
+    def clearSavedFormInput(self, **kwargs):
+        """ convenience method to clear input buffer """
+
+        self._migrateStorage()
+
+        self._inputStorage.clear()
+        self._inputItems = 0
+
+
+    def _addDataRow(self, value):
+
+        self._migrateStorage()
+
+        self._inputStorage[self._inputItems] = value
+        self._inputItems += 1
+
+
+    def onSuccess(self, fields, REQUEST=None, loopstop=False):
+        """
+        saves data.
+        """
+
+        if LP_SAVE_TO_CANONICAL and not loopstop:
+            # LinguaPlone functionality:
+            # check to see if we're in a translated
+            # form folder, but not the canonical version.
+            parent = self.aq_parent
+            if safe_hasattr(parent, 'isTranslation') and \
+               parent.isTranslation() and not parent.isCanonical():
+                # look in the canonical version to see if there is
+                # a matching (by id) save-data adapter.
+                # If so, call its onSuccess method
+                cf = parent.getCanonical()
+                target = cf.get(self.getId())
+                if target.meta_type == 'FormSaveDataAdapter':
+                    target.onSuccess(fields, REQUEST, loopstop=True)
+                    return
+
+        from ZPublisher.HTTPRequest import FileUpload
+
+        data = []
+        for f in fields:
+            if f.isFileField():
+                file = REQUEST.form.get('%s_file' % f.fgField.getName())
+                if isinstance(file, FileUpload) and file.filename != '':
+                    file.seek(0)
+                    fdata = file.read()
+                    filename = file.filename
+                    mimetype, enc = guess_content_type(filename, fdata, None)
+                    if mimetype.find('text/') >= 0:
+                        # convert to native eols
+                        fdata = fdata.replace('\x0d\x0a', '\n').replace('\x0a', '\n').replace('\x0d', '\n')
+                        data.append( '%s:%s:%s:%s' %  (filename, mimetype, enc, fdata) )
+                    else:
+                        data.append( '%s:%s:%s:Binary upload discarded' %  (filename, mimetype, enc) )
+                else:
+                    data.append( 'NO UPLOAD' )
+            elif not f.isLabel():
+                data.append( REQUEST.form.get(f.fgField.getName(),'') )
+
+        if self.ExtraData:
+            for f in self.ExtraData:
+                if f == 'dt':
+                    data.append( str(DateTime()) )
+                else:
+                    data.append( getattr(REQUEST, f, '') )
+
+
+        self._addDataRow( data )
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnNames')
+    def getColumnNames(self):
+        """Returns a list of column names"""
+        
+        names = [field.getName() for field in self.fgFields(displayOnly=True)]
+        for f in self.ExtraData:
+            names.append(f)
+        
+        return names
+        
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnTitles')
+    def getColumnTitles(self):
+        """Returns a list of column titles"""
+        
+        names = [field.widget.label for field in self.fgFields(displayOnly=True)]
+        for f in self.ExtraData:
+            names.append(self.vocabExtraDataDL().getValue(f, ''))
+        
+        return names
+        
+
+    def _cleanInputForTSV(self, value):
+        # make data safe to store in tab-delimited format
+
+        return  str(value).replace('\x0d\x0a', r'\n').replace('\x0a', r'\n').replace('\x0d', r'\n').replace('\t', r'\t')
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download_tsv')
+    def download_tsv(self, REQUEST=None, RESPONSE=None):
+        """Download the saved data
+        """
+
+        filename = self.id
+        if filename.find('.') < 0:
+            filename = '%s.tsv' % filename
+        header_value = contentDispositionHeader('attachment', self.getCharset(), filename=filename)
+        RESPONSE.setHeader("Content-Disposition", header_value)
+        RESPONSE.setHeader("Content-Type", 'text/tab-separated-values;charset=%s' % self.getCharset())
+
+        if getattr(self, 'UseColumnNames', False):
+            res = "%s\n" % '\t'.join( self.getColumnNames() )
+            if isinstance(res, unicode):
+                res = res.encode(self.getCharset())
+        else:
+            res = ''
+
+        for row in self.getSavedFormInput():
+            res = '%s%s\n' % (res, '\t'.join( [self._cleanInputForTSV(col) for col in row] ))
+
+        return res
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download_csv')
+    def download_csv(self, REQUEST=None, RESPONSE=None):
+        """Download the saved data
+        """
+
+        filename = self.id
+        if filename.find('.') < 0:
+            filename = '%s.csv' % filename
+        header_value = contentDispositionHeader('attachment', self.getCharset(), filename=filename)
+        RESPONSE.setHeader("Content-Disposition", header_value)
+        RESPONSE.setHeader("Content-Type", 'text/comma-separated-values;charset=%s' % self.getCharset())
+
+        if getattr(self, 'UseColumnNames', False):
+            res = "%s\n" % ','.join( self.getColumnNames() )
+            if isinstance(res, unicode):
+                res = res.encode(self.getCharset())
+        else:
+            res = ''
+
+        return '%s%s' % (res, self.getSavedFormInputForEdit())
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download')
+    def download(self, REQUEST=None, RESPONSE=None):
+        """Download the saved data
+        """
+
+        format = getattr(self, 'DownloadFormat', 'tsv')
+        if format == 'tsv':
+            return self.download_tsv(REQUEST, RESPONSE)
+        else:
+            assert format == 'csv', 'Unknown download format'
+            return self.download_csv(REQUEST, RESPONSE)
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'rowAsColDict')
+    def rowAsColDict(self, row, cols):
+        """ Where row is a data sequence and cols is a column name sequence,
+            returns a dict of colname:column. This is a convenience method
+            used in the record view.
+        """
+    
+        colcount = len(cols)
+
+        rdict = {}
+        for i in range(0, len(row)):
+            if i < colcount:
+                rdict[cols[i]] = row[i]
+            else:
+                rdict['column-%s' % i] = row[i]
+        return rdict
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'inputAsDictionaries')
+    def inputAsDictionaries(self):
+        """returns saved data as an iterable of dictionaries
+        """
+
+        cols = self.getColumnNames()
+
+        for row in self.getSavedFormInput():
+            yield self.rowAsColDict(row, cols)
+        
+
+    # alias for old mis-naming
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'InputAsDictionaries')
+    InputAsDictionaries = inputAsDictionaries
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'formatMIME')
+    def formatMIME(self):
+        """MIME format selected for download
+        """
+
+        format = getattr(self, 'DownloadFormat', 'tsv')
+        if format == 'tsv':
+            return 'text/tab-separated-values'
+        else:
+            assert format == 'csv', 'Unknown download format'
+            return 'text/comma-separated-values'
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'itemsSaved')
+    def itemsSaved(self):
+        """Download the saved data
+        """
+
+        if base_hasattr(self, '_inputItems'):
+            return self._inputItems
+        else:
+            return len(self.SavedFormInput)
+
+
+    def vocabExtraDataDL(self):
+        """ returns vocabulary for extra data """
+
+        return DisplayList( (
+                ('dt',
+                    self.translate( msgid='vocabulary_postingdt_text',
+                    domain='ploneformgen',
+                    default='Posting Date/Time')
+                    ),
+                ('HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED_FOR',),
+                ('REMOTE_ADDR','REMOTE_ADDR',),
+                ('HTTP_USER_AGENT','HTTP_USER_AGENT',),
+                ) )
+
+
+    def vocabFormatDL(self):
+        """ returns vocabulary for format """
+
+        return DisplayList( (
+                ('tsv',
+                    self.translate( msgid='vocabulary_tsv_text',
+                    domain='ploneformgen',
+                    default='Tab-Separated Values')
+                    ),
+                ('csv',
+                    self.translate( msgid='vocabulary_csv_text',
+                    domain='ploneformgen',
+                    default='Comma-Separated Values')
+                    ),
+            ) )
+
+
+
+registerATCT(FormSaveDataAdapter, PROJECTNAME)

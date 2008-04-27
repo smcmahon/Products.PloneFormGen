@@ -1,0 +1,76 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:five="http://namespaces.zope.org/five"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
+		   xmlns:gs="http://namespaces.zope.org/genericsetup"
+           i18n_domain="ploneformgen">
+
+  <i18n:registerTranslations directory="locales"/>
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGSelectionField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGMultiSelectField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGLabelField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGDateField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGLinesField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGIntegerField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGBooleanField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGPasswordField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGFixedPointField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGStringField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGTextField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGRichTextField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGFileField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.fields.FGRichLabelField" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.formMailerAdapter.FormMailerAdapter" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.customScriptAdapter.FormCustomScriptAdapter" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.thanksPage.FormThanksPage" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.saveDataAdapter.FormSaveDataAdapter" />
+
+<!--
+  PFG was using this generic setup profile due to an Archetypes 1.5b5
+  bug that was fixed in 1.5rc3.
+  <gs:registerProfile
+      name="typesonly"
+      title="PloneFormGen Types Profile"
+      directory="profiles/typesonly"
+      description="Incomplete. Do not use for product installation."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
+-->
+
+</configure>

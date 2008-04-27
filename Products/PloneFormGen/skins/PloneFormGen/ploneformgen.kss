@@ -1,0 +1,13 @@
+/* kss overrides for PloneFormGen. At the moment, these just cancel
+   interactive validation.
+*/
+
+.pfg-form input.blurrable:blur {
+    action-cancel: kssValidateField;
+}
+.pfg-form select.blurrable:blur {
+    action-cancel: kssValidateField;
+}
+.pfg-form textarea.blurrable:blur {
+    action-cancel: kssValidateField;
+}

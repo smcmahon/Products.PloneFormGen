@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    lang="en"
+    metal:use-macro="here/prefs_main_template/macros/master"
+    i18n:domain="plone">
+
+<metal:block metal:fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_content"
+    tal:define="pfgTool python: modules['Products.CMFCore.utils'].getToolByName(here, 'formgen_tool');
+                allPermits pfgTool/getPfgPermissions">
+
+    <div id="content" class="documentEditable" i18n:domain="ploneformgen"
+         tal:condition="python:checkPermission('Manage portal', here)">
+
+        <h5 class="hiddenStructure">Views</h5>
+
+        <ul class="contentViews">
+            <li class="selected">
+            <a href="prefs_pfg_permits"
+                i18n:translate="label_ploneformgen_permissions">Permissions</a>
+            </li>
+            <li>
+            <a href="prefs_pfg_addressing"
+                i18n:translate="label_ploneformgen_addressing">Mail Addressing</a>
+            </li>
+            <li>
+            <a href="prefs_pfg_mtemplate"
+                i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
+            </li>
+        </ul>
+
+        <div class="contentActions">
+            &nbsp;
+        </div>
+
+        <div class="documentContent" id="region-content">
+                <a name="documentContent"></a>
+
+        <div metal:use-macro="here/global_statusmessage/macros/portal_message">
+            Portal status message
+        </div>
+
+        <div class="configlet">
+            <h1 i18n:translate="heading_ploneformgen_permissions">PloneFormGen Permissions</h1>
+
+            <a href=""
+              class="link-parent"
+              tal:attributes="href string: $portal_url/plone_control_panel"
+              i18n:domain="plone"
+              i18n:translate="label_up_to_plone_setup">
+              Up to Site Setup
+            </a>
+
+            <p class="documentDescription" i18n:translate="description_ploneformgen_permissions">
+                You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions
+                allowed to particular portal security roles. The form below adjusts role/permission settings at the
+                site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI.
+            </p>
+    
+            <form action="" method="post" tal:attributes="action template_id">
+
+                <input type="hidden" name="form.submitted" value="1" />
+
+                <tal:block tal:repeat="pname allPermits">
+                <fieldset>
+                  <legend
+                     tal:content="python:pname.replace('PloneFormGen: ','').replace('Add Content','Add Form Folders/Fields')" 
+                     i18n:domain="ploneformgen"
+                     i18n:translate=""
+                     style="font-weight:bold" />
+
+                  <input type="hidden" value="1" tal:attributes="name pname" />
+                  
+                  <table><tr>
+                    <th tal:repeat="permit python: pfgTool.rolesForPermission(pname)">
+                        <label
+                            tal:content="permit/label" 
+                            tal:attributes="for permit/id"
+                            i18n:domain="zope"
+                            i18n:translate=""
+                          >role</label><br />
+                        <input type="checkbox" value="1"
+                          tal:attributes="name permit/id;
+        									id permit/id;
+                          checked permit/checked;
+                          tabindex tabindex/next;"
+                        />
+                    </th>
+                  </tr></table>
+
+                </fieldset>
+                </tal:block>
+
+                <input class="context"
+                    tabindex=""
+                    type="submit"
+                    value="Apply Changes"
+                    i18n:domain="plone"
+                    i18n:attributes="value label_apply_changes;"
+                    tal:attributes="tabindex tabindex/next;"
+                    />
+            </form>
+
+        </div>
+        </div>
+      </div>
+
+      <div id="content" class="documentEditable"
+           tal:condition="python:not checkPermission('Manage portal', here)">
+        <tal:block replace="here/raiseUnauthorized" />
+      </div>
+    </div>
+
+  </body>
+</html>

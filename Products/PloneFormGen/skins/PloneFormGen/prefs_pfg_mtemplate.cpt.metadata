@@ -1,0 +1,5 @@
+[default]
+title=PloneFormGen Mail Template
+
+[actions]
+action.success = traverse_to:string:prefs_pfg_mtemplate_set

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+ <factorytypes>
+  <type portal_type="FieldsetFolder"/>
+  <type portal_type="FormBooleanField"/>
+  <type portal_type="FormCustomScriptAdapter"/>
+  <type portal_type="FormDateField"/>
+  <type portal_type="FormFileField"/>
+  <type portal_type="FormFixedPointField"/>
+  <type portal_type="FormFolder"/>
+  <type portal_type="FormIntegerField"/>
+  <type portal_type="FormLabelField"/>
+  <type portal_type="FormLinesField"/>
+  <type portal_type="FormMailerAdapter"/>
+  <type portal_type="FormMultiSelectionField"/>
+  <type portal_type="FormPasswordField"/>
+  <type portal_type="FormRichLabelField"/>
+  <type portal_type="FormRichTextField"/>
+  <type portal_type="FormSaveDataAdapter"/>
+  <type portal_type="FormSelectionField"/>
+  <type portal_type="FormStringField"/>
+  <type portal_type="FormTextField"/>
+  <type portal_type="FormThanksPage"/>
+ </factorytypes>
+</object>

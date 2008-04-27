@@ -1,0 +1,28 @@
+TODO.txt
+
+* i18n hooks for configlet
+
+* Make RichText Field work for anonymous clients.
+
+* File field needs validators for mimetype -- particularly text
+
+* Need a tool where portal admin may select string validators,
+  default values for site.
+
+* Find a way to do fieldsets
+
+* Need a flag for fields types that should not be displayed. Keeping a
+  list is not good enough and will not allow for easy addition of fields.
+
+* Fix warning of no default action -- may not be possible.
+
+* Even text file uploads handled via save data adapter may have encoding
+  issues.
+
+* Will we have a performance issue if saved data gets large?
+
+* Translator for Archetypes' validators hostile messages.
+  See http://dev.plone.org/archetypes/changeset/3865 for some ideas on i18n.
+
+* Refactor validation. The form should probably call the fields.
+  Watch out for expression cache problems.

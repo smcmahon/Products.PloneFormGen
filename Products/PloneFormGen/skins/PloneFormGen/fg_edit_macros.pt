@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+  <head><title></title></head>
+  <body>
+
+    <div metal:define-macro="header">
+      <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+      </div>
+
+      <h1 i18n:translate="heading_edit_item"
+          metal:define-slot="title">
+        Edit
+        <span i18n:name="itemtype"
+              tal:define="fti python:here.portal_types.getTypeInfo(here)">
+          <span i18n:translate=""
+                tal:content="fti/title_or_id"
+                tal:omit-tag="">Item type</span>
+        </span>
+      </h1>
+
+      <tal:has_document_byline tal:condition="exists:here/document_byline">
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+      </tal:has_document_byline>
+
+      <div id="archetypes-schemata-links"
+           tal:condition="fieldsets">
+        <tal:block repeat="set fieldsets">
+          <tal:current condition="python:set == fieldset and fieldsets != ['default']">
+            <strong>[<span tal:content="set" i18n:translate="" />]</strong>
+          </tal:current>
+          <tal:others condition="python:set != fieldset">
+            <a href="#" tal:attributes="href string:${here/absolute_url}/${template/getId}?fieldset=${set}">
+            [<span tal:content="set" i18n:translate="" />]</a>
+          </tal:others>
+        </tal:block>
+      </div>
+      <metal:block define-slot="extra_info" />
+
+      <p class="portalMessage"
+         tal:condition="isLocked"
+         i18n:translate="description_webdav_locked">
+        This item is in use by someone else and cannot be modified
+      </p>
+
+    </div>
+
+    <div metal:define-macro="typedescription">
+        <tal:description tal:define="msgid here/typeDescMsgId | nothing;
+                                     default here/typeDescription| nothing;
+                                     default_translated python:here.translate(default);"
+                         tal:condition="default">
+
+          <p class="discreet" tal:content="python:here.translate(msgid=msgid, default=default_translated)">
+            type description
+          </p>
+
+        </tal:description>
+    </div>
+
+    <div metal:define-macro="body" class="pfg-form" tal:attributes="class string:pfg-form formid-${here/getId}">
+      <form name="edit_form"
+            method="post"
+            enctype="multipart/form-data"
+            class="enableUnloadProtection"
+            action=""
+            tal:attributes="action python:getattr(here,'formActionOverride','') or here.absolute_url()">
+
+          <metal:block define-slot="extra_top" />
+
+          <metal:block define-slot="widgets">
+            <tal:fields repeat="field fields">
+			  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+                <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+			  </tal:block>
+			  <tal:block tal:condition="python:field.widget.macro == 'widget_richlabel'">
+			      <span tal:replace="structure python:request.form.get(field.getName(), field.default)"/>
+			  </tal:block>
+            </tal:fields>
+          </metal:block>
+
+          <metal:block define-slot="extra_bottom" />
+
+          <div class="formControls">
+
+            <input type="hidden"
+                   name="fieldset"
+                   value="default"
+                   tal:attributes="value fieldset"
+                   />
+            <input type="hidden"
+                   name="form.submitted"
+                   value="1"
+                   />
+            <input type="hidden"
+                   name="add_reference.field:record"
+                   value=""
+                   />
+            <input type="hidden"
+                   name="add_reference.type:record"
+                   value=""
+                   />
+            <input type="hidden"
+                   name="add_reference.destination:record"
+                   value=""
+                   />
+
+            <tal:env define="env request/controller_state/kwargs">
+              <tal:loop repeat="varname python:('reference_source_url', 'reference_source_field', 'reference_source_fieldset')">
+                <tal:reference define="items python:env.get(varname, request.get(varname))"
+                               condition="items">
+                  <input tal:repeat="item items"
+                         type="hidden"
+                         name="form_env.reference_source_url:list:record"
+                         value="value"
+                         tal:attributes="value item;
+                                         name string:form_env.${varname}:list:record"
+                         />
+                </tal:reference>
+              </tal:loop>
+            </tal:env>
+
+            <tal:comment replace="nothing">
+              Turn 'persistent_' variables from controller_state persistent
+            </tal:comment>
+            <tal:env repeat="env request/controller_state/kwargs/items">
+              <input type="hidden"
+                     name="key"
+                     value="value"
+                     tal:define="key python:env[0];
+                                 value python:env[1]"
+                     tal:condition="python:key.startswith('persistent_')"
+                     tal:attributes="name string:form_env.${key}:record;
+                                     value value"
+                     />
+            </tal:env>
+
+            <tal:comment replace="nothing">
+              Turn 'persistent_' variables from forms (GET/POST) persistent
+            </tal:comment>
+            <tal:env repeat="env request/form">
+              <input type="hidden"
+                     name="key"
+                     value="value"
+                     tal:define="key env;
+                                 value request/?env"
+                     tal:condition="python:key.startswith('persistent_')"
+                     tal:attributes="name string:form_env.${key}:record;
+                                     value value"
+                     />
+            </tal:env>
+
+            <tal:comment replace="nothing">
+              Store referrer to remember where to go back
+            </tal:comment>
+            <input type="hidden"
+                   name="last_referer"
+                   tal:define="last_referer python:here.session_restore_value('HTTP_REFERER', request.form.get('last_referer', request.get('HTTP_REFERER')))"
+                   tal:attributes="value python:(last_referer and '%s/%s' % (here.absolute_url(), template.id) not in last_referer) and last_referer or (here.getParentNode() and here.getParentNode().absolute_url())"
+                   />
+
+            <metal:block define-slot="buttons"
+                   tal:define="fieldset_index python:fieldsets.index(fieldset);
+                               n_fieldsets python:len(fieldsets)">
+
+                <input tal:condition="python:fieldset_index &gt; 0"
+                       class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form_previous"
+                       value="Previous"
+                       i18n:attributes="value label_previous;"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);"
+                       />
+                <input tal:condition="python:fieldset_index &lt; n_fieldsets - 1"
+                       class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form_next"
+                       value="Next"
+                       i18n:attributes="value label_next;"
+                       tal:attributes="tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);"
+                       />
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form_submit"
+                       value="Save"
+                       tal:attributes="value python:getattr(here,'submitLabel','Submit');
+                                       tabindex tabindex/next;
+                                       disabled python:test(isLocked, 'disabled', None);"
+                       />
+                <input class="standalone"
+                       tabindex=""
+                       type="reset"
+                       name="form.button."
+					   tal:condition="python: getattr(here,'useCancelButton',True)"
+                       tal:attributes="value python:getattr(here,'resetLabel','Reset'); tabindex tabindex/next"
+                       />
+            </metal:block>
+
+            <metal:block define-slot="extra_buttons" />
+
+          </div>
+
+      </form>
+
+    </div>
+
+    <metal:footer_macro define-macro="footer">
+    </metal:footer_macro>
+
+  </body>
+
+</html>

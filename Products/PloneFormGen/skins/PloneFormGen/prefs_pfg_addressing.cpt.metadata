@@ -1,0 +1,5 @@
+[default]
+title=PloneFormGen Mail Addressing
+
+[actions]
+action.success = traverse_to:string:prefs_pfg_addressing_set

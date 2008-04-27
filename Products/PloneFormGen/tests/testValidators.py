@@ -1,0 +1,118 @@
+#
+# Test PloneFormGen initialisation and set-up
+#
+
+import os, sys
+if __name__ == '__main__':
+    execfile(os.path.join(sys.path[0], 'framework.py'))
+
+from Products.PloneFormGen.tests import pfgtc
+
+from Products.PloneFormGen.content import validationMessages
+
+from Products.CMFCore.utils import getToolByName
+
+import Products
+
+        
+class TestCustomValidators(pfgtc.PloneFormGenTestCase):
+    """ test our validators """
+
+    def test_inExNumericRange(self):
+        from Products.validation import validation
+
+        v = validation.validatorFor('inExNumericRange')
+        self.failUnlessEqual(v(10, minval=1, maxval=20), 1)
+        self.failUnlessEqual(v('10', minval=1, maxval=20), 1)
+        self.failUnlessEqual(v('1', minval=1, maxval=20), 1)
+        self.failUnlessEqual(v('20', minval=1, maxval=20), 1)
+        self.failIfEqual(v(0, minval=1, maxval=5), 1)
+        self.failIfEqual(v(6, minval=1, maxval=5), 1)
+        self.failIfEqual(v(4, minval=5, maxval=3), 1)
+
+    def test_isNotTooLong(self):
+        from Products.validation import validation
+
+        v = validation.validatorFor('isNotTooLong')
+        self.failUnlessEqual(v('', maxlength=20), 1)
+        self.failUnlessEqual(v('1234567890', maxlength=20), 1)
+        self.failUnlessEqual(v('1234567890', maxlength=10), 1)
+        self.failUnlessEqual(v('1234567890', maxlength=0), 1)
+        self.failIfEqual(v('1234567890', maxlength=9), 1)
+        self.failIfEqual(v('1234567890', maxlength=1), 1)
+
+    def test_isChecked(self):
+        from Products.validation import validation
+
+        v = validation.validatorFor('isChecked')
+        self.failUnlessEqual(v('1'), 1)
+        self.failIfEqual(v('0'), 1)
+
+    def test_isUnchecked(self):
+        from Products.validation import validation
+
+        v = validation.validatorFor('isUnchecked')
+        self.failUnlessEqual(v('0'), 1)
+        self.failIfEqual(v('1'), 1)
+
+    def test_isNotTooLong(self):
+        from Products.validation import validation
+
+        v = validation.validatorFor('isNotTooLong')
+        v.maxlength = 10
+        self.failUnlessEqual(v('abc'), 1)
+        self.failIfEqual(v('abcdefghijklmnopqrstuvwxyz'), 1)
+
+        # there was a bug where widget.maxlength could possibly be defined as
+        # '' which means calling int(widget.maxlength) would fail
+
+        class Mock(object):
+            pass
+        field = Mock()
+        field.widget = Mock()
+        field.widget.maxlength = ''
+        
+        self.failUnlessEqual(v('abc', field=field), 1)
+
+
+class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
+    """ Test friendlier validation framework """
+    
+    def test_messageMassage(self):
+    
+        s = "Validation failed(isUnixLikeName): something is not a valid identifier."
+        self.failUnlessEqual(validationMessages.cleanupMessage(s, self, self), u'pfg_isUnixLikeName')
+
+        s = "Something is required, please correct."
+        self.failUnlessEqual(validationMessages.cleanupMessage(s, self, self), u'pfg_isRequired')
+
+        s = "Validation failed(isNotTooLong): 'something' is too long. Must be no longer than some characters."
+        response = validationMessages.cleanupMessage(s, self, self)
+        self.failUnlessEqual(response, u'pfg_too_long')
+
+
+    def test_stringValidators(self):
+        """ Test string validation
+        """
+
+        from Products.validation.exceptions import UnknowValidatorError
+        from Products.validation import validation as v
+        
+        self.assertRaises(UnknowValidatorError, v.validate, 'noValidator', 'test')
+            
+        self.failIfEqual( v.validate('pfgv_isEmail', 'test'), 1 )
+
+        self.failUnlessEqual( v.validate('pfgv_isEmail', 'test@test.com'), 1 )
+
+        self.failUnlessEqual( v.validate('pfgv_isZipCode', '12345-1234'), 1 )
+
+
+if  __name__ == '__main__':
+    framework()
+
+def test_suite():
+    from unittest import TestSuite, makeSuite
+    suite = TestSuite()
+    suite.addTest(makeSuite(TestCustomValidators))
+    suite.addTest(makeSuite(TestCustomValidatorMessages))
+    return suite
