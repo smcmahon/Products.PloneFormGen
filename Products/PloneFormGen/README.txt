@@ -47,30 +47,44 @@ as gpg. See README_GPG.txt for details.
 Installation
 ============
 
+Buildout
+--------
+
+Just add ``Products.PloneFormGen`` to the eggs section of your buildout
+configuration and run buildout.
+
+Traditional Zope Product
+------------------------
+
 Typical for a Zope/Plone product:
 
-	* Install dependencies.
+*   Install dependencies.
 
-	* Unpack the product package into the Products folder of the
-	Zope/Plone instance. Check your ownership and permissions.
+*   Download a tarball from http://plone.org/products/ploneformgen.
 
-	* IF YOU ARE USING FIVE version less than 1.2 (common with Zope 2.8.x / Plone 2.1.x),
-	delete or rename "configure.zcml". Otherwise, you will experience a
-	variety of problems (e.g., missing component) in portal operation.
-	(Note that it's also an option to upgrade your version of Five to
-	version 1.2.)
+*   Unpack the product package into the Products folder of the
+    Zope/Plone instance. Check your ownership and permissions.
 
-	* Restart Zope.
+*   IF YOU ARE USING FIVE version less than 1.2 (common with Zope 2.8.x / Plone 2.1.x),
+    delete or rename "configure.zcml". Otherwise, you will experience a
+    variety of problems (e.g., missing component) in portal operation.
+    (Note that it's also an option to upgrade your version of Five to
+    version 1.2.)
 
-	* Go to the Site Setup page in the Plone interface and click on the
-	Add/Remove Products link. Choose PloneFormGen (check its checkbox) and
-	click the Install button. If PloneFormGen is not available on the
-	Add/Remove Products list, it usually means that the product did not
-	load due to missing prerequisites.
+Either Method Final Steps
+-------------------------
 
-	* If necessary, use the PloneFormGen configlet in the "Add-on Product
-	Configuration" section of Site Setup to customize the product for your
-	site.
+*   Restart Zope.
+
+*   Go to the Site Setup page in the Plone interface and click on the
+    Add/Remove Products link. Choose PloneFormGen (check its checkbox) and
+    click the Install button. If PloneFormGen is not available on the
+    Add/Remove Products list, it usually means that the product did not
+    load due to missing prerequisites.
+
+*   If necessary, use the PloneFormGen configlet in the "Add-on Product
+    Configuration" section of Site Setup to customize the product for your
+    site.
 
 Permissions
 ===========
@@ -102,20 +116,20 @@ problems between Archetypes, the i18n machinery, and KSS.
 Rationale For This Product
 ==========================
 
- * Plone needs a general-purpose form generator that may be used for
- mail forms, RDBMS database interactions and other functions that don't
- require the Archetypes' persistence machinery;
+*   Plone needs a general-purpose form generator that may be used for
+    mail forms, RDBMS database interactions and other functions that don't
+    require the Archetypes' persistence machinery;
 
- * Designing a form using such a form generator should not require a)
- work on the file system, b) creation of new content types, c) use of
- the ZMI (except for scripting field population or custom validation).
- [PloneFormMailer is an outstanding, useful product, that suffers only
- for its reliance on the ZMI/Formulator for design.]
+*   Designing a form using such a form generator should not require a)
+    work on the file system, b) creation of new content types, c) use of
+    the ZMI (except for scripting field population or custom validation).
+    [PloneFormMailer is an outstanding, useful product, that suffers only
+    for its reliance on the ZMI/Formulator for design.]
 
- * Archetypes, in conjunction with the CMF Form Controller, has a form
- generator built-in. Ideally, it should be possible to repurpose the
- Archetypes widgets and validators (which were evidently intended to be
- generally useful) for a more general-purpose form generator.
+*   Archetypes, in conjunction with the CMF Form Controller, has a form
+    generator built-in. Ideally, it should be possible to repurpose the
+    Archetypes widgets and validators (which were evidently intended to be
+    generally useful) for a more general-purpose form generator.
 
 Credits
 =======
@@ -150,5 +164,3 @@ License
 Distributed under the GPL.
 
 See LICENSE.txt and LICENSE.GPL for details.
-
-
