@@ -1,3 +1,10 @@
+1.2.3dev
+
+ - Some change around Plone 3.1 caused a problem where minor version
+   updates of PFG would cause the formgen_tool to be created inside the
+   portal_quickinstaller, thoroughly fouling it up. Yuck. Fixed.
+   (Tracker #205; Thanks, Wouter Vanden Hove)
+
 1.2.2
 
  - The PicklistWidget used to pick ThanksPage fields doesn't respect the 

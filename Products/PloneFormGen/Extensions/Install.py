@@ -120,9 +120,9 @@ def install(self):
                                        'portal_types'  :  linkable},))
         print >> out, "Added FormFolder to kupu's linkable types"
 
-
     if not safe_hasattr(self, 'formgen_tool'):
-        addTool = self.manage_addProduct['PloneFormGen'].manage_addTool
+        portalObject = getToolByName(self, 'portal_url').getPortalObject()
+        addTool = portalObject.manage_addProduct['PloneFormGen'].manage_addTool
         addTool('PloneFormGen Tool')
     print >> out, "Added PloneFormGen Tool"
 
@@ -158,13 +158,16 @@ def install(self):
 
     # add the configlets to the portal control panel
     configTool = getToolByName(self, 'portal_controlpanel', None)
-    if configTool:
+    productConfiglets = [co['id'] for co in configTool.enumConfiglets(group='Products')]
+    if 'PloneFormGen' not in productConfiglets:
         for conf in configlets:
             try:
                 configTool.registerConfiglet(**conf)
                 out.write('Added configlet %s\n' % conf['id'])
             except:
                 out.write('Configlet already configured\n')
+    else:
+        out.write('Unexpectedly found an existing configlet for PFG. Skipped configlet registration.')        
 
 
     if HAS_PLONE30:
