@@ -7,8 +7,8 @@
 
 <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-           tal:define="size python:here.getObjSize(here);
-                       content_type here/get_content_type|here/Format;
+           tal:define="content_type here/get_content_type|here/Format;
+                       canEdit python:checkPermission('Modify portal content', here);
                       ">
         <tal:block condition="exists: request/clearSavedFormInput">
           <span tal:define="dummy here/clearSavedFormInput" />
@@ -43,35 +43,25 @@
           </p>
 
           <small class="discreet">
-              <span i18n:translate="label_size">
-              Size
-              </span>
-
-              <span tal:condition="size"
-                  tal:content="size">
-              257 KB
-              </span>
-
-        			-
-
-        			<span tal:condition="exists: here/itemsSaved" i18n:translate="items_saved" i18n:domain="ploneformgen">
-        	            <span tal:content="here/itemsSaved" i18n:name="items">
-        	            257
-        	            </span>
-        				inputs saved
-        			</span>
+            <span tal:condition="exists: here/itemsSaved" i18n:translate="items_saved" i18n:domain="ploneformgen">
+                <span tal:content="here/itemsSaved" i18n:name="items">
+                257
+                </span>
+            	inputs saved
+            </span>
 
               -
 
-              <span i18n:translate="label_file_type">
-              File type
-              </span>
+            <span i18n:translate="label_file_type">
+            File type
+            </span>
 
-              <span tal:content="here/formatMIME">text/tab-separated-values</span>
+            <span tal:content="here/formatMIME">text/tab-separated-values</span>
           </small>
 
           <form action="#"
            method="post"
+           tal:condition="canEdit"
            tal:attributes="action here/absolute_url"
            style="padding-top:2em">
             <input type="submit" name="clearSavedFormInput" value="Clear Saved Input"  class="standalone"

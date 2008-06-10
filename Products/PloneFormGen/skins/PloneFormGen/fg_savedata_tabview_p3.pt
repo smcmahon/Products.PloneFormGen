@@ -8,6 +8,7 @@
 <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main"
            tal:define="results here/getSavedFormInput;
+                       canEdit python:checkPermission('Modify portal content', here);
                        Batch python:modules['Products.CMFPlone'].Batch;
                        b_size python:30;
                        b_start python:0;
@@ -38,12 +39,20 @@
             <table class="listing">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th tal:repeat="ct here/getColumnTitles" tal:content="ct">Column Title</th>
+                        <th tal:condition="canEdit" i18n:translate="Action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr tal:repeat="row batch">
+                        <td style="text-align: center"  tal:content="repeat/row/number" />
                         <td tal:repeat="cell row" tal:content="cell">cell</td>
+                        <td tal:condition="canEdit" style="text-align: center">
+                            <a tal:attributes="href string:${context/absolute_url}/fg_savedata_editview?id:int=${repeat/row/number}">
+                                <img src="edit.gif" />
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
