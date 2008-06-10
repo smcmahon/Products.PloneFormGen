@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <body>
+
+      <metal:fill fill-slot="main">
+
+          <h1>
+              <span i18n:translate="Edit record">Edit record </span>
+              #<span tal:replace="request/id" />
+          </h1>
+
+          <form tal:attributes="action string:${context/absolute_url}/manage_saveData" method="POST">
+              <input type="hidden" name="id:int" tal:attributes="value request/id" />
+
+              <table tal:define="coltitles context/getColumnTitles;
+                                 colnames  context/getColumnNames;
+                                 id        request/id;
+                                 data      python: context.getSavedFormInputById(id)">
+
+                <tal:loop repeat="title coltitles">
+                    <tr tal:define="index  repeat/title/index">
+                        <td>
+                            <span tal:content="title" />
+                            (<span tal:content="python: colnames[index]" />)
+                        </td>
+                        <td>
+                            <input type="text"
+                                   size="60"
+                                   tal:attributes="name  string:data.item-$index:record;
+                                                   value python: data[index];
+                                                  "
+                            />
+                        </td>
+                    </tr>
+                </tal:loop>
+              </table>
+            <input class="context" type="submit" value="Save data" />
+        </form>
+    </metal:fill>
+
+  </body>
+
+</html>

@@ -1,5 +1,10 @@
 1.2.3dev
 
+ - Save adapter: stored records can now be edited through the Plone UI.
+   The edit UI is pretty basic and provides only a text field per
+   stored value. No fancy widgets, no fancy validation.
+   (Andreas Jung)
+
  - Some change around Plone 3.1 caused a problem where minor version
    updates of PFG would cause the formgen_tool to be created inside the
    portal_quickinstaller, thoroughly fouling it up. Yuck. Fixed.
@@ -656,11 +661,4 @@
 
  - Added simple interfaces IfgForm and IfgField, mainly as markers.
 
- - Made form fields invisible (to the add menu) outside of form folders
-
- - Added form fields to those not listed in navigation.
-   (0.0.1 set the exclude from nav flag. this was the wrong way to do this.)
-
- - Fixed incorrect permissions on setFgRows
-
- - Removed supplementary views for form folder; killed "display" menu.
+ - Made form fields invisible (to the add menu) 

@@ -204,6 +204,20 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._inputStorage.clear()
         self._inputItems = 0
 
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputById')
+    def getSavedFormInputById(self, id):
+        """ Return the data stored for record with 'id' """
+        return list(self._inputStorage[id-1])
+ 
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'manage_saveData')
+    def manage_saveData(self, id,  data):
+        """ Return the data stored for record with 'id' """
+        lst = list()
+        for i in range(0, len(self.getColumnNames())):
+                lst.append(getattr(data, 'item-%d' % i, ''))
+ 
+        self._inputStorage[id-1] = lst
+        self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
     def _addDataRow(self, value):
 
