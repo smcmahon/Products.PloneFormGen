@@ -1,8 +1,13 @@
 1.2.3dev
 
- - Save adapter: stored records can now be edited through the Plone UI.
+ - Add delete capabilities to Andreas' record editor. Added escaping
+   for multi-line fields. Guarded editing with ModifyPortalContent
+   rather than the download permission.
+
+ - Save adapter: stored records can now be edited through the Plone UI
+   via the data saver's tabular view.
    The edit UI is pretty basic and provides only a text field per
-   stored value. No fancy widgets, no fancy validation.
+   stored value. No fancy widgets, no validation.
    (Andreas Jung)
 
  - Some change around Plone 3.1 caused a problem where minor version

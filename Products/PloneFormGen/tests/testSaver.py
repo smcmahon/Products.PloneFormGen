@@ -10,6 +10,10 @@ from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
 
+# dummy class
+class cd:
+    pass
+
 class FakeRequest(dict):
     
     def __init__(self, **kwargs):
@@ -112,6 +116,47 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         saver.setSavedFormInput(tuple())
         self.assertEqual(saver.itemsSaved(), 0)
 
+    def testEditSavedFormInput(self):
+        """ test manage_saveData functionality """
+
+        # set up saver        
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+        self.failUnless('saver' in self.ff1.objectIds())
+        saver = self.ff1.saver
+
+        # save a row
+        saver.setSavedFormInput('one,two,three')
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        
+        data = cd()
+        setattr(data, 'item-0', 'four')
+        setattr(data, 'item-1', 'five')
+        setattr(data, 'item-2', 'six')
+
+        saver.manage_saveData(1, data)
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['four', 'five', 'six'])
+
+    def testDeleteSavedFormInput(self):
+        """ test manage_deleteData functionality """
+
+        # set up saver        
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+        self.failUnless('saver' in self.ff1.objectIds())
+        saver = self.ff1.saver
+
+        # save a few rows
+        saver._addDataRow( ['one','two','three'] )
+        saver._addDataRow( ['four','five','six'] )
+        saver._addDataRow( ['seven','eight','nine'] )
+        self.assertEqual(saver.itemsSaved(), 3)
+        
+        saver.manage_deleteData(2)
+        self.assertEqual(saver.itemsSaved(), 2)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage[1], ['seven', 'eight', 'nine'])
+    
 
     def testSaverInputAsDictionaries(self):
         """ test save data adapter's InputAsDictionaries """

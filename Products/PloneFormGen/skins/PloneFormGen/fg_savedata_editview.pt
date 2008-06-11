@@ -16,7 +16,7 @@
               #<span tal:replace="request/id" />
           </h1>
 
-          <form tal:attributes="action string:${context/absolute_url}/manage_saveData" method="POST">
+          <form tal:attributes="action string:${context/absolute_url}/" method="POST">
               <input type="hidden" name="id:int" tal:attributes="value request/id" />
 
               <table tal:define="coltitles context/getColumnTitles;
@@ -41,7 +41,8 @@
                     </tr>
                 </tal:loop>
               </table>
-            <input class="context" type="submit" value="Save data" />
+              <input class="context" type="submit" name="manage_saveData:action" value="Save data" />
+              <input class="context" type="submit" name="manage_deleteData:action" value="Delete record" />
         </form>
     </metal:fill>
 

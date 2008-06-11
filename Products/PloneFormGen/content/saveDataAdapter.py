@@ -204,20 +204,41 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._inputStorage.clear()
         self._inputItems = 0
 
+
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputById')
     def getSavedFormInputById(self, id):
         """ Return the data stored for record with 'id' """
-        return list(self._inputStorage[id-1])
+        lst =  [field.replace('\r','').replace('\n', r'\n') for field in self._inputStorage[id-1]]
+        return lst
+
  
     security.declareProtected(ModifyPortalContent, 'manage_saveData')
     def manage_saveData(self, id,  data):
         """ Save the data for record with 'id' """
+
+        self._migrateStorage()
+
         lst = list()
         for i in range(0, len(self.getColumnNames())):
-                lst.append(getattr(data, 'item-%d' % i, ''))
+            lst.append(getattr(data, 'item-%d' % i, '').replace(r'\n', '\n'))
  
         self._inputStorage[id-1] = lst
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
+
+
+    security.declareProtected(ModifyPortalContent, 'manage_deleteData')
+    def manage_deleteData(self, id):
+        """ Delete the data for record with 'id' """
+
+        self._migrateStorage()
+
+        for i in range(id, self._inputItems):
+            self._inputStorage[i-1] = self._inputStorage[i]
+        del self._inputStorage[self._inputItems-1]
+        self._inputItems -= 1
+        
+        self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
+
 
     def _addDataRow(self, value):
 
