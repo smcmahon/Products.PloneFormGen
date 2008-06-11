@@ -209,3 +209,7 @@ pfgPermitList = [
 #  if they're used for PFG field elements.
 #  The disallow list:
 BAD_IDS = ('zip', 'location', 'language')
+
+# used to mark errors that belong to the
+# whole form, not just a field.
+FORM_ERROR_MARKER = '_pfg_form_error'

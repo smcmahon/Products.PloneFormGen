@@ -33,7 +33,7 @@ from Products.PloneFormGen.interfaces import \
     IPloneFormGenForm, IPloneFormGenActionAdapter, IPloneFormGenThanksPage
 from Products.PloneFormGen.config import \
     PROJECTNAME, fieldTypes, adapterTypes, thanksTypes, fieldsetTypes, \
-    EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS
+    EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS, FORM_ERROR_MARKER
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
@@ -516,7 +516,11 @@ class FormFolder(ATFolder):
                         doit = True
 
                     if doit:
-                        actionAdapter.onSuccess(fields, REQUEST=REQUEST)
+                        result = actionAdapter.onSuccess(fields, REQUEST=REQUEST)
+                        if type(result) is type({}) and len(result):
+                            # return the dict, which hopefully uses
+                            # field ids or FORM_ERROR_MARKER for keys
+                            return result
 
         return errors
 

@@ -499,7 +499,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # smoke test
         self.ff1()
 
-
+    def testActionAdapterReturns(self):
+        """ test to make sure that the return status of action adapters is handled right """
+        pass
 
 
 if  __name__ == '__main__':

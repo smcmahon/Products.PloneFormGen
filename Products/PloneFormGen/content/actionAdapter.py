@@ -99,7 +99,26 @@ class FormActionAdapter(ATCTContent):
 
 
     def onSuccess(self, fields, REQUEST=None):
-        """ called by form to invoke custom success processing """
+        """ Called by form to invoke custom success processing.
+            return None (or don't use "return" at all) if processing is
+            error-free.
+            
+            Return a dictionary like {'field_id':'Error Message'}
+            and PFG will stop processing action adapters and
+            return back to the form to display your error messages.
+
+            You may also use Products.PloneFormGen.config.FORM_ERROR_MARKER
+            as a marker for a message to replace the top-of-the-form error
+            message.
+
+            For example, to set a message for the whole form, but not an
+            individual field:
+            {FORM_ERROR_MARKER:'Yuck! You will need to submit again.'}
+            For both a field and form error:
+            {FORM_ERROR_MARKER:'Yuck! You will need to submit again.',
+             'field_id':'Error Message for field.'}
+                
+        """
         
         # fields will be a sequence of objects with an IPloneFormGenField interface
         

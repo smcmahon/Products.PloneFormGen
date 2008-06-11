@@ -8,6 +8,8 @@
 ##parameters=
 ##title=
 ##
+FORM_ERROR_MARKER = '_pfg_form_error'
+
 try:
     from Products.Archetypes import PloneMessageFactory as _
     from Products.Archetypes.utils import addStatusMessage
@@ -22,11 +24,18 @@ errors = context.fgvalidate(REQUEST=request, errors=errors, data=1, metadata=0)
 
 if errors:
     if P3StyleErrors:
-        message = _(u'Please correct the indicated errors.')
+        if FORM_ERROR_MARKER in errors:
+            message = errors.pop(FORM_ERROR_MARKER)
+        else:
+            message = _(u'Please correct the indicated errors.')
         addStatusMessage(request, message, type='error')
         return state.set(status='failure', errors=errors)
     else:
-        return state.set(status='failure', errors=errors, portal_status_message='Please correct the indicated errors.')
+        if FORM_ERROR_MARKER in errors:
+            message = errors.pop(FORM_ERROR_MARKER)
+        else:
+            message = 'Please correct the indicated errors.'
+        return state.set(status='failure', errors=errors, portal_status_message=message)
 else:
     nextAction = context.fgGetSuccessAction()
     state.setNextAction( nextAction )
