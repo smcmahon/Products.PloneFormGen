@@ -11,13 +11,37 @@ from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
 
+non_error_script="""
+## Python Script
+##bind container=container
+##bind context=context
+##bind subpath=traverse_subpath
+##parameters=fields, ploneformgen, request
+##title=Succesfully working script returning error
+##
+
+return False
+"""
+
+error_script="""
+## Python Script
+##bind container=container
+##bind context=context
+##bind subpath=traverse_subpath
+##parameters=fields, ploneformgen, request
+##title=Succesfully working script returning error
+##
+
+return {'topic':'an error message'}
+"""
+
 class FakeRequest(dict):
 
     def __init__(self, **kwargs):
         self.form = kwargs
 
 class TestFunctions(pfgtc.PloneFormGenTestCase):
-    """ test ya_gpg.py """
+    """ tests that mostly concern functionality beyond the unit """
 
     def dummy_send( self, mfrom, mto, messageText ):
         self.mfrom = mfrom
@@ -501,7 +525,40 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
     def testActionAdapterReturns(self):
         """ test to make sure that the return status of action adapters is handled right """
-        pass
+
+        # we'll need privileges to create a script adapter
+        self.loginAsPortalOwner()
+
+        # create three adapters
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver1')
+        saver1 = self.ff1.saver1
+        self.ff1.invokeFactory('FormCustomScriptAdapter', 'cscript')
+        cscript = self.ff1.cscript
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver2')
+        saver2 = self.ff1.saver2
+        self.ff1.setActionAdapter( ('saver1', 'cscript', 'saver2') )
+        self.assertEqual(self.ff1.actionAdapter, ('saver1', 'cscript', 'saver2'))
+
+        # fake request to fake post
+        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+
+        # Run a script that returns a non-error status;
+        # Something should be saved to both savers
+        cscript.setScriptBody(non_error_script) 
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual(errors, {})
+        self.assertEqual(saver1.itemsSaved(), 1)
+        self.assertEqual(saver2.itemsSaved(), 1)
+
+        # Run a script that returns an error status;
+        # we sshould see an error status from the validator,
+        # and action adapter execution should have short-circuited
+        # with only the first executing.
+        cscript.setScriptBody(error_script) 
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual(errors, {'topic' : 'an error message'})
+        self.assertEqual(saver1.itemsSaved(), 2)
+        self.assertEqual(saver2.itemsSaved(), 1)
 
 
 if  __name__ == '__main__':
