@@ -11,29 +11,9 @@ from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
 
-non_error_script="""
-## Python Script
-##bind container=container
-##bind context=context
-##bind subpath=traverse_subpath
-##parameters=fields, ploneformgen, request
-##title=Succesfully working script returning error
-##
-
-return False
-"""
-
-error_script="""
-## Python Script
-##bind container=container
-##bind context=context
-##bind subpath=traverse_subpath
-##parameters=fields, ploneformgen, request
-##title=Succesfully working script returning error
-##
-
-return {'topic':'an error message'}
-"""
+# too lazy to see if this is already in the library somewhere
+def stripWhiteSpace(multiLineString):
+    return '\n'.join([s.strip() for s in multiLineString.split('\n')])
 
 class FakeRequest(dict):
 
@@ -526,6 +506,34 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def testActionAdapterReturns(self):
         """ test to make sure that the return status of action adapters is handled right """
 
+        # Script code to imitate a Custom Script adapter
+        # script returning something other than a dict
+        non_error_script="""
+        ## Python Script
+        ##bind container=container
+        ##bind context=context
+        ##bind subpath=traverse_subpath
+        ##parameters=fields, ploneformgen, request
+        ##title=Succesfully working script returning error
+        ##
+
+        return False
+        """
+
+        # Script code to imitate a Custom Script adapter
+        # script returning a dict and using context.FORM_ERROR_MARKER
+        error_script="""
+        ## Python Script
+        ##bind container=container
+        ##bind context=context
+        ##bind subpath=traverse_subpath
+        ##parameters=fields, ploneformgen, request
+        ##title=Succesfully working script returning error
+        ##
+
+        return {context.FORM_ERROR_MARKER:'an error message'}
+        """
+
         # we'll need privileges to create a script adapter
         self.loginAsPortalOwner()
 
@@ -543,20 +551,26 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
 
         # Run a script that returns a non-error status;
-        # Something should be saved to both savers
-        cscript.setScriptBody(non_error_script) 
+        # Something should be saved to both savers,
+        # and errors should be an empty dict.
+        cscript.setScriptBody(stripWhiteSpace(non_error_script)) 
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual(errors, {})
         self.assertEqual(saver1.itemsSaved(), 1)
         self.assertEqual(saver2.itemsSaved(), 1)
 
         # Run a script that returns an error status;
-        # we sshould see an error status from the validator,
-        # and action adapter execution should have short-circuited
-        # with only the first executing.
-        cscript.setScriptBody(error_script) 
+        # we should see an error status from the validator,
+        # and action adapter execution should short-circuit
+        # with only the first saver's onSuccess being executed.
+        #
+        # This will also demonstrate that the dictionary returned
+        # by the action adapter is returned by fgvalidate
+        # and that FORM_ERROR_MARKER is available as an
+        # attribute of the context.
+        cscript.setScriptBody(stripWhiteSpace(error_script)) 
         errors = self.ff1.fgvalidate(REQUEST=request)
-        self.assertEqual(errors, {'topic' : 'an error message'})
+        self.assertEqual(errors, {cscript.FORM_ERROR_MARKER : 'an error message'})
         self.assertEqual(saver1.itemsSaved(), 2)
         self.assertEqual(saver2.itemsSaved(), 1)
 

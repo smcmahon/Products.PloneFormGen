@@ -31,6 +31,7 @@ from Products.PythonField import PythonField as PythonField
 
 # Local imports
 from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import config
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import \
     FormActionAdapter, FormAdapterSchema
@@ -54,7 +55,11 @@ default_script = """
 #            Access fields by request.form["myfieldname"]
 #  ploneformgen = PloneFormGen object
 # 
-# Return value is not processed
+# Return value is not processed -- unless you
+# return a dictionary with contents. That's regarded
+# as an error and will stop processing of actions
+# and return the user to the form. Error dictionaries
+# should be of the form {'field_id':'Error message'}
 
 
 assert False, "Please complete your script"
@@ -64,7 +69,7 @@ assert False, "Please complete your script"
 class FormCustomScriptAdapter(FormActionAdapter):
     """ Executes a Python script for form data
     """
-    
+
     # Python script receives parameters 
     #     resultData  - cleaned up input
     #     form        - the PFG object
@@ -123,6 +128,17 @@ class FormCustomScriptAdapter(FormActionAdapter):
 
     security = ClassSecurityInfo()
     
+    def __init__(self, oid, **kwargs):
+        """ initialize class """
+
+        FormActionAdapter.__init__(self, oid, **kwargs)
+        
+        # for the convenience of scripters operating
+        # in a restricted python environment,
+        # let's store a reference to FORM_ERROR_MARKER
+        # on the object, so it'll be available
+        # as an attribute of context.
+        self.FORM_ERROR_MARKER = config.FORM_ERROR_MARKER
     
     def updateScript(self, body, role):
         """ Regenerate Python script object 
@@ -221,6 +237,3 @@ class FormCustomScriptAdapter(FormActionAdapter):
         return result
         
 registerATCT(FormCustomScriptAdapter, PROJECTNAME)
-
-
-

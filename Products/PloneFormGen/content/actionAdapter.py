@@ -105,7 +105,8 @@ class FormActionAdapter(ATCTContent):
             
             Return a dictionary like {'field_id':'Error Message'}
             and PFG will stop processing action adapters and
-            return back to the form to display your error messages.
+            return back to the form to display your error messages
+            for the matching field(s).
 
             You may also use Products.PloneFormGen.config.FORM_ERROR_MARKER
             as a marker for a message to replace the top-of-the-form error
@@ -113,11 +114,15 @@ class FormActionAdapter(ATCTContent):
 
             For example, to set a message for the whole form, but not an
             individual field:
+
             {FORM_ERROR_MARKER:'Yuck! You will need to submit again.'}
+
             For both a field and form error:
+
             {FORM_ERROR_MARKER:'Yuck! You will need to submit again.',
              'field_id':'Error Message for field.'}
-                
+            
+            Messages may be string types or zope.i18nmessageid objects.                
         """
         
         # fields will be a sequence of objects with an IPloneFormGenField interface
