@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+<body>
+
+    <!-- VIEW -->
+    <metal:define define-macro="view">
+       DISPLAY WIDGET HERE
+    </metal:define>
+
+<!--      EDIT WIDGET HERE  -->
+  <metal:define define-macro="edit">
+    <metal:use use-macro="field_macro | here/widgets/field/macros/edit">
+      <table metal:fill-slot="widget_body" class="likert listing"
+             tal:define="questions python: field.getQuestionSet();
+                         answers python: field.getAnswerSet();">
+        <tr>
+          <th>&nbsp;</th>
+          <th style="text-align:center" tal:repeat="answer answers" tal:content="answer" />
+        </tr>
+        <tr tal:repeat="question questions">
+          <td tal:content="question" />
+          <td tal:repeat="answer answers" 
+              tal:define="row repeat/question/number; id python: field.getName()"
+              style="text-align:center">
+            <input type="radio" tal:define="col repeat/answer/number" 
+                   tal:attributes="id string:${id}_${row}_${col};
+                                   name string:${id}.${row}:record;
+                                   value answer"/>
+          </td>
+        </tr>
+      </table>
+    </metal:use>
+  </metal:define>
+</body>
+</html>

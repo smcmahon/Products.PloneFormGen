@@ -2,3 +2,4 @@
 
 from richlabel import RichLabelWidget
 from fieldset import FieldsetStartWidget, FieldsetEndWidget
+from likertWidget import LikertWidget

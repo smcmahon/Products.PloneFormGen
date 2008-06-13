@@ -50,6 +50,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             'FormRichTextField',
             'FormRichLabelField',
             'FormFileField',
+            'FormLikertField',
         )
         self.adapterTypes = (
             'FormSaveDataAdapter',

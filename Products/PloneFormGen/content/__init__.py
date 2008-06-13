@@ -8,3 +8,4 @@ import fields, form, fieldset
 import actionAdapter, saveDataAdapter, formMailerAdapter
 import customScriptAdapter
 import thanksPage
+import likertField, formLikertField
