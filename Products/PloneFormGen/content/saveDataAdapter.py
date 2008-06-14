@@ -25,6 +25,7 @@ import logging
 from DateTime import DateTime
 import csv
 from StringIO import StringIO
+from types import StringTypes
 
 try:
     # 3.0+
@@ -289,7 +290,12 @@ class FormSaveDataAdapter(FormActionAdapter):
                 else:
                     data.append( 'NO UPLOAD' )
             elif not f.isLabel():
-                data.append( REQUEST.form.get(f.fgField.getName(),'') )
+                val = REQUEST.form.get(f.fgField.getName(),'')
+                if not type(val) in StringTypes:
+                    # Zope has marshalled the field into
+                    # something other than a string
+                    val = str(val)
+                data.append(val)
 
         if self.ExtraData:
             for f in self.ExtraData:

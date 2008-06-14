@@ -21,6 +21,8 @@ __docformat__ = 'plaintext'
 # 02110-1301, USA.
 #
 
+import cgi
+
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
 
@@ -31,6 +33,8 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.configuration import zconf
 
 from Products.CMFCore.permissions import View, ModifyPortalContent
+
+from Products.CMFPlone.utils import safe_hasattr
 
 from AccessControl import ClassSecurityInfo
 
@@ -99,6 +103,22 @@ class FormLikertField(fieldsBase.BaseFormField):
             self.fgField.questionSet = tuple(value)
 
         self.likertQuestions = value
+
+    def htmlValue(self, REQUEST):
+        """ return from REQUEST, this field's value, rendered as XHTML.
+            In this case, a definition list.
+        """
+
+        value = REQUEST.form.get(self.__name__, 'No Input')
+        if not safe_hasattr(value, '__getitem__'):
+            return fieldsBase.BaseFormField.htmlValue(self, REQUEST)
+        
+        res = "<dl>\n"
+        for i in range(len(value)):
+            label = self.fgField.questionSet[i]
+            response = value.get(str(i+1), '')
+            res = "%s<dt>%s</dt><dd>%s</dd>\n" % (res, cgi.escape(label), cgi.escape(response))
+        return "%s</dl>\n" % res
 
 
 registerType(FormLikertField, PROJECTNAME)

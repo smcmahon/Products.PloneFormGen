@@ -52,8 +52,9 @@ class LikertWidget(TypesWidget):
 
         answers = []
 
+        frec = form.get(fieldName, {})
         for index in range(len(questions)):
-            value = form.get('%s_%i' % (fieldName, index + 1), empty_marker)
+            value = frec.get(str(index + 1), empty_marker)
             answers.append(value)
 
         return answers, {}

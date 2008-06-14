@@ -14,23 +14,29 @@
   <metal:define define-macro="edit">
     <metal:use use-macro="field_macro | here/widgets/field/macros/edit">
       <table metal:fill-slot="widget_body" class="likert listing"
-             tal:define="questions python: field.getQuestionSet();
-                         answers python: field.getAnswerSet();">
+             tal:define="questions field/getQuestionSet;
+                         answers field/getAnswerSet;
+                         fid field/getName;
+                         responses python:request.form.get(fid, {});">
         <tr>
           <th>&nbsp;</th>
           <th style="text-align:center" tal:repeat="answer answers" tal:content="answer" />
         </tr>
-        <tr tal:repeat="question questions">
-          <td tal:content="question" />
-          <td tal:repeat="answer answers" 
-              tal:define="row repeat/question/number; id python: field.getName()"
-              style="text-align:center">
-            <input type="radio" tal:define="col repeat/answer/number" 
-                   tal:attributes="id string:${id}_${row}_${col};
-                                   name string:${id}.${row}:record;
-                                   value answer"/>
-          </td>
-        </tr>
+        <tal:block tal:repeat="question questions">
+            <tr tal:define="row repeat/question/number;
+                            response python:responses.get(str(row), None)">
+              <td tal:content="question" />
+              <td tal:repeat="answer answers" 
+                  style="text-align:center">
+                <input type="radio" tal:define="col repeat/answer/number" 
+                       tal:attributes="id string:${fid}_${row}_${col};
+                                       name string:${fid}.${row}:record;
+                                       value answer;
+                                       checked python:test(response==answer,'CHECKED',None);"
+                                       />
+              </td>
+            </tr>
+        </tal:block>
       </table>
     </metal:use>
   </metal:define>
