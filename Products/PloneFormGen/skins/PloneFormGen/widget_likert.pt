@@ -24,7 +24,8 @@
         </tr>
         <tal:block tal:repeat="question questions">
             <tr tal:define="row repeat/question/number;
-                            response python:responses.get(str(row), None)">
+                            response python:responses.get(str(row), None)"
+                            tal:attributes="class python:test(repeat['question'].even(),'even','odd')">
               <td tal:content="question" />
               <td tal:repeat="answer answers" 
                   style="text-align:center">
