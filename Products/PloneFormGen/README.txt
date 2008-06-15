@@ -155,6 +155,10 @@ particularly in how to handle installation and testing issues.
 Martin Aspeli, Wichert Akkerman, Eric Steele, Jens Klein and Reinout
 van Rees all provided valuable early feedback.
 
+Titus Anderson provided the base code for the Ratings-Scale Field.
+Andreas Jung contributed the record-editing feature for the Save Data
+adapter.
+
 See the CHANGES.txt file for the very long list of people who helped
 with particular features or bugs.
 

@@ -1,4 +1,7 @@
-1.2.3dev
+1.2.4
+
+ - Added Rating-Scale Field based on Titus Anderson's LikertField.
+   Thanks to Titus and the University of Louisville.
 
  - Add delete capabilities to Andreas' record editor. Added escaping
    for multi-line fields. Guarded editing with ModifyPortalContent
@@ -9,6 +12,11 @@
    The edit UI is pretty basic and provides only a text field per
    stored value. No fancy widgets, no validation.
    (Andreas Jung)
+
+1.2.3
+
+ - Created egg framework, moved svn trunk to
+   collective/Products.PloneFormGen/trunk.
 
  - Some change around Plone 3.1 caused a problem where minor version
    updates of PFG would cause the formgen_tool to be created inside the
