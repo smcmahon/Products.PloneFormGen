@@ -12,7 +12,7 @@
       <metal:fill fill-slot="main">
 
           <h1>
-              <span i18n:translate="Edit record">Edit record </span>
+              <span i18n:translate="Edit record">Edit record</span>
               #<span tal:replace="request/id" />
           </h1>
 

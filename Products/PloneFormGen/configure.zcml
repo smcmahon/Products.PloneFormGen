@@ -60,6 +60,9 @@
   <five:deprecatedManageAddDelete
       class=".content.saveDataAdapter.FormSaveDataAdapter" />
 
+  <five:deprecatedManageAddDelete
+      class=".content.formLikertField.FGLikertField" />
+
 <!--
   PFG was using this generic setup profile due to an Archetypes 1.5b5
   bug that was fixed in 1.5rc3.

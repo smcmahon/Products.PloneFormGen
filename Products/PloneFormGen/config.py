@@ -139,6 +139,7 @@ fieldTypes = (
     'FormRichTextField',
     'FormRichLabelField',
     'FormFileField',
+    'FormLikertField',
 )
 
 adapterTypes = (
