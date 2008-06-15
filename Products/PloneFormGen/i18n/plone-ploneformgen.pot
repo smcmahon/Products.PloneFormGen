@@ -407,4 +407,8 @@ msgstr ""
 #. Rich Label Field
 #. Default: 'Rich Label Field',
 msgid "Rich Label Field"
-msgstr "Label met opmaak"
+msgstr ""
+
+#. Likert Field
+msgid "Likert Field"
+msgstr ""

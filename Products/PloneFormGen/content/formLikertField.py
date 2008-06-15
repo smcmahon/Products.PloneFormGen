@@ -42,10 +42,21 @@ from Products.PloneFormGen.content import fieldsBase
 
 from Products.PloneFormGen.content.likertField import LikertField
 from Products.PloneFormGen.config import PROJECTNAME
+from Products.PloneFormGen import PloneFormGenMessageFactory as _
+from Products.PloneFormGen import HAS_PLONE25
 
-StringTypes = (type(''), type(u''))
+from types import StringTypes
 
-class FormLikertField(fieldsBase.BaseFormField):
+default_questions =  ('Question Number One','Question Number Two')
+default_answers = (
+    'Strongly disagree',
+    'Disagree',
+    'Neither agree nor disagree',
+    'Agree',
+    'Strongly agree'
+    )
+
+class FGLikertField(fieldsBase.BaseFormField):
     """ A Likert form entry """
 
     security = ClassSecurityInfo()
@@ -54,15 +65,25 @@ class FormLikertField(fieldsBase.BaseFormField):
         LinesField('likertAnswers',
             searchable=0,
             required=1,
-            widget=LinesWidget(label='Answers',
+            default=default_answers,
+            widget=LinesWidget(
+                label='Answers',
                 description = """List of possible answers for each of the questions""",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_fglikert_answers",
+                description_msgid = "help_fglikert_answers",
             ),
         ),
         LinesField('likertQuestions',
             searchable=0,
             required=1,
-            widget=LinesWidget(label='Questions',
+            default=default_questions,
+            widget=LinesWidget(
+                label='Questions',
                 description = """List of the questions""",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_fglikert_questions",
+                description_msgid = "help_fglikert_questions",
             ),
         ),
     ))
@@ -72,6 +93,7 @@ class FormLikertField(fieldsBase.BaseFormField):
     portal_type = meta_type = "FormLikertField"
     archetype_name = "Likert Field"
     typeDescription = "A Likert Question Set"
+    content_icon = 'LikertField.gif'
 
     def __init__(self, oid, **kwargs):
         """ Initialize Class """
@@ -82,8 +104,8 @@ class FormLikertField(fieldsBase.BaseFormField):
             searchable = 0,
             required = 0,
             write_permission = View,
-            questionSet = ('Rate this field type',),
-            answerSet = ('1', '2', '3', '4', '5'),
+            questionSet = default_questions,
+            answerSet = default_answers,
         )
 
     security.declareProtected(ModifyPortalContent, 'setLikertAnswers')
@@ -110,7 +132,7 @@ class FormLikertField(fieldsBase.BaseFormField):
         """
 
         value = REQUEST.form.get(self.__name__, 'No Input')
-        if not safe_hasattr(value, '__getitem__'):
+        if not (safe_hasattr(value, 'get') and len(value)):
             return fieldsBase.BaseFormField.htmlValue(self, REQUEST)
         
         res = "<dl>\n"
@@ -121,4 +143,4 @@ class FormLikertField(fieldsBase.BaseFormField):
         return "%s</dl>\n" % res
 
 
-registerType(FormLikertField, PROJECTNAME)
+registerType(FGLikertField, PROJECTNAME)

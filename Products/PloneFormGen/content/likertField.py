@@ -54,10 +54,10 @@ class LikertField(ObjectField):
 
     security = ClassSecurityInfo()
 
-    def __init__(self, name=None, **kwargs):
-        """  Create LikertField instance """
-
-        ObjectField.__init__(self, name, **kwargs)
+    # def __init__(self, name=None, **kwargs):
+    #     """  Create LikertField instance """
+    # 
+    #     ObjectField.__init__(self, name, **kwargs)
 
     security.declarePublic('get')
     def get(self, instance, **kwargs):
@@ -98,18 +98,19 @@ class LikertField(ObjectField):
         return None
 
     def validate(self, value, instance, errors=None, **kwargs):
+        if HAS_PLONE25:
+            error = _(u'pfg_allRequired', u'An answer is required for each question.')
+        else:
+            error = u'An answer is required for each question.'
         if not self.required:
             return None
         for index in range(len(self.questionSet)):
-            if not value[index]:
+            if (index > len(value)) or not value[index]:
                 fname = self.getName()
                 if fname not in errors:
-                    if HAS_PLONE25:
-                        error = _(u'pfg_allRequired', u'An answer is required for each question.')
-                    else:
-                        error = u'An answer is required for each question.'
                     errors[fname] = error
-                    return error
+                return error
+        return None
 
 registerField(LikertField,
               title='Likert Field',

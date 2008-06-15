@@ -1309,3 +1309,28 @@ msgstr ""
 #. Default "The date entered was invalid."
 msgid "pfg_isValidDate"
 msgstr ""
+
+#. Likert Field
+#. Default "Answers"
+msgid "label_fglikert_answers"
+msgstr ""
+
+#. Likert Field
+#. Default "List of possible answers for each of the questions"
+msgid "help_fglikert_answers"
+msgstr ""
+
+#. Likert Field
+#. Default "Questions"
+msgid "label_fglikert_questions"
+msgstr ""
+
+#. Likert Field
+#. Default "List of the questions"
+msgid "help_fglikert_questions"
+msgstr ""
+
+#. Likert Field
+#. Default 'An answer is required for each question.'
+msgid "pfg_allRequired"
+msgstr ""
