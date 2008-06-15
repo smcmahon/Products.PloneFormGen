@@ -62,37 +62,41 @@ class FGLikertField(fieldsBase.BaseFormField):
     security = ClassSecurityInfo()
 
     schema = fieldsBase.BaseFieldSchema.copy() + Schema((
-        LinesField('likertAnswers',
-            searchable=0,
-            required=1,
-            default=default_answers,
-            widget=LinesWidget(
-                label='Answers',
-                description = """List of possible answers for each of the questions""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fglikert_answers",
-                description_msgid = "help_fglikert_answers",
-            ),
-        ),
         LinesField('likertQuestions',
             searchable=0,
             required=1,
             default=default_questions,
             widget=LinesWidget(
                 label='Questions',
-                description = """List of the questions""",
+                description = """List of questions; these will be the rows of the table.""",
                 i18n_domain = "ploneformgen",
                 label_msgid = "label_fglikert_questions",
                 description_msgid = "help_fglikert_questions",
             ),
         ),
+        LinesField('likertAnswers',
+            searchable=0,
+            required=1,
+            default=default_answers,
+            widget=LinesWidget(
+                label='Answers',
+                description = """List of possible answers for each of the questions;
+                    these will be the columns of the table.""",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_fglikert_answers",
+                description_msgid = "help_fglikert_answers",
+            ),
+        ),
     ))
+
+    # 'hidden' isn't really useful for this field.
+    del schema['hidden']
 
     finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
 
     portal_type = meta_type = "FormLikertField"
-    archetype_name = "Likert Field"
-    typeDescription = "A Likert Question Set"
+    archetype_name = "Rating-Scale Field"
+    typeDescription = "A rating-scale implemented as rows of radio buttons."
     content_icon = 'LikertField.gif'
 
     def __init__(self, oid, **kwargs):

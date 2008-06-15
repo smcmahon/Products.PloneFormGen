@@ -54,11 +54,6 @@ class LikertField(ObjectField):
 
     security = ClassSecurityInfo()
 
-    # def __init__(self, name=None, **kwargs):
-    #     """  Create LikertField instance """
-    # 
-    #     ObjectField.__init__(self, name, **kwargs)
-
     security.declarePublic('get')
     def get(self, instance, **kwargs):
         """ Return LikertField Data

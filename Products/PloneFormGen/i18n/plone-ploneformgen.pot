@@ -409,6 +409,10 @@ msgstr ""
 msgid "Rich Label Field"
 msgstr ""
 
-#. Likert Field
-msgid "Likert Field"
+#. Likert Field Name
+msgid "Rating-Scale Field"
+msgstr ""
+
+#. Likert Field Description
+msgid "A rating-scale field using rows of radio buttons."
 msgstr ""
