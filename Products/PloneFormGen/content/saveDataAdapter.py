@@ -249,6 +249,13 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._inputItems += 1
 
 
+    security.declareProtected(ModifyPortalContent, 'addDataRow')
+    def addDataRow(self, value):
+        """ a wrapper for the _addDataRow method """
+        
+        self._addDataRow(value)
+
+    
     def onSuccess(self, fields, REQUEST=None, loopstop=False):
         """
         saves data.
