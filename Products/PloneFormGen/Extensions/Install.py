@@ -68,9 +68,14 @@ def install(self):
         # hide properties/references tabs
         pt = getToolByName(self, 'portal_types')
         for typ in types:
-            for act in pt[typ].listActions():
-                if act.id in ['metadata', 'references']:
-                    act.visible = False;            
+            try:
+                for act in pt[typ].listActions():
+                    if act.id in ['metadata', 'references']:
+                        act.visible = False
+            except KeyError:
+                # prevent breaking on edge case: portal_factories still lists a type that
+                # is no longer present in portal_types
+                pass
 
     ## Install skin
     install_subskin(self, out, GLOBALS)
