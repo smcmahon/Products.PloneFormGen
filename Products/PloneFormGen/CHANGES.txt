@@ -1,3 +1,9 @@
+1.2.5 (unreleased)
+
+ - Fixed bug where install failed if portal_factory still references
+   any types that no longer exist in portal_types.
+   (David Glick)
+
 1.2.4
 
  - Added Rating-Scale Field based on Titus Anderson's LikertField.
