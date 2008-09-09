@@ -1,5 +1,10 @@
 1.2.5 (unreleased)
 
+ - Fixed bug where 3rd-party additions to the list of types allowed
+   within a form folder were purged on PFG reinstall.
+   This closes http://plone.org/products/ploneformgen/issues/210
+   (David Glick)
+
  - Fixed bug where install failed if portal_factory still references
    any types that no longer exist in portal_types.
    (David Glick)

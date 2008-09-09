@@ -138,6 +138,17 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         siteProperties = getattr(propsTool, 'site_properties')
         defaultPageTypes = list(siteProperties.getProperty('default_page_types'))
         self.failUnless('FormFolder' in defaultPageTypes)
+        
+    def test_customAllowedTypesNotPurgedOnReinstall(self):
+        # add a (bogus) custom type to the list of allowed types
+        self.types['FormFolder'].allowed_content_types = ['foobar'] + list(self.types['FormFolder'].allowed_content_types)
+        
+        # reinstall
+        qi = self.portal.portal_quickinstaller
+        qi.reinstallProducts(['PloneFormGen'])
+        
+        # make sure our custom type is still in the list
+        self.failUnless('foobar' in self.types['FormFolder'].allowed_content_types)
 
         
 class TestContentCreation(pfgtc.PloneFormGenTestCase):
@@ -466,7 +477,6 @@ class TestGPG(pfgtc.PloneFormGenTestCase):
             print "\nSkipping GPG tests; gpg binary not found"
         else:
             self.assertRaises(GPGError, gpg.encrypt, 'spam', 'eggs')
-           
 
 if  __name__ == '__main__':
     framework()
