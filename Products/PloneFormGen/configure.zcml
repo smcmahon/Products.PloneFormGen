@@ -4,6 +4,11 @@
 		   xmlns:gs="http://namespaces.zope.org/genericsetup"
            i18n_domain="ploneformgen">
 
+   <five:registerPackage package="." initialize=".initialize" />
+
+   <include package=".browser" />
+
+
   <i18n:registerTranslations directory="locales"/>
 
   <five:deprecatedManageAddDelete

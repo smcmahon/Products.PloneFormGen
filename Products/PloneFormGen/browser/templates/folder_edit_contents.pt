@@ -1,0 +1,90 @@
+<html metal:use-macro="context/@@standard_macros/page">
+<body>
+
+<metal:slot metal:fill-slot="body" i18n:domain="cmf_default">
+<h1 i18n:translate="">Folder Contents: <tal:span
+    tal:content="view/title" i18n:name="obj_title">Title</tal:span></h1>
+
+<p tal:define="up_info view/up_info" tal:condition="up_info"
+><tal:case tal:condition="up_info/url"
+ ><a href="" tal:attributes="href up_info/url"
+  ><img src="" alt="[Link]" border="0" tal:attributes="src up_info/icon"
+      i18n:attributes="alt" /></a>
+  <span tal:omit-tag="" i18n:translate="">Show Form</span>
+  <a href="" tal:attributes="href up_info/url"
+     tal:content="up_info/id">ID</a></tal:case
+><tal:case tal:condition="not: up_info/url"
+ ><span class="mild" i18n:translate="">Root</span></tal:case></p>
+
+<form action="folder_contents" method="post"
+   tal:attributes="action view/form_action"
+><metal:macro metal:use-macro="context/@@form_widget/hidden_vars" />
+ <table class="BatchTable"
+    tal:condition="view/listItemInfos">
+  <thead>
+   <tr class="list-header">
+    <th width="80" tal:repeat="column_info view/listColumnInfos"
+       tal:attributes="width column_info/width; colspan column_info/colspan"
+    ><a href="" tal:attributes="href column_info/url"
+        tal:content="column_info/title">COLUMN TITLE</a></th>
+   </tr>
+  </thead>
+  <tbody tal:repeat="item_info view/listItemInfos">
+   <tr class="" tal:define="even repeat/item_info/even"
+      tal:attributes="class python: (even and 'row-hilite') or 'row-normal'">
+      <td width="5"
+      ><input type="checkbox" name="ids:list" value="" id=""
+          tal:attributes="value item_info/id; id item_info/checkbox"
+          tal:condition="item_info/checkbox" /></td>
+      <td
+      ><a href="" tal:attributes="href string:${item_info/url}/edit"
+          tal:condition="item_info/icon"
+       ><img src="" alt="" border="0"
+           tal:attributes="src item_info/icon; alt item_info/type"
+           i18n:attributes="alt" /></a></td>
+      <td
+      ><a href="" tal:attributes="href string:${item_info/url}/edit"
+       ><tal:span tal:content="item_info/id">ID</tal:span>
+        <tal:case tal:condition="item_info/title"
+           tal:content="string:(${item_info/title})">(Title)</tal:case
+      ></a></td>
+      <td
+      ><tal:span tal:content="item_info/modified">2001</tal:span></td>
+      <td
+      ><tal:span tal:content="item_info/position">1</tal:span></td>
+   </tr>
+  </tbody>
+ </table>
+ <metal:macro metal:use-macro="context/@@batch_widget/navigation" />
+ <metal:macro metal:use-macro="context/@@form_widget/buttons" />
+<tal:case tal:condition="python: view.is_orderable() or view.is_sortable()"
+> <div class="FormButtons"
+ ><tal:case tal:condition="view/is_orderable">
+  <input type="submit" name="items_up" value="Up"
+     i18n:attributes="value" />
+  /
+  <input type="submit" name="items_down" value="Down"
+     i18n:attributes="value" />
+  by
+  <select name="delta:int">
+   <option value=""
+      tal:repeat="delta view/listDeltas"
+      tal:attributes="value delta"
+      tal:content="delta">
+   </option>
+  </select>
+  <input type="submit" name="items_top" value="Top"
+     i18n:attributes="value" />
+  <input type="submit" name="items_bottom" value="Bottom"
+     i18n:attributes="value" /></tal:case
+ ><tal:case tal:condition="view/is_sortable">
+  <input type="submit" name="items_sort" value="Set Sorting as Default"
+     i18n:attributes="value" /></tal:case
+></div>
+</tal:case></form>
+
+<div tal:replace="structure context/folder_filter_form">Filter Form Here</div>
+</metal:slot>
+
+</body>
+</html>

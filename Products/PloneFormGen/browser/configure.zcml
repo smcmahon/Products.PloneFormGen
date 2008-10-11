@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope" 
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="Products.PloneFormGen">
+
+    <include package="plone.app.contentmenu" />
+
+    <!-- 'Products.PloneFormGen' Zope 3 browser layer
+      Register views, viewlets and resources for this layer to make sure
+      they only apply to the 'ecutheme' theme.
+      You can also use this layer to override default Plone browser views
+      and viewlets only within the 'ecutheme' theme.
+    -->
+
+    <!-- Layer for individual skins -->
+    <interface
+        interface=".interfaces.IPloneFormGenSpecific"
+        type="zope.publisher.interfaces.browser.IBrowserSkinType"
+        name="PloneFormGen"
+        />
+
+<!--	layer=".interfaces.IPloneFormGenSpecific" -->
+
+    <browser:page
+        for="..interfaces.form.IPloneFormGenForm"
+        name="folder_contents"
+        class="plone.app.content.browser.foldercontents.FolderContentsView"
+        template="templates/folder_edit_contents.pt"
+        permission="cmf.ListFolderContents" />
+		
+  
+</configure>
