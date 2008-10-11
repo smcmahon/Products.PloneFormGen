@@ -1,3 +1,4 @@
+import transaction
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.config import *
 
@@ -11,22 +12,23 @@ from Products.Archetypes.Extensions.utils import installTypes, install_subskin
 
 from StringIO import StringIO
 
+EXTENSION_PROFILES = ('Products.PloneFormGen:default',)
 
 allTypes = ('FormFolder',) + fieldTypes + adapterTypes + thanksTypes + fieldsetTypes
 
 # Configlets to be added to control panels or removed from them
-configlets = (
-        { 'id'         : 'PloneFormGen'
-        , 'name'       : 'PloneFormGen'
-        , 'action'     : 'string:${portal_url}/prefs_pfg_permits'
-        , 'condition'  : ''
-        , 'category'   : 'Products'
-        , 'visible'    : 1
-        , 'appId'      : PROJECTNAME
-        , 'permission' : ManagePortal
-        , 'imageUrl'   : 'Form.gif'
-        },
-    )
+# configlets = (
+#         { 'id'         : 'PloneFormGen'
+#         , 'name'       : 'PloneFormGen'
+#         , 'action'     : 'string:${portal_url}/prefs_pfg_permits'
+#         , 'condition'  : ''
+#         , 'category'   : 'Products'
+#         , 'visible'    : 1
+#         , 'appId'      : PROJECTNAME
+#         , 'permission' : ManagePortal
+#         , 'imageUrl'   : 'Form.gif'
+#         },
+#     )
 
 
 def install(self):
@@ -47,6 +49,9 @@ def install(self):
     #     setup_tool.setImportContext(old_context)
     #     print >> out, "Installed types and added to portal_factory via portal_setup"
     # else:
+    portal_quickinstaller = getToolByName(self, 'portal_quickinstaller')
+    portal_setup = getToolByName(self, 'portal_setup')
+
 	# Install types
     classes = listTypes(PROJECTNAME)
     installTypes(self, out,
@@ -95,20 +100,20 @@ def install(self):
     navtreeProperties = getattr(propsTool, 'navtree_properties')
 
     # Add the field, fieldset, thanks and adapter types to types_not_searched
-    typesNotSearched = list(siteProperties.getProperty('types_not_searched'))
-    for f in fieldTypes + adapterTypes + thanksTypes + fieldsetTypes:
-        if f not in typesNotSearched:
-            typesNotSearched.append(f)
-    siteProperties.manage_changeProperties(types_not_searched = typesNotSearched)
-    print >> out, "Added form fields & adapters to types_not_searched"
+    # typesNotSearched = list(siteProperties.getProperty('types_not_searched'))
+    # for f in fieldTypes + adapterTypes + thanksTypes + fieldsetTypes:
+    #     if f not in typesNotSearched:
+    #         typesNotSearched.append(f)
+    # siteProperties.manage_changeProperties(types_not_searched = typesNotSearched)
+    # print >> out, "Added form fields & adapters to types_not_searched"
 
     # Add the field, fieldset, thanks and adapter types to types excluded from navigation
-    typesNotListed = list(navtreeProperties.getProperty('metaTypesNotToList'))
-    for f in fieldTypes + adapterTypes + thanksTypes + fieldsetTypes:
-        if f not in typesNotListed:
-            typesNotListed.append(f)
-    navtreeProperties.manage_changeProperties(metaTypesNotToList = typesNotListed)
-    print >> out, "Added form fields & adapters to metaTypesNotToList"
+    # typesNotListed = list(navtreeProperties.getProperty('metaTypesNotToList'))
+    # for f in fieldTypes + adapterTypes + thanksTypes + fieldsetTypes:
+    #     if f not in typesNotListed:
+    #         typesNotListed.append(f)
+    # navtreeProperties.manage_changeProperties(metaTypesNotToList = typesNotListed)
+    # print >> out, "Added form fields & adapters to metaTypesNotToList"
 
     # Set up the workflow for the field, fieldset, thanks and adapter types: there should be none!
     wft = getToolByName(self, 'portal_workflow')
@@ -116,11 +121,11 @@ def install(self):
     print >> out, "Set up empty field and adapter workflows."
 
     # Add to default_page_types
-    defaultPageTypes = list(siteProperties.getProperty('default_page_types'))
-    if 'FormFolder' not in defaultPageTypes:
-        defaultPageTypes.append('FormFolder')
-    siteProperties.manage_changeProperties(default_page_types = defaultPageTypes)
-    print >> out, "Added FormFolder to default_page_types"
+    # defaultPageTypes = list(siteProperties.getProperty('default_page_types'))
+    # if 'FormFolder' not in defaultPageTypes:
+    #     defaultPageTypes.append('FormFolder')
+    # siteProperties.manage_changeProperties(default_page_types = defaultPageTypes)
+    # print >> out, "Added FormFolder to default_page_types"
 
     # Add FormFolder to kupu's linkable types
     kupuTool = getToolByName(self, 'kupu_library_tool', None)
@@ -143,45 +148,45 @@ def install(self):
     
     # add property sheet in portal_properties
     # we'll use this to store site defaults
-    ppTool = getToolByName(self, 'portal_properties')
-    if not safe_hasattr(ppTool, PROPERTY_SHEET_NAME):
-        ppTool.addPropertySheet(PROPERTY_SHEET_NAME, 'PloneFormGen properties')
-        print >> out, "Added PloneFormGen properysheet"
-    else:
-        print >> out, "Using existing propertysheet"
-    propSheet = getattr(ppTool, PROPERTY_SHEET_NAME)
-    if not propSheet.hasProperty('permissions_used'):
-        propSheet.manage_addProperty('permissions_used', pfgPermitList, 'lines')
-    if not propSheet.hasProperty('mail_template'):
-        propSheet.manage_addProperty('mail_template', DEFAULT_MAILTEMPLATE_BODY, 'text')    
-    if not propSheet.hasProperty('mail_body_type'):
-        propSheet.manage_addProperty('mail_body_type', 'html', 'string')    
-    if not propSheet.hasProperty('mail_recipient_email'):
-        propSheet.manage_addProperty('mail_recipient_email', '', 'string')    
-    if not propSheet.hasProperty('mail_recipient_name'):
-        propSheet.manage_addProperty('mail_recipient_name', '', 'string')
-    if not propSheet.hasProperty('mail_cc_recipients'):
-        propSheet.manage_addProperty('mail_cc_recipients', [], 'lines')
-    if not propSheet.hasProperty('mail_bcc_recipients'):
-        propSheet.manage_addProperty('mail_bcc_recipients', [], 'lines')
-    if not propSheet.hasProperty('mail_xinfo_headers'):
-        propSheet.manage_addProperty('mail_xinfo_headers', XINFO_DEFAULT, 'lines')
-    if not propSheet.hasProperty('mail_add_headers'):
-        propSheet.manage_addProperty('mail_add_headers', [], 'lines')
+    # ppTool = getToolByName(self, 'portal_properties')
+    # if not safe_hasattr(ppTool, PROPERTY_SHEET_NAME):
+    #     ppTool.addPropertySheet(PROPERTY_SHEET_NAME, 'PloneFormGen properties')
+    #     print >> out, "Added PloneFormGen properysheet"
+    # else:
+    #     print >> out, "Using existing propertysheet"
+    # propSheet = getattr(ppTool, PROPERTY_SHEET_NAME)
+    # if not propSheet.hasProperty('permissions_used'):
+    #     propSheet.manage_addProperty('permissions_used', pfgPermitList, 'lines')
+    # if not propSheet.hasProperty('mail_template'):
+    #     propSheet.manage_addProperty('mail_template', DEFAULT_MAILTEMPLATE_BODY, 'text')    
+    # if not propSheet.hasProperty('mail_body_type'):
+    #     propSheet.manage_addProperty('mail_body_type', 'html', 'string')    
+    # if not propSheet.hasProperty('mail_recipient_email'):
+    #     propSheet.manage_addProperty('mail_recipient_email', '', 'string')    
+    # if not propSheet.hasProperty('mail_recipient_name'):
+    #     propSheet.manage_addProperty('mail_recipient_name', '', 'string')
+    # if not propSheet.hasProperty('mail_cc_recipients'):
+    #     propSheet.manage_addProperty('mail_cc_recipients', [], 'lines')
+    # if not propSheet.hasProperty('mail_bcc_recipients'):
+    #     propSheet.manage_addProperty('mail_bcc_recipients', [], 'lines')
+    # if not propSheet.hasProperty('mail_xinfo_headers'):
+    #     propSheet.manage_addProperty('mail_xinfo_headers', XINFO_DEFAULT, 'lines')
+    # if not propSheet.hasProperty('mail_add_headers'):
+    #     propSheet.manage_addProperty('mail_add_headers', [], 'lines')
     
 
-    # add the configlets to the portal control panel
-    configTool = getToolByName(self, 'portal_controlpanel', None)
-    productConfiglets = [co['id'] for co in configTool.enumConfiglets(group='Products')]
-    if 'PloneFormGen' not in productConfiglets:
-        for conf in configlets:
-            try:
-                configTool.registerConfiglet(**conf)
-                out.write('Added configlet %s\n' % conf['id'])
-            except:
-                out.write('Configlet already configured\n')
-    else:
-        out.write('Unexpectedly found an existing configlet for PFG. Skipped configlet registration.')        
+    # # add the configlets to the portal control panel
+    # configTool = getToolByName(self, 'portal_controlpanel', None)
+    # productConfiglets = [co['id'] for co in configTool.enumConfiglets(group='Products')]
+    # if 'PloneFormGen' not in productConfiglets:
+    #     for conf in configlets:
+    #         try:
+    #             configTool.registerConfiglet(**conf)
+    #             out.write('Added configlet %s\n' % conf['id'])
+    #         except:
+    #             out.write('Configlet already configured\n')
+    # else:
+    #     out.write('Unexpectedly found an existing configlet for PFG. Skipped configlet registration.')        
 
 
     if HAS_PLONE30:
@@ -196,6 +201,11 @@ def install(self):
         kssRegTool.registerKineticStylesheet('ploneformgen.kss')
         out.write('Added ploneformgen.kss to kss registry\n')
 
+    for extension_id in EXTENSION_PROFILES:
+        portal_setup.runAllImportStepsFromProfile('profile-%s' % extension_id, purge_old=False)
+        product_name = extension_id.split(':')[0]
+        portal_quickinstaller.notifyInstalled(product_name)
+        transaction.savepoint()
 
     ##
     ## Print install info
@@ -243,13 +253,13 @@ def uninstall_tool(self, out):
         print >>out, "PloneFormGen tool removed"
 
 
-def uninstall_configlet(self, out):
-    # remove the configlets from the portal control panel
-    configTool = getToolByName(self, 'portal_controlpanel', None)
-    if configTool:
-        for conf in configlets:
-            configTool.unregisterConfiglet(conf['id'])
-            out.write('Removed configlet %s\n' % conf['id'])
+# def uninstall_configlet(self, out):
+#     # remove the configlets from the portal control panel
+#     configTool = getToolByName(self, 'portal_controlpanel', None)
+#     if configTool:
+#         for conf in configlets:
+#             configTool.unregisterConfiglet(conf['id'])
+#             out.write('Removed configlet %s\n' % conf['id'])
 
 def beforeUninstall(self, reinstall, product, cascade):
     # for reinstalls: store list of allowed contained types,
@@ -270,7 +280,7 @@ def uninstall(self):
 
     uninstall_tool(self, out)
     
-    uninstall_configlet(self, out)
+    # uninstall_configlet(self, out)
     
 
     # remove FormFolder from kupu's linkable types

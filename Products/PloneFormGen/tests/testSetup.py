@@ -27,13 +27,15 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
     
-        self.css        = self.portal.portal_css
-        self.kupu       = self.portal.kupu_library_tool
-        self.skins      = self.portal.portal_skins
-        self.types      = self.portal.portal_types
-        self.factory    = self.portal.portal_factory
-        self.workflow   = self.portal.portal_workflow
-        self.properties = self.portal.portal_properties
+        self.css          = self.portal.portal_css
+        self.kupu         = self.portal.kupu_library_tool
+        self.skins        = self.portal.portal_skins
+        self.types        = self.portal.portal_types
+        self.factory      = self.portal.portal_factory
+        self.workflow     = self.portal.portal_workflow
+        self.properties   = self.portal.portal_properties
+        self.at_tool      = self.portal.archetype_tool
+        self.controlpanel = self.portal.portal_controlpanel
 
         self.fieldTypes = (
             'FormSelectionField',
@@ -72,7 +74,14 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         for t in self.metaTypes:
             self.failUnless(t in self.types.objectIds())
 
-
+    def testArchetypesToolCatalogRegistration(self):
+        for t in self.metaTypes:
+            self.assertEquals(1, len(self.at_tool.getCatalogsByType(t)))
+            self.assertEquals('portal_catalog', self.at_tool.getCatalogsByType(t)[0].getId())
+            
+    def testControlPanelConfigletInstalled(self):
+        self.failUnless('PloneFormGen' in [action.id for action in self.controlpanel.listActions()])
+    
     def testAddPermissions(self):
         """ Test to make sure add permissions are as intended """
         
@@ -132,7 +141,18 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.failUnless( props.hasProperty('mail_bcc_recipients') )
         self.failUnless( props.hasProperty('mail_xinfo_headers') )
         self.failUnless( props.hasProperty('mail_add_headers') )
-
+        
+    def testModificationsToPropSheetNotOverwritten(self):
+        newprop = 'foo'
+        self.properties.ploneformgen_properties.manage_changeProperties(mail_body_type=newprop)
+        
+        # reinstall
+        qi = self.portal.portal_quickinstaller
+        qi.reinstallProducts(['PloneFormGen'])
+        
+        # make sure we still have our new value for 'mail_body_type'
+        self.assertEquals(newprop, self.properties.ploneformgen_properties.getProperty('mail_body_type'))
+    
     def test_FormFolderInDefaultPageTypes(self):
         propsTool = getToolByName(self.portal, 'portal_properties')
         siteProperties = getattr(propsTool, 'site_properties')
