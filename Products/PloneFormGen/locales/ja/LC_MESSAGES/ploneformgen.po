@@ -1097,7 +1097,7 @@ msgstr "データ保存を追加"
 msgid "Add Custom Scripts"
 msgstr "カスタムスクリプトを追加"
 
-msgid "Edit TALES Fields
+msgid "Edit TALES Field"
 msgstr "タブフィールドを編集"
 
 msgid "Edit Python Fields"
