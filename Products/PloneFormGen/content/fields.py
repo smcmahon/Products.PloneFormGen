@@ -812,12 +812,20 @@ class FGSelectionField(BaseFormField):
                     ),
             ) )
 
+    def getCharset(self):
+        """ return character set """
+        if hasattr(self.charset):
+            return self.charset
+        else:
+            portal = getToolByName(self, 'portal_url').getPortalObject()
+            utils = getToolByName(portal, 'plone_utils')
+            self.charset = utils.getSiteEncoding() 
+            return self.charset
 
     def htmlValue(self, REQUEST):
         """ Return value instead of key """
 
-        utils = getToolByName(self, 'plone_utils')
-        charset = utils.getSiteEncoding()
+        charset = self.getCharset()
 
         value = REQUEST.form.get(self.__name__, '')
 
@@ -939,8 +947,7 @@ class FGMultiSelectField(BaseFormField):
     def htmlValue(self, REQUEST):
         """ Return value instead of key """
 
-        utils = getToolByName(self, 'plone_utils')
-        charset = utils.getSiteEncoding()
+        charset = self.getCharset()
 
         value = REQUEST.form.get(self.__name__, [])
 

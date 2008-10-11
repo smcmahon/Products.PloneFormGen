@@ -538,6 +538,11 @@ class BaseFormField(ATCTContent):
     # Let's not pollute the global "add"
     global_allow = 0
 
+    security.declarePrivate('at_post_edit_script')
+    def at_post_edit_script(self):
+        request = getattr(self,'REQUEST',{})
+        request.RESPONSE.redirect('atct_edit?portal_status_message=' + request.get('portal_status_message',''))
+        return
 
     security.declareProtected(ModifyPortalContent, 'setDescription')
     def setDescription(self, value, **kw):

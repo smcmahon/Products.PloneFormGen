@@ -39,237 +39,17 @@ from Products.PloneFormGen.content import validationMessages
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE25, HAS_PLONE30
 
+###etc
+from Products.PloneFormGen.content.form_schemata import FormFolderSchema
+from Products.PloneFormGen.content.form_enumerator import *
+
 from types import StringTypes
 
 if HAS_PLONE25:
   import zope.i18n
 
-logger = logging.getLogger("PloneFormGen")    
 
-FormFolderSchema = ATFolderSchema.copy() + Schema((
-    StringField('submitLabel',
-        required=0,
-        searchable=0,
-        default="Submit",
-        widget=StringWidget(
-            label="Submit Button Label",
-            label_msgid = "label_submitlabel_text",
-            description_msgid = "help_submitlabel_text",
-            i18n_domain = "ploneformgen",
-            ),
-        ),
-    BooleanField('useCancelButton',
-        required=0,
-        searchable=0,
-        default='0',
-        languageIndependent=1,
-        widget=BooleanWidget(label='Show Reset Button',
-            label_msgid = "label_showcancel_text",
-            description_msgid = "help_showcancel_text",
-            i18n_domain = "ploneformgen",
-            ),
-        ),
-    StringField('resetLabel',
-        required=0,
-        searchable=0,
-        default="Reset",
-        widget=StringWidget(
-                label="Reset Button Label",
-                label_msgid = "label_reset_button",
-                i18n_domain = 'ploneformgen',
-                ),
-        ),    
-    LinesField('actionAdapter',
-        vocabulary='actionAdaptersDL',
-        widget=MultiSelectionWidget(
-            label="Action Adapter",
-            description="""
-                To make your form do something useful when submitted:
-                add one or more form action adapters to the form folder,
-                configure them, then return to this
-                form and select the active ones.
-                """,
-            format='checkbox',
-            label_msgid = "label_actionadapter_text",
-            description_msgid = "help_actionadapter_text",
-            i18n_domain = "ploneformgen",
-            ),
-        ),
-    StringField('thanksPage',
-        searchable=False,
-        required=False,
-        vocabulary='thanksPageVocabulary',
-        widget=SelectionWidget(
-            label='Thanks Page',
-            label_msgid = "label_thankspage_text",
-            description="""
-                Pick a contained page you wish to show on a successful
-                form submit. (If none are available, add one.) Choose none to simply display the form
-                field values.
-            """,
-            description_msgid = "help_thankspage_text",
-            i18n_domain = "ploneformgen",
-            ),
-        ),
-    TextField('formPrologue',
-        schemata='decoration',
-        required=False,
-        # Disable search to bypass a unicode decode error in portal_catalog indexes.
-        searchable=False,
-        primary=False,
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATDocument.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
-            label = "Form Prologue",
-            label_msgid = "label_prologue_text",
-            description = "This text will be displayed above the form fields.",
-            description_msgid = "help_prologue_text",
-            rows = 8,
-            i18n_domain = "ploneformgen",
-            allow_file_upload = zconf.ATDocument.allow_document_upload,
-            ),
-        ),
-    TextField('formEpilogue',
-        schemata='decoration',
-        required=False,
-        # Disable search to bypass a unicode decode error in portal_catalog indexes.
-        searchable=False,
-        primary=False,
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATDocument.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
-            label = "Form Epilogue",
-            label_msgid = "label_epilogue_text",
-            description = "The text will be displayed after the form fields.",
-            description_msgid = "help_epilogue_text",
-            rows = 8,
-            i18n_domain = "ploneformgen",
-            allow_file_upload = zconf.ATDocument.allow_document_upload,
-            ),
-        ),
-    StringField('thanksPageOverride',
-        schemata='overrides',
-        searchable=0,
-        required=0,
-        languageIndependent=1,
-        write_permission=EDIT_TALES_PERMISSION,
-        widget=StringWidget(label="Custom Success Action",
-            description="""
-                Use this field in place of a thanks-page designation
-                to determine final action after calling
-                your action adapter (if you have one). You would usually use this for a custom
-                success template or script.
-                Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
-                action type and argument,
-                complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
-                and a TALES expression. For example, "redirect_to:string:thanks-page" would
-                redirect to 'thanks-page'.
-            """,
-            size=70,
-            label_msgid = "label_thankspageoverride_text",
-            description_msgid = "help_thankspageoverride_text",
-            i18n_domain = "ploneformgen",
-            ),
-        ),
-    StringField('formActionOverride',
-        schemata='overrides',
-        searchable=0,
-        required=0,
-        write_permission=EDIT_ADVANCED_PERMISSION,
-        validators='isURL',
-        languageIndependent=1,
-        widget=StringWidget(label="Custom Form Action",
-            description="""
-                Use this field to override the form action attribute.
-                Specify a URL to which the form will post.
-                This will bypass form validation, success action
-                adapter and thanks page.
-            """,
-            size=70,
-            label_msgid = "label_formactionoverride_text",
-            description_msgid = "help_formactionoverride_text",
-            i18n_domain = "ploneformgen",
-            ),
-        ),
-    TALESString('onDisplayOverride',
-        schemata='overrides',
-        searchable=0,
-        required=0,
-        validators=('talesvalidator',),
-        write_permission=EDIT_TALES_PERMISSION,
-        default='',
-        languageIndependent=1,
-        widget=StringWidget(label="Form Setup Script",
-            description="""
-                A TALES expression that will be called when the form is displayed.
-                Leave empty if unneeded.
-                The most common use of this field is to call a python script that sets
-                defaults for multiple fields by pre-populating request.form.
-                Any value returned by the expression is ignored.
-                PLEASE NOTE: errors in the evaluation of this expression will cause
-                an error on form display.
-            """,
-            size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_OnDisplayOverride_text",
-            description_msgid = "help_OnDisplayOverride_text",
-            ),
-        ),
-    TALESString('afterValidationOverride',
-        schemata='overrides',
-        searchable=0,
-        required=0,
-        validators=('talesvalidator',),
-        write_permission=EDIT_TALES_PERMISSION,
-        default='',
-        languageIndependent=1,
-        widget=StringWidget(label="After Validation Script",
-            description="""
-                A TALES expression that will be called after the form is 
-                successfully validated, but before calling an action adapter
-                (if any) or displaying a thanks page.
-                Form input will be in the request.form dictionary.
-                Leave empty if unneeded.
-                The most common use of this field is to call a python script
-                to clean up form input or to script an alternative action.
-                Any value returned by the expression is ignored.
-                PLEASE NOTE: errors in the evaluation of this expression will cause
-                an error on form display.
-            """,
-            size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_AfterValidationOverride_text",
-            description_msgid = "help_AfterValidationOverride_text",
-            ),
-        ),
-    TALESString('headerInjection',
-        schemata='overrides',
-        searchable=0,
-        required=0,
-        validators=('talesvalidator',),
-        write_permission=EDIT_TALES_PERMISSION,
-        default='',
-        languageIndependent=1,
-        widget=StringWidget(label="Header Injection",
-            description="""
-                This override field allows you to insert content into the xhtml
-                head. The typical use is to add custom CSS or JavaScript.
-                Specify a TALES expression returning a string. The string will
-                be inserted with no interpretation.
-                PLEASE NOTE: errors in the evaluation of this expression will cause
-                an error on form display.
-            """,
-            size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_headerInjection_text",
-            description_msgid = "help_headerInjection_text",
-            ),
-        ),
-    ))
+logger = logging.getLogger("PloneFormGen")    
 
 if HAS_PLONE30:
     # Plone 3 switches the schema tab widget to a select box when
@@ -293,10 +73,12 @@ class FormFolder(ATFolder):
     meta_type      = 'FormFolder'
     portal_type    = 'FormFolder'
     archetype_name = 'Form Folder'
+
     if HAS_PLONE30:
         default_view   = immediate_view = 'fg_base_view_p3'
     else:
         default_view   = immediate_view = 'fg_base_view'
+
     suppl_views = ()
 
     typeDescription= 'A folder which creates a form view from contained form fields.'
@@ -306,48 +88,21 @@ class FormFolder(ATFolder):
 
     security       = ClassSecurityInfo()
 
+    def initEnumerator(self):
+
+        if HAS_PLONE30:
+        ###etc umcomment when its written!
+#        self.fields = z3cFieldEnumerator(self)
+            self.fields = objFieldEnumerator()
+        else:
+            self.fields = objFieldEnumerator()
 
     security.declarePrivate('_getFieldObjects')
     def _getFieldObjects(self, objTypes=None, includeFSMarkers=False):
         """ return list of enclosed fields """
-
-        # This function currently checks to see if
-        # an object is a form field by looking to see
-        # if it has an fgField attribute.
-
-        # Make sure we look through fieldsets
-        if objTypes is not None:
-            objTypes = list(objTypes)[:]
-            objTypes.append('FieldsetFolder')
-
-        myObjs = []
-
-        for obj in self.objectValues(objTypes):
-            # use shasattr to make sure we're not aquiring
-            # fgField by acquisition
-
-            # TODO: If I stick with this scheme for enable overrides,
-            # I'm probably going to want to find a way to cache the result
-            # in the request. _getFieldObjects potentially gets called
-            # several times in a request.
-
-            # first, see if the field enable override is set
-            if shasattr(obj, 'fgTEnabled') and obj.getRawFgTEnabled():
-                # process the override enabled TALES expression
-                # create a context for expression evaluation
-                context = getExprContext(self, obj)
-                # call the tales expression, passing our custom context
-                enabled = obj.getFgTEnabled(expression_context=context)
-            else:
-                enabled = True
-            
-            if enabled:
-                if shasattr(obj, 'fgField'):
-                    myObjs.append(obj)
-                if shasattr(obj, 'fieldsetFields'):
-                    myObjs += obj.fieldsetFields(objTypes, includeFSMarkers)
-
-        return myObjs
+        if not hasattr(self,'fields'):
+            self.initEnumerator()
+        return self.fields._getFieldObjects(self, objTypes=None, includeFSMarkers=False)
 
 
     security.declarePrivate('findFieldObjectByName')
@@ -398,29 +153,10 @@ class FormFolder(ATFolder):
             defaults if request is passed.
             if displayOnly, label fields are excluded.
         """
+        if not hasattr(self,'fields'):
+            self.initEnumerator()
+        return self.fields.fgFields(self, request=None, displayOnly=False)
 
-        if request and self.getRawOnDisplayOverride():
-            # call the tales expression, passing a custom context
-            #self.getOnDisplayOverride(expression_context=getExprContext(self, self.aq_explicit))
-            self.getOnDisplayOverride()
-            self.cleanExpressionContext(request=request)
-
-        myFields = []
-        for obj in self._getFieldObjects(includeFSMarkers=not displayOnly):
-            if IField.isImplementedBy(obj):
-                # this is a field -- not a form field -- and may be
-                # added directly to the field list.
-                if not displayOnly:
-                    myFields.append(obj)
-            else:
-                if request:
-                    # prime the request
-                    obj.fgPrimeDefaults(request)
-                #if not (displayOnly and (obj.isLabel() or obj.isFileField()) ):
-                if not (displayOnly and obj.isLabel()):
-                    myFields.append(obj.fgField)
-
-        return myFields
 
     security.declareProtected(View, 'fgvalidate')
     def fgvalidate(self, REQUEST=None, errors=None, data=None, metadata=None):
@@ -913,81 +649,5 @@ class FormFolder(ATFolder):
         else:
             self.formEpilogue = value
 
-
-#    security.declareProtected(ModifyPortalContent, 'myi18n')
-#    def myi18n(self):
-#        """ return i18n declarations from widgets """
-#
-#        boilerplate = """\n#. %s\n#. Default: "%s"\nmsgid "%s"\nmsgstr ""\n"""
-#
-#        res = ''
-#
-#        from Products.PloneFormGen.content.fields import *
-#        from Products.PloneFormGen.content.formMailerAdapter import *
-#        from Products.PloneFormGen.content.saveDataAdapter import *
-#        from Products.PloneFormGen.content.thanksPage import *
-#        
-#        
-#        klasses = (
-#            FormFolder,
-#            FGStringField,
-#            FGPasswordField,
-#            FGIntegerField,
-#            FGFixedPointField,
-#            FGBooleanField,
-#            FGDateField,
-#            FGLabelField,
-#            FGLinesField,
-#            FGSelectionField,
-#            FGMultiSelectField,
-#            FGTextField,
-#            FGRichTextField,
-#            FGFileField,
-#            FormMailerAdapter,
-#            FormSaveDataAdapter,
-#            FormThanksPage,
-#            )
-#
-#        done = {}
-#
-#        for myclass in klasses:        
-#            myname = myclass.archetype_name
-#            myschema = myclass.schema
-#            
-#            # res = res + "\n### %s ###\n" % myname
-#            
-#            for aschema in myschema.getSchemataNames():
-#                for field in myschema.getSchemataFields(aschema):
-#                    widget = field.widget
-#                    domain = getattr(widget, 'i18n_domain', None)
-#                    
-#                    if domain == 'ploneformgen':
-#                    
-#
-#                        id = getattr(widget, 'label_msgid', '***NO label_msgid***')
-#                        val = widget.label
-#                        if done.get(id) != val:
-#                            msg = boilerplate % (myname, val, id)
-#                            res = "%s%s\n" % (res, msg)
-#                            done[id] = val
-#                        #else:
-#                        #    res = res + "\navoided repeating %s for %s" % (id, myname)
-#                        
-#                        desc = widget.description
-#                        if desc:
-#                            desid = getattr(widget, 'description_msgid', '***NO description_msgid***')
-#                            if done.get(desid) != desc:
-#                                mdesc = "\n#. Default: ".join( [ln.strip() for ln in desc.split('\n')] )
-#                                msg = boilerplate % (myname, mdesc, desid)
-#                                done[desid] = desc
-#                                res = "%s%s\n" % (res, msg)
-#                            #else:
-#                            #    res = res + "\navoided repeating %s for %s" % (desid, myname)
-#
-#                    elif domain not in ('plone', 'atcontenttypes',):
-#                        res = "%s\n***Unexpected domain for %s:%s: %s\n" % (res, myname, widget.label, domain)
-#            
-#        return res
-
-
 registerATCT(FormFolder, PROJECTNAME)
+

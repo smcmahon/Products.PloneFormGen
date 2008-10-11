@@ -557,12 +557,8 @@ class FormMailerAdapter(FormActionAdapter):
         (headerinfo, additional_headers,
          body) = self.get_header_body_tuple(fields, request, **kwargs)
 
-        if not isinstance(body, unicode):
-            body = unicode(body, self._site_encoding())
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        email_charset = portal.getProperty('email_charset', 'utf-8')
-        mime_text = MIMEText(body.encode(email_charset , 'replace'),
-                _subtype=self.body_type or 'html', _charset=email_charset)
+        mime_text = MIMEText(body,
+            _subtype=self.body_type or 'html', _charset=self._site_encoding())
 
         attachments = self.get_attachments(fields, request)
 
@@ -781,10 +777,7 @@ class FormMailerAdapter(FormActionAdapter):
             headerinfo['Reply-To'] = self.secure_header_line(reply_addr)
 
         # transform subject into mail header encoded string
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        email_charset = portal.getProperty('email_charset', 'utf-8')
-        msgSubject = self.secure_header_line(subject).encode(email_charset, 'replace')
-        msgSubject = str(Header(msgSubject, email_charset))
+        msgSubject = str(Header(self.secure_header_line(subject), self._site_encoding()))
         headerinfo['Subject'] = msgSubject
 
         headerinfo['MIME-Version'] = '1.0'
