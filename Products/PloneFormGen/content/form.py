@@ -3,6 +3,8 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
+###etc   split out the schemata to make it more managable and contain the plone version dependent changing z3c or archetype fields part of folder in an enumerator class
+
 from zope.interface import implements, providedBy
 
 import logging
