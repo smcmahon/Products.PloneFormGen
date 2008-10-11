@@ -927,23 +927,23 @@ msgstr ""
 
 #. Default: "This field requires an integer value."
 msgid "pfg_isInt"
-msgstr ""
+msgstr "このフィールドには、整数が必要です"
 
 #. Default: "This value contains unprintable characters"
 msgid "pfg_isPrintable"
-msgstr ""
+msgstr "この入力の中には、印刷できない文字が含まれています"
 
 #. Default: "This is not a well formed SSN."
 msgid "pfg_isSSN"
-msgstr ""
+msgstr "この入力は、SSNに成っていません。"
 
 #. Default: "This is not a valid us phone number."
 msgid "pfg_isUSPhoneNumber"
-msgstr ""
+msgstr "この入力は、有効な米国の電話番号ではありません。"
 
 #. Default: "This is not a valid international phone number."
 msgid "pfg_isInternationalPhoneNumber"
-msgstr ""
+msgstr "この入力は有効な国際電話番号ではありません"
 
 #. Default: "This is not a valid zip code."
 msgid "pfg_isZipCode"
