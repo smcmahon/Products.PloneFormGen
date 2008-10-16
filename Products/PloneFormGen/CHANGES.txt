@@ -2,6 +2,8 @@
 
 1.2.5 (unreleased)
 
+ - Integrate Portugese translation from Nuno Cruz.
+
  - Form submission should not be disabled when the form is locked for
    editing.
 
