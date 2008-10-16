@@ -1,0 +1,409 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Naotaka Hotta <naotaka@we.care.jp>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Default: "This item is in use by someone else and cannot be modified"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "description_webdav_locked"
+msgstr "wevdavがロックされました"
+
+#. Default: "Edit ${itemtype}"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "heading_edit_item"
+msgstr "エディングアイテム"
+
+#. Default: "Cancel"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_cancel"
+msgstr "キャンセル"
+
+#. Default: "File type"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_file_type"
+msgstr "ファイルタイプ"
+
+#. Default: "Next"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_next"
+msgstr "次"
+
+#. Default: "Previous"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_previous"
+msgstr "戻る"
+
+#. Default: "Size"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_size"
+msgstr "サイズ"
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "フォームフォルダ"
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "フォームフィールドを含むフォールダ"
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr ""
+
+#. Default: "Mailer Adapter"
+#: content/formMailerAdapter.py
+msgid "Mailer Adapter"
+msgstr "メールアダプター"
+
+#. Default: " A form action adapter that will e-mail form input. "
+#: content/formMailerAdapter.py
+msgid " A form action adapter that will e-mail form input. "
+msgstr "入力から、メールを送信するアダプタ"
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "フォームアクションを提供するアダプタ"
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "データをセーブするためのアダプタ"
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr ""
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "感謝のページ"
+
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "入力から、表示できる感謝のページ（１）"
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "入力から、表示できる感謝のページ（２）"
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "ブール値"
+
+#. Default: " Boolean (checkbox) field "
+#: content/fields.py
+msgid " Boolean (checkbox) field "
+msgstr "ブール値（チェックボックス）"
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "チェックボックス（ブール値）"
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "日付フィールド"
+
+#. Default: " Date/Time Entry Field "
+#: content/fields.py
+msgid " Date/Time Entry Field "
+msgstr "日付入力フィールド"
+
+#. Default: "A date/time field. Time component is optional."
+#: content/fields.py
+msgid "A date/time field. Time component is optional."
+msgstr "日付フィールド　時間の入力はオプション"
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "ファイルフィールド"
+
+#. Default: " File (upload) field "
+#: content/fields.py
+msgid " File (upload) field "
+msgstr "ファイルフィールド（アップロード）"
+
+#. Default: "A file field"
+#: content/fields.py
+msgid "A file field"
+msgstr "ファイルフィールド"
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "フィクスドポイントフィールド"
+
+#. Default: " Fixed-Point (float) entry field "
+#: content/fields.py
+msgid " Fixed-Point (float) entry field "
+msgstr "フィクスドポイント入力フィールド（フラット）"
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "フィクスドポイントフィールド（フラット）"
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "整数フィールド"
+
+#. Default: " A integer entry field "
+#: content/fields.py
+msgid " Integer entry field "
+msgstr "整数入力フィールド"
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "整数フィールド"
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "ラベルフィールド"
+
+#. Default: " Label-Only field (no input component) "
+#: content/fields.py
+msgid " Label-Only field (no input component) "
+msgstr "ラベルのみフィールド（入力なし）"
+
+#. Default: "A Label (No Input) field"
+#: content/fields.py
+msgid "A Label (No Input) field"
+msgstr "ラベル（入力なし）"
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "ラインフィールド"
+
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#: content/fields.py
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "ラインフィールド　このフィールドでは、改行を無視します"
+
+#. Default: "A lines field. This appears as a textarea without wordwrap."
+#: content/fields.py
+msgid "A lines field. This appears as a textarea without wordwrap."
+msgstr "ラインフィールド　このフィールドでは、改行を無視します"
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "複数選択フィールド"
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr "複数選択フィールド（マルチプルかチェックボックスで選択）"
+
+#. Default: "A multiple-selection field"
+#: content/fields.py
+msgid "A multiple-selection field"
+msgstr "複数選択フィールド"
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "パスワードフィールド"
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr "パスワード入力フィールド"
+
+#. Default: "A password field (input masked)"
+#: content/fields.py
+msgid "A password field (input masked)"
+msgstr "パスワードフィールド"
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "WYSWGエディター"
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr "WYSWGエディタフィールド"
+
+#. Default: "A rich text area field"
+#: content/fields.py
+msgid "A rich text area field"
+msgstr "WYSWGエディタフィールド"
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "選択フィールド"
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr "選択フィールド"
+
+#. Default: "A selection field"
+#: content/fields.py
+msgid "A selection field"
+msgstr "選択フィールド"
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "文字列フィールド"
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr "選択フィールドの項目"
+
+#. Default: " A string field "
+#: content/fields.py
+msgid "A string field"
+msgstr "文字列フィルド"
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "テキストフィールド"
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr "テキストエリアフィルド"
+
+#. Default: "A text area field"
+#: content/fields.py
+msgid "A text area field"
+msgstr "テキストエリアフィールド"
+
+#. Default: "default"
+#: content/form.py
+#: content/formMailerAdapter.py
+#: content/fields.py
+msgid "default"
+msgstr "初期値"
+
+#. Default: "decoration"
+#: content/form.py
+msgid "decoration"
+msgstr "宣言"
+
+#. Default: "no-input"
+#: content/fields.py
+msgid "no-input"
+msgstr "入力なし"
+
+#. Default: "overrides"
+#: content/form.py
+#: content/fields.py
+msgid "overrides"
+msgstr "上書き"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr ""
+
+#. Default: "message"
+#: content/formMailerAdapter.py
+msgid "message"
+msgstr "メッセージ"
+
+#. Default: "template"
+#: content/formMailerAdapter.py
+msgid "template"
+msgstr "テンプレート"
+
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "ヘッダ"
+
+#. Default: "encryption"
+#: content/formMailerAdapter.py
+msgid "encryption"
+msgstr ""
+
+#. String Field
+#. Default: "Field Help"
+#: content/fields.py
+msgid "label_fieldhelp_text"
+msgstr "フィルドヘルプ"
+
+#. String Field
+#. Default: "Field Label"
+#: content/fields.py
+msgid "label_fieldlabel_text"
+msgstr "フィールドラベル"
+
+#. Default: "Fieldset Folder"
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr "フィールドセットフォルダ"
+
+#. Default: "A folder which groups form fields as a fieldset."
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr ""
+
+#. Default: "Custom Script Adapter"
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr "カスタムスクリプトアダプタ"
+
+#. Default: "Executes a Python script for form data."
+#: content/customScriptAdapter.py
+msgid "Executes a Python script for form data."
+msgstr "フォームのデータからPythonスクリプトを実行"
+
+#. Default: "No proxy role"
+#: content/customScriptAdapter
+msgid "No proxy role"
+msgstr "代替えロールなし"
+
+#. Default: "True Display String"
+msgid "label_fgbooleantruestring_text"
+msgstr "文字列の表示を有効"
+
+#. Default: "False Display String"
+msgid "label_fgbooleanfalsestring_text"
+msgstr "文字列の表示を無効"
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
+msgid "help_fgbooleanfalsestring_text"
+msgstr "謝辞とメールに使うための文字列"
+
+#. Rich Label Field
+#. Default: 'Rich Label Field',
+msgid "Rich Label Field"
+msgstr "リッチラベル"
+
+#. Likert Field Name
+msgid "Rating-Scale Field"
+msgstr ""
+
+#. Likert Field Description
+msgid "A rating-scale field using rows of radio buttons."
+msgstr ""
+

@@ -1,5 +1,8 @@
 1.2.5 (unreleased)
 
+ - Form submission should not be disabled when the form is locked for
+   editing.
+
  - Fixed bug where 3rd-party additions to the list of types allowed
    within a form folder were purged on PFG reinstall.
    This closes http://plone.org/products/ploneformgen/issues/210
