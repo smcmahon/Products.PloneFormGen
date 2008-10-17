@@ -63,6 +63,22 @@
   <five:deprecatedManageAddDelete
       class=".content.formLikertField.FGLikertField" />
 
+  <!-- Mark field objects as IDAVAware so GenericSetup can export/import them -->
+  <five:implements
+     class=".content.fieldsBase.BaseFormField"
+     interface="Products.GenericSetup.interfaces.IDAVAware"
+     />
+     
+  <five:implements
+    class=".content.actionAdapter.FormActionAdapter"
+    interface="Products.GenericSetup.interfaces.IDAVAware"
+    />
+
+  <five:implements
+    class=".content.thanksPage.FormThanksPage"
+    interface="Products.GenericSetup.interfaces.IDAVAware"
+    />
+  
 <!--
   PFG was using this generic setup profile due to an Archetypes 1.5b5
   bug that was fixed in 1.5rc3.
