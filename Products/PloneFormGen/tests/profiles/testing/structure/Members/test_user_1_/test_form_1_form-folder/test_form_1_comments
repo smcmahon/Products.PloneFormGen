@@ -1,0 +1,26 @@
+id: test_form_1_comments
+title: Comments
+description: 
+required: True
+hidden: False
+fgTDefault: 
+fgTValidator: python:False
+fgTEnabled: 
+fgDefault: string:Test Comment
+fgRows: 5
+fgmaxlength: 0
+subject: 
+relatedItems: 
+location: 
+language: 
+effectiveDate: None
+expirationDate: None
+creation_date: 2008/10/07 15:54:42.780 GMT-7
+modification_date: 2008/10/07 15:54:42.803 GMT-7
+creators: admin
+contributors: 
+rights: 
+allowDiscussion: False
+excludeFromNav: False
+Content-Type: text/plain
+

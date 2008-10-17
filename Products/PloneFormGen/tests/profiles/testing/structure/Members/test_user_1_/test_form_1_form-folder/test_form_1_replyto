@@ -1,0 +1,27 @@
+id: test_form_1_replyto
+title: Test Form Your E-Mail Address
+description: 
+required: True
+hidden: False
+fgTDefault: here/memberEmail
+fgTValidator: python:False
+fgTEnabled: 
+fgDefault: dynamically overridden
+fgmaxlength: 255
+fgsize: 30
+fgStringValidator: isEmail
+subject: 
+relatedItems: 
+location: 
+language: 
+effectiveDate: None
+expirationDate: None
+creation_date: 2008/10/07 15:54:42.682 GMT-7
+modification_date: 2008/10/07 15:54:42.705 GMT-7
+creators: admin
+contributors: 
+rights: 
+allowDiscussion: False
+excludeFromNav: False
+Content-Type: text/plain
+
