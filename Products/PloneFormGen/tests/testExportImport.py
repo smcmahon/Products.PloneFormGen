@@ -82,7 +82,7 @@ class TestExportImport(pfgtc.PloneFormGenTestCase):
         from Products.CMFCore.exportimport.content import importSiteStructure
         return importSiteStructure
     
-    def test_stock_form_full_content_export(self):
+    def test_stock_form_contextual_export(self):
         """Upon adding a form folder, we're given a fully functional
            example form that provides several fields, a mailer, and 
            a thanks page.  Let's make sure a full export includes what
