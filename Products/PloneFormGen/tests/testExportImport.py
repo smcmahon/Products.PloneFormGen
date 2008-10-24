@@ -85,11 +85,41 @@ class TestExportImport(pfgtc.PloneFormGenTestCase):
     def test_stock_form_contextual_export(self):
         """Upon adding a form folder, we're given a fully functional
            example form that provides several fields, a mailer, and 
-           a thanks page.  Let's make sure a full export includes what
+           a thanks page.  Let's make sure a contextual export includes what
            we're expecting.
         """
         self._makeForm()
         context = DummyExportContext(self.ff1)
+        exporter = self._getExporter()
+        exporter(context)
+        
+        # shove everything into a dictionary for easy inspection
+        form_export_data = {}
+        for filename, text, content_type in context._wrote:
+            form_export_data[filename] = text
+        
+        file_tmpl = 'structure/%s'
+        title_output_tmpl = 'title: %s'
+        
+        # make sure our field and adapters are objects
+        for id, object in self.ff1.objectItems():
+            self.failUnless(form_export_data.has_key(file_tmpl % id), 
+                    "No export representation of %s" % id)
+            self.failUnless(title_output_tmpl % object.Title() in \
+                    form_export_data[file_tmpl % id])
+        
+        # we should have .properties, .objects, and per subject
+        self.assertEqual(len(context._wrote), 2 + len(self.ff1.objectIds()))
+    
+    def test_stock_form_view_export(self):
+        """We provide a browser view that can be used to 
+           export a given context as well.  
+           XXX - Andrew B remember this is a rather tempoary representation
+                 of what's returned.
+        """
+        self._makeForm()
+        form_folder_export = self.folder.ff1.restrictedTraverse('@@export-form-folder')
+        context = form_folder_export()
         exporter = self._getExporter()
         exporter(context)
         
