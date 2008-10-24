@@ -1,7 +1,8 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:i18n="http://namespaces.zope.org/i18n"
-		   xmlns:gs="http://namespaces.zope.org/genericsetup"
+           xmlns:gs="http://namespaces.zope.org/genericsetup"
            i18n_domain="ploneformgen">
 
   <i18n:registerTranslations directory="locales"/>
@@ -78,7 +79,17 @@
     class=".content.thanksPage.FormThanksPage"
     interface="Products.GenericSetup.interfaces.IDAVAware"
     />
-  
+
+  <!-- Browser Views -->
+  <!-- XXX Andrew B Make an actual permission in the PFG namespace -->
+  <browser:view
+    for=".interfaces.IPloneFormGenForm"
+    name="export-form-folder"
+    class=".browser.FormFolderExportView"
+    permission="cmf.ModifyPortalContent"
+    allowed_interface=".interfaces.IFormFolderExportView"
+    />
+
 <!--
   PFG was using this generic setup profile due to an Archetypes 1.5b5
   bug that was fixed in 1.5rc3.
