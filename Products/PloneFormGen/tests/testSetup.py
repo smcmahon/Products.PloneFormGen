@@ -85,8 +85,11 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.assertEqual( getAddPermission('PloneFormGen', 'Mailer Adapter'), MA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Save Data Adapter'), SDA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Custom Script Adapter'), CSA_ADD_CONTENT_PERMISSION)
-        
-
+    
+    def testActionsInstalled(self):
+        ff_fti = self.types['FormFolder']
+        self.failUnless(ff_fti.getActionObject('document_actions/export'))
+    
     def testPortalFactorySetup(self):
         for f in self.metaTypes:
             self.failUnless(f in self.factory.getFactoryTypes())
