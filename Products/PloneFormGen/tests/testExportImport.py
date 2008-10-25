@@ -7,6 +7,7 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from transaction import commit
+from StringIO import StringIO
 
 from zope.component import getMultiAdapter
 from zope.interface import directlyProvides
@@ -16,6 +17,8 @@ from Products.Five import fiveconfigure
 
 from Products.GenericSetup.tests.common import DummyExportContext
 from Products.GenericSetup.tests.common import DummyImportContext
+from Products.GenericSetup.tests.common import TarballTester
+
 from Products.GenericSetup.context import TarballExportContext
 from Products.GenericSetup.interfaces import IFilesystemExporter, IFilesystemImporter
 
@@ -65,7 +68,7 @@ class TestFormGenGSLayer(PloneSite):
         commit()
         ZopeTestCase.close(app)
 
-class TestExportImport(pfgtc.PloneFormGenTestCase):
+class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
     """Integration test suite for export/import """
     
     layer = TestFormGenGSLayer
@@ -113,33 +116,17 @@ class TestExportImport(pfgtc.PloneFormGenTestCase):
     
     def test_stock_form_view_export(self):
         """We provide a browser view that can be used to 
-           export a given context as well.  
+           export a given as the root context as well.  
            XXX - Andrew B remember this is a rather tempoary representation
                  of what's returned.
         """
+        toc_list = ['structure/.objects', 'structure/.properties', 'structure/mailer', 
+                    'structure/replyto', 'structure/topic', 'structure/comments', 
+                    'structure/thank-you']
         self._makeForm()
         form_folder_export = self.folder.ff1.restrictedTraverse('@@export-form-folder')
-        context = form_folder_export()
-        exporter = self._getExporter()
-        exporter(context)
-        
-        # shove everything into a dictionary for easy inspection
-        form_export_data = {}
-        for filename, text, content_type in context._wrote:
-            form_export_data[filename] = text
-        
-        file_tmpl = 'structure/%s'
-        title_output_tmpl = 'title: %s'
-        
-        # make sure our field and adapters are objects
-        for id, object in self.ff1.objectItems():
-            self.failUnless(form_export_data.has_key(file_tmpl % id), 
-                    "No export representation of %s" % id)
-            self.failUnless(title_output_tmpl % object.Title() in \
-                    form_export_data[file_tmpl % id])
-        
-        # we should have .properties, .objects, and per subject
-        self.assertEqual(len(context._wrote), 2 + len(self.ff1.objectIds()))
+        fileish = StringIO( form_folder_export() )
+        self._verifyTarballContents( fileish, toc_list)
     
     def test_profile_form_import(self):
         """We create a profile (see: profiles/testing/structure) 
