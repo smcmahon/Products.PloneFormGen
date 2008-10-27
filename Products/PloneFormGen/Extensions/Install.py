@@ -2,7 +2,7 @@ from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.config import *
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.permissions import ManagePortal
+from Products.CMFCore.permissions import ManagePortal, ModifyPortalContent
 
 from Products.CMFPlone.utils import safe_hasattr
 
@@ -27,6 +27,19 @@ configlets = (
         , 'imageUrl'   : 'Form.gif'
         },
     )
+
+# XXX Gah, please save me GenericSetup (Andrew B)
+# this needs to be merged w/ whatever becomes of:
+# http://svn.plone.org/svn/collective/Products.PloneFormGen/branches/jessesnyder-genericsetup/
+form_folder_actions = (
+        { 'id'         : 'export'
+        , 'name'       : 'Export'
+        , 'action'     : 'string:${object_url}/export-form-folder'
+        , 'condition'  : ''
+        , 'visible'    : 1
+        , 'category'   : 'document_actions'
+        , 'permission' : ModifyPortalContent}, # XXX This needs to be the real permission we create (Andrew B)
+)
 
 
 def install(self):
@@ -183,7 +196,25 @@ def install(self):
     else:
         out.write('Unexpectedly found an existing configlet for PFG. Skipped configlet registration.')        
 
-
+    
+    # add document actions to the Form Folder type definition
+    pt = getToolByName(self, 'portal_types')
+    form_folder_fti = pt['FormFolder']
+    
+    for form_folder_action in form_folder_actions:
+        if not form_folder_fti.getActionObject('%s/%s' % \
+                                               (form_folder_action['category'], form_folder_action['id'])):
+            form_folder_fti.addAction(id=form_folder_action['id'],
+                                      name=form_folder_action['name'],
+                                      action=form_folder_action['action'],
+                                      condition=form_folder_action['condition'],
+                                      permission=form_folder_action['permission'],
+                                      category=form_folder_action['category'],
+                                      visible=form_folder_action['visible'])
+            out.write('Added form folder document action %s\n' % form_folder_action['id'])
+        else:
+            out.write('Form folder document action %s\n already exists.  Skipping.' % form_folder_action['id'])            
+    
     if HAS_PLONE30:
         # register kss resource
         kssRegTool = getToolByName(self, 'portal_kss', None)
