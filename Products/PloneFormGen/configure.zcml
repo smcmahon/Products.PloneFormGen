@@ -90,6 +90,16 @@
     allowed_interface=".interfaces.IFormFolderExportView"
     />
 
+  <!-- formlib forms -->
+  <!-- XXX Andrew B Make an actual permission in the PFG namespace -->
+  <browser:page
+    for=".interfaces.IPloneFormGenForm"
+    name="import-form-folder"
+    class=".browser.ImportForm"
+    allowed_interface=".interfaces.IImportForm"
+    permission="cmf.ModifyPortalContent"
+    />
+
 <!--
   PFG was using this generic setup profile due to an Archetypes 1.5b5
   bug that was fixed in 1.5rc3.
