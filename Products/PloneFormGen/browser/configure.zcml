@@ -1,0 +1,12 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+  
+	<browser:page
+		name="embedded"
+	    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+	    template="embedded.pt"
+	    permission="zope2.View"
+	    />
+
+</configure>

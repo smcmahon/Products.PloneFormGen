@@ -76,4 +76,6 @@
       />
 -->
 
+	<include package=".browser"/>
+
 </configure>

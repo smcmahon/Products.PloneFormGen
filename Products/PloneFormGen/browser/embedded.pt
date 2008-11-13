@@ -1,0 +1,16 @@
+<tal:block xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<metal:block use-macro="here/global_defines/macros/defines" />
+<tal:block tal:define="pfg_embedded_action context/absolute_url;
+                       errors python:{};
+                       fieldsets python:['default'];
+                       default_fieldset string:default;
+                       fieldset default_fieldset;
+                       fields python:context.fgFields(request);
+                       base_macros context/fg_edit_macros_p3/macros;">
+	<metal:block use-macro="base_macros/body" />
+</tal:block>
+
+</tal:block>
