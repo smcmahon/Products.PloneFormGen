@@ -81,7 +81,7 @@
             class="enableUnloadProtection enableAutoFocus atBaseEditForm"
             action=""
             id=""
-            tal:attributes="action python:getattr(here,'formActionOverride','') or here.absolute_url();
+            tal:attributes="action python:path('pfg_embedded_action|nothing') or getattr(here,'formActionOverride','') or here.absolute_url();
                             id string:fg-base-edit;
                             class python:test(path('allow_tabbing|nothing'), 'enableUnloadProtection enableAutoFocus enableFormTabbing', 'enableUnloadProtection enableAutoFocus');">
 
@@ -142,7 +142,7 @@
                    value=""
                    />
 
-            <tal:env define="env request/controller_state/kwargs">
+            <tal:env define="env request/controller_state/kwargs|python:{}">
               <tal:loop repeat="varname python:('reference_source_url', 'reference_source_field', 'reference_source_fieldset')">
                 <tal:reference define="items python:env.get(varname, request.get(varname))"
                                condition="items">
@@ -160,7 +160,7 @@
             <tal:comment replace="nothing">
               Turn 'persistent_' variables from controller_state persistent
             </tal:comment>
-            <tal:env repeat="env request/controller_state/kwargs/items">
+            <tal:env repeat="env request/controller_state/kwargs/items|python:()">
               <input type="hidden"
                      name="key"
                      value="value"
@@ -175,7 +175,7 @@
             <tal:comment replace="nothing">
               Turn 'persistent_' variables from forms (GET/POST) persistent
             </tal:comment>
-            <tal:env repeat="env request/form">
+            <tal:env repeat="env request/form|python:()">
               <input type="hidden"
                      name="key"
                      value="value"
@@ -228,7 +228,7 @@
                        name="form.button.cancel"
                        value="Cancel"
 					   tal:condition="python: getattr(here,'useCancelButton',True)"
-                       tal:attributes="value python:getattr(here,'resetLabel','Reset'); tabindex tabindex/next"
+                       tal:attributes="value python:getattr(here,'resetLabel','Reset'); tabindex tabindex/next|nothing"
                        />
             </metal:block>
 
