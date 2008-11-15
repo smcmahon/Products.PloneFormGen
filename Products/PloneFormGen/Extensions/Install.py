@@ -37,7 +37,14 @@ form_folder_actions = (
         , 'action'     : 'string:${object_url}/export-form-folder'
         , 'condition'  : ''
         , 'visible'    : 1
-        , 'category'   : 'document_actions'
+        , 'category'   : 'object_buttons'
+        , 'permission' : ModifyPortalContent}, # XXX This needs to be the real permission we create (Andrew B)
+        { 'id'         : 'import'
+        , 'name'       : 'Import'
+        , 'action'     : 'string:${object_url}/import-form-folder'
+        , 'condition'  : ''
+        , 'visible'    : 1
+        , 'category'   : 'object_buttons'
         , 'permission' : ModifyPortalContent}, # XXX This needs to be the real permission we create (Andrew B)
 )
 
