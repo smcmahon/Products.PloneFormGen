@@ -7,8 +7,8 @@ from Products.Five.formlib import formbase
 from Products.PloneFormGen import interfaces
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
-from Products.GenericSetup.context import TarballExportContext
-from Products.GenericSetup.interfaces import IFilesystemExporter
+from Products.GenericSetup.context import TarballExportContext, TarballImportContext
+from Products.GenericSetup.interfaces import IFilesystemExporter, IFilesystemImporter
 
 class FormFolderExportView(BrowserView):
     implements(interfaces.IFormFolderExportView)
@@ -39,7 +39,8 @@ class ImportForm(formbase.Form):
     
     @form.action(_(u"import"))
     def action_import(self, action, data):
-        pass
+        ctx = TarballImportContext(self.context, data['upload'])
+        IFilesystemImporter(self.context).import_(ctx, 'structure', True)
     
-    
+
     
