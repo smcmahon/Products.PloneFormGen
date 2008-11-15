@@ -7,7 +7,7 @@ class IImportSchema(Interface):
     """
     upload = Bytes(
         title=_(u'Upload'),
-        required=False)
+        required=True)
 
 class IImportForm(Interface):
     """Interface for import form
