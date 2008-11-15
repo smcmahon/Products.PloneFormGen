@@ -88,7 +88,8 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
     
     def testActionsInstalled(self):
         ff_fti = self.types['FormFolder']
-        self.failUnless(ff_fti.getActionObject('document_actions/export'))
+        self.failUnless(ff_fti.getActionObject('object_buttons/export'))
+        self.failUnless(ff_fti.getActionObject('object_buttons/import'))
     
     def testPortalFactorySetup(self):
         for f in self.metaTypes:
