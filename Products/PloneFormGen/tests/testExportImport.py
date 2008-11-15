@@ -6,21 +6,21 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+# from tarfile import TarFile
+from ZPublisher.HTTPRequest import FileUpload
+from cgi import FieldStorage
+
 from transaction import commit
 from StringIO import StringIO
 
 from zope.component import getMultiAdapter
-from zope.interface import directlyProvides
+from zope.publisher.browser import TestRequest
 
 from Products.Five import zcml
 from Products.Five import fiveconfigure
 
 from Products.GenericSetup.tests.common import DummyExportContext
-from Products.GenericSetup.tests.common import DummyImportContext
 from Products.GenericSetup.tests.common import TarballTester
-
-from Products.GenericSetup.context import TarballExportContext
-from Products.GenericSetup.interfaces import IFilesystemExporter, IFilesystemImporter
 
 from Products.PloneFormGen.tests import pfgtc
 
@@ -76,6 +76,57 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
     def _makeForm(self):
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
+    
+    def _prepareFormTarball(self):
+        # we could use our @@export-form-folder view, 
+        # but we want a more atomic test, so we make
+        # a tarfile for our test
+        in_fname = 'test_form_1_form-folder.tar.gz'
+        
+        # XXX - Clean-up
+        # in_fpath = os.path.join(os.path.dirname(__file__),'profiles', 'testing', 'structure', 
+        #     'Members', 'test_user_1_', 'test_form_1_form-folder')
+        # archive = TarFile.open(in_fname, 'w:gz')
+        # archive.add(in_fpath)
+        # archive.close()
+        
+        in_file = open(os.path.join(os.path.dirname(__file__), in_fname))
+        env = {'REQUEST_METHOD':'PUT'}
+        headers = {'content-type':'text/html',
+                   'content-length': len(in_file.read()),
+                   'content-disposition':'attachment; filename=%s' % in_fname}
+        in_file.seek(0)
+        fs = FieldStorage(fp=in_file, environ=env, headers=headers)
+        return FileUpload(fs)
+    
+    def _verifyProfileForm(self, form_ctx):
+        """ helper method to verify adherence to profile-based
+            form folder in tests/profiles/testing directory
+        """
+        form_id_prefix = 'test_form_1_'
+        form_fields = [{
+                        'id':'%sreplyto' % form_id_prefix,
+                        'title':'Test Form Your E-Mail Address',},
+                       {
+                        'id':'%stopic' % form_id_prefix,
+                        'title':'Test Form Subject',},
+        ]
+        field_expressions = {
+            '%sreplyto' % form_id_prefix:{'fgTDefault':'here/memberEmail'},
+            '%scomments' % form_id_prefix:{'fgDefault': 'string:Test Comment'},
+        }
+        
+        # get our forms children to ensure proper config
+        for form_field in form_fields:
+            self.failUnless('%s' % form_field['id'] in form_ctx.objectIds())
+            sub_form_item = form_ctx[form_field['id']]
+            # make sure all the standard callables are set
+            for k,v in form_field.items():
+                self.assertEqual(v, getattr(sub_form_item, k))
+            # make sure all the expression fields have the correct value
+            if field_expressions.has_key(sub_form_item.getId()):
+                for k,v in field_expressions[sub_form_item.getId()].items():
+                    getattr(sub_form_item,k).text
     
     def _getExporter(self):
         from Products.CMFCore.exportimport.content import exportSiteStructure
@@ -135,40 +186,30 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
            test_form_1_.  We test for the existence of and accurate
            configuration of these subfields below.
         """        
-        form_id_prefix = 'test_form_1_'
-        form_fields = [{
-                        'id':'%sreplyto' % form_id_prefix,
-                        'title':'Test Form Your E-Mail Address',},
-                       {
-                        'id':'%stopic' % form_id_prefix,
-                        'title':'Test Form Subject',},
-        ]
-        field_expressions = {
-            '%sreplyto' % form_id_prefix:{'fgTDefault':'here/memberEmail'},
-            '%scomments' % form_id_prefix:{'fgDefault': 'string:Test Comment'},
-        }
-        
         # did our gs form land into the test user's folder
-        self.failUnless('%sform-folder' % form_id_prefix in 
-            self.folder.objectIds())
+        self.failUnless('test_form_1_form-folder' in self.folder.objectIds())
+        self._verifyProfileForm(self.folder['test_form_1_form-folder'])
         
-        # get our forms children to ensure proper config
-        gs_form = self.folder['%sform-folder' % form_id_prefix]
-        for form_field in form_fields:
-            self.failUnless('%s' % form_field['id'] in gs_form.objectIds())
-            sub_form_item = gs_form[form_field['id']]
-            # make sure all the standard callables are set
-            for k,v in form_field.items():
-                self.assertEqual(v, getattr(sub_form_item, k))
-            # make sure all the expression fields have the correct value
-            if field_expressions.has_key(sub_form_item.getId()):
-                for k,v in field_expressions[sub_form_item.getId()].items():
-                    getattr(sub_form_item,k).text
+    def test_formlib_form_import(self):
+        """Interacting with our formlib form we should be able
+           to successfully upload an exported PFG form and have it
+           correctly configured.
+        """
+        self._makeForm()
         
+        # setup a reasonable request
+        request = TestRequest(form={
+            'form.upload':self._prepareFormTarball(),
+            'form.actions.import':'import'})
+        request.RESPONSE = request.response
         
+        # get the form object
+        import_form = getMultiAdapter((self.ff1, request), name='import-form-folder')
         
-        
-
+        # call update (aka submit) on the form, see TestRequest above
+        import_form.update()
+        self._verifyProfileForm(self.ff1)
+    
 
 if  __name__ == '__main__':
     framework()
