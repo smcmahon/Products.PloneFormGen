@@ -1,5 +1,6 @@
 mailer,FormMailerAdapter
 test_form_1_replyto,FormStringField
 test_form_1_topic,FormStringField
+test_form_1_hidden,FormStringField
 test_form_1_comments,FormTextField
 thank-you,FormThanksPage
