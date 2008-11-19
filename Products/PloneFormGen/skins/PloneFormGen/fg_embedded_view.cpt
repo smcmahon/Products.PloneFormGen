@@ -1,0 +1,10 @@
+<metal:block use-macro="here/global_defines/macros/defines" />
+<tal:block
+    tal:define="pfg_embedded_action request/URL;
+                errors options/state/getErrors | nothing;
+                fieldsets python:['default'];
+                default_fieldset string:default;
+                fieldset default_fieldset;
+                fields python:context.fgFields(request);">
+    <tal:block metal:use-macro="context/fg_edit_macros_p3/macros/body"/>
+</tal:block>
