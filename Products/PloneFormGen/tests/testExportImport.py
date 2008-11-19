@@ -104,16 +104,26 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
             form folder in tests/profiles/testing directory
         """
         form_id_prefix = 'test_form_1_'
-        form_fields = [{
-                        'id':'%sreplyto' % form_id_prefix,
-                        'title':'Test Form Your E-Mail Address',},
-                       {
-                        'id':'%stopic' % form_id_prefix,
-                        'title':'Test Form Subject',},
+        form_fields = [
+           {
+            'id':'%sreplyto' % form_id_prefix,
+            'title':'Test Form Your E-Mail Address',
+            'required':True,
+           },
+           {
+            'id':'%shidden' % form_id_prefix,
+            'title':'This is a sample hidden field',
+            'required':False,
+            'hidden':True,},
+           {
+            'id':'%stopic' % form_id_prefix,
+            'title':'Test Form Subject',
+            'required':True,
+           },
         ]
         field_expressions = {
-            '%sreplyto' % form_id_prefix:{'fgTDefault':'here/memberEmail'},
-            '%scomments' % form_id_prefix:{'fgDefault': 'string:Test Comment'},
+            '%sreplyto' % form_id_prefix:{'fgTDefault':'here/memberEmail',},
+            '%scomments' % form_id_prefix:{'fgDefault': 'string:Test Comment',},
         }
         
         # get our forms children to ensure proper config
@@ -122,7 +132,7 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
             sub_form_item = form_ctx[form_field['id']]
             # make sure all the standard callables are set
             for k,v in form_field.items():
-                self.assertEqual(v, getattr(sub_form_item, k))
+                self.assertEqual(v, sub_form_item.getField(k).getAccessor(sub_form_item)())
             # make sure all the expression fields have the correct value
             if field_expressions.has_key(sub_form_item.getId()):
                 for k,v in field_expressions[sub_form_item.getId()].items():
