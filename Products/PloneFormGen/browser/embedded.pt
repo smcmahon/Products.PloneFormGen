@@ -1,1 +1,0 @@
-<tal:block tal:content="structure python:context.fg_embedded_view()"/>

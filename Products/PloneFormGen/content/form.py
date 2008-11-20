@@ -532,6 +532,8 @@ class FormFolder(ATFolder):
              Controller will traverse to this on successful validation.
          """
 
+        target = 'fg_result_view'
+
         if safe_hasattr(self, 'thanksPageOverride'):
             s = self.getThanksPageOverride()
             if s:
@@ -541,9 +543,13 @@ class FormFolder(ATFolder):
         if s:
             obj = getattr(self, s, None)
             if obj:
-                return 'traverse_to:string:%s' % obj.getId()
-            
-        return 'traverse_to:string:fg_result_view'
+                target = obj.getId()
+        
+        is_embedded = self.REQUEST.form.get('pfg_form_marker', False)
+        if is_embedded:
+            return 'redirect_to:string:%s/%s' % (self.absolute_url(), target)
+        else:
+            return 'traverse_to:string:%s' % target
 
 
     # security.declareProtected(ModifyPortalContent, 'getRawActionAdapter')

@@ -5,7 +5,7 @@
 	<browser:page
 		name="embedded"
 	    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
-	    template="embedded.pt"
+	    class=".embedded.EmbeddedPFGView"
 	    permission="zope2.View"
 	    />
 
