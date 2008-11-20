@@ -3,6 +3,14 @@ from Products.Five import BrowserView
 
 DEFAULT_SUBMISSION_MARKER = 'form.submitted'
 
+"""
+Cases that won't work / need testing or thinking through
+- success override that uses a traverse_to action (actually theoretically valid,
+  as long as the thing being traversed to doesn't pull in main_template)
+- do we need to buffer anything else besides the submission marker and
+  controller state?
+"""
+
 class EmbeddedPFGView(BrowserView):
     """ Browser view that can update and render a PFG form in some other context
     """
@@ -33,6 +41,11 @@ class EmbeddedPFGView(BrowserView):
         # b/c then it won't survive validation)
         self.request.form['pfg_form_marker'] = form_marker
         
+        # temporarily clear out the controller_state from the request in case we're embedded in
+        # another controller page template
+        fiddled_controller_state = self.request.get('controller_state', None)
+        self.request.set('controller_state', None)
+        
         # Delegate to CMFFormController page template so we can share logic with the standalone form
         context = aq_inner(self.context)
         res = context.fg_embedded_view()
@@ -40,6 +53,8 @@ class EmbeddedPFGView(BrowserView):
         # Clean up
         if fiddled_submission_marker is not None:
             self.request.form['form.submitted'] = fiddled_submission_marker
+        if fiddled_controller_state is not None:
+            self.request.set('controller_state', fiddled_controller_state)
         del self.request.form['pfg_form_marker']
 
         return res

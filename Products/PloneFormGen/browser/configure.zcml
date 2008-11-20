@@ -8,5 +8,5 @@
 	    class=".embedded.EmbeddedPFGView"
 	    permission="zope2.View"
 	    />
-
+	    
 </configure>

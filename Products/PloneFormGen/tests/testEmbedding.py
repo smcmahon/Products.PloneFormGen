@@ -71,6 +71,10 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
             'form.submitted': True,
             })
 
+        # let's preset a faux controller_state (as if from the other form)
+        # to make sure it doesn't throw things off
+        self.app.REQUEST.set('controller_state', 'foobar')
+
         # render the form
         view = self.ff1.restrictedTraverse('@@embedded')
         view.prefix = 'mypfg'
@@ -79,8 +83,11 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         # should be no validation errors
         self.failIf('This field is required.' in res)
         
-        # and request should still have the 'form.submitted' key
+        # (and request should still have the 'form.submitted' key)
         self.failUnless('form.submitted' in self.app.REQUEST.form)
+        
+        # (and the controller state should be untouched)
+        self.assertEqual(self.app.REQUEST.get('controller_state'), 'foobar')
         
         # but if we remove the form prefix then it should process the form
         view.prefix = ''
@@ -100,14 +107,6 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         res = view()
         self.failUnless('location' in self.app.REQUEST.RESPONSE.headers)
         self.failUnless('thank-you' in self.app.REQUEST.RESPONSE.headers['location'])
-
-    def test_embedded_form_without_thanks_page_doesnt_redirect(self):
-        # should stay on same page, add portal message, and not show the form
-        pass
-
-    def test_embedded_form_handles_exceptions(self):
-        # lack of e-mail configuration shouldn't make things break entirely
-        pass
 
 if  __name__ == '__main__':
     framework()
