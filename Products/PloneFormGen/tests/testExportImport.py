@@ -132,7 +132,8 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
             sub_form_item = form_ctx[form_field['id']]
             # make sure all the standard callables are set
             for k,v in form_field.items():
-                self.assertEqual(v, sub_form_item.getField(k).getAccessor(sub_form_item)())
+                self.assertEqual(v, sub_form_item.getField(k).getAccessor(sub_form_item)(),
+                    "Expected value %s for field %s" % (v, k))
             # make sure all the expression fields have the correct value
             if field_expressions.has_key(sub_form_item.getId()):
                 for k,v in field_expressions[sub_form_item.getId()].items():
@@ -189,7 +190,7 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
         fileish = StringIO( form_folder_export() )
         self._verifyTarballContents( fileish, toc_list)
     
-    def test_profile_form_import(self):
+    def test_profile_from_import(self):
         """We create a profile (see: profiles/testing/structure) 
            which adds a FormFolder called 'test_form_1_' in via our 
            import handler. The form uses the standard ids proceeded by:
