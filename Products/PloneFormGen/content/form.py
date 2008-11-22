@@ -7,6 +7,8 @@ from zope.interface import implements, providedBy
 
 import logging
 
+from ZPublisher.Publish import Retry
+
 from AccessControl import ClassSecurityInfo, Unauthorized
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
@@ -23,7 +25,6 @@ from Products.Archetypes.utils import shasattr, getRelURL
 from Products.Archetypes.interfaces.field import IField
 
 from Products.ATContentTypes.content.folder import ATFolderSchema, ATFolder
-from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
 from Products.ATContentTypes.configuration import zconf
 
@@ -33,7 +34,7 @@ from Products.PloneFormGen.interfaces import \
     IPloneFormGenForm, IPloneFormGenActionAdapter, IPloneFormGenThanksPage
 from Products.PloneFormGen.config import \
     PROJECTNAME, fieldTypes, adapterTypes, thanksTypes, fieldsetTypes, \
-    EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS, FORM_ERROR_MARKER
+    EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
@@ -547,8 +548,15 @@ class FormFolder(ATFolder):
         
         is_embedded = self.REQUEST.form.get('pfg_form_marker', False)
         if is_embedded:
-            return 'redirect_to:string:%s/%s' % (self.absolute_url(), target)
+            # Change the request URL and then raise a Retry exception
+            # so the traversed page renders using the same request
+            url = '%s/%s' % (self.absolute_url(), target)
+            path = url.replace(self.REQUEST['SERVER_URL'], '')
+            self.REQUEST._orig_env['PATH_INFO'] = self.REQUEST._orig_env['PATH_TRANSLATED'] = path
+            self.REQUEST._orig_env['SERVER_URL'] = url[:len(url) - len(path)]
+            raise Retry
         else:
+            # if not embedded, simple CMFFormController traversal will work fine
             return 'traverse_to:string:%s' % target
 
 

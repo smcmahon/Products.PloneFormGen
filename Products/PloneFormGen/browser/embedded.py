@@ -47,14 +47,13 @@ class EmbeddedPFGView(BrowserView):
         self.request.set('controller_state', None)
         
         # Delegate to CMFFormController page template so we can share logic with the standalone form
-        context = aq_inner(self.context)
-        res = context.fg_embedded_view()
-        
-        # Clean up
-        if fiddled_submission_marker is not None:
-            self.request.form['form.submitted'] = fiddled_submission_marker
-        if fiddled_controller_state is not None:
-            self.request.set('controller_state', fiddled_controller_state)
-        del self.request.form['pfg_form_marker']
-
-        return res
+        try:
+            context = aq_inner(self.context)
+            return context.fg_embedded_view()
+        finally:
+            # Clean up
+            if fiddled_submission_marker is not None:
+                self.request.form['form.submitted'] = fiddled_submission_marker
+            if fiddled_controller_state is not None:
+                self.request.set('controller_state', fiddled_controller_state)
+            del self.request.form['pfg_form_marker']

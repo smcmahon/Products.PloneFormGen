@@ -5,6 +5,8 @@ if __name__ == '__main__':
 
 from Products.PloneFormGen.tests import pfgtc
 
+from ZPublisher.Publish import Retry
+
 class FakeRequest(dict):
 
     def __init__(self, **kwargs):
@@ -94,7 +96,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         res = view()
         self.failUnless('This field is required.' in res)
 
-    def test_embedded_form_redirects_on_success(self):
+    def test_render_thank_you_on_success(self):
         self.LoadRequestForm(**{
             'form.submitted': True,
             'topic': 'monkeys',
@@ -102,11 +104,11 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
             'replyto': 'foobar@example.com'
             })
 
-        # should redirect to thank you page on success
+        # should raise a retry exception triggering a new publish attempt
+        # with the new URL
+        # XXX do a full publish for this test
         view = self.ff1.restrictedTraverse('@@embedded')
-        res = view()
-        self.failUnless('location' in self.app.REQUEST.RESPONSE.headers)
-        self.failUnless('thank-you' in self.app.REQUEST.RESPONSE.headers['location'])
+        self.assertRaises(Retry, view)
 
 if  __name__ == '__main__':
     framework()
