@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <bindings>
+  <type type_id="FormSelectionField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormMultiSelectionField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormLabelField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormDateField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormLinesField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormIntegerField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormBooleanField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormPasswordField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormFixedPointField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormStringField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormTextField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormRichTextField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormRichLabelField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormFileField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormLikertField"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormSaveDataAdapter"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormMailerAdapter"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormCustomScriptAdapter"/>
+ </bindings>
+ <bindings>
+  <type type_id="FormThanksPage"/>
+ </bindings>
+ <bindings>
+  <type type_id="FieldsetFolder"/>
+ </bindings>
+</object>

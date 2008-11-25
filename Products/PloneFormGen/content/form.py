@@ -301,9 +301,6 @@ class FormFolder(ATFolder):
 
     typeDescription= 'A folder which creates a form view from contained form fields.'
 
-    # XXX We should do this with a tool so that others may add fields
-    allowed_content_types = fieldTypes + adapterTypes + thanksTypes + fieldsetTypes + ('Document', 'Image')
-
     security       = ClassSecurityInfo()
 
 

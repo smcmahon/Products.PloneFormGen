@@ -26,8 +26,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
 
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
-    
-        self.css          = self.portal.portal_css
+        
         self.kupu         = self.portal.kupu_library_tool
         self.skins        = self.portal.portal_skins
         self.types        = self.portal.portal_types
@@ -70,10 +69,39 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
     def testSkinLayersInstalled(self):
         self.failUnless('PloneFormGen' in self.skins.objectIds())
 
+    def testSkinLayersInSkinPath(self):
+        pfg_layers = self.skins['selections']
+        
+        for skin_name, path in pfg_layers.items():
+            self.failUnless('PloneFormGen' in path.split(','))
+    
+    def testKssRegsitry(self):
+        if 'portal_kss' in self.portal.objectIds():
+            # confirm kinetic stylesheet registration
+            for kss_id in ('ploneformgen.kss',):
+                self.failUnless(kss_id in self.portal.portal_kss.getResourceIds(),
+                    "The kss resource %s wasn't registered appropriately with the portal_kss registry")
+
     def testTypesInstalled(self):
         for t in self.metaTypes:
             self.failUnless(t in self.types.objectIds())
-
+            
+    def testTypeActions(self):
+        # if HAS_PLONE30:
+        #     # hide properties/references tabs
+        #     pt = getToolByName(self, 'portal_types')
+        #     for typ in types:
+        #         try:
+        #             for act in pt[typ].listActions():
+        #                 if act.id in ['metadata', 'references']:
+        #                     act.visible = False
+        #         except KeyError:
+        #             # prevent breaking on edge case: portal_factories still lists a type that
+        #             # is no longer present in portal_types
+        #             pass
+        self.fail("We want different type actions to show up"
+            " depending upon Plone 2.5.x and 3.x.  Finish this test up...")
+    
     def testArchetypesToolCatalogRegistration(self):
         for t in self.metaTypes:
             self.assertEquals(1, len(self.at_tool.getCatalogsByType(t)))
