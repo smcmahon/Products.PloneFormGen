@@ -4,6 +4,7 @@
               handler="Products.PloneFormGen.setuphandlers.importVarious"
               title="PloneFormGen">
   <dependency step="toolset"/>
+  <dependency step="propertiestool"/>
   <dependency step="typeinfo"/>
   Import PloneFormGen settings
  </import-step>

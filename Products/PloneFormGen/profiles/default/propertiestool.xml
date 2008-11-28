@@ -38,26 +38,6 @@
    <element value="PloneFormGen: Edit Encryption Specs"/>
    <element value="PloneFormGen: Download Saved Input"/>
   </property>
-  <property name="mail_template"
-     type="text">&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
-   
-     &lt;head&gt;&lt;title&gt;&lt;/title&gt;&lt;/head&gt;
-   
-     &lt;body&gt;
-       &lt;p tal:content="here/body_pre | nothing" /&gt;
-       &lt;dl&gt;
-           &lt;tal:block repeat="field options/wrappedFields"&gt;
-               &lt;dt tal:content="field/fgField/widget/label" /&gt;
-               &lt;dd tal:content="structure python:field.htmlValue(request)" /&gt;
-           &lt;/tal:block&gt;
-       &lt;/dl&gt;
-       &lt;p tal:content="here/body_post | nothing" /&gt;
-       &lt;pre tal:content="here/body_footer | nothing" /&gt;
-     &lt;/body&gt;
-   &lt;/html&gt;</property>
-  <property name="mail_body_type" type="string" purge="False">html</property>
-  <property name="mail_recipient_email" type="string"></property>
-  <property name="mail_recipient_name" type="string"></property>
   <property name="mail_cc_recipients" type="lines" purge="False"/>
   <property name="mail_bcc_recipients" type="lines" purge="False"/>
   <property name="mail_xinfo_headers" type="lines" purge="False">

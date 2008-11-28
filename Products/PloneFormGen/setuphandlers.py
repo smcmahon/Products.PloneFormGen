@@ -1,4 +1,6 @@
 from Products.CMFCore.utils import getToolByName
+from Products.PloneFormGen.config import PROPERTY_SHEET_NAME, \
+    DEFAULT_MAILTEMPLATE_BODY
 
 def update_kupu_resources(out, site):
     """ At the time of this writing, kupu's GS export/import
@@ -16,6 +18,26 @@ def update_kupu_resources(out, site):
                                        'old_type'      : 'linkable',
                                        'portal_types'  :  linkable},))
 
+def safe_add_purgeable_properties(out, site):
+    """ In order to avoid a possible "feature" regression and
+        to keep test case testModificationsToPropSheetNotOverwritten in 
+        a passing state, we need to do a check before property add
+        of all non-lines properties. This per my reading of GS' PropertiesXMLAdapter's 
+        _initProperties implementation, which appears to only merge properties of
+        type tuple or list.
+    """
+    ppTool = getToolByName(site, 'portal_properties')
+    propSheet = getattr(ppTool, PROPERTY_SHEET_NAME)
+    if not propSheet.hasProperty('mail_template'):
+        propSheet.manage_addProperty('mail_template', DEFAULT_MAILTEMPLATE_BODY, 'text')    
+    if not propSheet.hasProperty('mail_body_type'):
+        propSheet.manage_addProperty('mail_body_type', 'html', 'string')    
+    if not propSheet.hasProperty('mail_recipient_email'):
+        propSheet.manage_addProperty('mail_recipient_email', '', 'string')    
+    if not propSheet.hasProperty('mail_recipient_name'):
+        propSheet.manage_addProperty('mail_recipient_name', '', 'string')
+    
+
 def importVarious(context):
     """
     Final PloneFormGen import steps.
@@ -26,3 +48,4 @@ def importVarious(context):
     out = []
     site = context.getSite()
     update_kupu_resources(out, site)
+    safe_add_purgeable_properties(out, site)
