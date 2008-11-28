@@ -7,6 +7,7 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen.tests import pfgtc
+from Products.PloneFormGen import HAS_PLONE30
 
 from Products.CMFCore.utils import getToolByName
 
@@ -87,20 +88,18 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             self.failUnless(t in self.types.objectIds())
             
     def testTypeActions(self):
-        # if HAS_PLONE30:
-        #     # hide properties/references tabs
-        #     pt = getToolByName(self, 'portal_types')
-        #     for typ in types:
-        #         try:
-        #             for act in pt[typ].listActions():
-        #                 if act.id in ['metadata', 'references']:
-        #                     act.visible = False
-        #         except KeyError:
-        #             # prevent breaking on edge case: portal_factories still lists a type that
-        #             # is no longer present in portal_types
-        #             pass
-        self.fail("We want different type actions to show up"
-            " depending upon Plone 2.5.x and 3.x.  Finish this test up...")
+        if HAS_PLONE30:
+            # hide properties/references tabs
+            for typ in self.metaTypes:
+                for act in self.types[typ].listActions():
+                    if act.id in ['metadata', 'references']:
+                        self.failIf(act.visible)
+        else:
+            self.fail("We want different type actions to show up"
+                " depending upon Plone 2.5.x and 3.x.  This will fail"
+                " when I start working on BBB with 2.5.x and that will"
+                " will serve as reminder to follow the typical 2.5.x"
+                " pattern for available tabs.")
     
     def testArchetypesToolCatalogRegistration(self):
         for t in self.metaTypes:
