@@ -158,8 +158,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.failUnless( getToolByName(self.portal, 'formgen_tool')) 
 
     def test_PropSheetCreation(self):
-        ppt = getToolByName(self.portal, 'portal_properties')
-        props = getattr(ppt, 'ploneformgen_properties', None)
+        props = getattr(self.properties, 'ploneformgen_properties', None)
         self.failUnless( props )
         self.failUnless( props.hasProperty('permissions_used') )
         self.failUnless( props.hasProperty('mail_template') )
@@ -180,6 +179,39 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         
         # make sure we still have our new value for 'mail_body_type'
         self.assertEquals(newprop, self.properties.ploneformgen_properties.getProperty('mail_body_type'))
+    
+    def testModificationsToPropSheetLinesNotPuged(self):
+        pfg_property_mappings = [
+            {"propsheet":"navtree_properties",
+             "added_props":["metaTypesNotToList",]},
+            {"propsheet":"ploneformgen_properties",
+             "added_props":["permissions_used", "mail_cc_recipients", 
+                "mail_bcc_recipients", "mail_xinfo_headers","mail_add_headers",]},
+            {"propsheet":"site_properties",
+             "added_props":["use_folder_tabs", "typesLinkToFolderContentsInFC",
+                "types_not_searched", "default_page_types"]},
+        ]
+        
+        # add garbage prop element to each lines property
+        for mapping in pfg_property_mappings:
+            sheet = self.properties[mapping['propsheet']]
+            for lines_prop in mapping['added_props']:
+                propitems = list(sheet.getProperty(lines_prop))
+                propitems.append('foo')
+                sheet.manage_changeProperties({lines_prop:propitems})
+        
+        # reinstall
+        qi = self.portal.portal_quickinstaller
+        qi.reinstallProducts(['PloneFormGen'])
+        
+        # now make sure our garbage values survived the reinstall
+        for mapping in pfg_property_mappings:
+            sheet = self.properties[mapping['propsheet']]
+            for lines_prop in mapping['added_props']:
+                self.failUnless('foo' in sheet.getProperty(lines_prop),
+                    "Our garbage item didn't survive reinstall for property %s"
+                    " within property sheet %s" % (lines_prop, mapping["propsheet"]))
+        
     
     def test_FormFolderInDefaultPageTypes(self):
         propsTool = getToolByName(self.portal, 'portal_properties')
