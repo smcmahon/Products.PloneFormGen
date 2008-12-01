@@ -12,6 +12,34 @@ from Products.Archetypes.Extensions.utils import installTypes, install_subskin
 
 from StringIO import StringIO
 
+def install(self):
+    """ BBB: Make for a pleasant installation experience in 2.5.x.
+        To be removed when eliminating support for < 3.x.
+    """
+    out = StringIO()
+    
+    # We install our product by running a GS profile.  We use the old-style Install.py module 
+    # so that our product works w/ the Quick Installer in Plone 2.5.x
+    print >> out, "Installing PloneFormGen"
+    setup_tool = getToolByName(self, 'portal_setup')
+    if HAS_PLONE30:
+        setup_tool.runAllImportStepsFromProfile(
+                "profile-Products.PloneFormGen:default",
+                purge_old=False)
+    else:
+        old_context = setup_tool.getImportContextID()
+        
+        # run the standard install process
+        setup_tool.setImportContext('profile-Products.PloneFormGen:default')
+        setup_tool.runAllImportSteps()
+        
+        # BBB: make 2.5.x specific overrides
+        setup_tool.setImportContext('profile-Products.PloneFormGen:typeoverrides25x')
+        setup_tool.runAllImportSteps()
+        
+        setup_tool.setImportContext(old_context)
+    
+
 def removeSkinLayer(self, layer):
     """ Remove a skin layer from all skinpaths """
 
