@@ -1,5 +1,9 @@
 1.3.0 (beta)
 
+ - Pulling out removeSkinLayer for arg PloneFormGenPlone3, since
+   this appears to have not existed and certainly is unnecessary
+   currently (Andrew Burkhalter)
+ 
  - Removed unneeded and unused legacy typesonly profile directory 
    (Andrew Burkhalter)
 
