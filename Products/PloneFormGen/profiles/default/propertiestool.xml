@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<object name="portal_properties">
+ <object name="navtree_properties" >
+  <property name="metaTypesNotToList" purge="False">
+   <element value="FormSelectionField"/>
+   <element value="FormMultiSelectionField"/>
+   <element value="FormLabelField"/>
+   <element value="FormDateField"/>
+   <element value="FormLinesField"/>
+   <element value="FormIntegerField"/>
+   <element value="FormBooleanField"/>
+   <element value="FormPasswordField"/>
+   <element value="FormFixedPointField"/>
+   <element value="FormStringField"/>
+   <element value="FormTextField"/>
+   <element value="FormRichTextField"/>
+   <element value="FormRichLabelField"/>
+   <element value="FormFileField"/>
+   <element value="FormLikertField"/>
+   <element value="FormSaveDataAdapter"/>
+   <element value="FormMailerAdapter"/>
+   <element value="FormCustomScriptAdapter"/>
+   <element value="FormThanksPage"/>
+   <element value="FieldsetFolder"/>
+  </property>
+ </object>
+ <object name="ploneformgen_properties" meta_type="Plone Property Sheet">
+  <property name="title">PloneFormGen properties</property>
+  <property name="permissions_used" type="lines" purge="False">
+   <element value="PloneFormGen: Add Content"/>
+   <element value="PloneFormGen: Add Mailers"/>
+   <element value="PloneFormGen: Add Data Savers"/>
+   <element value="PloneFormGen: Add Custom Scripts"/>
+   <element value="PloneFormGen: Edit TALES Fields"/>
+   <element value="PloneFormGen: Edit Python Fields"/>
+   <element value="PloneFormGen: Edit Advanced Fields"/>
+   <element value="PloneFormGen: Edit Mail Addresses"/>
+   <element value="PloneFormGen: Edit Encryption Specs"/>
+   <element value="PloneFormGen: Download Saved Input"/>
+  </property>
+  <property name="mail_cc_recipients" type="lines" purge="False"/>
+  <property name="mail_bcc_recipients" type="lines" purge="False"/>
+  <property name="mail_xinfo_headers" type="lines" purge="False">
+   <element value="HTTP_X_FORWARDED_FOR"/>
+   <element value="REMOTE_ADDR"/>
+   <element value="PATH_INFO"/>
+  </property>
+  <property name="mail_add_headers" type="lines" purge="False"/>
+ </object>
+ <object name="site_properties" >
+  <property name="use_folder_tabs" purge="False">
+   <element value="FormFolder"/>
+   <element value="FieldsetFolder"/>
+  </property>
+  <property name="typesLinkToFolderContentsInFC" purge="False">
+   <element value="FormFolder"/>
+   <element value="FieldsetFolder"/>
+  </property>
+  <property name="types_not_searched" purge="False">
+   <element value="FormSelectionField"/>
+   <element value="FormMultiSelectionField"/>
+   <element value="FormLabelField"/>
+   <element value="FormDateField"/>
+   <element value="FormLinesField"/>
+   <element value="FormIntegerField"/>
+   <element value="FormBooleanField"/>
+   <element value="FormPasswordField"/>
+   <element value="FormFixedPointField"/>
+   <element value="FormStringField"/>
+   <element value="FormTextField"/>
+   <element value="FormRichTextField"/>
+   <element value="FormRichLabelField"/>
+   <element value="FormFileField"/>
+   <element value="FormLikertField"/>
+   <element value="FormSaveDataAdapter"/>
+   <element value="FormMailerAdapter"/>
+   <element value="FormCustomScriptAdapter"/>
+   <element value="FormThanksPage"/>
+   <element value="FieldsetFolder"/>
+  </property>
+  <property name="default_page_types" purge="False">
+   <element value="FormFolder"/>
+  </property>
+ </object>
+</object>

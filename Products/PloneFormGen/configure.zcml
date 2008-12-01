@@ -63,17 +63,20 @@
   <five:deprecatedManageAddDelete
       class=".content.formLikertField.FGLikertField" />
 
-<!--
-  PFG was using this generic setup profile due to an Archetypes 1.5b5
-  bug that was fixed in 1.5rc3.
   <gs:registerProfile
-      name="typesonly"
-      title="PloneFormGen Types Profile"
-      directory="profiles/typesonly"
-      description="Incomplete. Do not use for product installation."
+      name="default"
+      title="PloneFormGen"
+      directory="profiles/default"
+      description="PloneFormGen"
       provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       />
--->
+
+  <gs:registerProfile
+      name="typeoverrides25x"
+      title="PloneFormGen 2.5.x overrides"
+      directory="profiles/typeoverrides25x"
+      description="PloneFormGen 2.5.x overrides"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
 </configure>

@@ -7,6 +7,7 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen.tests import pfgtc
+from Products.PloneFormGen import HAS_PLONE30
 
 from Products.CMFCore.utils import getToolByName
 
@@ -26,14 +27,15 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
 
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
-    
-        self.css        = self.portal.portal_css
-        self.kupu       = self.portal.kupu_library_tool
-        self.skins      = self.portal.portal_skins
-        self.types      = self.portal.portal_types
-        self.factory    = self.portal.portal_factory
-        self.workflow   = self.portal.portal_workflow
-        self.properties = self.portal.portal_properties
+        
+        self.kupu         = self.portal.kupu_library_tool
+        self.skins        = self.portal.portal_skins
+        self.types        = self.portal.portal_types
+        self.factory      = self.portal.portal_factory
+        self.workflow     = self.portal.portal_workflow
+        self.properties   = self.portal.portal_properties
+        self.at_tool      = self.portal.archetype_tool
+        self.controlpanel = self.portal.portal_controlpanel
 
         self.fieldTypes = (
             'FormSelectionField',
@@ -68,11 +70,45 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
     def testSkinLayersInstalled(self):
         self.failUnless('PloneFormGen' in self.skins.objectIds())
 
+    def testSkinLayersInSkinPath(self):
+        pfg_layers = self.skins['selections']
+        
+        for skin_name, path in pfg_layers.items():
+            self.failUnless('PloneFormGen' in path.split(','))
+    
+    def testKssRegsitry(self):
+        if 'portal_kss' in self.portal.objectIds():
+            # confirm kinetic stylesheet registration
+            for kss_id in ('ploneformgen.kss',):
+                self.failUnless(kss_id in self.portal.portal_kss.getResourceIds(),
+                    "The kss resource %s wasn't registered appropriately with the portal_kss registry")
+
     def testTypesInstalled(self):
         for t in self.metaTypes:
             self.failUnless(t in self.types.objectIds())
-
-
+            
+    def testTypeActions(self):
+        if HAS_PLONE30:
+            # hide properties/references tabs
+            for typ in self.metaTypes:
+                for act in self.types[typ].listActions():
+                    if act.id in ['metadata', 'references']:
+                        self.failIf(act.visible)
+        else:
+            # the 2.5.x way is to enable these tabs
+            for typ in self.metaTypes:
+                for act in self.types[typ].listActions():
+                    if act.id in ['metadata', 'references']:
+                        self.failUnless(act.visible)
+    
+    def testArchetypesToolCatalogRegistration(self):
+        for t in self.metaTypes:
+            self.assertEquals(1, len(self.at_tool.getCatalogsByType(t)))
+            self.assertEquals('portal_catalog', self.at_tool.getCatalogsByType(t)[0].getId())
+            
+    def testControlPanelConfigletInstalled(self):
+        self.failUnless('PloneFormGen' in [action.id for action in self.controlpanel.listActions()])
+    
     def testAddPermissions(self):
         """ Test to make sure add permissions are as intended """
         
@@ -115,14 +151,14 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
 
     def testKupuResources(self):
         linkable = self.kupu.getPortalTypesForResourceType('linkable')
-        self.failUnless('FormFolder' in linkable)
+        self.failUnless('FormFolder' in linkable) # make sure we made it in ...
+        self.failIf(len(linkable) <= 1) # without clobbering everything else
 
     def test_FormGenTool(self):
         self.failUnless( getToolByName(self.portal, 'formgen_tool')) 
 
     def test_PropSheetCreation(self):
-        ppt = getToolByName(self.portal, 'portal_properties')
-        props = getattr(ppt, 'ploneformgen_properties', None)
+        props = getattr(self.properties, 'ploneformgen_properties', None)
         self.failUnless( props )
         self.failUnless( props.hasProperty('permissions_used') )
         self.failUnless( props.hasProperty('mail_template') )
@@ -132,7 +168,51 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.failUnless( props.hasProperty('mail_bcc_recipients') )
         self.failUnless( props.hasProperty('mail_xinfo_headers') )
         self.failUnless( props.hasProperty('mail_add_headers') )
-
+        
+    def testModificationsToPropSheetNotOverwritten(self):
+        newprop = 'foo'
+        self.properties.ploneformgen_properties.manage_changeProperties(mail_body_type=newprop)
+        
+        # reinstall
+        qi = self.portal.portal_quickinstaller
+        qi.reinstallProducts(['PloneFormGen'])
+        
+        # make sure we still have our new value for 'mail_body_type'
+        self.assertEquals(newprop, self.properties.ploneformgen_properties.getProperty('mail_body_type'))
+    
+    def testModificationsToPropSheetLinesNotPuged(self):
+        pfg_property_mappings = [
+            {"propsheet":"navtree_properties",
+             "added_props":["metaTypesNotToList",]},
+            {"propsheet":"ploneformgen_properties",
+             "added_props":["permissions_used", "mail_cc_recipients", 
+                "mail_bcc_recipients", "mail_xinfo_headers","mail_add_headers",]},
+            {"propsheet":"site_properties",
+             "added_props":["use_folder_tabs", "typesLinkToFolderContentsInFC",
+                "types_not_searched", "default_page_types"]},
+        ]
+        
+        # add garbage prop element to each lines property
+        for mapping in pfg_property_mappings:
+            sheet = self.properties[mapping['propsheet']]
+            for lines_prop in mapping['added_props']:
+                propitems = list(sheet.getProperty(lines_prop))
+                propitems.append('foo')
+                sheet.manage_changeProperties({lines_prop:propitems})
+        
+        # reinstall
+        qi = self.portal.portal_quickinstaller
+        qi.reinstallProducts(['PloneFormGen'])
+        
+        # now make sure our garbage values survived the reinstall
+        for mapping in pfg_property_mappings:
+            sheet = self.properties[mapping['propsheet']]
+            for lines_prop in mapping['added_props']:
+                self.failUnless('foo' in sheet.getProperty(lines_prop),
+                    "Our garbage item didn't survive reinstall for property %s"
+                    " within property sheet %s" % (lines_prop, mapping["propsheet"]))
+        
+    
     def test_FormFolderInDefaultPageTypes(self):
         propsTool = getToolByName(self.portal, 'portal_properties')
         siteProperties = getattr(propsTool, 'site_properties')

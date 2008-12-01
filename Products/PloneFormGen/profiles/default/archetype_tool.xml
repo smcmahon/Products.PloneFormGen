@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<archetypetool>
+ <catalogmap>
+  <type portal_type="ATPathCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATBooleanCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATImage">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATTopic">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATSelectionCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATBTreeFolder">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATDocument">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATSimpleStringCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATCurrentAuthorCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATDateCriteria">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATFavorite">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATEvent">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATReferenceCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATSimpleIntCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATListCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATFolder">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATLink">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATNewsItem">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATFile">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATDateRangeCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATSortCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATRelativePathCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="ATPortalTypeCriterion">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGLikertField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FieldsetFolder">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGSelectionField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGMultiSelectField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGRichLabelField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGLabelField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGTextField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGDateField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGRichTextField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FormSaveDataAdapter">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FormThanksPage">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGLinesField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGBooleanField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGPasswordField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FormCustomScriptAdapter">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FormMailerAdapter">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FormFolder">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGFileField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGFixedPointField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGIntegerField">
+   <catalog value="portal_catalog"/>
+  </type>
+  <type portal_type="FGStringField">
+   <catalog value="portal_catalog"/>
+  </type>
+ </catalogmap>
+</archetypetool>
