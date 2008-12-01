@@ -95,11 +95,11 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
                     if act.id in ['metadata', 'references']:
                         self.failIf(act.visible)
         else:
-            self.fail("We want different type actions to show up"
-                " depending upon Plone 2.5.x and 3.x.  This will fail"
-                " when I start working on BBB with 2.5.x and that will"
-                " will serve as reminder to follow the typical 2.5.x"
-                " pattern for available tabs.")
+            # the 2.5.x way is to enable these tabs
+            for typ in self.metaTypes:
+                for act in self.types[typ].listActions():
+                    if act.id in ['metadata', 'references']:
+                        self.failUnless(act.visible)
     
     def testArchetypesToolCatalogRegistration(self):
         for t in self.metaTypes:
