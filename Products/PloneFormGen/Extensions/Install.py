@@ -1,14 +1,7 @@
-import transaction
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.config import *
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.permissions import ManagePortal
-
-from Products.CMFPlone.utils import safe_hasattr
-
-from Products.Archetypes.public import listTypes
-from Products.Archetypes.Extensions.utils import installTypes, install_subskin
 
 from StringIO import StringIO
 
