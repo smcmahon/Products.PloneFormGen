@@ -1,5 +1,8 @@
 1.3.0 (beta)
 
+ - Removed unneeded and unused legacy typesonly profile directory 
+   (Andrew Burkhalter)
+
  - Installation process is entirely based upon GenericSetup extension
    profiles to the level that is pragmatic for support of Plone 2.5.x
    up to version Plone 3.x. In brief, this means that we have an install
