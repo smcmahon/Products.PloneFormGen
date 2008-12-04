@@ -974,6 +974,9 @@ msgstr ""
 msgid "vocabulary_iszipcode_text"
 msgstr ""
 
+#. Default: "Does not contain link spam"
+msgid "vocabulary_isnotlinkspam_text"
+msgstr ""
 
 #. Default: "Is checked"
 msgid "vocabulary_ischecked_text"
@@ -1081,6 +1084,10 @@ msgstr ""
 
 #. Default: "This is not a valid zip code."
 msgid "pfg_isZipCode"
+msgstr ""
+
+#. Default: "This text appears to contain links."
+msgid "pfg_isnotlinkspam"
 msgstr ""
 
 #. Default: "This is not a valid url."

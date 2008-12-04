@@ -10,8 +10,6 @@ from Products.PloneFormGen.tests import pfgtc
 
 from Products.PloneFormGen.content import validationMessages
 
-from Products.CMFCore.utils import getToolByName
-
 import Products
 
         
@@ -54,6 +52,22 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         v = validation.validatorFor('isUnchecked')
         self.failUnlessEqual(v('0'), 1)
         self.failIfEqual(v('1'), 1)
+
+    def test_isNotLinkSpam(self):
+        from Products.validation import validation
+
+        v = validation.validatorFor('isNotLinkSpam')
+        good = """I am link free and proud of it"""
+        bad1 = """<a href="mylink">Bad.</a>"""
+        bad2 = """http://bad.com"""
+        bad3 = """www.Bad.com"""
+        bad = (bad1,bad2,bad3)
+        kw = {'validateNoLinkSpam':True}
+        self.failUnlessEqual(v(good, **kw), 1)
+        for b in bad:
+            self.failIfEqual(v(b, **kw), 1,
+                             '"%s" should be considered a link.' % b)
+
 
     def test_isNotTooLong(self):
         from Products.validation import validation

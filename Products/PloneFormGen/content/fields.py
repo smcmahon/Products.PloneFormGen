@@ -937,6 +937,20 @@ class FGTextField(BaseFormField):
     security  = ClassSecurityInfo()
 
     schema = BaseFieldSchemaTextDefault.copy()
+    schema += Schema((
+        BooleanField('validateNoLinkSpam',
+            searchable=0,
+            required=0,
+            default=False,
+            widget=BooleanWidget(
+                label="Reject Text with Links?",
+                description="""Useful for stopping spam""",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_validate_link_spam_text",
+                description_msgid = "help_fgmsformat_text",
+                ),
+            ),
+        ))
 
     # Standard content type setup
     portal_type = meta_type = 'FormTextField'
@@ -954,7 +968,7 @@ class FGTextField(BaseFormField):
             searchable=0,
             required=0,
             write_permission = View,
-            validators=('isNotTooLong',),
+            validators=('isNotTooLong','isNotLinkSpam',),
             default_content_type = 'text/plain',
             allowable_content_types = ('text/plain',),
             widget = TextAreaWidget(
