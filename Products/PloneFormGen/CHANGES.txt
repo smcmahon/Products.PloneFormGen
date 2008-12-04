@@ -1,5 +1,8 @@
 1.3.0 (beta)
 
+ - Added support for embedding PFG forms into other templates.  See
+   README_EMBEDDING.txt for details. (David Glick)
+
  - Clean out 2.1 compatibility code. Ahhhh! (Steve McMahon)
 
  - Pulling out removeSkinLayer for arg PloneFormGenPlone3, since
@@ -16,7 +19,7 @@
    tool in Plone 2.5.x and that we run relevant profiles in portal_setup
    upon install (Jesse Snyder, Andrew Burkhalter)
 
-1.2.5 (unreleased)
+1.2.5
 
  - Integrate Portugese translation from Nuno Cruz.
 

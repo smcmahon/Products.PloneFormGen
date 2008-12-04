@@ -76,7 +76,7 @@
       <metal:main define-macro="main" tal:define="isLocked python:False">
         
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        <h1 tal:content="object_title" class="documentFirstHeading">
+        <h1 tal:content="context/Title" class="documentFirstHeading">
           Title or id
         </h1>
     

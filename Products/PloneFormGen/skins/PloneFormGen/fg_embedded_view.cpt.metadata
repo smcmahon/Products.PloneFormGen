@@ -1,0 +1,10 @@
+[default]
+title = Embedded Form View
+
+[validators]
+validators = fgvalidate_base
+validators..form_add =
+validators..cancel =
+
+[actions]
+action.success..cancel = traverse_to:string:go_back
