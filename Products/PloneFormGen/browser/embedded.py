@@ -53,7 +53,9 @@ class EmbeddedPFGView(BrowserView):
         # (we do this in the request instead of passing it in when calling the .cpt, because
         # the .cpt might end up getting called again after validation or something)
         if self.action is not None:
-            self.request.form['pfg_form_action'] = self.action
+            self.request.set('pfg_form_action', self.action)
+        else:
+            self.request.set('pfg_form_action', self.request['URL'])
         
         # Delegate to CMFFormController page template so we can share logic with the standalone form
         try:
@@ -66,5 +68,4 @@ class EmbeddedPFGView(BrowserView):
             if fiddled_controller_state is not None:
                 self.request.set('controller_state', fiddled_controller_state)
             del self.request.form['pfg_form_marker']
-            if 'pfg_form_action' in self.request.form:
-                del self.request.form['pfg_form_action']
+            del self.request.other['pfg_form_action']
