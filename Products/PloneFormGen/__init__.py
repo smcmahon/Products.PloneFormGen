@@ -28,7 +28,7 @@ from Products.PloneFormGen.config import PROJECTNAME, \
 
 registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 
-def initialize(context):    
+def initialize(context):
 
     import content, validators, tools, widgets
 
@@ -100,3 +100,6 @@ except ImportError:
 else:
     HAS_PLONE30 = True
 
+if not HAS_PLONE30:
+    from monkey import installExceptionHook
+    installExceptionHook()

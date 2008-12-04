@@ -87,7 +87,7 @@ which enhances the standard Zope error handler's treatment of Retry errors.) ::
     >>> from Products.Five import zcml
     >>> import Products.PloneFormGen
     >>> zcml.load_config('tests/fixtures/tests.zcml', Products.PloneFormGen)
-    >>> from plone.app.linkintegrity.monkey import installExceptionHook
+    >>> from Products.PloneFormGen.monkey import installExceptionHook
     >>> installExceptionHook()
 
 Now we should be able to render the same form as above, but located at @@form-wrapper::
@@ -96,30 +96,13 @@ Now we should be able to render the same form as above, but located at @@form-wr
     >>> browser.open(portal_url + '/@@form-wrapper')
     >>> print browser.contents
     <!DOCTYPE...
+    ...
     <div class="pfg-embedded">
-        <dl class="portalMessage info"...>
         ...
-        <div class="pfg-form formid-testform">
-          <form...action="http://nohost/plone/@@form-wrapper"...>
-              ...
-              <input...name="replyto".../>
-              ...
-              <input...name="topic".../>
-              ...
-              <textarea...name="comments"...></textarea>
-              ...
-              <div class="formControls">
-                ...
-                <input type="hidden" name="testform.form.submitted"
-                       value="1" />
-                ...
-                <input type="hidden" name="last_referer"
-                       value="localhost" />
-                <input class="context" type="submit"
-                       name="form_submit" value="Submit" />
-              </div>
-          </form>
-        </div>
+        <form...action="http://nohost/plone/@@form-wrapper"...>
+        ...
+        </form>
+        ...
     </div>
     ...
 
