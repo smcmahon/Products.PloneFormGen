@@ -2,6 +2,10 @@
 
 1.2.5 (unreleased)
 
+ - Added support for embedding PFG forms into other templates.  See
+   README_EMBEDDING.txt for details.
+   [davisagli]
+
  - Integrate Portugese translation from Nuno Cruz.
 
  - Form submission should not be disabled when the form is locked for
