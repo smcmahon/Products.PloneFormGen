@@ -37,12 +37,11 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25, HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30
 
 from types import StringTypes
 
-if HAS_PLONE25:
-  import zope.i18n
+import zope.i18n
 
 logger = logging.getLogger("PloneFormGen")    
 
@@ -570,15 +569,6 @@ class FormFolder(ATFolder):
             return DisplayList( allAdapters )
 
         return DisplayList()            
-#        else:
-#            if HAS_PLONE25:
-#                return DisplayList(
-#                    [('', _(u'vocabulary_none_text', u'None')),]
-#                    )
-#            else:
-#                return DisplayList(
-#                    [('', self.translate( msgid='vocabulary_none_text', domain='ploneformgen', default='None')),]
-#                    )
 
 
     security.declareProtected(ModifyPortalContent, 'addActionAdapter')
@@ -597,10 +587,7 @@ class FormFolder(ATFolder):
 
         myFields = []
         if withNone:
-            if HAS_PLONE25:
-                myFields.append( (noneValue, _(u'vocabulary_none_text', u'None')) )
-            else:
-                myFields.append( (noneValue, self.translate( msgid='vocabulary_none_text', domain='ploneformgen', default='None')) )
+            myFields.append( (noneValue, _(u'vocabulary_none_text', u'None')) )
 
         for obj in self._getFieldObjects(objTypes):
             if isinstance(obj.title, unicode):
@@ -619,10 +606,7 @@ class FormFolder(ATFolder):
         siteProperties = getattr(propsTool, 'site_properties')
         defaultPageTypes = siteProperties.getProperty('default_page_types')
 
-        if HAS_PLONE25:
-            tpages = [('', _(u'vocabulary_none_text', u'None')),]
-        else:
-            tpages = [('', self.translate( msgid='vocabulary_none_text', domain='ploneformgen', default='None')),]
+        tpages = [('', _(u'vocabulary_none_text', u'None')),]
 
         for obj in self.objectValues():
             if IPloneFormGenThanksPage in providedBy(obj) or \
@@ -691,18 +675,8 @@ class FormFolder(ATFolder):
 
         ATFolder.initializeArchetype(self, **kwargs)
 
-        if HAS_PLONE25:
-            self.setSubmitLabel(zope.i18n.translate(_(u'pfg_formfolder_submit', u'Submit'), context=self.REQUEST))
-            self.setResetLabel(zope.i18n.translate(_(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
-        else:
-            self.setSubmitLabel(self.translate(
-                                  msgid='pfg_formfolder_submit',
-                                  domain='ploneformgen',
-                                  default='Submit'))
-            self.setResetLabel(self.translate(
-                                  msgid='pfg_formfolder_reset',
-                                  domain='ploneformgen',
-                                  default='Reset'))
+        self.setSubmitLabel(zope.i18n.translate(_(u'pfg_formfolder_submit', u'Submit'), context=self.REQUEST))
+        self.setResetLabel(zope.i18n.translate(_(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
 
         oids = self.objectIds()
 
@@ -713,18 +687,8 @@ class FormFolder(ATFolder):
                 self.invokeFactory('FormMailerAdapter','mailer')
                 mailer = self['mailer']
 
-                if HAS_PLONE25:
-                    mailer.setTitle(zope.i18n.translate(_(u'pfg_mailer_title', u'Mailer'), context=self.REQUEST))
-                    mailer.setDescription(zope.i18n.translate(_(u'pfg_mailer_description', u'E-Mails Form Input'), context=self.REQUEST))
-                else:
-                    mailer.setTitle(self.utranslate(
-                            msgid='pfg_mailer_title',
-                            domain='ploneformgen',
-                            default='Mailer'))
-                    mailer.setDescription(self.utranslate(
-                            msgid='pfg_mailer_description',
-                            domain='ploneformgen',
-                            default='E-Mails From Input'))
+                mailer.setTitle(zope.i18n.translate(_(u'pfg_mailer_title', u'Mailer'), context=self.REQUEST))
+                mailer.setDescription(zope.i18n.translate(_(u'pfg_mailer_description', u'E-Mails Form Input'), context=self.REQUEST))
 
                 self._pfFixup(mailer)
 
@@ -739,13 +703,7 @@ class FormFolder(ATFolder):
             obj = self['replyto']
             obj.fgField.__name__ = 'replyto'
 
-            if HAS_PLONE25:
-                obj.setTitle(zope.i18n.translate(_(u'pfg_replytofield_title', u'Your E-Mail Address'), context=self.REQUEST))
-            else:
-                obj.setTitle(self.translate(
-                                  msgid='pfg_replytofield_title',
-                                  domain='ploneformgen',
-                                  default='Your E-Mail Address'))
+            obj.setTitle(zope.i18n.translate(_(u'pfg_replytofield_title', u'Your E-Mail Address'), context=self.REQUEST))
 
             obj.fgField.required = True
             obj.setFgStringValidator('isEmail')
@@ -763,13 +721,7 @@ class FormFolder(ATFolder):
             obj = self['topic']
             obj.fgField.__name__ = 'topic'
 
-            if HAS_PLONE25:
-                obj.setTitle(zope.i18n.translate(_(u'pfg_topicfield_title', u'Subject'), context=self.REQUEST))
-            else:
-                obj.setTitle(self.translate(
-                                  msgid='pfg_topicfield_title',
-                                  domain='ploneformgen',
-                                  default='Subject'))
+            obj.setTitle(zope.i18n.translate(_(u'pfg_topicfield_title', u'Subject'), context=self.REQUEST))
 
             obj.fgField.required = True
 
@@ -784,13 +736,7 @@ class FormFolder(ATFolder):
             obj = self['comments']
             obj.fgField.__name__ = 'comments'
 
-            if HAS_PLONE25:
-                obj.setTitle(zope.i18n.translate(_(u'pfg_commentsfield_title', u'Comments'), context=self.REQUEST))
-            else:
-                obj.setTitle(self.translate(
-                                msgid='pfg_commentsfield_title',
-                                domain='ploneformgen',
-                                default='Comments'))
+            obj.setTitle(zope.i18n.translate(_(u'pfg_commentsfield_title', u'Comments'), context=self.REQUEST))
 
             obj.fgField.required = True
 
@@ -802,18 +748,8 @@ class FormFolder(ATFolder):
             self.invokeFactory('FormThanksPage','thank-you')
             obj = self['thank-you']
 
-            if HAS_PLONE25:
-                obj.setTitle(zope.i18n.translate(_(u'pfg_thankyou_title', u'Thank You'), context=self.REQUEST))
-                obj.setDescription(zope.i18n.translate(_(u'pfg_thankyou_description', u'Thanks for your input.'), context=self.REQUEST))
-            else:
-                obj.setTitle(self.translate(
-                                    msgid='pfg_thankyou_title',
-                                    domain='ploneformgen',
-                                    default='Thank You'))
-                obj.setDescription(self.translate(
-                                    msgid='pfg_thankyou_description',
-                                    domain='ploneformgen',
-                                    default='Thanks for your input.'))
+            obj.setTitle(zope.i18n.translate(_(u'pfg_thankyou_title', u'Thank You'), context=self.REQUEST))
+            obj.setDescription(zope.i18n.translate(_(u'pfg_thankyou_description', u'Thanks for your input.'), context=self.REQUEST))
 
             self._pfFixup(obj)
 

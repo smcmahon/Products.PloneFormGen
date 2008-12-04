@@ -53,21 +53,16 @@ from types import StringTypes, StringType, UnicodeType
 from DateTime import DateTime
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25, HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30
 
 try:
     # 3.0+
     from zope.contenttype import guess_content_type
 except ImportError:
-    try:
-        # 2.5
-        from zope.app.content_types import guess_content_type
-    except ImportError:
-        # 2.1
-        from OFS.content_types import guess_content_type
+    # 2.5.x
+    from zope.app.content_types import guess_content_type
 
-if HAS_PLONE25:
-  import zope.i18n
+import zope.i18n
 
 
 formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
@@ -467,13 +462,7 @@ class FormMailerAdapter(FormActionAdapter):
 
         FormActionAdapter.initializeArchetype(self, **kwargs)
 
-        if HAS_PLONE25:
-            self.setMsg_subject(zope.i18n.translate(_(u'pfg_formmaileradapter_msg_subject', u'Form Submission'), context=self.REQUEST))
-        else:
-            self.setMsg_subject(self.translate(
-                                  msgid='pfg_formmaileradapter_msg_subject',
-                                  domain='ploneformgen',
-                                  default='Form Submission'))
+        self.setMsg_subject(zope.i18n.translate(_(u'pfg_formmaileradapter_msg_subject', u'Form Submission'), context=self.REQUEST))
 
 
     security.declarePrivate('onSuccess')

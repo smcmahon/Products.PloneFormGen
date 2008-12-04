@@ -43,7 +43,6 @@ from Products.PloneFormGen.content import fieldsBase
 from Products.PloneFormGen.content.likertField import LikertField
 from Products.PloneFormGen.config import PROJECTNAME
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25
 
 from types import StringTypes
 

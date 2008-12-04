@@ -218,10 +218,10 @@ class TestCustomScript(pfgtc.PloneFormGenTestCase):
         TODO: Syntax errors are not returned in validation?
         """
                         
+        # Note: this test logs an error message; it does not indicate test failure
+
         self.createScript()
         
-        print "\n\nNote: this test logs an error message; it does not indicate test failure\n"
-
         adapter = self.ff1.adapter
         # 4. Set script data
         adapter.setScriptBody(syntax_error_script)                

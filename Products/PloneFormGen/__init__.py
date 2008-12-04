@@ -72,7 +72,6 @@ def initialize(context):
 
 
     ModuleSecurityInfo('Products.PloneFormGen').declarePublic('PloneFormGenMessageFactory')
-    ModuleSecurityInfo('Products.PloneFormGen').declarePublic('HAS_PLONE25')
 
 
 # Import "PloneFormGenMessageFactory as _" to create message ids
@@ -87,12 +86,6 @@ else:
     PloneFormGenMessageFactory = MessageFactory('ploneformgen')
 
 # Check for Plone versions
-try:
-    from Products.CMFPlone.migrations import v2_5
-except ImportError:
-    HAS_PLONE25 = False
-else:
-    HAS_PLONE25 = True
 try:
     from Products.CMFPlone.migrations import v3_0
 except ImportError:

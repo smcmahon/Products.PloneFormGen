@@ -143,15 +143,6 @@ def uninstall(self):
 
     # Remove skin directory from skin selections
     removeSkinLayer(self, 'PloneFormGen')
-    # skinstool = getToolByName(self, 'portal_skins')
-    # for skinName in skinstool.getSkinSelections():
-    #     path = skinstool.getSkinPath(skinName)
-    #     path = [i.strip() for i in  path.split(',')]
-    #     for alayer in ('PloneFormGen', 'PloneFormGenPlone3',):
-    #         if alayer in path:
-    #             path.remove(alayer)
-    #     path = ','.join(path)
-    #     skinstool.addSkinSelection(skinName, path)
     print >> out, "Removed PloneFormGen layers from all skin selections"
 
     if HAS_PLONE30:

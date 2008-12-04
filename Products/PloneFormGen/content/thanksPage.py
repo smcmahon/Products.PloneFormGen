@@ -23,10 +23,9 @@ from Products.ATContentTypes.configuration import zconf
 from Products.CMFCore.permissions import View, ModifyPortalContent
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25, HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30
 
-if HAS_PLONE25:
-  import zope.i18n
+import zope.i18n
 
 
 ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
@@ -202,13 +201,7 @@ class FormThanksPage(ATCTContent):
 
         ATCTContent.initializeArchetype(self, **kwargs)
 
-        if HAS_PLONE25:
-            self.setNoSubmitMessage(zope.i18n.translate(_(u'pfg_thankspage_nosubmitmessage', u'<p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>'), context=self.REQUEST))
-        else:
-            self.setNoSubmitMessage(self.translate(
-                                  msgid='pfg_thankspage_nosubmitmessage',
-                                  domain='ploneformgen',
-                                  default='<p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>'))
+        self.setNoSubmitMessage(zope.i18n.translate(_(u'pfg_thankspage_nosubmitmessage', u'<p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>'), context=self.REQUEST))
 
 
     security.declareProtected(View, 'fieldDisplayList')

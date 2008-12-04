@@ -1,5 +1,7 @@
 1.3.0 (beta)
 
+ - Clean out 2.1 compatibility code. Ahhhh! (Steve McMahon)
+
  - Pulling out removeSkinLayer for arg PloneFormGenPlone3, since
    this appears to have not existed and certainly is unnecessary
    currently (Andrew Burkhalter)
