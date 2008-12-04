@@ -22,6 +22,12 @@ class EmbeddedPFGView(BrowserView):
     # optional form action override
     action = None
     
+    def setPrefix(self, prefix):
+        self.prefix = prefix
+        
+    def setAction(self, action):
+        self.action = action
+    
     def __call__(self):
         
         if self.prefix:

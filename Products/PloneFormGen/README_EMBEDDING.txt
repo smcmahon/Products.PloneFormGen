@@ -18,7 +18,7 @@ If you are including the form on a page that features another form, you'll proba
 need to set a prefix on the 'embedded' view to disambiguate submissions::
 
     <tal:block tal:define="form nocall:path/to/form/@@embedded;
-                       dummy python:form.prefix = 'mypfg'"
+                       dummy python:form.setPrefix('mypfg')"
            tal:replace="form"/>
 
 Or if you are using a view class, you could define a method like::

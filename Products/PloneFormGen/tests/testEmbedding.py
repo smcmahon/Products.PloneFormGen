@@ -49,7 +49,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.failUnless('name="form.submitted"' in res)
         
         # we can specify a form prefix
-        view.prefix = 'mypfg'
+        view.setPrefix('mypfg')
         res = view()
         self.failUnless('name="mypfg.form.submitted"' in res)
 
@@ -61,7 +61,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
 
         # render the form
         view = self.ff1.restrictedTraverse('@@embedded')
-        view.prefix = 'mypfg'
+        view.setPrefix('mypfg')
         res = view()
 
         # should stay on same page on errors, and show messages
@@ -79,7 +79,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
 
         # render the form
         view = self.ff1.restrictedTraverse('@@embedded')
-        view.prefix = 'mypfg'
+        view.setPrefix('mypfg')
         res = view()
 
         # should be no validation errors
@@ -92,7 +92,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.assertEqual(self.app.REQUEST.get('controller_state'), 'foobar')
         
         # but if we remove the form prefix then it should process the form
-        view.prefix = ''
+        view.setPrefix('')
         res = view()
         self.failUnless('This field is required.' in res)
 
