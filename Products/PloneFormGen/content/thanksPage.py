@@ -68,7 +68,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         widget=BooleanWidget(
             label="Include Empties",
             description="""
-                Check this to display fields titles
+                Check this to display field titles
                 for fields that received no input. Uncheck
                 to leave fields with no input off the list.
                 """,

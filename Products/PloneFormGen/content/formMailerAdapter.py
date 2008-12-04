@@ -254,6 +254,57 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
             i18n_domain = "ploneformgen",
             ),
         ),
+    BooleanField('showAll',
+        required=0,
+        searchable=0,
+        schemata='message',
+        default='1',
+        widget=BooleanWidget(
+            label="Include All Fields",
+            description="""
+                Check this to include input for all fields
+                (except label and file fields). If you check
+                this, the choices in the pick box below
+                will be ignored.
+                """,
+            label_msgid = "label_mailallfields_text",
+            description_msgid = "help_mailallfields_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
+    LinesField('showFields',
+        required=0,
+        searchable=0,
+        schemata='message',
+        vocabulary='allFieldDisplayList',
+        widget=PicklistWidget(
+            label="Show Responses",
+            description="""
+                Pick the fields whose inputs you'd like to include in
+                the e-mail.
+                """,
+            label_msgid = "label_mailfields_text",
+            description_msgid = "help_mailfields_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
+    BooleanField('includeEmpties',
+        required=0,
+        searchable=0,
+        schemata='message',
+        default='1',
+        widget=BooleanWidget(
+            label="Include Empties",
+            description="""
+                Check this to include titles
+                for fields that received no input. Uncheck
+                to leave fields with no input out of the e-mail.
+                """,
+            label_msgid = "label_mailEmpties_text",
+            description_msgid = "help_mailEmpties_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
     ZPTField('body_pt',
         schemata='template',
         write_permission=EDIT_TALES_PERMISSION,
@@ -629,14 +680,23 @@ class FormMailerAdapter(FormActionAdapter):
         else:
             request = self.REQUEST
 
-        live_fields = [f for f in fields
-          if not (f.isLabel() or f.isFileField())]
+        all_fields = [f for f in fields
+            if not (f.isLabel() or f.isFileField())]
+
+        # which fields should we show?
+        if self.showAll:
+            live_fields = all_fields 
+        else:
+            live_fields = \
+                [f for f in all_fields
+                   if f.fgField.getName() in self.showFields]
+
         bare_fields = [f.fgField for f in live_fields]
         bodyfield = self.getField('body_pt')
+        
         # pass both the bare_fields (fgFields only) and full fields.
         # bare_fields for compatability with older templates,
         # full fields to enable access to htmlValue
-
         body = bodyfield.get(self, fields=bare_fields, wrappedFields=live_fields,**kwargs)
 
         if isinstance(body, unicode):
@@ -651,6 +711,7 @@ class FormMailerAdapter(FormActionAdapter):
                 body = bodygpg
 
         return body
+
 
     security.declarePrivate('secure_header_line')
     def secure_header_line(self, line):
@@ -692,11 +753,6 @@ class FormMailerAdapter(FormActionAdapter):
         Keyword arguments:
         request -- (optional) alternate request object to use
         """
-
-#        if kwargs.has_key('request'):
-#            request = kwargs['request']
-#        else:
-#            request = self.REQUEST
 
         body = self.get_mail_body(fields, **kwargs)
 
@@ -813,6 +869,13 @@ class FormMailerAdapter(FormActionAdapter):
         return site_props.default_charset or 'UTF-8'
 
 
+    security.declareProtected(View, 'allFieldDisplayList')
+    def allFieldDisplayList(self):
+        """ returns a DisplayList of all fields """
+
+        return self.fgFieldsDisplayList()
+
+
     def fieldsDisplayList(self):
         """ returns display list of fields with simple values """
 
@@ -837,6 +900,19 @@ class FormMailerAdapter(FormActionAdapter):
                 'FormMultiSelectionField',
                 )
             )
+
+
+    security.declareProtected(ModifyPortalContent, 'setShowFields')
+    def setShowFields(self, value, **kw):
+        """ Reorder form input to match field order """
+        # This wouldn't be desirable if the PickWidget
+        # retained order.
+
+        self.showFields = []
+        for field in self.fgFields():
+            id = field.getName()
+            if id in value:
+                self.showFields.append(id)
 
 
 registerATCT(FormMailerAdapter, PROJECTNAME)
