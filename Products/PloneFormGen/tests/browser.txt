@@ -1,0 +1,117 @@
+Integration tests
+=================
+
+Set up a test browser and log in as a manager::
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> portal_url = 'http://nohost/plone'
+    >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+    >>> browser.addHeader('Authorization', 'Basic root:secret')
+
+Standalone form
+---------------
+
+Add a new Form Folder::
+
+    >>> browser.open(portal_url)
+    >>> browser.getLink('Form Folder').click()
+    >>> browser.getControl('Title').value = 'testform'
+    >>> browser.getControl('Save').click()
+    
+And confirm that it renders properly::
+    
+    >>> browser.url
+    'http://nohost/plone/testform/view'
+    >>> print browser.contents
+    <BLANKLINE>
+    ...
+    <h1 class="documentFirstHeading">testform</h1>
+     <div class="pfg-form formid-testform">
+      <form name="edit_form" method="post"
+            enctype="multipart/form-data"
+            class="enableUnloadProtection enableAutoFocus"
+            action="http://nohost/plone/testform"
+            id="fg-base-edit">
+        <div class="field ArchetypesStringWidget "
+             id="archetypes-fieldname-replyto">
+          <span></span>
+          <label class="formQuestion" for="replyto">Your E-Mail Address</label>
+          <span class="fieldRequired" title="Required">
+            (Required)
+          </span>
+          <div class="formHelp" id="replyto_help"></div>
+          <div class="fieldErrorBox"></div>
+          <input type="text" name="replyto"
+                 class="blurrable firstToFocus" id="replyto"
+                 size="30" maxlength="255" />
+        </div>
+        <div class="field ArchetypesStringWidget "
+             id="archetypes-fieldname-topic">
+          <span></span>
+          <label class="formQuestion" for="topic">Subject</label>
+          <span class="fieldRequired" title="Required">
+            (Required)
+          </span>
+          <div class="formHelp" id="topic_help"></div>
+          <div class="fieldErrorBox"></div>
+          <input type="text" name="topic"
+                 class="blurrable firstToFocus" id="topic"
+                 size="30" maxlength="255" />
+        </div>
+        <div class="field ArchetypesTextAreaWidget "
+             id="archetypes-fieldname-comments">
+          <span></span>
+          <label class="formQuestion" for="comments">Comments</label>
+          <span class="fieldRequired" title="Required">
+            (Required)
+          </span>
+          <div class="formHelp" id="comments_help"></div>
+          <div class="fieldErrorBox"></div>
+        <textarea class="blurrable firstToFocus" rows="5"
+                  name="comments" cols="40" id="comments"></textarea>
+        </div>
+          <div class="formControls">
+            <input type="hidden" name="fieldset"
+                   value="default" />
+            <input type="hidden" name="form.submitted"
+                   value="1" />
+            <input type="hidden" name="add_reference.field:record" value="" />
+            <input type="hidden" name="add_reference.type:record" value="" />
+            <input type="hidden" name="add_reference.destination:record" value="" />
+            <input type="hidden" name="last_referer"
+                   value="localhost" />
+                <input class="context" type="submit"
+                       name="form_submit" value="Submit" />
+          </div>
+      </form>
+    </div>
+    ...
+
+Submit the form.  An incomplete submission should give validation errors::
+
+    >>> self.portal.testform.mailer.setRecipient_email('mdummy@address.com')
+    >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
+    >>> browser.getControl('Subject').value = 'test'
+    >>> browser.getControl('Submit').click()
+    >>> browser.url
+    'http://nohost/plone/testform'
+    >>> 'Please correct the indicated errors.' in browser.contents
+    True
+
+Now let's try a complete submission and confirm that it displays the default
+thank you page.  The default form has a mailer, so we'll programmatically set
+a recipient so that it doesn't complain.  (The mailer is mocked in the doctest
+base class)::
+
+    >>> self.portal.testform.mailer.setRecipient_email('mdummy@address.com')
+    >>> browser.getControl('Comments').value = 'PFG rocks!'
+    >>> browser.getControl('Submit').click()
+    <sent mail from  to ['mdummy@address.com']>
+    >>> browser.url
+    'http://nohost/plone/testform'
+    >>> 'Thanks for your input.' in browser.contents
+    True
+
+Embedded form
+-------------

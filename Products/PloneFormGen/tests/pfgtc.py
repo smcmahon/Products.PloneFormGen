@@ -32,13 +32,26 @@ ZopeTestCase.installProduct('PloneFormGen')
 PRODUCTS = ['PloneFormGen']
 PloneTestCase.setupPloneSite(products=PRODUCTS)
 
+class Session(dict):
+    def set(self, key, value):
+        self[key] = value
+
+from Products.SecureMailHost.SecureMailHost import SecureMailHost
+class MailHostMock(SecureMailHost):
+    def _send(self, mfrom, mto, messageText):
+        print '<sent mail from %s to %s>' % (mfrom, mto)
 
 class PloneFormGenTestCase(PloneTestCase.PloneTestCase):
-
-    class Session(dict):
-        def set(self, key, value):
-            self[key] = value
-
     def _setup(self):
         PloneTestCase.PloneTestCase._setup(self)
-        self.app.REQUEST['SESSION'] = self.Session()
+        self.app.REQUEST['SESSION'] = Session()
+
+class PloneFormGenFunctionalTestCase(PloneTestCase.FunctionalTestCase):
+
+    def _setup(self):
+        PloneTestCase.FunctionalTestCase._setup(self)
+        self.app.REQUEST['SESSION'] = Session()
+        
+    def afterSetUp(self):
+        super(PloneTestCase.FunctionalTestCase, self).afterSetUp()
+        self.portal.MailHost = MailHostMock()
