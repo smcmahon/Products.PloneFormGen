@@ -2,7 +2,7 @@
 <div class="pfg-embedded">
     <tal:block metal:use-macro="context/global_statusmessage/macros/portal_message"/>
     <tal:block
-        tal:define="pfg_embedded_action request/URL;
+        tal:define="pfg_embedded_action request/form/pfg_form_action|request/URL;
                     errors options/state/getErrors | nothing;
                     fieldsets python:['default'];
                     default_fieldset string:default;
