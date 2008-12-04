@@ -104,7 +104,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         default='#NONE#',
         write_permission=EDIT_ADVANCED_PERMISSION,
         read_permission=ModifyPortalContent,
-        vocabulary='selectFieldsDisplayList',
+        vocabulary='fieldsDisplayList',
         widget=SelectionWidget(
             label = 'Extract Recipient From',
             label_msgid = "label_formmailer_to_extract",
@@ -113,9 +113,8 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
                 Choose a form field from which you wish to extract
                 input for the To header. If you choose anything other
                 than "None", this will override the "Recipient's e-mail address"
-                setting above.
-                Only selection fields are eligible for this use because they
-                may be validated against your specified options.
+                setting above. Be very cautious about allowing unguarded user
+                input for this purpose.
                 """,
             description_msgid = "help_formmailer_to_extract",
             i18n_domain = "ploneformgen",
@@ -885,19 +884,6 @@ class FormMailerAdapter(FormActionAdapter):
             objTypes=(
                 'FormSelectionField',
                 'FormStringField',
-                )
-            )
-
-
-    def selectFieldsDisplayList(self):
-        """ returns display list of selection fields """
-
-        return self.fgFieldsDisplayList(
-            withNone=True, 
-            noneValue='#NONE#',
-            objTypes=(
-                'FormSelectionField',
-                'FormMultiSelectionField',
                 )
             )
 

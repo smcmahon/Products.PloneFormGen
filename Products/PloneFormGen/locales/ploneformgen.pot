@@ -587,9 +587,8 @@ msgstr ""
 #. Default: Choose a form field from which you wish to extract
 #. Default: input for the To header. If you choose anything other
 #. Default: than "None", this will override the "Recipient's e-mail address"
-#. Default: setting above.
-#. Default: Only selection fields are eligible for this use because they
-#. Default: may be validated against your specified options.
+#. Default: setting above. Be very cautious about allowing unguarded user
+#. Default: input for this purpose.
 #. Default: "
 msgid "help_formmailer_to_extract"
 msgstr ""
