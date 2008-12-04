@@ -6,7 +6,7 @@ PloneFormGen forms may be rendered from other templates, viewlets, and portlets.
 *Note*: This feature requires Plone 2.5 or greater.
 
 *Caveat*: This feature should be considered beta quality.  I've written code that
-takes advantage of it, and you should be afraid of it, but take care to test
+takes advantage of it, and you shouldn't be afraid of it, but take care to test
 thoroughly.  There may be certain types of contexts for rendering the form with
 implications that I haven't taken into consideration.
 
