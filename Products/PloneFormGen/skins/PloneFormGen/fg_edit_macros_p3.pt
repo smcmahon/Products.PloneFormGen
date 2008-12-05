@@ -88,32 +88,17 @@
           <metal:block define-slot="extra_top" />
 
           <metal:block define-slot="widgets">
-            <tal:tabbed tal:condition="allow_tabbing | nothing">
-              <fieldset tal:repeat="fieldset fieldsets"
-                        tal:attributes="id string:fieldset-${fieldset}">
-                <legend id=""
-                        tal:content="python: view.getTranslatedSchemaLabel(fieldset)"
-                        tal:attributes="id string:fieldsetlegend-${fieldset}" />
-                <tal:fields repeat="field fields">
-			        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-                        <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-			        </tal:block>
-			        <tal:block tal:condition="python:field.widget.macro == 'widget_richlabel'">
-			            <span tal:replace="structure python:request.form.get(field.getName(), field.default)"/>
-			        </tal:block>
-                </tal:fields>
-              </fieldset>
-            </tal:tabbed>
-            <tal:nottabbed tal:condition="not: allow_tabbing | nothing">
-                <tal:fields repeat="field fields">
-			        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-                        <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-			        </tal:block>
-			        <tal:block tal:condition="python:field.widget.macro == 'widget_richlabel'">
-			            <span tal:replace="structure python:request.form.get(field.getName(), field.default)"/>
-			        </tal:block>
-                </tal:fields>
-            </tal:nottabbed>
+            <tal:fields repeat="field fields">
+    	        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+                <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+    	        </tal:block>
+    	        <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
+    	             tal:attributes="id string:archetypes-fieldname-${field/getName}"
+                   class="field PFG-RichLabel"
+                   tal:content="structure python:request.form.get(field.getName(), field.default)">
+    	            Rich Label
+    	        </div>
+            </tal:fields>
           </metal:block>
 
           <metal:block define-slot="extra_bottom" />

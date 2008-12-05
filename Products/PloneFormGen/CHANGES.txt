@@ -1,5 +1,8 @@
 1.3.0 (beta)
 
+ - Wrap rendered rich label fields in div with selectors similar to
+   other Archetypes widgets. (Steve McMahon)
+
  - The default view of all form fields is now base_edit. There's a
    UI problem left that the "view" tab is selected on initial jump
    into the field even though you're seeing the edit view.
