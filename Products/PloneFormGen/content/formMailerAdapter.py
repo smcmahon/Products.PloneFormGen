@@ -287,23 +287,23 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
             i18n_domain = "ploneformgen",
             ),
         ),
-    # BooleanField('includeEmpties',
-    #     required=0,
-    #     searchable=0,
-    #     schemata='message',
-    #     default='1',
-    #     widget=BooleanWidget(
-    #         label="Include Empties",
-    #         description="""
-    #             Check this to include titles
-    #             for fields that received no input. Uncheck
-    #             to leave fields with no input out of the e-mail.
-    #             """,
-    #         label_msgid = "label_mailEmpties_text",
-    #         description_msgid = "help_mailEmpties_text",
-    #         i18n_domain = "ploneformgen",
-    #         ),
-    #     ),
+    BooleanField('includeEmpties',
+        required=0,
+        searchable=0,
+        schemata='message',
+        default='1',
+        widget=BooleanWidget(
+            label="Include Empties",
+            description="""
+                Check this to include titles
+                for fields that received no input. Uncheck
+                to leave fields with no input out of the e-mail.
+                """,
+            label_msgid = "label_mailEmpties_text",
+            description_msgid = "help_mailEmpties_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
     ZPTField('body_pt',
         schemata='template',
         write_permission=EDIT_TALES_PERMISSION,
@@ -689,6 +689,10 @@ class FormMailerAdapter(FormActionAdapter):
             live_fields = \
                 [f for f in all_fields
                    if f.fgField.getName() in self.showFields]
+        if not self.includeEmpties:
+            live_fields = [f for f in live_fields 
+                             if f.fgField.value and 
+                                f.fgField.value != 'No Input']
 
         bare_fields = [f.fgField for f in live_fields]
         bodyfield = self.getField('body_pt')
