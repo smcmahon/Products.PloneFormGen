@@ -25,22 +25,17 @@ class LinkSpamValidator:
         obj = kwargs.get('instance')
         if not obj:
             return 1
-        vfield = obj.Schema().get('validateNoLinkSpam')
-        if vfield is None:
-            return 1
-        validate = vfield.getAccessor(kwargs.get('instance'))()
-        if not validate:
-            return 1
-        bad_signs = ("<a ",
-                     "www.",
-                     "http:",
-                     ".com",
-                     )
-        value = value.lower()
-        for s in bad_signs:
-            if s in value:
-                return ("Validation failed(%(name)s): links are not allowed." %
-                        { 'name' : self.name, })
+        if hasattr(obj,'getValidateNoLinkSpam') and obj.getValidateNoLinkSpam():
+            bad_signs = ("<a ",
+                         "www.",
+                         "http:",
+                         ".com",
+                         )
+            value = value.lower()
+            for s in bad_signs:
+                if s in value:
+                    return ("Validation failed(%(name)s): links are not allowed." %
+                            { 'name' : self.name, })
         return 1
 
 validation.register(LinkSpamValidator('isNotLinkSpam'))
