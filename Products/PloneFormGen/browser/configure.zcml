@@ -2,11 +2,11 @@
     xmlns:zope="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser">
   
-	<browser:page
-		name="embedded"
-	    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
-	    class=".embedded.EmbeddedPFGView"
-	    permission="zope2.View"
-	    />
-	    
+  <browser:page
+      name="embedded"
+      for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+      class=".embedded.EmbeddedPFGView"
+      permission="zope2.View"
+      />
+  
 </configure>
