@@ -689,11 +689,15 @@ class FormMailerAdapter(FormActionAdapter):
             live_fields = \
                 [f for f in all_fields
                    if f.fgField.getName() in self.showFields]
-        if not self.includeEmpties:
-            live_fields = [f for f in live_fields 
-                             if f.fgField.value and 
-                                f.fgField.value != 'No Input']
 
+        if not self.includeEmpties:
+            all_fields = live_fields
+            live_fields = []
+            for f in all_fields:
+                value = f.htmlValue(request)
+                if value and value != 'No Input':
+                    live_fields.append(f)
+                
         bare_fields = [f.fgField for f in live_fields]
         bodyfield = self.getField('body_pt')
         

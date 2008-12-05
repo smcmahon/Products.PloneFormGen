@@ -235,11 +235,11 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         mailer.includeEmpties = False
         
         # first see if everything's still included
-        mailer.showAll = False
+        mailer.showAll = True
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
         messageText = self.messageText.split('\n\n')[-1].decode('base64')
-        print messageText
+        # look for labels
         self.failUnless(
             messageText.find('Subject') > 0 and
             messageText.find('Your E-Mail Address') > 0 and
@@ -247,12 +247,11 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
           )
 
         # now, turn off required for a field and leave it empty
-        self.ff1.comments.required = False
+        self.ff1.comments.setRequired(False)
         request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org',)
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
         messageText = self.messageText.split('\n\n')[-1].decode('base64')
-        print messageText
         self.failUnless(
             messageText.find('Subject') > 0 and
             messageText.find('Your E-Mail Address') > 0 and

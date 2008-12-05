@@ -1340,3 +1340,39 @@ msgstr ""
 #. Default 'An answer is required for each question.'
 msgid "pfg_allRequired"
 msgstr ""
+
+#. Mailer
+#. Default "Include All Fields"
+msgid "label_mailallfields_text"
+msgstr ""
+
+#. Mailer
+#. Default Check this to include input for all fields
+#. Default (except label and file fields). If you check
+#. Default this, the choices in the pick box below
+#. Default will be ignored.
+msgid "help_mailallfields_text"
+msgstr ""
+
+#. Mailer
+#. Default "Show Responses"
+msgid "label_mailfields_text"
+msgstr ""
+
+#. Mailer
+#. Default Pick the fields whose inputs you'd like to include in
+#. Default the e-mail.
+msgid "help_mailfields_text"
+msgstr ""
+
+#. Mailer
+#. Default "Include Empties"
+msgid "label_mailEmpties_text"
+msgstr ""
+
+#. Mailer
+#. Default Check this to include titles
+#. Default for fields that received no input. Uncheck
+#. Default to leave fields with no input out of the e-mail.
+msgid "help_mailEmpties_text"
+msgstr ""
