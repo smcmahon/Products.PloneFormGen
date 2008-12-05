@@ -1,5 +1,10 @@
 1.3.0 (beta)
 
+ - The default view of all form fields is now base_edit. There's a
+   UI problem left that the "view" tab is selected on initial jump
+   into the field even though you're seeing the edit view.
+   (Steve McMahon)
+
  - Link spam prevention is now an option for string and text fields.
    (Jon Baldivieso)
 
