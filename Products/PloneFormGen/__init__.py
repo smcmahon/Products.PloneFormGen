@@ -28,7 +28,7 @@ from Products.PloneFormGen.config import PROJECTNAME, \
 
 registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 
-def initialize(context):    
+def initialize(context):
 
     import content, validators, tools, widgets
 
@@ -72,7 +72,6 @@ def initialize(context):
 
 
     ModuleSecurityInfo('Products.PloneFormGen').declarePublic('PloneFormGenMessageFactory')
-    ModuleSecurityInfo('Products.PloneFormGen').declarePublic('HAS_PLONE25')
 
 
 # Import "PloneFormGenMessageFactory as _" to create message ids
@@ -88,15 +87,12 @@ else:
 
 # Check for Plone versions
 try:
-    from Products.CMFPlone.migrations import v2_5
-except ImportError:
-    HAS_PLONE25 = False
-else:
-    HAS_PLONE25 = True
-try:
     from Products.CMFPlone.migrations import v3_0
 except ImportError:
     HAS_PLONE30 = False
 else:
     HAS_PLONE30 = True
 
+if not HAS_PLONE30:
+    from monkey import installExceptionHook
+    installExceptionHook()

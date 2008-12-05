@@ -2,376 +2,47 @@
 # Sebastien Douche <sdouche@gmail.com>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: PloneFormGen 0.2\n"
+"Project-Id-Version: PloneFormGen 1.2.0\n"
 "POT-Creation-Date: 2006-09-04 22:26+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: Luís Miguel Braga <lmb@eurotux.com>\n"
-"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"PO-Creation-Date: 2008-01-14 22:26+0200\n"
+"PO-Revision-Date: 2008-01-14 15:21-0000\n"
+"Last-Translator: Nuno Cruz <nuno.cruz@inst-informatica.pt>\n"
+"Language-Team: Nuno Cruz <nuno.cruz@inst-informatica.pt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: pt-PT\n"
-"Language-Name: Português\n"
+"Language-Code: pt\n"
+"Language-Name: Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
-"PO-Creation-Date: 2008-03-18 00:00-0000\n"
-
-#. Default: " A form action adapter that will e-mail form input. "
-#: content/formMailerAdapter.py
-msgid " A form action adapter that will e-mail form input. "
-msgstr "Acção de formulário que envia um e-mail com os dados inseridos."
-
-#. Default: " A line entry field. This appears as a textarea without wordwrap. "
-#: content/fields.py
-msgid " A line entry field. This appears as a textarea without wordwrap. "
-msgstr "Um campo de texto. É exibido como uma caixa de texto sem quebra de linha."
-
-#. Default: " A string entry field "
-#: content/fields.py
-msgid " A string entry field "
-msgstr "Campo do tipo string"
-
-#. Default: " Boolean (checkbox) field "
-#: content/fields.py
-msgid " Boolean (checkbox) field "
-msgstr "Campo booleano (checkbox)"
-
-#. Default: " Date/Time Entry Field "
-#: content/fields.py
-msgid " Date/Time Entry Field "
-msgstr "Campo de Data/Hora"
-
-#. Default: " File (upload) field "
-#: content/fields.py
-msgid " File (upload) field "
-msgstr "Campo de upload de ficheiro"
-
-#. Default: " Fixed-Point (float) entry field "
-#: content/fields.py
-msgid " Fixed-Point (float) entry field "
-msgstr "Campo de número (ponto fixo)"
-
-#. Default: " A integer entry field "
-#: content/fields.py
-msgid " Integer entry field "
-msgstr "Campo de número (inteiro)"
-
-#. Default: " Label-Only field (no input component) "
-#: content/fields.py
-msgid " Label-Only field (no input component) "
-msgstr "Um campo etiqueta (sem entrada de dados)"
-
-#. Default: " Multiple selection field (select with multiple or check boxes) "
-#: content/fields.py
-msgid " Multiple selection field (select with multiple or check boxes) "
-msgstr "Campo de seleção múltipla (Select múltiplo ou checkboxes)"
-
-#. Default: " Password entry field (input is masked) "
-#: content/fields.py
-msgid " Password entry field (input is masked) "
-msgstr "Campo de senha (entrada de dados é ocultada)"
-
-#. Default: " Rich-text (visual editor) field "
-#: content/fields.py
-msgid " Rich-text (visual editor) field "
-msgstr "Campo de texto rico (editor visual)"
-
-#. Default: " Selection Field (radio buttons or select) "
-#: content/fields.py
-msgid " Selection Field (radio buttons or select) "
-msgstr "Campo seleção (select ou radio buttons)"
-
-#. Default: " Text (textarea) field "
-#: content/fields.py
-msgid " Text (textarea) field "
-msgstr "Campo do texto (textarea)"
-
-#. Default: "A CheckBox (Boolean) field"
-#: content/fields.py
-msgid "A CheckBox (Boolean) field"
-msgstr "Campo booleano (checkbox)"
-
-#. Default: "A Label (No Input) field"
-#: content/fields.py
-msgid "A Label (No Input) field"
-msgstr "Um campo etiqueta (sem entrada de dados)"
-
-#. Default: "A date/time field. Time component is optional."
-#: content/fields.py
-msgid "A date/time field. Time component is optional."
-msgstr "Um campo de data/hora. A hora é opcional."
-
-#. Default: "A file field"
-#: content/fields.py
-msgid "A file field"
-msgstr "Um campo de inserção de ficheiro"
-
-#. Default: "A fixed-point (float) field"
-#: content/fields.py
-msgid "A fixed-point (float) field"
-msgstr "Campo de número (ponto fixo)"
-
-#. Default: "A folder which can contain form fields."
-#: content/form.py
-msgid "A folder which can contain form fields."
-msgstr "Uma pasta de formulário que pode conter campos."
-
-#. Default: "A folder which creates a form view from contained form fields."
-#: content/form.py
-msgid "A folder which creates a form view from contained form fields."
-msgstr "Uma pasta que cria uma visão dos campos incluídos nela."
-
-#. Default: "A folder which groups form fields as a fieldset."
-#: content/fieldset.py
-msgid "A folder which groups form fields as a fieldset."
-msgstr "Uma pasta que agrups campos de formulário em conjuntos."
-
-#. Default: "A form action adapter that will save form input data in tab-delimited format."
-#: content/saveDataAdapter.py
-msgid "A form action adapter that will save form input data in tab-delimited format."
-msgstr "Uma acção de formulário que armazena os dados preenchidos em um arquivo separado por tabs."
-
-#. Default: "A integer field"
-#: content/fields.py
-msgid "A integer field"
-msgstr "Campo de número (inteiro)"
-
-#. Default: "A lines field. This appears as a textarea without wordwrap."
-#: content/fields.py
-msgid "A lines field. This appears as a textarea without wordwrap."
-msgstr "Um campo de texto. É exibido como uma area de texto sem quebra de linha."
-
-#. Default: "A multiple-selection field"
-#: content/fields.py
-msgid "A multiple-selection field"
-msgstr "Campo de selecção múltipla"
-
-#. Default: "A password field (input masked)"
-#: content/fields.py
-msgid "A password field (input masked)"
-msgstr "Campo de senha (entrada de dados é ocultada)"
-
-#. Default: "A rich text area field"
-#: content/fields.py
-msgid "A rich text area field"
-msgstr "Campo de texto rico"
-
-#. Default: "A selection field"
-#: content/fields.py
-msgid "A selection field"
-msgstr "Campo de selecção"
-
-#. Default: " A string field "
-#: content/fields.py
-msgid "A string field"
-msgstr "Campo do tipo string"
-
-#. Default: "A text area field"
-#: content/fields.py
-msgid "A text area field"
-msgstr "Campo de texto"
-
-#. Default: "A thank-you page that can display form input"
-#: content/thanksPage.py
-msgid "A thank-you page that can display form input"
-msgstr "Uma página de agradecimento que pode exibir os dados inseridos pelo usuário."
-
-#. Default: "A thank-you page that can display form input."
-#: content/thanksPage.py
-msgid "A thank-you page that can display form input."
-msgstr "Uma página de agradecimento que pode exibir os dados inseridos pelo usuário."
-
-#. Default: "An adapter that supplies a form action."
-#: content/actionAdapter.py
-#: content/actionAdapter.py
-msgid "An adapter that supplies a form action."
-msgstr "Um adaptador que disponibiliza uma acção para o formulário."
-
-#. Default: "Boolean Field"
-#: content/fields.py
-msgid "Boolean Field"
-msgstr "Campo booleano"
-
-#. Default: "Custom Script Adapter"
-#: content/customScriptAdapter.py
-msgid "Custom Script Adapter"
-msgstr ""
-
-#. Default: "Date/Time Field"
-#: content/fields.py
-msgid "Date/Time Field"
-msgstr "Campo de Data/Hora"
-
-#. Default: "Executes a Python script for form data."
-#: content/customScriptAdapter.py
-msgid "Executes a Python script for form data."
-msgstr "Executa uma script Python para os dados do formulário."
-
-#. Default: "Fieldset Folder"
-#: content/fieldset.py
-msgid "Fieldset Folder"
-msgstr "Pasta de conjuntos de campos"
-
-#. Default: "File Field"
-#: content/fields.py
-msgid "File Field"
-msgstr "Campo de ficheiro"
-
-#. Default: "Fixed-Point Field"
-#: content/fields.py
-msgid "Fixed-Point Field"
-msgstr "Campo de número (ponto fixo)"
-
-#. Default: "Form Folder"
-#: content/form.py
-msgid "Form Folder"
-msgstr "Pasta de Formulário"
-
-#. Default: "Integer Field"
-#: content/fields.py
-msgid "Integer Field"
-msgstr "Campo de número (inteiro)"
-
-#. Default: "Label Field"
-#: content/fields.py
-msgid "Label Field"
-msgstr "Campo do tipo etiqueta"
-
-#. Default: "Lines Field"
-#: content/fields.py
-msgid "Lines Field"
-msgstr "Campo linhas"
-
-#. Default: "Mailer Adapter"
-#: content/formMailerAdapter.py
-msgid "Mailer Adapter"
-msgstr "Adaptador para e-mail"
-
-#. Default: "Multi-Select Field"
-#: content/fields.py
-msgid "Multi-Select Field"
-msgstr "Campo de selecção múltipla"
-
-#. Default: "No proxy role"
-#: content/customScriptAdapter
-msgid "No proxy role"
-msgstr ""
-
-#. Default: "Password Field"
-#: content/fields.py
-msgid "Password Field"
-msgstr "Campo de senha"
-
-#. Default: "RichText Field"
-#: content/fields.py
-msgid "RichText Field"
-msgstr "Campo de texto rico"
-
-#. Default: "Save Data Adapter"
-#: content/saveDataAdapter.py
-msgid "Save Data Adapter"
-msgstr "Adaptador de armazenamento de dados"
-
-#. Default: "Selection Field"
-#: content/fields.py
-msgid "Selection Field"
-msgstr "Campo de seleção"
-
-#. Default: "String Field"
-#: content/fields.py
-msgid "String Field"
-msgstr "Campo de string"
-
-#. Default: "Text Field"
-#: content/fields.py
-msgid "Text Field"
-msgstr "Campo de texto"
-
-#. Default: "Thanks Page"
-#: content/thanksPage.py
-msgid "Thanks Page"
-msgstr "Página de agradecimento"
-
-#. Default: "addressing"
-#: content/formMailerAdapter.py
-msgid "addressing"
-msgstr "endereçamento"
-
-#. Default: "decoration"
-#: content/form.py
-msgid "decoration"
-msgstr "decoração"
-
-#. Default: "default"
-#: content/form.py
-#: content/formMailerAdapter.py
-#: content/fields.py
-msgid "default"
-msgstr "padrão"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: PORTUGAL\n"
 
 #. Default: "This item is in use by someone else and cannot be modified"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "description_webdav_locked"
-msgstr "Este item está em uso por outro utilizador e não pode ser modificado"
-
-#. Default: "encryption"
-#: content/formMailerAdapter.py
-msgid "encryption"
-msgstr "encriptação"
-
-#. Default: "headers"
-#: content/formMailerAdapter.py
-msgid "headers"
-msgstr "cabeçalho"
+msgstr "Este item está a ser utilizado por outro utilizador e não pode ser modificado"
 
 #. Default: "Edit ${itemtype}"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "heading_edit_item"
 msgstr "Editar ${itemtype}"
 
-#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
-msgid "help_fgbooleanfalsestring_text"
-msgstr ""
-
-#. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
-msgid "help_fgbooleantruestring_text"
-msgstr ""
-
 #. Default: "Cancel"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "label_cancel"
-msgstr "Cancelar"
-
-#. Default: "False Display String"
-msgid "label_fgbooleanfalsestring_text"
-msgstr ""
-
-#. Default: "True Display String"
-msgid "label_fgbooleantruestring_text"
-msgstr ""
-
-#. String Field
-#. Default: "Field Help"
-#: content/fields.py
-msgid "label_fieldhelp_text"
-msgstr "Ajuda do campo"
-
-#. String Field
-#. Default: "Field Label"
-#: content/fields.py
-msgid "label_fieldlabel_text"
-msgstr "Etiqueta do campo"
+msgstr "Anular"
 
 #. Default: "File type"
 #: skins/PloneFormGen/fg_savedata_view.pt
 msgid "label_file_type"
-msgstr "Tipo de arquivo"
+msgstr "Tipo de Ficheiro"
 
 #. Default: "Next"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "label_next"
-msgstr "Próximo"
+msgstr "Seguinte"
 
 #. Default: "Previous"
 #: skins/PloneFormGen/fg_edit_macros.pt
@@ -383,10 +54,265 @@ msgstr "Anterior"
 msgid "label_size"
 msgstr "Tamanho"
 
-#. Default: "message"
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Pasta de formulário"
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Uma pasta que pode conter campos de formulário."
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr "Uma pasta que cria um formulário com campos."
+
+#. Default: "Mailer Adapter"
 #: content/formMailerAdapter.py
-msgid "message"
-msgstr "mensagem"
+msgid "Mailer Adapter"
+msgstr "Receptor do email"
+
+#. Default: " A form action adapter that will e-mail form input. "
+#: content/formMailerAdapter.py
+msgid " A form action adapter that will e-mail form input. "
+msgstr "Acção de formulário que enviará um e-mail com os dados preenchidos."
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "Um adaptador que fornece uma acção de formulário."
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "Gravar"
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr "Grava os dados introduzidos em formato texto com o separador tabulação."
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "Página de agradecimento"
+
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "Página de agradecimento que pode mostrar os dados do formulário"
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "Página de agradecimento que pode mostrar os dados do formulário."
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "Campo Booleano"
+
+#. Default: " Boolean (checkbox) field "
+#: content/fields.py
+msgid " Boolean (checkbox) field "
+msgstr "Campo de verdadeiro ou falso (escolha de opção)"
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "Um campo de verdadeiro ou falso"
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "Campo de data/hora"
+
+#. Default: " Date/Time Entry Field "
+#: content/fields.py
+msgid " Date/Time Entry Field "
+msgstr "Campo de data/hora"
+
+#. Default: "A date/time field. Time component is optional."
+#: content/fields.py
+msgid "A date/time field. Time component is optional."
+msgstr "Um campo de data/hora. A componente hora é opcional."
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "Campo de ficheiro"
+
+#. Default: " File (upload) field "
+#: content/fields.py
+msgid " File (upload) field "
+msgstr "Campo de formulário que permite o upload de ficheiros"
+
+#. Default: "A file field"
+#: content/fields.py
+msgid "A file field"
+msgstr "Campo de ficheiro"
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "Campo numérico decimal"
+
+#. Default: " Fixed-Point (float) entry field "
+#: content/fields.py
+msgid " Fixed-Point (float) entry field "
+msgstr "Campo de formulário numérico decimal"
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "Um campo numérico decimal"
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "Campo numérico inteiro"
+
+#. Default: " A integer entry field "
+#: content/fields.py
+msgid " Integer entry field "
+msgstr "Campo de formulário numérico inteiro"
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "Um campo numérico inteiro"
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "Campo de rótulo"
+
+#. Default: " Label-Only field (no input component) "
+#: content/fields.py
+msgid " Label-Only field (no input component) "
+msgstr "Campo tipo etiqueta (sem entrada de dados)"
+
+#. Default: "A Label (No Input) field"
+#: content/fields.py
+msgid "A Label (No Input) field"
+msgstr "Um campo tipo etiqueta (sem entrada de dados)"
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "Campo de múltiplas linhas"
+
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#: content/fields.py
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "Um campo de linhas. É exibido como uma área de texto sem quebra de linha."
+
+#. Default: "A lines field. This appears as a textarea without wordwrap."
+#: content/fields.py
+msgid "A lines field. This appears as a textarea without wordwrap."
+msgstr "Campo de linhas. Aparece como uma área de texto sem quebra de palavras."
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "Campo de escolha múltipla"
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr "Campo de escolha múltipla (escolha de várias opcções ou botões de selecção) "
+
+#. Default: "A multiple-selection field"
+#: content/fields.py
+msgid "A multiple-selection field"
+msgstr "Um campo de escolha múltipla"
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "Campo de password"
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr "Campo de formulário de password (entrada de dados é ocultada)"
+
+#. Default: "A password field (input masked)"
+#: content/fields.py
+msgid "A password field (input masked)"
+msgstr "Um campo de password (valor protegido)"
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "Campo de texto com formatação"
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr "Campo de texto com formatação (editor visual)"
+
+#. Default: "A rich text area field"
+#: content/fields.py
+msgid "A rich text area field"
+msgstr "Um campo de área de texto com formatação"
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "Campo de selecção"
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr "Campo de selecção (selecção de um valor a partir de uma lista)"
+
+#. Default: "A selection field"
+#: content/fields.py
+msgid "A selection field"
+msgstr "Um campo de selecção"
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "Campo de texto"
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr "Um campo de texto (apenas uma linha)"
+
+#. Default: " A string field "
+#: content/fields.py
+msgid "A string field"
+msgstr "Um campo de texto"
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "Campo de texto"
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr "Um campo de texto (área de texto)"
+
+#. Default: "A text area field"
+#: content/fields.py
+msgid "A text area field"
+msgstr "Um campo de área de texto"
+
+#. Default: "default"
+#: content/form.py content/formMailerAdapter.py content/fields.py
+msgid "default"
+msgstr "padrão"
+
+#. Default: "decoration"
+#: content/form.py
+msgid "decoration"
+msgstr "formatação"
 
 #. Default: "no-input"
 #: content/fields.py
@@ -394,32 +320,86 @@ msgid "no-input"
 msgstr "sem entrada de dados"
 
 #. Default: "overrides"
-#: content/form.py
-#: content/fields.py
+#: content/form.py content/fields.py
 msgid "overrides"
-msgstr "overrides"
+msgstr "reescrever"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr "endereços"
+
+#. Default: "message"
+#: content/formMailerAdapter.py
+msgid "message"
+msgstr "mensagem"
 
 #. Default: "template"
 #: content/formMailerAdapter.py
 msgid "template"
 msgstr "modelo"
 
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "cabeçalhos"
 
-#. Default: "Submit Button Label"
-msgid "label_submitlabel_text"
-msgstr "Texto do botão de submissão"
+#. Default: "encryption"
+#: content/formMailerAdapter.py
+msgid "encryption"
+msgstr "encriptação"
 
-#. Default: "Show Reset Button"
-msgid "label_showcancel_text"
-msgstr "Mostrar botão de cancelar"
+#. String Field
+#. Default: "Field Help"
+#: content/fields.py
+msgid "label_fieldhelp_text"
+msgstr "Ajuda para o campo"
 
+#. String Field
+#. Default: "Field Label"
+#: content/fields.py
+msgid "label_fieldlabel_text"
+msgstr "Rótulo do campo"
 
-#. Default: "Reset Button Label"
-msgid "label_reset_button"
-msgstr "Texto do botão de cancelar"
+#. Default: "Fieldset Folder"
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr ""
 
-#. Default:  "Submit Button Label"
-msgid "label_submitlabel_text"
-msgstr "Texto do botão de submissão do formulário"
+#. Default: "A folder which groups form fields as a fieldset."
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr ""
 
+#. Default: "Custom Script Adapter"
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr ""
+
+#. Default: "Executes a Python script for form data."
+#: content/customScriptAdapter.py
+msgid "Executes a Python script for form data."
+msgstr ""
+
+#. Default: "No proxy role"
+#: content/customScriptAdapter
+msgid "No proxy role"
+msgstr ""
+
+#. Default: "True Display String"
+msgid "label_fgbooleantruestring_text"
+msgstr ""
+
+#. Default: "False Display String"
+msgid "label_fgbooleanfalsestring_text"
+msgstr ""
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
+msgid "help_fgbooleanfalsestring_text"
+msgstr ""
+
+#. Rich Label Field
+#. Default: 'Rich Label Field',
+msgid "Rich Label Field"
+msgstr "Label met opmaak"
 

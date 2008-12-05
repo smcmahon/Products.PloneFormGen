@@ -23,7 +23,6 @@ from Globals import InitializeClass
 
 from Products.PloneFormGen import config
 
-from Products.PloneFormGen import HAS_PLONE25
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 
@@ -58,8 +57,7 @@ class FormGenTool(UniqueObject, SimpleItem):
 
             errmsg = kwa.get('errmsg', 'Validation failed: %s' % id)
             errid = kwa.get('errid', errmsg)
-            if HAS_PLONE25:
-                errmsg = _(errid, errmsg)
+            errmsg = _(errid, errmsg)
 
             validatorId = 'pfgv_%s' % id
             self.stringValidators[id] = {
@@ -240,8 +238,7 @@ def _registerStringValidators():
 
         errmsg = kwa.get('errmsg', 'Validation failed: %s' % id)
         errid = kwa.get('errid', errmsg)
-        if HAS_PLONE25:
-            errmsg = _(errid, errmsg)
+        errmsg = _(errid, errmsg)
 
         # create a validator to match, register it.
         validatorId = 'pfgv_%s' % id

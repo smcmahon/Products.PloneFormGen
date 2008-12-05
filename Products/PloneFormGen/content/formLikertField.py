@@ -43,7 +43,6 @@ from Products.PloneFormGen.content import fieldsBase
 from Products.PloneFormGen.content.likertField import LikertField
 from Products.PloneFormGen.config import PROJECTNAME
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25
 
 from types import StringTypes
 
@@ -136,7 +135,9 @@ class FGLikertField(fieldsBase.BaseFormField):
         """
 
         value = REQUEST.form.get(self.__name__, 'No Input')
-        if not (safe_hasattr(value, 'get') and len(value)):
+        if not (safe_hasattr(value, 'get') and 
+                safe_hasattr(value, 'len') and 
+                len(value)):
             return fieldsBase.BaseFormField.htmlValue(self, REQUEST)
         
         res = "<dl>\n"

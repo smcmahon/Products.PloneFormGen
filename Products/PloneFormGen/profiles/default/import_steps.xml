@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="pleonformgen" version="20081128-01"
+              handler="Products.PloneFormGen.setuphandlers.importVarious"
+              title="PloneFormGen">
+  <dependency step="toolset"/>
+  <dependency step="propertiestool"/>
+  <dependency step="typeinfo"/>
+  Import PloneFormGen settings
+ </import-step>
+</import-steps>

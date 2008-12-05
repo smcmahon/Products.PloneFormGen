@@ -1,4 +1,51 @@
-1.2.5 (unreleased)
+1.3.0 (beta)
+
+ - Added "Include Empties" flag to mailer. On by default. Similar to
+   thanks page. (Steve McMahon)
+
+ - Wrap rendered rich label fields in div with selectors similar to
+   other Archetypes widgets. (Steve McMahon)
+
+ - The default view of all form fields is now base_edit. There's a
+   UI problem left that the "view" tab is selected on initial jump
+   into the field even though you're seeing the edit view.
+   (Steve McMahon)
+
+ - Link spam prevention is now an option for string and text fields.
+   (Jon Baldivieso)
+
+ - Allow use of any string field for mailer recipient choice. A bit
+   scary until we get captchas built in. (Steve McMahon)
+
+ - Mailer now has an option to select among available fields those
+   which should be included in the e-mail. Interface is identical to 
+   thanks page. (Steve McMahon)
+
+ - Added support for embedding PFG forms into other templates.  See
+   README_EMBEDDING.txt for details. (David Glick)
+
+ - Clean out 2.1 compatibility code. Ahhhh! (Steve McMahon)
+
+ - Pulling out removeSkinLayer for arg PloneFormGenPlone3, since
+   this appears to have not existed and certainly is unnecessary
+   currently (Andrew Burkhalter)
+ 
+ - Removed unneeded and unused legacy typesonly profile directory 
+   (Andrew Burkhalter)
+
+ - Installation process is entirely based upon GenericSetup extension
+   profiles to the level that is pragmatic for support of Plone 2.5.x
+   up to version Plone 3.x. In brief, this means that we have an install
+   method so that we appear installable with the portal_quickinstaller 
+   tool in Plone 2.5.x and that we run relevant profiles in portal_setup
+   upon install (Jesse Snyder, Andrew Burkhalter)
+
+1.2.5
+
+ - Integrate Portugese translation from Nuno Cruz.
+
+ - Form submission should not be disabled when the form is locked for
+   editing.
 
  - Fixed bug where 3rd-party additions to the list of types allowed
    within a form folder were purged on PFG reinstall.

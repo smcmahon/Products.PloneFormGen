@@ -393,7 +393,7 @@ msgid "label_fgbooleantruestring_text"
 msgstr ""
 
 #. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
-msgid = "help_fgbooleantruestring_text"
+msgid "help_fgbooleantruestring_text"
 msgstr ""
 
 #. Default: "False Display String"

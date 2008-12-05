@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
 "POT-Creation-Date: 2006-09-13 19:00+0000\n"
-"PO-Revision-Date: 2006-12-12 16:12+0100\n"
-"Last-Translator: Simon Käser <skaeser@raptus.com>\n"
+"PO-Revision-Date: 2008-11-25 11:43+0100\n"
+"Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
 "Language-Team: French Translation Team <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -31,12 +31,12 @@ msgstr "Die gespeicherten Eingaben löschen"
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_OnDisplayOverride_text"
-msgstr "Ein TALES-Ausdruck, der aufgerufen wird, wenn das Formular angezeigt wird. Leer lassen, wenn nicht benötigt. Die gängigste Verwendung dieses Feldes ist der Aufruf eines Python-Scripts, der die Standards mehrerer Formularfelder im voraus abfüllt. Jeglicher vom Ausdruck zurück gegebener Wert wird ignoriert. Bemerkung: Fehler in der Berechnung dieses Ausdrucks werden eine Fehlanzeige des Formulars bewirken."
+msgstr "Ein TALES-Ausdruck, der aufgerufen wird, wenn das Formular angezeigt wird. Leer lassen, wenn nicht benötigt. Die gängigste Verwendung dieses Feldes ist der Aufruf eines Python-Scripts, der die Standards mehrerer Formularfelder im Voraus abfüllt. Jeglicher vom Ausdruck zurück gegebener Wert wird ignoriert. Bemerkung: Fehler in der Berechnung dieses Ausdrucks werden eine Fehlanzeige des Formulars bewirken."
 
 #. Form Folder
 #. Default: After Validation Script
 msgid "label_AfterValidationOverride_text"
-msgstr "Script nach der Validierung"
+msgstr "Skript nach der Validierung"
 
 #. Form Folder
 #. Default: A TALES expression that will be called after the form is
@@ -50,7 +50,7 @@ msgstr "Script nach der Validierung"
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_AfterValidationOverride_text"
-msgstr "Ein TALES-Ausdruck, der aufgerufen wird, nachdem das Formular erfolgreich validiert wurde, aber bevor ein Aktionsadapter (falls konfiguriert) oder die Anzeige einer Bedankungsseite aufgerufen wird. Der Inhalt des Formulars wird im Wörterbuch 'request.form' sein. Dieses Feld leer lassen, wenn kein Bedarf besteht. Die gängigste Verwendung dieses Feldes ist der Aufruf eines Python-Scripts, der den Formularinhalt säubert oder um eine alternative Aktion zu programmieren. Jeglicher von diesem Ausdruck zurückgegebener Wert wird ignoriert. Bemerkung: Fehler in der Berechnung dieses Ausdrucks werden einen Fehler bei der Anzeige des Formulars bewirken."
+msgstr "Ein TALES-Ausdruck, der aufgerufen wird, nachdem das Formular erfolgreich validiert wurde, aber bevor ein Aktionsadapter (falls konfiguriert) oder die Anzeige einer Danke-Seite aufgerufen wird. Der Inhalt des Formulars wird im Wörterbuch 'request.form' sein. Dieses Feld leer lassen, wenn kein Bedarf besteht. Die gängigste Verwendung dieses Feldes ist der Aufruf eines Python-Scripts, der den Formularinhalt säubert oder um eine alternative Aktion zu programmieren. Jeglicher von diesem Ausdruck zurückgegebener Wert wird ignoriert. Bemerkung: Fehler in der Berechnung dieses Ausdrucks werden einen Fehler bei der Anzeige des Formulars bewirken."
 
 #. Form Folder
 #. Default: Header Injection
@@ -65,7 +65,7 @@ msgstr "Header einsetzen"
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_headerInjection_text"
-msgstr "Dieses Override-Feld erlaubt es Ihnen Inhalte in den XHTML-Head einzufügen. Typische Verwendung ist das Hinzufügen peronalisierter CSS-Dateien oder JavaScripts. Geben Sie einen TALES-Ausdruck an, der eine Zeichenkette zurück gibt. Die Zeichenkette wird eingefügt ohne interpretiert zu werden. Bemerkung: Fehler in der Berechnung dieses Ausdrucks werden eine Fehler bei der Anzeige des Formulars bewirken."
+msgstr "Dieses Override-Feld erlaubt es Ihnen Inhalte in den XHTML-Head einzufügen. Typische Verwendung ist das Hinzufügen peronalisierter CSS-Dateien oder JavaScripts. Geben Sie einen TALES-Ausdruck an, der eine Zeichenkette zurück gibt. Die Zeichenkette wird eingefügt ohne interpretiert zu werden. Bemerkung: Fehler in der Berechnung dieses Ausdrucks werden einen Fehler bei der Anzeige des Formulars bewirken."
 
 #. Form Folder
 #. Default: To make your form do something useful when submitted: add an appropriate
@@ -79,7 +79,7 @@ msgstr "Damit Ihr Formular beim Absenden etwas Nützliches bewirkt: Fügen Sie d
 #. Default: particular input, choose a validator below.
 #. Default: "
 msgid "help_boolrequired_text"
-msgstr "Fügt eine Markierung 'Pflichtfeld' nach der Bezeichnung hinzu. Falls Sie eine spezifische Eingabe erwünschen, wählen Sie unten einen Validator aus."
+msgstr "Fügt eine Markierung 'Pflichtfeld' nach der Bezeichnung hinzu. Falls Sie eine spezifische Eingabe wünschen, wählen Sie unten einen Validator aus."
 
 #. Form Folder
 #. Default: "The text will be displayed after the form fields."
@@ -206,7 +206,7 @@ msgstr "Dieses Feld nutzen, um das Aktionsattribut des Formulars zu überschreib
 #. Default: Additional e-mail-header lines.
 #. Default: Only use RFC822-compliant headers.
 msgid "help_formmailer_additional_headers"
-msgstr "Zusätzliche Zeilen des E-Mail-Kopfes. Verwenden Sie ausschliesslich RFC822-kompatible Köpfe."
+msgstr "Zusätzliche Zeilen des E-Mail-Kopfes. Verwenden Sie ausschliesslich ein RFC822-kompatibles Format."
 
 #. Mailer Adapter
 #. Default: "E-mail addresses which receive a blind carbon copy."
@@ -216,12 +216,12 @@ msgstr "E-Mail-Adressen, die eine Blindkopie erhalten."
 #. Mailer Adapter
 #. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
 msgid "help_formmailer_body_footer"
-msgstr "In der Fusszeile verwendeter Text, vom Textkörper getrennt durch eine gestrichelte Linie."
+msgstr "In der Fußzeile verwendeter Text, vom Textkörper getrennt durch eine gestrichelte Linie."
 
 #. Mailer Adapter
 #. Default: "Text appended to fields listed"
 msgid "help_formmailer_body_post"
-msgstr "Nach des aufgelisteten Feldern hinzugefügter Text."
+msgstr "Nach den aufgelisteten Feldern hinzugefügter Text."
 
 #. Mailer Adapter
 #. Default: "Text prepended to fields listed in mail-body"
@@ -231,7 +231,7 @@ msgstr "Text vor den aufgelisteten Feldern im Mailkörper."
 #. Mailer Adapter
 #. Default: "This is a Zope Page Template used for rendering of the mail-body. You don't need to modify it, but if you know TAL (Zope's Template Attribute Language) you have the full power to customize your outgoing mails."
 msgid "help_formmailer_body_pt"
-msgstr "Dies ist das Zope-Template, welches zur Anzeige des Textkörpers im Mail verwendet wird. Sie müssen es nicht ändern, doch wenn Sie TAL (Zopes Template-Attribut-Sprache) kennen, haben Sie die volle Macht Ihre ausgehenden Mails zu personalisieren."
+msgstr "Dies ist das Zope-Template, welches zur Anzeige des Textkörpers in der E-Mail verwendet wird. Sie müssen es nicht ändern, doch wenn Sie TAL (Zopes Template-Attribut-Sprache) kennen, haben Sie die volle Macht Ihre ausgehenden Mails zu personalisieren."
 
 #. Mailer Adapter
 #. Default: "Set the mime-type of the mail-body. Change this setting only if you know exactly what you are doing. Leave it blank for default behaviour."
@@ -272,7 +272,7 @@ msgstr "Betreff der Nachricht. Dieser wird verwendet, wenn Sie das Betreff-Feld 
 #. Default: Choose a form field from which you wish to extract
 #. Default: input for the mail subject line.
 msgid "help_formmailer_subject_extract"
-msgstr "Wählen Sie ein Formularfeld aus, woraus Sie die Eingabe für den Betreff des Mails lesen wollen."
+msgstr "Wählen Sie ein Formularfeld aus dem die Eingabe für den Betreff des Mails gelesen werden soll."
 
 #. Mailer Adapter
 #. Default: Choose a form field from which you wish to extract
@@ -282,7 +282,7 @@ msgstr "Wählen Sie ein Formularfeld aus, woraus Sie die Eingabe für den Betref
 #. Default: Only selection fields are eligible for this use because they
 #. Default: may be validated against your specified options.
 msgid "help_formmailer_to_extract"
-msgstr "Wählen Sie ein Formularfeld aus, woraus die Eingabe für das Empfänger-Adresse-Feld gelesen werden soll. Wenn Sie einen anderen Wert als \"Nichts\" wählen, wird der obige Parameter \"Empfänger-E-Mail-Adresse\" damit überschrieben."
+msgstr "Wählen Sie ein Formularfeld aus dem die Eingabe für das Empfänger-Adresse-Feld gelesen werden soll. Wenn Sie einen anderen Wert als \"Nichts\" wählen, wird der obige Parameter \"Empfänger-E-Mail-Adresse\" damit überschrieben."
 
 #. Mailer Adapter
 #. Default """
@@ -295,7 +295,7 @@ msgstr "Wählen Sie ein Formularfeld aus, woraus die Eingabe für das Empfänger
 #. Default template to plain text if you're using encryption.
 #. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
 msgid "help_gpg_key_id"
-msgstr "Geben Sie Ihre key-id, E-Mail-Adresse oder irgendetwas an, das mit Ihrem aktuellen Public Key übereinstimmt. Es wird genutzt, um den Mail-Textkörper zu verschlüsseln. Kontaktieren Sie Ihren Webmaster, wenn Sie einen neuen Public Key installieren müssen. Bemerkung: Sie werden vermutlich Ihr E-Mail-Template auf Volltext ändernmüssen, wenn Sie Verschlüsselung nutzen wollen. TESTEN SIE DIESE FUNKTION, BEVOR SIE SIE ÖFFENTLICH NUTZEN!"
+msgstr "Geben Sie Ihre key-id, E-Mail-Adresse oder irgendetwas an, das mit Ihrem aktuellen Public Key übereinstimmt. Es wird genutzt, um den Mail-Textkörper zu verschlüsseln. Kontaktieren Sie Ihren Webmaster, wenn Sie einen neuen Public Key installieren müssen. Bemerkung: Sie werden vermutlich Ihr E-Mail-Template auf Volltext ändern müssen, wenn Sie Verschlüsselung nutzen wollen. TESTEN SIE DIESE FUNKTION, BEVOR SIE SIE ÖFFENTLICH NUTZEN!"
 
 #. Thanks Page
 #. Default: Check this to display fields titles
@@ -307,7 +307,7 @@ msgstr "Auswählen, um die Titel der Felder anzuzeigen, die keine Eingabe haben.
 #. Integer Field
 #. Default: The form will not accept values greater than the number you enter here.
 msgid "help_maxval_text"
-msgstr "Das Formular wird keine grösseren Werte akzeptieren, als die hier angegebene Zahl."
+msgstr "Das Formular wird keine größeren Werte akzeptieren, als die hier angegebene Zahl."
 
 #. Integer Field
 #. Default: The form will not accept values less than the number you enter here.
@@ -355,7 +355,7 @@ msgstr "Wählen Sie die Felder, die Sie auf der Erfolgsmeldungsseite anzeigen wo
 #. Thanks Page
 #. Default: "The text will be displayed after the field inputs."
 msgid "help_thanksepilogue_text"
-msgstr "Text, der nach den Feldeingaben angezeigt werden wird."
+msgstr "Text, der nach den Feldeingaben angezeigt wird."
 
 #. Form Folder
 #. Default: Pick a contained page you wish to show on a successful
@@ -375,7 +375,7 @@ msgstr "Wählen Sie eine angelegte Seite, die nach erfolgreichem Versand des For
 #. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
 #. Default: redirect to 'thanks-page'.
 msgid "help_thankspageoverride_text"
-msgstr "Nutzen Sie dieses Feld an der Stelle einer Bedankungsseite, um die Schlussaktion zu definieren, die nach Aufruf Ihres Aktionsadapters (wenn Sie einen haben) durchgeführt wird. Dies können Sie generell nutzen, um ein persönliche Erfolgs-Templates oder -Scripts bei Versand des Formulars zu verwenden. Lassen Sie dieses Feld leer, wenn Sie es nicht benötigen. Ansonsten spezifizieren Sie, wie es bei einem CMFFormControler ein Aktionstyp und Argument der Fall ist, den kompletten auszuführenden Aktionstyp (d.h. \"redirect_to\" oder \"traverse_to\") sowie ein TALES-Ausdruck. Zum Beispiel, \"redirect_to:string:bedankungs-seite\" würde zu 'bedankungs-seite' weiterleiten."
+msgstr "Nutzen Sie dieses Feld an der Stelle einer Danke-Seite, um die Schlussaktion zu definieren, die nach Aufruf Ihres Aktionsadapters (wenn Sie einen haben) durchgeführt wird. Dies können Sie generell nutzen, um ein persönliche Erfolgs-Templates oder -Scripts bei Versand des Formulars zu verwenden. Lassen Sie dieses Feld leer, wenn Sie es nicht benötigen. Ansonsten spezifizieren Sie, wie es bei einem CMFFormControler ein Aktionstyp und Argument der Fall ist, den kompletten auszuführenden Aktionstyp (d.h. \"redirect_to\" oder \"traverse_to\") sowie ein TALES-Ausdruck. Zum Beispiel, \"redirect_to:string:danke-seite\" würde zu 'danke-seite' weiterleiten."
 
 #. Thanks Page
 #. Default: "This text will be displayed above the selected field inputs."
@@ -387,7 +387,7 @@ msgstr "Dieser Text wird über den Eingaben der ausgewählten Felder angezeigt."
 #. Default: you'd like to insert as X- headers in the
 #. Default: message.
 msgid "help_xinfo_headers_text"
-msgstr "Wählen Sie irgendwelche Elemente aus dem HTTP-Kopf, die Sie in der Nachricht als X-headers einfügen wollen."
+msgstr "Wählen Sie Elemente aus dem HTTP-Kopf, die Sie in der Nachricht als X-headers einfügen wollen."
 
 #. Default: "${items} inputs saved"
 #: skins/PloneFormGen/fg_savedata_view.pt
@@ -503,7 +503,7 @@ msgstr "Optionen"
 #. File Field
 #. Default: "Maximum Upload Size (Megabytes)"
 msgid "label_filemaxmb_text"
-msgstr "maximale Grösse für die Datenübertragung zum Server (in Mb)"
+msgstr "Maximale Größe für die Datenübertragung zum Server (in Mb)"
 
 # Form Folder
 # label="Custom Form Action",
@@ -513,7 +513,7 @@ msgstr "Personalisierte Formular-Aktion"
 #. Mailer Adapter
 #. Default: "Additional Headers"
 msgid "label_formmailer_additional_headers"
-msgstr "Zusätzliche Headers"
+msgstr "Zusätzliche Header"
 
 #. Mailer Adapter
 #. Default: "BCC Recipients"
@@ -663,7 +663,7 @@ msgstr "Bezeichnung der Versand-Schaltfläche"
 #. Form Folder
 #. Default: "Thanks Page"
 msgid "label_thankspage_text"
-msgstr "Bedankungsseite"
+msgstr "Danke-Seite"
 
 #. Form Folder
 #. Default: "Custom Success Action"
@@ -673,12 +673,12 @@ msgstr "Personalisierte Erfolgsaktion"
 #. Thanks Page
 #. Default: "Thanks Prologue"
 msgid "label_thanksprologue_text"
-msgstr "Bedankungs-Vorwort"
+msgstr "Vorwort der Danke-Seite"
 
 #. Mailer Adapter
 #. Default: "HTTP Headers"
 msgid "label_xinfo_headers_text"
-msgstr "HTTP-Headers"
+msgstr "HTTP-Header"
 
 # default="Checkbox list"
 msgid "vocabulary_checkbox_text"
@@ -862,7 +862,7 @@ msgstr "Vorheriges"
 #. Default: "Size"
 #: skins/PloneFormGen/fg_savedata_view.pt
 msgid "label_size"
-msgstr "Grösse"
+msgstr "Größe"
 
 #. Default: "Form Folder"
 #: content/form.py
@@ -967,32 +967,32 @@ msgstr "Ein Datei Feld"
 #. Default: "Fixed-Point Field"
 #: content/fields.py
 msgid "Fixed-Point Field"
-msgstr "Fixed-Point Field"
+msgstr "Fließkomma-Feld"
 
 #. Default: " Fixed-Point (float) entry field "
 #: content/fields.py
 msgid " Fixed-Point (float) entry field "
-msgstr " Fixed-Point (float) entry field "
+msgstr " Fließkomma (float) Feld "
 
 #. Default: "A fixed-point (float) field"
 #: content/fields.py
 msgid "A fixed-point (float) field"
-msgstr "A fixed-point (float) field"
+msgstr "Ein Fließkomma (float) Feld"
 
 #. Default: "Integer Field"
 #: content/fields.py
 msgid "Integer Field"
-msgstr "Nummer-Feld"
+msgstr "Ganzzahl-Feld"
 
 #. Default: " A integer entry field "
 #: content/fields.py
 msgid " Integer entry field "
-msgstr " Nummer-Eingabe-Feld "
+msgstr " Ganzzahl-Eingabe-Feld "
 
 #. Default: "A integer field"
 #: content/fields.py
 msgid "A integer field"
-msgstr "Ein Nummer-Feld"
+msgstr "Ein Ganzzahl-Feld"
 
 #. Default: "Label Field"
 #: content/fields.py

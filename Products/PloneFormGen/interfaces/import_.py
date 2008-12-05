@@ -9,6 +9,6 @@ class IImportSchema(Interface):
         title=_(u'Upload'),
         required=True)
 
-class IImportForm(Interface):
+class IPACKAGE_HOME(Interface):
     """Interface for import form
     """

@@ -193,6 +193,71 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( len(self.messageText) > 0 )
 
 
+    def test_selectiveFieldMailing(self):
+        """ Test selective inclusion of fields in the mailing """
+
+        mailer = self.ff1.mailer
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+
+        # make sure all fields are sent unless otherwise specified
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('test subject') > 0 and
+            messageText.find('test@test.org') > 0 and
+            messageText.find('test comments') > 0          
+          )
+        
+        # setting some show fields shouldn't change that
+        mailer.setShowFields( ('topic', 'comments',) )
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('test subject') > 0 and
+            messageText.find('test@test.org') > 0 and
+            messageText.find('test comments') > 0          
+          )
+
+        # until we turn off the showAll flag
+        mailer.showAll = False
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('test subject') > 0 and
+            messageText.find('test@test.org') < 0 and
+            messageText.find('test comments') > 0          
+          )
+        
+        # check includeEmpties
+        mailer.includeEmpties = False
+        
+        # first see if everything's still included
+        mailer.showAll = True
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        # look for labels
+        self.failUnless(
+            messageText.find('Subject') > 0 and
+            messageText.find('Your E-Mail Address') > 0 and
+            messageText.find('Comments') > 0          
+          )
+
+        # now, turn off required for a field and leave it empty
+        self.ff1.comments.setRequired(False)
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org',)
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('Subject') > 0 and
+            messageText.find('Your E-Mail Address') > 0 and
+            messageText.find('Comments') < 0          
+          )
+        
 
 if  __name__ == '__main__':
     framework()

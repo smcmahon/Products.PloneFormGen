@@ -26,10 +26,8 @@ from Products.PloneFormGen.widgets import \
     FieldsetStartWidget, FieldsetEndWidget
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25
 
-if HAS_PLONE25:
-  import zope.i18n
+import zope.i18n
 
 FieldsetFolderSchema = ATFolderSchema.copy() + Schema((
     BooleanField('useLegend',

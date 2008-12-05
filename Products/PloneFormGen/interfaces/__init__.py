@@ -3,4 +3,4 @@ from form import IPloneFormGenForm
 from actionAdapter import IPloneFormGenActionAdapter
 from thanksPage import IPloneFormGenThanksPage
 from exportimport import IFormFolderExportView
-from import_ import IImportSchema, IImportForm
+from import_ import IImportSchema, IPACKAGE_HOME

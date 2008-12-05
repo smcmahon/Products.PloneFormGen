@@ -35,7 +35,7 @@ from Products.PloneFormGen.content import validationMessages
 from Products.PloneFormGen.interfaces import IPloneFormGenField
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25, HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30
 
 
 def finalizeFieldSchema(schema, folderish=True, moveDiscussion=False):

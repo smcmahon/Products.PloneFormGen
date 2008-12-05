@@ -34,9 +34,8 @@ from Products.Archetypes.Field import ObjectField
 
 from Products.Archetypes.Registry import registerField
 from Products.PloneFormGen.widgets import LikertWidget
-from Products.PloneFormGen import HAS_PLONE25
-if HAS_PLONE25:
-    from Products.PloneFormGen import PloneFormGenMessageFactory as _
+
+from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 from AccessControl import ClassSecurityInfo
 
@@ -93,10 +92,7 @@ class LikertField(ObjectField):
         return None
 
     def validate(self, value, instance, errors=None, **kwargs):
-        if HAS_PLONE25:
-            error = _(u'pfg_allRequired', u'An answer is required for each question.')
-        else:
-            error = u'An answer is required for each question.'
+        error = _(u'pfg_allRequired', u'An answer is required for each question.')
         if not self.required:
             return None
         for index in range(len(self.questionSet)):

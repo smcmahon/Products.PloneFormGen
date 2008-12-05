@@ -16,7 +16,6 @@
                    typedescription_macro edit_macros/typedescription | typedescription_macro | base_macros/typedescription;
                    body_macro edit_macros/body | body_macro | base_macros/body;
                    footer_macro edit_macros/footer | footer_macro | base_macros/footer;
-                   isLocked python:False;
                    css python:here.getUniqueWidgetAttr(fields, 'helper_css');
                    js python:here.getUniqueWidgetAttr(fields, 'helper_js');">
 
@@ -74,9 +73,10 @@
   <body>
 
     <metal:fill fill-slot="main">
-      <metal:main define-macro="main">
+      <metal:main define-macro="main" tal:define="isLocked python:False">
+        
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        <h1 tal:content="object_title" class="documentFirstHeading">
+        <h1 tal:content="context/Title" class="documentFirstHeading">
           Title or id
         </h1>
     

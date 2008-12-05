@@ -97,6 +97,14 @@ stringValidators = (
         'regex':r'^(\d{5}|\d{9})$',
         'ignore':'[\-]',
     },
+    {'id': 'isNotLinkSpam',
+        'i18nid':'vocabulary_isnotlinkspam_text',
+        'title':u'Does not contain link spam',
+        'errmsg':u'This text appears to contain links.',
+        'errid':'pfg_isnotlinkspam',
+        'regex':r'(?!(<a |http|www|\.com)).*',
+        'ignore':'',
+    }
 )
 
 ######

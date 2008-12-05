@@ -8,7 +8,8 @@ if __name__ == '__main__':
 
 from zope.interface.verify import verifyObject, verifyClass
 from Products.PloneFormGen.tests import pfgtc
-from Products.PloneFormGen import interfaces, browser
+from Products.PloneFormGen import interfaces
+from Products.PloneFormGen.browser import exportimport
 
 
 class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
@@ -24,13 +25,13 @@ class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
     def testBrowserViewClassInterfaces(self):
         """Some basic boiler plate testing of interfaces and classes"""
         # verify IFormFolderExportView
-        self.failUnless(interfaces.IFormFolderExportView.implementedBy(browser.FormFolderExportView))
-        self.failUnless(verifyClass(interfaces.IFormFolderExportView, browser.FormFolderExportView))
+        self.failUnless(interfaces.IFormFolderExportView.implementedBy(exportimport.FormFolderExportView))
+        self.failUnless(verifyClass(interfaces.IFormFolderExportView, exportimport.FormFolderExportView))
     
     def testBrowserViewObjectsVerify(self):
         # verify views are objects of the expected class, verified implementation
         form_folder_export = self.folder.ff1.restrictedTraverse('@@export-form-folder')
-        self.failUnless(isinstance(form_folder_export, browser.FormFolderExportView))
+        self.failUnless(isinstance(form_folder_export, exportimport.FormFolderExportView))
         self.failUnless(verifyObject(interfaces.IFormFolderExportView, form_folder_export))
     
 

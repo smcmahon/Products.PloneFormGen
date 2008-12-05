@@ -1,0 +1,32 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+  
+    <!-- Browser Views -->
+    <!-- XXX Andrew B Make an actual permission in the PFG namespace -->
+    <browser:view
+      for="..interfaces.IPloneFormGenForm"
+      name="export-form-folder"
+      class=".exportimport.FormFolderExportView"
+      permission="cmf.ModifyPortalContent"
+      allowed_interface="..interfaces.IFormFolderExportView"
+      />
+  
+  <!-- formlib forms -->
+  <!-- XXX Andrew B Make an actual permission in the PFG namespace -->
+  <browser:page
+      for="..interfaces.IPloneFormGenForm"
+      name="import-form-folder"
+      class=".exportimport.PACKAGE_HOME"
+      allowed_interface="..interfaces.IPACKAGE_HOME"
+      permission="cmf.ModifyPortalContent"
+      />
+  
+  <browser:page
+      name="embedded"
+      for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+      class=".embedded.EmbeddedPFGView"
+      permission="zope2.View"
+      />
+  
+</configure>

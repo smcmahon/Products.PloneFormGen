@@ -21,7 +21,6 @@ from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE25
 from Products.PloneFormGen.widgets import RichLabelWidget
 
 from Products.PloneFormGen.content.fieldsBase import *
@@ -400,40 +399,21 @@ class FGBooleanField(BaseFormField):
 
         self.fgBooleanValidator = value
 
+
     def boolVocabDL(self):
         """ returns DisplayList of vocabulary for fgBooleanValidator """
 
-        # Check for Plone 2.5
-        if HAS_PLONE25:
-          return DisplayList( (
-                ('',
-                    _(u'vocabulary_none_text', u'None')
-                    ),
-                ('isChecked',
-                    _(u'vocabulary_ischecked_text', u'Is checked')
-                    ),
-                ('isUnchecked',
-                    _(u'vocabulary_isnotchecked_text', u'Is not checked')
-                    ),
-                ) )
-        else:
-            return DisplayList( (
-                ('',
-                    self.translate( msgid='vocabulary_none_text',
-                    domain='ploneformgen',
-                    default='None')
-                    ),
-                ('isChecked',
-                    self.translate( msgid='vocabulary_ischecked_text',
-                    domain='ploneformgen',
-                    default='Is checked')
-                    ),
-                ('isUnchecked',
-                    self.translate( msgid='vocabulary_isnotchecked_text',
-                    domain='ploneformgen',
-                    default='Is not checked')
-                    ),
-                ) )
+        return DisplayList( (
+            ('',
+                _(u'vocabulary_none_text', u'None')
+                ),
+            ('isChecked',
+                _(u'vocabulary_ischecked_text', u'Is checked')
+                ),
+            ('isUnchecked',
+                _(u'vocabulary_isnotchecked_text', u'Is not checked')
+                ),
+            ) )
 
 
     def htmlValue(self, REQUEST):
@@ -780,37 +760,17 @@ class FGSelectionField(BaseFormField):
     def formatVocabDL(self):
         """ returns vocabulary for fgFormat """
 
-        # Check for Plone 2.5
-        if HAS_PLONE25:
-          return DisplayList( (
-                ('flex',
-                        _(u'vocabulary_flex_text', u'Flexible (radio for short, select for longer)')
-                    ),
-                ('select',
-                        _(u'vocabulary_selection_text', u'Selection list')
-                    ),
-                ('radio',
-                        _(u'vocabulary_radio_text', u'Radio buttons')
-                    ),
-            ) )
-        else:
-            return DisplayList( (
-                ('flex',
-                    self.translate( msgid='vocabulary_flex_text',
-                    domain='ploneformgen',
-                    default='Flexible (radio for short, select for longer)')
-                    ),
-                ('select',
-                    self.translate( msgid='vocabulary_selection_text',
-                    domain='ploneformgen',
-                    default='Selection list')
-                    ),
-                ('radio',
-                    self.translate( msgid='vocabulary_radio_text',
-                    domain='ploneformgen',
-                    default='Radio buttons')
-                    ),
-            ) )
+        return DisplayList( (
+            ('flex',
+                    _(u'vocabulary_flex_text', u'Flexible (radio for short, select for longer)')
+                ),
+            ('select',
+                    _(u'vocabulary_selection_text', u'Selection list')
+                ),
+            ('radio',
+                    _(u'vocabulary_radio_text', u'Radio buttons')
+                ),
+        ) )
 
 
     def htmlValue(self, REQUEST):
@@ -911,9 +871,7 @@ class FGMultiSelectField(BaseFormField):
     def formatVocabDL(self):
         """ returns vocabulary for fgFormat """
 
-        # Check for Plone 2.5
-        if HAS_PLONE25:
-          return DisplayList( (
+        return DisplayList( (
             ('select',
                     _(u'vocabulary_selection_text', u'Selection list')
                 ),
@@ -921,19 +879,6 @@ class FGMultiSelectField(BaseFormField):
                     _(u'vocabulary_checkbox_text', u'Checkbox list')
                 )
             ) )
-        else:
-            return DisplayList( (
-                ('select',
-                    self.translate( msgid='vocabulary_selection_text',
-                    domain='ploneformgen',
-                    default='Selection list')
-                    ),
-                ('checkbox',
-                    self.translate( msgid='vocabulary_checkbox_text',
-                    domain='ploneformgen',
-                    default='Checkbox list')
-                    )
-                ) )
 
 
     def htmlValue(self, REQUEST):
@@ -992,6 +937,20 @@ class FGTextField(BaseFormField):
     security  = ClassSecurityInfo()
 
     schema = BaseFieldSchemaTextDefault.copy()
+    schema += Schema((
+        BooleanField('validateNoLinkSpam',
+            searchable=0,
+            required=0,
+            default=False,
+            widget=BooleanWidget(
+                label="Reject Text with Links?",
+                description="""Useful for stopping spam""",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_validate_link_spam_text",
+                description_msgid = "help_fgmsformat_text",
+                ),
+            ),
+        ))
 
     # Standard content type setup
     portal_type = meta_type = 'FormTextField'
@@ -1009,7 +968,7 @@ class FGTextField(BaseFormField):
             searchable=0,
             required=0,
             write_permission = View,
-            validators=('isNotTooLong',),
+            validators=('isNotTooLong','isNotLinkSpam',),
             default_content_type = 'text/plain',
             allowable_content_types = ('text/plain',),
             widget = TextAreaWidget(
@@ -1110,37 +1069,17 @@ class FGRichTextField(BaseFormField):
             this is a hack for 118n
         """
 
-        # Check for Plone 2.5
-        if HAS_PLONE25:
-            return DisplayList( (
-                ('',
-                    _(u'vocabulary_none_text', u'None')
-                    ),
-                ('isTidyHtml',
-                    _(u'vocabulary_istidyhtml_text', u'Is Tidy HTML (fails on errors and warnings)')
-                    ),
-                ('isTidyHtmlWithCleanup',
-                    _(u'vocabulary_istidyhtmlwithcleanup_text', u'Tidy HTML With Cleanup (fails on errors, cleans up rest)')
-                    ),
-                ) )
-        else:
-            return DisplayList( (
-                ('',
-                    self.translate( msgid='vocabulary_none_text',
-                    domain='ploneformgen',
-                    default='None')
-                    ),
-                ('isTidyHtml',
-                    self.translate( msgid='vocabulary_istidyhtml_text',
-                    domain='ploneformgen',
-                    default='Is Tidy HTML (fails on errors and warnings)')
-                    ),
-                ('isTidyHtmlWithCleanup',
-                    self.translate( msgid='vocabulary_istidyhtmlwithcleanup_text',
-                    domain='ploneformgen',
-                    default='Tidy HTML With Cleanup (fails on errors, cleans up rest)')
-                    ),
-                ) )
+        return DisplayList( (
+            ('',
+                _(u'vocabulary_none_text', u'None')
+                ),
+            ('isTidyHtml',
+                _(u'vocabulary_istidyhtml_text', u'Is Tidy HTML (fails on errors and warnings)')
+                ),
+            ('isTidyHtmlWithCleanup',
+                _(u'vocabulary_istidyhtmlwithcleanup_text', u'Tidy HTML With Cleanup (fails on errors, cleans up rest)')
+                ),
+            ) )
 
     def htmlValue(self, REQUEST):
         """ override, as this field is already html.

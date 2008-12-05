@@ -244,7 +244,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def testMissingAdapter(self):
         """ test response to missing adapter -- should not fail """
 
-        print "\n\nNote: this test logs a warning message; it does not indicate test failure\n"
+        # Note: this test logs a warning message; it does not indicate test failure
 
         self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
 
