@@ -482,6 +482,30 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
             description_msgid = "help_recipient_override_text",
         ),
     ),
+    TALESString('bccOverride',
+        schemata='overrides',
+        searchable=0,
+        required=0,
+        validators=('talesvalidator',),
+        default='',
+        write_permission=EDIT_TALES_PERMISSION,
+        read_permission=ModifyPortalContent,
+        isMetadata=True, # just to hide from base view
+        widget=StringWidget(label="BCC Expression",
+            description="""
+                A TALES expression that will be evaluated to override any value
+                otherwise entered for the BCC list. You are strongly
+                cautioned against using unvalidated data from the request for this purpose.
+                Leave empty if unneeded. Your expression should evaluate as a sequence of string.
+                PLEASE NOTE: errors in the evaluation of this expression will cause
+                an error on form display.
+            """,
+            size=70,
+            i18n_domain = "ploneformgen",
+            label_msgid = "label_bcc_override_text",
+            description_msgid = "help_bcc_override_text",
+        ),
+    ),
 ))
 
 if HAS_PLONE30:
@@ -739,9 +763,10 @@ class FormMailerAdapter(FormActionAdapter):
         """
 
         if type(input) in StringTypes:
-            input = [s.strip().encode('utf-8') for s in input.split(',')]
-
-        filtered_input = [s for s in input if s]
+            input = [s for s in input.split(',')]
+        input = [s for s in input if s]
+        filtered_input = [s.strip().encode('utf-8') for s in input]
+        
         if filtered_input:        
             return "<%s>" % '>, <'.join( filtered_input )
         else:
@@ -803,7 +828,6 @@ class FormMailerAdapter(FormActionAdapter):
 
         recip_name = self.recipient_name.encode('utf-8')
 
-
         # if no to_addr and no recip_email specified, use owner adress if possible.
         # if not, fall back to portal email_from_address.
         # if still no destination, raise an assertion exception.
@@ -844,14 +868,14 @@ class FormMailerAdapter(FormActionAdapter):
         # CC
         cc_recips = filter(None, self.cc_recipients)
         if cc_recips:
-            addrs = ['<%s>' % addr for addr in cc_recips]
-            headerinfo['Cc'] = ', '.join(addrs)
+            headerinfo['Cc'] = self._destFormat( cc_recips )
 
         # BCC
         bcc_recips = filter(None, self.bcc_recipients)
+        if shasattr(self, 'bccOverride') and self.getRawBccOverride():
+            bcc_recips = self.getBccOverride()
         if bcc_recips:
-            addrs = ['<%s>' % addr for addr in bcc_recips]
-            headerinfo['Bcc'] = ', '.join(addrs)
+            headerinfo['Bcc'] = self._destFormat( bcc_recips )
 
         for key in getattr(self, 'xinfo_headers', []):
             headerinfo['X-%s' % key] = self.secure_header_line(request.get(key, 'MISSING'))
@@ -865,7 +889,6 @@ class FormMailerAdapter(FormActionAdapter):
         """
 
         mailtext=self.get_mail_text(fields, request, **kwargs)
-
         host = self.MailHost
         host.send(mailtext)
 

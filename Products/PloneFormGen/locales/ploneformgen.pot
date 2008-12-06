@@ -1384,3 +1384,13 @@ msgstr ""
 #. Default to leave fields with no input out of the e-mail.
 msgid "help_mailEmpties_text"
 msgstr ""
+
+#. Mailer
+#. Default BCC Recipients
+msgid = "label_formmailer_bcc_recipients"
+msgstr = ""
+
+#.Mailer
+#.Default = 'E-mail addresses which receive a blind carbon copy.'
+msgid = "help_formmailer_bcc_recipients"
+msgstr = ""

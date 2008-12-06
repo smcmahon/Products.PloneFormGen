@@ -1,5 +1,7 @@
 1.3.0 (beta)
 
+ - Add Bcc override for mailer. (Steve McMahon)
+
  - Validator for multiple comma separated email addresses is now an
    option for string fields. (Paul Bugni)
 

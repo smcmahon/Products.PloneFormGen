@@ -257,7 +257,30 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
             messageText.find('Your E-Mail Address') > 0 and
             messageText.find('Comments') < 0          
           )
+
+
+    def test_bccOverride(self):
+        """ Test override for BCC field """
+
+        mailer = self.ff1.mailer
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+
+        # simple override
+        mailer.setBccOverride("string:test@testme.com")
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless(
+            'test@testme.com' in self.mto
+        )
         
+        # list override
+        mailer.setBccOverride( "python:['test@testme.com', 'test1@testme.com']" )
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless(
+            'test@testme.com' in self.mto and
+            'test1@testme.com' in self.mto
+        )
 
 if  __name__ == '__main__':
     framework()
