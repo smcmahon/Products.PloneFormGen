@@ -1,5 +1,7 @@
 1.3.0 (beta)
 
+ - Adapters are now activated when pasted into form folders. (Jesse Snyder)
+
  - Added 'force SSL' option for form folders. (David Glick)
 
  - Removed validator from the form action override field. This allows

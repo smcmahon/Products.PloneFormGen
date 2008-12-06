@@ -1,8 +1,11 @@
 #
-# Test PloneFormGen initialisation and set-up
+# Test PloneFormGen event-handler functionality
 #
 
 import os, sys
+
+from Products.PloneFormGen.tests import pfgtc
+
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
@@ -13,6 +16,7 @@ class TestAdapterPaste(pfgtc.PloneFormGenTestCase):
     adapterTypes = (
         'FormSaveDataAdapter',
         'FormMailerAdapter',
+        'FormCustomScriptAdapter',
     )
 
     def afterSetUp(self):
@@ -21,6 +25,7 @@ class TestAdapterPaste(pfgtc.PloneFormGenTestCase):
         self.ff1 = getattr(self.folder, 'ff1')
     
     def testPastedAdaptersAreActive(self):
+        self.loginAsPortalOwner() # creating a FormCustomScriptAdapter requires elevated permissions
         for f in self.adapterTypes:
             fname = "%s1" % f
             self.ff1.invokeFactory(f, fname)
@@ -30,6 +35,14 @@ class TestAdapterPaste(pfgtc.PloneFormGenTestCase):
             
             self.failUnless(new_id in self.ff1.getActionAdapter())
     
+    def testTempFactoryAdaptersNotActivatedOnForm(self):
+        self.loginAsPortalOwner() # creating a FormCustomScriptAdapter requires elevated permissions
+        adapter_count = len(self.ff1.getActionAdapter())
+        for f in self.adapterTypes:
+            temp_adapter = self.ff1.restrictedTraverse('portal_factory/%s/%s_tmp' % (f,f))
+        # temporary objects shouldn't be active on the form folder
+        self.assertEqual(adapter_count, len(self.ff1.getActionAdapter()))
+        
 
 if  __name__ == '__main__':
     framework()
