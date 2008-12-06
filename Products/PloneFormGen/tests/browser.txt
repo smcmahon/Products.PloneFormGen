@@ -1,20 +1,14 @@
 Integration tests
 =================
 
-Set up a test browser and log in as a manager::
-
-    >>> from Products.Five.testbrowser import Browser
-    >>> browser = Browser()
-    >>> portal_url = 'http://nohost/plone'
-    >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-    >>> browser.addHeader('Authorization', 'Basic root:secret')
+    >>> browser = self.browser
 
 Standalone form
 ---------------
 
 Add a new Form Folder::
 
-    >>> browser.open(portal_url)
+    >>> browser.open(self.portal_url)
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
     >>> browser.getControl('Save').click()
@@ -93,7 +87,7 @@ which enhances the standard Zope error handler's treatment of Retry errors.) ::
 Now we should be able to render the same form as above, but located at @@form-wrapper::
 
     >>> browser.handleErrors = False
-    >>> browser.open(portal_url + '/@@form-wrapper')
+    >>> browser.open(self.portal_url + '/@@form-wrapper')
     >>> print browser.contents
     <!DOCTYPE...
     ...

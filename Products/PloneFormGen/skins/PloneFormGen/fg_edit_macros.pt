@@ -71,7 +71,7 @@
             enctype="multipart/form-data"
             class="enableUnloadProtection"
             action=""
-            tal:attributes="action python:getattr(here,'formActionOverride','') or here.absolute_url()">
+            tal:attributes="action here/fgGetFormSubmitAction">
 
           <metal:block define-slot="extra_top" />
 

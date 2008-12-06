@@ -8,6 +8,8 @@ from Products.Five import zcml
 from Products.PloneTestCase.layer import onsetup
 import Products.PloneFormGen
 
+from Products.Five.testbrowser import Browser
+
 ZopeTestCase.installProduct('PloneFormGen')
 
 @onsetup
@@ -43,7 +45,15 @@ class PloneFormGenFunctionalTestCase(PloneTestCase.FunctionalTestCase):
     def _setup(self):
         PloneTestCase.FunctionalTestCase._setup(self)
         self.app.REQUEST['SESSION'] = Session()
+        self.browser = Browser()
+        self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+        self.browser.addHeader('Authorization', 'Basic root:secret')
+        self.portal_url = 'http://nohost/plone'
         
     def afterSetUp(self):
         super(PloneTestCase.FunctionalTestCase, self).afterSetUp()
         self.portal.MailHost = MailHostMock()
+
+    def setStatusCode(self, key, value):
+        from ZPublisher import HTTPResponse
+        HTTPResponse.status_codes[key.lower()] = value

@@ -8,8 +8,9 @@ from zope.interface import implements, providedBy
 import logging
 
 from ZPublisher.Publish import Retry
+from zExceptions import Redirect
 
-from AccessControl import ClassSecurityInfo, Unauthorized
+from AccessControl import ClassSecurityInfo, Unauthorized, getSecurityManager
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.Expression import getExprContext
@@ -109,6 +110,21 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             """,
             description_msgid = "help_thankspage_text",
             i18n_domain = "ploneformgen",
+            ),
+        ),
+    BooleanField('forceSSL',
+        required=False,
+        default=False,
+        widget=BooleanWidget(
+            label='Force SSL connection',
+            label_msgid='label_force_ssl',
+            description="""
+                Check this to make the form redirect to an SSL-enabled version of itself (https://) if accessed
+                via a non-SSL URL (http://).  In order to function properly, this requires a web server that
+                has been configured to handle the HTTPS protocol on port 443 and forward it to Zope.
+            """,
+            description_msgid = 'help_force_ssl',
+            i18n_domain = 'ploneformgen',
             ),
         ),
     TextField('formPrologue',
@@ -386,7 +402,50 @@ class FormFolder(ATFolder):
             if cache:
                 if cache.has_key( id(object) ):
                     del cache[ id(object) ]
+    
+    security.declareProtected(View, 'fgGetFormSubmitAction')
+    def fgGetFormSubmitAction(self):
+        """ Determines where the form should submit to.
         
+            Tries, in the following order:
+             
+              1. The 'pfg_form_action' of the request's "other" vars, which may be
+                 set temporarily by the embedded form view.  (This is basically a
+                 Plone 2.5-compatible version of annotating the request.)
+            
+              2. The value of the form's formActionOverride field, which may be set
+                 by the manager of the form.
+            
+              3. The URL of the form folder.
+              
+            The result is converted into an https link if 'force SSL' is on.
+        """
+        
+        action = self.REQUEST.other.get('pfg_form_action')
+        if not action:
+            action = getattr(self, 'formActionOverride', None)
+        if not action:
+            action = self.absolute_url()
+            
+        if self.getForceSSL():
+            action = action.replace('http://', 'https://')
+            
+        return action
+    
+    security.declarePrivate('maybeForceSSL')
+    def fgMaybeForceSSL(self):
+        """ Redirect to an https:// URL if the 'force SSL' option is on.
+        
+            However, don't do so for those with rights to edit the form,
+            to avoid making the form uneditable if SSL isn't configured
+            properly.  These users will still get an SSL-ified form
+            action for when the form is submitted.
+        """
+        if self.getForceSSL() and not getSecurityManager().checkPermission(ModifyPortalContent, self):
+            # Make sure we're being accessed via a secure connection
+            if self.REQUEST['SERVER_URL'].startswith('http://'):
+                secure_url = self.REQUEST['URL'].replace('http://', 'https://')
+                raise Redirect, secure_url
 
     security.declareProtected(View, 'fgFields')
     def fgFields(self, request=None, displayOnly=False):
@@ -394,6 +453,8 @@ class FormFolder(ATFolder):
             defaults if request is passed.
             if displayOnly, label fields are excluded.
         """
+
+        self.fgMaybeForceSSL()
 
         if request and self.getRawOnDisplayOverride():
             # call the tales expression, passing a custom context
@@ -858,7 +919,6 @@ class FormFolder(ATFolder):
             self.formEpilogue = ''
         else:
             self.formEpilogue = value
-
 
 #    security.declareProtected(ModifyPortalContent, 'myi18n')
 #    def myi18n(self):

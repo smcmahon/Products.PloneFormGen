@@ -81,7 +81,7 @@
             class="enableUnloadProtection enableAutoFocus atBaseEditForm"
             action=""
             id=""
-            tal:attributes="action python:path('pfg_embedded_action|nothing') or getattr(here,'formActionOverride','') or here.absolute_url();
+            tal:attributes="action here/fgGetFormSubmitAction;
                             id string:fg-base-edit;
                             class python:test(path('allow_tabbing|nothing'), 'enableUnloadProtection enableAutoFocus enableFormTabbing', 'enableUnloadProtection enableAutoFocus');">
 
