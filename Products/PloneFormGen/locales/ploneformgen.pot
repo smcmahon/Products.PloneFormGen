@@ -954,6 +954,10 @@ msgstr ""
 msgid "vocabulary_isemailaddress_text"
 msgstr ""
 
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+msgid "vocabulary_isemailaddresslist_text"
+msgstr ""
+
 #. Default: "Contains only printable characters"
 msgid "vocabulary_onlyprintable_text"
 msgstr ""
@@ -1096,6 +1100,10 @@ msgstr ""
 
 #. Default: "This is not a valid email address."
 msgid "pfg_isEmail"
+msgstr ""
+
+#. Default: "This is not a valid list of email addresses (separated by commas)."
+msgid "pfg_isEmailAddressList"
 msgstr ""
 
 #. Default: "This is not a valid mailto: url."
