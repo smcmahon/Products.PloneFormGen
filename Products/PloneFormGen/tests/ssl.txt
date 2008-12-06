@@ -11,7 +11,7 @@ Set up a form with the 'force SSL' setting on::
     >>> browser.open(self.portal_url)
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
-    >>> browser.getControl('Force SSL connection').click()
+    >>> browser.getControl(name='forceSSL').value = '1'
     >>> browser.getControl('Save').click()
     >>> browser.url
     '.../testform/...'
