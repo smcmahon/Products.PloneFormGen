@@ -80,5 +80,7 @@
       />
 
   <include package=".browser"/>
+  
+  <subscriber handler=".events.form_adapter_pasted" />  
 
 </configure>
