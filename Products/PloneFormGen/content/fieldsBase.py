@@ -280,6 +280,23 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                 description_msgid = "help_fgtenable_text",
                 ),
             ),
+        BooleanField('server_side',
+            schemata='overrides',
+            searchable=0,
+            required=0,
+            write_permission=EDIT_ADVANCED_PERMISSION,
+            default='',
+            widget=BooleanWidget(
+                label="Server-Side Variable",
+                description="""
+                    Mark this field as a value to be injected into the
+                    request form for use by action adapters and is not 
+                    modifiable by or exposed to the client.
+                """,
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_server_side_text",
+                ),
+            ),
     ))
 
 
@@ -860,6 +877,17 @@ class BaseFormField(ATCTContent):
         """
 
         # override this method when field really is a label
+
+        return False
+
+
+    security.declareProtected(View, 'isServerSide')
+    def isServerSide(self):
+        """Returns True if this field is marked 'Server-Side' and should 
+        never be shown.
+        """
+
+        # override this method when field really is a server-side value
 
         return False
 
