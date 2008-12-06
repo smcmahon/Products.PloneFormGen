@@ -704,7 +704,7 @@ class FormMailerAdapter(FormActionAdapter):
             request = self.REQUEST
 
         all_fields = [f for f in fields
-            if not (f.isLabel() or f.isFileField())]
+            if not (f.isLabel() or f.isFileField()) if not f.getServer_side()]
 
         # which fields should we show?
         if self.showAll:
@@ -712,7 +712,7 @@ class FormMailerAdapter(FormActionAdapter):
         else:
             live_fields = \
                 [f for f in all_fields
-                   if f.fgField.getName() in self.showFields]
+                   if f.fgField.getName() in self.showFields if not f.getServer_side()]
 
         if not self.includeEmpties:
             all_fields = live_fields
