@@ -7,6 +7,7 @@ from AccessControl import ClassSecurityInfo
 
 from BTrees.IOBTree import IOBTree
 
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 
@@ -164,9 +165,9 @@ class FormSaveDataAdapter(FormActionAdapter):
     security.declareProtected(ModifyPortalContent, 'getSavedFormInputForEdit')
     def getSavedFormInputForEdit(self, **kwargs):
         """ returns saved as CSV text """
-
+        delimiter = self.csvDelimiter()
         sbuf = StringIO()
-        writer = csv.writer(sbuf)
+        writer = csv.writer(sbuf, delimiter=delimiter)
         for row in self.getSavedFormInput():
             writer.writerow( row )
         res = sbuf.getvalue()
@@ -185,8 +186,9 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._inputItems = 0
 
         if len(value):
+            delimiter = self.csvDelimiter()
             sbuf = StringIO( value )
-            reader = csv.reader(sbuf)
+            reader = csv.reader(sbuf, delimiter=delimiter)
             for row in reader:
                 if row:
                     self._inputStorage[self._inputItems] = row
@@ -381,7 +383,8 @@ class FormSaveDataAdapter(FormActionAdapter):
         RESPONSE.setHeader("Content-Type", 'text/comma-separated-values;charset=%s' % self.getCharset())
 
         if getattr(self, 'UseColumnNames', False):
-            res = "%s\n" % ','.join( self.getColumnNames() )
+            delimiter = self.csvDelimiter()
+            res = "%s\n" % delimiter.join( self.getColumnNames() )
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
@@ -448,8 +451,15 @@ class FormSaveDataAdapter(FormActionAdapter):
         else:
             assert format == 'csv', 'Unknown download format'
             return 'text/comma-separated-values'
-
-
+    
+    security.declarePrivate('csvDelimiter')
+    def csvDelimiter(self):
+    
+        """Delimiter character for CSV downloads
+        """
+        fgt = getToolByName(self, 'formgen_tool')
+        return fgt.getCSVDelimiter()        
+    
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'itemsSaved')
     def itemsSaved(self):
         """Download the saved data

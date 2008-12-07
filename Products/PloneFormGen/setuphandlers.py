@@ -36,6 +36,8 @@ def safe_add_purgeable_properties(out, site):
         propSheet.manage_addProperty('mail_recipient_email', '', 'string')    
     if not propSheet.hasProperty('mail_recipient_name'):
         propSheet.manage_addProperty('mail_recipient_name', '', 'string')
+    if not propSheet.hasProperty('csv_delimiter'):
+        propSheet.manage_addProperty('csv_delimiter', ',', 'string')        
     
 
 def importVarious(context):

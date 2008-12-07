@@ -1,5 +1,8 @@
 1.3.0 (beta)
 
+ - Added support for choosing an alternate csv text delimiter for Save Data 
+   Adapters. (Jesse Snyder)
+
  - Adapters are now activated when pasted into form folders. (Jesse Snyder)
 
  - Added 'force SSL' option for form folders. (David Glick)

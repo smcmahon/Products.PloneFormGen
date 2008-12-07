@@ -168,6 +168,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.failUnless( props.hasProperty('mail_bcc_recipients') )
         self.failUnless( props.hasProperty('mail_xinfo_headers') )
         self.failUnless( props.hasProperty('mail_add_headers') )
+        self.failUnless( props.hasProperty('csv_delimiter') )        
         
     def testModificationsToPropSheetNotOverwritten(self):
         newprop = 'foo'
@@ -186,7 +187,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
              "added_props":["metaTypesNotToList",]},
             {"propsheet":"ploneformgen_properties",
              "added_props":["permissions_used", "mail_cc_recipients", 
-                "mail_bcc_recipients", "mail_xinfo_headers","mail_add_headers",]},
+                "mail_bcc_recipients", "mail_xinfo_headers","mail_add_headers", "csv_delimiter"]},
             {"propsheet":"site_properties",
              "added_props":["use_folder_tabs", "typesLinkToFolderContentsInFC",
                 "types_not_searched", "default_page_types"]},
