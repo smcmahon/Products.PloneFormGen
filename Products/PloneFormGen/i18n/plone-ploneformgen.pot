@@ -416,3 +416,14 @@ msgstr ""
 #. Likert Field Description
 msgid "A rating-scale field using rows of radio buttons."
 msgstr ""
+
+#. Form
+#. Default 'CSRF Protection',
+msgid "label_csrf"
+msgstr ""
+
+#. Form
+#. Default     Check this to employ Cross-Site Request Forgery protection.
+#. Default     Note that only HTTP Post actions will be allowed.
+msgid "help_csrf"
+msgstr ""

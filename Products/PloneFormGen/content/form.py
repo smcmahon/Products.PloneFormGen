@@ -9,6 +9,7 @@ import logging
 
 from ZPublisher.Publish import Retry
 from zExceptions import Redirect
+from ZPublisher.HTTPRequest import HTTPRequest
 
 from AccessControl import ClassSecurityInfo, Unauthorized, getSecurityManager
 from Products.CMFCore.permissions import View, ModifyPortalContent
@@ -16,6 +17,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.Expression import getExprContext
 
 from Products.CMFPlone.utils import safe_hasattr
+
+import plone.protect
 
 try:
     from Products.LinguaPlone.public import *
@@ -115,6 +118,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
     BooleanField('forceSSL',
         required=False,
         default=False,
+        # write_permission=EDIT_ADVANCED_PERMISSION,
         widget=BooleanWidget(
             label='Force SSL connection',
             label_msgid='label_force_ssl',
@@ -282,6 +286,22 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             i18n_domain = "ploneformgen",
             label_msgid = "label_headerInjection_text",
             description_msgid = "help_headerInjection_text",
+            ),
+        ),
+    BooleanField('checkAuthenticator',
+        required=False,
+        default=True,
+        schemata='overrides',
+        write_permission=EDIT_ADVANCED_PERMISSION,
+        widget=BooleanWidget(
+            label='CSRF Protection',
+            label_msgid='label_csrf',
+            description="""
+                Check this to employ Cross-Site Request Forgery protection.
+                Note that only HTTP Post actions will be allowed.
+            """,
+            description_msgid = 'help_csrf',
+            i18n_domain = 'ploneformgen',
             ),
         ),
     ))
@@ -480,9 +500,18 @@ class FormFolder(ATFolder):
         return myFields
 
     security.declareProtected(View, 'fgvalidate')
-    def fgvalidate(self, REQUEST=None, errors=None, data=None, metadata=None):
+    def fgvalidate(self, 
+                   REQUEST=None,
+                   errors=None,
+                   data=None,
+                   metadata=None):
         """Validates the field data from the request.
         """
+
+        if HAS_PLONE30 and self.checkAuthenticator:
+            # CSRF check.
+            plone.protect.CheckAuthenticator(REQUEST)
+            plone.protect.PostOnly(REQUEST)
 
         _marker = []
         if errors is None:

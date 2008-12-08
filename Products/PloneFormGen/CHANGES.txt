@@ -1,5 +1,7 @@
 1.3.0 (beta)
 
+ - Add CSRF protection option (on by default). (Steve McMahon)
+
  - Added support for choosing an alternate csv text delimiter for Save Data 
    Adapters. (Jesse Snyder)
 

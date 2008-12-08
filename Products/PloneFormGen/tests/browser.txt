@@ -36,6 +36,7 @@ And confirm that it renders properly::
             ...
             <input type="hidden" name="last_referer"
                    value="localhost" />
+            <input type="hidden" name="_authenticator" value="..."/>
             <input class="context" type="submit"
                    name="form_submit" value="Submit" />
           </div>

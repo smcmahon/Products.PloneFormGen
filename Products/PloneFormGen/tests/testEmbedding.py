@@ -31,6 +31,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
+        self.ff1.checkAuthenticator = False # no csrf protection
         self.mailhost = self.folder.MailHost
         self.mailhost._send = self.dummy_send
         self.ff1.mailer.setRecipient_email('mdummy@address.com')

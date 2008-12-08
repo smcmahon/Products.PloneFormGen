@@ -183,6 +183,10 @@
                    tal:attributes="value python:(last_referer and '%s/%s' % (here.absolute_url(), template.id) not in last_referer) and last_referer or (here.getParentNode() and here.getParentNode().absolute_url())"
                    />
 
+ 
+            <input tal:replace="structure context/@@authenticator/authenticator">
+
+
             <metal:block define-slot="buttons"
                    tal:define="fieldset_index python:fieldsets.index(fieldset);
                                n_fieldsets python:len(fieldsets)">

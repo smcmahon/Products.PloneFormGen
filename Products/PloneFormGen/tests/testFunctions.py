@@ -11,6 +11,11 @@ from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
 
+import zExceptions
+
+from plone.protect.authenticator import AuthenticatorView
+
+
 # too lazy to see if this is already in the library somewhere
 def stripWhiteSpace(multiLineString):
     return '\n'.join([s.strip() for s in multiLineString.split('\n')])
@@ -19,6 +24,7 @@ class FakeRequest(dict):
 
     def __init__(self, **kwargs):
         self.form = kwargs
+        self['form'] = kwargs
 
 class TestFunctions(pfgtc.PloneFormGenTestCase):
     """ tests that mostly concern functionality beyond the unit """
@@ -573,6 +579,49 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual(errors, {cscript.FORM_ERROR_MARKER : 'an error message'})
         self.assertEqual(saver1.itemsSaved(), 2)
         self.assertEqual(saver2.itemsSaved(), 1)
+
+
+    def testCSRF(self):
+        """ test csrf protection """
+
+        # for this test, we need a bit more serious request simulation
+        from ZPublisher.HTTPRequest import HTTPRequest
+        from ZPublisher.HTTPResponse import HTTPResponse
+        environ = {}
+        environ.setdefault('SERVER_NAME', 'foo')
+        environ.setdefault('SERVER_PORT', '80')
+        environ.setdefault('REQUEST_METHOD',  'POST')        
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
+
+        request.form = \
+             {'topic':'test subject',
+              'replyto':'test@test.org',
+              'comments':'test comments'}
+
+        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+        
+        # with authenticator... no error
+        tag = AuthenticatorView('context', 'request').authenticator()
+        token = tag.split('"')[5]
+        request.form['_authenticator'] = token
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual( errors, {} )
+
+        # sneaky GET request
+        environ['REQUEST_METHOD'] = 'GET'
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
+        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+
+        # bad authenticator
+        request.form['_authenticator'] = 'inauthentic'
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
+        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
 
 
 if  __name__ == '__main__':
