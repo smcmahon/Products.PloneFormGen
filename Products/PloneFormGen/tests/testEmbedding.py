@@ -116,16 +116,9 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
 if  __name__ == '__main__':
     framework()
 
-if HAS_PLONE30:
-    def test_suite():
-        from unittest import TestSuite, makeSuite
-        suite = TestSuite()
-        suite.addTest(makeSuite(TestEmbedding))
-        return suite
-else:
-    # These won't work with Plone 2.5.x, so skip them
-    def test_suite():
-        from unittest import TestSuite
-        suite = TestSuite()
-        return suite
+def test_suite():
+    from unittest import TestSuite, makeSuite
+    suite = TestSuite()
+    suite.addTest(makeSuite(TestEmbedding))
+    return suite
     
