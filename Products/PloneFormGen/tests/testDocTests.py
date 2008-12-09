@@ -3,11 +3,17 @@ import doctest
 
 from Testing import ZopeTestCase as ztc
 from Products.PloneFormGen.tests.pfgtc import PloneFormGenFunctionalTestCase
+from Products.PloneFormGen import HAS_PLONE30
 
-testfiles = (
-    'browser.txt',
-    'ssl.txt',
-)
+if HAS_PLONE30:
+    testfiles = (
+        'browser.txt',
+        'ssl.txt',
+    )
+else:
+    testfiles = (
+        'ssl.txt',
+    )
 
 def test_suite():
     return unittest.TestSuite([

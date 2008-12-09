@@ -7,13 +7,15 @@ import os, sys, email
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
 
 import zExceptions
 
-from plone.protect.authenticator import AuthenticatorView
+if HAS_PLONE30:
+    from plone.protect.authenticator import AuthenticatorView
 
 
 # too lazy to see if this is already in the library somewhere
@@ -580,48 +582,48 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual(saver1.itemsSaved(), 2)
         self.assertEqual(saver2.itemsSaved(), 1)
 
+    if HAS_PLONE30:
+        def testCSRF(self):
+            """ test csrf protection """
 
-    def testCSRF(self):
-        """ test csrf protection """
+            # for this test, we need a bit more serious request simulation
+            from ZPublisher.HTTPRequest import HTTPRequest
+            from ZPublisher.HTTPResponse import HTTPResponse
+            environ = {}
+            environ.setdefault('SERVER_NAME', 'foo')
+            environ.setdefault('SERVER_PORT', '80')
+            environ.setdefault('REQUEST_METHOD',  'POST')        
+            request = HTTPRequest(sys.stdin, 
+                        environ,
+                        HTTPResponse(stdout=sys.stdout))
 
-        # for this test, we need a bit more serious request simulation
-        from ZPublisher.HTTPRequest import HTTPRequest
-        from ZPublisher.HTTPResponse import HTTPResponse
-        environ = {}
-        environ.setdefault('SERVER_NAME', 'foo')
-        environ.setdefault('SERVER_PORT', '80')
-        environ.setdefault('REQUEST_METHOD',  'POST')        
-        request = HTTPRequest(sys.stdin, 
-                    environ,
-                    HTTPResponse(stdout=sys.stdout))
+            request.form = \
+                 {'topic':'test subject',
+                  'replyto':'test@test.org',
+                  'comments':'test comments'}
 
-        request.form = \
-             {'topic':'test subject',
-              'replyto':'test@test.org',
-              'comments':'test comments'}
-
-        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+            self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
         
-        # with authenticator... no error
-        tag = AuthenticatorView('context', 'request').authenticator()
-        token = tag.split('"')[5]
-        request.form['_authenticator'] = token
-        errors = self.ff1.fgvalidate(REQUEST=request)
-        self.assertEqual( errors, {} )
+            # with authenticator... no error
+            tag = AuthenticatorView('context', 'request').authenticator()
+            token = tag.split('"')[5]
+            request.form['_authenticator'] = token
+            errors = self.ff1.fgvalidate(REQUEST=request)
+            self.assertEqual( errors, {} )
 
-        # sneaky GET request
-        environ['REQUEST_METHOD'] = 'GET'
-        request = HTTPRequest(sys.stdin, 
-                    environ,
-                    HTTPResponse(stdout=sys.stdout))
-        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+            # sneaky GET request
+            environ['REQUEST_METHOD'] = 'GET'
+            request = HTTPRequest(sys.stdin, 
+                        environ,
+                        HTTPResponse(stdout=sys.stdout))
+            self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
 
-        # bad authenticator
-        request.form['_authenticator'] = 'inauthentic'
-        request = HTTPRequest(sys.stdin, 
-                    environ,
-                    HTTPResponse(stdout=sys.stdout))
-        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+            # bad authenticator
+            request.form['_authenticator'] = 'inauthentic'
+            request = HTTPRequest(sys.stdin, 
+                        environ,
+                        HTTPResponse(stdout=sys.stdout))
+            self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
 
 
 if  __name__ == '__main__':

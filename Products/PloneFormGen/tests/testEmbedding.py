@@ -3,6 +3,7 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.tests import pfgtc
 
 from ZPublisher.Publish import Retry
@@ -111,11 +112,20 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         view = self.ff1.restrictedTraverse('@@embedded')
         self.assertRaises(Retry, view)
 
+
 if  __name__ == '__main__':
     framework()
 
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestEmbedding))
-    return suite
+if HAS_PLONE30:
+    def test_suite():
+        from unittest import TestSuite, makeSuite
+        suite = TestSuite()
+        suite.addTest(makeSuite(TestEmbedding))
+        return suite
+else:
+    # These won't work with Plone 2.5.x, so skip them
+    def test_suite():
+        from unittest import TestSuite
+        suite = TestSuite()
+        return suite
+    

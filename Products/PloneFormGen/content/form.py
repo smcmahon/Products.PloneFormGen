@@ -18,8 +18,6 @@ from Products.CMFCore.Expression import getExprContext
 
 from Products.CMFPlone.utils import safe_hasattr
 
-import plone.protect
-
 try:
     from Products.LinguaPlone.public import *
 except ImportError:
@@ -43,6 +41,9 @@ from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30
+
+if HAS_PLONE30:
+    import plone.protect
 
 from types import StringTypes
 
@@ -288,25 +289,29 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             description_msgid = "help_headerInjection_text",
             ),
         ),
-    BooleanField('checkAuthenticator',
-        required=False,
-        default=True,
-        schemata='overrides',
-        write_permission=EDIT_ADVANCED_PERMISSION,
-        widget=BooleanWidget(
-            label='CSRF Protection',
-            label_msgid='label_csrf',
-            description="""
-                Check this to employ Cross-Site Request Forgery protection.
-                Note that only HTTP Post actions will be allowed.
-            """,
-            description_msgid = 'help_csrf',
-            i18n_domain = 'ploneformgen',
-            ),
-        ),
     ))
 
 if HAS_PLONE30:
+    # Add field for CSRF check option
+    FormFolderSchema = FormFolderSchema + Schema((
+        BooleanField('checkAuthenticator',
+            required=False,
+            default=True,
+            schemata='overrides',
+            write_permission=EDIT_ADVANCED_PERMISSION,
+            widget=BooleanWidget(
+                label='CSRF Protection',
+                label_msgid='label_csrf',
+                description="""
+                    Check this to employ Cross-Site Request Forgery protection.
+                    Note that only HTTP Post actions will be allowed.
+                """,
+                description_msgid = 'help_csrf',
+                i18n_domain = 'ploneformgen',
+                ),
+            ),
+    ))
+
     # Plone 3 switches the schema tab widget to a select box when
     # the number of schemata is > 6. IMHO, this has worse usability
     # than packing the default schema.
@@ -314,6 +319,7 @@ if HAS_PLONE30:
     # still don't function.
     FormFolderSchema['formPrologue'].schemata = 'default'
     FormFolderSchema['formEpilogue'].schemata = 'default'
+
 
 #finalizeATCTSchema(ATFolderSchema, folderish=True, moveDiscussion=False)
 
