@@ -3,6 +3,8 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
+import re
+
 from zope.interface import implements
 
 from Products.PloneFormGen.config import *
@@ -138,4 +140,3 @@ class FormActionAdapter(ATCTContent):
         ATCTContent.at_post_create_script(self)
 
         self.aq_parent.addActionAdapter(self.id)
-        

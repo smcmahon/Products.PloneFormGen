@@ -85,6 +85,50 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual( decoded_header, long_subject )
 
 
+    def test_SubjectDollarReplacement(self):
+        """ 
+        Simple subject lines should do ${identifier} replacement from request.form --
+        but only for a basic override.
+        """
+        
+        mailer = self.ff1.mailer
+        
+        save_field = mailer.subject_field
+        mailer.msg_subject = 'This is my ${topic} now'        
+        
+        # baseline unchanged
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_subject?=') > 0 )
+
+        # no substitution on field replacement (default situation)
+        request = self.LoadRequestForm(topic = 'test ${subject}', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        # note: we expect the subject to be base64 encoded when braces are present
+        self.failUnless( self.messageText.find('Subject: =?utf-8?b?dGVzdCAke3N1YmplY3R9?=') > 0 )
+
+        # we should get substitution in a basic override
+        mailer.subject_field = ''
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_test_subject_now?=') > 0 )
+        
+        # we should get substitution in a basic override
+        mailer.msg_subject = 'This is my ${untopic} now'        
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_=3F=3F=3F_now?=') > 0 )
+
+        # we don't want substitution on user input
+        request = self.LoadRequestForm(topic = 'test ${subject}', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_=3F=3F=3F_now?=') > 0 )
+
+
     def test_MailerOverrides(self):
         """ Test mailer override functions """
     

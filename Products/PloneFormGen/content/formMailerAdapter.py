@@ -53,7 +53,7 @@ from types import StringTypes, StringType, UnicodeType
 from DateTime import DateTime
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30, dollarReplace
 
 try:
     # 3.0+
@@ -804,6 +804,8 @@ class FormMailerAdapter(FormActionAdapter):
             subject = getattr(self, 'msg_subject', nosubject)
             if getattr(self, 'subject_field', None):
                 subject = request.form.get(self.subject_field, subject)
+            else:
+                subject = dollarReplace.DollarVarReplacer(getattr(request, 'form', {})).sub(subject)
 
         # Get From address
         if shasattr(self, 'senderOverride') and self.getRawSenderOverride():

@@ -8,6 +8,7 @@ from Products.PloneFormGen import HAS_PLONE30
 testfiles = (
     'browser.txt',
     'ssl.txt',
+    '../dollarReplace.py',
 )
 
 def test_suite():
