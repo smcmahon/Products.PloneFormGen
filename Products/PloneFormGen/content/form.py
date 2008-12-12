@@ -436,6 +436,8 @@ class FormFolder(ATFolder):
         for obj in fields:
             field = obj.fgField
 
+            if obj.getServer_side(): 
+                REQUEST.form[obj.getId()] = obj.getFgDefault()
             result = field.widget.process_form(self, field, REQUEST.form, empty_marker=_marker)
 
             if result is None or result is _marker:
