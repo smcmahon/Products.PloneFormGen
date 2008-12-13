@@ -213,6 +213,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         searchable=0,
         required=0,
         schemata='message',
+        accessor='getBody_pre',
         read_permission=ModifyPortalContent,
         default_content_type = 'text/plain',
         allowable_content_types = ('text/plain',),
@@ -612,6 +613,46 @@ class FormMailerAdapter(FormActionAdapter):
         return fgt.getDefaultMailAddHdrs()
 
 
+    security.declarePublic('setBody_pt')
+    def setBody_pt(self, value, **kw):
+        """ set body template with BBB for accessors """
+        
+        if shasattr(value, 'replace'):
+            template = value
+            for s, t in [('body_pre', 'getBody_pre'),
+                         ('body_post', 'getBody_post'), 
+                         ('body_footer', 'getBody_footer')]:
+                template = template.replace('here/%s' % s, 'here/%s' % t)
+            myField = self.getField('body_pt')
+            myField.set(self, template)
+
+
+    security.declarePrivate('_dreplace')
+    def _dreplace(self, s):
+        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+
+
+    security.declarePublic('getBody_pre')
+    def getBody_pre(self):
+        """ get expanded mail body prefix """
+        
+        return self._dreplace( self.getRawBody_pre() )
+
+
+    security.declarePublic('getBody_post')
+    def getBody_post(self):
+        """ get expanded mail body postfix """
+
+        return self._dreplace( self.getRawBody_post() )
+
+
+    security.declarePublic('getBody_footer')
+    def getBody_footer(self):
+        """ get expanded mail body footer """
+
+        return self._dreplace( self.getRawBody_footer() )
+
+
     security.declarePrivate('get_mail_text')
     def get_mail_text(self, fields, request, **kwargs):
         """Get header and body of e-mail as text (string)
@@ -802,9 +843,11 @@ class FormMailerAdapter(FormActionAdapter):
             subject = self.getSubjectOverride().strip()
         else:
             subject = getattr(self, 'msg_subject', nosubject)
-            if getattr(self, 'subject_field', None):
-                subject = request.form.get(self.subject_field, subject)
+            subjectField = request.form.get(self.subject_field, None)
+            if subjectField is not None:
+                subject = subjectField
             else:
+                # we only do subject expansion if there's no field chosen
                 subject = dollarReplace.DollarVarReplacer(getattr(request, 'form', {})).sub(subject)
 
         # Get From address

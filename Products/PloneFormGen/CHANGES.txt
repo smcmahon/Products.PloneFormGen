@@ -1,7 +1,8 @@
 1.3.0 (beta)
 
  - Add ${key} style substitution from form dictionary
-   for subject field override. (Steve McMahon)
+   for mailer subject, prologue, epilogue and footer. Also,
+   ThanksPage prologue and epilogue. (Steve McMahon)
 
  - Add CSRF protection option (on by default). (Steve McMahon)
 

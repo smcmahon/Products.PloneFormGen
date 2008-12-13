@@ -23,7 +23,7 @@ from Products.ATContentTypes.configuration import zconf
 from Products.CMFCore.permissions import View, ModifyPortalContent
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30, dollarReplace
 
 import zope.i18n
 
@@ -82,6 +82,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         required=False,
         searchable=False,
         primary=False,
+        accessor='getThanksPrologue',
         validators = ('isTidyHtmlWithCleanup',),
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
@@ -101,6 +102,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         required=False,
         searchable=False,
         primary=False,
+        accessor='getThanksEpilogue',
         validators = ('isTidyHtmlWithCleanup',),
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
@@ -283,5 +285,24 @@ class FormThanksPage(ATCTContent):
             if id in value:
                 self.showFields.append(id)
         
+
+    security.declarePrivate('_dreplace')
+    def _dreplace(self, s):
+        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+
+
+    security.declarePublic('getThanksPrologue')
+    def getThanksPrologue(self):
+        """ get expanded prologue """
+
+        return self._dreplace( self.getRawThanksPrologue() )
+
+
+    security.declarePublic('getThanksEpilogue')
+    def getThanksEpilogue(self):
+        """ get expanded epilogue """
+
+        return self._dreplace( self.getRawThanksEpilogue() )
+
 
 registerATCT(FormThanksPage, PROJECTNAME)

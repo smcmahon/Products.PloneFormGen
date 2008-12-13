@@ -1,5 +1,5 @@
 #
-# Integration tests. See also teswt modules for specific components.
+# Integration tests. See other test modules for specific components.
 #
 
 import os, sys, email

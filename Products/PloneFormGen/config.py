@@ -17,15 +17,15 @@ DEFAULT_MAILTEMPLATE_BODY = \
   <head><title></title></head>
 
   <body>
-    <p tal:content="here/body_pre | nothing" />
+    <p tal:content="here/getBody_pre | nothing" />
     <dl>
         <tal:block repeat="field options/wrappedFields">
             <dt tal:content="field/fgField/widget/label" />
             <dd tal:content="structure python:field.htmlValue(request)" />
         </tal:block>
     </dl>
-    <p tal:content="here/body_post | nothing" />
-    <pre tal:content="here/body_footer | nothing" />
+    <p tal:content="here/getBody_post | nothing" />
+    <pre tal:content="here/getBody_footer | nothing" />
   </body>
 </html>
 """

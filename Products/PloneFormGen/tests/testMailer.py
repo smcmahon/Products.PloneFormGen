@@ -92,8 +92,6 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """
         
         mailer = self.ff1.mailer
-        
-        save_field = mailer.subject_field
         mailer.msg_subject = 'This is my ${topic} now'        
         
         # baseline unchanged
@@ -127,6 +125,28 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_=3F=3F=3F_now?=') > 0 )
+
+
+    def test_TemplateReplacement(self):
+        """ 
+        Mail template prologues, epilogues and footers should do ${identifier}
+        replacement from request.form -- this is simpler because there are no 
+        overrides.
+        """
+
+        mailer = self.ff1.mailer
+        mailer.body_pre = 'Hello ${topic},'        
+        mailer.body_post = 'Thanks, ${topic}!'        
+        mailer.body_footer = 'Eat my footer, ${topic}.'        
+
+        # we should get substitution
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless( messageText.find('Hello test subject,') > 0 )
+        self.failUnless( messageText.find('Thanks, test subject!') > 0 )
+        self.failUnless( messageText.find('Eat my footer, test subject.') > 0 )
 
 
     def test_MailerOverrides(self):
