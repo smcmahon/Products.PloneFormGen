@@ -12,6 +12,11 @@ def test_suite():
             test_class=PloneFormGenFunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
 
+        ztc.FunctionalDocFileSuite(
+            'browser_serverside_test.txt', package='Products.PloneFormGen.tests',
+            test_class=PloneFormGenFunctionalTestCase,
+            optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+
         ])
 
 if __name__ == '__main__':
