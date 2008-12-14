@@ -218,7 +218,6 @@ class FormThanksPage(ATCTContent):
         """ Returns a list of fields that should be
             displayed on the thanks page.
         """
-
         if self.showAll:
             # acquire field list from parent
             return self.fgFields(displayOnly=True)
@@ -239,11 +238,13 @@ class FormThanksPage(ATCTContent):
     def displayInputs(self, request):
         """ Returns sequence of dicts {'label':fieldlabel, 'value':input}
         """
-
         # get a list of all candidate fields
         myFields = []
         for obj in self.aq_parent._getFieldObjects():
             if not (IField.isImplementedBy(obj) or obj.isLabel()):
+                # if field list hasn't been specified explicitly, exclude server side fields
+                if self.showAll and obj.getServerSide():
+                    continue 
                 myFields.append(obj)
 
         # Now, determine which fields we show
@@ -280,7 +281,7 @@ class FormThanksPage(ATCTContent):
         # retained order.
         
         self.showFields = []
-        for field in self.fgFields():
+        for field in self.fgFields(excludeServerSide=False):
             id = field.getName()
             if id in value:
                 self.showFields.append(id)

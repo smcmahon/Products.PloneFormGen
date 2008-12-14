@@ -1,5 +1,9 @@
 1.3.0 (beta)
 
+ - Added 'Server-Side Variable' override so that you can make an expression
+   available to action adapters without passing it in a hidden field.
+   (Fulvio Casali, Alex Tokar, David Glick)
+
  - Add ${key} style substitution from form dictionary
    for mailer subject, prologue, epilogue and footer. Also,
    ThanksPage prologue and epilogue. (Steve McMahon)

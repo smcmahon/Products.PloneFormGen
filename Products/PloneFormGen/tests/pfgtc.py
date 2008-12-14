@@ -32,6 +32,7 @@ from Products.SecureMailHost.SecureMailHost import SecureMailHost
 class MailHostMock(SecureMailHost):
     def _send(self, mfrom, mto, messageText):
         print '<sent mail from %s to %s>' % (mfrom, mto)
+        self.msgtext = messageText
 
 class PloneFormGenTestCase(PloneTestCase.PloneTestCase):
     def _setup(self):

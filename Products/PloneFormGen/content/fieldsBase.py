@@ -280,6 +280,23 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                 description_msgid = "help_fgtenable_text",
                 ),
             ),
+        BooleanField('serverSide',
+            schemata='overrides',
+            searchable=0,
+            required=0,
+            write_permission=EDIT_ADVANCED_PERMISSION,
+            default='',
+            widget=BooleanWidget(
+                label="Server-Side Variable",
+                description="""
+                    Mark this field as a value to be injected into the
+                    request form for use by action adapters and is not 
+                    modifiable by or exposed to the client.
+                """,
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_server_side_text",
+                ),
+            ),
     ))
 
 
@@ -586,6 +603,13 @@ class BaseFormField(ATCTContent):
 
         return self.fgField.widget.visible == -1
 
+    security.declareProtected(View, 'getServerSide')
+    def getServerSide(self, **kw):
+        """ return server side flag for field """
+        try:
+            return self.getField('serverSide').get(self)
+        except AttributeError:
+            return False
 
     security.declareProtected(ModifyPortalContent, 'setTitle')
     def setTitle(self, value, **kw):

@@ -57,7 +57,6 @@ thank you page.  The default form has a mailer, so we'll programmatically set
 a recipient so that it doesn't complain.  (The mailer is mocked in the doctest
 base class)::
 
-    >>> self.portal.testform.mailer.setRecipient_email('mdummy@address.com')
     >>> browser.getControl('Comments').value = 'PFG rocks!'
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>

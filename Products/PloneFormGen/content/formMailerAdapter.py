@@ -32,12 +32,9 @@ from Products.CMFCore.utils import getToolByName
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter, FormAdapterSchema
 
-from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
-
-from Products.TALESField import TALESString, TALESLines
+from Products.TALESField import TALESString
 from Products.TemplateFields import ZPTField as ZPTField
 
-from Products.PloneFormGen.content.actionAdapter import FormActionAdapter, FormAdapterSchema
 from ya_gpg import gpg
 
 from email import Encoders
@@ -48,9 +45,7 @@ from email.MIMEImage import MIMEImage
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
-from types import StringTypes, StringType, UnicodeType 
-
-from DateTime import DateTime
+from types import StringTypes
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30, dollarReplace
@@ -745,7 +740,7 @@ class FormMailerAdapter(FormActionAdapter):
             request = self.REQUEST
 
         all_fields = [f for f in fields
-            if not (f.isLabel() or f.isFileField())]
+            if not (f.isLabel() or f.isFileField()) and not (self.showAll and f.getServerSide())]
 
         # which fields should we show?
         if self.showAll:
@@ -971,7 +966,7 @@ class FormMailerAdapter(FormActionAdapter):
         # retained order.
 
         self.showFields = []
-        for field in self.fgFields():
+        for field in self.fgFields(excludeServerSide=False):
             id = field.getName()
             if id in value:
                 self.showFields.append(id)
