@@ -390,7 +390,7 @@ class FormFolder(ATFolder):
         
 
     security.declareProtected(View, 'fgFields')
-    def fgFields(self, request=None, displayOnly=False):
+    def fgFields(self, request=None, displayOnly=False, excludeServerSide=True):
         """ generate fields on the fly; also primes request with
             defaults if request is passed.
             if displayOnly, label fields are excluded.
@@ -414,7 +414,7 @@ class FormFolder(ATFolder):
                     # prime the request
                     obj.fgPrimeDefaults(request)
                 #if not (displayOnly and (obj.isLabel() or obj.isFileField()) ):
-                if not (displayOnly and obj.isLabel() or obj.getServerSide()):
+                if not (displayOnly and obj.isLabel()) and not (excludeServerSide and obj.getServerSide()):
                     myFields.append(obj.fgField)
 
         return myFields

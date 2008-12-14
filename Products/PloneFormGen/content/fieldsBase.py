@@ -602,6 +602,13 @@ class BaseFormField(ATCTContent):
 
         return self.fgField.widget.visible == -1
 
+    security.declareProtected(View, 'getServerSide')
+    def getServerSide(self, **kw):
+        """ return server side flag for field """
+        try:
+            return self.getField('serverSide').get(self)
+        except AttributeError:
+            return False
 
     security.declareProtected(ModifyPortalContent, 'setTitle')
     def setTitle(self, value, **kw):
