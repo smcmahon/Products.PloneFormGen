@@ -243,7 +243,7 @@ class FormThanksPage(ATCTContent):
         for obj in self.aq_parent._getFieldObjects():
             if not (IField.isImplementedBy(obj) or obj.isLabel()):
                 # skip this field completely if this field is marked server side.
-                if obj.getServer_side(): 
+                if obj.getServerSide(): 
                     continue 
                 myFields.append(obj)
 

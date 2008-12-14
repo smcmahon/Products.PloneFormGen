@@ -113,8 +113,8 @@ class FGPasswordField(FGStringField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -191,8 +191,8 @@ class FGIntegerField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -263,8 +263,8 @@ class FGFixedPointField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # and, required has only limited use ...
     schema['required'].widget.description = \
@@ -371,8 +371,8 @@ class FGBooleanField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -500,8 +500,8 @@ class FGDateField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -733,8 +733,8 @@ class FGSelectionField(BaseFormField):
     # 'hidden' isn't really useful for a selection field.
     # Just use a hidden string field if you really need this.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -832,8 +832,8 @@ class FGMultiSelectField(BaseFormField):
     # current Archetypes doesn't really support hidden for
     # multi-select. Use a lines field if you really need this
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -1028,8 +1028,8 @@ class FGRichTextField(BaseFormField):
     # 'hidden' isn't really useful for an RT field.
     # Just use a hidden string field if you really need this.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     if HAS_MX_TIDY:
         schema = schema + Schema((
@@ -1229,8 +1229,8 @@ class FGFileField(BaseFormField):
 
     # 'hidden' isn't really useful for a file field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
 

@@ -280,7 +280,7 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                 description_msgid = "help_fgtenable_text",
                 ),
             ),
-        BooleanField('server_side',
+        BooleanField('serverSide',
             schemata='overrides',
             searchable=0,
             required=0,

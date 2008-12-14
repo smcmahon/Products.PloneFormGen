@@ -414,7 +414,7 @@ class FormFolder(ATFolder):
                     # prime the request
                     obj.fgPrimeDefaults(request)
                 #if not (displayOnly and (obj.isLabel() or obj.isFileField()) ):
-                if not (displayOnly and obj.isLabel() or obj.getServer_side()):
+                if not (displayOnly and obj.isLabel() or obj.getServerSide()):
                     myFields.append(obj.fgField)
 
         return myFields
@@ -436,7 +436,7 @@ class FormFolder(ATFolder):
         for obj in fields:
             field = obj.fgField
 
-            if obj.getServer_side(): 
+            if obj.getServerSide(): 
                 REQUEST.form[obj.getId()] = obj.getFgDefault()
             result = field.widget.process_form(self, field, REQUEST.form, empty_marker=_marker)
 
@@ -606,7 +606,7 @@ class FormFolder(ATFolder):
             myFields.append( (noneValue, _(u'vocabulary_none_text', u'None')) )
 
         for obj in self._getFieldObjects(objTypes):
-            if obj.getServer_side(): continue
+            if obj.getServerSide(): continue
             if isinstance(obj.title, unicode):
                 myFields.append( (obj.getId(), obj.title) )
             else:

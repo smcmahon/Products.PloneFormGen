@@ -90,8 +90,8 @@ class FGLikertField(fieldsBase.BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
-    # 'server_side' is not really useful for this field.
-    del schema['server_side']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
 

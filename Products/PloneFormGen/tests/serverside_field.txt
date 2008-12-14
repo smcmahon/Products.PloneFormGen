@@ -14,7 +14,7 @@ Add a new form folder and mark the subject input variable as a server side varia
     >>> self.setRoles(['Manager'])
     >>> self.portal.invokeFactory('FormFolder', 'testform')
     'testform'
-    >>> self.portal.testform.topic.setServer_side(True)
+    >>> self.portal.testform.topic.setServerSide(True)
 
 And confirm that the server-side field is absent from the rendered form::
     
