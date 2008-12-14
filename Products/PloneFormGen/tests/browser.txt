@@ -18,7 +18,7 @@ And confirm that it renders properly::
     >>> browser.url
     'http://nohost/plone/testform/...'
     >>> print browser.contents
-    <BLANKLINE>
+    <!DOCTYPE...
     ...
      <div class="pfg-form formid-testform">
       <form ...action="http://nohost/plone/testform"...>
@@ -33,9 +33,6 @@ And confirm that it renders properly::
             ...
             <input type="hidden" name="form.submitted"
                    value="1" />
-            ...
-            <input type="hidden" name="last_referer"
-                   value="localhost" />
             ...
             <input class="context" type="submit"
                    name="form_submit" value="Submit" />

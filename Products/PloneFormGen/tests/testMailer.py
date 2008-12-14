@@ -73,9 +73,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         long_subject = "Now is the time for all good persons to come to the aid of the quick brown fox."
     
-        mailer = self.ff1.mailer        
-        fields = self.ff1._getFieldObjects()        
-        request = self.LoadRequestForm(topic = long_subject)        
+        mailer = self.ff1.mailer
+        fields = self.ff1._getFieldObjects()
+        request = self.LoadRequestForm(topic = long_subject)
         mailer.onSuccess(fields, request)
         
         msg = email.message_from_string(self.messageText)

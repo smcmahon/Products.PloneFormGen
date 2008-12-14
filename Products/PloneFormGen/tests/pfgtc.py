@@ -24,8 +24,6 @@ def setup_product():
 setup_product()
 PloneTestCase.setupPloneSite(products=['PloneFormGen'])
 
-
-
 class Session(dict):
     def set(self, key, value):
         self[key] = value
@@ -37,6 +35,9 @@ class MailHostMock(SecureMailHost):
 
 class PloneFormGenTestCase(PloneTestCase.PloneTestCase):
     def _setup(self):
+        # make sure we test in Plone 2.5 with the exception hook monkeypatch applied
+        Products.PloneFormGen.config.PLONE_25_PUBLISHER_MONKEYPATCH = True
+        
         PloneTestCase.PloneTestCase._setup(self)
         self.app.REQUEST['SESSION'] = Session()
 

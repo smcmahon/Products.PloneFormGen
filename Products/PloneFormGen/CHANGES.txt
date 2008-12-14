@@ -4,7 +4,7 @@
    for mailer subject, prologue, epilogue and footer. Also,
    ThanksPage prologue and epilogue. (Steve McMahon)
 
- - Add CSRF protection option (on by default). (Steve McMahon)
+ - Add CSRF protection option (on by default). [Plone 3 only] (Steve McMahon)
 
  - Added support for choosing an alternate csv text delimiter for Save Data 
    Adapters. (Jesse Snyder)
@@ -43,7 +43,7 @@
    thanks page. (Steve McMahon)
 
  - Added support for embedding PFG forms into other templates.  See
-   README_EMBEDDING.txt for details. (David Glick)
+   README_EMBEDDING.txt for details. [Plone 3 only] (David Glick)
 
  - Clean out 2.1 compatibility code. Ahhhh! (Steve McMahon)
 

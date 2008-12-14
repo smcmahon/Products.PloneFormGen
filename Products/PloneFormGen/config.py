@@ -230,3 +230,7 @@ BAD_IDS = ('zip', 'location', 'language')
 # used to mark errors that belong to the
 # whole form, not just a field.
 FORM_ERROR_MARKER = '_pfg_form_error'
+
+# apply the publisher exception hook wrapper to support embedded
+# forms in Plone 2.5?
+PLONE_25_PUBLISHER_MONKEYPATCH = False

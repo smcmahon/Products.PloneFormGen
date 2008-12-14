@@ -68,9 +68,9 @@
     <div metal:define-macro="body" class="pfg-form" tal:attributes="class string:pfg-form formid-${here/getId}">
       <form name="edit_form"
             method="post"
+            action=""
             enctype="multipart/form-data"
             class="enableUnloadProtection"
-            action=""
             tal:attributes="action here/fgGetFormSubmitAction">
 
           <metal:block define-slot="extra_top" />
@@ -98,10 +98,12 @@
                    value="default"
                    tal:attributes="value fieldset"
                    />
-            <input type="hidden"
-                   name="form.submitted"
-                   value="1"
-                   />
+           <input type="hidden"
+                  name="form.submitted"
+                  value="1"
+                  tal:define="form_submit_marker python:request.form.get('pfg_form_marker', 'form.submitted')"
+                  tal:attributes="name form_submit_marker"
+                  />
             <input type="hidden"
                    name="add_reference.field:record"
                    value=""
