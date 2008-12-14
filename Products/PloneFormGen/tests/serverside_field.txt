@@ -1,0 +1,23 @@
+Server-side only field
+----------------------
+
+Get our test browser::
+
+    >>> from Products.Five.testbrowser import Browser
+    >>> browser = Browser()
+    >>> portal_url = 'http://nohost/plone'
+    >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+    >>> browser.addHeader('Authorization', 'Basic root:secret')
+
+Add a new form folder and mark the subject input variable as a server side variable::
+  
+    >>> self.setRoles(['Manager'])
+    >>> self.portal.invokeFactory('FormFolder', 'testform')
+    'testform'
+    >>> self.portal.testform.topic.setServer_side(True)
+
+And confirm that the server-side field is absent from the rendered form::
+    
+    >>> browser.open(portal_url + '/testform')
+    >>> 'topic' in  browser.contents
+    False
