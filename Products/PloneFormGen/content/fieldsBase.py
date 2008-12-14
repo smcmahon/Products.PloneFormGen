@@ -442,6 +442,7 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
         validatorOverrideField,
     ))
 
+finalizeFieldSchema(BareFieldSchema, folderish=True, moveDiscussion=False)
 finalizeFieldSchema(BaseFieldSchema, folderish=True, moveDiscussion=False)
 finalizeFieldSchema(BaseFieldSchemaStringDefault, folderish=True, moveDiscussion=False)
 finalizeFieldSchema(BaseFieldSchemaLinesDefault, folderish=True, moveDiscussion=False)

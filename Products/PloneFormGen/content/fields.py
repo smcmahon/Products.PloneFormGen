@@ -1141,7 +1141,7 @@ class FGRichLabelField(BaseFormField):
     schema['title'].widget.label_msgid='label_title'
     schema['title'].widget.description = "Not displayed on form."
     schema['title'].widget.description_msgid = 'help_notdisplayed_text'
-    schema['description'].schemata = 'metadata'
+    schema['description'].widget.visible = {'view':'invisible','edit':'invisible'}
 
     # Standard content type setup
     portal_type = meta_type = 'FormRichLabelField'
