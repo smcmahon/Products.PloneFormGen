@@ -881,17 +881,6 @@ class BaseFormField(ATCTContent):
         return False
 
 
-    security.declareProtected(View, 'isServerSide')
-    def isServerSide(self):
-        """Returns True if this field is marked 'Server-Side' and should 
-        never be shown.
-        """
-
-        # override this method when field really is a server-side value
-
-        return False
-
-
     security.declareProtected(View, 'isFileField')
     def isFileField(self):
         """Returns True if the embedded field acts like a file field
