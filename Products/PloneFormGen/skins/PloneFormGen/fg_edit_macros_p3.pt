@@ -106,7 +106,11 @@
                      tal:content="structure python:request.form.get(field.getName(), field.default)">
       	            Rich Label
       	        </td>
-      	        <td class="draggable draggingHook" style="display:none">::</td>
+      	        <td class="editHook" style="display:none">
+      	          <a href="#" tal:content="structure here/edit.gif"
+      	                      tal:attributes="href string:${here/absolute_url}/${field/getName}/edit" />
+      	        </td>
+      	        <td class="draggable draggingHook editHook" style="display:none">::</td>
       	        </tr>
               </tal:fields>
             </tbody></table>
@@ -256,7 +260,7 @@ function pfgQEdit() {
     );
   blurrable.css('opacity', 0.5);
   jq("div.pfg-form table tr:nth-child(even)").addClass('even');
-  jq("div.pfg-form .draggingHook").fadeIn();
+  jq("div.pfg-form td.editHook").fadeIn();
   jq("#pfgqedit").hide();
   jq("#pfgnedit").fadeIn();
 
@@ -295,11 +299,15 @@ function pfgNEdit() {
 }
 
 jq(document).ready(function() {
-  jq("#pfgqedit").show();
+  if (jq("#content div.pfg-form").length > 0) jq("#content #pfgqedit").show();
 })
 </script>
-
 </tal:block>
+<style>
+td.editHook {vertical-align:top;width:2em;}
+#pfgnedit,#pfgqedit{float:right;cursor:pointer;}
+#pfg-qetable{width:100%;}
+</style>
 
     </div>
 
