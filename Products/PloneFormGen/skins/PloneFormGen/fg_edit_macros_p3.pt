@@ -73,14 +73,9 @@
         </tal:description>
     </div>
 
-    <div metal:define-macro="body" class="pfg-form" id="folderlisting-main-table"
-         tal:attributes="class string:pfg-form formid-${here/getId}"
-         tal:define="canModify python:checkPermission('Modify portal content', here)">
+    <div metal:define-macro="body" class="pfg-form"
+         tal:attributes="class string:pfg-form formid-${here/getId}">
 
-      <div id="pfgqedit" onclick="javascript:pfgQEdit()" style="display:none" tal:content="structure here/maintenance_icon.gif" />
-
-      <div id="pfgnedit" onclick="javascript:pfgNEdit()" style="display:none" tal:content="structure here/form_icon.gif" />
-      
       <form name="edit_form"
             method="post"
             enctype="multipart/form-data"
@@ -93,6 +88,7 @@
 
           <metal:block define-slot="extra_top" />
           <metal:block define-slot="widgets">
+            <div id="pfg-fieldwrapper">
             <table id="pfg-qetable"><tbody>
               <tal:fields repeat="field fields">
               <tr tal:attributes="id string:folder-contents-item-${field/getName}"
@@ -100,11 +96,13 @@
       	        <td tal:condition="python:field.widget.macro != 'widget_richlabel'">
                   <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
       	        </td>
-      	        <td tal:condition="python:field.widget.macro == 'widget_richlabel'"
+      	        <td tal:condition="python:field.widget.macro == 'widget_richlabel'">
+      	          <div
       	             tal:attributes="id string:archetypes-fieldname-${field/getName}"
                      class="field PFG-RichLabel"
                      tal:content="structure python:request.form.get(field.getName(), field.default)">
       	            Rich Label
+      	          </div>
       	        </td>
       	        <td class="editHook" style="display:none">
       	          <a href="#" tal:content="structure here/edit.gif"
@@ -114,6 +112,7 @@
       	        </tr>
               </tal:fields>
             </tbody></table>
+            </div>
           </metal:block>
           
           <metal:block define-slot="extra_bottom" />
@@ -243,71 +242,6 @@
           </div>
 
       </form>
-
-<tal:block tal:condition="canModify">
-<script>
-
-pfgQEinitDone = false;
-
-function pfgQEdit() {
-  blurrable = jq("div.pfg-form .blurrable")
-  blurrable.each(
-    function() {
-      if (typeof this.disabled != "undefined") {
-        this.disabled = true;
-        }
-      }
-    );
-  blurrable.css('opacity', 0.5);
-  jq("div.pfg-form table tr:nth-child(even)").addClass('even');
-  jq("div.pfg-form td.editHook").fadeIn();
-  jq("#pfgqedit").hide();
-  jq("#pfgnedit").fadeIn();
-
-  if (!pfgQEinitDone) {
-    table = '#pfg-qetable'
-    ploneDnDReorder.table = jq(table);
-    if (ploneDnDReorder.table.length) {
-      ploneDnDReorder.rows = jq(table + " > tr," +
-                                table + " > tbody > tr");
-      jq(table + " > tr > td.draggable," +
-          table + " > tbody > tr > td.draggable")
-          .not('.notDraggable')
-          .mousedown(ploneDnDReorder.doDown)
-          .mouseup(ploneDnDReorder.doUp)
-          .addClass("draggingHook")
-          .html('::');
-      pfgQEinitDone = true;
-    }
-  }
-}
-
-function pfgNEdit() {
-  if (ploneDnDReorder.dragging) ploneDnDReorder.doUp(false);
-
-  blurrable = jq("div.pfg-form .blurrable")
-  blurrable.each(
-    function() {
-      if (typeof this.disabled != "undefined") this.disabled = false;
-      }
-    );
-  blurrable.css('opacity', 1)
-  jq("div.pfg-form table tr.even").removeClass('even');
-  jq("div.pfg-form .draggingHook").fadeOut();
-  jq("#pfgnedit").hide();
-  jq("#pfgqedit").fadeIn();
-}
-
-jq(document).ready(function() {
-  if (jq("#content div.pfg-form").length > 0) jq("#content #pfgqedit").show();
-})
-</script>
-</tal:block>
-<style>
-td.editHook {vertical-align:top;width:2em;}
-#pfgnedit,#pfgqedit{float:right;cursor:pointer;}
-#pfg-qetable{width:100%;}
-</style>
 
     </div>
 

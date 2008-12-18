@@ -75,7 +75,21 @@
     <metal:fill fill-slot="main">
       <metal:main define-macro="main" tal:define="isLocked python:False">
         
+
+          <tal:block tal:condition="python:checkPermission('Modify portal content', here)">
+              <script src="pfgQuickEdit.js" type="text/javascript"></script>
+              <style>
+              td.editHook {vertical-align:top;width:2em;text-align:center;}
+              #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
+              #pfg-qetable{width:100%;clear:right;}
+              </style>
+          </tal:block>
+
         <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <div id="pfgqedit" style="display:none" tal:content="structure here/maintenance_icon.gif" />
+        <div id="pfgnedit" style="display:none" tal:content="structure here/form_icon.gif" />
+
         <h1 tal:content="context/Title" class="documentFirstHeading">
           Title or id
         </h1>
