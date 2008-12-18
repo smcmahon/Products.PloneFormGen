@@ -33,13 +33,12 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
+Plone 2.5.x (2.1 no longer supported) or Plone 3.1+
+Some features are only available in 3.1+.
+
 Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
-(automatically loaded if you use buildout or easy_install).
-
-Five, version 1.2 or later. If you have an earlier version of Five and
-do not wish to upgrade Five, see the note on this in the Installation
-section below.
+(automatically loaded if you install via Python package).
 
 Encryption of e-mail requires the Gnu Privacy Guard, GnuPG, also known
 as gpg. See README_GPG.txt for details.
@@ -64,12 +63,6 @@ Typical for a Zope/Plone product:
 
 *   Unpack the product package into the Products folder of the
     Zope/Plone instance. Check your ownership and permissions.
-
-*   IF YOU ARE USING FIVE version less than 1.2 (common with Zope 2.8.x / Plone 2.1.x),
-    delete or rename "configure.zcml". Otherwise, you will experience a
-    variety of problems (e.g., missing component) in portal operation.
-    (Note that it's also an option to upgrade your version of Five to
-    version 1.2.)
 
 Either Method Final Steps
 -------------------------
@@ -158,6 +151,10 @@ van Rees all provided valuable early feedback.
 Titus Anderson provided the base code for the Ratings-Scale Field.
 Andreas Jung contributed the record-editing feature for the Save Data
 adapter.
+
+Fulvio Casali, Alex Tokar, David Glick, Steve McMahon, Jesse Snyder, 
+Michael Dunlap, Paul Bugni, Jon Baldivieso and Andrew Burkhalter all
+did amazing things at the December 2008 PFG sprint sponsored by OneNW.
 
 See the CHANGES.txt file for the very long list of people who helped
 with particular features or bugs.
