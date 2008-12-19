@@ -110,6 +110,10 @@ pfgQEdit.noedit = function (e) {
 jq(document).ready(function() {
   jq("#pfgqedit").bind('click', pfgQEdit.qedit);
   jq("#pfgnedit").bind('click', pfgQEdit.noedit);
-  jq("#content #pfgqedit").show();
+  if (document.URL.indexOf('?qedit') == -1) {
+    jq("#content #pfgqedit").show();
+  } else {
+    pfgQEdit.qedit()
+  }
 })
 

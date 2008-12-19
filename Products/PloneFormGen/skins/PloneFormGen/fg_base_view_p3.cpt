@@ -90,8 +90,6 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         
-        <span tal:content="here/portal_type" />
-
         <div id="pfgqedit" style="display:none" tal:content="structure here/maintenance_icon.gif" />
         <div id="pfgnedit" style="display:none" tal:content="structure here/form_icon.gif" />
 

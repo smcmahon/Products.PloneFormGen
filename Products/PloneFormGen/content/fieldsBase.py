@@ -7,6 +7,9 @@ import cgi
 
 from types import StringTypes, BooleanType
 
+import transaction
+import zExceptions
+
 from zope.interface import implements
 
 from Products.Archetypes.public import *
@@ -965,3 +968,18 @@ class BaseFormField(ATCTContent):
         id = self.getId()
         if self.fgField.__name__ != id:
             self.fgField.__name__ = id
+
+
+    def processForm(self, data=1, metadata=0, REQUEST=None, values=None):
+        # override base so that we can selectively redirect back to the form
+        # rather than to the field view.
+
+        # base processing
+        ATCTContent.processForm(self, data, metadata, REQUEST, values)
+        
+        # if the referer is the item itself, let nature take its course;
+        # if not, redirect to form after a commit.
+        referer = self.REQUEST.form.get('last_referer', None)
+        if referer is not None and referer.split('/')[-1] != self.getId():
+            transaction.commit()
+            raise zExceptions.Redirect, "%s?qedit=1" % self.formFolderObject().absolute_url()
