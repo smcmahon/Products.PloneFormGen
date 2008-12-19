@@ -1,6 +1,7 @@
 // Support for PFG Quick Edit
 
 var pfgQEdit = {};
+var pfgHaveDnD = typeof(ploneDnDReorder) != typeof(undefined)
 
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
@@ -13,7 +14,9 @@ pfgQEdit.addTable = function () {
                 '<td></td></tr>'
                 );
             felem = felem.parent()
-            felem.after('<td class="draggable draggingHook editHook">::</td>')
+            if (pfgHaveDnD) {
+              felem.after('<td class="draggable draggingHook editHook">::</td>')
+            }
             felem.after(
                 '<td class="editHook">'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
@@ -38,7 +41,20 @@ pfgQEdit.addTable = function () {
         )
 }
 
-pfgQEdit.qedit = function () {
+pfgQEdit.initDnD = function () {
+  // tie to folder-contents drag drop
+  table = '#pfg-qetable';
+  ploneDnDReorder.table = jq(table);
+  if (ploneDnDReorder.table.length) {
+    ploneDnDReorder.rows = jq(table + " > tr," +
+                              table + " > tbody > tr");
+    jq( table + " td.draggable")
+        .mousedown(ploneDnDReorder.doDown)
+        .mouseup(ploneDnDReorder.doUp)
+  }
+}
+
+pfgQEdit.qedit = function (e) {
   jq("#pfgqedit").hide();
   // disable and dim input elements
   blurrable = jq("div.pfg-form .blurrable")
@@ -51,19 +67,13 @@ pfgQEdit.qedit = function () {
     );
   blurrable.css('opacity', 0.5);
   
-  pfgQEdit.addTable()
+  pfgQEdit.addTable();
   jq("div.pfg-form table tr:nth-child(even)").addClass('even');
 
-  // tie to folder-contents drag drop
-  table = '#pfg-qetable'
-  ploneDnDReorder.table = jq(table);
-  if (ploneDnDReorder.table.length) {
-    ploneDnDReorder.rows = jq(table + " > tr," +
-                              table + " > tbody > tr");
-    jq( table + " td.draggable")
-        .mousedown(ploneDnDReorder.doDown)
-        .mouseup(ploneDnDReorder.doUp)
+  if (pfgHaveDnD) {
+    pfgQEdit.initDnD();
   }
+
   jq("#pfgnedit").fadeIn();
 }
 
@@ -78,14 +88,13 @@ pfgQEdit.stripTable = function () {
   jq("#pfg-qetable").after(content).remove();
 }
 
-pfgQEdit.noedit = function () {
+pfgQEdit.noedit = function (e) {
   // turn on field editing
   jq("#pfgnedit").hide();
 
-  if (ploneDnDReorder.dragging) ploneDnDReorder.doUp(false);
+  if (pfgHaveDnD && ploneDnDReorder.dragging) ploneDnDReorder.doUp(false);
 
-
-  pfgQEdit.stripTable()
+  pfgQEdit.stripTable();
   // enable all blurred elements
   blurrable = jq("div.pfg-form .blurrable")
   blurrable.each(
