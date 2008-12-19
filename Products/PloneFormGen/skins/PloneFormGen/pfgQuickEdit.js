@@ -8,15 +8,34 @@ pfgQEdit.addTable = function () {
         function () {
             fname = this.id.substr('folder-contents-item-'.length);
             felem = jq('#'+this.id)
-            felem.wrap('<tr id="folder-contents-item-' + fname + '" class="draggable"><td></td></tr>');
+            felem.wrap(
+                '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
+                '<td></td></tr>'
+                );
             felem = felem.parent()
             felem.after('<td class="draggable draggingHook editHook">::</td>')
-            felem.after('<td class="editHook"><a href="' + fname + '/edit"><img src="edit.gif"</a></td>')
+            felem.after(
+                '<td class="editHook">'+
+                '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
+                '<img src="delete_icon.gif" alt="Delete"</a>'+
+                '</td>'+
+                '<td class="editHook">'+
+                '<a href="' + fname + '/edit" title="Edit Field">'+
+                '<img src="edit.gif" alt="Edit"</a>'+
+                '</td>'
+                )
         }
     );
     jq("#pfg-fieldwrapper")
-     .wrapInner('<table id="pfg-qetable" class="listing" summary="Field listing"></thead><tbody></tbody></table>')
-    jq("table#pfg-qetable").prepend('<thead><tr><th>Field</th><th>Edit</th><th>Order</th></tr>')
+     .wrapInner(
+         '<table id="pfg-qetable" class="listing" summary="Field listing"><tbody>'+
+         '</tbody></table>'
+         )
+    jq("table#pfg-qetable").prepend(
+        '<thead><tr>'+
+        '<th>Field</th><th>Delete</th><th>Edit</th><th>Order</th>'+
+        '</tr>'
+        )
 }
 
 pfgQEdit.qedit = function () {
