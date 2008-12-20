@@ -20,11 +20,11 @@ pfgQEdit.addTable = function () {
             felem.after(
                 '<td class="editHook">'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
-                '<img src="delete_icon.gif" alt="Delete"</a>'+
+                '<img src="delete_icon.gif" alt="Delete" /></a>'+
                 '</td>'+
                 '<td class="editHook">'+
                 '<a href="' + fname + '/edit" title="Edit Field">'+
-                '<img src="edit.gif" alt="Edit"</a>'+
+                '<img src="edit.gif" alt="Edit" /></a>'+
                 '</td>'
                 )
         }
@@ -57,7 +57,7 @@ pfgQEdit.initDnD = function () {
 pfgQEdit.qedit = function (e) {
   jq("#pfgqedit").hide();
   // disable and dim input elements
-  blurrable = jq("div.pfg-form .blurrable")
+  blurrable = jq("div.pfg-form .blurrable, div.pfg-form input")
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") {
@@ -74,6 +74,7 @@ pfgQEdit.qedit = function (e) {
     pfgQEdit.initDnD();
   }
 
+  jq("#pfgActionEdit").show()
   jq("#pfgnedit").fadeIn();
 }
 
@@ -96,7 +97,7 @@ pfgQEdit.noedit = function (e) {
 
   pfgQEdit.stripTable();
   // enable all blurred elements
-  blurrable = jq("div.pfg-form .blurrable")
+  blurrable = jq("div.pfg-form .blurrable, div.pfg-form input")
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") this.disabled = false;
@@ -104,6 +105,7 @@ pfgQEdit.noedit = function (e) {
     );
   blurrable.css('opacity', 1)
 
+  jq("#pfgActionEdit").hide();
   jq("#pfgqedit").fadeIn();
 }
 
