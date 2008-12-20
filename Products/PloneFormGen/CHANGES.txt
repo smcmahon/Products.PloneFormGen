@@ -1,4 +1,8 @@
-1.3.0 (beta)
+1.5b2
+
+ - Add quick edit mode for forms. (Steve McMahon)
+
+1.5b1
 
  - Added 'Server-Side Variable' override so that you can make an expression
    available to action adapters without passing it in a hidden field.
