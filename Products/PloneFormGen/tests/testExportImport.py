@@ -99,32 +99,65 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
         fs = FieldStorage(fp=in_file, environ=env, headers=headers)
         return FileUpload(fs)
     
-    def _verifyProfileForm(self, form_ctx):
+    def _extractFieldValue(self, setval):
+        """differentiate datastructure for TALESField instances vs.
+           standard ATField instances
+        """
+        if hasattr(setval, 'raw'):
+            setval = setval.raw
+        
+        return setval
+    
+    def _verifyProfileFormSettings(self, form_ctx):
+        form_values = {
+            'title':'My OOTB Form',
+            #'isDiscussable':False,
+            'description':'The description for our OOTB form',
+        }
+        
+        for k,v in form_values.items():
+            self.assertEqual(v, self._extractFieldValue(form_ctx[k]),
+                "Expected '%s' for field %s, Got '%s'" % (v, k, form_ctx[k]))
+    
+    def _verifyProfileForm(self, form_ctx, form_fields=None):
         """ helper method to verify adherence to profile-based
             form folder in tests/profiles/testing directory
         """
         form_id_prefix = 'test_form_1_'
-        form_fields = [
-           {
-            'id':'%sreplyto' % form_id_prefix,
-            'title':'Test Form Your E-Mail Address',
-            'required':True,
-           },
-           {
-            'id':'%shidden' % form_id_prefix,
-            'title':'This is a sample hidden field',
-            'required':False,
-            'hidden':True,},
-           {
-            'id':'%stopic' % form_id_prefix,
-            'title':'Test Form Subject',
-            'required':True,
-           },
-        ]
-        field_expressions = {
-            '%sreplyto' % form_id_prefix:{'fgTDefault':'here/memberEmail',},
-            '%scomments' % form_id_prefix:{'fgDefault': 'string:Test Comment',},
-        }
+        
+        if not form_fields:
+            form_fields = [
+               {
+                'id':'%sreplyto' % form_id_prefix,
+                'title':'Test Form Your E-Mail Address',
+                'required':True,
+                #'isDiscussable':False,
+                'fgTDefault':'here/memberEmail',},
+               {
+                'id':'%shidden' % form_id_prefix,
+                'title':'This is a sample hidden field',
+                'required':False,
+                #'isDiscussable':False,
+                'hidden':True,},
+               {
+                'id':'%sfieldset-folder' % form_id_prefix,
+                'title':'Fields grouped in a fieldset',
+                'subfields':[{
+                    'id':'%shidden_fieldset' % form_id_prefix,
+                    'title':'This is a sample hidden field fieldset',
+                    'required':True,
+                    #'isDiscussable':False,
+                    'hidden':True,
+                },],},
+               {
+                'id':'%stopic' % form_id_prefix,
+                'title':'Test Form Subject',
+                # 'isDiscussable':False,
+                'required':True,},
+               {
+                'id':'%scomments' % form_id_prefix,
+                'fgDefault': 'string:Test Comment',},
+            ]
         
         # get our forms children to ensure proper config
         for form_field in form_fields:
@@ -132,12 +165,11 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
             sub_form_item = form_ctx[form_field['id']]
             # make sure all the standard callables are set
             for k,v in form_field.items():
-                self.assertEqual(v, sub_form_item.getField(k).getAccessor(sub_form_item)(),
-                    "Expected value %s for field %s" % (v, k))
-            # make sure all the expression fields have the correct value
-            if field_expressions.has_key(sub_form_item.getId()):
-                for k,v in field_expressions[sub_form_item.getId()].items():
-                    getattr(sub_form_item,k).text
+                if k == 'subfields':
+                    self._verifyProfileForm(sub_form_item, v)
+                else:
+                    self.assertEqual(v, self._extractFieldValue(sub_form_item[k]),
+                        "Expected '%s' for field %s, Got '%s'" % (v, k, sub_form_item[k]))
     
     def _getExporter(self):
         from Products.CMFCore.exportimport.content import exportSiteStructure
@@ -190,7 +222,15 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
         fileish = StringIO( form_folder_export() )
         self._verifyTarballContents( fileish, toc_list)
     
-    def test_profile_from_import(self):
+    def test_form_values_from_gs_import(self):
+        """We provide a custom IFilesystemImporter so that
+           all the schema fields from a configured FormFolder
+           land in the imported form.
+        """
+        self.failUnless('test_form_1_form-folder' in self.folder.objectIds())
+        self._verifyProfileFormSettings(self.folder['test_form_1_form-folder'])
+    
+    def test_profile_from_gs_import(self):
         """We create a profile (see: profiles/testing/structure) 
            which adds a FormFolder called 'test_form_1_' in via our 
            import handler. The form uses the standard ids proceeded by:
@@ -200,7 +240,7 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
         # did our gs form land into the test user's folder
         self.failUnless('test_form_1_form-folder' in self.folder.objectIds())
         self._verifyProfileForm(self.folder['test_form_1_form-folder'])
-        
+    
     def test_formlib_form_import(self):
         """Interacting with our formlib form we should be able
            to successfully upload an exported PFG form and have it

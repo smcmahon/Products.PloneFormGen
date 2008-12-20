@@ -4,3 +4,4 @@ test_form_1_topic,FormStringField
 test_form_1_hidden,FormStringField
 test_form_1_comments,FormTextField
 thank-you,FormThanksPage
+test_form_1_fieldset-folder,FieldsetFolder
