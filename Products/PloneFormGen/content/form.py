@@ -958,6 +958,19 @@ class FormFolder(ATFolder):
         else:
             self.formEpilogue = value
 
+
+    security.declareProtected(ModifyPortalContent, 'setFormPrologue')
+    def toggleActionActive(self, item_id, **kw):
+        """ toggle the active status of an action adapter """
+        
+        work = list(self.actionAdapter)
+        if item_id in work:
+            work.remove(item_id)
+        else:
+            work.append(item_id)
+        self.actionAdapter = work
+            
+            
 #    security.declareProtected(ModifyPortalContent, 'myi18n')
 #    def myi18n(self):
 #        """ return i18n declarations from widgets """

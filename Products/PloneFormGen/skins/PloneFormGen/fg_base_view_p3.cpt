@@ -132,9 +132,15 @@
                 <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
                     <td tal:content="python:row[1]" />
                     <td class="editHook">
+                      <span id="actionToggle" style="cursor:pointer"
+                        tal:attributes="id python:'actionToggle-%s' % row[0]">
                         <img width="16" height="16" alt="Active" src="confirm_icon.gif"
-                            tal:condition="python: row[0] in liveAdapters"
+                            tal:attributes="style python: test(row[0] in liveAdapters, None, 'display:none')"
                             />
+                        <img width="16" height="16" alt="Active" src="lock_icon.gif"
+                            tal:attributes="style python: test(row[0] in liveAdapters, 'display:none', None)"
+                            />
+                      </span>
                     </td>
                     <td class="editHook">
                         <a href="#" 

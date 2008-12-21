@@ -109,9 +109,19 @@ pfgQEdit.noedit = function (e) {
   jq("#pfgqedit").fadeIn();
 }
 
+pfgQEdit.actionToggle = function () {
+    var args = {
+        item_id: this.id.substr('actionToggle-'.length)
+    };
+    jq.post('toggleActionActive', args)
+    jq(this).children().toggle();
+    // alert(this.id.substr('actionToggle-'.length));
+}
+
 jq(document).ready(function() {
   jq("#pfgqedit").bind('click', pfgQEdit.qedit);
   jq("#pfgnedit").bind('click', pfgQEdit.noedit);
+  jq("span[id^=actionToggle-]").bind('click', pfgQEdit.actionToggle);
   if (document.URL.indexOf('?qedit') == -1) {
     jq("#content #pfgqedit").show();
   } else {
