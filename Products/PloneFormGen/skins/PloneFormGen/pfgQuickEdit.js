@@ -26,19 +26,19 @@ pfgQEdit.addTable = function () {
                 '<a href="' + fname + '/edit" title="Edit Field">'+
                 '<img src="edit.gif" alt="Edit" /></a>'+
                 '</td>'
-                )
+                );
         }
     );
     jq("#pfg-fieldwrapper")
      .wrapInner(
          '<table id="pfg-qetable" class="listing" summary="Field listing"><tbody>'+
          '</tbody></table>'
-         )
+         );
     jq("table#pfg-qetable").prepend(
         '<thead><tr>'+
         '<th>Field</th><th>Delete</th><th>Edit</th><th>Order</th>'+
         '</tr>'
-        )
+        );
 }
 
 pfgQEdit.initDnD = function () {
@@ -74,7 +74,8 @@ pfgQEdit.qedit = function (e) {
     pfgQEdit.initDnD();
   }
 
-  jq("#pfgActionEdit").show()
+  jq("#pfgActionEdit").show();
+  jq("#pfgThanksEdit").show();
   jq("#pfgnedit").fadeIn();
 }
 
@@ -106,22 +107,21 @@ pfgQEdit.noedit = function (e) {
   blurrable.css('opacity', 1)
 
   jq("#pfgActionEdit").hide();
+  jq("#pfgThanksEdit").hide();
   jq("#pfgqedit").fadeIn();
-}
-
-pfgQEdit.actionToggle = function () {
-    var args = {
-        item_id: this.id.substr('actionToggle-'.length)
-    };
-    jq.post('toggleActionActive', args)
-    jq(this).children().toggle();
-    // alert(this.id.substr('actionToggle-'.length));
 }
 
 jq(document).ready(function() {
   jq("#pfgqedit").bind('click', pfgQEdit.qedit);
   jq("#pfgnedit").bind('click', pfgQEdit.noedit);
-  jq("span[id^=actionToggle-]").bind('click', pfgQEdit.actionToggle);
+  
+  jq("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
+    jq.post('toggleActionActive', {item_id: this.name.substr('cbaction-'.length)});
+  });
+  jq("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
+    jq.post('setThanksPage', {value: this.value});
+  });
+
   if (document.URL.indexOf('?qedit') == -1) {
     jq("#content #pfgqedit").show();
   } else {

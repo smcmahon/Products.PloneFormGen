@@ -969,7 +969,14 @@ class FormFolder(ATFolder):
         else:
             work.append(item_id)
         self.actionAdapter = work
-            
+
+
+    security.declareProtected(ModifyPortalContent, 'setThanksPage')
+    def setThanksPage(self, value, *kw):
+        """ Set the thanks page """
+        
+        self.thanksPage = value;
+
             
 #    security.declareProtected(ModifyPortalContent, 'myi18n')
 #    def myi18n(self):

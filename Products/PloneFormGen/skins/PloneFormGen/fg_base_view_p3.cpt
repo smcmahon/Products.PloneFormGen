@@ -73,7 +73,7 @@
            media="all"
            tal:condition="python:checkPermission('Modify portal content', here)">
        #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
-       #pfg-qetable{clear:right;}
+       #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
        .editHook {text-align:center}
     </style>
     <tal:block define="macro edit_macros/css | nothing"
@@ -110,11 +110,11 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-		<p tal:replace="structure here/getFormPrologue | nothing" />
+    		<p tal:replace="structure here/getFormPrologue | nothing" />
 
         <metal:use_body use-macro="body_macro" />
 
-		<p tal:replace="structure here/getFormEpilogue | nothing" />
+    		<p tal:replace="structure here/getFormEpilogue | nothing" />
 
         <table tal:condition="canModify" 
                id="pfgActionEdit"
@@ -132,15 +132,10 @@
                 <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
                     <td tal:content="python:row[1]" />
                     <td class="editHook">
-                      <span id="actionToggle" style="cursor:pointer"
-                        tal:attributes="id python:'actionToggle-%s' % row[0]">
-                        <img width="16" height="16" alt="Active" src="confirm_icon.gif"
-                            tal:attributes="style python: test(row[0] in liveAdapters, None, 'display:none')"
-                            />
-                        <img width="16" height="16" alt="Active" src="lock_icon.gif"
-                            tal:attributes="style python: test(row[0] in liveAdapters, 'display:none', None)"
-                            />
-                      </span>
+                      <input type="checkbox" value="1"
+                          tal:attributes="checked python:test(row[0] in liveAdapters,'checked',None);
+                          id python:'cbaction-%s' % row[0];
+                          name python:'cbaction-%s' % row[0]" />
                     </td>
                     <td class="editHook">
                         <a href="#" 
@@ -153,6 +148,45 @@
                            tal:attributes="href python:'%s/edit' % row[0]"
                            title="Edit Field"
                            ><img src="edit.gif" alt="Edit" /></a>
+                    </td>                    
+                </tr>
+                </tal:block>
+            </tbody>
+        </table>
+
+        <table tal:condition="canModify" 
+               id="pfgThanksEdit"
+               class="listing"
+               summary="Field listing"
+               style="display:none"
+               tal:define="liveThanks here/thanksPage">
+            <thead>
+                <tr>
+                    <th>Thanks Pages</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
+                <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
+                    <td tal:content="python:row[1]" />
+                    <td class="editHook">
+                      <input type="radio" name="thanksRadio"
+                          tal:attributes="value python:row[0];
+                            checked python:test(row[0] == liveThanks, 'checked', None)" />
+                    </td>
+                    <td class="editHook">
+                        <a href="#" tal:condition="python:row[0]"
+                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                           title="Delete Page"
+                           ><img src="delete_icon.gif" alt="Delete" /></a>
+                        <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                    </td>
+                    <td class="editHook">
+                        <a href="#" tal:condition="python:row[0]"
+                           tal:attributes="href python:'%s/edit' % row[0]"
+                           title="Edit Page"
+                           ><img src="edit.gif" alt="Edit" /></a>
+                       <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
                     </td>                    
                 </tr>
                 </tal:block>
