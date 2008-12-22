@@ -25,6 +25,7 @@ from Products.PloneFormGen.config import *
 from Products.PloneFormGen.widgets import \
     FieldsetStartWidget, FieldsetEndWidget
 
+from Products.PloneFormGen.interfaces import IPloneFormGenFieldset
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 import zope.i18n
@@ -52,7 +53,8 @@ FieldsetFolderSchema.moveField('description', after='useLegend')
 
 class FieldsetFolder(ATFolder):
     """A folder which groups form fields as a fieldset."""
-
+    implements(IPloneFormGenFieldset)
+    
     schema         =  FieldsetFolderSchema
 
     content_icon   = 'Fieldset.gif'
@@ -111,13 +113,12 @@ class FieldsetFolder(ATFolder):
     security.declareProtected(ModifyPortalContent, 'setDescription')
     def setUseLegend(self, value, **kw):
         """ set useLegend as attribute and widget attribute """
-
         if type(value) == BooleanType:
             self.fsStartField.widget.show_legend = value
         else:
             self.fsStartField.widget.show_legend = value == '1'
 
-        self.useLegend = value
+        self.useLegend = value == '1' or value == 'True'
 
 
     security.declarePrivate('fieldsetFields')
