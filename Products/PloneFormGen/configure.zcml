@@ -64,7 +64,26 @@
   <five:deprecatedManageAddDelete
       class=".content.formLikertField.FGLikertField" />
 
-  <!-- Mark field objects as IDAVAware so GenericSetup can export/import them -->
+  <!-- exportimport -->
+  <adapter
+    factory=".exportimport.FormFolderWalkingAdapter"
+    provides="Products.GenericSetup.interfaces.IFilesystemImporter"
+    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+    />
+
+  <adapter
+    factory=".exportimport.FormFolderWalkingAdapter"
+    provides="Products.GenericSetup.interfaces.IFilesystemExporter"
+    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+    />
+    
+  <adapter
+    factory=".exportimport.FormFolderWalkingAdapter"
+    provides="Products.GenericSetup.interfaces.IFilesystemExporter"
+    for="Products.PloneFormGen.interfaces.IPloneFormGenFieldset"
+    />
+
+  <!-- Mark field objects as IDAVAware for exportimport -->
   <five:implements
      class=".content.fieldsBase.BaseFormField"
      interface="Products.GenericSetup.interfaces.IDAVAware"

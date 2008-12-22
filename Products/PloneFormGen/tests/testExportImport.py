@@ -3,6 +3,7 @@
 #
 
 import os, sys
+import re
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
@@ -68,8 +69,8 @@ class TestFormGenGSLayer(PloneSite):
         commit()
         ZopeTestCase.close(app)
 
-class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
-    """Integration test suite for export/import """
+class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
+    """Base class for integration test suite for export/import """
     
     layer = TestFormGenGSLayer
     
@@ -113,6 +114,8 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
             'title':'My OOTB Form',
             #'isDiscussable':False,
             'description':'The description for our OOTB form',
+            # XXX andrewb enable when form props are supported
+            # 'submitLabel':'Hit Me',
         }
         
         for k,v in form_values.items():
@@ -142,6 +145,7 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
                {
                 'id':'%sfieldset-folder' % form_id_prefix,
                 'title':'Fields grouped in a fieldset',
+                'useLegend':False,
                 'subfields':[{
                     'id':'%shidden_fieldset' % form_id_prefix,
                     'title':'This is a sample hidden field fieldset',
@@ -158,7 +162,6 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
                 'id':'%scomments' % form_id_prefix,
                 'fgDefault': 'string:Test Comment',},
             ]
-        
         # get our forms children to ensure proper config
         for form_field in form_fields:
             self.failUnless('%s' % form_field['id'] in form_ctx.objectIds())
@@ -171,13 +174,16 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
                     self.assertEqual(v, self._extractFieldValue(sub_form_item[k]),
                         "Expected '%s' for field %s, Got '%s'" % (v, k, sub_form_item[k]))
     
+
+class TestFormExport(ExportImportTester):
+    """Export Form Test Suite"""
+    
+    file_tmpl = 'structure/%s'
+    title_output_tmpl = 'title: %s'
+    
     def _getExporter(self):
         from Products.CMFCore.exportimport.content import exportSiteStructure
         return exportSiteStructure
-    
-    def _getImporter(self):
-        from Products.CMFCore.exportimport.content import importSiteStructure
-        return importSiteStructure
     
     def test_stock_form_contextual_export(self):
         """Upon adding a form folder, we're given a fully functional
@@ -195,22 +201,68 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
         for filename, text, content_type in context._wrote:
             form_export_data[filename] = text
         
-        file_tmpl = 'structure/%s'
-        title_output_tmpl = 'title: %s'
-        
         # make sure our field and adapters are objects
         for id, object in self.ff1.objectItems():
-            self.failUnless(form_export_data.has_key(file_tmpl % id), 
+            self.failUnless(form_export_data.has_key(self.file_tmpl % id), 
                     "No export representation of %s" % id)
-            self.failUnless(title_output_tmpl % object.Title() in \
-                    form_export_data[file_tmpl % id])
+            self.failUnless(self.title_output_tmpl % object.Title() in \
+                    form_export_data[self.file_tmpl % id])
         
         # we should have .properties, .objects, and per subject
         self.assertEqual(len(context._wrote), 2 + len(self.ff1.objectIds()))
     
+    def test_form_properties_contextual_export(self):
+        """In order to accurately export the schema values for our 
+           FormFolder, we forego the otherwise adequate 
+           StructureFolderWalkingAdapter's ConfigParser format export 
+           of .properties for favor of an RFC 822  (email) style string 
+           export.  Confirm that is so here. 
+        """
+        self._makeForm()
+        self.ff1.setSubmitLabel("Hit Me")
+        context = DummyExportContext(self.ff1)
+        exporter = self._getExporter()
+        exporter(context)
+        
+        # shove everything into a dictionary for easy inspection
+        form_export_data = {}
+        for filename, text, content_type in context._wrote:
+            form_export_data[filename] = text
+        
+        ff1_props = form_export_data['structure/.properties']
+        
+        lab_pat = re.compile(r'submitLabel.*?Hit Me')
+        self.failUnless(lab_pat.search(ff1_props))
+    
+    def test_fieldset_properties_contextual_export(self):
+        """In order to accurately export the schema values for our 
+           FieldsetFolder, we forego the otherwise adequate 
+           StructureFolderWalkingAdapter's ConfigParser format export 
+           of .properties for favor of an RFC 822 (email) style string 
+           export.  Confirm that is so here. 
+        """
+        self._makeForm()
+        self.ff1.invokeFactory('FieldsetFolder','fsf1')
+        self.ff1.fsf1.setTitle('FormFolder1 FieldsetFolder1')
+        self.ff1.fsf1.setUseLegend(False) # set a non-default value
+        context = DummyExportContext(self.ff1)
+        exporter = self._getExporter()
+        exporter(context)
+        
+        # shove everything into a dictionary for easy inspection
+        form_export_data = {}
+        for filename, text, content_type in context._wrote:
+            form_export_data[filename] = text
+        
+        fsf1_props = form_export_data['structure/fsf1/.properties']
+        
+        self.failUnless('FormFolder1 FieldsetFolder1' in fsf1_props)
+        leg_pat = re.compile(r'useLegend.*?False')
+        self.failUnless(leg_pat.search(fsf1_props))
+    
     def test_stock_form_view_export(self):
         """We provide a browser view that can be used to 
-           export a given as the root context as well.  
+           export a given form as the root context as well.  
            XXX - Andrew B remember this is a rather tempoary representation
                  of what's returned.
         """
@@ -222,6 +274,13 @@ class TestExportImport(pfgtc.PloneFormGenTestCase, TarballTester):
         fileish = StringIO( form_folder_export() )
         self._verifyTarballContents( fileish, toc_list)
     
+
+class TestFormImport(ExportImportTester):
+    """Import Form Test Suite"""
+    def _getImporter(self):
+        from Products.CMFCore.exportimport.content import importSiteStructure
+        return importSiteStructure
+        
     def test_form_values_from_gs_import(self):
         """We provide a custom IFilesystemImporter so that
            all the schema fields from a configured FormFolder
@@ -268,5 +327,6 @@ if  __name__ == '__main__':
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(TestExportImport))
+    suite.addTest(makeSuite(TestFormExport))
+    suite.addTest(makeSuite(TestFormImport))
     return suite
