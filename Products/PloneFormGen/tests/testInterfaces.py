@@ -10,6 +10,7 @@ from zope.interface.verify import verifyObject, verifyClass
 from Products.PloneFormGen.tests import pfgtc
 from Products.PloneFormGen import interfaces
 from Products.PloneFormGen.browser import exportimport
+from Products.PloneFormGen import content
 
 
 class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
@@ -33,6 +34,10 @@ class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
         form_folder_export = self.folder.ff1.restrictedTraverse('@@export-form-folder')
         self.failUnless(isinstance(form_folder_export, exportimport.FormFolderExportView))
         self.failUnless(verifyObject(interfaces.IFormFolderExportView, form_folder_export))
+    
+    def testContentClassInterfaces(self):
+        self.failUnless(interfaces.IPloneFormGenFieldset.implementedBy(content.fieldset.FieldsetFolder))
+        self.failUnless(verifyClass(interfaces.IPloneFormGenFieldset, content.fieldset.FieldsetFolder))
     
 
 if  __name__ == '__main__':
