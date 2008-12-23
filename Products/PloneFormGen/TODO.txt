@@ -1,6 +1,3 @@
 TODO.txt
 
-drag and drop will be disoriented by the fact that action adapters may
-be between fields.
-
 quick edit doesn't work with fieldsets.

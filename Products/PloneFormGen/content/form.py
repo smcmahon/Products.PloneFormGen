@@ -49,7 +49,7 @@ from types import StringTypes
 
 import zope.i18n
 
-logger = logging.getLogger("PloneFormGen")    
+logger = logging.getLogger("PloneFormGen")
 
 FormFolderSchema = ATFolderSchema.copy() + Schema((
     StringField('submitLabel',
@@ -83,7 +83,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
                 label_msgid = "label_reset_button",
                 i18n_domain = 'ploneformgen',
                 ),
-        ),    
+        ),
     LinesField('actionAdapter',
         vocabulary='actionAdaptersDL',
         widget=MultiSelectionWidget(
@@ -249,7 +249,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         languageIndependent=1,
         widget=StringWidget(label="After Validation Script",
             description="""
-                A TALES expression that will be called after the form is 
+                A TALES expression that will be called after the form is
                 successfully validated, but before calling an action adapter
                 (if any) or displaying a thanks page.
                 Form input will be in the request.form dictionary.
@@ -378,7 +378,7 @@ class FormFolder(ATFolder):
                 enabled = obj.getFgTEnabled(expression_context=context)
             else:
                 enabled = True
-            
+
             if enabled:
                 if shasattr(obj, 'fgField'):
                     myObjs.append(obj)
@@ -396,11 +396,11 @@ class FormFolder(ATFolder):
             to find the form field instance associated
             with a field.
         """
-       
+
         for obj in self._getFieldObjects():
             if obj.__name__ == name:
                return obj
-        return None        
+        return None
 
 
     security.declarePrivate('cleanExpressionContext')
@@ -422,46 +422,46 @@ class FormFolder(ATFolder):
 
         if object is None:
             object = self
-        
+
         if request:
             cache = request.get('_ec_cache', None)
             if cache:
                 if cache.has_key( id(object) ):
                     del cache[ id(object) ]
-    
+
     security.declareProtected(View, 'fgGetFormSubmitAction')
     def fgGetFormSubmitAction(self):
         """ Determines where the form should submit to.
-        
+
             Tries, in the following order:
-             
+
               1. The 'pfg_form_action' of the request's "other" vars, which may be
                  set temporarily by the embedded form view.  (This is basically a
                  Plone 2.5-compatible version of annotating the request.)
-            
+
               2. The value of the form's formActionOverride field, which may be set
                  by the manager of the form.
-            
+
               3. The URL of the form folder.
-              
+
             The result is converted into an https link if 'force SSL' is on.
         """
-        
+
         action = self.REQUEST.other.get('pfg_form_action')
         if not action:
             action = getattr(self, 'formActionOverride', None)
         if not action:
             action = self.absolute_url()
-            
+
         if self.getForceSSL():
             action = action.replace('http://', 'https://')
-            
+
         return action
-    
+
     security.declarePrivate('maybeForceSSL')
     def fgMaybeForceSSL(self):
         """ Redirect to an https:// URL if the 'force SSL' option is on.
-        
+
             However, don't do so for those with rights to edit the form,
             to avoid making the form uneditable if SSL isn't configured
             properly.  These users will still get an SSL-ified form
@@ -506,7 +506,7 @@ class FormFolder(ATFolder):
         return myFields
 
     security.declareProtected(View, 'fgvalidate')
-    def fgvalidate(self, 
+    def fgvalidate(self,
                    REQUEST=None,
                    errors=None,
                    data=None,
@@ -531,7 +531,7 @@ class FormFolder(ATFolder):
         for obj in fields:
             field = obj.fgField
 
-            if obj.getServerSide(): 
+            if obj.getServerSide():
                 REQUEST.form[obj.getId()] = obj.getFgDefault()
             result = field.widget.process_form(self, field, REQUEST.form, empty_marker=_marker)
 
@@ -544,11 +544,11 @@ class FormFolder(ATFolder):
             # workaround what I consider a Zope marshalling error: the production
             # of lists like ['one', ''] and [''] for list fields.
             # no need to worry about polymorphism here, as this is a very particular
-            # case.        
+            # case.
             if isinstance(value, type([])) and len(value) and \
               (type(value[-1]) in StringTypes) and (len(value[-1]) == 0):
                 value.pop()
-                
+
             # eliminate trailing white space in string types.
             if safe_hasattr(value, 'rstrip'):
                 newvalue = value.rstrip()
@@ -556,7 +556,7 @@ class FormFolder(ATFolder):
                     value = newvalue
                     # since strings are immutable, we have to manually store it back to the request
                     if safe_hasattr(REQUEST, 'form'):
-                        REQUEST.form[obj.getFieldFormName()] = value                        
+                        REQUEST.form[obj.getFieldFormName()] = value
 
             # Archetypes field validation
             res = field.validate(instance=self, value=value, errors=errors, REQUEST=REQUEST)
@@ -572,11 +572,11 @@ class FormFolder(ATFolder):
 
                 # create a context for expression evaluation
                 context = getExprContext(self, obj)
-                
+
                 # put this field's input (from request) into the context globals
                 # as 'value'
                 context.setGlobal('value', REQUEST.form.get(obj.getFieldFormName(), None))
-                
+
                 # call the tales expression, passing our custom context
                 cerr = obj.getFgTValidator(expression_context=context)
                 if cerr:
@@ -638,7 +638,7 @@ class FormFolder(ATFolder):
             obj = getattr(self, s, None)
             if obj:
                 target = obj.getId()
-        
+
         is_embedded = self.REQUEST.form.get('pfg_form_marker', False)
         if is_embedded:
             # Change the request URL and then raise a Retry exception
@@ -658,7 +658,7 @@ class FormFolder(ATFolder):
         """ Returns selected action adapters as tuple """
 
         # this method translates a string actionAdapter
-        # attribute from a previous version into a tuple        
+        # attribute from a previous version into a tuple
         try:
             self.actionAdapter + ''
             if self.actionAdapter:
@@ -679,18 +679,18 @@ class FormFolder(ATFolder):
         if allAdapters:
             return DisplayList( allAdapters )
 
-        return DisplayList()            
+        return DisplayList()
 
 
     security.declareProtected(ModifyPortalContent, 'addActionAdapter')
     def addActionAdapter(self, id):
         """ activate action adapter with id == id """
-        
+
         aa = list(self.getRawActionAdapter())
         if id not in aa:
             aa.append(id.decode(self.getCharset()))
         self.actionAdapter = aa
-        
+
 
     security.declareProtected(ModifyPortalContent, 'fgFieldsDisplayList')
     def fgFieldsDisplayList(self, withNone=False, noneValue='', objTypes=None):
@@ -724,7 +724,7 @@ class FormFolder(ATFolder):
             if IPloneFormGenThanksPage in providedBy(obj) or \
               getattr(obj.aq_explicit, 'portal_type', 'none') in defaultPageTypes:
                 tpages.append( (obj.getId(), obj.title) )
-                
+
         return DisplayList( tpages )
 
 
@@ -760,7 +760,7 @@ class FormFolder(ATFolder):
 
     security.declarePrivate('_pfFixup')
     def _pfFixup(self, obj):
-    
+
         # the creation of contained objects in initializeArchetypes
         # leaves catalog orphans for the portal_factory objects.
         #
@@ -778,7 +778,7 @@ class FormFolder(ATFolder):
 
         else:
             obj.reindexObject()
-        
+
 
     def initializeArchetype(self, **kwargs):
         """ Create sample content that may help folks
@@ -826,7 +826,7 @@ class FormFolder(ATFolder):
 
             if haveMailer:
                 mailer.replyto_field = 'replyto'
-        
+
         if 'topic' not in oids:
             # create a subject field
             self.invokeFactory('FormStringField','topic')
@@ -841,7 +841,7 @@ class FormFolder(ATFolder):
 
             if haveMailer:
                 mailer.subject_field = 'topic'
-        
+
         if 'comments' not in oids:
             # create a comments field
             self.invokeFactory('FormTextField','comments')
@@ -854,7 +854,7 @@ class FormFolder(ATFolder):
 
             self._pfFixup(obj)
 
-        
+
         if 'thank-you' not in oids:
             # create a thanks page
             self.invokeFactory('FormThanksPage','thank-you')
@@ -866,7 +866,7 @@ class FormFolder(ATFolder):
             self._pfFixup(obj)
 
             self.thanksPage = 'thank-you'
-                    
+
 
     security.declareProtected(View, 'memberFullName')
     def memberFullName(self):
@@ -874,7 +874,7 @@ class FormFolder(ATFolder):
             returns full name of authenticated user, if available,
             empty string otherwise.
         """
-    
+
         pm = getToolByName(self, 'portal_membership')
         member = pm.getAuthenticatedMember()
 
@@ -887,10 +887,10 @@ class FormFolder(ATFolder):
             returns e-mail address of authenticated user, if available,
             empty string otherwise.
         """
-    
+
         pm = getToolByName(self, 'portal_membership')
         member = pm.getAuthenticatedMember()
-        
+
         return member.getProperty('email', '')
 
 
@@ -900,7 +900,7 @@ class FormFolder(ATFolder):
             returns login id of authenticated user, if available,
             empty string otherwise.
         """
-    
+
         pm = getToolByName(self, 'portal_membership')
         if pm.isAnonymousUser():
             return ''
@@ -914,7 +914,7 @@ class FormFolder(ATFolder):
         """ Expands on ATFolder by checking for ids known to cause problems.
             This includes ids of objects in all fieldsets.
         """
-        
+
         result = ATFolder.checkIdAvailable(self, id)
         if result:
             result = id not in BAD_IDS
@@ -924,21 +924,21 @@ class FormFolder(ATFolder):
                 for fs in fieldsets:
                     if id in fs.objectIds():
                         return False
-                
+
         return result
-        
+
 
     security.declareProtected(View, 'formFolderObject')
     def formFolderObject(self):
         """ Find form folder by acquisition """
-        
+
         return self
 
- 
+
     security.declareProtected(ModifyPortalContent, 'setFormPrologue')
     def setFormPrologue(self, value, **kw):
         """ Set formPrologue """
-        
+
         # workaround a Kupu oddity: saving '<p>&nbsp;</p>' for
         # and empty input
         if value.strip() == '<p>&nbsp;</p>':
@@ -950,7 +950,7 @@ class FormFolder(ATFolder):
     security.declareProtected(ModifyPortalContent, 'setFormPrologue')
     def setFormEpilogue(self, value, **kw):
         """ Set formEpilogue """
-        
+
         # workaround a Kupu oddity: saving '<p>&nbsp;</p>' for
         # and empty input
         if value.strip() == '<p>&nbsp;</p>':
@@ -962,22 +962,36 @@ class FormFolder(ATFolder):
     security.declareProtected(ModifyPortalContent, 'setFormPrologue')
     def toggleActionActive(self, item_id, **kw):
         """ toggle the active status of an action adapter """
-        
+
         work = list(self.actionAdapter)
         if item_id in work:
             work.remove(item_id)
         else:
             work.append(item_id)
         self.actionAdapter = work
-
+        return "<done />"
 
     security.declareProtected(ModifyPortalContent, 'setThanksPage')
     def setThanksPage(self, value, *kw):
         """ Set the thanks page """
-        
-        self.thanksPage = value;
 
-            
+        self.thanksPage = value;
+        return "<done />"
+
+
+    security.declareProtected(ModifyPortalContent, 'reorderField')
+    def reorderField(self, item_id, target_id, **kw):
+        """ move item to target"""
+        
+        itemPos = self.getObjectPosition(item_id)
+        targetPos = self.getObjectPosition(target_id)
+
+        self.moveObjectsByDelta(item_id, targetPos-itemPos)
+        self.plone_utils.reindexOnReorder(self)
+
+        return "<done />"
+
+
 #    security.declareProtected(ModifyPortalContent, 'myi18n')
 #    def myi18n(self):
 #        """ return i18n declarations from widgets """
@@ -990,8 +1004,8 @@ class FormFolder(ATFolder):
 #        from Products.PloneFormGen.content.formMailerAdapter import *
 #        from Products.PloneFormGen.content.saveDataAdapter import *
 #        from Products.PloneFormGen.content.thanksPage import *
-#        
-#        
+#
+#
 #        klasses = (
 #            FormFolder,
 #            FGStringField,
@@ -1014,19 +1028,19 @@ class FormFolder(ATFolder):
 #
 #        done = {}
 #
-#        for myclass in klasses:        
+#        for myclass in klasses:
 #            myname = myclass.archetype_name
 #            myschema = myclass.schema
-#            
+#
 #            # res = res + "\n### %s ###\n" % myname
-#            
+#
 #            for aschema in myschema.getSchemataNames():
 #                for field in myschema.getSchemataFields(aschema):
 #                    widget = field.widget
 #                    domain = getattr(widget, 'i18n_domain', None)
-#                    
+#
 #                    if domain == 'ploneformgen':
-#                    
+#
 #
 #                        id = getattr(widget, 'label_msgid', '***NO label_msgid***')
 #                        val = widget.label
@@ -1036,7 +1050,7 @@ class FormFolder(ATFolder):
 #                            done[id] = val
 #                        #else:
 #                        #    res = res + "\navoided repeating %s for %s" % (id, myname)
-#                        
+#
 #                        desc = widget.description
 #                        if desc:
 #                            desid = getattr(widget, 'description_msgid', '***NO description_msgid***')
@@ -1050,7 +1064,7 @@ class FormFolder(ATFolder):
 #
 #                    elif domain not in ('plone', 'atcontenttypes',):
 #                        res = "%s\n***Unexpected domain for %s:%s: %s\n" % (res, myname, widget.label, domain)
-#            
+#
 #        return res
 
 

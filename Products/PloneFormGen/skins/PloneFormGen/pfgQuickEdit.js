@@ -1,7 +1,90 @@
 // Support for PFG Quick Edit
 
 var pfgQEdit = {};
-var pfgHaveDnD = typeof(ploneDnDReorder) != typeof(undefined)
+
+// dnd support is a minor mod of Plone's dragdropreorder
+
+pfgQEdit.dragging = null;
+pfgQEdit.table = null;
+pfgQEdit.rows = null;
+pfgQEdit.targetId = null;
+
+pfgQEdit.doDown = function(e) {
+    var dragging =  jq(this).parents('.draggable:first');
+    if (!dragging.length) return;
+    pfgQEdit.rows.mousemove(pfgQEdit.doDrag);
+
+    pfgQEdit.dragging = dragging;
+    dragging._position = pfgQEdit.getPos(dragging);
+    dragging.addClass("dragging");
+    return false;
+};
+
+pfgQEdit.getPos = function(node) {
+    var pos = node.parent().children('.draggable').index(node[0]);
+    return pos == -1 ? null : pos;
+};
+
+pfgQEdit.doDrag = function(e) {
+    var dragging = pfgQEdit.dragging;
+    if (!dragging) return;
+    var target = this;
+    if (!target) return;
+    var targetId = jq(target).attr('id');
+
+    if (targetId != dragging.attr('id')) {
+        pfgQEdit.swapElements(jq(target), dragging);
+        pfgQEdit.targetId = targetId;
+    };
+    return false;
+};
+
+pfgQEdit.swapElements = function(child1, child2) {
+    var parent = child1.parent();
+    var items = parent.children('[id]');
+    items.removeClass('even').removeClass('odd');
+    if (child1[0].swapNode) {
+        // IE proprietary method
+        child1[0].swapNode(child2[0]);
+    } else {
+        // swap the two elements, using a textnode as a position marker
+        var t = parent[0].insertBefore(document.createTextNode(''),
+                                       child1[0]);
+        child1.insertBefore(child2);
+        child2.insertBefore(t);
+        jq(t).remove();
+    };
+    // odd and even are 0-based, so we want them the other way around
+    parent.children('[id]:odd').addClass('even');
+    parent.children('[id]:even').addClass('odd');
+};
+
+pfgQEdit.doUp = function(e) {
+    var dragging = pfgQEdit.dragging;
+    if (!dragging) return;
+
+    dragging.removeClass("dragging");
+    pfgQEdit.updatePositionOnServer();
+    dragging._position = null;
+    try {
+        delete dragging._position;
+    } catch(e) {};
+    dragging = null;
+    pfgQEdit.rows.unbind('mousemove', pfgQEdit.doDrag);
+    return false;
+};
+
+pfgQEdit.updatePositionOnServer = function() {
+    var dragging = pfgQEdit.dragging;
+    if (!dragging) return;
+    
+    var args = {
+      item_id: dragging.attr('id').substr('folder-contents-item-'.length),
+      target_id: pfgQEdit.targetId.substr('folder-contents-item-'.length)
+    };
+    jQuery.post('reorderField', args)
+};
+
 
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
@@ -14,9 +97,7 @@ pfgQEdit.addTable = function () {
                 '<td></td></tr>'
                 );
             felem = felem.parent()
-            if (pfgHaveDnD) {
-              felem.after('<td class="draggable draggingHook editHook">::</td>')
-            }
+            felem.after('<td class="draggable draggingHook editHook">::</td>')
             felem.after(
                 '<td class="editHook">'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
@@ -44,13 +125,13 @@ pfgQEdit.addTable = function () {
 pfgQEdit.initDnD = function () {
   // tie to folder-contents drag drop
   table = '#pfg-qetable';
-  ploneDnDReorder.table = jq(table);
-  if (ploneDnDReorder.table.length) {
-    ploneDnDReorder.rows = jq(table + " > tr," +
+  pfgQEdit.table = jq(table);
+  if (pfgQEdit.table.length) {
+    pfgQEdit.rows = jq(table + " > tr," +
                               table + " > tbody > tr");
     jq( table + " td.draggable")
-        .mousedown(ploneDnDReorder.doDown)
-        .mouseup(ploneDnDReorder.doUp)
+        .mousedown(pfgQEdit.doDown)
+        .mouseup(pfgQEdit.doUp)
   }
 }
 
@@ -70,9 +151,7 @@ pfgQEdit.qedit = function (e) {
   pfgQEdit.addTable();
   jq("div.pfg-form table tr:nth-child(even)").addClass('even');
 
-  if (pfgHaveDnD) {
-    pfgQEdit.initDnD();
-  }
+  pfgQEdit.initDnD();
 
   jq("#pfgActionEdit").show();
   jq("#pfgThanksEdit").show();
@@ -94,7 +173,7 @@ pfgQEdit.noedit = function (e) {
   // turn on field editing
   jq("#pfgnedit").hide();
 
-  if (pfgHaveDnD && ploneDnDReorder.dragging) ploneDnDReorder.doUp(false);
+  if (pfgQEdit.dragging) pfgQEdit.doUp(false);
 
   pfgQEdit.stripTable();
   // enable all blurred elements
