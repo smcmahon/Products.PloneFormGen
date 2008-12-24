@@ -1,5 +1,8 @@
 1.5b2
 
+ - Make sure server-side only fields can supply a value via the default override.
+   (David Glick)
+
  - Don't break old forms that are missing some of the new fields. (David Glick)
 
  - Add quick edit mode for forms. (Steve McMahon)

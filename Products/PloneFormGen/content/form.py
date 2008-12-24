@@ -527,12 +527,14 @@ class FormFolder(ATFolder):
 
         # Get all the form fields. Exclude actual IField fields.
         fields = [fo for fo in self._getFieldObjects() if not IField.isImplementedBy(fo)]
-
         for obj in fields:
             field = obj.fgField
 
             if obj.getServerSide():
-                REQUEST.form[obj.getId()] = obj.getFgDefault()
+                # for server-side only fields, use the default value even if something was in the request
+                if obj.__name__ in REQUEST.form:
+                    del REQUEST.form[obj.__name__]
+                obj.fgPrimeDefaults(REQUEST)
             result = field.widget.process_form(self, field, REQUEST.form, empty_marker=_marker)
 
             if result is None or result is _marker:
