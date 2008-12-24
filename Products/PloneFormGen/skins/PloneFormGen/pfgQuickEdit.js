@@ -88,9 +88,15 @@ pfgQEdit.updatePositionOnServer = function() {
 
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
-    jq("#pfg-fieldwrapper div[id^=archetypes-fieldname-]").each(
+
+    jq("#pfg-fieldwrapper").children().each(
         function () {
-            fname = this.id.substr('folder-contents-item-'.length);
+            var fname = this.id;
+            if (fname.indexOf("archetypes-fieldname-") == 0) {                      
+                fname = this.id.substr('archetypes-fieldname-'.length);
+            } else {
+                fname = this.id.substr('pfg-fieldsetname-'.length);
+            }
             felem = jq('#'+this.id)
             felem.wrap(
                 '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
