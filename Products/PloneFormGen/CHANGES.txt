@@ -1,5 +1,7 @@
 1.5b2
 
+ - Don't break old forms that don't have the checkAuthenticator attribute. (David Glick)
+
  - Add quick edit mode for forms. (Steve McMahon)
 
 1.5b1

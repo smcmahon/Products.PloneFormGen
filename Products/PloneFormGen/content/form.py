@@ -514,7 +514,7 @@ class FormFolder(ATFolder):
         """Validates the field data from the request.
         """
 
-        if HAS_PLONE30 and self.checkAuthenticator:
+        if HAS_PLONE30 and getattr(self, 'checkAuthenticator', True):
             # CSRF check.
             plone.protect.CheckAuthenticator(REQUEST)
             plone.protect.PostOnly(REQUEST)
