@@ -1,3 +1,6 @@
 TODO.txt
 
-quick edit doesn't work with fieldsets.
+Check recent schema additions to make sure there are no unguarded
+attribute accesses that will break old forms.
+
+Make fieldset view use quickedit.
