@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_actions" meta_type="Plone Actions Tool"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <!-- XXX - Make a real permission here -->
  <object name="object_buttons" meta_type="CMF Action Category">
   <object name="export" meta_type="CMF Action" i18n:domain="plone">
    <property name="title" i18n:translate="">Export</property>
@@ -12,7 +11,7 @@
    <property
       name="available_expr">python:object.meta_type in ('FormFolder')</property>
    <property name="permissions">
-    <element value="Modify portal content"/>
+    <element value="Manage portal"/>
    </property>
    <property name="visible">True</property>
   </object>
@@ -25,7 +24,7 @@
    <property
       name="available_expr">python:object.meta_type in ('FormFolder')</property>
    <property name="permissions">
-    <element value="Modify portal content"/>
+    <element value="Manage portal"/>
    </property>
    <property name="visible">True</property>
   </object>
