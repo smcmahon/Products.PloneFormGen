@@ -7,7 +7,7 @@ import re
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-# from tarfile import TarFile
+from tarfile import TarFile
 from ZPublisher.HTTPRequest import FileUpload
 from cgi import FieldStorage
 
@@ -79,23 +79,39 @@ class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
         self.ff1 = getattr(self.folder, 'ff1')
     
     def _prepareFormTarball(self):
-        # we could use our @@export-form-folder view, 
-        # but we want a more atomic test, so we make
-        # a tarfile for our test
-        in_fname = 'test_form_1_form-folder.tar.gz'
+        """we could use our @@export-form-folder view, 
+           but we want a more atomic test, so we make
+           a tarfile for our test.  the approach to making
+           a tarfile is a bit strange, but does the job
+        """
+        in_fname = "test_form_1_form-folder.tar.gz"
+        test_dir = os.path.dirname(__file__)
         
-        # XXX - Clean-up
-        # in_fpath = os.path.join(os.path.dirname(__file__),'profiles', 'testing', 'structure', 
-        #     'Members', 'test_user_1_', 'test_form_1_form-folder')
-        # archive = TarFile.open(in_fname, 'w:gz')
-        # archive.add(in_fpath)
-        # archive.close()
+        def _add_form_structure_to_archive(archive):
+            form_relative_path = os.path.join("profiles", "testing", "structure",
+                "Members", "test_user_1_", "test_form_1_form-folder")
+            abs_path = os.path.join(test_dir, form_relative_path)
+            
+            # add structure folder
+            os.chdir(os.path.join(test_dir, "profiles", "testing"))
+            archive.add("structure", recursive=False)
+            
+            for f in os.listdir(abs_path):
+                os.chdir(abs_path) # add form data w/o full directory tree
+                archive.add(f, arcname=os.path.join("structure", f))
         
-        in_file = open(os.path.join(os.path.dirname(__file__), in_fname))
+        # make me a tarfile in the current dir
+        os.chdir(test_dir)
+        archive = TarFile.open(name=in_fname, mode='w:gz')
+        _add_form_structure_to_archive(archive)
+        archive.close()
+        
+        # get it and upload
+        in_file = open(os.path.join(test_dir, in_fname))
         env = {'REQUEST_METHOD':'PUT'}
         headers = {'content-type':'text/html',
                    'content-length': len(in_file.read()),
-                   'content-disposition':'attachment; filename=%s' % in_fname}
+                   'content-disposition':'attachment; filename=%s' % in_file.name}
         in_file.seek(0)
         fs = FieldStorage(fp=in_file, environ=env, headers=headers)
         return FileUpload(fs)
