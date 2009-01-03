@@ -15,8 +15,8 @@
   <browser:page
       for="..interfaces.IPloneFormGenForm"
       name="import-form-folder"
-      class=".exportimport.PACKAGE_HOME"
-      allowed_interface="..interfaces.IPACKAGE_HOME"
+      class=".exportimport.FormFolderImportView"
+      allowed_interface="..interfaces.IFormFolderImportView"
       permission="cmf.ManagePortal"
       />
   

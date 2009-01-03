@@ -28,10 +28,10 @@ class FormFolderExportView(BrowserView):
         return ctx.getArchive()
     
 
-class PACKAGE_HOME(formbase.Form):
+class FormFolderImportView(formbase.Form):
     """The formlib class for importing of exported PFG form folders
     """
-    implements(interfaces.IPACKAGE_HOME)
+    implements(interfaces.IFormFolderImportView)
     
     form_fields = form.Fields(interfaces.IImportSchema)
     status = errors = None
