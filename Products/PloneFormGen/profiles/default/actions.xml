@@ -6,7 +6,7 @@
    <property name="title" i18n:translate="">Export</property>
    <property name="description" i18n:translate=""></property>
    <property
-      name="url_expr">string:${object_url}/export-form-folder</property>
+      name="url_expr">string:${object_url}/@@export-form-folder</property>
    <property name="icon_expr"></property>
    <property
       name="available_expr">python:object.meta_type in ('FormFolder')</property>
@@ -19,7 +19,7 @@
    <property name="title" i18n:translate="">Import</property>
    <property name="description" i18n:translate=""></property>
    <property
-      name="url_expr">string:${object_url}/import-form-folder</property>
+      name="url_expr">string:${object_url}/@@import-form-folder</property>
    <property name="icon_expr"></property>
    <property
       name="available_expr">python:object.meta_type in ('FormFolder')</property>
