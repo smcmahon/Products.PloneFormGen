@@ -15,7 +15,6 @@ from transaction import commit
 from StringIO import StringIO
 
 from zope.component import getMultiAdapter
-from zope.publisher.browser import TestRequest
 
 from Products.Five import zcml
 from Products.Five import fiveconfigure
@@ -338,9 +337,10 @@ class TestFormImport(ExportImportTester):
         self._makeForm()
         
         # setup a reasonable request
-        request = TestRequest(form={
+        request = self.app.REQUEST
+        request.form={
             'form.upload':self._prepareFormTarball(),
-            'form.actions.import':'import'})
+            'form.actions.import':'import'}
         request.RESPONSE = request.response
         
         # get the form object
@@ -354,12 +354,13 @@ class TestFormImport(ExportImportTester):
     def test_formlib_form_with_purge_import(self):
         self._makeForm()
         
-        # submit the form requesting purge of contained fields  
-        request = TestRequest(form={
+        # submit the form requesting purge of contained fields
+        request = self.app.REQUEST
+        request.form={
             'form.purge':u'on',
             'form.upload':self._prepareFormTarball(),
-            'form.actions.import':'import'})
-        request.RESPONSE = request.response
+            'form.actions.import':'import'}
+        request.RESPONSE = self.app.REQUEST.response
         
         # get the form object
         import_form = getMultiAdapter((self.ff1, request), name='import-form-folder')
