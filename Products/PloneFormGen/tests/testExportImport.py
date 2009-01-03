@@ -312,7 +312,8 @@ class TestFormExport(ExportImportTester):
                     'structure/replyto', 'structure/topic', 'structure/comments', 
                     'structure/thank-you']
         self._makeForm()
-        form_folder_export = self.folder.ff1.restrictedTraverse('@@export-form-folder')
+        form_folder_export = getMultiAdapter((self.folder.ff1, self.app.REQUEST), 
+                                              name='export-form-folder')
         fileish = StringIO( form_folder_export() )
         self._verifyTarballContents( fileish, toc_list)
     

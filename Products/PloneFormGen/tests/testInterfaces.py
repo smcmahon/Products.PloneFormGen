@@ -7,6 +7,8 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from zope.interface.verify import verifyObject, verifyClass
+from zope.component import getMultiAdapter
+
 from Products.PloneFormGen.tests import pfgtc
 from Products.PloneFormGen import interfaces
 from Products.PloneFormGen.browser import exportimport
@@ -31,7 +33,7 @@ class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
     
     def testBrowserViewObjectsVerify(self):
         # verify views are objects of the expected class, verified implementation
-        form_folder_export = self.folder.ff1.restrictedTraverse('@@export-form-folder')
+        form_folder_export = getMultiAdapter((self.folder.ff1, self.app.REQUEST), name='export-form-folder')
         self.failUnless(isinstance(form_folder_export, exportimport.FormFolderExportView))
         self.failUnless(verifyObject(interfaces.IFormFolderExportView, form_folder_export))
     
