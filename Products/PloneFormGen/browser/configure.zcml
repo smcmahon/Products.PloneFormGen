@@ -3,7 +3,7 @@
     xmlns:browser="http://namespaces.zope.org/browser">
   
     <!-- Browser Views -->
-    <browser:view
+    <browser:page
       for="..interfaces.IPloneFormGenForm"
       name="export-form-folder"
       class=".exportimport.FormFolderExportView"

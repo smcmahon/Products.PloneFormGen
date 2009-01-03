@@ -14,10 +14,12 @@ from Products.GenericSetup.context import TarballExportContext, TarballImportCon
 from Products.GenericSetup.interfaces import IFilesystemExporter, IFilesystemImporter
 
 class FormFolderExportView(BrowserView):
+    """See ..interfaces.exportimport.IFormFolderExportView
+    """
     implements(interfaces.IFormFolderExportView)
     
     def __call__(self):
-        """ See IFormFolderExportView.
+        """See ..interfaces.exportimport.IFormFolderExportView.__call__
         """
         ctx = TarballExportContext(self.context)
         
