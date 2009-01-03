@@ -37,9 +37,7 @@ Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
 (automatically loaded if you use buildout or easy_install).
 
-Five, version 1.2 or later. If you have an earlier version of Five and
-do not wish to upgrade Five, see the note on this in the Installation
-section below.
+Five, version 1.4 or later.
 
 Encryption of e-mail requires the Gnu Privacy Guard, GnuPG, also known
 as gpg. See README_GPG.txt for details.
@@ -64,12 +62,6 @@ Typical for a Zope/Plone product:
 
 *   Unpack the product package into the Products folder of the
     Zope/Plone instance. Check your ownership and permissions.
-
-*   IF YOU ARE USING FIVE version less than 1.2 (common with Zope 2.8.x / Plone 2.1.x),
-    delete or rename "configure.zcml". Otherwise, you will experience a
-    variety of problems (e.g., missing component) in portal operation.
-    (Note that it's also an option to upgrade your version of Five to
-    version 1.2.)
 
 Either Method Final Steps
 -------------------------
