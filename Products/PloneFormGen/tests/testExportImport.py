@@ -138,6 +138,20 @@ class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
             self.assertEqual(v, self._extractFieldValue(form_ctx[k]),
                 "Expected '%s' for field %s, Got '%s'" % (v, k, form_ctx[k]))
     
+    def _verifyFormStockFields(self, form_ctx, purge):
+        """ helper method to verify adherence to profile-based
+            form folder in tests/profiles/testing directory
+        """
+        form_field_ids = form_ctx.objectIds()
+        for form_field in ('comments', 'replyto', 'topic', 'mailer', 'thank-you'):
+            if purge:
+                self.failIf(form_field in form_field_ids, 
+                    "%s unexpectedly found in %s" % (form_field, form_ctx.getId()))
+                continue
+            
+            self.failUnless(form_field in form_field_ids,
+                "%s not found in %s" % (form_field, form_ctx.getId()))
+    
     def _verifyProfileForm(self, form_ctx, form_fields=None):
         """ helper method to verify adherence to profile-based
             form folder in tests/profiles/testing directory
@@ -335,6 +349,25 @@ class TestFormImport(ExportImportTester):
         # call update (aka submit) on the form, see TestRequest above
         import_form.update()
         self._verifyProfileForm(self.ff1)
+        self._verifyFormStockFields(self.ff1, purge=False)
+    
+    def test_formlib_form_with_purge_import(self):
+        self._makeForm()
+        
+        # submit the form requesting purge of contained fields  
+        request = TestRequest(form={
+            'form.purge':u'on',
+            'form.upload':self._prepareFormTarball(),
+            'form.actions.import':'import'})
+        request.RESPONSE = request.response
+        
+        # get the form object
+        import_form = getMultiAdapter((self.ff1, request), name='import-form-folder')
+        
+        # call update (aka submit) on the form, see TestRequest above
+        import_form.update()
+        self._verifyProfileForm(self.ff1)
+        self._verifyFormStockFields(self.ff1, purge=True)
     
 
 if  __name__ == '__main__':

@@ -39,8 +39,11 @@ class FormFolderImportView(formbase.Form):
     
     @form.action(_(u"import"))
     def action_import(self, action, data):
+        if data.get('purge', False) == True:
+            # user has requested removal of existing fields
+            self.context.manage_delObjects(ids=self.context.objectIds())
+        
         ctx = TarballImportContext(self.context, data['upload'])
         IFilesystemImporter(self.context).import_(ctx, 'structure', True)
     
 
-    
