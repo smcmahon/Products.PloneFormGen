@@ -1,8 +1,11 @@
 from zope.interface import implements
 from zope.formlib import form
+from zope.component import getMultiAdapter
 
 from Products.Five import BrowserView
 from Products.Five.formlib import formbase
+
+from Products.statusmessages.interfaces import IStatusMessage
 
 from Products.PloneFormGen import interfaces
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
@@ -45,5 +48,13 @@ class FormFolderImportView(formbase.Form):
         
         ctx = TarballImportContext(self.context, data['upload'])
         IFilesystemImporter(self.context).import_(ctx, 'structure', True)
+        
+        message = _(u'Form imported.')
+        IStatusMessage(self.request).addStatusMessage(message, type='info')
+        
+        url = getMultiAdapter((self.context, self.request), name='absolute_url')()
+        self.request.response.redirect(url)
+        
+        return ''
     
 
