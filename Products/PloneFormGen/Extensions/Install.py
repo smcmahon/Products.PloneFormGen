@@ -20,6 +20,7 @@ def install(self):
                 "profile-Products.PloneFormGen:default",
                 purge_old=False)
     else:
+        # BBB: remove conditional once PFG no longer supports 2.5.x
         old_context = setup_tool.getImportContextID()
         
         # run the standard install process

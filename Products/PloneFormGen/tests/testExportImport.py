@@ -65,7 +65,7 @@ class TestFormGenGSLayer(PloneSite):
         if HAS_PLONE30:
             portal_setup.runAllImportStepsFromProfile('profile-Products.PloneFormGen:testing')
         else:
-            # BBB remove once PFG no longer supports 2.5.x
+            # BBB: remove conditional once PFG no longer supports 2.5.x
             old_context = portal_setup.getImportContextID()
 
             # run testing install process
