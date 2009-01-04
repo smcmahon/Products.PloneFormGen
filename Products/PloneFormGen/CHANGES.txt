@@ -1,5 +1,12 @@
 1.5b2
 
+ - Support for export/import of PloneFormGen form folders via generic setup
+   profiles and the portal_setup tool as well as contextual form (i.e. on an 
+   individual form basis) export/import. Feature aimed at improving the 
+   development capabilities of PloneFormGen and simplifying the lives of 
+   integrators. Feature considered experimental.  Use with care and test 
+   thoroughly. (Andrew Burkhalter)
+
  - Make sure server-side only fields can supply a value via the default override.
    (David Glick)
 
