@@ -40,6 +40,10 @@ Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
 (automatically loaded if you install via Python package).
 
+Five, version 1.4+.  If you're using Plone 2.5.x, it's likely that the version
+of Zope is in the 2.9.x line and you'll need to upgrade Five.  In 3.x+ the 
+default version of Five shipped with Zope should suffice.
+
 Encryption of e-mail requires the Gnu Privacy Guard, GnuPG, also known
 as gpg. See README_GPG.txt for details.
 

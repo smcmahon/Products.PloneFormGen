@@ -1,4 +1,5 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
            xmlns:five="http://namespaces.zope.org/five"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:gs="http://namespaces.zope.org/genericsetup"
@@ -62,6 +63,41 @@
 
   <five:deprecatedManageAddDelete
       class=".content.formLikertField.FGLikertField" />
+
+  <!-- exportimport -->
+  <adapter
+    factory=".exportimport.FormFolderWalkingAdapter"
+    provides="Products.GenericSetup.interfaces.IFilesystemImporter"
+    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+    />
+
+  <adapter
+    factory=".exportimport.FormFolderWalkingAdapter"
+    provides="Products.GenericSetup.interfaces.IFilesystemExporter"
+    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+    />
+    
+  <adapter
+    factory=".exportimport.FormFolderWalkingAdapter"
+    provides="Products.GenericSetup.interfaces.IFilesystemExporter"
+    for="Products.PloneFormGen.interfaces.IPloneFormGenFieldset"
+    />
+
+  <!-- Mark field objects as IDAVAware for exportimport -->
+  <five:implements
+     class=".content.fieldsBase.BaseFormField"
+     interface="Products.GenericSetup.interfaces.IDAVAware"
+     />
+     
+  <five:implements
+    class=".content.actionAdapter.FormActionAdapter"
+    interface="Products.GenericSetup.interfaces.IDAVAware"
+    />
+
+  <five:implements
+    class=".content.thanksPage.FormThanksPage"
+    interface="Products.GenericSetup.interfaces.IDAVAware"
+    />
 
   <gs:registerProfile
       name="default"

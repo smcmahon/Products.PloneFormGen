@@ -121,8 +121,12 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.assertEqual( getAddPermission('PloneFormGen', 'Mailer Adapter'), MA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Save Data Adapter'), SDA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Custom Script Adapter'), CSA_ADD_CONTENT_PERMISSION)
-        
-
+    
+    def testActionsInstalled(self):
+        self.setRoles(['Manager',])
+        self.failUnless(self.portal.portal_actions.getActionInfo('object_buttons/export'))
+        self.failUnless(self.portal.portal_actions.getActionInfo('object_buttons/import'))
+    
     def testPortalFactorySetup(self):
         for f in self.metaTypes:
             self.failUnless(f in self.factory.getFactoryTypes())

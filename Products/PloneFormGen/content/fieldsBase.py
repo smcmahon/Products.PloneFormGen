@@ -575,7 +575,7 @@ class BaseFormField(ATCTContent):
         if type(value) == BooleanType:
             self.fgField.required = value
         else:
-            self.fgField.required = value == '1'
+            self.fgField.required = value == '1' or value == 'True'
 
 
     security.declareProtected(View, 'getRequired')
@@ -594,7 +594,7 @@ class BaseFormField(ATCTContent):
                 self.fgField.widget.visible = -1
             else:
                 self.fgField.widget.visible = 1
-        elif value == '1':
+        elif value == '1' or value == 'True':
             self.fgField.widget.visible = -1
         else:
             self.fgField.widget.visible = 1

@@ -33,6 +33,7 @@ def install(self):
         setup_tool.setImportContext(old_context)
     
 
+
 def removeSkinLayer(self, layer):
     """ Remove a skin layer from all skinpaths """
 

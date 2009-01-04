@@ -1,0 +1,27 @@
+id: test_form_1_hidden_fieldset
+title: This is a sample hidden field fieldset
+description: 
+required: True
+hidden: True
+fgTDefault: 
+fgTValidator: python:False
+fgTEnabled: 
+fgDefault: dynamically overridden
+fgmaxlength: 255
+fgsize: 30
+fgStringValidator: 
+subject: 
+relatedItems: 
+location: 
+language: 
+effectiveDate: None
+expirationDate: None
+creation_date: 2008/10/07 15:54:42.682 GMT-7
+modification_date: 2008/10/07 15:54:42.705 GMT-7
+creators: admin
+contributors: 
+rights: 
+allowDiscussion: False
+excludeFromNav: False
+Content-Type: text/plain
+
