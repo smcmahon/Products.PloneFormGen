@@ -120,4 +120,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(TestEmbedding))
     return suite
-    
