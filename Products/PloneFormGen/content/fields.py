@@ -3,6 +3,19 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
+try:
+    # 3.0+
+    from zope.contenttype import guess_content_type
+except ImportError:
+    try:
+        # 2.5
+        from zope.app.content_types import guess_content_type
+    except ImportError:
+        # 2.1
+        from OFS.content_types import guess_content_type
+
+from ZPublisher.HTTPRequest import FileUpload
+
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
 
@@ -24,10 +37,6 @@ from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen.widgets import RichLabelWidget
 
 from Products.PloneFormGen.content.fieldsBase import *
-# \
-#    BaseFieldSchema, BareFieldSchema, BaseFieldSchemaLinesDefault, BaseFieldSchemaTextDefault, \
-#    BaseFormField, BaseFieldSchemaStringDefault, \
-#    maxlengthField, sizeField, vocabularyField, vocabularyOverrideField
 
 from types import StringTypes, BooleanType
 from DateTime import DateTime
@@ -1271,9 +1280,6 @@ class FGFileField(BaseFormField):
         return self.fgField.maxsize
 
     def htmlValue(self, REQUEST):
-
-        from ZPublisher.HTTPRequest import FileUpload
-        from OFS.content_types import guess_content_type
 
         file = REQUEST.form.get('%s_file' % self.fgField.getName())
         if isinstance(file, FileUpload) and file.filename != '':
