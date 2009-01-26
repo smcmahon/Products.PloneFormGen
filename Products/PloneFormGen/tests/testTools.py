@@ -35,6 +35,7 @@ class TestTools(pfgtc.PloneFormGenTestCase):
         fgt.setDefault('mail_bcc_recipients', ['eggs and spam'])
         fgt.setDefault('mail_xinfo_headers', ['one', 'two'])
         fgt.setDefault('mail_add_headers',['three', 'four'])
+        fgt.setDefault('csv_delimiter','|')        
         
         permits = fgt.getPfgPermissions()
         self.failUnlessEqual(len(permits), 1)
@@ -44,6 +45,7 @@ class TestTools(pfgtc.PloneFormGenTestCase):
         self.failUnlessEqual(fgt.getDefaultMailBodyType(), 'text')
         self.failUnlessEqual(fgt.getDefaultMailRecipient(), 'eggs')        
         self.failUnlessEqual(fgt.getDefaultMailRecipientName(), 'spam')
+        self.failUnlessEqual(fgt.getCSVDelimiter(), '|')        
 
         cc = fgt.getDefaultMailCC()
         self.failUnlessEqual(len(cc), 1)

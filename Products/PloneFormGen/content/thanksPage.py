@@ -5,10 +5,11 @@ __docformat__ = 'plaintext'
 
 from zope.interface import implements
 
-from Products.PloneFormGen.config import PROJECTNAME
-from Products.PloneFormGen.interfaces import IPloneFormGenThanksPage
-
+import transaction
+import zExceptions
 from AccessControl import ClassSecurityInfo
+
+from Products.CMFCore.permissions import View, ModifyPortalContent
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
@@ -20,10 +21,11 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
 from Products.ATContentTypes.configuration import zconf
 
-from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.PloneFormGen.config import PROJECTNAME
+from Products.PloneFormGen.interfaces import IPloneFormGenThanksPage
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30, dollarReplace
 
 import zope.i18n
 
@@ -68,7 +70,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         widget=BooleanWidget(
             label="Include Empties",
             description="""
-                Check this to display fields titles
+                Check this to display field titles
                 for fields that received no input. Uncheck
                 to leave fields with no input off the list.
                 """,
@@ -82,6 +84,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         required=False,
         searchable=False,
         primary=False,
+        accessor='getThanksPrologue',
         validators = ('isTidyHtmlWithCleanup',),
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
@@ -101,6 +104,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         required=False,
         searchable=False,
         primary=False,
+        accessor='getThanksEpilogue',
         validators = ('isTidyHtmlWithCleanup',),
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
@@ -216,7 +220,6 @@ class FormThanksPage(ATCTContent):
         """ Returns a list of fields that should be
             displayed on the thanks page.
         """
-
         if self.showAll:
             # acquire field list from parent
             return self.fgFields(displayOnly=True)
@@ -237,11 +240,13 @@ class FormThanksPage(ATCTContent):
     def displayInputs(self, request):
         """ Returns sequence of dicts {'label':fieldlabel, 'value':input}
         """
-
         # get a list of all candidate fields
         myFields = []
         for obj in self.aq_parent._getFieldObjects():
             if not (IField.isImplementedBy(obj) or obj.isLabel()):
+                # if field list hasn't been specified explicitly, exclude server side fields
+                if self.showAll and obj.getServerSide():
+                    continue 
                 myFields.append(obj)
 
         # Now, determine which fields we show
@@ -278,10 +283,45 @@ class FormThanksPage(ATCTContent):
         # retained order.
         
         self.showFields = []
-        for field in self.fgFields():
+        for field in self.fgFields(excludeServerSide=False):
             id = field.getName()
             if id in value:
                 self.showFields.append(id)
         
+
+    security.declarePrivate('_dreplace')
+    def _dreplace(self, s):
+        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+
+
+    security.declarePublic('getThanksPrologue')
+    def getThanksPrologue(self):
+        """ get expanded prologue """
+
+        return self._dreplace( self.getRawThanksPrologue() )
+
+
+    security.declarePublic('getThanksEpilogue')
+    def getThanksEpilogue(self):
+        """ get expanded epilogue """
+
+        return self._dreplace( self.getRawThanksEpilogue() )
+
+
+
+    def processForm(self, data=1, metadata=0, REQUEST=None, values=None):
+        # override base so that we can selectively redirect back to the form
+        # rather than to the thanks page view.
+
+        # base processing
+        ATCTContent.processForm(self, data, metadata, REQUEST, values)
+
+        # if the referer is the item itself, let nature take its course;
+        # if not, redirect to form after a commit.
+        referer = self.REQUEST.form.get('last_referer', None)
+        if referer is not None and referer.split('/')[-1] != self.getId():
+            transaction.commit()
+            raise zExceptions.Redirect, "%s?qedit=1" % self.formFolderObject().absolute_url()
+
 
 registerATCT(FormThanksPage, PROJECTNAME)

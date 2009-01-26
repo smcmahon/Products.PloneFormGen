@@ -37,6 +37,7 @@ newMessages = {
     'isChecked' :   _(u'pfg_isChecked', u'This box must be checked.'),
     'isUnchecked' :   _(u'pfg_isUnchecked', u'This box must be unchecked.'),
     'isValidDate' :   _(u'pfg_isValidDate', u'The date entered was invalid.'),
+    'isNotLinkSpam': _(u'pfg_isnotlinkspam', u'This text appears to contain links.'),
     }
 
 newRequiredMessage = _(u'pfg_isRequired', u'This field is required.')

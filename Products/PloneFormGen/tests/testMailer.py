@@ -25,6 +25,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
+        self.ff1.checkAuthenticator = False # no csrf protection
         self.mailhost = self.folder.MailHost
         self.mailhost._send = self.dummy_send        
         self.ff1.mailer.setRecipient_email('mdummy@address.com')
@@ -72,9 +73,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         long_subject = "Now is the time for all good persons to come to the aid of the quick brown fox."
     
-        mailer = self.ff1.mailer        
-        fields = self.ff1._getFieldObjects()        
-        request = self.LoadRequestForm(topic = long_subject)        
+        mailer = self.ff1.mailer
+        fields = self.ff1._getFieldObjects()
+        request = self.LoadRequestForm(topic = long_subject)
         mailer.onSuccess(fields, request)
         
         msg = email.message_from_string(self.messageText)
@@ -82,6 +83,70 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         decoded_header = email.Header.decode_header(encoded_subject_header)[0][0]
         
         self.assertEqual( decoded_header, long_subject )
+
+
+    def test_SubjectDollarReplacement(self):
+        """ 
+        Simple subject lines should do ${identifier} replacement from request.form --
+        but only for a basic override.
+        """
+        
+        mailer = self.ff1.mailer
+        mailer.msg_subject = 'This is my ${topic} now'        
+        
+        # baseline unchanged
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_subject?=') > 0 )
+
+        # no substitution on field replacement (default situation)
+        request = self.LoadRequestForm(topic = 'test ${subject}', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        # note: we expect the subject to be base64 encoded when braces are present
+        self.failUnless( self.messageText.find('Subject: =?utf-8?b?dGVzdCAke3N1YmplY3R9?=') > 0 )
+
+        # we should get substitution in a basic override
+        mailer.subject_field = ''
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_test_subject_now?=') > 0 )
+        
+        # we should get substitution in a basic override
+        mailer.msg_subject = 'This is my ${untopic} now'        
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_=3F=3F=3F_now?=') > 0 )
+
+        # we don't want substitution on user input
+        request = self.LoadRequestForm(topic = 'test ${subject}', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_=3F=3F=3F_now?=') > 0 )
+
+
+    def test_TemplateReplacement(self):
+        """ 
+        Mail template prologues, epilogues and footers should do ${identifier}
+        replacement from request.form -- this is simpler because there are no 
+        overrides.
+        """
+
+        mailer = self.ff1.mailer
+        mailer.body_pre = 'Hello ${topic},'        
+        mailer.body_post = 'Thanks, ${topic}!'        
+        mailer.body_footer = 'Eat my footer, ${topic}.'        
+
+        # we should get substitution
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless( messageText.find('Hello test subject,') > 0 )
+        self.failUnless( messageText.find('Thanks, test subject!') > 0 )
+        self.failUnless( messageText.find('Eat my footer, test subject.') > 0 )
 
 
     def test_MailerOverrides(self):
@@ -193,6 +258,94 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( len(self.messageText) > 0 )
 
 
+    def test_selectiveFieldMailing(self):
+        """ Test selective inclusion of fields in the mailing """
+
+        mailer = self.ff1.mailer
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+
+        # make sure all fields are sent unless otherwise specified
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('test subject') > 0 and
+            messageText.find('test@test.org') > 0 and
+            messageText.find('test comments') > 0          
+          )
+        
+        # setting some show fields shouldn't change that
+        mailer.setShowFields( ('topic', 'comments',) )
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('test subject') > 0 and
+            messageText.find('test@test.org') > 0 and
+            messageText.find('test comments') > 0          
+          )
+
+        # until we turn off the showAll flag
+        mailer.showAll = False
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('test subject') > 0 and
+            messageText.find('test@test.org') < 0 and
+            messageText.find('test comments') > 0          
+          )
+        
+        # check includeEmpties
+        mailer.includeEmpties = False
+        
+        # first see if everything's still included
+        mailer.showAll = True
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        # look for labels
+        self.failUnless(
+            messageText.find('Subject') > 0 and
+            messageText.find('Your E-Mail Address') > 0 and
+            messageText.find('Comments') > 0          
+          )
+
+        # now, turn off required for a field and leave it empty
+        self.ff1.comments.setRequired(False)
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org',)
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        messageText = self.messageText.split('\n\n')[-1].decode('base64')
+        self.failUnless(
+            messageText.find('Subject') > 0 and
+            messageText.find('Your E-Mail Address') > 0 and
+            messageText.find('Comments') < 0          
+          )
+
+
+    def test_bccOverride(self):
+        """ Test override for BCC field """
+
+        mailer = self.ff1.mailer
+        request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
+
+        # simple override
+        mailer.setBccOverride("string:test@testme.com")
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless(
+            'test@testme.com' in self.mto
+        )
+        
+        # list override
+        mailer.setBccOverride( "python:['test@testme.com', 'test1@testme.com']" )
+        self.messageText = ''
+        self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
+        self.failUnless(
+            'test@testme.com' in self.mto and
+            'test1@testme.com' in self.mto
+        )
 
 if  __name__ == '__main__':
     framework()

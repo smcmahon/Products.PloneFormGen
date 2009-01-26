@@ -68,21 +68,24 @@
     <div metal:define-macro="body" class="pfg-form" tal:attributes="class string:pfg-form formid-${here/getId}">
       <form name="edit_form"
             method="post"
+            action=""
             enctype="multipart/form-data"
             class="enableUnloadProtection"
-            action=""
-            tal:attributes="action python:getattr(here,'formActionOverride','') or here.absolute_url()">
+            tal:attributes="action here/fgGetFormSubmitAction">
 
           <metal:block define-slot="extra_top" />
 
           <metal:block define-slot="widgets">
             <tal:fields repeat="field fields">
-			  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+      			  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
                 <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-			  </tal:block>
-			  <tal:block tal:condition="python:field.widget.macro == 'widget_richlabel'">
-			      <span tal:replace="structure python:request.form.get(field.getName(), field.default)"/>
-			  </tal:block>
+      			  </tal:block>
+              <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
+                   tal:attributes="id string:archetypes-fieldname-${field/getName}"
+                   class="field PFG-RichLabel"
+                   tal:content="structure python:request.form.get(field.getName(), field.default)">
+                  Rich Label
+              </div>
             </tal:fields>
           </metal:block>
 
@@ -95,10 +98,12 @@
                    value="default"
                    tal:attributes="value fieldset"
                    />
-            <input type="hidden"
-                   name="form.submitted"
-                   value="1"
-                   />
+           <input type="hidden"
+                  name="form.submitted"
+                  value="1"
+                  tal:define="form_submit_marker python:request.form.get('pfg_form_marker', 'form.submitted')"
+                  tal:attributes="name form_submit_marker"
+                  />
             <input type="hidden"
                    name="add_reference.field:record"
                    value=""

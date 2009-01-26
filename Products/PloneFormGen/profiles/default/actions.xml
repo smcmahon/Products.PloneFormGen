@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="object_buttons" meta_type="CMF Action Category">
+  <object name="export" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Export</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${object_url}/@@export-form-folder</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:object.meta_type in ('FormFolder')</property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="import" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Import</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">string:${object_url}/@@import-form-folder</property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">python:object.meta_type in ('FormFolder')</property>
+   <property name="permissions">
+    <element value="Manage portal"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+</object>

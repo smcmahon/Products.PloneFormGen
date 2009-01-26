@@ -7,6 +7,9 @@ import cgi
 
 from types import StringTypes, BooleanType
 
+import transaction
+import zExceptions
+
 from zope.interface import implements
 
 from Products.Archetypes.public import *
@@ -280,6 +283,23 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                 description_msgid = "help_fgtenable_text",
                 ),
             ),
+        BooleanField('serverSide',
+            schemata='overrides',
+            searchable=0,
+            required=0,
+            write_permission=EDIT_ADVANCED_PERMISSION,
+            default='',
+            widget=BooleanWidget(
+                label="Server-Side Variable",
+                description="""
+                    Mark this field as a value to be injected into the
+                    request form for use by action adapters and is not 
+                    modifiable by or exposed to the client.
+                """,
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_server_side_text",
+                ),
+            ),
     ))
 
 
@@ -442,6 +462,7 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
         validatorOverrideField,
     ))
 
+finalizeFieldSchema(BareFieldSchema, folderish=True, moveDiscussion=False)
 finalizeFieldSchema(BaseFieldSchema, folderish=True, moveDiscussion=False)
 finalizeFieldSchema(BaseFieldSchemaStringDefault, folderish=True, moveDiscussion=False)
 finalizeFieldSchema(BaseFieldSchemaLinesDefault, folderish=True, moveDiscussion=False)
@@ -554,7 +575,7 @@ class BaseFormField(ATCTContent):
         if type(value) == BooleanType:
             self.fgField.required = value
         else:
-            self.fgField.required = value == '1'
+            self.fgField.required = value == '1' or value == 'True'
 
 
     security.declareProtected(View, 'getRequired')
@@ -573,7 +594,7 @@ class BaseFormField(ATCTContent):
                 self.fgField.widget.visible = -1
             else:
                 self.fgField.widget.visible = 1
-        elif value == '1':
+        elif value == '1' or value == 'True':
             self.fgField.widget.visible = -1
         else:
             self.fgField.widget.visible = 1
@@ -585,6 +606,13 @@ class BaseFormField(ATCTContent):
 
         return self.fgField.widget.visible == -1
 
+    security.declareProtected(View, 'getServerSide')
+    def getServerSide(self, **kw):
+        """ return server side flag for field """
+        try:
+            return self.getField('serverSide').get(self)
+        except AttributeError:
+            return False
 
     security.declareProtected(ModifyPortalContent, 'setTitle')
     def setTitle(self, value, **kw):
@@ -940,3 +968,18 @@ class BaseFormField(ATCTContent):
         id = self.getId()
         if self.fgField.__name__ != id:
             self.fgField.__name__ = id
+
+
+    def processForm(self, data=1, metadata=0, REQUEST=None, values=None):
+        # override base so that we can selectively redirect back to the form
+        # rather than to the field view.
+
+        # base processing
+        ATCTContent.processForm(self, data, metadata, REQUEST, values)
+        
+        # if the referer is the item itself, let nature take its course;
+        # if not, redirect to form after a commit.
+        referer = self.REQUEST.form.get('last_referer', None)
+        if referer is not None and referer.split('/')[-1] != self.getId():
+            transaction.commit()
+            raise zExceptions.Redirect, "%s?qedit=1" % self.formFolderObject().absolute_url()

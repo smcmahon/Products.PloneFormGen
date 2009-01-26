@@ -81,39 +81,26 @@
             class="enableUnloadProtection enableAutoFocus atBaseEditForm"
             action=""
             id=""
-            tal:attributes="action python:path('pfg_embedded_action|nothing') or getattr(here,'formActionOverride','') or here.absolute_url();
+            tal:attributes="action here/fgGetFormSubmitAction;
                             id string:fg-base-edit;
                             class python:test(path('allow_tabbing|nothing'), 'enableUnloadProtection enableAutoFocus enableFormTabbing', 'enableUnloadProtection enableAutoFocus');">
 
           <metal:block define-slot="extra_top" />
 
           <metal:block define-slot="widgets">
-            <tal:tabbed tal:condition="allow_tabbing | nothing">
-              <fieldset tal:repeat="fieldset fieldsets"
-                        tal:attributes="id string:fieldset-${fieldset}">
-                <legend id=""
-                        tal:content="python: view.getTranslatedSchemaLabel(fieldset)"
-                        tal:attributes="id string:fieldsetlegend-${fieldset}" />
-                <tal:fields repeat="field fields">
-			        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-                        <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-			        </tal:block>
-			        <tal:block tal:condition="python:field.widget.macro == 'widget_richlabel'">
-			            <span tal:replace="structure python:request.form.get(field.getName(), field.default)"/>
-			        </tal:block>
-                </tal:fields>
-              </fieldset>
-            </tal:tabbed>
-            <tal:nottabbed tal:condition="not: allow_tabbing | nothing">
-                <tal:fields repeat="field fields">
-			        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-                        <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-			        </tal:block>
-			        <tal:block tal:condition="python:field.widget.macro == 'widget_richlabel'">
-			            <span tal:replace="structure python:request.form.get(field.getName(), field.default)"/>
-			        </tal:block>
-                </tal:fields>
-            </tal:nottabbed>
+            <div id="pfg-fieldwrapper">
+            <tal:fields repeat="field fields">
+    	        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+                <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+    	        </tal:block>
+    	        <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
+    	             tal:attributes="id string:archetypes-fieldname-${field/getName}"
+                   class="field PFG-RichLabel"
+                   tal:content="structure python:request.form.get(field.getName(), field.default)">
+    	            Rich Label
+    	        </div>
+            </tal:fields>
+            </div>
           </metal:block>
 
           <metal:block define-slot="extra_bottom" />
@@ -197,6 +184,10 @@
                    tal:define="last_referer python:here.session_restore_value('HTTP_REFERER', request.form.get('last_referer', request.get('HTTP_REFERER')))"
                    tal:attributes="value python:(last_referer and '%s/%s' % (here.absolute_url(), template.id) not in last_referer) and last_referer or (here.getParentNode() and here.getParentNode().absolute_url())"
                    />
+
+ 
+            <input tal:replace="structure context/@@authenticator/authenticator">
+
 
             <metal:block define-slot="buttons"
                    tal:define="fieldset_index python:fieldsets.index(fieldset);

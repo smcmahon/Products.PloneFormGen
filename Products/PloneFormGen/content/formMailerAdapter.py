@@ -32,12 +32,9 @@ from Products.CMFCore.utils import getToolByName
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter, FormAdapterSchema
 
-from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
-
-from Products.TALESField import TALESString, TALESLines
+from Products.TALESField import TALESString
 from Products.TemplateFields import ZPTField as ZPTField
 
-from Products.PloneFormGen.content.actionAdapter import FormActionAdapter, FormAdapterSchema
 from ya_gpg import gpg
 
 from email import Encoders
@@ -48,12 +45,10 @@ from email.MIMEImage import MIMEImage
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
-from types import StringTypes, StringType, UnicodeType 
-
-from DateTime import DateTime
+from types import StringTypes
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import HAS_PLONE30, dollarReplace
 
 try:
     # 3.0+
@@ -104,7 +99,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         default='#NONE#',
         write_permission=EDIT_ADVANCED_PERMISSION,
         read_permission=ModifyPortalContent,
-        vocabulary='selectFieldsDisplayList',
+        vocabulary='fieldsDisplayList',
         widget=SelectionWidget(
             label = 'Extract Recipient From',
             label_msgid = "label_formmailer_to_extract",
@@ -113,9 +108,8 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
                 Choose a form field from which you wish to extract
                 input for the To header. If you choose anything other
                 than "None", this will override the "Recipient's e-mail address"
-                setting above.
-                Only selection fields are eligible for this use because they
-                may be validated against your specified options.
+                setting above. Be very cautious about allowing unguarded user
+                input for this purpose.
                 """,
             description_msgid = "help_formmailer_to_extract",
             i18n_domain = "ploneformgen",
@@ -214,6 +208,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         searchable=0,
         required=0,
         schemata='message',
+        accessor='getBody_pre',
         read_permission=ModifyPortalContent,
         default_content_type = 'text/plain',
         allowable_content_types = ('text/plain',),
@@ -251,6 +246,57 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
             description_msgid = "help_formmailer_body_footer",
             label = 'Body (signature)',
             label_msgid = "label_formmailer_body_footer",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
+    BooleanField('showAll',
+        required=0,
+        searchable=0,
+        schemata='message',
+        default='1',
+        widget=BooleanWidget(
+            label="Include All Fields",
+            description="""
+                Check this to include input for all fields
+                (except label and file fields). If you check
+                this, the choices in the pick box below
+                will be ignored.
+                """,
+            label_msgid = "label_mailallfields_text",
+            description_msgid = "help_mailallfields_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
+    LinesField('showFields',
+        required=0,
+        searchable=0,
+        schemata='message',
+        vocabulary='allFieldDisplayList',
+        widget=PicklistWidget(
+            label="Show Responses",
+            description="""
+                Pick the fields whose inputs you'd like to include in
+                the e-mail.
+                """,
+            label_msgid = "label_mailfields_text",
+            description_msgid = "help_mailfields_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
+    BooleanField('includeEmpties',
+        required=0,
+        searchable=0,
+        schemata='message',
+        default='1',
+        widget=BooleanWidget(
+            label="Include Empties",
+            description="""
+                Check this to include titles
+                for fields that received no input. Uncheck
+                to leave fields with no input out of the e-mail.
+                """,
+            label_msgid = "label_mailEmpties_text",
+            description_msgid = "help_mailEmpties_text",
             i18n_domain = "ploneformgen",
             ),
         ),
@@ -432,6 +478,30 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
             description_msgid = "help_recipient_override_text",
         ),
     ),
+    TALESString('bccOverride',
+        schemata='overrides',
+        searchable=0,
+        required=0,
+        validators=('talesvalidator',),
+        default='',
+        write_permission=EDIT_TALES_PERMISSION,
+        read_permission=ModifyPortalContent,
+        isMetadata=True, # just to hide from base view
+        widget=StringWidget(label="BCC Expression",
+            description="""
+                A TALES expression that will be evaluated to override any value
+                otherwise entered for the BCC list. You are strongly
+                cautioned against using unvalidated data from the request for this purpose.
+                Leave empty if unneeded. Your expression should evaluate as a sequence of string.
+                PLEASE NOTE: errors in the evaluation of this expression will cause
+                an error on form display.
+            """,
+            size=70,
+            i18n_domain = "ploneformgen",
+            label_msgid = "label_bcc_override_text",
+            description_msgid = "help_bcc_override_text",
+        ),
+    ),
 ))
 
 if HAS_PLONE30:
@@ -538,6 +608,46 @@ class FormMailerAdapter(FormActionAdapter):
         return fgt.getDefaultMailAddHdrs()
 
 
+    security.declarePublic('setBody_pt')
+    def setBody_pt(self, value, **kw):
+        """ set body template with BBB for accessors """
+        
+        if shasattr(value, 'replace'):
+            template = value
+            for s, t in [('body_pre', 'getBody_pre'),
+                         ('body_post', 'getBody_post'), 
+                         ('body_footer', 'getBody_footer')]:
+                template = template.replace('here/%s' % s, 'here/%s' % t)
+            myField = self.getField('body_pt')
+            myField.set(self, template)
+
+
+    security.declarePrivate('_dreplace')
+    def _dreplace(self, s):
+        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+
+
+    security.declarePublic('getBody_pre')
+    def getBody_pre(self):
+        """ get expanded mail body prefix """
+        
+        return self._dreplace( self.getRawBody_pre() )
+
+
+    security.declarePublic('getBody_post')
+    def getBody_post(self):
+        """ get expanded mail body postfix """
+
+        return self._dreplace( self.getRawBody_post() )
+
+
+    security.declarePublic('getBody_footer')
+    def getBody_footer(self):
+        """ get expanded mail body footer """
+
+        return self._dreplace( self.getRawBody_footer() )
+
+
     security.declarePrivate('get_mail_text')
     def get_mail_text(self, fields, request, **kwargs):
         """Get header and body of e-mail as text (string)
@@ -629,14 +739,31 @@ class FormMailerAdapter(FormActionAdapter):
         else:
             request = self.REQUEST
 
-        live_fields = [f for f in fields
-          if not (f.isLabel() or f.isFileField())]
+        all_fields = [f for f in fields
+            if not (f.isLabel() or f.isFileField()) and not (getattr(self, 'showAll', True) and f.getServerSide())]
+
+        # which fields should we show?
+        if getattr(self, 'showAll', True):
+            live_fields = all_fields 
+        else:
+            live_fields = \
+                [f for f in all_fields
+                   if f.fgField.getName() in getattr(self, 'showFields', ())]
+
+        if not getattr(self, 'includeEmpties', True):
+            all_fields = live_fields
+            live_fields = []
+            for f in all_fields:
+                value = f.htmlValue(request)
+                if value and value != 'No Input':
+                    live_fields.append(f)
+                
         bare_fields = [f.fgField for f in live_fields]
         bodyfield = self.getField('body_pt')
+        
         # pass both the bare_fields (fgFields only) and full fields.
         # bare_fields for compatability with older templates,
         # full fields to enable access to htmlValue
-
         body = bodyfield.get(self, fields=bare_fields, wrappedFields=live_fields,**kwargs)
 
         if isinstance(body, unicode):
@@ -651,6 +778,7 @@ class FormMailerAdapter(FormActionAdapter):
                 body = bodygpg
 
         return body
+
 
     security.declarePrivate('secure_header_line')
     def secure_header_line(self, line):
@@ -671,9 +799,10 @@ class FormMailerAdapter(FormActionAdapter):
         """
 
         if type(input) in StringTypes:
-            input = [s.strip().encode('utf-8') for s in input.split(',')]
-
-        filtered_input = [s for s in input if s]
+            input = [s for s in input.split(',')]
+        input = [s for s in input if s]
+        filtered_input = [s.strip().encode('utf-8') for s in input]
+        
         if filtered_input:        
             return "<%s>" % '>, <'.join( filtered_input )
         else:
@@ -693,11 +822,6 @@ class FormMailerAdapter(FormActionAdapter):
         request -- (optional) alternate request object to use
         """
 
-#        if kwargs.has_key('request'):
-#            request = kwargs['request']
-#        else:
-#            request = self.REQUEST
-
         body = self.get_mail_body(fields, **kwargs)
 
         # fields = self.fgFields()
@@ -714,8 +838,12 @@ class FormMailerAdapter(FormActionAdapter):
             subject = self.getSubjectOverride().strip()
         else:
             subject = getattr(self, 'msg_subject', nosubject)
-            if getattr(self, 'subject_field', None):
-                subject = request.form.get(self.subject_field, subject)
+            subjectField = request.form.get(self.subject_field, None)
+            if subjectField is not None:
+                subject = subjectField
+            else:
+                # we only do subject expansion if there's no field chosen
+                subject = dollarReplace.DollarVarReplacer(getattr(request, 'form', {})).sub(subject)
 
         # Get From address
         if shasattr(self, 'senderOverride') and self.getRawSenderOverride():
@@ -739,7 +867,6 @@ class FormMailerAdapter(FormActionAdapter):
         recip_email = self._destFormat( recip_email )
 
         recip_name = self.recipient_name.encode('utf-8')
-
 
         # if no to_addr and no recip_email specified, use owner adress if possible.
         # if not, fall back to portal email_from_address.
@@ -781,14 +908,14 @@ class FormMailerAdapter(FormActionAdapter):
         # CC
         cc_recips = filter(None, self.cc_recipients)
         if cc_recips:
-            addrs = ['<%s>' % addr for addr in cc_recips]
-            headerinfo['Cc'] = ', '.join(addrs)
+            headerinfo['Cc'] = self._destFormat( cc_recips )
 
         # BCC
         bcc_recips = filter(None, self.bcc_recipients)
+        if shasattr(self, 'bccOverride') and self.getRawBccOverride():
+            bcc_recips = self.getBccOverride()
         if bcc_recips:
-            addrs = ['<%s>' % addr for addr in bcc_recips]
-            headerinfo['Bcc'] = ', '.join(addrs)
+            headerinfo['Bcc'] = self._destFormat( bcc_recips )
 
         for key in getattr(self, 'xinfo_headers', []):
             headerinfo['X-%s' % key] = self.secure_header_line(request.get(key, 'MISSING'))
@@ -802,7 +929,6 @@ class FormMailerAdapter(FormActionAdapter):
         """
 
         mailtext=self.get_mail_text(fields, request, **kwargs)
-
         host = self.MailHost
         host.send(mailtext)
 
@@ -811,6 +937,13 @@ class FormMailerAdapter(FormActionAdapter):
     def _site_encoding(self):
         site_props = self.portal_properties.site_properties
         return site_props.default_charset or 'UTF-8'
+
+
+    security.declareProtected(View, 'allFieldDisplayList')
+    def allFieldDisplayList(self):
+        """ returns a DisplayList of all fields """
+
+        return self.fgFieldsDisplayList()
 
 
     def fieldsDisplayList(self):
@@ -826,17 +959,17 @@ class FormMailerAdapter(FormActionAdapter):
             )
 
 
-    def selectFieldsDisplayList(self):
-        """ returns display list of selection fields """
+    security.declareProtected(ModifyPortalContent, 'setShowFields')
+    def setShowFields(self, value, **kw):
+        """ Reorder form input to match field order """
+        # This wouldn't be desirable if the PickWidget
+        # retained order.
 
-        return self.fgFieldsDisplayList(
-            withNone=True, 
-            noneValue='#NONE#',
-            objTypes=(
-                'FormSelectionField',
-                'FormMultiSelectionField',
-                )
-            )
+        self.showFields = []
+        for field in self.fgFields(excludeServerSide=False):
+            id = field.getName()
+            if id in value:
+                self.showFields.append(id)
 
 
 registerATCT(FormMailerAdapter, PROJECTNAME)

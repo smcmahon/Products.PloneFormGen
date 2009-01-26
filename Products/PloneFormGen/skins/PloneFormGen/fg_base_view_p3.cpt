@@ -48,6 +48,12 @@
               tal:attributes="src string:$portal_url/$item">
       </script>
     </tal:js>
+
+    <script src="pfgQuickEdit.js"
+            type="text/javascript"
+            tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
+    </script>
+
     <tal:block define="macro edit_macros/javascript_head | nothing"
                     condition="macro">
       <metal:block use-macro="macro" />
@@ -63,6 +69,13 @@
              tal:content="structure string:<!-- @import url($portal_url/$item); -->">
       </style>
     </tal:css>
+    <style type="text/css"
+           media="all"
+           tal:condition="python:checkPermission('Modify portal content', here)">
+       #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
+       #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
+       .editHook {text-align:center}
+    </style>
     <tal:block define="macro edit_macros/css | nothing"
                     condition="macro">
       <metal:block use-macro="macro" />
@@ -73,9 +86,18 @@
   <body>
 
     <metal:fill fill-slot="main">
-      <metal:main define-macro="main" tal:define="isLocked python:False">
+      <metal:main define-macro="main"
+                  tal:define="isLocked python:False;
+                              canModify python:checkPermission('Modify portal content', here)">
         
+
         <div tal:replace="structure provider:plone.abovecontenttitle" />
+        
+        <tal:block tal:condition="canModify">
+            <div id="pfgqedit" style="display:none" tal:content="structure here/maintenance_icon.gif" />
+            <div id="pfgnedit" style="display:none" tal:content="structure here/form_icon.gif" />
+        </tal:block>
+
         <h1 tal:content="context/Title" class="documentFirstHeading">
           Title or id
         </h1>
@@ -88,11 +110,92 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-		<p tal:replace="structure here/getFormPrologue | nothing" />
+    		<p tal:replace="structure here/getFormPrologue | nothing" />
 
         <metal:use_body use-macro="body_macro" />
 
-		<p tal:replace="structure here/getFormEpilogue | nothing" />
+    		<p tal:replace="structure here/getFormEpilogue | nothing" />
+
+        <table tal:condition="canModify" 
+               id="pfgActionEdit"
+               class="listing"
+               summary="Field listing"
+               style="display:none"
+               tal:define="liveAdapters here/getActionAdapter">
+            <thead>
+            <tr>
+                <th>Form Actions</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
+                <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
+                    <td tal:content="python:row[1]" />
+                    <td class="editHook">
+                      <form>
+                          <input type="checkbox" value="1"
+                              tal:attributes="checked python:test(row[0] in liveAdapters,'checked',None);
+                              id python:'cbaction-%s' % row[0];
+                              name python:'cbaction-%s' % row[0]" />
+                      </form>
+                    </td>
+                    <td class="editHook">
+                        <a href="#" 
+                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                           title="Delete Action"
+                           ><img src="delete_icon.gif" alt="Delete" /></a>
+                    </td>
+                    <td class="editHook">
+                        <a href="#" 
+                           tal:attributes="href python:'%s/edit' % row[0]"
+                           title="Edit Field"
+                           ><img src="edit.gif" alt="Edit" /></a>
+                    </td>                    
+                </tr>
+                </tal:block>
+            </tbody>
+        </table>
+
+        <table tal:condition="canModify" 
+               id="pfgThanksEdit"
+               class="listing"
+               summary="Field listing"
+               style="display:none"
+               tal:define="liveThanks here/thanksPage">
+            <thead>
+                <tr>
+                    <th>Thanks Pages</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
+                <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
+                    <td tal:content="python:row[1]" />
+                    <td class="editHook">
+                      <form>
+                          <input type="radio" name="thanksRadio"
+                              tal:attributes="value python:row[0];
+                                checked python:test(row[0] == liveThanks, 'checked', None)" />
+                      </form>
+                    </td>
+                    <td class="editHook">
+                        <a href="#" tal:condition="python:row[0]"
+                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                           title="Delete Page"
+                           ><img src="delete_icon.gif" alt="Delete" /></a>
+                        <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                    </td>
+                    <td class="editHook">
+                        <a href="#" tal:condition="python:row[0]"
+                           tal:attributes="href python:'%s/edit' % row[0]"
+                           title="Edit Page"
+                           ><img src="edit.gif" alt="Edit" /></a>
+                       <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                    </td>                    
+                </tr>
+                </tal:block>
+            </tbody>
+        </table>
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

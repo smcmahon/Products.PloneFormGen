@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <action-provider name="portal_actions">
+  <action title="Import" action_id="import" category="object_buttons"
+     condition_expr="python:object.meta_type in ('FormFolder')" 
+     url_expr="string:${object_url}/@@import-form-folder" visible="True">
+   <permission>Manage portal</permission>
+  </action>
+  <action title="Export" action_id="export" category="object_buttons"
+     condition_expr="python:object.meta_type in ('FormFolder')"
+     url_expr="string:${object_url}/@@export-form-folder" visible="True">
+   <permission>Manage portal</permission>
+  </action>
+ </action-provider>
+</object>

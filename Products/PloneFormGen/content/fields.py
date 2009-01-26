@@ -3,6 +3,19 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
+try:
+    # 3.0+
+    from zope.contenttype import guess_content_type
+except ImportError:
+    try:
+        # 2.5
+        from zope.app.content_types import guess_content_type
+    except ImportError:
+        # 2.1
+        from OFS.content_types import guess_content_type
+
+from ZPublisher.HTTPRequest import FileUpload
+
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
 
@@ -24,10 +37,6 @@ from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen.widgets import RichLabelWidget
 
 from Products.PloneFormGen.content.fieldsBase import *
-# \
-#    BaseFieldSchema, BareFieldSchema, BaseFieldSchemaLinesDefault, BaseFieldSchemaTextDefault, \
-#    BaseFormField, BaseFieldSchemaStringDefault, \
-#    maxlengthField, sizeField, vocabularyField, vocabularyOverrideField
 
 from types import StringTypes, BooleanType
 from DateTime import DateTime
@@ -113,6 +122,8 @@ class FGPasswordField(FGStringField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -189,6 +200,8 @@ class FGIntegerField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -259,6 +272,8 @@ class FGFixedPointField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # and, required has only limited use ...
     schema['required'].widget.description = \
@@ -365,6 +380,8 @@ class FGBooleanField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -492,6 +509,8 @@ class FGDateField(BaseFormField):
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -723,6 +742,8 @@ class FGSelectionField(BaseFormField):
     # 'hidden' isn't really useful for a selection field.
     # Just use a hidden string field if you really need this.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -820,6 +841,8 @@ class FGMultiSelectField(BaseFormField):
     # current Archetypes doesn't really support hidden for
     # multi-select. Use a lines field if you really need this
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -937,6 +960,20 @@ class FGTextField(BaseFormField):
     security  = ClassSecurityInfo()
 
     schema = BaseFieldSchemaTextDefault.copy()
+    schema += Schema((
+        BooleanField('validateNoLinkSpam',
+            searchable=0,
+            required=0,
+            default=False,
+            widget=BooleanWidget(
+                label="Reject Text with Links?",
+                description="""Useful for stopping spam""",
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_validate_link_spam_text",
+                description_msgid = "help_fgmsformat_text",
+                ),
+            ),
+        ))
 
     # Standard content type setup
     portal_type = meta_type = 'FormTextField'
@@ -954,7 +991,7 @@ class FGTextField(BaseFormField):
             searchable=0,
             required=0,
             write_permission = View,
-            validators=('isNotTooLong',),
+            validators=('isNotTooLong','isNotLinkSpam',),
             default_content_type = 'text/plain',
             allowable_content_types = ('text/plain',),
             widget = TextAreaWidget(
@@ -1000,6 +1037,8 @@ class FGRichTextField(BaseFormField):
     # 'hidden' isn't really useful for an RT field.
     # Just use a hidden string field if you really need this.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     if HAS_MX_TIDY:
         schema = schema + Schema((
@@ -1127,7 +1166,7 @@ class FGRichLabelField(BaseFormField):
     schema['title'].widget.label_msgid='label_title'
     schema['title'].widget.description = "Not displayed on form."
     schema['title'].widget.description_msgid = 'help_notdisplayed_text'
-    schema['description'].schemata = 'metadata'
+    schema['description'].widget.visible = {'view':'invisible','edit':'invisible'}
 
     # Standard content type setup
     portal_type = meta_type = 'FormRichLabelField'
@@ -1199,6 +1238,8 @@ class FGFileField(BaseFormField):
 
     # 'hidden' isn't really useful for a file field.
     del schema['hidden']
+    # 'serverSide' is not really useful for this field.
+    del schema['serverSide']
 
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
 
@@ -1239,9 +1280,6 @@ class FGFileField(BaseFormField):
         return self.fgField.maxsize
 
     def htmlValue(self, REQUEST):
-
-        from ZPublisher.HTTPRequest import FileUpload
-        from OFS.content_types import guess_content_type
 
         file = REQUEST.form.get('%s_file' % self.fgField.getName())
         if isinstance(file, FileUpload) and file.filename != '':

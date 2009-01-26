@@ -33,7 +33,7 @@
                   Description
               </p>
         
-              <p tal:replace="structure here/thanksPrologue | nothing" />
+              <p tal:replace="structure here/getThanksPrologue | nothing" />
       
                 <blockquote>
                     <dl>
@@ -44,7 +44,7 @@
                     </dl>
                 </blockquote>
       
-              <p tal:replace="structure here/thanksEpilogue | nothing" />
+              <p tal:replace="structure here/getThanksEpilogue | nothing" />
 
             </div>
 

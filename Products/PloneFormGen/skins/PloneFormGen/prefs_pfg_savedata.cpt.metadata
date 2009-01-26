@@ -1,0 +1,5 @@
+[default]
+title=PloneFormGen Save Data Preferences
+
+[actions]
+action.success = traverse_to:string:prefs_pfg_savedata_set

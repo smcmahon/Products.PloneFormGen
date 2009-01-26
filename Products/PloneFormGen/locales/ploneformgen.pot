@@ -587,9 +587,8 @@ msgstr ""
 #. Default: Choose a form field from which you wish to extract
 #. Default: input for the To header. If you choose anything other
 #. Default: than "None", this will override the "Recipient's e-mail address"
-#. Default: setting above.
-#. Default: Only selection fields are eligible for this use because they
-#. Default: may be validated against your specified options.
+#. Default: setting above. Be very cautious about allowing unguarded user
+#. Default: input for this purpose.
 #. Default: "
 msgid "help_formmailer_to_extract"
 msgstr ""
@@ -955,6 +954,10 @@ msgstr ""
 msgid "vocabulary_isemailaddress_text"
 msgstr ""
 
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+msgid "vocabulary_isemailaddresslist_text"
+msgstr ""
+
 #. Default: "Contains only printable characters"
 msgid "vocabulary_onlyprintable_text"
 msgstr ""
@@ -975,6 +978,9 @@ msgstr ""
 msgid "vocabulary_iszipcode_text"
 msgstr ""
 
+#. Default: "Does not contain link spam"
+msgid "vocabulary_isnotlinkspam_text"
+msgstr ""
 
 #. Default: "Is checked"
 msgid "vocabulary_ischecked_text"
@@ -1084,12 +1090,20 @@ msgstr ""
 msgid "pfg_isZipCode"
 msgstr ""
 
+#. Default: "This text appears to contain links."
+msgid "pfg_isnotlinkspam"
+msgstr ""
+
 #. Default: "This is not a valid url."
 msgid "pfg_isURL"
 msgstr ""
 
 #. Default: "This is not a valid email address."
 msgid "pfg_isEmail"
+msgstr ""
+
+#. Default: "This is not a valid list of email addresses (separated by commas)."
+msgid "pfg_isEmailAddressList"
 msgstr ""
 
 #. Default: "This is not a valid mailto: url."
@@ -1334,3 +1348,49 @@ msgstr ""
 #. Default 'An answer is required for each question.'
 msgid "pfg_allRequired"
 msgstr ""
+
+#. Mailer
+#. Default "Include All Fields"
+msgid "label_mailallfields_text"
+msgstr ""
+
+#. Mailer
+#. Default Check this to include input for all fields
+#. Default (except label and file fields). If you check
+#. Default this, the choices in the pick box below
+#. Default will be ignored.
+msgid "help_mailallfields_text"
+msgstr ""
+
+#. Mailer
+#. Default "Show Responses"
+msgid "label_mailfields_text"
+msgstr ""
+
+#. Mailer
+#. Default Pick the fields whose inputs you'd like to include in
+#. Default the e-mail.
+msgid "help_mailfields_text"
+msgstr ""
+
+#. Mailer
+#. Default "Include Empties"
+msgid "label_mailEmpties_text"
+msgstr ""
+
+#. Mailer
+#. Default Check this to include titles
+#. Default for fields that received no input. Uncheck
+#. Default to leave fields with no input out of the e-mail.
+msgid "help_mailEmpties_text"
+msgstr ""
+
+#. Mailer
+#. Default BCC Recipients
+msgid = "label_formmailer_bcc_recipients"
+msgstr = ""
+
+#.Mailer
+#.Default = 'E-mail addresses which receive a blind carbon copy.'
+msgid = "help_formmailer_bcc_recipients"
+msgstr = ""

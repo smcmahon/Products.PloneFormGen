@@ -17,15 +17,15 @@ DEFAULT_MAILTEMPLATE_BODY = \
   <head><title></title></head>
 
   <body>
-    <p tal:content="here/body_pre | nothing" />
+    <p tal:content="here/getBody_pre | nothing" />
     <dl>
         <tal:block repeat="field options/wrappedFields">
             <dt tal:content="field/fgField/widget/label" />
             <dd tal:content="structure python:field.htmlValue(request)" />
         </tal:block>
     </dl>
-    <p tal:content="here/body_post | nothing" />
-    <pre tal:content="here/body_footer | nothing" />
+    <p tal:content="here/getBody_post | nothing" />
+    <pre tal:content="here/getBody_footer | nothing" />
   </body>
 </html>
 """
@@ -55,6 +55,14 @@ stringValidators = (
         'errmsg':u'This is not a valid email address.',
         'errid':'pfg_isEmail',
         'regex':'^'+EMAIL_RE,
+        'ignore':'',
+        },
+    {'id':'isCommaSeparatedEmails',
+        'i18nid':'vocabulary_isemailaddresslist_text',
+        'title':u'Is one or more E-Mail Addresses separated by commas',
+        'errmsg':u'This is not a valid list of email addresses (separated by commas).',
+        'errid':'pfg_isEmailAddressList',
+        'regex':r'^'+EMAIL_RE[:-1]+'(,\s*'+EMAIL_RE[:-1]+')*$',
         'ignore':'',
         },
     {'id':'isPrintable',
@@ -97,6 +105,14 @@ stringValidators = (
         'regex':r'^(\d{5}|\d{9})$',
         'ignore':'[\-]',
     },
+    {'id': 'isNotLinkSpam',
+        'i18nid':'vocabulary_isnotlinkspam_text',
+        'title':u'Does not contain link spam',
+        'errmsg':u'This text appears to contain links.',
+        'errid':'pfg_isnotlinkspam',
+        'regex':r'(?!(<a |http|www|\.com)).*',
+        'ignore':'',
+    }
 )
 
 ######
@@ -214,3 +230,7 @@ BAD_IDS = ('zip', 'location', 'language')
 # used to mark errors that belong to the
 # whole form, not just a field.
 FORM_ERROR_MARKER = '_pfg_form_error'
+
+# apply the publisher exception hook wrapper to support embedded
+# forms in Plone 2.5?
+PLONE_25_PUBLISHER_MONKEYPATCH = False

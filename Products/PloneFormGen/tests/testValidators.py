@@ -9,18 +9,13 @@ if __name__ == '__main__':
 from Products.PloneFormGen.tests import pfgtc
 
 from Products.PloneFormGen.content import validationMessages
-
-from Products.CMFCore.utils import getToolByName
-
-import Products
+from Products.validation import validation
 
         
 class TestCustomValidators(pfgtc.PloneFormGenTestCase):
     """ test our validators """
 
     def test_inExNumericRange(self):
-        from Products.validation import validation
-
         v = validation.validatorFor('inExNumericRange')
         self.failUnlessEqual(v(10, minval=1, maxval=20), 1)
         self.failUnlessEqual(v('10', minval=1, maxval=20), 1)
@@ -31,8 +26,6 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         self.failIfEqual(v(4, minval=5, maxval=3), 1)
 
     def test_isNotTooLong(self):
-        from Products.validation import validation
-
         v = validation.validatorFor('isNotTooLong')
         self.failUnlessEqual(v('', maxlength=20), 1)
         self.failUnlessEqual(v('1234567890', maxlength=20), 1)
@@ -42,22 +35,34 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         self.failIfEqual(v('1234567890', maxlength=1), 1)
 
     def test_isChecked(self):
-        from Products.validation import validation
-
         v = validation.validatorFor('isChecked')
         self.failUnlessEqual(v('1'), 1)
         self.failIfEqual(v('0'), 1)
 
     def test_isUnchecked(self):
-        from Products.validation import validation
-
         v = validation.validatorFor('isUnchecked')
         self.failUnlessEqual(v('0'), 1)
         self.failIfEqual(v('1'), 1)
 
-    def test_isNotTooLong(self):
-        from Products.validation import validation
+    def test_isNotLinkSpam(self):
+        v = validation.validatorFor('isNotLinkSpam')
+        good = """I am link free and proud of it"""
+        bad1 = """<a href="mylink">Bad.</a>"""
+        bad2 = """http://bad.com"""
+        bad3 = """www.Bad.com"""
+        bad = (bad1,bad2,bad3)
+        class Mock(object):
+            def getValidateNoLinkSpam(self):
+                return 1
+        mock = Mock()
+        kw = {'instance':mock}
+        self.failUnlessEqual(v(good, **kw), 1)
+        for b in bad:
+            self.failIfEqual(v(b, **kw), 1,
+                             '"%s" should be considered a link.' % b)
 
+
+    def test_isNotTooLong(self):
         v = validation.validatorFor('isNotTooLong')
         v.maxlength = 10
         self.failUnlessEqual(v('abc'), 1)
@@ -73,6 +78,18 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         field.widget.maxlength = ''
         
         self.failUnlessEqual(v('abc', field=field), 1)
+
+    def test_isEmail(self):
+        v = validation.validatorFor('isEmail')
+        self.failUnlessEqual(v('hi@there.com'), 1)
+        self.failUnlessEqual(v('one@u.washington.edu'), 1)
+        self.failIfEqual(v('@there.com'), 1)
+
+    def test_isCommaSeparatedEmails(self):
+        v = validation.validatorFor('pfgv_isCommaSeparatedEmails')
+        self.failUnlessEqual(v('hi@there.com,another@two.com'), 1)
+        self.failUnlessEqual(v('one@u.washington.edu,  two@u.washington.edu'), 1)
+        self.failIfEqual(v('abc@plone.org; xyz@plone.org'), 1)
 
 
 class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):

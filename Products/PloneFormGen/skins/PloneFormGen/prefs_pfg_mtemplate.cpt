@@ -29,6 +29,10 @@
             <a href="prefs_pfg_mtemplate"
                 i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
             </li>
+            <li>
+            <a href="prefs_pfg_savedata"
+                i18n:translate="label_ploneformgen_savedata">Saved Data</a>
+            </li>                   
         </ul>
 
         <div class="contentActions">

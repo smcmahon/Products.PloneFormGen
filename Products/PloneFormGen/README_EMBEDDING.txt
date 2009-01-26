@@ -3,10 +3,13 @@ Embedding PloneFormGen forms
 
 PloneFormGen forms may be rendered from other templates, viewlets, and portlets.
 
-*Note*: This feature requires Plone 2.5 or greater.
+*Note*: This feature requires Plone 3.0 or later to work out of the box.  You
+can make it work in Plone 2.5 by turning on the PLONE_25_PUBLISHER_MONKEYPATCH
+config option, which applies a monkey patch to the Zope publisher exception hook
+based on some code included in Plone 3.
 
 *Caveat*: This feature should be considered beta quality.  I've written code that
-takes advantage of it, and you should be afraid of it, but take care to test
+takes advantage of it, and you shouldn't be afraid of it, but take care to test
 thoroughly.  There may be certain types of contexts for rendering the form with
 implications that I haven't taken into consideration.
 

@@ -156,6 +156,13 @@ class FormGenTool(UniqueObject, SimpleItem):
         return self.getFromPropSheet('mail_body_type', 'html')
 
 
+    security.declareProtected(ModifyPortalContent, 'getCSVDelimiter')
+    def getCSVDelimiter(self):
+        """ get the site's default csv delimiter for data export """
+        
+        return self.getFromPropSheet('csv_delimiter', ',')
+
+
     security.declareProtected(ModifyPortalContent, 'getDefaultMailXInfo')
     def getDefaultMailXInfo(self):
         """ get the site's default mail adapter xinfo headers """

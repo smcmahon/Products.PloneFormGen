@@ -116,6 +116,48 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         saver.setSavedFormInput(tuple())
         self.assertEqual(saver.itemsSaved(), 0)
 
+    def testSetSavedFormInputAlternateDelimiter(self):
+        """ test setSavedFormInput functionality when an alternate csv delimiter
+            has been specified
+        """
+        # set prefered delimiter
+        pft = getToolByName(self.portal, 'formgen_tool')
+        alt_delimiter = '|'
+        pft.setDefault('csv_delimiter', alt_delimiter)
+        # set up saver        
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+        saver = self.ff1.saver
+        
+        # build and save a row
+        row1 = alt_delimiter.join(('one','two','three'))
+        saver.setSavedFormInput(row1)
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+
+        # save a couple of \n-delimited rows - \n eol
+        row2 = alt_delimiter.join(('four','five','six'))
+        saver.setSavedFormInput('%s\n%s' % (row1, row2))
+        self.assertEqual(saver.itemsSaved(), 2)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage[1], ['four', 'five', 'six'])
+
+        # save a couple of \n-delimited rows -- \r\n eol
+        saver.setSavedFormInput('%s\r\n%s' % (row1, row2))
+        self.assertEqual(saver.itemsSaved(), 2)
+
+        # save a couple of \n-delimited rows -- \n\n double eol
+        saver.setSavedFormInput('%s\n\n%s' % (row1, row2))
+        self.assertEqual(saver.itemsSaved(), 2)
+
+        # save empty string
+        saver.setSavedFormInput('')
+        self.assertEqual(saver.itemsSaved(), 0)
+
+        # save empty list
+        saver.setSavedFormInput(tuple())
+        self.assertEqual(saver.itemsSaved(), 0)
+
+
     def testEditSavedFormInput(self):
         """ test manage_saveData functionality """
 
@@ -137,7 +179,56 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         saver.manage_saveData(1, data)
         self.assertEqual(saver.itemsSaved(), 1)
         self.assertEqual(saver._inputStorage[0], ['four', 'five', 'six'])
+        
+    def testEditSavedFormInputWithAlternateDelimiter(self):
+        """ test manage_saveData functionality when an alternate csv delimiter is used """
 
+        # set prefered delimiter
+        pft = getToolByName(self.portal, 'formgen_tool')
+        alt_delimiter = '|'
+        pft.setDefault('csv_delimiter', alt_delimiter)
+
+        # set up saver        
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+        self.failUnless('saver' in self.ff1.objectIds())
+        saver = self.ff1.saver
+
+        # save a row
+        saver.setSavedFormInput('one|two|three')
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        
+        data = cd()
+        setattr(data, 'item-0', 'four')
+        setattr(data, 'item-1', 'five')
+        setattr(data, 'item-2', 'six')
+
+        saver.manage_saveData(1, data)
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['four', 'five', 'six']) 
+
+    def testRetrieveDataSavedBeforeSwitchingDelimiter(self):
+        """ test manage_saveData functionality when an alternate csv delimiter is used """
+
+        # set up saver        
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+        self.failUnless('saver' in self.ff1.objectIds())
+        saver = self.ff1.saver
+
+        # save a row
+        saver.setSavedFormInput('one,two,three')
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        
+        # switch prefered delimiter
+        pft = getToolByName(self.portal, 'formgen_tool')
+        alt_delimiter = '|'
+        pft.setDefault('csv_delimiter', alt_delimiter)
+
+        # verify we can retrieve based on new delimiter
+        self.assertEqual(saver.itemsSaved(), 1)
+        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+    
     def testDeleteSavedFormInput(self):
         """ test manage_deleteData functionality """
 

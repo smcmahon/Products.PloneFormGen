@@ -1,20 +1,14 @@
 Integration tests
 =================
 
-Set up a test browser and log in as a manager::
-
-    >>> from Products.Five.testbrowser import Browser
-    >>> browser = Browser()
-    >>> portal_url = 'http://nohost/plone'
-    >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
-    >>> browser.addHeader('Authorization', 'Basic root:secret')
+    >>> browser = self.browser
 
 Standalone form
 ---------------
 
 Add a new Form Folder::
 
-    >>> browser.open(portal_url)
+    >>> browser.open(self.portal_url)
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
     >>> browser.getControl('Save').click()
@@ -24,7 +18,7 @@ And confirm that it renders properly::
     >>> browser.url
     'http://nohost/plone/testform/...'
     >>> print browser.contents
-    <BLANKLINE>
+    <!DOCTYPE...
     ...
      <div class="pfg-form formid-testform">
       <form ...action="http://nohost/plone/testform"...>
@@ -40,8 +34,6 @@ And confirm that it renders properly::
             <input type="hidden" name="form.submitted"
                    value="1" />
             ...
-            <input type="hidden" name="last_referer"
-                   value="localhost" />
             <input class="context" type="submit"
                    name="form_submit" value="Submit" />
           </div>
@@ -65,7 +57,6 @@ thank you page.  The default form has a mailer, so we'll programmatically set
 a recipient so that it doesn't complain.  (The mailer is mocked in the doctest
 base class)::
 
-    >>> self.portal.testform.mailer.setRecipient_email('mdummy@address.com')
     >>> browser.getControl('Comments').value = 'PFG rocks!'
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
@@ -93,7 +84,7 @@ which enhances the standard Zope error handler's treatment of Retry errors.) ::
 Now we should be able to render the same form as above, but located at @@form-wrapper::
 
     >>> browser.handleErrors = False
-    >>> browser.open(portal_url + '/@@form-wrapper')
+    >>> browser.open(self.portal_url + '/@@form-wrapper')
     >>> print browser.contents
     <!DOCTYPE...
     ...
