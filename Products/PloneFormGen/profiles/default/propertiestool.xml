@@ -22,6 +22,7 @@
    <element value="FormCustomScriptAdapter"/>
    <element value="FormThanksPage"/>
    <element value="FieldsetFolder"/>
+   <element value="FormCaptchaField"/>
   </property>
  </object>
  <object name="ploneformgen_properties" meta_type="Plone Property Sheet">
@@ -77,6 +78,7 @@
    <element value="FormCustomScriptAdapter"/>
    <element value="FormThanksPage"/>
    <element value="FieldsetFolder"/>
+   <element value="FormCaptchaField"/>
   </property>
   <property name="default_page_types" purge="False">
    <element value="FormFolder"/>

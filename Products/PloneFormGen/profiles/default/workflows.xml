@@ -46,6 +46,9 @@
   <type type_id="FormLikertField"/>
  </bindings>
  <bindings>
+  <type type_id="FormCaptchaField"/>
+ </bindings>
+ <bindings>
   <type type_id="FormSaveDataAdapter"/>
  </bindings>
  <bindings>

@@ -28,6 +28,7 @@
   <element value="FormRichLabelField"/>
   <element value="FormFileField"/>
   <element value="FormLikertField"/>
+  <element value="FormCaptchaField"/>
   <element value="FormSaveDataAdapter"/>
   <element value="FormMailerAdapter"/>
   <element value="FormCustomScriptAdapter"/>

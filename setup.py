@@ -28,6 +28,7 @@ setup(name='Products.PloneFormGen',
           'Products.TALESField',
           'Products.TemplateFields',
           'Products.PythonField',
+          'collective.recaptcha',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

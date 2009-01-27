@@ -156,6 +156,7 @@ fieldTypes = (
     'FormRichLabelField',
     'FormFileField',
     'FormLikertField',
+    'FormCaptchaField',
 )
 
 adapterTypes = (

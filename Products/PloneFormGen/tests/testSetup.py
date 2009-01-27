@@ -53,6 +53,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             'FormRichLabelField',
             'FormFileField',
             'FormLikertField',
+            'FormCaptchaField',
         )
         self.adapterTypes = (
             'FormSaveDataAdapter',
@@ -253,6 +254,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         'FormTextField',
         'FormRichTextField',
         'FormFileField',
+        'FormCaptchaField',
     )
 
     adapterTypes = (

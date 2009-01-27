@@ -22,5 +22,6 @@
   <type portal_type="FormStringField"/>
   <type portal_type="FormLikertField"/>
   <type portal_type="FormRichTextField"/>
+  <type portal_type="FormCaptchaField"/>
  </factorytypes>
 </object>
