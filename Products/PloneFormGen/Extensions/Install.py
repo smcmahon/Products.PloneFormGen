@@ -88,14 +88,15 @@ def uninstall(self):
     uninstall_tool(self, out)
     
     # remove FormFolder from kupu's linkable types
-    kupuTool = getToolByName(self, 'kupu_library_tool')
-    linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
-    if 'FormFolder' in linkable:
-        linkable.remove('FormFolder')
-    kupuTool.updateResourceTypes(({'resource_type' : 'linkable',
-                                   'old_type'      : 'linkable',
-                                   'portal_types'  :  linkable},))
-    print >> out, "Removed FormFolder from kupu's linkable types"
+    kupuTool = getToolByName(self, 'kupu_library_tool', None)
+    if kupuTool is not None:
+        linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
+        if 'FormFolder' in linkable:
+            linkable.remove('FormFolder')
+        kupuTool.updateResourceTypes(({'resource_type' : 'linkable',
+                                       'old_type'      : 'linkable',
+                                       'portal_types'  :  linkable},))
+        print >> out, "Removed FormFolder from kupu's linkable types"
 
 
     propsTool = getToolByName(self, 'portal_properties')
