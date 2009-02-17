@@ -4,6 +4,8 @@
 
 import os, sys, email
 
+from ZPublisher.HTTPRequest import record
+
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
@@ -68,6 +70,15 @@ class TestLikertField(pfgtc.PloneFormGenTestCase):
         self.assertEqual( errors, {} )
         self.assertEqual(self.saver.itemsSaved(), 2)
         self.assertEqual(self.saver.getSavedFormInput()[1][3], "{'1': '2', '2': '3'}")
+    
+    def test_likert_html_output(self):
+        """Failing test for #225, AttributeError: __len__" in Plone 2.5.5"""
+        rating_req_val = record()
+        rating_req_val.__dict__ = {'1':'2','2':'3'}
+        request = FakeRequest(topic = 'test subject', replyto='test@test.org', 
+                              comments='test comments', lf=rating_req_val)
+        self.failUnless("1: 2, 2: 3" in self.ff1.lf.htmlValue(request))
+    
 
 
 if  __name__ == '__main__':
