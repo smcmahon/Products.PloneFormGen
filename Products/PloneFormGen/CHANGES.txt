@@ -1,3 +1,9 @@
+1.2.6 (svn/unreleased)
+
+ - Merge fixes for #225 from trunk. Add test. Fixes AttributeError: __len__ in 
+   Plone 2.5.5 when using rating-scale field.
+   (andrewb)
+
 1.2.5
 
  - Integrate Portugese translation from Nuno Cruz.
