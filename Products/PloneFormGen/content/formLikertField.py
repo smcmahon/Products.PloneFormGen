@@ -136,7 +136,9 @@ class FGLikertField(fieldsBase.BaseFormField):
         """
 
         value = REQUEST.form.get(self.__name__, 'No Input')
-        if not (safe_hasattr(value, 'get') and len(value)):
+        if not (safe_hasattr(value, 'get') and 
+                safe_hasattr(value, 'len') and 
+                len(value)):
             return fieldsBase.BaseFormField.htmlValue(self, REQUEST)
         
         res = "<dl>\n"
