@@ -1,8 +1,11 @@
 1.5b3
 
- -  guess_content_type, used in htmlValue in the file field, needs the same
-    import protection used in the save data adapter, or it will fail in 
-    later Zopes. (Thanks, Tom Gross)
+ - Add some protection against trying to save old, unusable content types
+   back to kupu's linkable's resource. (Steve McMahon)
+
+ - guess_content_type, used in htmlValue in the file field, needs the same
+   import protection used in the save data adapter, or it will fail in 
+   later Zopes. (Thanks, Tom Gross)
 
 1.5b2
 

@@ -8,15 +8,23 @@ def update_kupu_resources(out, site):
         via kupu's arcane api's in the following.
     """
     # Add FormFolder to kupu's linkable types
+
+    typesTool = getToolByName(site, 'portal_types')
     kupuTool = getToolByName(site, 'kupu_library_tool', None)
     if kupuTool is not None:
         linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
+        
         if 'FormFolder' not in linkable:
+            # kupu's resource list can accumulate old, no longer valid types;
+            # it will throw an exception if we try to resave them.
+            # So, let's clean the list.
+            valid_types = dict([ (t.id, 1) for t in typesTool.listTypeInfo()])
+            linkable = [pt for pt in linkable if pt in valid_types]
+
             linkable.append('FormFolder')
-        # See optilude's note in the RichDocument install re why this is so odd.
-        kupuTool.updateResourceTypes(({'resource_type' : 'linkable',
-                                       'old_type'      : 'linkable',
-                                       'portal_types'  :  linkable},))
+            kupuTool.updateResourceTypes(({'resource_type' : 'linkable',
+                                           'old_type'      : 'linkable',
+                                           'portal_types'  :  linkable},))
 
 def safe_add_purgeable_properties(out, site):
     """ In order to avoid a possible "feature" regression and
