@@ -1,5 +1,9 @@
 1.5b3
 
+ - Creating a new data saver could under obscure circumstances cause an
+   exception "AttributeError: SavedFormInput" in some old compatibility code.
+   Removed the offending code. (Steve McMahon)
+
  - Add some protection against trying to save old, unusable content types
    back to kupu's linkable's resource. (Steve McMahon)
 

@@ -122,17 +122,6 @@ class FormSaveDataAdapter(FormActionAdapter):
     security       = ClassSecurityInfo()
 
 
-    def initializeArchetype(self, **kwargs):
-        """ the trick of using a textarea widget with a lines field
-            is causing a bad interpretation of the default. (It's
-            getting represented as a string.)
-        """
-
-        FormActionAdapter.initializeArchetype(self, **kwargs)
-        
-        self.SavedFormInput = []
-
-
     def _migrateStorage(self):
         # we're going to use an IOBTree for storage. we need to
         # consider the possibility that self is from an
@@ -143,11 +132,11 @@ class FormSaveDataAdapter(FormActionAdapter):
             self._inputStorage = IOBTree()
             self._inputItems = 0
         
-        if len(self.SavedFormInput):
-            for row in self.SavedFormInput:
-                self._inputStorage[self._inputItems] = row
-                self._inputItems += 1
-            self.SavedFormInput = []                
+            if base_hasattr(self, 'SavedFormInput') and len(self.SavedFormInput):
+                for row in self.SavedFormInput:
+                    self._inputStorage[self._inputItems] = row
+                    self._inputItems += 1
+                self.SavedFormInput = []                
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInput')
