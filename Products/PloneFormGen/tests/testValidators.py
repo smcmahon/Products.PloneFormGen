@@ -52,10 +52,9 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         bad3 = """www.Bad.com"""
         bad = (bad1,bad2,bad3)
         class Mock(object):
-            def getValidateNoLinkSpam(self):
-                return 1
+            validate_no_link_spam = 1
         mock = Mock()
-        kw = {'instance':mock}
+        kw = {'field':mock}
         self.failUnlessEqual(v(good, **kw), 1)
         for b in bad:
             self.failIfEqual(v(b, **kw), 1,

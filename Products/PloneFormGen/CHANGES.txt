@@ -1,5 +1,8 @@
 1.5b3
 
+ - Fixed the link spam validator for text fields, which wasn't working
+   properly.  (David Glick)
+
  - Fixed check for CSRF protection support, so that PFG doesn't break on
    Plone 3.0 if PloneHotfixCVE20080164 isn't installed. (David Glick)
 

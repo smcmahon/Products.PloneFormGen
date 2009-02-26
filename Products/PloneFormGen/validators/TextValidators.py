@@ -22,10 +22,10 @@ class LinkSpamValidator:
 
     def __call__(self, value, *args, **kwargs):
         # validation is optional and configured on the field
-        obj = kwargs.get('instance')
+        obj = kwargs.get('field')
         if not obj:
             return 1
-        if hasattr(obj,'getValidateNoLinkSpam') and obj.getValidateNoLinkSpam():
+        if hasattr(obj,'validate_no_link_spam') and obj.validate_no_link_spam:
             bad_signs = ("<a ",
                          "www.",
                          "http:",

@@ -997,6 +997,7 @@ class FGTextField(BaseFormField):
             widget = TextAreaWidget(
                 maxlength=0,
                 ),
+            validate_no_link_spam = 0,
             )
 
     security.declareProtected(View, 'isBinary')
@@ -1006,7 +1007,18 @@ class FGTextField(BaseFormField):
     security.declareProtected(View, 'getContentType')
     def getContentType(self, key=None):
         return 'text/plain'
+    
+    def setValidateNoLinkSpam(self, value):
+        """
+        for BBB, to make sure the validator gets enabled on legacy text fields
+        """
+        self.fgField.validators = ('isNotTooLong', 'isNotLinkSpam')
+        self.fgField._validationLayer()
         
+        self.fgField.validate_no_link_spam = value
+
+    def getValidateNoLinkSpam(self):
+        return getattr(self.fgField, 'validate_no_link_spam', 0)
 
 registerATCT(FGTextField, PROJECTNAME)
 
