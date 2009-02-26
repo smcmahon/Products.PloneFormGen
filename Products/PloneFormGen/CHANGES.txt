@@ -1,5 +1,8 @@
 1.5b3
 
+ - Fixed check for CSRF protection support, so that PFG doesn't break on
+   Plone 3.0 if PloneHotfixCVE20080164 isn't installed. (David Glick)
+
  - Creating a new data saver could under obscure circumstances cause an
    exception "AttributeError: SavedFormInput" in some old compatibility code.
    Removed the offending code. (Steve McMahon)

@@ -42,8 +42,11 @@ from Products.PloneFormGen.content import validationMessages
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30
 
-if HAS_PLONE30:
+try:
     import plone.protect
+    HAS_PLONE_PROTECT = True
+except ImportError:
+    HAS_PLONE_PROTECT = False
 
 from types import StringTypes
 
@@ -291,7 +294,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         ),
     ))
 
-if HAS_PLONE30:
+if HAS_PLONE_PROTECT:
     # Add field for CSRF check option
     FormFolderSchema = FormFolderSchema + Schema((
         BooleanField('checkAuthenticator',
