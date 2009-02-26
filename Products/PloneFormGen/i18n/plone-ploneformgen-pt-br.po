@@ -1,10 +1,11 @@
 # Gettext Message File for PloneFormGen
 # Sebastien Douche <sdouche@gmail.com>, 2006
+# Érico Andrei <erico@simplesconsultoria.com.br>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
 "POT-Creation-Date: 2006-09-04 22:26+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2008-12-20 23:27 -0200\n"
 "Last-Translator: Érico Andrei <erico@simplesconsultoria.com.br>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +106,7 @@ msgstr "Um campo de data/hora. A hora é opcional."
 #. Default: "A file field"
 #: content/fields.py
 msgid "A file field"
-msgstr ""
+msgstr "Um campo de arquivo"
 
 #. Default: "A fixed-point (float) field"
 #: content/fields.py
@@ -125,7 +126,7 @@ msgstr "Uma pasta que cria uma visão dos campos incluídos nela."
 #. Default: "A folder which groups form fields as a fieldset."
 #: content/fieldset.py
 msgid "A folder which groups form fields as a fieldset."
-msgstr ""
+msgstr "Uma pasta que agrupa campos como um fieldset."
 
 #. Default: "A form action adapter that will save form input data in tab-delimited format."
 #: content/saveDataAdapter.py
@@ -196,7 +197,7 @@ msgstr "Campo booleano"
 #. Default: "Custom Script Adapter"
 #: content/customScriptAdapter.py
 msgid "Custom Script Adapter"
-msgstr ""
+msgstr "Adaptador personalizável de script"
 
 #. Default: "Date/Time Field"
 #: content/fields.py
@@ -206,12 +207,12 @@ msgstr "Campo de Data/Hora"
 #. Default: "Executes a Python script for form data."
 #: content/customScriptAdapter.py
 msgid "Executes a Python script for form data."
-msgstr ""
+msgstr "Executa um script Python nos dados do formulário"
 
 #. Default: "Fieldset Folder"
 #: content/fieldset.py
 msgid "Fieldset Folder"
-msgstr ""
+msgstr "Pasta de Fieldset"
 
 #. Default: "File Field"
 #: content/fields.py
@@ -256,7 +257,7 @@ msgstr "Campo de seleção múltipla"
 #. Default: "No proxy role"
 #: content/customScriptAdapter
 msgid "No proxy role"
-msgstr ""
+msgstr "Nenhum papel de proxy"
 
 #. Default: "Password Field"
 #: content/fields.py
@@ -332,11 +333,11 @@ msgstr "Editar ${itemtype}"
 
 #. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
 msgid "help_fgbooleanfalsestring_text"
-msgstr ""
+msgstr "Texto a ser utilizado nas páginas de agradecimento e emails quando o campo checkbox não estiver marcado."
 
 #. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
 msgid "help_fgbooleantruestring_text"
-msgstr ""
+msgstr "Texto a ser utilizado nas páginas de agradecimento e emails quando o campo checkbox estiver marcado."
 
 #. Default: "Cancel"
 #: skins/PloneFormGen/fg_edit_macros.pt
@@ -345,11 +346,11 @@ msgstr "Cancelar"
 
 #. Default: "False Display String"
 msgid "label_fgbooleanfalsestring_text"
-msgstr ""
+msgstr "Texto de exibição quando a condição for falsa"
 
 #. Default: "True Display String"
 msgid "label_fgbooleantruestring_text"
-msgstr ""
+msgstr "Texto de exibição quando a condição for verdadeira"
 
 #. String Field
 #. Default: "Field Help"

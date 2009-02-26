@@ -1,0 +1,1250 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2009-02-25 22:52 -0300\n"
+"PO-Revision-Date: 2009-02-25 22:52 -0300\n"
+"Last-Translator: Karyn Nassif <karyn@simplesconsultoria.com.br>\n"
+"Language-Team: Simples Consultoria <contato@simplesconsultoria.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pt\n"
+"Language-Name: Brazilian Portuguese\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: ploneformgen\n"
+
+#. Default: "${items} inputs saved"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "items_saved"
+msgstr "${items} respostas salvas"
+
+#. Default: "Click here to get the saved input"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_click_to_get_input"
+msgstr "Clique aqui para obter as respostas salvas"
+
+#. Form Folder
+#. Default: "Submit Button Label"
+msgid "label_submitlabel_text"
+msgstr "Rótulo do botão de enviar"
+
+#. Form Folder
+#. Default: "Show Reset Button"
+msgid "label_showcancel_text"
+msgstr "Exibe o botão de limpar"
+
+#. Form Folder
+#. Default: "Reset Button Label",
+msgid "label_reset_button"
+msgstr "Rótulo do botão de limpar"
+
+#. Form Folder
+#. Initial value for Submit Button Label
+#. Default: "Submit"
+msgid "pfg_formfolder_submit"
+msgstr "Enviar"
+
+#. Form Folder
+#. Initial value for Reset Button Label
+#. Default: "Reset"
+msgid "pfg_formfolder_reset"
+msgstr "Limpar"
+
+#. Form Folder
+#. Default: "Action Adapter"
+msgid "label_actionadapter_text"
+msgstr "Adaptador de ação"
+
+#. Form Folder
+#. Default: "
+#. To make your form do something useful when submitted:
+#. add one or more form action adapters to the form folder,
+#. configure them, then return to this
+#. form and select the active ones.
+#. Default: "
+msgid "help_actionadapter_text"
+msgstr "Para fazer com que o seu formulário realize alguma ação quando enviado: adicione um ou mais adaptadores de ação ao seu formulário, os configure, volte a esta página e selecione os que serão ativados."
+
+#. Form Folder
+#. Default: "Form Prologue"
+msgid "label_prologue_text"
+msgstr "Prólogo do formulário"
+
+#. Form Folder
+#. Default: "This text will be displayed above the form fields."
+msgid "help_prologue_text"
+msgstr "Este texto será exibido logo acima dos campos do formulário."
+
+#. Form Folder
+#. Default: "Form Epilogue"
+msgid "label_epilogue_text"
+msgstr "Epílogo do formulário"
+
+#. Form Folder
+#. Default: "The text will be displayed after the form fields."
+msgid "help_epilogue_text"
+msgstr "Este texto será exibido abaixo dos campos do formulário."
+
+#. Form Folder
+#. Default: "Thanks Page"
+msgid "label_thankspage_text"
+msgstr "Página de agradecimento"
+
+#. Form Folder
+#. Default: "
+#. Default: Pick a contained page you wish to show on a successful
+#. Default: form submit. (If none are available, add one.) Choose none to simply display the form
+#. Default: field values.
+#. Default: "
+msgid "help_thankspage_text"
+msgstr "Selecione a página de agradecimento a ser exibida quando do envio dos dados de um formulário (adicione uma caso não exista nenhuma previamente cadastrada.) Escolha nenhuma para apenas exibir os valores enviados."
+
+#. Form Folder
+#. Default: "Custom Success Action"
+msgid "label_thankspageoverride_text"
+msgstr "Ação de sucesso personalizada"
+
+#. Form Folder
+#. Default: "
+#. Default: Use this field in place of a thanks-page designation
+#. Default: to determine final action after calling
+#. Default: your action adapter (if you have one). You would usually use this for a custom
+#. Default: success template or script.
+#. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
+#. Default: action type and argument,
+#. Default: complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
+#. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
+#. Default: redirect to 'thanks-page'.
+#. Default: "
+msgid "help_thankspageoverride_text"
+msgstr "Utilize este campo no lugar da página de agradecimento para determinar qual será a ação final após você chamar o adaptador de ação (se você tiver um). Você normalmente utilizará este campo para um script ou template de sucesso."
+
+# Form Folder
+# label="Custom Form Action"
+msgid "label_formactionoverride_text"
+msgstr "Ação de Formulário Customizada"
+
+# Form Folder
+# description="""
+#        Use this field to override the form action attribute.
+#        Specify a URL to which the form will post.
+#        This will bypass form validation, success action
+#        adapter and thanks page.
+#    """
+msgid "help_formactionoverride_text"
+msgstr "Utilize este campo para sobrescrever o atributo action do formulário. Especifique a URL para qual o formulário deverá postar. Isto irá sobrescrever  a validação do formulário, o adaptador de ação de sucesso e a página de agradecimento."
+
+# Form Folder
+#. Default "Form Setup Script"
+msgid "label_OnDisplayOverride_text"
+msgstr "Pasta de Formulário"
+
+# Form Folder
+# description="""
+# A TALES expression that will be called when the form is displayed.
+# Leave empty if unneeded.
+# The most common use of this field is to call a python script that sets
+# defaults for multiple fields by pre-populating request.form.
+# Any value returned by the expression is ignored.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_OnDisplayOverride_text"
+msgstr "Uma expressão TALES será chamada quando o formulário for exibido. Deixe em branco se não for necessário. O uso mais comum deste campo é chamar um script python que define padrões para múltiplos campos através do preenchimento prévio do formulário solicitado. Qualquer valor retornado na expressão será ignorada. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+# Form Folder
+# label="After Validation Script"
+msgid "label_AfterValidationOverride_text"
+msgstr "Script Após Validação"
+
+# Form Folder
+# description="""
+# A TALES expression that will be called after the form is
+# successfully validated, but before calling an action adapter
+# (if any) or displaying a thanks page.
+# Form input will be in the request.form dictionary.
+# Leave empty if unneeded.
+# The most common use of this field is to call a python script
+# to clean up form input or to script an alternative action.
+# Any value returned by the expression is ignored.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_AfterValidationOverride_text"
+msgstr "Uma expressão TALES será chamada depois do formulário ser validado com sucesso, mas antes de chamar um adaptador de ação (se existir) ou exibir a página de agradecimento. Entrada de dados do formulário irá requerer um dicionário de request.form. Deixe em branco se não for necessário.O uso mais comum deste campo é para chamar um script python para limpar os campos do formulário ou para um script de ação alternativa. Qualquer valor retornado na expressão será ignorada. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+# label="Header Injection"
+msgid "label_headerInjection_text"
+msgstr "Inserção no Cabeçalho"
+
+# description="""
+# This override field allows you to insert content into the xhtml
+# head. The typical use is to add custom CSS or JavaScript.
+# Specify a TALES expression returning a string. The string will
+# be inserted with no interpretation.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+# """
+msgid "help_headerInjection_text"
+msgstr "Este campo permite que você insira um conteúdo no cabeçalho do xhtml. Seu uso típico é para adicionar um CSS customizado ou Javascript. Especifique a expressão TALES para retornar a string. A string será inserida sem interpretação. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. String Field
+#. Default: "Field Label"
+msgid "label_fieldlabel_text"
+msgstr "Campo Rótulo"
+
+#. String Field
+#. Default: "Field Help"
+msgid "label_fieldhelp_text"
+msgstr "Ajuda para o campo"
+
+#. String Field
+#. Default: "Required"
+msgid "label_required_text"
+msgstr "Obrigatório"
+
+#. String Field
+#. Default: "Hidden"
+msgid "label_hidden_text"
+msgstr "Não visível"
+
+#. String Field
+#. Default: "Default"
+msgid "label_fgdefault_text"
+msgstr "Padrão"
+
+#. String Field
+#. Default: "
+#. Default: The value the field should contain when the form is first displayed.
+#. Default: Note that this may be overridden dynamically.
+#. Default: "
+msgid "help_fgdefault_text"
+msgstr "Valor que o campo deve conter quando o formulário é exibido pela primeira vez. Observe que o valor pode ser modificado dinamicamente."
+
+#. String Field
+#. Default: "Max Length"
+msgid "label_fgmaxlength_text"
+msgstr "Comprimento Máximo"
+
+#. String Field
+#. Default:
+#. The maximum number of characters the user will be able to input.
+#. Use 0 for no limit.
+msgid "help_fgmaxlength_text"
+msgstr "O número máximo de caracteres que o usuário estará habilitado a digitar. Utilize 0 quando não houver limite."
+
+#. String Field
+#. Default: "Size"
+msgid "label_fgsize_text"
+msgstr "Tamanho"
+
+#. String Field
+#. Default: "The size of the text-entry box, in characters."
+msgid "help_fgsize_text"
+msgstr "O tamanho da caixa de texto, em caracteres."
+
+#. String Field
+#. Default: "Validator"
+msgid "label_fgstringvalidator_text"
+msgstr "Validador"
+
+#. String Field
+#. Default: "Tests input against simple string patterns."
+msgid "help_fgstringvalidator_text"
+msgstr "Testa a entrada de dados contra padrões de texto simples."
+
+#. String Field
+#. Default: "Plone 2.5 Note"
+msgid "label_plone25note_text"
+msgstr "Observação para Plone 2.5"
+
+#. String Field
+#. Default: "
+#. Default: TALES overrides are disabled when viewing the field. They should work when viewing the form.
+#. Default: "
+msgid "help_plone25note_text"
+msgstr "Sobreposição por TALES está desabilitada na visualização do campo. Deve funcionar na visualização do formulário."
+
+#. String Field
+#. Default: "Default Expression"
+msgid "label_fgtdefault_text"
+msgstr "Expressão Padrão"
+
+#. String Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a string.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtdefault_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar um valor padrão. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma string. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. String Field
+#. Default: "Custom Validator"
+msgid "label_fgtvalidator_text"
+msgstr "Validador Customizado"
+
+#. String Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is validated.
+#. Default: Validate against 'value', which will contain the field input.
+#. Default: Return False if valid; if not valid return a string error message.
+#. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
+#. Default: require "eggs" for input.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtvalidator_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for validado. Valida contra 'value', que conterá a entrada de dados realizada. Retorna False se válido; caso contrário retorna uma string com a mensagem de erro. Exemplo: \"python: test(value=='eggs', False, 'input must be eggs') irá solicitar \"eggs\" para entrada de dados. Sua expressão deverá validar como uma string. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. Integer Field
+#. Default: "Minimum Acceptable Value"
+msgid "label_minval_text"
+msgstr "Valor Mínimo Aceito"
+
+#. Integer Field
+#. Default: "
+#. Default: The form will not accept values less than the number you enter here.
+#. Default: "
+msgid "help_minval_text"
+msgstr "O formulário não aceitará valores inferiores ao número informado por você aqui."
+
+#. Integer Field
+#. Default: "Maximum Acceptable Value"
+msgid "label_maxval_text"
+msgstr "Valor Máximo Aceito"
+
+#. Integer Field
+#. Default: "
+#. Default: The form will not accept values greater than the number you enter here.
+#. Default: "
+msgid "help_maxval_text"
+msgstr "O formulário não aceitará valores maiores ao número informado por você aqui."
+
+#. Boolean Field
+#. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond
+#. Default: putting a 'required' marker next to the label. If you wish to require a
+#. Default: particular input, choose a validator below.
+#. Default: "
+msgid "help_boolrequired_text"
+msgstr "Observe: Para um campo checkbox, a flag obrigatório não faz nada além de colocar um marcador 'obrigatório' próximo ao rótulo do campo. Se você deseja solicitar um valor em particular, selecione um validador abaixo."
+
+#. Boolean Field
+#. Default: "Validator"
+msgid "label_fgbooleanvalidator_text"
+msgstr "Validador"
+
+#. Boolean Field
+#. Default: "Choose a validator to require a particular response."
+msgid "help_fgbooleanvalidator_text"
+msgstr "Selecione um validador para requerer uma resposta em particular."
+
+#. Date/Time Field
+#. Default: "Show Time Selection Options"
+msgid "label_fgshowhm_text"
+msgstr "Exiba opções de seleção de horário"
+
+#. Lines Field
+#. Default: "Default"
+msgid "label_fglinesdefault_text"
+msgstr "Padrão"
+
+#. Lines Field
+#. Default: "
+#. Default: The values the field should contain when the form is first displayed.
+#. Default: Use one value per line.
+#. Default: Note that this may be overridden dynamically.
+#. Default: "
+msgid "help_fglinesdefault_text"
+msgstr "Os valores que o campo deveriam conter quando o formulário é exibido pela primeira vez. Utilize um valor por linha. Observe que esta lista poderá ser sobrescrita dinamicamente."
+
+#. Lines Field
+#. Default: "Rows"
+msgid "label_rows_text"
+msgstr "Linhas"
+
+#. Lines Field
+#. Default: "Default Expression"
+msgid "label_fgtlinesdefault_text"
+msgstr "Expressão Padrão"
+
+#. Lines Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtlinesdefault_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar um valor padrão. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma lista ou tupla. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. Selection Field
+#. Default: "Options"
+msgid "label_fgvocabulary_text"
+msgstr "Opções"
+
+#. Selection Field
+#. Default: "
+#. Default: Use one line per option.
+#. Default: Note that this may be overridden dynamically.
+#. Default: [Note, you may optionally use a "value|label" format.]
+#. Default: "
+msgid "help_fgvocabulary_text"
+msgstr "Use uma linha por opção. Observe que esta lista poderá ser sobrescrita dinamicamente. [Nota: você pode opcionalmente utilizar o formato \"valor|rótulo\"]"
+
+#. Selection Field
+#. Default: "Presentation Widget"
+msgid "label_fgformat_text"
+msgstr "Apresentação do Widget"
+
+#. Selection Field
+#. Default: "Options Vocabulary"
+msgid "label_fgtvocabulary_text"
+msgstr "Opções de Vocabulário"
+
+#. Selection Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field options.
+#. Default: Leave empty if unneeded.
+#. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtvocabulary_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar as opções do campo. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma lista de tuplas (chave, valor). Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. Multi-Select Field
+#. Default: "Presentation Widget"
+msgid "label_fgmsformat_text"
+msgstr "Apresentação do Widget"
+
+#. Text Field
+#. Default: "Default"
+msgid "label_fgtextdefault_text"
+msgstr "Padrão"
+
+#. Text Field
+#. Default: "
+#. Default: The text the field should contain when the form is first displayed.
+#. Default: Note that this may be overridden dynamically.
+#. Default: "
+msgid "help_fgtextdefault_text"
+msgstr "O texto que o campo deverá conter quando o formulário for exibido pela primeira vez. Observe que o campo poderá ser sobrescrito dinamicamente."
+
+#. Text Field
+#. Default: "Default Expression"
+msgid "label_fgtlistdefault_text"
+msgstr "Expressão Padrão"
+
+#. Text Field
+#. Default: "
+#. Default: A TALES expression that will be evaluated when the form is displayed
+#. Default: to get the field default value.
+#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
+#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
+#. Default: an error on form display.
+#. Default: "
+msgid "help_fgtlistdefault_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar um valor padrão. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma lista ou tupla. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. File Field
+#. Default: "Maximum Upload Size (Megabytes)"
+msgid "label_filemaxmb_text"
+msgstr "Valor Máximo de Upload (Megabytes)"
+
+#. File Field
+#. Default: "Set to 0 for no limit."
+msgid "help_filemaxmb_text"
+msgstr "Informe 0 quando não houve limite."
+
+# Rich Text Field
+# description="""Input tests using HTMLTidy (if installed)."""
+msgid "help_fgrtvalidator_text"
+msgstr "Campo testado utilizando HTML Tidy (se instalado)."
+
+### All Action Adapters
+#. Default "Execution Condition"
+msgid "label_execcondition_text"
+msgstr "Condição de Execução"
+
+#. Default """
+#. A TALES expression that will be evaluated to determine whether or not
+#. to execute this action.
+#. Leave empty if unneeded, and the ection will be executed.
+#. Your expression should evaluate as a boolean; return True if you wish
+#. the action to execute.
+#. PLEASE NOTE: errors in the evaluation of this expression will cause
+#. an error on form display.
+#. """
+msgid "help_execcondition_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar um valor padrão. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma lista ou tupla. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. Mailer Adapter
+#. Default: "Recipient's full name"
+msgid "label_formmailer_recipient_fullname"
+msgstr "Nome Completo de Destinatário"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: The full name of the recipient of the mailed form.
+#. Default: "
+msgid "help_formmailer_recipient_fullname"
+msgstr "O nome completo do destinatário do formulário que será enviado."
+
+#. Mailer Adapter
+#. Default: "Recipient's e-mail address"
+msgid "label_formmailer_recipient_email"
+msgstr "Endereço de E-mail do Destinatário"
+
+#. Mailer Adapter
+#. Default: "The recipients e-mail address."
+msgid "help_formmailer_recipient_email"
+msgstr "Endereço de e-mail do destinatário."
+
+#. Mailer Adapter
+#. Default: "Extract Recipient From"
+msgid "label_formmailer_to_extract"
+msgstr "Extrair o campo 'Destinatário' de"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the To header. If you choose anything other
+#. Default: than "None", this will override the "Recipient's e-mail address"
+#. Default: setting above. Be very cautious about allowing unguarded user
+#. Default: input for this purpose.
+#. Default: "
+msgid "help_formmailer_to_extract"
+msgstr "Escolha o campo do formulário que você deseja extrair o ''Destinatário' da mensagem. Se você escolher qualquer outro item que não 'Nenhum', o campo 'Endereço de E-mail do Destinatário' definido acima será sobrescrito.Tenha muito cuidado ao permitir que usuários não supervisionados utilizem este campo para este propósito."
+
+#. Mailer Adapter
+#. Default: "CC Recipients"
+msgid "label_formmailer_cc_recipients"
+msgstr "Destinatários em CC"
+
+#. Mailer Adapter
+#. Default: "E-mail addresses which receive a carbon copy."
+msgid "help_formmailer_cc_recipients"
+msgstr "Endereços de e-mail que receberam como cópia carbono."
+
+#. Mailer Adapter
+#. Default: "BCC Recipients"
+msgid "label_formmailer_bcc_recipients"
+msgstr "Destinatários em CCO"
+
+#. Mailer Adapter
+#. Default: "E-mail addresses which receive a blind carbon copy."
+msgid "help_formmailer_bcc_recipients"
+msgstr "Endereços de e-mail que receberam uma cópia carbono oculta."
+
+#. Mailer Adapter
+#. Default: "Extract Reply-To From"
+msgid "label_formmailer_replyto_extract"
+msgstr "Extrair o 'Respoder para' de:"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the Reply-To header. NOTE: You should
+#. Default: activate e-mail address verification for the designated
+#. Default: field.
+#. Default: "
+msgid "help_formmailer_replyto_extract"
+msgstr "Escolha o campo do formulário que você deseja extrair a informação 'Responder Para' do cabeçalho da mensagem. Nota: Você deve ativar a verificação de endereço de e-mail no respectivo campo."
+
+#. Mailer Adapter
+#. Default: "Subject"
+msgid "label_formmailer_subject"
+msgstr "Assunto"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Subject line of message. This is used if you
+#. Default: do not specify a subject field or if the field
+#. Default: is empty.
+#. Default: "
+msgid "help_formmailer_subject"
+msgstr "Assunto da mensagem. Este texto será utilizado caso você não especifique um campo assunto ou o campo esteja vazio."
+
+#. Mailer Adapter
+#. Default: "Extract Subject From"
+msgid "label_formmailer_subject_extract"
+msgstr "Extrair 'Assunto' de"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Choose a form field from which you wish to extract
+#. Default: input for the mail subject line.
+#. Default: "
+msgid "help_formmailer_subject_extract"
+msgstr "Escolha o campo do formulário que você deseja extrair o 'Assunto' da mensagem."
+
+#. Mailer Adapter
+#. Default: "Body (prepended)"
+msgid "label_formmailer_body_pre"
+msgstr "Corpo (antes dos campos)"
+
+#. Mailer Adapter
+#. Default: "Text prepended to fields listed in mail-body"
+msgid "help_formmailer_body_pre"
+msgstr "Texto que será exibido antes dos campos listados no corpo do e-mail"
+
+#. Mailer Adapter
+#. Default: "Body (appended)"
+msgid "label_formmailer_body_post"
+msgstr "Corpo (após campos)"
+
+#. Mailer Adapter
+#. Default: "Text appended to fields listed"
+msgid "help_formmailer_body_post"
+msgstr "Texto após os campos listados"
+
+#. Mailer Adapter
+#. Default: "Body (signature)"
+msgid "label_formmailer_body_footer"
+msgstr "Corpo (assinatura)"
+
+#. Mailer Adapter
+#. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
+msgid "help_formmailer_body_footer"
+msgstr "Texto utilizado com um rodapé no final da mensagem, separado do corpo através de uma linha traçejada."
+
+#. Mailer Adapter
+#. Default: "Mail-Body Template"
+msgid "label_formmailer_body_pt"
+msgstr "Template do Corpo da Mensagem"
+
+#. Mailer Adapter
+#. Default: "This is a Zope Page Template used for rendering of the mail-body. You don't need to modify it, but if you know TAL (Zope's Template Attribute Language) you have the full power to customize your outgoing mails."
+msgid "help_formmailer_body_pt"
+msgstr "Este é um Zope Page Template utilizado para renderizar o corpo da mensagem. Você não precisa modificá-lo, mas se você conhece TAL (a linguagem de atributos do tempalte do Zope) você tem todo o conhecimento para customizar a mensagem."
+
+#. Mailer Adapter
+#. Default: "Mail-Body Type"
+msgid "label_formmailer_body_type"
+msgstr "Tipo do Corpo da Mensagem"
+
+#. Mailer Adapter
+#. Default: "Set the mime-type of the mail-body. Change this setting only if you know exactly what you are doing. Leave it blank for default behaviour."
+msgid "help_formmailer_body_type"
+msgstr "Defina o mime-type do corpo da mensagem. Modifique esta configuração somente se você souber exatamente o que você está fazendo. Deixe em branco para o comportamento padrão."
+
+#. Mailer Adapter
+#. Default: "HTTP Headers"
+msgid "label_xinfo_headers_text"
+msgstr "Cabeçalhos HTTP"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Pick any items from the HTTP headers that
+#. Default: you'd like to insert as X- headers in the
+#. Default: message.
+#. Default: "
+msgid "help_xinfo_headers_text"
+msgstr "Capture qualquer item do cabeçalho HTTP que você deseje para inserir como X-headers na mensagem."
+
+#. Mailer Adapter
+#. Default: "Additional Headers"
+msgid "label_formmailer_additional_headers"
+msgstr "Cabeçalhos Adicionais"
+
+#. Mailer Adapter
+#. Default: "
+#. Default: Additional e-mail-header lines.
+#. Default: Only use RFC822-compliant headers.
+#. Default: "
+msgid "help_formmailer_additional_headers"
+msgstr "Linhas adicionais para o cabeçalho da mensagem. Somente utilize cabeçalhos compatíveis com a RFC822."
+
+#. Mailer Adapter
+#. Default "Key-Id"
+msgid "label_gpg_key_id"
+msgstr "ID Chave"
+
+#. Mailer Adapter
+#. Default """
+#. Default Give your key-id, e-mail address or
+#. Default whatever works to match a public key from current keyring.
+#. Default It will be used to encrypt the message body.
+#. Default Contact the site administrator if you need to
+#. Default install a new public key.
+#. Default Note that you will probably wish to change your message
+#. Default template to plain text if you're using encryption.
+#. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
+#. Default """
+msgid "help_gpg_key_id"
+msgstr "Informe seu ID Chave, endereço de e-mail ou o que quer que funcione como chave pública para o keyring corrente. Isto será utilizado para criptografar o corpo da mensagem. Contate o administrador do site se você precisar instalar uma nova chave pública. Observe que você provavelmente deverá alterar sua mensagem do tempalte para texto pleno se você for utilizar criptografia. TESTE ESTA FUNCIONALIDADE ANTES DE TORNÁ-LA PÚBLICA!"
+
+#####
+# Mailer adapter overrides schema
+# "Subject Expression"
+msgid "label_subject_override_text"
+msgstr "Schema que sobrescreve a 'Expressão Assunto ' no Adaptador de E-mail"
+
+# A TALES expression that will be evaluated to override any value
+# otherwise entered for the e-mail subject header.
+# Leave empty if unneeded. Your expression should evaluate as a string.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+msgid "help_subject_override_text"
+msgstr "Uma expressão TALES que será avaliada para sobrescrever qualquer valor que possa ser digitado no campo de assunto do cabeçalho. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma string. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+# "Sender Expression"
+msgid "label_sender_override_text"
+msgstr "Expressão de Remetente"
+
+# A TALES expression that will be evaluated to override the "From" header.
+# Leave empty if unneeded. Your expression should evaluate as a string.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+msgid "help_sender_override_text"
+msgstr "Uma expressão TALES que será avaliada para sobrescrever qualquer valor que possa ser digitado no campo de \"De\" do cabeçalho. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma string. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+# "Recipient Expression"
+msgid "label_recipient_override_text"
+msgstr "Expressão de Destinatário"
+
+# A TALES expression that will be evaluated to override any value
+# otherwise entered for the recipient e-mail address. You are strongly
+# cautioned against using unvalidated data from the request for this purpose.
+# Leave empty if unneeded. Your expression should evaluate as a string.
+# PLEASE NOTE: errors in the evaluation of this expression will cause
+# an error on form display.
+msgid "help_recipient_override_text"
+msgstr "Uma expressão TALES que será avaliada para sobrescrever qualquer valor que possa ser digitado como endereços de e-mail de destinatários. Seja extremamente cuidadoso em utilizar dados não validados de uma requisição para este propósito. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma string. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. Save Data Adapter
+#. Default: "Extra Data"
+msgid "label_savedataextra_text"
+msgstr "Dados Extras"
+
+#. Save Data Adapter
+#. Default: "
+#. Default: Pick any extra data you'd like saved with the form input.
+#. Default: "
+msgid "help_savedataextra_text"
+msgstr "Captura qualquer dado extra que você desejar salvo do formulário."
+
+#. Save Data Adapter
+#. Default: "Download Format"
+msgid "label_downloadformat_text"
+msgstr "Formato de Download"
+
+# "Include Column Names"
+msgid "label_usecolumnnames_text"
+msgstr "Incluir o nome das colunas"
+
+# "Do you wish to have column names on the first line of downloaded input?"
+msgid "help_usecolumnnames_text"
+msgstr "Você gostaria de ter o nome das colunas na primeira linha do arquivo para download?"
+
+#. Save Data Adapter
+#. Default: "Saved Form Input"
+msgid "label_savedatainput_text"
+msgstr "Dados Armazenados do Formulário"
+
+#  value="Clear Saved Input"
+#. Save Data Adapter
+msgid "clear-save-input"
+msgstr "Exclua os dados armazenados"
+
+#. Thanks Page
+#. Default: "Show All Fields"
+msgid "label_showallfields_text"
+msgstr "Mostre todos os campos"
+
+#. Thanks Page
+#. Default: "
+#. Default: Check this to display input for all fields
+#. Default: (except label and file fields). If you check
+#. Default: this, the choices in the pick box below
+#. Default: will be ignored.
+#. Default: "
+msgid "help_showallfields_text"
+msgstr "Marque esta opção para exibir todos os campos (com exceção dos campos do tipo rótulo e arquivo). Se você marcar esta opção, as opções de seleção abaixo serão ignoradas."
+
+#. Thanks Page
+#. Default: "Show Responses"
+msgid "label_showfields_text"
+msgstr "Mostre as Respostas"
+
+#. Thanks Page
+#. Default: "
+#. Default: Pick the fields whose inputs you'd like to display on
+#. Default: the success page.
+#. Default: "
+msgid "help_showfields_text"
+msgstr "Selecione os campos que deseja exibir o conteúdo na página de agradecimento."
+
+#. Thanks Page
+#. Default: "Include Empties"
+msgid "label_includeEmpties_text"
+msgstr "Inclua os campos vazios"
+
+#. Thanks Page
+#. Default: "
+#. Default: Check this to display fields titles
+#. Default: for fields that received no input. Uncheck
+#. Default: to leave fields with no input off the list.
+#. Default: "
+msgid "help_includeEmpties_text"
+msgstr "Marque esta opção para exibir os campos que não foram preenchidos. Desmarque esta opção para manter os campos não preenchidos fora da lista."
+
+#. Thanks Page
+#. Default: "Thanks Prologue"
+msgid "label_thanksprologue_text"
+msgstr "Prólogo da Mensagem de Agradecimento"
+
+#. Thanks Page
+#. Default: "This text will be displayed above the selected field inputs."
+msgid "help_thanksprologue_text"
+msgstr "Texto que será exibido acima dos campos selecionados."
+
+#. Thanks Page
+#. Default: "Thanks Epilogue"
+msgid "label_thanksepilogue_text"
+msgstr "Epílogo da Mensagem de Agradecimento"
+
+#. Thanks Page
+#. Default: "The text will be displayed after the field inputs."
+msgid "help_thanksepilogue_text"
+msgstr "Texto que será exibido abaixo dos campos selecionados."
+
+#. Thanks Page
+#. Default: "No Submit Message"
+msgid "label_nosubmit_text"
+msgstr "Mensagem para quando o formulário não é preenchido"
+
+# description = """
+# The text to display if the browser reaches this
+# thanks page without submitting a form. Typically, this
+# would direct the reader to the form.
+# """
+#. Thanks Page
+msgid "help_nosubmit_text"
+msgstr "O texto que será exibido quando o browser carregar a página de agradecimento sem ter preenchido o formulário. Tipicamente, isto encaminhará diretamente para o usuáiro para o formulário."
+
+# *** Vocabularies
+#. Default: "None"
+msgid "vocabulary_none_text"
+msgstr "Nenhum"
+
+#. Default: "Is an E-Mail Address"
+msgid "vocabulary_isemailaddress_text"
+msgstr "É um endereço de e-mail"
+
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+msgid "vocabulary_isemailaddresslist_text"
+msgstr "É um ou mais endereços de e-mails separados por vírgula"
+
+#. Default: "Contains only printable characters"
+msgid "vocabulary_onlyprintable_text"
+msgstr "Contém somente caracteres passíveis de impressão"
+
+#. Default: "Is a well-formed URL"
+msgid "vocabulary_isurl_text"
+msgstr "É uma URL com formação correta"
+
+#. Default: "Is a valid US phone number"
+msgid "vocabulary_isusphone_text"
+msgstr "É um número de telefone válido nos Estados Unidos"
+
+#. Default: "Is a valid international phone number"
+msgid "vocabulary_isintphone_text"
+msgstr "É um número de telefone internacional válido"
+
+#. Default: "Is a valid zip code"
+msgid "vocabulary_iszipcode_text"
+msgstr "É um CEP válido nos Estados Unidos"
+
+#. Default: "Does not contain link spam"
+msgid "vocabulary_isnotlinkspam_text"
+msgstr "Não contém links, evitando spam"
+
+#. Default: "Is checked"
+msgid "vocabulary_ischecked_text"
+msgstr "Está marcado"
+
+#. Default: "Is not checked"
+msgid "vocabulary_isnotchecked_text"
+msgstr "Não está marcado"
+
+#. Default: "Flexible (radio for short, select for longer)"
+msgid "vocabulary_flex_text"
+msgstr "Flexível ('botões de opção' quando curto, 'lista de seleção' quando longo)"
+
+#. Default: "Selection list"
+msgid "vocabulary_selection_text"
+msgstr "Lista de Seleção"
+
+#. Default: "Radio buttons"
+msgid "vocabulary_radio_text"
+msgstr "Botões de opção"
+
+#. Default: "Checkbox list"
+msgid "vocabulary_checkbox_text"
+msgstr "Lista de Checkbox"
+
+# save data adapter
+#. Default: 'Posting Date/Time'
+msgid "vocabulary_postingdt_text"
+msgstr "Data/Hora de Postagem"
+
+#. Default: 'Tab-Separated Values'
+msgid "vocabulary_tsv_text"
+msgstr "Valores Separados por Tabulação"
+
+#. Default: 'Comma-Separated Values'
+msgid "vocabulary_csv_text"
+msgstr "Valores Separados por Vírgulas"
+
+#. Default: 'Is Tidy HTML (fails on errors and warnings)')
+msgid "vocabulary_istidyhtml_text"
+msgstr "É Tidy HTML (falha em erros e avisos)"
+
+#. Default: 'Tidy HTML With Cleanup (fails on errors, cleans up rest)')
+msgid "vocabulary_istidyhtmlwithcleanup_text"
+msgstr ""
+
+#. Rich Label Field
+#. Default: 'Label body',
+msgid "label_fglabelbody_text"
+msgstr "Rótulo do Corpo"
+
+#. Rich Label Field
+#. Default "The text to display in the form."
+msgid "help_fglabelbody_text"
+msgstr "Texto para exibir no formulário."
+
+#########
+# Custom Script Adapter
+# 'Proxy role',
+msgid "label_script_proxy"
+msgstr ""
+
+# """ Role under which to run the script. """
+msgid "help_script_proxy"
+msgstr ""
+
+##########
+# validationMessages hack to clean up Archetypes validation messages
+#. Default: "This field requires a decimal value."
+msgid "pfg_isDecimal"
+msgstr "Este campo requer um valor decimal."
+
+#. Default: "This field requires an integer value."
+msgid "pfg_isInt"
+msgstr "Este campo requer um valor inteiro."
+
+#. Default: "This value contains unprintable characters"
+msgid "pfg_isPrintable"
+msgstr "Este valor contém caracteres que não podem ser impressos."
+
+#. Default: "This is not a well formed SSN."
+msgid "pfg_isSSN"
+msgstr "Isto é um SSN que não foi formado adequadamente."
+
+#. Default: "This is not a valid us phone number."
+msgid "pfg_isUSPhoneNumber"
+msgstr "Este não é um número de telefone válido nos Estados Unidos."
+
+#. Default: "This is not a valid international phone number."
+msgid "pfg_isInternationalPhoneNumber"
+msgstr "Este não é um número de telefone internacional válido."
+
+#. Default: "This is not a valid zip code."
+msgid "pfg_isZipCode"
+msgstr "Este não é um CEP válido nos Estados Unidos."
+
+#. Default: "This text appears to contain links."
+msgid "pfg_isnotlinkspam"
+msgstr "Este tempo aparenta conter links."
+
+#. Default: "This is not a valid url."
+msgid "pfg_isURL"
+msgstr "Isto não é uma URL válida."
+
+#. Default: "This is not a valid email address."
+msgid "pfg_isEmail"
+msgstr "Isto não é um endereço de e-mail válido."
+
+#. Default: "This is not a valid list of email addresses (separated by commas)."
+msgid "pfg_isEmailAddressList"
+msgstr "Isto não é uma lista de e-mails válidos (separados por vírgulas)."
+
+#. Default: "This is not a valid mailto: url."
+msgid "pfg_isMailto"
+msgstr "Isto não é uma url de 'mailto' válida."
+
+#. Default: "This box must be checked."
+msgid "pfg_isChecked"
+msgstr "Esta caixa deve ser marcada."
+
+#. Default: "This box must be unchecked."
+msgid "pfg_isUnchecked"
+msgstr "Esta caixa deve ser desmarcada."
+
+#. Default: "This field is required."
+msgid "pfg_isRequired"
+msgstr "Este campo é obrigatório."
+
+#. Default: "Clear Saved Input"
+#: PloneFormGen\skins\PloneFormGen\fg_savedata_view.pt
+msgid "Clear Saved Input"
+msgstr "Exclua os dados armazenados"
+
+#. Default: "Set defaults for addressing fields for new mail-action adapters. Please note that your input here is not verified. So, make sure you use valid addresses."
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+msgid "description_ploneformgen_addressing"
+msgstr "Define os padrões para os campos de endereçamento para novos adaptadores de mensagem. Por favor, observe que os dados informados não são validados. Portanto, certifique-se de que utiliza endereços válidos."
+
+#. Default: "You may set up a default body and MIME type for the mail-action adapter here. These values will be used whenever a new mail-action adapter is created."
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+msgid "description_ploneformgen_mtemplate"
+msgstr "Você pode configurar um corpo padrão e MIME type para o adaptador da mensagem aqui. Estes valores serão utilizados quando um novo adaptador de mensagem for criado."
+
+#. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
+msgid "description_ploneformgen_permissions"
+msgstr "Você pode esconder ou exibir a funcionalidade do PloneFormGen de um conjunto de usuários através do ajuste das permissões permitidas para papéis específicos na segurança do portal. O formulário abaixo ajusta as configurações de papéis/permissões no nível do site. Você pode realizar ajustes finos nas permissões de cada pasta através da aba de segurança pela ZMI."
+
+#. Default: "PloneFormGen Mail Addressing Defaults"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+msgid "heading_ploneformgen_addressing"
+msgstr "Padrões de Endereçamento de Mensagem do PloneFormGen "
+
+#. Default: "PloneFormGen Mail Template"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+msgid "heading_ploneformgen_mtemplate"
+msgstr "Template da Mensagem do PloneFormGen"
+
+#. Default: "PloneFormGen Permissions"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
+msgid "heading_ploneformgen_permissions"
+msgstr "Permissões do PloneFormGen"
+
+#. Default: "CAUTION: Input for the body is not validated. Invalid XHTML or TAL will cause errors on form processing. Try your code out in a mail adapter before pasting here."
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+msgid "help_novalidation_caution"
+msgstr "CUIDADO: Dados inclusos no corpo da mensagem não são válidos. TAL ou XHTML inválido estão causando erros no processamento do formulário. Tente executar o código fora do adaptador da mensagem antes de copiá-lo aqui."
+
+#. Default: "Mail Addressing"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
+msgid "label_ploneformgen_addressing"
+msgstr "Endereçamento da Mensagem"
+
+#. Default: "BCC Recipients"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+msgid "label_ploneformgen_bcc_recipients"
+msgstr "Destinatários CCO"
+
+#. Default: "CC Recipients"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+msgid "label_ploneformgen_cc_recipients"
+msgstr "Destinatários CC"
+
+#. Default: "Mail Body Template"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+msgid "label_ploneformgen_mailbodytemplate"
+msgstr "Template do Corpo da Mensagem"
+
+#. Default: "Mail Template"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
+msgid "label_ploneformgen_mtemplate"
+msgstr "Template da Mensagem"
+
+#. Default: "Permissions"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
+msgid "label_ploneformgen_permissions"
+msgstr "Permissões"
+
+#. Default: "Recipient Address"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+msgid "label_ploneformgen_recipient_email"
+msgstr "Endereço do Destinatário"
+
+#. Default: "Recipient Name"
+#: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
+msgid "label_ploneformgen_recipient_name"
+msgstr "Nome do Destinatário"
+
+#. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
+#: PloneFormGen\content\fields.py
+msgid "help_fprequired_text"
+msgstr "NOTA: Para um campo de ponto flutuante, a flag obrigatório não permitirá a digitação do campo '0' como valor."
+
+#. PloneFormGen\contents\validationMessages.py
+#. Default: "Please enter a number here."
+msgid "pfg_not_number"
+msgstr "Por favor, digite um número aqui."
+
+#. PloneFormGen\contents\validationMessages.py
+#. Default: "'${value}' is too small. Must be at least ${min}."
+msgid "pfg_number_too_small"
+msgstr "'${value}' é muito pequeno. Deve ter no mínimo ${min}."
+
+#. PloneFormGen\contents\validationMessages.py
+#. Default: "'${value}' is too large. Must be no greater than ${max}."
+msgid "pfg_number_too_large"
+msgstr "''${value}' é muito grande. Deve ter no máximo ${max}."
+
+#. PloneFormGen\contents\validationMessages.py
+#. Default: "'Entry too long. It should be no more than ${max} characters."
+msgid "pfg_too_long"
+msgstr "Entrada muito longa. Não dever ser maior que ${max} caracteres."
+
+# permission names -- used in configlet
+msgid "Add Content"
+msgstr ""
+
+msgid "Add Mailers"
+msgstr ""
+
+msgid "Add Data Savers"
+msgstr ""
+
+msgid "Add Custom Scripts"
+msgstr ""
+
+msgid "Edit TALES Fields"
+msgstr ""
+
+msgid "Edit Python Fields"
+msgstr ""
+
+msgid "Edit Advanced Fields"
+msgstr ""
+
+msgid "Edit Mail Addresses"
+msgstr ""
+
+msgid "Edit Encryption Specs"
+msgstr ""
+
+msgid "Download Saved Input"
+msgstr "Realize o download dos dados armazenados"
+
+#. PloneFormGen\contents\fieldsBase.py
+#. Default "Enabling Expression"
+msgid "label_fgtenable_text"
+msgstr "Expressão Habilitada"
+
+#. PloneFormGen\contents\fieldsBase.py
+#. Default "A TALES expression that will be evaluated when the form is displayed. to determine whether or not the field is enabled. Your expression should evaluate as True if the field should be included in the form, False if it should be omitted. Leave this expression field empty if unneeded: the field will be included. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
+msgid "help_fgtenable_text"
+msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para determinar se o campo está ou não habilitado. Sua expressão deve avaliar como True se o campo deveria ser incluído no formulário, como False se o campo deve ser omitido.Deixe o campo em branco se desenecessário: o campo será incluído. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "Starting Year"
+msgid "label_fgstartingyear_text"
+msgstr "Ano Inicial"
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "The first year to offer in the year drop-down."
+msgid "help_fgstartingyear_text"
+msgstr "O primeiro ano que deve aparecer na drop-down de anos."
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "Ending Year"
+msgid "label_fgendingyear_text"
+msgstr "Ano Final"
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "The last year to offer in the year drop-down. Leave this empty if you wish to instead use a number of future years."
+msgid "help_fgendingyear_text"
+msgstr "O último ano que deve aparecer na drop-down de anos. Deixe em branco se você deseja um número de anos futuros."
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "Future Years To Display"
+msgid "label_fgfutureyears_text"
+msgstr "Anos Futuros para Exibição"
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "The number of future years to offer in the year drop-down. (This is only applicable if you have not specified an ending year.)"
+msgid "help_fgfutureyears_text"
+msgstr "O número de anos futuros que deve ser exibido nca drop-down de anos. (Somente será utilizado caso não tenha sido especificado o ano final)"
+
+#. PloneFormGen\contents\fields.py
+#. DateTimeField
+#. Default "The date entered was invalid."
+msgid "pfg_isValidDate"
+msgstr "A data informada é inválida."
+
+#. Likert Field
+#. Default "Answers"
+msgid "label_fglikert_answers"
+msgstr "Respostas"
+
+#. Likert Field
+#. Default "List of possible answers for each of the questions"
+msgid "help_fglikert_answers"
+msgstr "Lista de possíveis respostas para cada questão."
+
+#. Likert Field
+#. Default "Questions"
+msgid "label_fglikert_questions"
+msgstr "Questões"
+
+#. Likert Field
+#. Default "List of the questions"
+msgid "help_fglikert_questions"
+msgstr "Lista de questões"
+
+#. Likert Field
+#. Default 'An answer is required for each question.'
+msgid "pfg_allRequired"
+msgstr "Uma resposta é obrigatória para cada questão."
+
+#. Mailer
+#. Default "Include All Fields"
+msgid "label_mailallfields_text"
+msgstr "Inclua Todos os Campos"
+
+#. Mailer
+#. Default Check this to include input for all fields
+#. Default (except label and file fields). If you check
+#. Default this, the choices in the pick box below
+#. Default will be ignored.
+msgid "help_mailallfields_text"
+msgstr "Marque esta opção para exibir todos os campos (com exceção dos campos do tipo rótulo e arquivo). Se você marcar esta opção, as opções de seleção abaixo serão ignoradas."
+
+#. Mailer
+#. Default "Show Responses"
+msgid "label_mailfields_text"
+msgstr "Exiba as Respostas"
+
+#. Mailer
+#. Default Pick the fields whose inputs you'd like to include in
+#. Default the e-mail.
+msgid "help_mailfields_text"
+msgstr "Selecione os campos que deverão ser incluídos no e-mail."
+
+#. Mailer
+#. Default "Include Empties"
+msgid "label_mailEmpties_text"
+msgstr "Inclua os Campos Vazios"
+
+#. Mailer
+#. Default Check this to include titles
+#. Default for fields that received no input. Uncheck
+#. Default to leave fields with no input out of the e-mail.
+msgid "help_mailEmpties_text"
+msgstr "Marque esta opção para exibir os campos que não foram preenchidos. Desmarque esta opção para manter os campos não preenchidos fora da lista."
+
