@@ -1001,7 +1001,7 @@ class FGTextField(BaseFormField):
 
     security.declareProtected(View, 'isBinary')
     def isBinary(self, key):
-        return False;
+        return False
 
     security.declareProtected(View, 'getContentType')
     def getContentType(self, key=None):

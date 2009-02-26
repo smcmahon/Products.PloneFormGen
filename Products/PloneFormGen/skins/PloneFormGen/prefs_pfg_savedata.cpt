@@ -29,6 +29,10 @@
             <a href="prefs_pfg_mtemplate"
                 i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
             </li>
+            <li>
+            <a href="@@recaptcha-settings"
+                i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
+            </li>
             <li class="selected">
             <a href="prefs_pfg_savedata"
                 i18n:translate="label_ploneformgen_savedata">Saved Data</a>
