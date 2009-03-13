@@ -22,7 +22,7 @@ need to set a prefix on the 'embedded' view to disambiguate submissions::
 
     <tal:block tal:define="form nocall:path/to/form/@@embedded;
                        dummy python:form.setPrefix('mypfg')"
-           tal:replace="form"/>
+           tal:replace="structure form"/>
 
 Or if you are using a view class, you could define a method like::
 
