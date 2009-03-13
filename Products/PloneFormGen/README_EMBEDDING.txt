@@ -33,7 +33,8 @@ Or if you are using a view class, you could define a method like::
         form_view.prefix = 'mypfg'
         return form_view()
 
-and then in the associated template::
+(Note that restrictedTraverse expects a path relative to the object you are
+calling it on, with no intial slash.)  And then in the associated template::
 
     <tal:block tal:replace="view/render_form"/>
 
