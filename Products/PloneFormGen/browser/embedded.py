@@ -38,12 +38,21 @@ class EmbeddedPFGView(BrowserView):
 
         # CMFFormController form processing is based on the presence of a 'form.submitted'
         # key in the request.  We need to translate our prefixed version.
-        fiddled_submission_marker = None
-        if form_marker in self.request.form:
+        if 'form.submitted' in self.request.form:
+            fiddled_submission_marker = self.request.form['form.submitted']
+        else:
+            fiddled_submission_marker = None
+        
+        if self.request.environ.get('X_PFG_RETRY', False):
+            # We check for the absence of the X_PFG_RETRY flag in the request,
+            # to avoid processing the form in the edge case where the form already completed
+            # and is using a Retry exception to traverse to the thank you page, but the thank
+            # you page also has the same embedded form on it somewhere
+            del self.request.form['form.submitted']
+        elif form_marker in self.request.form:
             self.request.form['form.submitted'] = True
         elif self.prefix and DEFAULT_SUBMISSION_MARKER in self.request.form:
             # not our form; temporarily remove the form.submitted key to avoid a false positive
-            fiddled_submission_marker = self.request.form['form.submitted']
             del self.request.form['form.submitted']
         
         # And we need to pass the form marker in the request so it can be inserted
@@ -75,6 +84,8 @@ class EmbeddedPFGView(BrowserView):
             # Clean up
             if fiddled_submission_marker is not None:
                 self.request.form['form.submitted'] = fiddled_submission_marker
+            elif fiddled_submission_marker is None and 'form.submitted' in self.request.form:
+                del self.request.form['form.submitted']
             if fiddled_controller_state is not None:
                 self.request.set('controller_state', fiddled_controller_state)
             del self.request.form['pfg_form_marker']

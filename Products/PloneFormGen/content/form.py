@@ -652,6 +652,7 @@ class FormFolder(ATFolder):
             path = url.replace(self.REQUEST['SERVER_URL'], '')
             self.REQUEST._orig_env['PATH_INFO'] = self.REQUEST._orig_env['PATH_TRANSLATED'] = path
             self.REQUEST._orig_env['SERVER_URL'] = url[:len(url) - len(path)]
+            self.REQUEST._orig_env['X_PFG_RETRY'] = '1'
             raise Retry
         else:
             # if not embedded, simple CMFFormController traversal will work fine

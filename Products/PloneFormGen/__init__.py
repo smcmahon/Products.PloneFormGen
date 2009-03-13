@@ -24,13 +24,16 @@ from AccessControl import ModuleSecurityInfo
 from Products.PloneFormGen.config import PROJECTNAME, \
     ADD_CONTENT_PERMISSION, CSA_ADD_CONTENT_PERMISSION, \
     MA_ADD_CONTENT_PERMISSION, SDA_ADD_CONTENT_PERMISSION, \
-    SKINS_DIR, GLOBALS, PLONE_25_PUBLISHER_MONKEYPATCH
+    SKINS_DIR, GLOBALS
 
 registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 
 def initialize(context):
 
     import content, validators, tools, widgets
+    
+    # side-effect import
+    import patches
 
     # Add our tools
     utils.ToolInit('PloneFormGen Tool',
@@ -92,7 +95,3 @@ except ImportError:
     HAS_PLONE30 = False
 else:
     HAS_PLONE30 = True
-
-if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
-    from monkey import installExceptionHook
-    installExceptionHook()

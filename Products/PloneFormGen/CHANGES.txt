@@ -1,3 +1,15 @@
+1.5b4 (unreleased)
+
+ - Fixed issue where submission of an embedded PFG form could cause processing
+   of a standalone PFG form later in the page. (David Glick)
+
+ - Fixed issue with embedded forms where the form would get processed again
+   after a Retry if the form was also embedded on the thank you page. (David
+   Glick)
+
+ - Patched plone.app.portlets to not catch the Retry exception, which was
+   causing problems when submitting forms embedded in portlets. (David Glick)
+
 1.5b3
 
  - Fixed the link spam validator for text fields, which wasn't working

@@ -78,8 +78,8 @@ which enhances the standard Zope error handler's treatment of Retry errors.) ::
     >>> from Products.Five import zcml
     >>> import Products.PloneFormGen
     >>> zcml.load_config('tests/fixtures/tests.zcml', Products.PloneFormGen)
-    >>> from Products.PloneFormGen.monkey import installExceptionHook
-    >>> installExceptionHook()
+    >>> from Products.PloneFormGen.patches import patch_publisher_exception_handling
+    >>> patch_publisher_exception_handling()
 
 Now we should be able to render the same form as above, but located at @@form-wrapper::
 
