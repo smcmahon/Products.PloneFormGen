@@ -44,8 +44,8 @@ class EmbeddedPFGView(BrowserView):
 
         # CMFFormController form processing is based on the presence of a 'form.submitted'
         # key in the request.  We need to translate our prefixed version.
-        if 'form.submitted' in self.request.form:
-            fiddled_submission_marker = self.request.form['form.submitted']
+        if DEFAULT_SUBMISSION_MARKER in self.request.form:
+            fiddled_submission_marker = self.request.form[DEFAULT_SUBMISSION_MARKER]
         else:
             fiddled_submission_marker = None
         
@@ -58,13 +58,14 @@ class EmbeddedPFGView(BrowserView):
             # to avoid processing the form in the edge case where the form already completed
             # and is using a Retry exception to traverse to the thank you page, but the thank
             # you page also has the same embedded form on it somewhere
-            del self.request.form['form.submitted']
+            if DEFAULT_SUBMISSION_MARKER in self.request.form:
+                del self.request.form[DEFAULT_SUBMISSION_MARKER]
         elif form_marker in self.request.form:
-            self.request.form['form.submitted'] = True
+            self.request.form[DEFAULT_SUBMISSION_MARKER] = True
             self.request.other['pfg_form_submitted'] = True
         elif self.prefix and DEFAULT_SUBMISSION_MARKER in self.request.form:
             # not our form; temporarily remove the form.submitted key to avoid a false positive
-            del self.request.form['form.submitted']
+            del self.request.form[DEFAULT_SUBMISSION_MARKER]
         
         # And we need to pass the form marker in the request so it can be inserted
         # into the form (we can't just use it as an argument to the controller template,
