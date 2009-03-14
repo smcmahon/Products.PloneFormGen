@@ -23,6 +23,12 @@ class EmbeddedPFGView(BrowserView):
     # optional form action override
     action = None
     
+    # enable form unload warning if it has been edited?
+    enable_unload_protection = False
+    
+    # auto-focus the form on page load?
+    enable_auto_focus = False
+    
     def setPrefix(self, prefix):
         self.prefix = prefix
         
@@ -77,7 +83,10 @@ class EmbeddedPFGView(BrowserView):
         try:
             context = aq_inner(self.context)
             if HAS_PLONE30:
-                return context.fg_embedded_view_p3()
+                return context.fg_embedded_view_p3(
+                    enable_unload_protection=self.enable_unload_protection,
+                    enable_auto_focus=self.enable_auto_focus
+                    )
             else:
                 return context.fg_embedded_view()
         finally:

@@ -1,5 +1,8 @@
 1.5b4 (unreleased)
 
+ - Add hooks for configuring form unload protection and auto-focus, and disable
+   them for embedded forms by default. (David Glick)
+
  - Fixed issue where submission of an embedded PFG form could cause processing
    of a standalone PFG form later in the page. (David Glick)
 
