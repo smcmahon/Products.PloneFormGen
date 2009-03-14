@@ -1,5 +1,8 @@
 1.5b4 (unreleased)
 
+ - Prevent embedded forms from hijacking the portal status messages unless the
+   form was actually submitted. (David Glick)
+
  - Add hooks for configuring form unload protection and auto-focus, and disable
    them for embedded forms by default. (David Glick)
 

@@ -1,6 +1,8 @@
 <metal:block use-macro="here/global_defines/macros/defines" />
 <div class="pfg-embedded">
-    <tal:block metal:use-macro="context/global_statusmessage/macros/portal_message"/>
+    <tal:block tal:condition="python:request.other.get('pfg_form_submitted', False)">
+        <tal:block metal:use-macro="context/global_statusmessage/macros/portal_message"/>
+    </tal:block>
     <tal:block
         tal:define="errors options/state/getErrors | nothing;
                     fieldsets python:['default'];

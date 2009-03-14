@@ -49,6 +49,10 @@ class EmbeddedPFGView(BrowserView):
         else:
             fiddled_submission_marker = None
         
+        # the form.submitted marker gets removed by CMFFormController, but we
+        # need to be able to test for it from our own template as well
+        self.request.other['pfg_form_submitted'] = False
+        
         if self.request.environ.get('X_PFG_RETRY', False):
             # We check for the absence of the X_PFG_RETRY flag in the request,
             # to avoid processing the form in the edge case where the form already completed
@@ -57,6 +61,7 @@ class EmbeddedPFGView(BrowserView):
             del self.request.form['form.submitted']
         elif form_marker in self.request.form:
             self.request.form['form.submitted'] = True
+            self.request.other['pfg_form_submitted'] = True
         elif self.prefix and DEFAULT_SUBMISSION_MARKER in self.request.form:
             # not our form; temporarily remove the form.submitted key to avoid a false positive
             del self.request.form['form.submitted']
@@ -99,3 +104,4 @@ class EmbeddedPFGView(BrowserView):
                 self.request.set('controller_state', fiddled_controller_state)
             del self.request.form['pfg_form_marker']
             del self.request.other['pfg_form_action']
+            del self.request.other['pfg_form_submitted']
