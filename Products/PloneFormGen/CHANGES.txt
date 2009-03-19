@@ -1,4 +1,8 @@
-1.2.6 (svn/unreleased)
+1.2.6
+
+ - When using Zope 2.9.10 and Plone 2.5.x, form validation would produce an
+   Unauthorized error in fgvalidate_base. Fixed.
+   (Tracker #233; Thanks, Jean-Pascal Houde)
 
  - Merge fixes for #225 from trunk. Add test. Fixes AttributeError: __len__ in 
    Plone 2.5.5 when using rating-scale field.
