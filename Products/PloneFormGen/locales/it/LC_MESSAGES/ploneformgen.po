@@ -43,7 +43,7 @@ msgstr "Mostra il pulsante per annullare"
 #. Initial value for Submit Button Label
 #. Default: "Submit"
 msgid "pfg_formfolder_submit"
-msgstr "Etichetta del pulsante per annullare"
+msgstr "Invia"
 
 #. Form Folder
 #. Initial value for Reset Button Label
@@ -123,7 +123,7 @@ msgstr "Utilizza questo campo al posto di una pagina di ringraziamento per deter
 # Form Folder
 # label="Custom Form Action",
 msgid "label_formactionoverride_text"
-msgstr "Action personalizzata del form"
+msgstr "Azione personalizzata del form"
 
 # Form Folder
 # description="""
@@ -144,7 +144,7 @@ msgid "help_OnDisplayOverride_text"
 msgstr "Espressione TALES che sarà richiamata quando il modulo verrà caricato. Lasciare vuota se non serve. L'utilizzo tipico è quello di chiamare uno script Python che precarichi i campi del modulo.ATTENZIONE: un errore nell'espressione causerà un errore durante la visualizzazione del modulo."
 
 msgid "label_AfterValidationOverride_text"
-msgstr "Script post-validation"
+msgstr "Script post validazione"
 
 msgid "help_AfterValidationOverride_text"
 msgstr "Espressione TALES che sarà richiamata dopo la validazione di un modulo, ma prima dell'attivazione dell'adattatore e della pagina dei ringraziamenti. Il contenuto dei campi del modulo sarà disponibilie nel dizionario 'request.form'. Lasciare vuoto se non utilizzato. L'uso più comune è per richiamare uno script per alterare il contenuto del modulo o per eseguire un'azione alternativa. Il valore di ritorno sarà ignorato.ATTENZIONE: un errore nell'espressione causerà un errore durante la visualizzazione del modulo."
@@ -713,7 +713,7 @@ msgstr "Dati salvati"
 # value="Clear Saved Input"
 #. Save Data Adapter
 msgid "clear-save-input"
-msgstr "Adattatore per il salvataggio dei dati"
+msgstr "Elimina i dati salvati"
 
 #. Thanks Page
 #. Default: "Show All Fields"
