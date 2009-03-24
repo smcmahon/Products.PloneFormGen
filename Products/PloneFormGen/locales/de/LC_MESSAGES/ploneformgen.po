@@ -1027,7 +1027,7 @@ msgstr "Ein formatierbares Titel-Text-Feld"
 #. Default: "Lines Field"
 #: content/fields.py
 msgid "Lines Field"
-msgstr "Mehrfach-Auswahl-Feld"
+msgstr "Zeilen-Eingabe-Feld"
 
 #. Default: " A line entry field. This appears as a textarea without wordwrap. "
 #: content/fields.py
@@ -1037,7 +1037,7 @@ msgstr " Ein Zeilen-Eingabe-Feld (wird als textarea ohne zeilenumbruch dargestel
 #. Default: "A lines field. This appears as a textarea without wordwrap."
 #: content/fields.py
 msgid "A lines field. This appears as a textarea without wordwrap."
-msgstr " Ein Mehrfach-Auswahl-Feld (wird als textarea ohne zeilenumbruch dargestellt). "
+msgstr "Ein Zeilen-Eingabe-Feld (wird als Textfeld ohne Zeilenumbruch dargestellt)."
 
 #. Default: "Multi-Select Field"
 #: content/fields.py
