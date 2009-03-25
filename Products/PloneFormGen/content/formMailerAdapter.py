@@ -843,7 +843,7 @@ class FormMailerAdapter(FormActionAdapter):
                 subject = subjectField
             else:
                 # we only do subject expansion if there's no field chosen
-                subject = dollarReplace.DollarVarReplacer(getattr(request, 'form', {})).sub(subject)
+                subject = self._dreplace(subject)
 
         # Get From address
         if shasattr(self, 'senderOverride') and self.getRawSenderOverride():
