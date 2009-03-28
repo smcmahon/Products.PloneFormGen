@@ -1,5 +1,8 @@
 1.5b4 (unreleased)
 
+ - Moved PFGDataGrid from examples/ to be a separate product.
+   (Steve McMahon)
+
  - Make uninstall work cleanly even if Kupu has bad linkable types.
    (Steve McMahon)
 
