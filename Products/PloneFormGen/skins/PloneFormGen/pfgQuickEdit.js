@@ -169,8 +169,8 @@ pfgQEdit.stripTable = function () {
 
   // strip editHook cells
   jq("div.pfg-form td.editHook").remove();
-  // clone remaining cell contents
-  var content = jq("#pfg-qetable td.ofield").children().clone();
+  // find remaining cell contents
+  var content = jq("#pfg-qetable td.ofield").children();
   // substitute for table
   jq("#pfg-qetable").after(content).remove();
 }
