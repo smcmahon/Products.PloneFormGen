@@ -1,5 +1,8 @@
 1.5b4 (unreleased)
 
+ - QuickEdit got mixed up with fields that themselves contain
+   tables. Fixed. (Steve McMahon)
+
  - Moved PFGDataGrid from examples/ to be a separate product.
    (Steve McMahon)
 

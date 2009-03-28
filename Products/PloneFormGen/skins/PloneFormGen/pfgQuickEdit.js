@@ -100,7 +100,7 @@ pfgQEdit.addTable = function () {
             felem = jq('#'+this.id)
             felem.wrap(
                 '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
-                '<td></td></tr>'
+                '<td class="ofield"></td></tr>'
                 );
             felem = felem.parent()
             felem.after('<td class="draggable draggingHook editHook">::</td>')
@@ -170,7 +170,7 @@ pfgQEdit.stripTable = function () {
   // strip editHook cells
   jq("div.pfg-form td.editHook").remove();
   // clone remaining cell contents
-  var content = jq("#pfg-qetable td").children().clone();
+  var content = jq("#pfg-qetable td.ofield").children().clone();
   // substitute for table
   jq("#pfg-qetable").after(content).remove();
 }
@@ -210,7 +210,7 @@ jq(document).ready(function() {
   if (document.URL.indexOf('?qedit') == -1) {
     jq("#content #pfgqedit").show();
   } else {
-    pfgQEdit.qedit()
+    pfgQEdit.qedit();
   }
 })
 
