@@ -1,5 +1,8 @@
 1.5b4 (unreleased)
 
+ - Make uninstall work cleanly even if Kupu has bad linkable types.
+   (Steve McMahon)
+
  - Make the mailer subject variable substitution use the same method as for
    the other fields so it's easier to override. (David Glick)
 
