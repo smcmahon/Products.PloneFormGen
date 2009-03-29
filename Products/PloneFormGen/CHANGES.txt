@@ -3,6 +3,10 @@
  - QuickEdit got mixed up with fields that themselves contain
    tables. Fixed. (Steve McMahon)
 
+ - When using Zope 2.9.10 and Plone 2.5.x, form validation would produce an
+   Unauthorized error in fgvalidate_base. Fixed.
+   (Tracker #233; Thanks, Jean-Pascal Houde)
+
  - Moved PFGDataGrid from examples/ to be a separate product.
    (Steve McMahon)
 

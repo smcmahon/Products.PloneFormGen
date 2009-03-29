@@ -11,10 +11,17 @@
 FORM_ERROR_MARKER = '_pfg_form_error'
 
 try:
+    from AccessControl import Unauthorized
+except:
+    # we can't get at Unauthorized without raising Unauthorized;
+    # so a bare except is our best hope.
+    Unauthorized = Exception
+
+try:
     from Products.Archetypes import PloneMessageFactory as _
     from Products.Archetypes.utils import addStatusMessage
     P3StyleErrors = True
-except ImportError:
+except (ImportError, Unauthorized):
     P3StyleErrors = False
 
 request = context.REQUEST
