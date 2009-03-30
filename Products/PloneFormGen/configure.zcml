@@ -120,8 +120,14 @@
   <!-- Configure package providing CAPTCHA, if available -->
   <configure zcml:condition="installed collective.captcha">
       <include package="collective.captcha"/>
+      <!-- make security assertions for use from restricted Python -->
+      <class
+          class="collective.captcha.browser.captcha.Captcha">
+          <allow
+              attributes="image_tag audio_url verify"/>
+      </class>
   </configure>
-  <configure zcml:condition="not-installed collective.captcha">
+  <configure zcml:condition="installed collective.recaptcha">
       <include package="collective.recaptcha"/>
   </configure>
   
