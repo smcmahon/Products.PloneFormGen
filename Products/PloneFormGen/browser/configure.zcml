@@ -24,5 +24,13 @@
       class=".embedded.EmbeddedPFGView"
       permission="zope2.View"
       />
-  
+
+  <browser:page
+      name="pfg-captcha-settings"
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      class=".captcha.CaptchaControlPanel"
+      permission="cmf.ManagePortal"
+      allowed_attributes="has_recaptcha"
+      />
+
 </configure>
