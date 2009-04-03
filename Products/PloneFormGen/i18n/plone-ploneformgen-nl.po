@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plone-ploneformgen-nl\n"
 "POT-Creation-Date: 2006-09-04 22:26+0200\n"
-"PO-Revision-Date: 2007-09-28 12:16+0200\n"
-"Last-Translator: Jarno de Wit <Jarno.de.Wit@pareto.nl>\n"
+"PO-Revision-Date: 2009-04-03 22:07+0100\n"
+"Last-Translator: \n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,7 +139,7 @@ msgstr "Een formulier actie die de ingevoerde gegevens zal opslaan in een met ta
 #. Default: "A integer field"
 #: content/fields.py
 msgid "A integer field"
-msgstr "Een veld voor een heel getal (zonder decimaal)"
+msgstr "Een veld voor een geheel getal (zonder decimaal)"
 
 #. Default: "A lines field. This appears as a textarea without wordwrap."
 #: content/fields.py
@@ -174,7 +174,7 @@ msgstr "Een tekst veld"
 #. Default: "A text area field"
 #: content/fields.py
 msgid "A text area field"
-msgstr "Een textvak veld"
+msgstr "Een tekstvak veld"
 
 #. Default: "A thank-you page that can display form input"
 #: content/thanksPage.py
@@ -187,7 +187,6 @@ msgid "A thank-you page that can display form input."
 msgstr "Een 'Bedankt' pagina die de invoer van het formulier toont."
 
 #. Default: "An adapter that supplies a form action."
-#: content/actionAdapter.py
 #: content/actionAdapter.py
 msgid "An adapter that supplies a form action."
 msgstr "Een actie die uitgevoerd wordt bij het verzenden van een formulier."

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2007-07-27 12:03+0200\n"
-"Last-Translator: Zest Software <info@zestsoftware.nl>\n"
+"PO-Revision-Date: 2009-04-03 23:08+0100\n"
+"Last-Translator: \n"
 "Language-Team: Atopia <info@atopia.nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -73,7 +73,7 @@ msgstr "U mag hier een standaard hoofdtekst en MIME type voor de e-mailer config
 #. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
 msgid "description_ploneformgen_permissions"
-msgstr "U kunt PloneFormGen functionaliteit verbergen of tonen voor gebruikersgroepen door het aanpassen van rechten van specifieke portal beveiligingsrollen. Onderstaand formulier kan gebruikt worden om rollen/rechten op site niveau in te stellen. U kunt deze rechten per folder afstellen via de beveiligingstab in de ZMI."
+msgstr "U kunt PloneFormGen functionaliteit verbergen of tonen voor gebruikersgroepen door het aanpassen van rechten van specifieke portal beveiligingsrollen. Onderstaand formulier kan gebruikt worden om rollen/rechten op siteniveau in te stellen. U kunt deze rechten per folder afstellen via de beveiligingstab in de ZMI."
 
 #. Default: "PloneFormGen Mail Addressing Defaults"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
@@ -131,12 +131,12 @@ msgstr "Deze tekst zal worden getoond onder de velden van het formulier."
 #. an error on form display.
 #. """
 msgid "help_execcondition_text"
-msgstr "Een TALES-expressie die zal worden geëvalueerd om te beplen of deze actie moet worden uitgevoerd of niet. Laat leeg indien dit niet nodig is en de actie wordt uitgevoerd. "
+msgstr "Een TALES-expressie die zal worden geëvalueerd om te bepalen of deze actie moet worden uitgevoerd of niet. Laat leeg indien dit niet nodig is en de actie wordt uitgevoerd. "
 
 #. Default: "Choose a validator to require a particular response."
 #. Boolean Field
 msgid "help_fgbooleanvalidator_text"
-msgstr "Kies een validatie om en bepaalde response te verkrijgen."
+msgstr "Kies een validatie om een bepaalde response te verkrijgen."
 
 #. String Field
 #. Default: "
@@ -183,7 +183,7 @@ msgstr "Het maximum aantal karakters dat de gebruiker mag invoeren."
 
 #. Description: "Input tests using HTMLTidy (if installed).""
 msgid "help_fgrtvalidator_text"
-msgstr "Invoertesten die door HTML Tidy (indien geinstalleerd) worden gebruikt."
+msgstr "Invoertesten die door HTML Tidy (indien geinstalleerd) wordt gebruikt."
 
 #. Default: "The size of the text-entry box, in characters."
 #. String Field
@@ -209,12 +209,12 @@ msgstr "Test invoer tegen eenvoudige woordpatronen."
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_fgtdefault_text"
-msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet evalueren als een 'string'. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
+msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet een 'string' opleveren. MERK OP: fouten in de validatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. Default "A TALES expression that will be evaluated when the form is displayed. to determine whether or not the field is enabled. Your expression should evaluate as True if the field should be included in the form, False if it should be omitted. Leave this expression field empty if unneeded: the field will be included. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 #. PloneFormGen\contents\fieldsBase.py
 msgid "help_fgtenable_text"
-msgstr "Een TALES-expressie die geëvalueerd zal worden wanneer het formulier getoond wordt, om te bepalen of het veld aan staat. De expressie moet evalueren als 'True' wanneer het veld op het formulier moet staan, en 'False' wanneer het kan worden weggelaten. Laat leeg indien dit niet nodig is: het veld zal dan worden opgenomen in het formulier. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
+msgstr "Een TALES-expressie die geëvalueerd zal worden wanneer het formulier getoond wordt, om te bepalen of het veld aan staat. De expressie moet een 'True'  waarde opleveren wanneer het veld op het formulier moet staan en 'False' wanneer het kan worden weggelaten. Laat leeg indien dit niet nodig is: het veld zal dan worden opgenomen in het formulier. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. Text Field
 #. Default: "
@@ -231,7 +231,7 @@ msgstr "De tekst die het veld zou moeten bevatten als het formulier voor het eer
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_fgtlinesdefault_text"
-msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet evalueren als een 'list' of 'tuple'. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
+msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet een 'list' of 'tuple' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. Text Field
 #. Default: A TALES expression that will be evaluated when the form is displayed
@@ -240,7 +240,7 @@ msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt 
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_fgtlistdefault_text"
-msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet evalueren als een 'list' of 'tuple'. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
+msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet een 'list' of 'tuple' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. String Field
 #. Default: "
@@ -263,7 +263,7 @@ msgstr "Een TALES-expressie die wordt geëvalueerd als het formulier wordt geval
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 msgid "help_fgtvocabulary_text"
-msgstr "Een TALES-expressie die wordt geëvalueerd wanneer het formulier wordt getoond om de veldopties te verkrijgen. Leeglaten indien niet nodig. Uw TALES-expressie zou een lijst van (sleutel, waarde) 'tuples' moeten evalueren. MERK OP: fouten in deze expressie zullen resulteren in een fout bij het weergeven van het formulier."
+msgstr "Een TALES-expressie die wordt geëvalueerd wanneer het formulier wordt getoond om de veldopties te verkrijgen. Leeglaten indien niet nodig. Uw TALES-expressie zou een lijst van (sleutel, waarde) 'tuples' moeten bevatten. MERK OP: fouten in deze expressie zullen resulteren in een fout bij het weergeven van het formulier."
 
 #. Selection Field
 #. Default: "
@@ -271,7 +271,7 @@ msgstr "Een TALES-expressie die wordt geëvalueerd wanneer het formulier wordt g
 #. Default: Note that this may be overridden dynamically.
 #. Default: [Note, you may optionally use a "value|label" format.]
 msgid "help_fgvocabulary_text"
-msgstr "Gebruik één regel per optie. Merk op dat dit dynamisch overschreven kan worden. [Merk op: u kan optioneel een \"waarde|label\" formaat gebruiken]."
+msgstr "Gebruik één regel per optie. Merk op dat dit dynamisch overschreven kan worden. [Merk op: u kunt optioneel een \"waarde|label\" formaat gebruiken]."
 
 #. Default: "Set to 0 for no limit."
 #. File Field
@@ -312,12 +312,12 @@ msgstr "Tekst die voor de genoemde velden in het E-mailhoofdtekst wordt geplakt.
 #. Default: "This is a Zope Page Template used for rendering of the mail-body. You don't need to modify it, but if you know TAL (Zope's Template Attribute Language) you have the full power to customize your outgoing mails."
 #. Mailer Adapter
 msgid "help_formmailer_body_pt"
-msgstr "Dit is een Zope Page Template die gebruikt wordt voor de weergave van het E-mailhoofdtekst. Het is niet nodig dit aan te passen, maar als u TAL kent (de Template Attribute Language van Zope) heeft u de volledige controle over de lay-out van de uitgaande E-mails."
+msgstr "Dit is een Zope Page Template die gebruikt wordt voor de weergave van de E-mailhoofdtekst. Het is niet nodig dit aan te passen, maar als u TAL kent (de Template Attribute Language van Zope) heeft u de volledige controle over de lay-out van de uitgaande E-mails."
 
 #. Default: "Set the mime-type of the mail-body. Change this setting only if you know exactly what you are doing. Leave it blank for default behaviour."
 #. Mailer Adapter
 msgid "help_formmailer_body_type"
-msgstr "Stel het MIME-type in van het E-mailhoofdtekst. Verander deze instelling alleen als u exact weet wat u aan het doen bent. Leeg laten voor standaard gedrag."
+msgstr "Stel het MIME-type in van de E-mailhoofdtekst. Verander deze instelling alleen als u exact weet wat u aan het doen bent. Leeg laten voor standaard gedrag."
 
 #. Default: "E-mail addresses which receive a carbon copy."
 #. Mailer Adapter
@@ -327,7 +327,7 @@ msgstr "E-mailadressen van de CC-ontvangers."
 #. Default: "The recipients e-mail address."
 #. Mailer Adapter
 msgid "help_formmailer_recipient_email"
-msgstr "Het e-mailadres van de geadresseerde.."
+msgstr "Het e-mailadres van de geadresseerde."
 
 #. Mailer Adapter
 #. Default: "
@@ -368,7 +368,7 @@ msgstr "Kies een formulierveld vanwaar u de invoer wilt extraheren voor de onder
 #. Default: Only selection fields are eligible for this use because they
 #. Default: may be validated against your specified options.
 msgid "help_formmailer_to_extract"
-msgstr "Kies een formulierveld vanwaar u invoer wilt extraheren voor de \"Aan\" header. Als u iets anders kiest dan \"None\" zal deze het \"Ontvanger e-mailadres\" instelling van hierboven overschrijven. Alleen selectievelden zijn hiervoor geschikt omdat deze gevalideerd kunnen worden tegen de door u gespecificeerde opties."
+msgstr "Kies een formulierveld vanwaar u invoer wilt extraheren voor de \"Aan\" header. Als u iets anders kiest dan \"None\" zal deze de \"Ontvanger e-mailadres\" instelling van hierboven overschrijven. Alleen selectievelden zijn hiervoor geschikt omdat deze gevalideerd kunnen worden tegen de door u gespecificeerde opties."
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #: PloneFormGen\content\fields.py
@@ -391,7 +391,7 @@ msgstr "Voer uw sleutel-id, E-mailadres of wat dan ook in, die op een publieke s
 
 #. Default: "This override field allows you to insert content into the xhtml head. The typical use is to add custom CSS or JavaScript. Specify a TALES expression returning a string. The string will be inserted with no interpretation. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 msgid "help_headerInjection_text"
-msgstr "Dit overschrijfveld biedt u de mogelijkheid om inhoud in de xhtml-head toe te voegen. Typisch gebruik hiervan is voor maatwerk CSS of JavaScript. Geef een TALES-expressie op die een string terug geeft. Deze string zal zonder interpretatie worden ingevoegd. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
+msgstr "Dit overschrijfveld biedt u de mogelijkheid om inhoud in de xhtml-head toe te voegen. Typisch gebruik hiervan is voor maatwerk CSS of JavaScript. Geef een TALES-expressie op die een 'string' terug geeft. Deze 'string' zal zonder interpretatie worden ingevoegd. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. Thanks Page
 #. Default: "
@@ -435,13 +435,13 @@ msgstr "Deze tekst zal worden getoond boven de velden van het formulier."
 
 #. Default: "A TALES expression that will be evaluated to override any value otherwise entered for the recipient e-mail address. You are strongly cautioned against using unvalidated data from the request for this purpose. Leave empty if unneeded. Your expression should evaluate as a string. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 msgid "help_recipient_override_text"
-msgstr "Een TALES expressie dat gebruikt om de waarde van het e-mailadres van de afzender te overschrijven."
+msgstr "Een TALES expressie die gebruikt wordt om de waarde van het e-mailadres van de afzender te overschrijven."
 
 #. Save Data Adapter
 #. Default: "
 #. Default: Pick any extra data you'd like saved with the form input.
 msgid "help_savedataextra_text"
-msgstr "Selecteer welke extra gegevens u wil opslaan bij het formulier."
+msgstr "Selecteer welke extra gegevens u wilt opslaan bij het formulier."
 
 #. Default: "Write your script here."
 msgid "help_script_body"
@@ -453,7 +453,7 @@ msgstr "Rol waarmee dit script wordt uitgevoerd."
 
 #. Default: "A TALES expression that will be evaluated to override the "From" header. Leave empty if unneeded. Your expression should evaluate as a string. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 msgid "help_sender_override_text"
-msgstr "Een TALES-expressie die geëvalueerd zal worden om het \"Van\" veld te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet evalueren als een 'string'. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\""
+msgstr "Een TALES-expressie die geëvalueerd zal worden om het \"Van\" veld te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet een 'string' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\""
 
 #. Thanks Page
 #. Default: "
@@ -473,12 +473,12 @@ msgstr "Selecteer de velden waarvan u de gegevens wilt tonen op de succespagina.
 
 #. Default: "A TALES expression that will be evaluated to override any value otherwise entered for the e-mail subject header. Leave empty if unneeded. Your expression should evaluate as a string. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 msgid "help_subject_override_text"
-msgstr "Een TALES-expressie die geëvalueerd zal worden om elke andere waarde van de onderwerp header te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet evalueren als een 'string'. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\"<"
+msgstr "Een TALES-expressie die geëvalueerd zal worden om elke andere waarde van de onderwerp header te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet een 'string' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\""
 
 #. Default: "The text will be displayed after the field inputs."
 #. Thanks Page
 msgid "help_thanksepilogue_text"
-msgstr "De teskt die getoond zal worden onder de invoervelden."
+msgstr "De tekst die getoond zal worden onder de invoervelden."
 
 #. Form Folder
 #. Default: "
@@ -486,7 +486,7 @@ msgstr "De teskt die getoond zal worden onder de invoervelden."
 #. Default: form submit. (If none are available, add one.) Choose none to simply display the form
 #. Default: field values.
 msgid "help_thankspage_text"
-msgstr "Selecteer een pagina die u wilt tonen na het verzenden van het formulier. (Als er geen pagina beschikbaar is, voeg er één toe.) Indien u geen pagina selecteert, wordt het ingevulde formulier getoont."
+msgstr "Selecteer een pagina die u wilt tonen na het verzenden van het formulier. (Als er geen pagina beschikbaar is, voeg er één toe.). Indien u geen pagina selecteert, wordt het ingevulde formulier getoond."
 
 #. Form Folder
 #. Default: "
@@ -500,7 +500,7 @@ msgstr "Selecteer een pagina die u wilt tonen na het verzenden van het formulier
 #. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
 #. Default: redirect to 'thanks-page'.
 msgid "help_thankspageoverride_text"
-msgstr "Gebruik dit veld in plaats van een 'bedankt' pagina, om de laatste actie te bepalen (indien u deze heeft geselecteerd). Normaal gesproken zou u dit voor een aangepast 'geslaagd' sjabloon of script gebruiken. Leeg laten indien het niet gebruikt wordt. Anders invullen alsof u een 'CMFFormController' actie type en argument zou opgeven, compleet met het type actie dat moet worden uitgevoerd (bv. \"redirect_to\" of \"traverse_to\") en een TALES-expressie. Bijvoorbeeld, \"redirect_to:string:thanks-page\" zal u doorsturen naar 'thanks-page'."
+msgstr "Gebruik dit veld in plaats van een 'Bedankt' pagina, om de laatste actie te bepalen (indien u deze heeft geselecteerd). Normaal gesproken zou u hiervoor een aangepast 'geslaagd' sjabloon of script gebruiken. Leeg laten indien het niet gebruikt wordt. Anders invullen alsof u een 'CMFFormController' actie type en argument zou opgeven, compleet met het type actie dat moet worden uitgevoerd (bv. \"redirect_to\" of \"traverse_to\") en een TALES-expressie. Bijvoorbeeld, \"redirect_to:string:thanks-page\" zal u doorsturen naar 'thanks-page'."
 
 #. Thanks Page
 #. Default: "This text will be displayed above the selected field inputs."
@@ -609,7 +609,7 @@ msgstr "Weergave type"
 #. Date/Time Field
 #. Default: "Show Time Selection Options"
 msgid "label_fgshowhm_text"
-msgstr "Toon datem en tijd"
+msgstr "Toon datum en tijd"
 
 #. String Field
 #. Default: "Size"
@@ -660,7 +660,7 @@ msgstr "Aangepaste validatie"
 #. Selection Field
 #. Default: "Options Vocabulary"
 msgid "label_fgtvocabulary_text"
-msgstr "Optioneel selectielijst"
+msgstr "Optionele selectielijst"
 
 #. Selection Field
 #. Default: "Options"
@@ -955,7 +955,7 @@ msgstr "Reset"
 
 #. Default: "This box must be checked."
 msgid "pfg_isChecked"
-msgstr "Deze optie dient uitgeschakeld te zijn."
+msgstr "Deze optie dient aangevinkt te zijn."
 
 ######
 # validationMessages hack to clean up Archetypes validation messages
@@ -985,11 +985,11 @@ msgstr "Dit veld bevat karakters die niet afgedrukt kunnen worden"
 
 #. Default: "This field is required."
 msgid "pfg_isRequired"
-msgstr "Dit veld is verplicht"
+msgstr "Dit veld is verplicht."
 
 #. Default: "This is not a well formed SSN."
 msgid "pfg_isSSN"
-msgstr "Dit is geen geldig"
+msgstr "Dit is geen geldig BSN."
 
 #. Default: "This is not a valid url."
 msgid "pfg_isURL"
@@ -997,7 +997,7 @@ msgstr "Dit is geen geldige URL."
 
 #. Default: "This is not a valid us phone number."
 msgid "pfg_isUSPhoneNumber"
-msgstr "Dit is geen geldig telefoonnummer"
+msgstr "Dit is geen geldig telefoonnummer."
 
 #. Default: "This box must be unchecked."
 msgid "pfg_isUnchecked"
@@ -1005,7 +1005,7 @@ msgstr "Deze optie dient uitgeschakeld te zijn."
 
 #. Default: "This is not a valid zip code."
 msgid "pfg_isZipCode"
-msgstr "Dit is geen geldige postcode"
+msgstr "Dit is geen geldige postcode."
 
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "Please enter a number here."
@@ -1121,3 +1121,4 @@ msgstr "Selectie lijst"
 #. Default: 'Tab-Separated Values'
 msgid "vocabulary_tsv_text"
 msgstr "Met tabs gescheiden waarden"
+
