@@ -55,32 +55,6 @@ def uninstall_tool(self, out):
     else:
         print >>out, "PloneFormGen tool removed"
 
-def afterInstall(self, reinstall, product):
-    # XXX there has to be a better way to do this...
-    # for reinstalls: avoid clobbering contained types set up by 3rd-party products
-    if hasattr(self.aq_explicit, '_v_pfg_old_allowed_types'):
-        pt = getToolByName(self, 'portal_types')
-        new_allowed_types = list(pt['FormFolder'].allowed_content_types)
-        for t in self._v_pfg_old_allowed_types:
-            if t not in new_allowed_types:
-                new_allowed_types.append(t)
-        pt['FormFolder'].allowed_content_types = new_allowed_types
-        delattr(self, '_v_pfg_old_allowed_types')
-
-
-def beforeUninstall(self, reinstall, product, cascade):
-    # for reinstalls: store list of allowed contained types,
-    # so we don't lose anything that a 3rd-party product added.
-    # This is ugly, but I'm not sure where else to stash this,
-    # since this is an external method and I can't seem to use
-    # a global variable.
-    pt = getToolByName(self, 'portal_types')
-    try:
-        self._v_pfg_old_allowed_types = pt['FormFolder'].allowed_content_types
-    except KeyError:
-        self._v_pfg_old_allowed_types = None
-
-    return '', cascade
 
 def uninstall(self):
     out = StringIO()

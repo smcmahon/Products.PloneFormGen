@@ -115,6 +115,12 @@ stringValidators = (
     }
 )
 
+
+######
+# Extra content types allowed inside form folders
+
+EXTRA_ALLOWED = ['Document', 'Image']
+
 ######
 # LinguaPlone-related settings
 

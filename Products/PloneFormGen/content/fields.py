@@ -1302,6 +1302,8 @@ registerATCT(FGFileField, PROJECTNAME)
 
 class FGCaptchaField(FGStringField):
 
+    meta_type = 'FormCaptchaField'
+    
     schema = BaseFieldSchemaStringDefault.copy() + Schema((
         maxlengthField,
         sizeField
