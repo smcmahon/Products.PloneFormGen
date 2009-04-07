@@ -37,7 +37,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.at_tool      = self.portal.archetype_tool
         self.controlpanel = self.portal.portal_controlpanel
 
-        self.fieldTypes = (
+        fieldTypes = [
             'FormSelectionField',
             'FormMultiSelectionField',
             'FormLabelField',
@@ -53,8 +53,10 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             'FormRichLabelField',
             'FormFileField',
             'FormLikertField',
-            'FormCaptchaField',
-        )
+        ]
+        if pfgtc.haveRecaptcha:
+            fieldTypes.append('FormCaptchaField')
+        self.fieldTypes = tuple(fieldTypes)
         self.adapterTypes = (
             'FormSaveDataAdapter',
             'FormMailerAdapter',
@@ -224,17 +226,18 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         siteProperties = getattr(propsTool, 'site_properties')
         defaultPageTypes = list(siteProperties.getProperty('default_page_types'))
         self.failUnless('FormFolder' in defaultPageTypes)
-        
-    def test_customAllowedTypesNotPurgedOnReinstall(self):
-        # add a (bogus) custom type to the list of allowed types
-        self.types['FormFolder'].allowed_content_types = ['foobar'] + list(self.types['FormFolder'].allowed_content_types)
-        
-        # reinstall
-        qi = self.portal.portal_quickinstaller
-        qi.reinstallProducts(['PloneFormGen'])
-        
-        # make sure our custom type is still in the list
-        self.failUnless('foobar' in self.types['FormFolder'].allowed_content_types)
+
+    # # test no longer necessary now that allowed types are set by interface
+    # def test_customAllowedTypesNotPurgedOnReinstall(self):
+    #     # add a (bogus) custom type to the list of allowed types
+    #     self.types['FormFolder'].allowed_content_types = ['foobar'] + list(self.types['FormFolder'].allowed_content_types)
+    #     
+    #     # reinstall
+    #     qi = self.portal.portal_quickinstaller
+    #     qi.reinstallProducts(['PloneFormGen'])
+    #     
+    #     # make sure our custom type is still in the list
+    #     self.failUnless('foobar' in self.types['FormFolder'].allowed_content_types)
 
         
 class TestContentCreation(pfgtc.PloneFormGenTestCase):
