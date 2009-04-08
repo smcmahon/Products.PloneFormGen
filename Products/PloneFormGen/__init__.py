@@ -24,7 +24,7 @@ from AccessControl import ModuleSecurityInfo
 from Products.PloneFormGen.config import PROJECTNAME, \
     ADD_CONTENT_PERMISSION, CSA_ADD_CONTENT_PERMISSION, \
     MA_ADD_CONTENT_PERMISSION, SDA_ADD_CONTENT_PERMISSION, \
-    SKINS_DIR, GLOBALS
+    SKINS_DIR, GLOBALS, PLONE_25_PUBLISHER_MONKEYPATCH
 
 registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 
