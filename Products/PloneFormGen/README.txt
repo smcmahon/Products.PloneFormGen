@@ -159,6 +159,8 @@ adapter.
 Fulvio Casali, Alex Tokar, David Glick, Steve McMahon, Jesse Snyder, 
 Michael Dunlap, Paul Bugni, Jon Baldivieso and Andrew Burkhalter all
 did amazing things at the December 2008 PFG sprint sponsored by OneNW.
+Special thanks to David, for the CAPTCHA work, and Andrew for export/
+import.
 
 Thomas Buchberger provided the initial CAPTCHA field implementation.
 
