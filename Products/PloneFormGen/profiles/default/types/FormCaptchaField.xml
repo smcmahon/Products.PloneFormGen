@@ -5,7 +5,7 @@
    i18n:domain="plone">
  <property name="title">Captcha Field</property>
  <property name="description">A captcha field to prevent spam.</property>
- <property name="content_icon">StringField.gif</property>
+ <property name="content_icon">CaptchaField.gif</property>
  <property name="content_meta_type">FormCaptchaField</property>
  <property name="product">PloneFormGen</property>
  <property name="factory">addFGCaptchaField</property>
