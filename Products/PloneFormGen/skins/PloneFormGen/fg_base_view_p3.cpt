@@ -197,7 +197,7 @@
             </tbody>
         </table>
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
+        <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
 
       </metal:main>
     </metal:fill>

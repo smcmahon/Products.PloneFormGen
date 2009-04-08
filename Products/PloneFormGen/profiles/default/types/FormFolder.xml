@@ -13,6 +13,11 @@
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types" purge="False">
+  <!-- 
+    Although we're listing these fields here,
+    the real work of setting allowed types
+    is done in setuphandlers.py.
+  -->
   <element value="FormSelectionField"/>
   <element value="FormMultiSelectionField"/>
   <element value="FormLabelField"/>

@@ -4,6 +4,8 @@
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="FormBooleanField"
     meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="FormCaptchaField"
+    meta_type="Factory-based Type Information with dynamic views"/>
  <object name="FormCustomScriptAdapter"
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="FormDateField"

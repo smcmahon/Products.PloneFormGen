@@ -3,7 +3,7 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
-
+import sys
 import logging
 logger = logging.getLogger("PloneFormGen")
 
@@ -95,3 +95,16 @@ except ImportError:
     HAS_PLONE30 = False
 else:
     HAS_PLONE30 = True
+
+if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
+    from monkey import installExceptionHook
+    installExceptionHook()
+
+# alias for legacy instances of PFGCaptchaField from when it was
+# a separate product
+import Products.PloneFormGen.content.fields
+import Products.PloneFormGen.validators.CaptchaValidator
+Products.PFGCaptchaField = sys.modules['Products.PFGCaptchaField'] = sys.modules['Products.PloneFormGen']
+Products.PFGCaptchaField.field = sys.modules['Products.PFGCaptchaField.field'] = sys.modules['Products.PloneFormGen.content.fields']
+Products.PFGCaptchaField.widget = sys.modules['Products.PFGCaptchaField.widget'] = sys.modules['Products.PloneFormGen.widgets.captcha']
+Products.PFGCaptchaField.validator = sys.modules['Products.PFGCaptchaField.validator'] = sys.modules['Products.PloneFormGen.validators.CaptchaValidator']

@@ -1,7 +1,19 @@
-from Products.CMFCore.utils import getToolByName
-from Products.PloneFormGen.config import PROPERTY_SHEET_NAME, \
-    DEFAULT_MAILTEMPLATE_BODY
+from zope.component import queryMultiAdapter
 
+from Products.CMFCore.utils import getToolByName
+
+from Products.PloneFormGen.config import PROPERTY_SHEET_NAME, \
+    DEFAULT_MAILTEMPLATE_BODY, EXTRA_ALLOWED
+
+from Products.PloneFormGen.interfaces.field import IPloneFormGenField
+from Products.PloneFormGen.interfaces.actionAdapter import \
+  IPloneFormGenActionAdapter
+from Products.PloneFormGen.interfaces.fieldset import \
+  IPloneFormGenFieldset
+from Products.PloneFormGen.interfaces.thanksPage import \
+  IPloneFormGenThanksPage
+  
+  
 def update_kupu_resources(out, site):
     """ At the time of this writing, kupu's GS export/import
         handling is impractical.  We manage our interactions
@@ -48,6 +60,26 @@ def safe_add_purgeable_properties(out, site):
         propSheet.manage_addProperty('csv_delimiter', ',', 'string')        
     
 
+def setAllowed(pti, types):
+    """
+    Add types to allowed in a portal type
+    """
+    
+    changed = False
+    
+    newType = 'FormCaptchaField'
+    if haveCaptcha:
+        if newType not in myTypes:
+            myTypes.append(newType)
+            changed = True
+    else:
+        if newType in myTypes:
+            myTypes.remove(newType)
+            changed = True
+    if changed:
+        ptType.manage_changeProperties(allowed_content_types = myTypes)
+    
+
 def importVarious(context):
     """
     Final PloneFormGen import steps.
@@ -59,3 +91,39 @@ def importVarious(context):
     site = context.getSite()
     update_kupu_resources(out, site)
     safe_add_purgeable_properties(out, site)
+
+    ##############
+    # set allowed types for insertion in form folder, fieldsets
+
+    # get a list of installed meta types
+    ptt = getToolByName(site, 'portal_types')
+    att = getToolByName(site, 'archetype_tool')
+    metatypes = [ct.content_meta_type for ct in ptt.listTypeInfo()]
+    installed_types = [ttype for ttype in att.listTypes() if ttype.meta_type in metatypes]
+
+    # look for PFG fields, fieldsets, thankers and adapters by interface
+    fields = [ttype.meta_type for ttype in installed_types
+              if IPloneFormGenField.implementedBy(ttype)]
+    adapters = [ttype.meta_type for ttype in installed_types
+                if IPloneFormGenActionAdapter.implementedBy(ttype)]
+    fieldsets = [ttype.meta_type for ttype in installed_types
+                 if IPloneFormGenFieldset.implementedBy(ttype)]
+    thankers = [ttype.meta_type for ttype in installed_types
+                if IPloneFormGenThanksPage.implementedBy(ttype)]
+
+    # can't do captcha field without captcha support, so
+    # look for a view named captcha.
+    # if there isn't one, remove the field
+    if ('FormCaptchaField' in fields) and \
+       not queryMultiAdapter((site, site.REQUEST), name='captcha'):
+        fields.remove('FormCaptchaField')
+
+    # now, use our hard-won type lists to set allowed types
+    ptt.getTypeInfo('FormFolder').manage_changeProperties(
+      allowed_content_types = fields + adapters + fieldsets + thankers + \
+        EXTRA_ALLOWED
+      )
+    for fs in fieldsets:
+        ptt.getTypeInfo(fs).manage_changeProperties(
+          allowed_content_types = fields
+          )

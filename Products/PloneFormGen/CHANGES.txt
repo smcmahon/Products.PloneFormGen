@@ -37,6 +37,12 @@
  - Fixed the link spam validator for text fields, which wasn't working
    properly.  (David Glick)
 
+ - Merged CAPTCHA field implementation from PFGCaptchaField (thanks Thomas
+   Buchberger), and added collective.recaptcha as a dependency.
+   collective.captcha will be used instead if it is present in the Python
+   environment.
+   (David Glick)
+
  - Fixed check for CSRF protection support, so that PFG doesn't break on
    Plone 3.0 if PloneHotfixCVE20080164 isn't installed. (David Glick)
 

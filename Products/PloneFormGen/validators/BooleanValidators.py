@@ -1,3 +1,4 @@
+from types import BooleanType, StringTypes
 from Products.validation import validation, interfaces
 
 class IsCheckedValidator:
@@ -16,10 +17,9 @@ class IsCheckedValidator:
 
     def __call__(self, value, *args, **kwargs):
 
-        # import pdb; pdb.set_trace()
-
-        if value == '1':
-            return 1
+        if (type(value) == BooleanType) and value or \
+           (type(value) in StringTypes) and (value == '1'):
+            return True
 
         return ("Validation failed(%s): must be checked." % self.name)
 
@@ -42,10 +42,9 @@ class IsUncheckedValidator:
 
     def __call__(self, value, *args, **kwargs):
 
-        # import pdb; pdb.set_trace()
-
-        if value == '0':
-            return 1
+        if (type(value) == BooleanType) and not value or \
+           (type(value) in StringTypes) and (value == '0'):
+            return True
 
         return ("Validation failed(%s): must be unchecked." % self.name)
 

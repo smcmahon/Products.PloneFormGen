@@ -7,6 +7,12 @@ from Products.Five import fiveconfigure
 from Products.Five import zcml
 from Products.PloneTestCase.layer import onsetup
 import Products.PloneFormGen
+try:
+    import collective.recaptcha
+    haveRecaptcha = True
+except ImportError:
+    haveRecaptcha = False
+    print "collective.recaptcha is unavailable: captcha tests will be skipped."    
 
 from Products.Five.testbrowser import Browser
 
@@ -16,6 +22,8 @@ ZopeTestCase.installProduct('PloneFormGen')
 def setup_product():
     fiveconfigure.debug_mode = True
     zcml.load_config('configure.zcml', Products.PloneFormGen)
+    if haveRecaptcha:
+        zcml.load_config('configure.zcml', collective.recaptcha)
     fiveconfigure.debug_mode = False
 
 # Set up the Plone site used for the test fixture. The PRODUCTS are the products

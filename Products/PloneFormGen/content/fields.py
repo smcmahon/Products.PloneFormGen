@@ -34,7 +34,7 @@ from Products.CMFCore.utils import getToolByName
 from AccessControl import ClassSecurityInfo
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen.widgets import RichLabelWidget
+from Products.PloneFormGen.widgets import RichLabelWidget, CaptchaWidget
 
 from Products.PloneFormGen.content.fieldsBase import *
 
@@ -1002,7 +1002,7 @@ class FGTextField(BaseFormField):
 
     security.declareProtected(View, 'isBinary')
     def isBinary(self, key):
-        return False;
+        return False
 
     security.declareProtected(View, 'getContentType')
     def getContentType(self, key=None):
@@ -1310,3 +1310,33 @@ class FGFileField(BaseFormField):
 
 
 registerATCT(FGFileField, PROJECTNAME)
+
+
+class FGCaptchaField(FGStringField):
+
+    meta_type = 'FormCaptchaField'
+    
+    schema = BaseFieldSchemaStringDefault.copy() + Schema((
+        maxlengthField,
+        sizeField
+    ))
+    
+    # some attributes that don't make sense for a CAPTCHA field
+    del schema['required']
+    del schema['hidden']
+
+    def __init__(self, oid, **kwargs):
+        """ initialize class """
+
+        BaseFormField.__init__(self, oid, **kwargs)
+
+        # set a preconfigured field as an instance attribute
+        self.fgField = StringField('fg_string_field',
+            searchable = 0,
+            required = 1,
+            write_permission = View,
+            validators = ('isCorrectCaptcha',),
+            widget = CaptchaWidget(),
+            )
+            
+registerATCT(FGCaptchaField, PROJECTNAME)

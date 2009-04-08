@@ -143,6 +143,7 @@ pfgQEdit.initDnD = function () {
 
 pfgQEdit.qedit = function (e) {
   jq("#pfgqedit").hide();
+  jq(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
   blurrable = jq("div.pfg-form .blurrable, div.pfg-form input")
   blurrable.each(

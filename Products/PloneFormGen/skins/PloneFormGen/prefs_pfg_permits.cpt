@@ -31,6 +31,11 @@
                 i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
             </li>
             <li>
+            <a href="@@pfg-captcha-settings"
+                tal:condition="context/@@pfg-captcha-settings/has_recaptcha"
+                i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
+            </li>
+            <li>
             <a href="prefs_pfg_savedata"
                 i18n:translate="label_ploneformgen_savedata">Saved Data</a>
             </li>            
