@@ -1,11 +1,16 @@
-from zope.interface import Interface
+from zope.interface import Interface, Attribute
 
 
 class IPloneFormGenField(Interface):
-    """fgField marker interface
+    """fgField interface
     """
 
     # fgField -- an archetypes field; must exist as an object (not class) attribute
+
+    meta_type = Attribute("archetypes meta type")
+    """
+    Must match GS type declaration.
+    """
     
     def fgPrimeDefaults(request, useTALES=True):
         """ primes request with default """
@@ -29,6 +34,10 @@ class IPloneFormGenField(Interface):
     def thanksValue(REQUEST):
         """ return from REQUEST, this field's value, rendered for display
             on a thanks page.
+        """
+
+    def htmlValue(REQUEST):
+        """ return from REQUEST, this field's value, rendered as XHTML.
         """
 
     def getFieldFormName():
