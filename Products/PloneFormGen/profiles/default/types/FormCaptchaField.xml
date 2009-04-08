@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <object name="FormCaptchaField"
    meta_type="Factory-based Type Information with dynamic views"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-   i18n:domain="plone">
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title">Captcha Field</property>
  <property name="description">A captcha field to prevent spam.</property>
  <property name="content_icon">CaptchaField.gif</property>

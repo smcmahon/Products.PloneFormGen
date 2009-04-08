@@ -1,4 +1,18 @@
-1.5b4 (unreleased)
+1.5b4
+
+ - Changed a few field titles to friendlier names: boolean -> checkbox,
+   integer -> whole number, fixed-point -> decimal number. (Steve McMahon)
+
+ - Merged branches/davisagli-captcha, providing a CAPTCHA field utilizing
+   either collective.captcha or collective.recaptcha. (Thanks, David Glick!)
+   
+ - Reworked install strategy for allowed content types for form folders and
+   fieldsets to determine what's allowed by interfaces rather than GS profile.
+   This makes it much easier to add fields, adapters and thanks pages from
+   outside. (Steve McMahon)
+   
+ - Fixed a problem with boolean fields in later Zope/Archetypes. (Tracker
+   #244)
 
  - QuickEdit got mixed up with fields that themselves contain
    tables. Fixed. (Steve McMahon)
