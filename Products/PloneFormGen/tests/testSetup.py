@@ -258,8 +258,9 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         'FormRichTextField',
         'FormFileField',
     ]
-    if haveRecaptcha:
+    if pfgtc.haveRecaptcha:
         fieldTypes.append('FormCaptchaField')
+    fieldTypes = tuple(fieldTypes)
 
     adapterTypes = (
         'FormSaveDataAdapter',
