@@ -47,6 +47,9 @@ default version of Five shipped with Zope should suffice.
 Encryption of e-mail requires the Gnu Privacy Guard, GnuPG, also known
 as gpg. See README_GPG.txt for details.
 
+CAPTCHA support requires either collective.captcha or collective.recaptcha.
+See README_CAPTCHA.txt for details.
+
 Installation
 ============
 

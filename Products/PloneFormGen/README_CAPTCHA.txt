@@ -14,6 +14,13 @@ configlet in your site settings.
 If you add a captcha facility *after* installing PFG, you will need to 
 reinstall PFG (via add/remove products) to enable captcha support.
 
+PFG's captcha support is based on Thomas Buchberger's PFGCaptchaField.  If you
+were using the separate PFGCaptchaField product with a version of PloneFormGen
+<= 1.5b3, you must uninstall PFGCaptchaField and remove the product from your
+environment before installing PFG >= 1.5b4.  You don't need to remove existing
+captcha fields from your forms though; they should continue to work.
+
+
 CAPTCHA Implementations
 -----------------------
 
