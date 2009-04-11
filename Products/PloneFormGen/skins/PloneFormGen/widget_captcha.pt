@@ -26,7 +26,7 @@
                 tal:condition="audio_url">
                 <img src="audio_icon.gif" alt="Listen to audio for this captcha" style="cursor:pointer;"
                      tal:attributes="onclick string:playAudio('${context/@@captcha/audio_url}');
-                                     src string:${portal_url}/audio_icon.gif;" />
+                                     src string:${portal_url}/captcha_audio_icon.gif;" />
                 <span id="captcha-audio-embed"></span>
             </tal:block>
         </div>

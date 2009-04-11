@@ -1,3 +1,7 @@
+1.5rc1
+
+ - Corrected URL for audio captcha icon. (David Glick)
+
 1.5b5
 
  - Fix bad eggification of 1.5b4.
