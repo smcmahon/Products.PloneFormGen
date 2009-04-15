@@ -1,12 +1,22 @@
+Change History
+==============
+
 1.5rc1
+------
 
  - Corrected URL for audio captcha icon. (David Glick)
 
+ - Added the CHANGES.txt to the long_description so that it show up on
+   pypi, Hello World!  Also cleaned up the reST so that it will render 
+   properly (claytron)
+
 1.5b5
+-----
 
  - Fix bad eggification of 1.5b4.
 
 1.5b4
+-----
 
  - Changed a few field titles to friendlier names: boolean -> checkbox,
    integer -> whole number, fixed-point -> decimal number. (Steve McMahon)
@@ -55,6 +65,7 @@
    causing problems when submitting forms embedded in portlets. (David Glick)
 
 1.5b3
+-----
 
  - Fixed the link spam validator for text fields, which wasn't working
    properly.  (David Glick)
@@ -80,6 +91,7 @@
    later Zopes. (Thanks, Tom Gross)
 
 1.5b2
+-----
 
  - Support for export/import of PloneFormGen form folders via generic setup
    profiles and the portal_setup tool as well as contextual form (i.e. on an 
@@ -96,6 +108,7 @@
  - Add quick edit mode for forms. (Steve McMahon)
 
 1.5b1
+-----
 
  - Added 'Server-Side Variable' override so that you can make an expression
    available to action adapters without passing it in a hidden field.
@@ -163,6 +176,7 @@
    upon install (Jesse Snyder, Andrew Burkhalter)
 
 1.2.5
+-----
 
  - Integrate Portugese translation from Nuno Cruz.
 
@@ -179,6 +193,7 @@
    (David Glick)
 
 1.2.4
+-----
 
  - Added Rating-Scale Field based on Titus Anderson's LikertField.
    Thanks to Titus and the University of Louisville.
@@ -194,6 +209,7 @@
    (Andreas Jung)
 
 1.2.3
+-----
 
  - Created egg framework, moved svn trunk to
    collective/Products.PloneFormGen/trunk.
@@ -204,6 +220,7 @@
    (Tracker #205; Thanks, Wouter Vanden Hove)
 
 1.2.2
+-----
 
  - The PicklistWidget used to pick ThanksPage fields doesn't respect the 
    order of the value it's supplied, so let's always sort the values
@@ -219,7 +236,7 @@
    (Thanks, ddurham)
 
  - Added 'Contributor' to default roles allowed to create Form Folders.
-   (Tracker #199; thanks, Marc Nieper-Wißkirchen)
+   (Tracker #199; thanks, Marc Nieper-WiÃŸkirchen)
 
  - Values in password fields were being lost whenever a form didn't
    validate. While this might make sense in other contexts, it doesn't
@@ -230,6 +247,7 @@
    problem as #173)
 
 1.2.1
+-----
 
  - Using non-ascii chars in the title of a required field would provoke a
    UnicodeDecodeError on failed validation. Fixed. (Tracker #174; Thanks,
@@ -241,371 +259,392 @@
    Baldivieso)
 
 1.2.0
+-----
 
  - Fixes in nl translation. (Tracker 166: Radek Jankiewicz)
  
  - Remove obsolete migration from PFGDataGrid. (Tracker 169: Thanks, Zippy)
 
 1.2-RC2
+-------
 
  - Dramatically simplify schema for most components by hiding most
- metadata fields in Plone 3. (Tracker 161; Thanks, Jon Stahl)
+   metadata fields in Plone 3. (Tracker 161; Thanks, Jon Stahl)
 
  - Empty, hidden lines field caused error on form display. Fixed.
- (Tracker #151)
+   (Tracker #151)
 
 1.2-RC1
+-------
 
  - Improve error message on mail attempt when no recipient address is
- found and form owner has no e-mail address. Also, make it less likely
- by using portal email_from_address as a fallback. (Tracker #140, 
- thanks Andreas Jung)
+   found and form owner has no e-mail address. Also, make it less likely
+   by using portal email_from_address as a fallback. (Tracker #140, 
+   thanks Andreas Jung)
 
 1.2-Beta-6
+----------
 
  - Mailer was having problems with i18n characters in fields in Plone 3+.
- Fixed. (Tracker #144, thanks Anders Avlesen)
+   Fixed. (Tracker #144, thanks Anders Avlesen)
 
  - Manually editing saved data (in a save data adapter) was not working
- since storage change in 1.2 beta 1. Fixed. (Tracker #145)
+   since storage change in 1.2 beta 1. Fixed. (Tracker #145)
 
  - Fixed: Exception when submitting a form with a text field that
- exceeds the "Max Length" character limit. (Tracker #142)
+   exceeds the "Max Length" character limit. (Tracker #142)
 
 1.2-Beta-5
+----------
 
  - Thanks page editing was having kupu problems in Plone 3 for fields off the
- default schema. So, when running Plone 3.0, pack them on the default schema.
- This also brings the schema count down to 5, to avoid schema selection widget.
- Not ideal, but it's working.
+   default schema. So, when running Plone 3.0, pack them on the default schema.
+   This also brings the schema count down to 5, to avoid schema selection widget.
+   Not ideal, but it's working.
 
  - When a form date field was not required, it was possible to enter invalid
- dates. Added a special validator that should cause a validation error when
- a bad date is actually entered, but not if the month or year is left as
- "--" (Tracker #132)
+   dates. Added a special validator that should cause a validation error when
+   a bad date is actually entered, but not if the month or year is left as
+   "--" (Tracker #132)
 
  - Added README_PLONE3.txt to document workaround for permissions problem
- using selection and multi-selection form fields in Plone 3.0 (fixed in 3.0.1).
- (Tracker #136)
+   using selection and multi-selection form fields in Plone 3.0 (fixed in 3.0.1).
+   (Tracker #136)
 
  - There was no status message when validation failed in Plone 3. Fixed.
- (Tracker #133, thanks Lucie Lejard)
+   (Tracker #133, thanks Lucie Lejard)
 
  - Validation script was discarding any errors that might already be in the 
- CMFFormController state. Fixed. (Tracker #134, thanks Lucie Lejard)
+   CMFFormController state. Fixed. (Tracker #134, thanks Lucie Lejard)
 
  - Fields in fieldsets were not being offered as options in the mailer's extract
- recipient and extract replyto options. Fixed. (Tracker #123, thanks Marie
- Robichon)
+   recipient and extract replyto options. Fixed. (Tracker #123, thanks Marie
+   Robichon)
 
  - The validation message rewriter for Plone 2.1 was broken, resulting in an
- error whenever a form wouldn't validate. Fixed. (Tracker #124, thanks Aleksandr
- Vladimirskiy)
+   error whenever a form wouldn't validate. Fixed. (Tracker #124, thanks Aleksandr
+   Vladimirskiy)
 
 1.2-Beta-4
+----------
 
  - In Plone 3, Kupu has started saving "<p>&nbsp;</p>" for empty inputs. This 
- forced white space into the the form if prologue and/or epilogue were empty.
- Fixed with custom mutators. (Tracker #120, thanks Michael Dunlap)
+   forced white space into the the form if prologue and/or epilogue were empty.
+   Fixed with custom mutators. (Tracker #120, thanks Michael Dunlap)
 
  - Check ids of fields to make sure they don't collide with known 
- troublesome ids ('zip', 'location', 'language'). Also prevent use of
- ids that duplicate those in fieldset folders. (Tracker #94, thanks Gregory
- Hnatiuk; Tracker #107, thanks Kim Nielsen)
+   troublesome ids ('zip', 'location', 'language'). Also prevent use of
+   ids that duplicate those in fieldset folders. (Tracker #94, thanks Gregory
+   Hnatiuk; Tracker #107, thanks Kim Nielsen)
 
  - Turn off KSS blur event handling for rendered forms in Plone 3. Maybe
- we'll be able to implement in-line validation later.
+   we'll be able to implement in-line validation later.
 
  - Bring Plone 3 macro versions into line with Archetypes 1.5.
 
  - Remove several workarounds for Archetypes 1.5 beta bugs that were fixed in
- RC3.
+   RC3.
 
  - Partial date entries to a Date/Time Field would raise a DateError exception.
- Fixed. (Tracker #118)
+   Fixed. (Tracker #118)
  
  - New Czech translation of plone-ploneformgen domain. Thanks, Jan Pokorny.
 
  - Updated Dutch translations, thanks to: markvl, justi and jladage and
- initial translations by Atopia.
+   initial translations by Atopia.
 
 1.2-Beta-3
+----------
 
  - The 1.2-Beta-2 customizable string validators change introduced a problem
- that caused an error if a string field had no validator. Fixed.
+   that caused an error if a string field had no validator. Fixed.
 
  - Add ability to set display strings for boolean field checked and unchecked.
- These are used in the thanks page and mailer in place of '0' and '1'. (Tracker
- #112)
+   These are used in the thanks page and mailer in place of '0' and '1'. (Tracker
+   #112)
 
 1.2-Beta-2
+----------
 
  - Changed "Cancel" button to act as a reset button on rendered forms. It really
- has no other imaginable purpose. Change default to hide this nearly useless
- artifact. Add option to set button label.
+   has no other imaginable purpose. Change default to hide this nearly useless
+   artifact. Add option to set button label.
 
  - Added start, end and future year options to DateTime Field. (Tracker #65,
- Thanks to Paul Eipper for the suggestion and Jeremy Keiper for the patch.)
+   Thanks to Paul Eipper for the suggestion and Jeremy Keiper for the patch.)
 
- - Added new French message translations. Thanks, Gaël Le Mignot.
+ - Added new French message translations. Thanks, GaÃ«l Le Mignot.
 
  - Add override to selectively enable/disable fields. Disabling a field removes
- it from the rendered field list. It will not appear in the form and will not be
- validated.
+   it from the rendered field list. It will not appear in the form and will not be
+   validated.
 
  - Add facility for customizable string validators and messages for use with the
- FormStringField. Currently, customization is via the config.py file. I may
- eventually figure out a way to get this into the configlet.
+   FormStringField. Currently, customization is via the config.py file. I may
+   eventually figure out a way to get this into the configlet.
 
  - Add a content override for the RichLabelField.
 
  - If "PloneFormGen" was missing from any skin layer sets, uninstall or
- reinstall would fail. Fixed. (Tracker #109, Thanks: Yuri)
+   reinstall would fail. Fixed. (Tracker #109, Thanks: Yuri)
 
 1.2-Beta-1
+----------
 
  - Eradicate use of context['global_vars'], which is not supported in
- Plone 3. All tests now pass in Plone 3b3 (with patched Archetypes, see
- http://dev.plone.org/archetypes/ticket/724).
+   Plone 3. All tests now pass in Plone 3b3 (with patched Archetypes, see
+   http://dev.plone.org/archetypes/ticket/724).
 
  - Extended characters in field title or description would provoke
- unicode cannot decode error. This occurs on indexing the field, and may
- be an Archetypes problem. Since there's no good reason to have these
- searchable, fixed by setting searchable false for field titles and
- descriptions. (Tracker # 102 and 104, Thanks: Petrus Wang)
+   unicode cannot decode error. This occurs on indexing the field, and may
+   be an Archetypes problem. Since there's no good reason to have these
+   searchable, fixed by setting searchable false for field titles and
+   descriptions. (Tracker # 102 and 104, Thanks: Petrus Wang)
 
  - Added Italian translation for Plone domain (add-item menu, schema
- names and such). Thanks to Carrer Yuri.
+   names and such). Thanks to Carrer Yuri.
 
  - It's now possible to specify multiple e-mail recipients for the TO
- field via either the recipient override or using a multi-select field.
- (Tracker #59, Thanks, Edouard Mercier)
+   field via either the recipient override or using a multi-select field.
+   (Tracker #59, Thanks, Edouard Mercier)
 
  - Fixed-point field minimum-value field changed from required to
- not-required. Requiring it made it impossible to set 0 for a minimum
- value. (Tracker #98, Thanks: Jeremy Keiper)
+   not-required. Requiring it made it impossible to set 0 for a minimum
+   value. (Tracker #98, Thanks: Jeremy Keiper)
 
  - Added specialValidator method to BaseFormField to give form fields a
- way to do a more sophisticated validation than what's allowed by
- Archetypes-style validators.
+   way to do a more sophisticated validation than what's allowed by
+   Archetypes-style validators.
 
  - Changed underlying storage mechanism for save-data adapter to use an
- IOBTree rather than Archetypes lines field storage (a sequence).
- This should cure a problem with data object size growing geometrically
- with new inputs (Tracker #81, thanks Jean-Paul Ladage).
-
- Existing save data adapters will be migrated when first touched by the new PFG
- version.
- 
- This is NOT backwards compatible! So, you will not be able to save data
- in 1.2 and revert to 1.1.
+   IOBTree rather than Archetypes lines field storage (a sequence).
+   This should cure a problem with data object size growing geometrically
+   with new inputs (Tracker #81, thanks Jean-Paul Ladage).
+   
+   Existing save data adapters will be migrated when first touched by the new PFG
+   version.
+   
+   This is NOT backwards compatible! So, you will not be able to save data
+   in 1.2 and revert to 1.1.
 
  - Change default download format of new save-data adapters to csv.
 
  - Move 1.1.1 to branches/1.1. SVN trunk is now 1.2.
 
 1.1.1
+-----
 
  - The "strip trailing white space" fix in 1.1 handled the issue for
- validation, but the unchanged field was still processed and
- mailed/saved. Fixed.
+   validation, but the unchanged field was still processed and
+   mailed/saved. Fixed.
 
  - Fixed a bug introduced by "strip trailing white space" fix in 1.1 that
- would cause a name error when validating an individual field (not a form).
+   would cause a name error when validating an individual field (not a form).
 
  - When htmlValue for Selection and Multi-Selection fields doesn't find
- the submitted value in the field vocabulary, it should go ahead and
- return what was submitted. (Thanks, lzdych for a code fix)
+   the submitted value in the field vocabulary, it should go ahead and
+   return what was submitted. (Thanks, lzdych for a code fix)
 
  - Use the portal_transforms text_to_html transform to convert
- multi-line text field inputs to html. This will convert eols to breaks
- rather than collapsing lines. (Thanks: Darrick Servis)
+   multi-line text field inputs to html. This will convert eols to breaks
+   rather than collapsing lines. (Thanks: Darrick Servis)
 
  - Minor i18n fixups.
 
 1.1
+---
 
  - The mail adapter was truncating subject lines longer than 76
- characters due to a bad interaction between security testing and header
- encoding. Fixed. (Tracker #84, thanks to Mike Sassak for a great bug
- report)
+   characters due to a bad interaction between security testing and header
+   encoding. Fixed. (Tracker #84, thanks to Mike Sassak for a great bug
+   report)
 
  - Restore document actions to base view template. The reason for
- leaving them out probably wasn't as good as I thought when first
- excising them. (Tracker #86, thanks to Gregory Hnatiuk)
+   leaving them out probably wasn't as good as I thought when first
+   excising them. (Tracker #86, thanks to Gregory Hnatiuk)
 
  - Strip trailing white space in all string-ish fields. Also, don't
- accept required fields when only white space is submitted. (Fixes
- Tracker #79: thanks Rene Pijlman)
+   accept required fields when only white space is submitted. (Fixes
+   Tracker #79: thanks Rene Pijlman)
 
  - For Selection or Multi-Selection form fields, no input could result
- in an error "AttributeError 'NoneType' object has no attribute
- 'encode'". This was a bug in the display labels fix in RC3. Fixed.
- (Tracker #80, thanks Rene Pijlman)
+   in an error "AttributeError 'NoneType' object has no attribute
+   'encode'". This was a bug in the display labels fix in RC3. Fixed.
+   (Tracker #80, thanks Rene Pijlman)
 
  - The "Thanks Page" option in the form folder edit view would display
- python scripts and other non-Plone objects. Fixed. (Tracker #78, Thanks
- Marie Robichon)
+   python scripts and other non-Plone objects. Fixed. (Tracker #78, Thanks
+   Marie Robichon)
 
 1.1-RC3
+-------
 
  - The creation of sample objects in initializeArchetypes left catalog
- orphans for the portal_factory objects.Solve the problem by removing
- them from the portal_catalog and uid_catalog, hopefully not causing
- other problems in the process. (Tracker #74, Thanks Jeremy Keiper)
+   orphans for the portal_factory objects.Solve the problem by removing
+   them from the portal_catalog and uid_catalog, hopefully not causing
+   other problems in the process. (Tracker #74, Thanks Jeremy Keiper)
 
  - Made the thanks-page and mailer display labels for selection and
- multi-selection fields rather than the values. (Tracker #71; thanks to
- Radim Novotny for diagnosis and patch.)
+   multi-selection fields rather than the values. (Tracker #71; thanks to
+   Radim Novotny for diagnosis and patch.)
 
 
 1.1-RC2
+-------
 
  - Added localized time support for display (thanks page and mailer)
- renderings from Date-Time Field. (Tracker #71, thanks, Sufyan Patel)
+   renderings from Date-Time Field. (Tracker #71, thanks, Sufyan Patel)
 
  - Removed the "hidden" option from most fields. Archetypes support for
- it was uneven and not really necessary for anything more than strings,
- lines and text. So, why not get it out of the way? (Tracker #69, thanks
- to Radim Novotny for pointing out the problem.) 
+   it was uneven and not really necessary for anything more than strings,
+   lines and text. So, why not get it out of the way? (Tracker #69, thanks
+   to Radim Novotny for pointing out the problem.) 
 
  - Added optional tabular and record supplemental views for save data
- adapter.
+   adapter.
 
  - Added convenience method 'getColumnTitles' to saver.
 
 1.1-RC1
+-------
 
  - File fields would not show up on the thanks page, and their column
- names would be omitted from saver data. Fixed.
+   names would be omitted from saver data. Fixed.
 
  - CustomScriptAdapter 'fields' parameter was mis-identified as 'results' in
- sample comment documentation. Fixed. (Thanks, Brook Milligan)
+   sample comment documentation. Fixed. (Thanks, Brook Milligan)
 
  - Made the success action given to CFMFormController always be
- "traverse_to". The form previously would traverse to objects
- implementing IPloneFormGenThanksPage, but redirect to other pages or
- templates. While there might be reasons to do this, they're overwhelmed
- by the puzzle this might pose for the user trying to figure out why
- request was available for one type and not another. Note that this does
- not apply to overrides, where the action type must always be specified.
+   "traverse_to". The form previously would traverse to objects
+   implementing IPloneFormGenThanksPage, but redirect to other pages or
+   templates. While there might be reasons to do this, they're overwhelmed
+   by the puzzle this might pose for the user trying to figure out why
+   request was available for one type and not another. Note that this does
+   not apply to overrides, where the action type must always be specified.
 
  - Custom validators for File Fields always received None as "value"
- parameter due to the fact that the file widget appends _file to the
- input name. Fixed. (Tracker #64; Thanks, Kiran Jonnalagadda for a
- diagnosis and patch.)
+   parameter due to the fact that the file widget appends _file to the
+   input name. Fixed. (Tracker #64; Thanks, Kiran Jonnalagadda for a
+   diagnosis and patch.)
 
 1.1-Beta-4
+----------
 
  - Attempts to use acquired scripts in form setup and after validation
- overrides of form would provoke an AttributeError. Scripts inside the
- form folder worked. This was due to an unfortunate choice of workaround
- for expression context poisoning: aq_explicit was being used for the
- context. Added a cleanExpressionContext routine to clean the expression
- context instead by deleting the cache for the object context after calling
- a TALES expression. That allowed fixing the context to allow acquisition.
- (Tracker #62)
+   overrides of form would provoke an AttributeError. Scripts inside the
+   form folder worked. This was due to an unfortunate choice of workaround
+   for expression context poisoning: aq_explicit was being used for the
+   context. Added a cleanExpressionContext routine to clean the expression
+   context instead by deleting the cache for the object context after calling
+   a TALES expression. That allowed fixing the context to allow acquisition.
+   (Tracker #62)
 
  - Added convenience method InputAsDictionaries to save-data adapter.
- Returns saved data as list of dictionaries with column keys.
+   Returns saved data as list of dictionaries with column keys.
 
  - fgGetSuccessAction was unnecessarily causing a traverse from the Zope
- root. This was a problem if any parent of the form was private. Fixed.
- (Tracker #60; Thanks Marcel)
+   root. This was a problem if any parent of the form was private. Fixed.
+   (Tracker #60; Thanks Marcel)
 
  - Downloading data from the save data adapter would provoke a Unicode
- exception if data included non-ASCII, 'use column names' was in effect,
- and one of the preset extra data choices was checked. Fixed. (Tracker
- #55)
+   exception if data included non-ASCII, 'use column names' was in effect,
+   and one of the preset extra data choices was checked. Fixed. (Tracker
+   #55)
 
  - DataGridField example: DGF field wasn't being added to fieldset
- allowed types. Fixed. (Tracker #61, thanks, Paul Eipper)
+   allowed types. Fixed. (Tracker #61, thanks, Paul Eipper)
 
  - Added explicit, empty .po files for English to (hopefully) resolve
- tracker #56 (thanks, Christof Haemmerle and sydw (#plone).
+   tracker #56 (thanks, Christof Haemmerle and sydw (#plone).
 
 1.1-Beta-3
+----------
 
  - Added Polish (PL) translation donated by Lukasz Lichota. Fixed up a
- couple of duplicate msgids revealed by the new translation files.
+   couple of duplicate msgids revealed by the new translation files.
 
  - More uninstall cleanup. On uninstall, remove FormFolder and
- FieldsetFolder from siteProperties use_folder_tabs and
- typesLinkToFolderContentsInFC. (Tracker #57, thanks DigitalD)
+   FieldsetFolder from siteProperties use_folder_tabs and
+   typesLinkToFolderContentsInFC. (Tracker #57, thanks DigitalD)
 
  - The validation message cleanup routine introduced in 1.1 beta 1 would
- fail with a message "TypeError: cleanupMessage() takes exactly 1
- argument (2 given)" under Plone < 2.5. Fixed.
+   fail with a message "TypeError: cleanupMessage() takes exactly 1
+   argument (2 given)" under Plone < 2.5. Fixed.
 
  - Added class selector to div surrounding form to facilitate CSS
- decoration. (Tracker #46, Thanks Steve Rauch)
+   decoration. (Tracker #46, Thanks Steve Rauch)
 
  - When possible, get guess_content_type from zope.app.content_types
- rather than OFS.content_types. Now no deprecation errors in 2.5.2 RC 1.
+   rather than OFS.content_types. Now no deprecation errors in 2.5.2 RC 1.
 
  - A KeyError exception in an action adapter would be swallowed by a too
- extensive try/except. Fixed. (Tracker #54, thanks, Maurits van Rees)
+   extensive try/except. Fixed. (Tracker #54, thanks, Maurits van Rees)
 
  - Added an example of adding a new widget to PFG from another product.
- Copy PFGDataGrid from the examples directory to Products/ to activate a
- DataGridField form field.
+   Copy PFGDataGrid from the examples directory to Products/ to activate a
+   DataGridField form field.
 
  - Using an after-validation override was clobbering the expression
- context, causing an error if we ended up traversing to a template.
- Fixed.
+   context, causing an error if we ended up traversing to a template.
+   Fixed.
 
  - On uninstall, remove 'PloneFormGen' layer from all skin selections.
 
 1.1-Beta-2
+----------
 
  - Added "Execution Condition" override to action adapters. This allows
- conditional execution of action adapters depending on form input.
+   conditional execution of action adapters depending on form input.
 
  - Atopia <info@atopia.nl> has contributed a Dutch translation. Thanks!
 
- - Simon Käser has contributed a German translation. Thanks!
+ - Simon KÃ¤ser has contributed a German translation. Thanks!
 
 1.1-Beta-1
+----------
 
  - Added a rudimentary facility to return better alternatives to the
- Archetypes validation messages. These should also be translatable. This
- will probably need refinement. Ideally, we'll abandon it when this gets
- straightened out in Archetypes. Thanks to Matej Baric (#plone mte) for
- pressing me on the need for this.
+   Archetypes validation messages. These should also be translatable. This
+   will probably need refinement. Ideally, we'll abandon it when this gets
+   straightened out in Archetypes. Thanks to Matej Baric (#plone mte) for
+   pressing me on the need for this.
 
  - The thanks page option to ignore empty fields wasn't working. Fixed.
 
  - Workaround what I consider a Zope marshalling error: the production
- of lists like ['one', ''] and [''] for list fields. PFG will now pop
- list results if the last item is an empty string. This is done before
- validation.
+   of lists like ['one', ''] and [''] for list fields. PFG will now pop
+   list results if the last item is an empty string. This is done before
+   validation.
 
  - Made installation add FormFolder to default_page_types. (Tracker #49:
- Thanks, Jon Stahl)
+   Thanks, Jon Stahl)
 
 1.1-Alpha-4
+-----------
 
  - Fixed bad interaction between Thanks Pages and fieldsets. (Tracker
- #44, Thanks: David Sandy)
+   #44, Thanks: David Sandy)
 
  - Attempted to exterminate all the cases where PFG tests to see if a
- field is a label or file field by checking the meta_type. Replaced with
- tests of isLabel or isFileField methods. This is a first step towards
- making it easier to add support for new field types.
+   field is a label or file field by checking the meta_type. Replaced with
+   tests of isLabel or isFileField methods. This is a first step towards
+   making it easier to add support for new field types.
 
 1.1-Alpha-3
+-----------
 
  - Added "Fieldset Folder", which puts its enclosed fields into an XHTML
- fieldset with an optional legend. (Feature Enhancement Proposal #2,
- thanks Michael Dunlap)
+   fieldset with an optional legend. (Feature Enhancement Proposal #2,
+   thanks Michael Dunlap)
 
  - Added TALES overrides for subject, sender and recipient to the
- mailer. (Tracker #43, thanks: Pierre-Yves Landure)
+   mailer. (Tracker #43, thanks: Pierre-Yves Landure)
 
  - Fix for Tracker #42 -  Editing Short Names Has No Effect. (Thanks:
- Kevin Strasser)
+   Kevin Strasser)
 
 1.1-Alpha-2
+-----------
 
  - Added default mail addressing setup to configlet.
 
@@ -614,81 +653,85 @@
  - Activate action adapters on creation to save confusion.
 
  - Set up a portal_properties property sheet for site configuration
- persistence.
+   persistence.
 
 1.1-Alpha-1
+-----------
 
  - Added a configlet to control association of roles and PFG permissions
- at the portal root. (This completes Feature Enhancement Proposal #3,
- thanks Joel Burton)
+   at the portal root. (This completes Feature Enhancement Proposal #3,
+   thanks Joel Burton)
 
  - Moved recipient fields of mail adapter to default schema. They're the
- most likely to be customized.
+   most likely to be customized.
 
  - Added specific permissions for advanced and encryption-related
- fields. We'll use these to hide the fields from roles that needn't see
- them.
+   fields. We'll use these to hide the fields from roles that needn't see
+   them.
 
  - Add framework to allow different add permissions for different content
- types. Set individual add permission for Custom Script Adapter.
+   types. Set individual add permission for Custom Script Adapter.
 
  - Mailer wasn't picking up owner e-mail address unless owner is a manager.
- Fixed.
+   Fixed.
 
  - Removing an active action adapter would result in a KeyError on form
- submit. Fixed. The missing adapter will now be ignored.
+   submit. Fixed. The missing adapter will now be ignored.
 
  - Added "Custom Script Adapter" by Mikko Ohtamaa (#plone: Moo). This is
- an action adapter that makes it easy to script success actions without
- having to use the ZMI to add/manipulate a python script. Note:
- PythonField (from the ScriptableFields bundle) is now required.
+   an action adapter that makes it easy to script success actions without
+   having to use the ZMI to add/manipulate a python script. Note:
+   PythonField (from the ScriptableFields bundle) is now required.
 
  - Change configure.zcml.plone25 to be configure.zcml. Users of Plone
- 2.1.x will need to delete or rename this file to avoid errors (unless
- they have independently updated Five).
+   2.1.x will need to delete or rename this file to avoid errors (unless
+   they have independently updated Five).
 
 1.0.1
+-----
 
  - The memberEmail and memberFullName methods (convenience methods for
- use in defaults) were only working for managers. Fixed. (Tracker #39,
- thanks: Jacob Nordfalk)
+   use in defaults) were only working for managers. Fixed. (Tracker #39,
+   thanks: Jacob Nordfalk)
 
  - Using the "Form Setup Script" override in Plone 2.5.1 would cause a
- misleading "NameError: name 'checkPermission' is not defined" error on
- form display. Evaluation of the TALESField was clobbering the request's
- expression context. Fixed. (Tracker #37, thanks: Andreas Jung)
+   misleading "NameError: name 'checkPermission' is not defined" error on
+   form display. Evaluation of the TALESField was clobbering the request's
+   expression context. Fixed. (Tracker #37, thanks: Andreas Jung)
 
  - Mailer was using MIMEMultipart even when there were no attachments.
- Fixed. (tracker #36, thanks: Igor Stroh)
+   Fixed. (tracker #36, thanks: Igor Stroh)
 
 1.0
+---
 
  - Set default maxlength for textarea form field to 0 to work around the
- Archetypes 1.4.1 "characters remaining" bug
- <http://dev.plone.org/archetypes/ticket/691>.
+   Archetypes 1.4.1 "characters remaining" bug
+   <http://dev.plone.org/archetypes/ticket/691>.
 
  - Added option to get column names as a first line in input downloaded
- from save adapter. (thanks: Servilio Afre Puentes)
+   from save adapter. (thanks: Servilio Afre Puentes)
 
  - International characters in a field title could cause a unicode
- decode error in the mail adapter's addressing schema. Fixed. (tracker
- #35, thanks: Pierre-Yves Landure)
+   decode error in the mail adapter's addressing schema. Fixed. (tracker
+   #35, thanks: Pierre-Yves Landure)
 
  - Creating a form field with an ID of 'language' would cause a nasty,
- hard-to-debug problem with PTS. PFG will now raise a BadRequest
- exception if the user tries to injure themselves this way. (tracker
- #32, thanks, Rocky Burt)
+   hard-to-debug problem with PTS. PFG will now raise a BadRequest
+   exception if the user tries to injure themselves this way. (tracker
+   #32, thanks, Rocky Burt)
 
  - Fixed a problem with the MaxLengthValdiator where sometimes an unset
- (by the user) widget.maxlength actually has an empty string as the
- value which would make the int(widget.maxlength) call fail (Rocky
- Burt).
+   (by the user) widget.maxlength actually has an empty string as the
+   value which would make the int(widget.maxlength) call fail (Rocky
+   Burt).
 
  - The mailer was including rich-text labels in mailed results;
- save-data adapter was including rich-text and plain labels. Fixed.
- (Tracker #31, thanks: jim sfba)
+   save-data adapter was including rich-text and plain labels. Fixed.
+   (Tracker #31, thanks: jim sfba)
 
 1.0-RC2
+-------
 
  - Made PATH_INFO a default member of the x-info headers for mailer.
 
@@ -700,6 +743,7 @@
  - Added .mo files for existing translations in locales/.
 
 1.0-RC1
+-------
 
  - More i18n fixes from Pierre-Yves Landure (tracker #24).
 
@@ -708,6 +752,7 @@
  - Allow multiple live action adapters. (tracker #12)
 
 1.0-beta6
+---------
 
  - Added marker interface for thanks pages to make it easier to
    use a derived content type for that purpose. (Thanks: Emyr Thomas)
@@ -725,6 +770,7 @@
  - Completed french translation
 
 1.0-beta5
+---------
 
  - Switch version numbering to match the release mangement process of
    PloneSoftwareCenter.
@@ -736,6 +782,7 @@
    when there's no form submit. (tracker #15; thanks: Emyr Thomas)
 
 0.4.0
+-----
 
  - Made it easy (too easy?) to clear input saved in save
    data adapter.
@@ -750,6 +797,7 @@
    field set will not display unless gpg is available.
 
 0.3.0
+-----
 
  - Added convenience methods for use in default overrides
    to get member data: memberFullName, memberEmail, memberId.
@@ -777,6 +825,7 @@
    selection and multi-selection widgets. Generated first .pot file.
 
 0.2.0
+-----
 
  - Added 'thanks page' content type that's smart enough to display select
    field input. (tracker #3, thanks: Kim Nielsen)
@@ -795,6 +844,7 @@
    from label field (tracker #2, thanks: Kim Nielsen)
 
 0.1.0
+-----
 
  - On initial creation, a Form Folder now populates itself with
    a sample mail form
@@ -808,6 +858,7 @@
  - Changed 18n domain to ploneformgen
 
 0.0.5
+-----
 
  - Mail adapter now handles file fields as attachments.
 
@@ -826,6 +877,7 @@
 
 
 0.0.4
+-----
 
  - Added first draft of e-mail adapter. Much of the code and schema derived
    from PloneFormMailer (thanks to Jens Klein, Reinout van Rees and their
@@ -836,6 +888,7 @@
  - Escaped strings saved by saveDataAdapter
 
 0.0.3
+-----
 
  - Added additional min/max validation to integer field.
 
@@ -849,9 +902,10 @@
  - Moved Plone content to content subdirectory (wiggy).
 
 0.0.2
+-----
 
  - Added basic unit tests for installation, instantiation and editing
 
  - Added simple interfaces IfgForm and IfgField, mainly as markers.
 
- - Made form fields invisible (to the add menu) 
+ - Made form fields invisible (to the add menu)
