@@ -4,6 +4,10 @@ Change History
 1.5rc1
 ------
 
+ - If mail adapter received a UTF-8 subject where it expected unicode,
+   a unicode decode error would result. Fixed. (Thanks, javimansilla)
+   (merge from 1.2-Maintenance branch)
+
  - Corrected URL for audio captcha icon. (David Glick)
 
  - Added the CHANGES.txt to the long_description so that it show up on

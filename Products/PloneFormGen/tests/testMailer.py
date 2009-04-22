@@ -149,6 +149,41 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( messageText.find('Eat my footer, test subject.') > 0 )
 
 
+    def test_UTF8Subject(self):
+        """ Test mailer with uft-8 encoded subject line """
+
+        utf8_subject = 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'
+
+        mailer = self.ff1.mailer        
+        fields = self.ff1._getFieldObjects()        
+        request = self.LoadRequestForm(topic = utf8_subject)        
+        mailer.onSuccess(fields, request)
+
+        msg = email.message_from_string(self.messageText)
+        encoded_subject_header = msg['subject']
+        decoded_header = email.Header.decode_header(encoded_subject_header)[0][0]
+
+        self.assertEqual( decoded_header, utf8_subject )
+
+
+    def test_UnicodeSubject(self):
+        """ Test mailer with Unicode encoded subject line """
+
+        utf8_subject = 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'
+        unicode_subject= utf8_subject.decode('UTF-8')
+
+        mailer = self.ff1.mailer        
+        fields = self.ff1._getFieldObjects()        
+        request = self.LoadRequestForm(topic = unicode_subject)        
+        mailer.onSuccess(fields, request)
+
+        msg = email.message_from_string(self.messageText)
+        encoded_subject_header = msg['subject']
+        decoded_header = email.Header.decode_header(encoded_subject_header)[0][0]
+
+        self.assertEqual( decoded_header, utf8_subject )
+
+
     def test_MailerOverrides(self):
         """ Test mailer override functions """
     
