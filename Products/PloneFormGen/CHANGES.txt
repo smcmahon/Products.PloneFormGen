@@ -1,5 +1,8 @@
 1.2.6
 
+ - If mail adapter received a UTF-8 subject where it expected unicode,
+   a unicode decode error would result. Fixed. (Thanks, javimansilla)
+
  - When using Zope 2.9.10 and Plone 2.5.x, form validation would produce an
    Unauthorized error in fgvalidate_base. Fixed.
    (Tracker #233; Thanks, Jean-Pascal Houde)

@@ -704,10 +704,12 @@ class FormMailerAdapter(FormActionAdapter):
         request -- (optional) alternate request object to use
         """
 
-#        if kwargs.has_key('request'):
-#            request = kwargs['request']
-#        else:
-#            request = self.REQUEST
+        pprops = getToolByName(self, 'portal_properties')
+        site_props = getToolByName(pprops, 'site_properties')
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        pms = getToolByName(self, 'portal_membership')
+        utils = getToolByName(self, 'plone_utils')
+        
 
         body = self.get_mail_body(fields, **kwargs)
 
@@ -732,9 +734,6 @@ class FormMailerAdapter(FormActionAdapter):
         if shasattr(self, 'senderOverride') and self.getRawSenderOverride():
             from_addr = self.getSenderOverride().strip()
         else:
-            pprops = getToolByName(self, 'portal_properties')
-            site_props = getToolByName(pprops, 'site_properties')
-            portal = getToolByName(self, 'portal_url').getPortalObject()
             from_addr = from_addr or site_props.getProperty('email_from_address') or \
                         portal.getProperty('email_from_address')
 
@@ -758,11 +757,9 @@ class FormMailerAdapter(FormActionAdapter):
         if not recip_email and not to_addr:
             ownerinfo = self.getOwner()
             ownerid=ownerinfo.getId()
-            pms = getToolByName(self, 'portal_membership')
             userdest = pms.getMemberById(ownerid)
             toemail = userdest.getProperty('email', '')
             if not toemail:
-                portal = getToolByName(self, 'portal_url').getPortalObject()
                 toemail = portal.getProperty('email_from_address')                
             assert toemail, """
                     Unable to mail form input because no recipient address has been specified.
@@ -781,8 +778,12 @@ class FormMailerAdapter(FormActionAdapter):
             headerinfo['Reply-To'] = self.secure_header_line(reply_addr)
 
         # transform subject into mail header encoded string
-        portal = getToolByName(self, 'portal_url').getPortalObject()
         email_charset = portal.getProperty('email_charset', 'utf-8')
+
+        if not isinstance(subject, unicode):
+            site_charset = utils.getSiteEncoding()            
+            subject = unicode(subject, site_charset, 'replace')        
+        
         msgSubject = self.secure_header_line(subject).encode(email_charset, 'replace')
         msgSubject = str(Header(msgSubject, email_charset))
         headerinfo['Subject'] = msgSubject
