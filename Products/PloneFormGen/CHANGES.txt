@@ -4,6 +4,9 @@ Change History
 1.5rc1
 ------
 
+ - The captcha field edit should not show default, length ...
+   fields that are not relevant. (Steve)
+
  - If mail adapter received a UTF-8 subject where it expected unicode,
    a unicode decode error would result. Fixed. (Thanks, javimansilla)
    (merge from 1.2-Maintenance branch)

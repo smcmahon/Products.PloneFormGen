@@ -1317,14 +1317,17 @@ class FGCaptchaField(FGStringField):
     meta_type = 'FormCaptchaField'
     content_icon = 'CaptchaField.gif'
     
-    schema = BaseFieldSchemaStringDefault.copy() + Schema((
-        maxlengthField,
-        sizeField
-    ))
+    schema = BaseFieldSchemaStringDefault.copy()
     
     # some attributes that don't make sense for a CAPTCHA field
     del schema['required']
     del schema['hidden']
+    noview = {'view': 'invisible', 'edit': 'invisible'}
+    schema['fgDefault'].widget.visible = noview
+    schema['fgTDefault'].widget.visible = noview
+    schema['fgTValidator'].widget.visible = noview
+    schema['serverSide'].widget.visible = noview    
+    
 
     def __init__(self, oid, **kwargs):
         """ initialize class """
