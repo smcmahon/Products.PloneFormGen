@@ -12,7 +12,7 @@ Archetypes content type that implements one of:
 
   * Products.PloneFormGen.interfaces.actionAdapter.IPloneFormGenActionAdapter
   
-  * Products.PloneFormGen.interfaces.fieldset.IPloneFormGenFieldset
+  * Products.PloneFormGen.interfaces.field.IPloneFormGenField
   
   * Products.PloneFormGen.interfaces.thanksPage.IPloneFormGenThanksPage
 
