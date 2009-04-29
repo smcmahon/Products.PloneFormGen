@@ -1,12 +1,11 @@
-# Translation of ploneformgen.pot to French
-# Sebastien Douche <sdouche@gmail.com>, 2006.
+# Translation of ploneformgen.pot to German
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
 "POT-Creation-Date: 2006-09-13 19:00+0000\n"
-"PO-Revision-Date: 2008-11-25 11:43+0100\n"
-"Last-Translator: Christian Schneider <christian.schneider@4teamwork.ch>\n"
-"Language-Team: French Translation Team <plone-i18n@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2009-04-29 14:44+0200\n"
+"Last-Translator: Sven Deichmann <deichmann@werkbank.com>\n"
+"Language-Team: German Translation Team <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -107,7 +106,7 @@ msgstr "Wert des Feldes, wenn das Formular erstmals angezeigt wird. Einen Wert p
 #. String Field
 #. Default: "The maximum number of characters the user will be able to input."
 msgid "help_fgmaxlength_text"
-msgstr "Maximale Anzahl Zeichen, die der Benutzer hinzufügen können wird."
+msgstr "Maximale Anzahl Zeichen, die der Benutzer eingeben kann."
 
 # Rich Text Field
 # description="""Input tests using HTMLTidy (if installed).""",
@@ -117,12 +116,12 @@ msgstr "Eingabeüberprüfung durch HTMLTidy (falls installiert)."
 #. String Field
 #. Default: "The size of the text-entry box, in characters."
 msgid "help_fgsize_text"
-msgstr "Grösse der Texteingabefläche, in Zeichen."
+msgstr "Länge des Texteingabefeldes in Zeichen."
 
 #. String Field
 #. Default: "Tests input against simple string patterns."
 msgid "help_fgstringvalidator_text"
-msgstr "Prüft die Eingaben durch einfache Zeichenketten-Patterns."
+msgstr "Prüft die Eingaben durch einfache Zeichenketten-Muster."
 
 #. String Field
 #. Default: A TALES expression that will be evaluated when the form is displayed
@@ -185,7 +184,7 @@ msgstr "Ein TALES-Ausdruck, der berechnet wird, wenn das Formular angezeigt wird
 #. Default: Note that this may be overriden dynamically.
 #. Default: [Note, you may optionally use a "value|label" format.]
 msgid "help_fgvocabulary_text"
-msgstr "Nutzen Sie eine Zeile pro Option. Bemerkung: Diese kann dynamisch überschrieben werden. [Bemerkung: Sie können das Format \"Wert|Bezeichnung\"]."
+msgstr "Nutzen Sie eine Zeile pro Option. Bemerkung: Diese kann dynamisch überschrieben werden. [Bemerkung: Sie können das Format \"Wert|Bezeichnung\" verwenden.]"
 
 #. File Field
 #. Default: "Set to 0 for no limit."
@@ -458,7 +457,7 @@ msgstr "Zeit-Auswahl-Optionen anzeigen"
 #. String Field
 #. Default: "Size"
 msgid "label_fgsize_text"
-msgstr "Grösse"
+msgstr "Größe"
 
 #. String Field
 #. Default: "Validator"
@@ -690,7 +689,7 @@ msgstr "Mit Komma getrennte Werte"
 
 # default="Flexible (radio for short, select for longer)"
 msgid "vocabulary_flex_text"
-msgstr "Flexibel (Redioboutton wenn kurz, Auswahlliste wenn lang)"
+msgstr "Flexibel (Radiobutton wenn kurz, Auswahlliste wenn lang)"
 
 # default="Is checked"
 msgid "vocabulary_ischecked_text"
@@ -1092,7 +1091,7 @@ msgstr "Auswahl-Feld"
 #. Default: " Selection Field (radio buttons or select) "
 #: content/fields.py
 msgid " Selection Field (radio buttons or select) "
-msgstr "Auswahl-Feld (radio-buttons oder Liste."
+msgstr "Auswahl-Feld (Radiobuttons oder Liste)"
 
 #. Default: "A selection field"
 #: content/fields.py
@@ -1170,7 +1169,7 @@ msgstr "Template"
 #. Default: "headers"
 #: content/formMailerAdapter.py
 msgid "headers"
-msgstr "Headers"
+msgstr "Kopfzeilen"
 
 #. Default: "encryption"
 #: content/formMailerAdapter.py
