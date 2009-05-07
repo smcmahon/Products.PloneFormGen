@@ -6,6 +6,12 @@ __docformat__ = 'plaintext'
 from AccessControl import ClassSecurityInfo
 
 from BTrees.IOBTree import IOBTree
+from zope.annotation.interfaces import IAnnotations
+
+from BTrees.OOBTree import OOBTree
+from DateTime import DateTime
+
+from Products.statusmessages.interfaces import IStatusMessage
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View, ModifyPortalContent
@@ -22,6 +28,7 @@ from Products.PloneFormGen.content.actionAdapter import \
     FormActionAdapter, FormAdapterSchema
 
 import logging
+import random
 
 from DateTime import DateTime
 import csv
@@ -121,6 +128,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security       = ClassSecurityInfo()
 
+    key = "attachments"
 
     def _migrateStorage(self):
         # we're going to use an IOBTree for storage. we need to
@@ -144,7 +152,6 @@ class FormSaveDataAdapter(FormActionAdapter):
         """ returns saved input as an iterable;
             each row is a sequence of fields.
         """
-
         if base_hasattr(self, '_inputStorage'):
             return self._inputStorage.values()
         else:
@@ -195,6 +202,12 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         self._inputStorage.clear()
         self._inputItems = 0
+        
+        annotations = IAnnotations(self)
+        if self.key in annotations:
+            annotations[self.key].clear()
+             
+       
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputById')
@@ -228,6 +241,11 @@ class FormSaveDataAdapter(FormActionAdapter):
             self._inputStorage[i-1] = self._inputStorage[i]
         del self._inputStorage[self._inputItems-1]
         self._inputItems -= 1
+
+        # XXX: We need to delete only the matching file in the tree
+        #annotations = IAnnotations(self)
+        #if self.key in annotations:
+        #    annotations[self.key].clear()
         
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
@@ -246,6 +264,8 @@ class FormSaveDataAdapter(FormActionAdapter):
         
         self._addDataRow(value)
 
+    
+    # XXX TODO : Link and right to access the files
     
     def onSuccess(self, fields, REQUEST=None, loopstop=False):
         """
@@ -271,6 +291,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         from ZPublisher.HTTPRequest import FileUpload
 
         data = []
+        
         for f in fields:
             if f.isFileField():
                 file = REQUEST.form.get('%s_file' % f.fgField.getName())
@@ -279,12 +300,20 @@ class FormSaveDataAdapter(FormActionAdapter):
                     fdata = file.read()
                     filename = file.filename
                     mimetype, enc = guess_content_type(filename, fdata, None)
-                    if mimetype.find('text/') >= 0:
-                        # convert to native eols
-                        fdata = fdata.replace('\x0d\x0a', '\n').replace('\x0a', '\n').replace('\x0d', '\n')
-                        data.append( '%s:%s:%s:%s' %  (filename, mimetype, enc, fdata) )
-                    else:
-                        data.append( '%s:%s:%s:Binary upload discarded' %  (filename, mimetype, enc) )
+                    annotations = IAnnotations(self)
+                    if not self.key in annotations:
+                        annotations[self.key] = OOBTree()
+                    annot = annotations[self.key]
+                    file_id = '%s%d' % (DateTime().strftime('%Y%m%d%M%s'),
+                                         random.randint(100000,999999))
+                    annot[file_id] = (filename, mimetype, fdata)
+                    data.append('attachment::%s::%s' % (filename, file_id))
+                    #if mimetype.find('text/') >= 0:
+                    #    # convert to native eols
+                    #    fdata = fdata.replace('\x0d\x0a', '\n').replace('\x0a', '\n').replace('\x0d', '\n')
+                    #    data.append( '%s:%s:%s:%s' %  (filename, mimetype, enc, fdata) )
+                    #else:
+                    #    data.append( '%s:%s:%s:Binary upload discarded' %  (filename, mimetype, enc) )
                 else:
                     data.append( 'NO UPLOAD' )
             elif not f.isLabel():
@@ -304,6 +333,47 @@ class FormSaveDataAdapter(FormActionAdapter):
 
 
         self._addDataRow( data )
+
+
+    def isAttachment(self, value):
+        """ """
+        if not isinstance(value, str):
+            return False
+        if value[:12] != 'attachment::':
+            return False
+        slices = value.split('::')
+        if len(slices) != 3:
+            return False
+        return True
+
+
+    def formatAttachment(self, value):
+        """ """
+        slices = value.split('::')
+        info = dict(filename = slices[1],
+                    url = "%s/getAttachment?fid=%s" % (self.absolute_url(), slices[2]),
+                )
+        return info
+     
+    
+    def getAttachment(self):
+        """ """
+        try:
+            # We get the file_id from the request
+            file_id = self.REQUEST['fid']
+            # Then we get the datas from the annotations
+            annotations = IAnnotations(self)
+            storage = annotations[self.key]
+            filename, mimetype, fdata = storage[file_id]
+            # We build the request
+            header_value = contentDispositionHeader('attachment', self.getCharset(), filename=filename)
+            self.REQUEST.response.setHeader("Content-Disposition", header_value)
+            self.REQUEST.response.setHeader("Content-Type", '%s;charset=%s' % (mimetype, self.getCharset()))
+            return fdata
+        except KeyError:
+            IStatusMessage(self.REQUEST).addStatusMessage('File not found. Please contact your administrator', type='error')
+            return self.REQUEST.response.redirect(self.absolute_url())  
+        
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnNames')

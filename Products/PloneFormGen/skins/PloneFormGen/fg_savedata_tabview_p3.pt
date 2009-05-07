@@ -47,7 +47,17 @@
                 <tbody>
                     <tr tal:repeat="row batch">
                         <td style="text-align: center"  tal:content="repeat/row/number" />
-                        <td tal:repeat="cell row" tal:content="cell">cell</td>
+                        <tal:loop repeat="cell row">
+                            <td tal:condition="python:not context.isAttachment(cell)"
+                                tal:content="cell"/>
+                            <td tal:condition="python:context.isAttachment(cell)">
+                                <a href="#" tal:define="info python:context.formatAttachment(cell)"
+                                   tal:attributes="href info/url"
+                                   tal:content="info/filename">
+                                   Attachment
+                                </a>
+                            </td>
+                        </tal:loop>
                         <td tal:condition="canEdit" style="text-align: center">
                             <a tal:attributes="href string:${context/absolute_url}/fg_savedata_editview?id:int=${repeat/row/number}">
                                 <img src="edit.gif" />
