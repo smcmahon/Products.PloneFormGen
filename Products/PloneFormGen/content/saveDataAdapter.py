@@ -207,6 +207,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         if self.key in annotations:
             annotations[self.key].clear()
              
+        return self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
        
 
 
@@ -237,16 +238,21 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         self._migrateStorage()
 
+        # We delete the file if we have to
+        for field in self._inputStorage[id-1]:
+            if self.isAttachment(field):
+                try:
+                    file_id = field.split('::')[2]
+                    storage = IAnnotations(self)[self.key]
+                    del storage[file_id]
+                except KeyError:
+                    continue
+
         for i in range(id, self._inputItems):
             self._inputStorage[i-1] = self._inputStorage[i]
         del self._inputStorage[self._inputItems-1]
         self._inputItems -= 1
 
-        # XXX: We need to delete only the matching file in the tree
-        #annotations = IAnnotations(self)
-        #if self.key in annotations:
-        #    annotations[self.key].clear()
-        
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
 

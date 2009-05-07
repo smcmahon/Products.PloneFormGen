@@ -213,7 +213,7 @@ setDefaultRoles(USE_ENCRYPTION_PERMISSION, ('Manager',))
 
 ## Permission to download saved data
 DOWNLOAD_SAVED_PERMISSION = 'PloneFormGen: Download Saved Input'
-setDefaultRoles(DOWNLOAD_SAVED_PERMISSION, ('Manager', 'Owner',))
+setDefaultRoles(DOWNLOAD_SAVED_PERMISSION, ('Manager', 'Owner', 'Reader'))
 
 ## Our list of permissions
 pfgPermitList = [

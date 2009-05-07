@@ -14,6 +14,10 @@
                        b_start python:0;
                        b_start request/b_start | b_start;">
 
+        <tal:block condition="exists: request/clearSavedFormInput">
+          <span tal:define="dummy here/clearSavedFormInput" />
+        </tal:block>
+
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         
         <h1 tal:content="object_title" class="documentFirstHeading">
@@ -72,6 +76,16 @@
             </tal:block>
       
         </tal:block>
+
+        <form action="#"
+         method="post"
+         tal:condition="canEdit"
+         tal:attributes="action here/absolute_url"
+         style="padding-top:2em">
+          <input type="submit" name="clearSavedFormInput" value="Clear Saved Input"  class="standalone"
+            i18n:attributes="value clear-save-input" i18n:domain="ploneformgen"
+            />
+        </form>
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 

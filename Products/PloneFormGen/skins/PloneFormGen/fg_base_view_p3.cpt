@@ -197,6 +197,14 @@
             </tbody>
         </table>
 
+	<fieldset tal:define="result here/getSaveDataAdapterURL"
+	     tal:condition="result">
+	  <legend i18n:translate="form_viewresults">Results</legend>
+	  <a href="#" tal:repeat="item result"
+	     tal:attributes="href item/getURL"
+	     tal:content="item/Title"/>
+	</fieldset>
+      
         <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
 
       </metal:main>

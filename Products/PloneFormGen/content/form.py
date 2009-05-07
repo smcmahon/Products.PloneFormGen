@@ -998,6 +998,17 @@ class FormFolder(ATFolder):
         return "<done />"
 
 
+    def getSaveDataAdapterURL(self):
+        """ """
+        brains = self.portal_catalog(portal_type="FormSaveDataAdapter",
+                                     path = '/'.join(self.getPhysicalPath()))
+        if not len(brains):
+            return False
+        return brains
+        
+
+
+
 #    security.declareProtected(ModifyPortalContent, 'myi18n')
 #    def myi18n(self):
 #        """ return i18n declarations from widgets """
