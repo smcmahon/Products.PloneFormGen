@@ -4,6 +4,9 @@ Change History
 1.5rc1
 ------
 
+ - Added warning on startup if PFGCaptchaField is still installed.
+   (David Glick)
+
  - The captcha field edit should not show default, length ...
    fields that are not relevant. (Steve)
 

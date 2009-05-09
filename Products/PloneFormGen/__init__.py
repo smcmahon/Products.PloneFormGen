@@ -102,9 +102,14 @@ if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
 
 # alias for legacy instances of PFGCaptchaField from when it was
 # a separate product
-import Products.PloneFormGen.content.fields
-import Products.PloneFormGen.validators.CaptchaValidator
-Products.PFGCaptchaField = sys.modules['Products.PFGCaptchaField'] = sys.modules['Products.PloneFormGen']
-Products.PFGCaptchaField.field = sys.modules['Products.PFGCaptchaField.field'] = sys.modules['Products.PloneFormGen.content.fields']
-Products.PFGCaptchaField.widget = sys.modules['Products.PFGCaptchaField.widget'] = sys.modules['Products.PloneFormGen.widgets.captcha']
-Products.PFGCaptchaField.validator = sys.modules['Products.PFGCaptchaField.validator'] = sys.modules['Products.PloneFormGen.validators.CaptchaValidator']
+try:
+    import Products.PFGCaptchaField
+except ImportError:
+    import Products.PloneFormGen.content.fields
+    import Products.PloneFormGen.validators.CaptchaValidator
+    Products.PFGCaptchaField = sys.modules['Products.PFGCaptchaField'] = sys.modules['Products.PloneFormGen']
+    Products.PFGCaptchaField.field = sys.modules['Products.PFGCaptchaField.field'] = sys.modules['Products.PloneFormGen.content.fields']
+    Products.PFGCaptchaField.widget = sys.modules['Products.PFGCaptchaField.widget'] = sys.modules['Products.PloneFormGen.widgets.captcha']
+    Products.PFGCaptchaField.validator = sys.modules['Products.PFGCaptchaField.validator'] = sys.modules['Products.PloneFormGen.validators.CaptchaValidator']
+else:
+    raise "Product Conflict: The functionality of PFGCaptchaField is now included within PloneFormGen.  You must remove the PFGCaptchaField product from your filesystem.  Once you do that, Zope will start and existing captcha fields will continue to work."
