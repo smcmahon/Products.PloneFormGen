@@ -1,3 +1,5 @@
+
+
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
@@ -8,9 +10,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Japanese\n"
-"X-Poedit-Country: JAPAN\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: ja\n"
+"Language-Name: Japanese\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: ploneformgen\n"
 
 #. Default: "${items} inputs saved"
 #: skins/PloneFormGen/fg_savedata_view.pt
@@ -25,7 +29,7 @@ msgstr "入力を保存する"
 #. Form Folder
 #. Default: "Submit Button Label"
 msgid "label_submitlabel_text"
-msgstr "提出"
+msgstr "提出ボタンに表示される名称"
 
 #. Form Folder
 #. Default: "Show Reset Button"
@@ -33,7 +37,10 @@ msgid "label_showcancel_text"
 msgstr "リセットボタンを表示"
 
 #. Form Folder
-#. Default: "Reset Button Label",
+#. Default: "Reset Button Label"
+msgid "label_reset_button"
+msgstr "リセットボタンに表示される名称"
+
 #. Form Folder
 #. Initial value for Submit Button Label
 #. Default: "Submit"
@@ -64,7 +71,7 @@ msgstr ""
 #. Form Folder
 #. Default: "Form Prologue"
 msgid "label_prologue_text"
-msgstr "前書きフォーム"
+msgstr "前書きのフォーム"
 
 #. Form Folder
 #. Default: "This text will be displayed above the form fields."
@@ -556,7 +563,7 @@ msgstr ""
 #. Mailer Adapter
 #. Default: "Subject"
 msgid "label_formmailer_subject"
-msgstr "用件"
+msgstr "用件タイトル"
 
 #. Mailer Adapter
 #. Default: "
@@ -678,6 +685,7 @@ msgstr ""
 
 #####
 # Mailer adapter overrides schema
+
 # "Subject Expression"
 msgid "label_subject_override_text"
 msgstr "用件の表示方法"
@@ -814,18 +822,19 @@ msgstr "このテキストは、選択されたフィールドの入力に後に
 #. Thanks Page
 #. Default: "No Submit Message"
 msgid "label_nosubmit_text"
-msgstr "提出時のメッセージを出さない"
+msgstr "提出できなかった時のメッセージ"
 
+#. Thanks Page
 # description = """
 # The text to display if the browser reaches this
 # thanks page without submitting a form. Typically, this
 # would direct the reader to the form.
 # """
-#. Thanks Page
 msgid "help_nosubmit_text"
 msgstr ""
 
 # *** Vocabularies
+
 #. Default: "None"
 msgid "vocabulary_none_text"
 msgstr "該当しない"
@@ -833,6 +842,10 @@ msgstr "該当しない"
 #. Default: "Is an E-Mail Address"
 msgid "vocabulary_isemailaddress_text"
 msgstr "メールアドレス"
+
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+msgid "vocabulary_isemailaddresslist_text"
+msgstr ""
 
 #. Default: "Contains only printable characters"
 msgid "vocabulary_onlyprintable_text"
@@ -853,6 +866,10 @@ msgstr "有効な国際電話番号"
 #. Default: "Is a valid zip code"
 msgid "vocabulary_iszipcode_text"
 msgstr "有効なzipコード"
+
+#. Default: "Does not contain link spam"
+msgid "vocabulary_isnotlinkspam_text"
+msgstr ""
 
 #. Default: "Is checked"
 msgid "vocabulary_ischecked_text"
@@ -911,6 +928,7 @@ msgstr "フォームに表示するテキスト"
 
 #########
 # Custom Script Adapter
+
 # 'Proxy role',
 msgid "label_script_proxy"
 msgstr ""
@@ -919,11 +937,19 @@ msgstr ""
 msgid "help_script_proxy"
 msgstr ""
 
+# 'Script body'
+msgid "label_script_body"
+msgstr ""
+
+# """ Write your script here. """
+msgid  "help_script_body"
+msgstr ""
+
 ##########
 # validationMessages hack to clean up Archetypes validation messages
 #. Default: "This field requires a decimal value."
 msgid "pfg_isDecimal"
-msgstr ""
+msgstr "このフィールドは、小数点を含む数字が必要です"
 
 #. Default: "This field requires an integer value."
 msgid "pfg_isInt"
@@ -949,34 +975,46 @@ msgstr "この入力は有効な国際電話番号ではありません"
 msgid "pfg_isZipCode"
 msgstr ""
 
+#. Default: "This text appears to contain links."
+msgid "pfg_isnotlinkspam"
+msgstr ""
+
 #. Default: "This is not a valid url."
 msgid "pfg_isURL"
-msgstr ""
+msgstr "これは、正しいURLの記述方法に則していません"
 
 #. Default: "This is not a valid email address."
 msgid "pfg_isEmail"
+msgstr "これは、正しいメールアドレスの記述方法に則していません"
+
+#. Default: "This is not a valid list of email addresses (separated by commas)."
+msgid "pfg_isEmailAddressList"
 msgstr ""
 
 #. Default: "This is not a valid mailto: url."
 msgid "pfg_isMailto"
-msgstr ""
+msgstr "これは、正しいmailto:の記述に則していません"
+
+#. Default: "This name is not a valid identifier"
+msgid "pfg_isUnixLikeName"
+msgstr "これは、有効なidentifierではありません"
 
 #. Default: "This box must be checked."
 msgid "pfg_isChecked"
-msgstr ""
+msgstr "このボックスをチェックする"
 
 #. Default: "This box must be unchecked."
 msgid "pfg_isUnchecked"
-msgstr ""
+msgstr "このボックスのチェックを外す"
 
 #. Default: "This field is required."
 msgid "pfg_isRequired"
-msgstr ""
+msgstr "この欄への入力が必要"
 
 #. Default: "Clear Saved Input"
 #: PloneFormGen\skins\PloneFormGen\fg_savedata_view.pt
 msgid "Clear Saved Input"
-msgstr ""
+msgstr "保存された内容をクリアする"
 
 #. Default: "Set defaults for addressing fields for new mail-action adapters. Please note that your input here is not verified. So, make sure you use valid addresses."
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
@@ -1085,32 +1123,33 @@ msgid "pfg_too_long"
 msgstr "入力が長過ぎます ${max}文字以下である必要があります。"
 
 # permission names -- used in configlet
+
 msgid "Add Content"
-msgstr "コンテントを追加"
+msgstr "コンテントを追加する"
 
 msgid "Add Mailers"
-msgstr "メーラを追加"
+msgstr "メーラを追加する"
 
 msgid "Add Data Savers"
-msgstr "データ保存を追加"
+msgstr "データ保存を追加する"
 
 msgid "Add Custom Scripts"
-msgstr "カスタムスクリプトを追加"
+msgstr "カスタムスクリプトを追加する"
 
 msgid "Edit TALES Field"
-msgstr "タブフィールドを編集"
+msgstr "タブフィールドを編集する"
 
 msgid "Edit Python Fields"
-msgstr "Pythonフィールドを編集"
+msgstr "Pythonフィールドを編集する"
 
 msgid "Edit Advanced Fields"
-msgstr "アドバンスフィールドを編集"
+msgstr "アドバンスフィールドを編集する"
 
 msgid "Edit Mail Addresses"
 msgstr "メールアドレスを編集する"
 
 msgid "Edit Encryption Specs"
-msgstr ""
+msgstr "暗号化の方式を編集する"
 
 msgid "Download Saved Input"
 msgstr "入力の保存内容をダウンロードする"
@@ -1192,3 +1231,53 @@ msgstr "質問リスト"
 msgid "pfg_allRequired"
 msgstr "質問に対する回答が必要です"
 
+#. Mailer
+#. Default "Include All Fields"
+msgid "label_mailallfields_text"
+msgstr "すべてのフィールドを含む"
+
+#. Mailer
+#. Default Check this to include input for all fields
+#. Default (except label and file fields). If you check
+#. Default this, the choices in the pick box below
+#. Default will be ignored.
+msgid "help_mailallfields_text"
+msgstr ""
+
+#. Mailer
+#. Default "Show Responses"
+msgid "label_mailfields_text"
+msgstr "レスポンスを表示"
+
+#. Mailer
+#. Default Pick the fields whose inputs you'd like to include in
+#. Default the e-mail.
+msgid "help_mailfields_text"
+msgstr "e-mail"
+
+#. Mailer
+#. Default "Include Empties"
+msgid "label_mailEmpties_text"
+msgstr "入力を含む"
+
+#. Mailer
+#. Default Check this to include titles
+#. Default for fields that received no input. Uncheck
+#. Default to leave fields with no input out of the e-mail.
+msgid "help_mailEmpties_text"
+msgstr ""
+
+#. Mailer
+#. Default BCC Recipients
+#msgid "label_formmailer_bcc_recipients"
+#msgstr "BCC 受信者"
+
+#.Mailer
+#. PloneFormGen\contents\fieldsBase.py
+#. Default "A TALES expression that will be evaluated when the form is displayed. to determine whether or not the field is enabled. Your expression should evaluate as True if the field should be included in the form, False if it should be omitted. Leave this expression field empty if unneeded: the field will be included. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
+#msgid "help_fgtenable_text"
+#msgstr ""
+
+#.Default = 'E-mail addresses which receive a blind carbon copy.'
+#msgid "help_formmailer_bcc_recipients"
+#msgstr "BCC 受信者のメールアドレス"
