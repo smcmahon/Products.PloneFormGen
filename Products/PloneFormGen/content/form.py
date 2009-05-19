@@ -797,9 +797,12 @@ class FormFolder(ATFolder):
         self.setResetLabel(zope.i18n.translate(_(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
 
         oids = self.objectIds()
+        
+        # if we have *any* content already, we don't need
+        # the sample content
+        if not oids:
 
-        haveMailer = False
-        if 'mailer' not in oids:
+            haveMailer = False
             # create a mail action
             try:
                 self.invokeFactory('FormMailerAdapter','mailer')
@@ -815,7 +818,6 @@ class FormFolder(ATFolder):
             except Unauthorized:
                 logger.warn('User not authorized to create mail adapters. Form Folder created with no action adapter.')
 
-        if 'replyto' not in oids:
             # create a replyto field
             self.invokeFactory('FormStringField','replyto')
             obj = self['replyto']
@@ -833,7 +835,6 @@ class FormFolder(ATFolder):
             if haveMailer:
                 mailer.replyto_field = 'replyto'
 
-        if 'topic' not in oids:
             # create a subject field
             self.invokeFactory('FormStringField','topic')
             obj = self['topic']
@@ -848,7 +849,6 @@ class FormFolder(ATFolder):
             if haveMailer:
                 mailer.subject_field = 'topic'
 
-        if 'comments' not in oids:
             # create a comments field
             self.invokeFactory('FormTextField','comments')
             obj = self['comments']
@@ -861,7 +861,6 @@ class FormFolder(ATFolder):
             self._pfFixup(obj)
 
 
-        if 'thank-you' not in oids:
             # create a thanks page
             self.invokeFactory('FormThanksPage','thank-you')
             obj = self['thank-you']

@@ -4,6 +4,9 @@ Change History
 1.5rc1
 ------
 
+ - Prevent creation of sample content when forms are imported from
+   .zexp or schemas are recreated. (Fixes #218; Thanks Marie Robichon)
+
  - Added warning on startup if PFGCaptchaField is still installed.
    (David Glick)
 
