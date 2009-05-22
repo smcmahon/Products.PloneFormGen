@@ -4,6 +4,10 @@ Change History
 1.5rc1
 ------
 
+ - Prevent the automatic action adapter activation handler from
+   duplicating an adapter that is already activated. (Fixes #247)
+   (David Glick)
+
  - Prevent creation of sample content when forms are imported from
    .zexp or schemas are recreated. (Fixes #218; Thanks Marie Robichon)
 
