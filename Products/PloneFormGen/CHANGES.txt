@@ -4,6 +4,9 @@ Change History
 1.5rc1
 ------
 
+ - Add "action" to form tags for quick editor to be more XHTML compliant.
+   (Thanks: jonstahl, #248)
+
  - Fix bad numbering of savedata_tabview 
    (gotcha)
 

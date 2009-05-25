@@ -132,7 +132,7 @@
                 <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
                     <td tal:content="python:row[1]" />
                     <td class="editHook">
-                      <form>
+                      <form action="#">
                           <input type="checkbox" value="1"
                               tal:attributes="checked python:test(row[0] in liveAdapters,'checked',None);
                               id python:'cbaction-%s' % row[0];
@@ -172,7 +172,7 @@
                 <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
                     <td tal:content="python:row[1]" />
                     <td class="editHook">
-                      <form>
+                      <form action="#">
                           <input type="radio" name="thanksRadio"
                               tal:attributes="value python:row[0];
                                 checked python:test(row[0] == liveThanks, 'checked', None)" />
