@@ -4,6 +4,9 @@ Change History
 1.5rc1
 ------
 
+ - Fix bad numbering of savedata_tabview 
+   (gotcha)
+
  - Prevent the automatic action adapter activation handler from
    duplicating an adapter that is already activated. (Fixes #247)
    (David Glick)
