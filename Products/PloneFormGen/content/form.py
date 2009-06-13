@@ -513,7 +513,8 @@ class FormFolder(ATFolder):
                    REQUEST=None,
                    errors=None,
                    data=None,
-                   metadata=None):
+                   metadata=None,
+                   skip_action_adapters=False):
         """Validates the field data from the request.
         """
 
@@ -586,6 +587,15 @@ class FormFolder(ATFolder):
                 cerr = obj.getFgTValidator(expression_context=context)
                 if cerr:
                     errors[field.getName()] = cerr
+
+        if not skip_action_adapters:
+            return self.fgProcessActionAdapters(errors, fields, REQUEST)
+
+        return errors
+
+    def fgProcessActionAdapters(self, errors, fields=None, REQUEST=None):
+        if fields is None:
+            fields = [fo for fo in self._getFieldObjects() if not IField.isImplementedBy(fo)]
 
         if not errors:
             if self.getRawAfterValidationOverride():
