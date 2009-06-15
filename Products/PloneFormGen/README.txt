@@ -106,7 +106,7 @@ in mind that this is a potential security risk; it basically gives the
 same powers as scripting or skin editing.
 
 Javascript/CSS Support for Some Fields
-==================================
+======================================
 
 Some fields, like the rich text editor and the calendar widget on the 
 date/time field require JS or CSS support that often is not loaded
