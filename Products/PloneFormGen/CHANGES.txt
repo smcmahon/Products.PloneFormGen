@@ -4,6 +4,11 @@ Change History
 1.5rc2
 ------
 
+ - Pruned tests directory from the Python Package. Installation had been failing
+   on some Windows machines while copying the deeply nested tests. We're guessing
+   that path length restrictions were exceeded. Those needing to run the tests
+   should check out PFG from svn. (Steve)
+
  - Factored action adapter processing out of the fgvalidate method of the form
    folder, and added a 'skip_action_adapters' parameter to fgvalidate (default:
    False), so it's possible to validate without calling the action adapters, or
