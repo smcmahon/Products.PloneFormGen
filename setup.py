@@ -30,6 +30,8 @@ setup(name='Products.PloneFormGen',
           'Products.TALESField',
           'Products.TemplateFields',
           'Products.PythonField',
+          'simplejson',
+          'zope.httpform'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
