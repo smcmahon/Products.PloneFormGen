@@ -115,6 +115,7 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <include package=".portlets"/>
   <include package=".browser"/>
 
   <subscriber handler=".events.form_adapter_pasted" />  

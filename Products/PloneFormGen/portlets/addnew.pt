@@ -1,0 +1,47 @@
+<dl class="portlet portletCollection"
+    i18n:domain="plone">
+
+    <dt class="portletHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/data/title" />
+        <span class="portletTopRight"></span>
+    </dt>
+    
+    <dd class="portletItem">
+      <ul id="allowedTypes">
+        <tal:objects tal:repeat="obj view/addable_types">
+          <li tal:define="oddrow repeat/obj/odd"
+              tal:attributes="class python:oddrow and 'addableItem even' or 'addableItem odd';
+                              id string:addableItem-${obj/id}">
+            <a href="#"
+               class="tile"
+               tal:attributes="href obj/action;
+                               title obj/description">
+                <img width="16"
+                     height="16"
+                     alt=""
+                     tal:condition="obj/icon"
+                     tal:attributes="src obj/icon"
+                     i18n:attributes="alt;"/>
+                <span tal:content="structure obj/title">
+                     Title
+                </span>
+            </a>
+          </li>
+        </tal:objects>
+      </ul>
+    </dd>
+    
+    <dd class="portletFooter" >
+        <span class="portletBottomLeft"></span>
+        <span>
+          <a tal:attributes="href string:${view/addContext/absolute_url}/folder_factories" 
+             tal:condition="view/show_more"
+             i18n:translate="more_url">
+               More&hellip;
+          </a>
+        </span>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<portlets>
+
+<!-- Portlet registration -->
+<portlet
+      addview="Products.PloneFormGen.addnewPortlet"
+      title="Add new objects portlet"
+      description="A portlet that list all available add types"
+      />
+
+<!-- Assign the custom portlets -->
+<assignment
+     manager="plone.leftcolumn"
+     category="context"
+     key="/"
+     type="Products.PloneFormGen.addnewPortlet"
+     name="addnewPortlet"
+     /> 
+
+</portlets>
