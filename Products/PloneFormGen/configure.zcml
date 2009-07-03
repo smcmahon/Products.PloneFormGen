@@ -115,6 +115,7 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <include package=".adapters"/>
   <include package=".portlets"/>
   <include package=".browser"/>
 

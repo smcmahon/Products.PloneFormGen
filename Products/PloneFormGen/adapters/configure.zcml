@@ -1,0 +1,6 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="ploneformgen">
+  
+   <adapter factory=".fieldfactory.FieldFactory"/> 
+  
+</configure>

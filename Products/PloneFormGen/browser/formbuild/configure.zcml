@@ -1,0 +1,27 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="ploneformgen">
+  
+  <browser:page
+      for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+      name="formbuild"
+      class=".formbuild.FormBuildView"
+      permission="cmf.ModifyPortalContent"
+      />
+  
+  <browser:page
+      for="Products.PloneFormGen.interfaces.IPloneFormGenField"
+      name="fieldrenderer"
+      class=".fieldrenderer.FieldRenderer"
+      permission="zope2.View"
+      />
+  
+  <browser:page
+      for="Products.PloneFormGen.interfaces.IPloneFormGenField"
+      name="edit_embedded"
+      class=".edit_embedded.EditEmbedded"
+      permission="cmf.ModifyPortalContent"
+      />
+  
+</configure>

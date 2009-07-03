@@ -33,11 +33,6 @@
       allowed_attributes="has_recaptcha"
       />
 
-  <browser:page
-      for="..interfaces.IPloneFormGenForm"
-      name="formbuild"
-      class=".formbuild.FormBuildView"
-      permission="cmf.ModifyPortalContent"
-      />
-  
+  <include package=".formbuild"/>
+
 </configure>

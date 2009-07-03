@@ -1,0 +1,16 @@
+<tal:edit_embedded define="plone_view context/@@plone;
+                           foo plone_view/globalize;
+                           errors python:{};
+                           form nocall: view/form;
+                           field nocall: view/context;
+                           fieldid field/getId;">
+	<div class="widget-control" 
+            tal:define="atfields python:[f for key in ['default','overrides'] for f in field.Schemata()[key].editableFields(field, visible_only=True)];"
+            tal:attributes="id string:widget-control-${fieldid}">
+		<hr style=""/>
+		<input type="hidden" id="fieldid" tal:attributes="value fieldid"/>
+		<tal:atfield repeat="field atfields">
+        	    <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode='edit', field=field)" />
+        </tal:atfield>	
+    </div>
+</tal:edit_embedded>

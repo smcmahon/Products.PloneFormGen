@@ -1,0 +1,40 @@
+<tal:block metal:define-macro="master"
+           define="plone_view here/@@plone;
+                   foo plone_view/globalize;
+                   errors view/errors;
+                   fieldsets python:['default'];
+                   default_fieldset string:default;
+                   fieldset default_fieldset;
+                   form python:view.form;
+                   field python:view.context;
+                   value view/value;
+                   mode view/mode;
+                   isATField python:view.isATField;
+                   context python:form;">
+    <tal:ATField condition = "isATField" define = "field python:field.fgField">
+        <tal:block tal:condition="python: field.widget.macro != 'widget_richlabel'">
+            <!-- View mode -->
+            <div tal:attributes="id string:archetypes-fieldname-${field/getName}" class="field"
+                 tal:condition="python: mode=='view'">
+                <label class="formQuestion"><span tal:content="python:getattr(form,field.getName()).Title()">Field</span>:</label>
+                <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode=mode, field=field)" />
+            </div>
+            <!-- Edit mode -->
+            <tal:editmode condition="python: mode=='edit'">
+                <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode=mode, field=field)" />
+            </tal:editmode>
+        </tal:block>
+        <div tal:condition="python:field.widget.macro=='widget_richlabel'"
+             tal:attributes="id string:archetypes-fieldname-${field/getName}"
+           class="field PFG-RichLabel"
+           tal:content="structure python:request.form.get(field.getName(), field.default)">
+            Rich Label
+        </div>
+    </tal:ATField>
+    
+    <!-- Non ATField come here -->
+    <tal:ModernField condition="python: not isATField">
+        <div> Not implement yet </div>
+    </tal:ModernField>
+    
+</tal:block>
