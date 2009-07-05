@@ -320,6 +320,13 @@ class FGFixedPointField(BaseFormField):
 registerATCT(FGFixedPointField, PROJECTNAME)
 
 
+class NRBooleanField(BooleanField):
+    """ A boolean field that doesn't enforce required """
+
+    def validate_required(self, instance, value, errors):
+        return None  
+
+
 class FGBooleanField(BaseFormField):
     """ Boolean (checkbox) field """
 
@@ -398,7 +405,7 @@ class FGBooleanField(BaseFormField):
         BaseFormField.__init__(self, oid, **kwargs)
 
         # set a preconfigured field as an instance attribute
-        self.fgField = BooleanField('fg_boolean_field',
+        self.fgField = NRBooleanField('fg_boolean_field',
             searchable=0,
             required=0,
             write_permission = View,

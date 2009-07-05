@@ -1,6 +1,13 @@
 Change History
 ==============
 
+1.5rc3
+------
+
+ - Boolean (checkbox) required field behavior was not as advertised. Probably due
+   to a change in archetypes at some point. Making a checkbox required will now do
+   nothing but show the required indicator. (Fixes #202, thanks Dylan Jay)
+
 1.5rc2
 ------
 
