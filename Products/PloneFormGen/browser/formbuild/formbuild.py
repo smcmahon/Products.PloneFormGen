@@ -130,6 +130,14 @@ class FormBuildView(BrowserView):
                            })
             return
 
+    def doReload(self,):
+        """Action = reload a field's html
+        """
+        fieldid = self.postdata.get('fieldid', '')
+        errors = self.postdata.get('errors', '')
+        
+        self.setResponse()
+
     def __call__(self):
         actions = {
                     'add'   : self.doAdd,

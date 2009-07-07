@@ -1,0 +1,39 @@
+<tal:edit_embedded define="plone_view context/@@plone;
+                           foo plone_view/globalize;
+                           form nocall: view/form;
+                           field nocall: view/field;
+                           fieldId view/fieldId;
+                           portal_type field/portal_type;
+                           errors nocall: view/errors;
+                           atview field/@@at_base_edit_view;
+                           allow_tabbing python: not atview.isMultiPageSchema();
+                           schematas field/Schemata;
+                           fieldsets python:[key for key in schematas.keys() if (schematas[key].editableFields(field, visible_only=True))];">
+
+  <form name="edit_form"
+        method="post"
+        enctype="multipart/form-data"
+        class="enableUnloadProtection enableAutoFocus atBaseEditForm"
+        action=""
+        id=""
+        tal:attributes="action python:here.absolute_url()+'/'+template.id;
+                        id string:${portal_type}-base-edit;
+                        class python: allow_tabbing and 'enableUnloadProtection enableAutoFocus enableFormTabbing atBaseEditForm' or 'enableUnloadProtection enableAutoFocus atBaseEditForm';">
+      <tal:tabbed tal:condition="allow_tabbing">
+        <tal:fieldsets define="sole_fieldset python:len(fieldsets)==1"
+          repeat="fieldset fieldsets">
+          <fieldset tal:define="fieldsetid python:putils.normalizeString(fieldset)"
+                  tal:attributes="id string:fieldset-${fieldsetid}"
+                  tal:omit-tag="sole_fieldset">
+            <legend id=""
+                    tal:content="python: atview.getTranslatedSchemaLabel(fieldset)"
+                    tal:attributes="id string:fieldsetlegend-${fieldsetid}"
+                    tal:condition="not:sole_fieldset" />
+            <tal:fields repeat="field python:schematas[fieldset].editableFields(field, visible_only=True)">
+              <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode='edit', field=field)" />
+            </tal:fields>
+          </fieldset>
+        </tal:fieldsets>
+      </tal:tabbed>
+  </form>  
+</tal:edit_embedded>

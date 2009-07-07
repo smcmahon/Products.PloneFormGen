@@ -19,8 +19,8 @@
   
   <browser:page
       for="Products.PloneFormGen.interfaces.IPloneFormGenField"
-      name="edit_embedded"
-      class=".edit_embedded.EditEmbedded"
+      name="embedded_edit"
+      class=".embedded_edit.EmbeddedEdit"
       permission="cmf.ModifyPortalContent"
       />
   

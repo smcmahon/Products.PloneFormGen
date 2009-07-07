@@ -1,6 +1,9 @@
 from persistent.list import PersistentList
 from zope import interface, component
 
+import OFS.subscribers
+from OFS.event import ObjectClonedEvent
+
 from Products.CMFCore.utils import getToolByName
 
 from Products.PloneFormGen.interfaces import IPloneFormGenForm
@@ -15,12 +18,22 @@ class FieldFactory(object):
     
     def __init__(self, context):
         self.context = context
+        self.fieldids = context.objectIds()
 
     def getField(self, fieldid):
         """Get the field that match the id or None
         """
+        if not fieldid in self.fieldids:
+            return None
         return getattr(self.context, fieldid)
     
+    def getFieldPos(self, fieldid):
+        """Return the current position of the field in the form
+        """
+        if not fieldid in self.fieldids:
+            return -1
+        return self.fieldids.index(fieldid)
+
     def renameField(self, oldid, newid):
         """We should have the field id synchronize with the field's input name.
            So user probally want to change this too...
@@ -40,6 +53,8 @@ class FieldFactory(object):
     def saveField(self, fieldid, **data):
         """Save a field setting, using information from data
         """
+        #TODO: This is specified for Archetype object only,
+        #      We should find another implement way to support more general obj.
         field = self.getField(fieldid)
         if field is None:
             raise "Unable to find %s in %s" %(fieldid, self.context)
@@ -71,3 +86,30 @@ class FieldFactory(object):
         """
         self.context.moveObject(fieldid, position)
         return None
+        
+    def copyField(self, fieldid):
+        """Make a copy of fieldid right after the original
+        """
+        obj = self.getField(fieldid)
+        target = self.context
+
+        obj._notifyOfCopyTo(target, op=0)
+        old_id = obj.getId()
+        new_id = 'copy_of_%s' %old_id
+        
+        orig_obj = obj
+        obj = obj._getCopy(target)
+        obj._setId(new_id)
+        
+        notify(ObjectCopiedEvent(obj, orig_obj))
+
+        target._setObject(new_id, obj)
+        obj = target._getOb(new_id)
+        obj.wl_clearLocks()
+
+        obj._postCopy(target, op=0)
+
+        OFS.subscribers.compatibilityCall('manage_afterClone', obj, obj)
+        
+        notify(ObjectClonedEvent(obj))
+        
