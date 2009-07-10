@@ -16,7 +16,7 @@ def processSaveData(rawinp):
     """
     env = {'REQUEST_METHOD': 'GET', 'QUERY_STRING': rawinp}
     try:
-        return parse(env)
+        return httpform.parse(env)
     except:
         print rawinp
         raise
@@ -47,7 +47,6 @@ class FormBuildView(BrowserView):
     def doAdd(self):
         """Action = adding new field
         """
-        #TODO: We don't have "real" postdata yet :p
         fieldtype = self.postdata.get('fieldtype', '')
         pos = self.postdata.get('position', -1);
         if not fieldtype:
@@ -66,15 +65,18 @@ class FormBuildView(BrowserView):
                             'content': '%s: %s' %(sys.exc_type, sys.exc_value)
                            })
             return
-        #TODO: Return data that client uses to render new field + its edit form
-        self.setResponse({})
+        #TODO: Can we use current request ? 
+        #      If not, then how to create a 'blank' request ?
+        request = self.request
+        renderer = getMultiAdapter((getattr(self.context,newfield), request), \
+                                   name = 'fieldrenderer')
+        self.setResponse({'fieldid':newfield, 'html':renderer()})
 
     def doSort(self):
         """Action = sorting fields
         """
-        #TODO: We don't have "real" postdata yet :p
-        #TODO: Currently import in the way that we have many field that pos at one time
-        #      Do we really need to do so ?
+        #TODO: Currently implement in the way that we have a new sorted list of 
+        #      fieldids as agrument. But do we really need to do so ?
         orderedlist = self.postdata.get('fieldorder', None);
         if not orderedlist:
             self.setStatus('failure', 
@@ -84,7 +86,7 @@ class FormBuildView(BrowserView):
             return
         try:
             for (pos, fieldid) in enumerate(orderedlist):
-                self.fieldFactory.sortField(fieldid, pos)
+                self.fieldFactory.moveField(fieldid, pos)
         except:
             traceback.print_exc()
             print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
@@ -97,17 +99,18 @@ class FormBuildView(BrowserView):
     def doSave(self):
         """Action = save form settings
         """
-        #TODO: We don't have "real" postdata yet :p
-        #TODO: Currently import in the way that we have many field that pos at one time
-        #      Do we really need to do so ?
-        data = {}
-        data['settings'] = processSaveData(self.postdata['settings'])
-        data['fields'] = []
-        for field in self.postdata['fields']:
-            data['fields'].append(processSaveData(field))
-        
-        state = self.form_manager.saveForm(self.form, data)
-        self.setStatus(state['status'], state['error'])
+        fieldid = self.postdata.get('fieldid', '')
+        data = self.postdata.get('settings')
+        errors = self.fieldfactory.saveForm(fieldid, data)
+        if errors:
+            self.setStatus('failure', 
+                           {'type':'error', 
+                            'content': 'Please correct the following errors'
+                           })
+        self.setStatus('success',
+                       {'type':'info',
+                        'content':'Field saved'
+                       })
 
     def doDelete(self):
         """Action = delete field
@@ -116,7 +119,7 @@ class FormBuildView(BrowserView):
         if not fieldid:
             self.setStatus('failure', 
                            {'type':'error', 
-                            'content': 'Fields\' order is not specified'
+                            'content': 'Field not found'
                            })
             return 
         try:
@@ -129,14 +132,17 @@ class FormBuildView(BrowserView):
                             'content': '%s: %s' %(sys.exc_type, sys.exc_value)
                            })
             return
+        self.setStatus('success',
+                       {'type':'info',
+                        'content':'Field deleted'
+                       })
 
-    def doReload(self,):
-        """Action = reload a field's html
-        """
-        fieldid = self.postdata.get('fieldid', '')
-        errors = self.postdata.get('errors', '')
-        
-        self.setResponse()
+    #def doReload(self,):
+    #    """Action = reload a field's html
+    #    """
+    #    fieldid = self.postdata.get('fieldid', '')
+    #    errors = self.postdata.get('errors', '')
+    #    self.setResponse()
 
     def __call__(self):
         actions = {

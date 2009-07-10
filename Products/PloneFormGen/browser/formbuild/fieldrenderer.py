@@ -17,7 +17,6 @@ class FieldRenderer(BrowserView):
 
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
-        #caculate the form object, TODO: should be a field method
         self.form = aq_parent(aq_inner(self.context))
         while self.form and not IPloneFormGenForm.providedBy(self.form):
             self.form = aq_parent(self.form)

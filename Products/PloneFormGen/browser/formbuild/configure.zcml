@@ -24,4 +24,11 @@
       permission="cmf.ModifyPortalContent"
       />
   
+  <browser:page
+      for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+      name="formbuild_edit"
+      class=".pfgformedit.PfgFormEdit"
+      permission="cmf.ModifyPortalContent"
+      />
+  
 </configure>

@@ -12,7 +12,6 @@
                    mode view/mode;
                    isATField python:view.isATField;
                    context python:form;">
-  <li class="fgfield-wrapper" tal:attributes="id string:fgfield-${fieldid}">
     <tal:atfield condition = "isATField" define = "field python:field.fgField">
       <tal:block tal:condition="python: field.widget.macro != 'widget_richlabel'">
         <!-- View mode -->
@@ -33,21 +32,16 @@
           Rich Label
       </div>
     </tal:atfield>
-    
-    <!-- Non ATField come here -->
-    <tal:modernfield condition="python: not isATField">
-      <div> Not implement yet </div>
-    </tal:modernfield>
 
     <tal:embeddededit condition="python: view.rendermode == 'edit'">
       <!-- Quick edit buttons -->
-      <div class="editbuttons">
-          <a href="#"><img src="edit.gif"/></a>
-          <a href="#"><img src="add_icon.gif"/></a>
-          <a href="#"><img src="delete_icon.gif"/></a>
+      <div class="editbuttons" style="display:none">
+          <a href="#" class="editbutton" id="editbutton-edit"><img src="edit.gif"/></a>
+          <a href="#" class="editbutton" id="editbutton-add"><img src="add_icon.gif"/></a>
+          <a href="#" class="editbutton" id="editbutton-delete"><img src="delete_icon.gif"/></a>
       </div>
       <!-- Embedded edit form -->
-      <div class="fgfield-edit-form" tal:content="structure view/editview"/>
+      <div class="fgfield-edit-form" style="display:none" tal:content="structure view/editview"/>
     </tal:embeddededit>
-  </li>
+
 </tal:block>

@@ -48,7 +48,7 @@ class FieldFactory(object):
         fieldid = self.context.invokeFactory(fieldtype, **data)
         if position != -1:
             self.sortField(fieldid, position)
-        return None
+        return fieldid
 
     def saveField(self, fieldid, **data):
         """Save a field setting, using information from data
@@ -79,13 +79,11 @@ class FieldFactory(object):
         """Delete the comment that match the id
         """
         self.context.manage_delObjects(fieldid)
-        return None
         
-    def sortField(self, fieldid, position):
+    def moveField(self, fieldid, position):
         """Move a field to a new position
         """
         self.context.moveObject(fieldid, position)
-        return None
         
     def copyField(self, fieldid):
         """Make a copy of fieldid right after the original
