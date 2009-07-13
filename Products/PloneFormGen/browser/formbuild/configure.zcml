@@ -26,8 +26,8 @@
   
   <browser:page
       for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
-      name="formbuild_edit"
-      class=".pfgformedit.PfgFormEdit"
+      name="formbuild_view"
+      class=".formbuild_view.PFGFormBuildView"
       permission="cmf.ModifyPortalContent"
       />
   

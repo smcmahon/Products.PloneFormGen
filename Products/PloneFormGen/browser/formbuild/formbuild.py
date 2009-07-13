@@ -56,7 +56,10 @@ class FormBuildView(BrowserView):
                            })
             return 
         try:
-            newfield = self.fieldfactory.addField(fieldtype, position = pos)
+            newfield = self.fieldfactory.addField(fieldtype, pos, 
+                                                  {
+                                                   "title" : "New %s" %fieldtype
+                                                  })
         except:
             traceback.print_exc()
             print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
@@ -65,28 +68,24 @@ class FormBuildView(BrowserView):
                             'content': '%s: %s' %(sys.exc_type, sys.exc_value)
                            })
             return
-        #TODO: Can we use current request ? 
-        #      If not, then how to create a 'blank' request ?
-        request = self.request
-        renderer = getMultiAdapter((getattr(self.context,newfield), request), \
-                                   name = 'fieldrenderer')
-        self.setResponse({'fieldid':newfield, 'html':renderer()})
+        #TODO: Do restrictedTraverse save ? 
+        newfield = getattr(self.context, newfield)
+        renderer = newfield.restrictedTraverse('fieldrenderer')
+        self.setResponse({'fieldid':newfield.getId(), 'html':renderer()})
 
-    def doSort(self):
+    def doMove(self):
         """Action = sorting fields
         """
-        #TODO: Currently implement in the way that we have a new sorted list of 
-        #      fieldids as agrument. But do we really need to do so ?
-        orderedlist = self.postdata.get('fieldorder', None);
-        if not orderedlist:
+        fieldid = self.postdata.get('fieldid', '')
+        pos = self.postdata.get('position', -1);
+        if pos < 0 :
             self.setStatus('failure', 
                            {'type':'error', 
-                            'content': 'Fields\' order is not specified'
+                            'content': 'Invalid new position'
                            })
             return
         try:
-            for (pos, fieldid) in enumerate(orderedlist):
-                self.fieldFactory.moveField(fieldid, pos)
+            self.fieldfactory.moveField(fieldid, pos)
         except:
             traceback.print_exc()
             print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
@@ -100,17 +99,28 @@ class FormBuildView(BrowserView):
         """Action = save form settings
         """
         fieldid = self.postdata.get('fieldid', '')
-        data = self.postdata.get('settings')
-        errors = self.fieldfactory.saveForm(fieldid, data)
+        poststr = self.postdata.get('poststr')
+        data = processSaveData(poststr)
+        errors = self.fieldfactory.saveField(fieldid, data)
         if errors:
             self.setStatus('failure', 
                            {'type':'error', 
                             'content': 'Please correct the following errors'
                            })
-        self.setStatus('success',
-                       {'type':'info',
-                        'content':'Field saved'
-                       })
+        else:
+            self.setStatus('success',
+                           {'type':'info',
+                            'content':'Field saved'
+                           })
+
+        #Generate return's html
+        field = getattr(self.context, fieldid)
+        renderer = field.restrictedTraverse('fieldrenderer')
+        #TODO: Since I don't know how to make a request programatically
+        #      I created the field then set the errors attribute
+        #      We should find a more elegant way to implement 
+        renderer.errors = errors
+        self.setResponse({'html':renderer()})
 
     def doDelete(self):
         """Action = delete field
@@ -137,19 +147,32 @@ class FormBuildView(BrowserView):
                         'content':'Field deleted'
                        })
 
-    #def doReload(self,):
-    #    """Action = reload a field's html
-    #    """
-    #    fieldid = self.postdata.get('fieldid', '')
-    #    errors = self.postdata.get('errors', '')
-    #    self.setResponse()
+    def doCopy(self):
+        """Action = clone a existed field
+        """
+        fieldid = self.postdata.get('fieldid', '')
+        try:
+            newfield = self.fieldfactory.copyField(fieldid)
+        except:
+            traceback.print_exc()
+            print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
+            self.setStatus('failure', 
+                           {'type':'error', 
+                            'content': '%s: %s' %(sys.exc_type, sys.exc_value)
+                           })
+            return
+        #TODO: Do restrictedTraverse save ? 
+        newfield = getattr(self.context, newfield)
+        renderer = newfield.restrictedTraverse('fieldrenderer')
+        self.setResponse({'fieldid':newfield.getId(), 'html':renderer()})
 
     def __call__(self):
         actions = {
                     'add'   : self.doAdd,
                     'save'  : self.doSave,
                     'delete': self.doDelete,
-                    'sort'  : self.doSort
+                    'move'  : self.doMove,
+                    'copy'  : self.doCopy
                   }
         action = actions.get(self.action, None)
         if action is not None:

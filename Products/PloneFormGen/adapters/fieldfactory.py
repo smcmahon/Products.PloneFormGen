@@ -1,13 +1,28 @@
 from persistent.list import PersistentList
-from zope import interface, component
 
 import OFS.subscribers
 from OFS.event import ObjectClonedEvent
+from zope import event, interface, component
+from zope.lifecycleevent import ObjectCopiedEvent
 
 from Products.CMFCore.utils import getToolByName
 
 from Products.PloneFormGen.interfaces import IPloneFormGenForm
 from Products.PloneFormGen.adapters.interfaces import IFieldFactory
+
+def generate_id(target, old_id):
+    """Copy from plone.app.contentrules.actions.copy 
+    """
+    taken = getattr(target, 'has_key', None)
+    if taken is None:
+        item_ids = set(target.objectIds())
+        taken = lambda x: x in item_ids
+    if not taken(old_id):
+        return old_id
+    idx = 1
+    while taken("%s.%d" % (old_id, idx)):
+        idx += 1
+    return "%s.%d" % (old_id, idx)
 
 class FieldFactory(object):
     """Adapter that work with form's fields.    
@@ -41,16 +56,17 @@ class FieldFactory(object):
         folder.manage_renameObject(id=oldid, new_id=newid)        
         return None
     
-    def addField(self, fieldtype, position = -1, **data):
+    def addField(self, fieldtype, position = -1, data = {}):
         """Create new field, using information from data
         """
         #TODO: Handle exception
-        fieldid = self.context.invokeFactory(fieldtype, **data)
+        fieldid = self.context.generateUniqueId(fieldtype)
+        self.context.invokeFactory(fieldtype, id = fieldid, **data)
         if position != -1:
-            self.sortField(fieldid, position)
+            self.context.moveObject(fieldid, position)
         return fieldid
 
-    def saveField(self, fieldid, **data):
+    def saveField(self, fieldid, data):
         """Save a field setting, using information from data
         """
         #TODO: This is specified for Archetype object only,
@@ -58,21 +74,25 @@ class FieldFactory(object):
         field = self.getField(fieldid)
         if field is None:
             raise "Unable to find %s in %s" %(fieldid, self.context)
-        errors = []
+        errors = {}
         REQUEST = None
         #Do validate
         for key in data.keys():
             value = data[key]
-            atfield = schema.get(key, None)
-            if atfield:
-                field.validate(instance=field, value=value, errors=errors, REQUEST=REQUEST)
+            atfield = field.schema.get(key, None)
+            if atfield is not None:
+                atfield.validate(instance=field,
+                                 value=value,
+                                 errors=errors,
+                                 REQUEST=REQUEST)
         #If not errors: Do update
         if not errors:
             for key in data.keys():
-                value = data[key]
-                mutator = atfield.getMutator(field)
-                #TODO: try .. catch here ? things should be fine 
-                mutator(data)
+                atfield = field.schema.get(key, None)
+                if atfield is not None:
+                    mutator = atfield.getMutator(field)
+                    #TODO: try .. catch here ? things should be fine 
+                    mutator(data[key])
         return errors
 
     def deleteField(self, fieldid):
@@ -83,7 +103,9 @@ class FieldFactory(object):
     def moveField(self, fieldid, position):
         """Move a field to a new position
         """
-        self.context.moveObject(fieldid, position)
+        #TODO: the function (on base ordered folder class) seems not work 
+        #      in the way it should be. I need to do +1 on position
+        self.context.moveObject(fieldid, position+1)
         
     def copyField(self, fieldid):
         """Make a copy of fieldid right after the original
@@ -93,13 +115,13 @@ class FieldFactory(object):
 
         obj._notifyOfCopyTo(target, op=0)
         old_id = obj.getId()
-        new_id = 'copy_of_%s' %old_id
+        new_id = generate_id(self.context, old_id)
         
         orig_obj = obj
         obj = obj._getCopy(target)
         obj._setId(new_id)
         
-        notify(ObjectCopiedEvent(obj, orig_obj))
+        event.notify(ObjectCopiedEvent(obj, orig_obj))
 
         target._setObject(new_id, obj)
         obj = target._getOb(new_id)
@@ -109,5 +131,7 @@ class FieldFactory(object):
 
         OFS.subscribers.compatibilityCall('manage_afterClone', obj, obj)
         
-        notify(ObjectClonedEvent(obj))
+        event.notify(ObjectClonedEvent(obj))
         
+        self.moveField(new_id, self.getFieldPos(old_id)+1)
+        return new_id

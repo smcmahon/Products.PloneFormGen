@@ -72,4 +72,9 @@
   <permission value="Modify portal content"/>
   <permission value="Review portal content"/>
  </action>
+ <action title="Form Build" action_id="formbuild" category="object"
+    condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user"
+    url_expr="string:${object_url}/formbuild_view" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
 </object>

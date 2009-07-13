@@ -1,7 +1,7 @@
 <tal:block metal:define-macro="master"
            define="plone_view here/@@plone;
                    foo plone_view/globalize;
-                   errors view/errors;
+                   errors nocall: view/errors;
                    fieldsets python:['default'];
                    default_fieldset string:default;
                    fieldset default_fieldset;
@@ -12,15 +12,20 @@
                    mode view/mode;
                    isATField python:view.isATField;
                    context python:form;">
+
+  <tal:comment replace="nothing"> Field's view content </tal:comment>
+  <div class="fgfield-view-wrapper">
     <tal:atfield condition = "isATField" define = "field python:field.fgField">
       <tal:block tal:condition="python: field.widget.macro != 'widget_richlabel'">
-        <!-- View mode -->
+
+        <tal:comment replace="nothing"> In view mode: render with a value </tal:comment>
         <div tal:attributes="id string:archetypes-fieldname-${field/getName}" class="field"
              tal:condition="python: mode=='view'">
             <label class="formQuestion"><span tal:content="python:getattr(form,field.getName()).Title()">Field</span>:</label>
             <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode=mode, field=field, accessor = value)" />
         </div>
-        <!-- Edit mode -->
+
+        <tal:comment replace="nothing"> In edit mode: render as an input </tal:comment>
         <tal:editmode condition="python: mode=='edit'">
             <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode=mode, field=field)" />
         </tal:editmode>
@@ -32,16 +37,34 @@
           Rich Label
       </div>
     </tal:atfield>
+  </div>
 
-    <tal:embeddededit condition="python: view.rendermode == 'edit'">
-      <!-- Quick edit buttons -->
-      <div class="editbuttons" style="display:none">
-          <a href="#" class="editbutton" id="editbutton-edit"><img src="edit.gif"/></a>
-          <a href="#" class="editbutton" id="editbutton-add"><img src="add_icon.gif"/></a>
-          <a href="#" class="editbutton" id="editbutton-delete"><img src="delete_icon.gif"/></a>
-      </div>
-      <!-- Embedded edit form -->
-      <div class="fgfield-edit-form" style="display:none" tal:content="structure view/editview"/>
-    </tal:embeddededit>
-
+  <tal:comment replace="nothing"> Field's edit content: For manipulate field object. 
+                               Use in form build mode 
+  </tal:comment>
+  <tal:fieldedit condition="python: view.rendermode == 'edit'">
+    <div class="fgfield-editbuttons" style="display:none">
+      <a href="#" 
+         class="fgfield-editbutton fgfield-editbutton-edit" 
+         onClick="javascript: return false">
+        <img src="edit.gif"/>
+      </a>
+      <a href="#" 
+         class="fgfield-editbutton fgfield-editbutton-copy" 
+         onClick="javascript: return false">
+        <img src="add_icon.gif"/>
+      </a>
+      <a href="#" 
+         class="fgfield-editbutton fgfield-editbutton-delete" 
+         onClick="javascript: return false">
+        <img src="delete_icon.gif"/>
+      </a>
+    </div>
+      
+    <div class="fgfield-edit-wrapper" 
+         style="display:none" >
+      <tal:editform replace="structure view/editview"/>
+      <tal:controls replace="nothing">Add control button here (or use modified form button ?)</tal:controls>
+    </div>
+  </tal:fieldedit>
 </tal:block>

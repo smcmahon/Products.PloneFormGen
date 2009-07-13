@@ -13,11 +13,11 @@ class IFieldFactory(Interface):
            So user probally want to change this too...
         """
     
-    def addField(self, fieldtype, position = -1, **data):
+    def addField(self, fieldtype, position = -1, data = {}):
         """Create new field, using information from data
         """
 
-    def saveField(self, fieldid, **data):
+    def saveField(self, fieldid, data):
         """Save a field setting, using information from data
         """
         
@@ -29,4 +29,7 @@ class IFieldFactory(Interface):
         """Move a field to a new position
         """
 
+    def copyField(self, fieldid):
+        """Make a copy of fieldid right after the original
+        """
 

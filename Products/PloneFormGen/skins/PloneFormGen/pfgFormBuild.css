@@ -1,0 +1,68 @@
+/*The whole field div 
+*/
+.fgfield-wrappers {
+    
+}
+
+/*Helper class (Use on drag/drop/sort)
+*/
+.fgfield-helper {
+    background : #C2E1EF;
+    border : 1px solid #444444;
+}
+
+/*Field's view part
+*/
+.fgfield-view-wrapper {
+    padding-bottom : 0.5em;
+    padding-left : 0.5em;
+}
+
+/*Field's embedded edit form part
+*/
+.fgfield-edit-wrapper {
+    margin : 1.5em;
+}
+
+/*Place holder style on jquery's sort/drag/dropable
+*/
+.fgfield-placeholder {
+    background : #FFFFAD;
+    min-height : 3.5em;
+    border : 1px dashed #777777;
+}
+
+/*Field that is being selected 
+*/
+.fgfield-selected {
+    border : 1px solid #C2E1EF;
+}
+
+/*Field that is being highlighted (to get user's attention).
+  Example: when it has just been created, when it's being edited...
+*/
+.fgfield-highlight { 
+    background : #C2E1EF;
+}
+
+/*Field that is being targeted (ie. mouse over).
+*/
+.fgfield-focus { 
+    padding : 3px;
+    border : 1px dashed #777777; 
+}
+
+.fgfield-editbuttons { 
+    float : right;
+    position : relative; 
+    top : -0.5em;
+    right : 0.5em;
+    z-index : 1;
+}
+
+.fgfield-editbutton { 
+    background : #CCCCCC; 
+    border : 1px solid #C2E1EF;
+    margin : 1px;
+}
+

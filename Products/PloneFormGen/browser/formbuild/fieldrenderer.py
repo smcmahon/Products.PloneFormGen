@@ -34,7 +34,7 @@ class FieldRenderer(BrowserView):
         self.fieldname = context.getId()
         self.isATField = isinstance(aq_base(self.context).fgField,BaseField) 
         #TODO: How should we pass errors for the view when render :((
-        self.errors = request.form.get('errors', {})
+        self.errors = {} #request.form.get('errors', {})
 
     def value(self):
         """Return field's value, just have meaning when we're in view mode

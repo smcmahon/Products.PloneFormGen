@@ -13,21 +13,20 @@
   <form name="edit_form"
         method="post"
         enctype="multipart/form-data"
-        class="enableUnloadProtection enableAutoFocus atBaseEditForm"
         action=""
         id=""
         tal:attributes="action python:here.absolute_url()+'/'+template.id;
-                        id string:${portal_type}-base-edit;
-                        class python: allow_tabbing and 'enableUnloadProtection enableAutoFocus enableFormTabbing atBaseEditForm' or 'enableUnloadProtection enableAutoFocus atBaseEditForm';">
+                        id string:fgfield-edit-form-${fieldId};
+                        class python: allow_tabbing and 'fgfield-edit-form enableUnloadProtection enableAutoFocus enableFormTabbing atBaseEditForm' or 'fgfield-edit-form enableUnloadProtection enableAutoFocus atBaseEditForm';">
       <tal:tabbed tal:condition="allow_tabbing">
         <tal:fieldsets define="sole_fieldset python:len(fieldsets)==1"
           repeat="fieldset fieldsets">
           <fieldset tal:define="fieldsetid python:putils.normalizeString(fieldset)"
-                  tal:attributes="id string:fieldset-${fieldsetid}"
+                  tal:attributes="id string:fieldset-${fieldId}-${fieldsetid}"
                   tal:omit-tag="sole_fieldset">
             <legend id=""
                     tal:content="python: atview.getTranslatedSchemaLabel(fieldset)"
-                    tal:attributes="id string:fieldsetlegend-${fieldsetid}"
+                    tal:attributes="id string:fieldsetlegend-${fieldId}-${fieldsetid}"
                     tal:condition="not:sole_fieldset" />
             <tal:fields repeat="field python:schematas[fieldset].editableFields(field, visible_only=True)">
               <metal:fieldMacro use-macro="python:context.widget(field.getName(), mode='edit', field=field)" />
@@ -35,5 +34,11 @@
           </fieldset>
         </tal:fieldsets>
       </tal:tabbed>
+      <div class="formControls">
+        <input type="button" value="Save" class="context fgfield-formbutton-save" 
+               tal:attributes="id string:fgfield-${fieldId}-formbutton-save"/>
+        <input type="button" value="Cancel" class="standalone fgfield-formbutton-cancel"
+               tal:attributes="id string:fgfield-${fieldId}-formbutton-cancel"/>
+      </div>
   </form>  
 </tal:edit_embedded>
