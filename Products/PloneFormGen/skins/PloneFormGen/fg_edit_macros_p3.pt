@@ -89,6 +89,26 @@
 
           <metal:block define-slot="extra_top" />
 
+        <div id="form-confirmation"
+             tal:condition="python:here.confirmationSupported() and here.getDisplayConfirmationPage() and ('form_submit' in request.form or 'form_send' in request.form)">
+          <div class="visualPadding">
+        <dl tal:define="captcha_fields here/listCaptchaFields;">
+          <tal:block repeat="field here/fgFields">
+            <tal:block tal:define="fname field/getName;
+                    file python:request.form.get(fname+'_file', None);
+                    value python:request.form.get(fname, 'No Input');
+                    value python:file and file.filename or value;"
+              tal:condition="python: fname not in captcha_fields">
+              <dt tal:content="field/widget/label" />
+              <dd tal:content="python:request.form.get(fname, 'No Input')" />
+            </tal:block>
+          </tal:block>
+        </dl>
+          <input type="submit" name="confirmed" value="Send"/>
+          <input type="button" name="reedit" value="Edit" onclick="jq('#form-confirmation').overlay().close()"/>
+          </div>
+        </div>
+
           <metal:block define-slot="widgets">
             <div id="pfg-fieldwrapper">
             <tal:fields repeat="field fields">

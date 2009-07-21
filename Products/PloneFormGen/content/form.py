@@ -38,6 +38,7 @@ from Products.PloneFormGen.config import \
     PROJECTNAME, fieldTypes, adapterTypes, thanksTypes, fieldsetTypes, \
     EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS
 from Products.PloneFormGen.content import validationMessages
+from Products.PloneFormGen.content.fields import FGCaptchaField
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30
@@ -47,6 +48,12 @@ try:
     HAS_PLONE_PROTECT = True
 except ImportError:
     HAS_PLONE_PROTECT = False
+
+try:
+    import Products.pipbox
+    HAS_PIPBOX = True
+except ImportError:
+    HAS_PIPBOX = False
 
 from types import StringTypes
 
@@ -323,6 +330,20 @@ if HAS_PLONE_PROTECT:
     FormFolderSchema['formPrologue'].schemata = 'default'
     FormFolderSchema['formEpilogue'].schemata = 'default'
 
+if HAS_PLONE30 and HAS_PIPBOX:
+    FormFolderSchema = FormFolderSchema + Schema((
+    BooleanField('displayConfirmationPage',
+        required=0,
+        searchable=0,
+        default=0,
+        languageIndependent=1,
+        widget=BooleanWidget(label='Show Confirmation Page',
+                label_msgid='label_showconfirmation_text',
+                description_msgid = 'help_showconfirmation_text',
+                i18n_domain = 'ploneformgen',
+                ),
+        ),
+    ))
 
 #finalizeATCTSchema(ATFolderSchema, folderish=True, moveDiscussion=False)
 
@@ -433,7 +454,7 @@ class FormFolder(ATFolder):
                     del cache[ id(object) ]
 
     security.declareProtected(View, 'fgGetFormSubmitAction')
-    def fgGetFormSubmitAction(self):
+    def fgGetFormSubmitAction(self, ignore_confirmation=False):
         """ Determines where the form should submit to.
 
             Tries, in the following order:
@@ -1005,6 +1026,20 @@ class FormFolder(ATFolder):
         self.plone_utils.reindexOnReorder(self)
 
         return "<done />"
+
+    security.declareProtected(View, 'listCaptchaFields')
+    def listCaptchaFields(self):
+        """ List captcha fields so we can ignore them for confirmation. """
+        fields = list()
+        for obj in self._getFieldObjects(includeFSMarkers=False):
+            if obj.meta_type == FGCaptchaField.meta_type:
+                fields.append(obj.getId())
+        return fields
+
+    security.declareProtected(View, 'confirmationSupported')
+    def confirmationSupported(self):
+        """ Return True if confirmation page is supported. """
+        return HAS_PLONE30 and HAS_PIPBOX
 
 
 #    security.declareProtected(ModifyPortalContent, 'myi18n')

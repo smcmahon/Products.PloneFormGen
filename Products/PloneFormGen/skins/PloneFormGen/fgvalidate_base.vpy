@@ -26,8 +26,26 @@ except (ImportError, Unauthorized):
 
 request = context.REQUEST
 
+confirmation_supported = context.confirmationSupported()
+show_confirmation = confirmation_supported and context.getDisplayConfirmationPage()
+confirmed = bool(request.form.get('confirmed', False))
+confirmation_required = show_confirmation and not confirmed
+
 errors = state.getErrors()
-errors = context.fgvalidate(REQUEST=request, errors=errors, data=1, metadata=0)
+if show_confirmation and confirmation_required:
+    # validate before showing confirmation page
+    errors = context.fgvalidate(REQUEST=request, errors=errors, data=1,
+            metadata=0, skip_action_adapters=True)
+elif show_confirmation and not confirmation_required:
+    # after confirmation page we have already validated so just process the
+    # adapters
+    context.fgProcessActionAdapters([], REQUEST=request)
+else:
+    # no confirmation page so validate and process adapters
+    errors = context.fgvalidate(REQUEST=request, errors=errors, data=1,
+            metadata=0, skip_action_adapters=False)
+
+
 
 if errors:
     if P3StyleErrors:
@@ -44,10 +62,13 @@ if errors:
             message = 'Please correct the indicated errors.'
         return state.set(status='failure', errors=errors, portal_status_message=message)
 else:
-    nextAction = context.fgGetSuccessAction()
-    state.setNextAction( nextAction )
+    if confirmation_required:
+        state.setNextAction('traverse_to:string:fg_base_view_p3')
+    else:
+        nextAction = context.fgGetSuccessAction()
+        state.setNextAction( nextAction )
 
-    if nextAction.find('fg_result_view') > 0:
-        return state.set(portal_status_message='Form validated.')
+        if nextAction.find('fg_result_view') > 0:
+            return state.set(portal_status_message='Form validated.')
 
     return state
