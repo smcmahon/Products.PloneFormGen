@@ -4,6 +4,9 @@ Change History
 1.5rc3
 ------
 
+ - We weren't using the fg_thankspage_view_p3 view with Plone3+, an error in
+   the switch to GS. (Fixes #252, thanks Matthew Sital-Singh)
+
  - Fixed fieldset settings 'Show Title as Legend'
    (Radim Novotny)
 
