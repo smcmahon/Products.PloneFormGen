@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.5rc3
+1.5.0
 ------
 
  - We weren't using the fg_thankspage_view_p3 view with Plone3+, an error in
