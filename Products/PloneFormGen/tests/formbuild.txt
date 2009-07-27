@@ -66,6 +66,10 @@ We should also be able to delete a field::
     ['mailer', 'topic', 'replyto', 'thank-you']
 
 
+    >>> view = form.restrictedTraverse('@@formbuild')
+    >>> view()
+
+
 XXX: Do similar tests for all the formbuild methods
 
 
