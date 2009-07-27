@@ -1,15 +1,13 @@
+import os, os.path
 import unittest
 import doctest
 
 from Testing import ZopeTestCase as ztc
 from Products.PloneFormGen.tests.pfgtc import PloneFormGenFunctionalTestCase
 
-testfiles = (
-    'browser.txt',
-    'ssl.txt',
-    'serverside_field.txt',
-    '../dollarReplace.py',
-)
+
+testfiles = os.listdir(os.path.dirname(__file__))
+testfiles = [n for n in testfiles if n.endswith('.txt')]
 
 def test_suite():
     return unittest.TestSuite([

@@ -1,0 +1,82 @@
+formbuild integration tests
+---------------------------
+
+The formbuild view applies actions to forms in response
+to json data in the request. We're going to exercise it
+via some direct calls first.
+
+First, let's set up a test environment by adding a form
+folder::
+
+    >>> self.setRoles(['Manager'])
+    >>> self.portal.invokeFactory('FormFolder', 'testform')
+    'testform'
+
+    >>> form = self.portal.testform
+    >>> form.objectIds()
+    ['mailer', 'replyto', 'topic', 'comments', 'thank-you']
+
+Set up a test request with an action and data specification.
+'action' is the desired action; 'data' is parameters in
+json::
+
+    >>> rform = form.REQUEST.form
+    >>> rform['action'] = 'test'
+    >>> rform['data'] = '{"name1":"value1", "name2":"value2"}'
+ 
+Traverse to the formbuild view to initialize it::
+
+    >>> view = form.restrictedTraverse('@@formbuild')
+
+See if our request marshalled into the view as expected::
+
+    >>> view.action
+    'test'
+    
+    >>> view.postdata
+    {'name2': 'value2', 'name1': 'value1'}
+
+
+Try a bad action. This should return failure::
+
+    >>> view()
+    '{"status": "failure", "message": {"content": "Unrecognize action: \\"None\\"", "type": "error"}, "data": null}'
+
+
+Let's try moving a field::
+
+    >>> rform['action'] = 'move'
+    >>> rform['data'] = '{"fieldid":"replyto", "position":1}'
+    >>> view = form.restrictedTraverse('@@formbuild')
+    >>> view()
+    '{"status": "success", "message": null, "data": null}'
+    
+    >>> form.objectIds()
+    ['mailer', 'topic', 'replyto', 'comments', 'thank-you']
+    
+We should also be able to delete a field::
+
+    >>> rform['action'] = 'delete'
+    >>> rform['data'] = '{"fieldid":"comments"}'
+    >>> view = form.restrictedTraverse('@@formbuild')
+    >>> view()
+    '{"status": "success", "message": {"content": "Field deleted", "type": "info"}, "data": null}'
+
+    >>> form.objectIds()
+    ['mailer', 'topic', 'replyto', 'thank-you']
+
+
+XXX: Do similar tests for all the formbuild methods
+
+
+# Browser tests
+# -------------
+# 
+# Get our test browser::
+# 
+#     >>> from Products.Five.testbrowser import Browser
+#     >>> browser = Browser()
+#     >>> portal_url = 'http://nohost/plone'
+#     >>> self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
+#     >>> browser.addHeader('Authorization', 'Basic root:secret')
+# 
