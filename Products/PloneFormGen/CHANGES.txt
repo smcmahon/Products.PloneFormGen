@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.5.1 (unreleased)
+-----
+
+ - The mail adapter field selection wasn't working with attachments.
+   (Fixes #256, thanks Angela Wong)
+
 1.5.0
 ------
 
