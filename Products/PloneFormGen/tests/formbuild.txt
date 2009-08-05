@@ -65,9 +65,11 @@ We should also be able to delete a field::
     >>> form.objectIds()
     ['mailer', 'topic', 'replyto', 'thank-you']
 
+If we try to delete that field again, we should fail::
 
     >>> view = form.restrictedTraverse('@@formbuild')
     >>> view()
+    '{"status": "failure", "message": {"content": "exceptions.AttributeError: comments", "type": "error"}, "data": null}'
 
 
 XXX: Do similar tests for all the formbuild methods
