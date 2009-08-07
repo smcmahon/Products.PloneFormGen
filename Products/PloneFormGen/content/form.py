@@ -33,7 +33,8 @@ from Products.ATContentTypes.configuration import zconf
 from Products.TALESField import TALESString
 
 from Products.PloneFormGen.interfaces import \
-    IPloneFormGenForm, IPloneFormGenActionAdapter, IPloneFormGenThanksPage
+    IPloneFormGenForm, IPloneFormGenActionAdapter, IPloneFormGenThanksPage, \
+    IPloneFormGenDefaultFieldValueProvider
 from Products.PloneFormGen.config import \
     PROJECTNAME, fieldTypes, adapterTypes, thanksTypes, fieldsetTypes, \
     EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS
@@ -100,6 +101,20 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             format='checkbox',
             label_msgid = "label_actionadapter_text",
             description_msgid = "help_actionadapter_text",
+            i18n_domain = "ploneformgen",
+            ),
+        ),
+    LinesField('defaultFieldValueProvider',
+        vocabulary='defaultFieldValueProvidersDL',
+        widget=MultiSelectionWidget(
+            label="Default Field Value Provider",
+            description="""
+                If you wish to look up default values from a specific
+                default value provider, please select it here.
+                """,
+            format='checkbox',
+            label_msgid = "label_defaultfieldvalueprovider_text",
+            description_msgid = "help_defaultfieldvalueprovider_text",
             i18n_domain = "ploneformgen",
             ),
         ),
@@ -694,6 +709,18 @@ class FormFolder(ATFolder):
 
         if allAdapters:
             return DisplayList( allAdapters )
+
+        return DisplayList()
+
+    security.declareProtected(ModifyPortalContent, 'defaultFieldValueProvidersDL')
+    def defaultFieldValueProvidersDL(self):
+        """ returns Display List (id, title) tuples of contained providers """
+
+        # a default value provider provides IPloneFormGenDefaultFieldValueProvider
+        allProviders = [(obj.getId(), obj.title) for obj in self.objectValues() if IPloneFormGenDefaultFieldValueProvider in providedBy(obj)]
+
+        if allProviders:
+            return DisplayList( allProviders )
 
         return DisplayList()
 

@@ -52,6 +52,9 @@
   <type type_id="FormSaveDataAdapter"/>
  </bindings>
  <bindings>
+  <type type_id="FormStatefulDataAdapter"/>
+ </bindings>
+ <bindings>
   <type type_id="FormMailerAdapter"/>
  </bindings>
  <bindings>

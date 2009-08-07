@@ -763,14 +763,24 @@ class BaseFormField(ATCTContent):
         # so, communicate via the request, but don't overwrite
         # what's already there.
 
-        if safe_hasattr(self, 'getFgTDefault') and self.getRawFgTDefault():
-            if contextObject:
-                # see note in fgvalidate
-                value = self.getFgTDefault(expression_context=getExprContext(self, contextObject))
-            else:
-                value = self.getFgTDefault()
-        else:
-            value = None
+        value = None
+        # try and look up a default value from the form default value provider
+        # if one has been selected
+        formFolder = self.formFolderObject()
+        defaultFieldValueProvider = formFolder.getRawDefaultFieldValueProvider()
+        if defaultFieldValueProvider:
+            providerId = defaultFieldValueProvider[0]
+            provider = getattr(formFolder.aq_explicit, providerId, None)
+            if provider:
+                value = provider.getDefaultFieldValue(self.aq_base, request)
+
+        if not value:
+            if safe_hasattr(self, 'getFgTDefault') and self.getRawFgTDefault():
+                if contextObject:
+                    # see note in fgvalidate
+                    value = self.getFgTDefault(expression_context=getExprContext(self, contextObject))
+                else:
+                    value = self.getFgTDefault()
 
         if (value is None) and safe_hasattr(self, 'getFgDefault'):
             value = self.getFgDefault()

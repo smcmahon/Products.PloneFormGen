@@ -62,6 +62,9 @@
       class=".content.saveDataAdapter.FormSaveDataAdapter" />
 
   <five:deprecatedManageAddDelete
+      class=".content.statefulDataAdapter.FormStatefulDataAdapter" />
+
+  <five:deprecatedManageAddDelete
       class=".content.formLikertField.FGLikertField" />
 
   <!-- exportimport -->

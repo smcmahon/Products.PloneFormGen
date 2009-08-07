@@ -5,7 +5,7 @@
 
 """
 import fields, form, fieldset
-import actionAdapter, saveDataAdapter, formMailerAdapter
+import actionAdapter, saveDataAdapter, statefulDataAdapter, formMailerAdapter
 import customScriptAdapter
 import thanksPage
 import likertField, formLikertField

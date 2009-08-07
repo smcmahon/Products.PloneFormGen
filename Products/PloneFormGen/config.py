@@ -167,6 +167,7 @@ fieldTypes = (
 
 adapterTypes = (
     'FormSaveDataAdapter',
+    'FormStatefulDataAdapter',
     'FormMailerAdapter',
     'FormCustomScriptAdapter',    
 )
