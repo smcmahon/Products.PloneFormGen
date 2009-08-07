@@ -67,3 +67,18 @@ class PloneFormGenFunctionalTestCase(PloneTestCase.FunctionalTestCase):
     def setStatusCode(self, key, value):
         from ZPublisher import HTTPResponse
         HTTPResponse.status_codes[key.lower()] = value
+
+class PloneFormGenAnonFunctionalTestCase(PloneTestCase.FunctionalTestCase):
+
+    def _setup(self):
+        PloneTestCase.FunctionalTestCase._setup(self)
+        self.app.REQUEST['SESSION'] = Session()
+        self.browser = Browser()
+        
+    def afterSetUp(self):
+        super(PloneTestCase.FunctionalTestCase, self).afterSetUp()
+        self.portal.MailHost = MailHostMock()
+
+    def setStatusCode(self, key, value):
+        from ZPublisher import HTTPResponse
+        HTTPResponse.status_codes[key.lower()] = value

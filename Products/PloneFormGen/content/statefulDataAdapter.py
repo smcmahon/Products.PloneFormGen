@@ -10,13 +10,18 @@ from persistent.dict import PersistentDict
 
 from Products.ATContentTypes.content.base import registerATCT
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
+from Products.CMFCore.utils import getToolByName
 
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter
 from Products.PloneFormGen.interfaces import IPloneFormGenDefaultFieldValueProvider
 import logging
 
+import time
+
 logger = logging.getLogger("PloneFormGen")    
+
+COOKIENAME = 'pfg_statefuldata_uniqueid'
 
 class FormStatefulDataAdapter(FormActionAdapter):
     implements(IPloneFormGenDefaultFieldValueProvider)
@@ -82,7 +87,20 @@ class FormStatefulDataAdapter(FormActionAdapter):
         return self.statefuldata.copy()
 
     def getKey(self, REQUEST):
-        return 'balloons'
+        """ get key based on logged-in user or cookie/session """
+        portal_membership = getToolByName(self, 'portal_membership')
+        isAnon = portal_membership.isAnonymousUser()
+        if not isAnon:
+            member = portal_membership.getAuthenticatedMember()
+            return member.getId()
+
+        # See if we have a cookie
+        if REQUEST.has_key(COOKIENAME):
+            return REQUEST.get(COOKIENAME)
+        # If not, create a cookie
+        uniqueid = str(time.time())
+        REQUEST.RESPONSE.setCookie(COOKIENAME, uniqueid, expires='Wed, 19 Feb 2020 14:28:00 GMT')
+        return uniqueid
 
     def getDefaultFieldValue(self, field, REQUEST):
         key = self.getKey(REQUEST)

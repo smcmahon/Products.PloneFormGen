@@ -7,6 +7,7 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen.tests import pfgtc
+from Products.PloneFormGen.content.statefulDataAdapter import COOKIENAME
 
 from Products.CMFCore.utils import getToolByName
 
@@ -19,11 +20,11 @@ class FakeRequest(dict):
     def __init__(self, **kwargs):
         self.form = kwargs
 
-class TestFunctions(pfgtc.PloneFormGenTestCase):
+class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
     """ test stateful data adapter """
     
     def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+        pfgtc.PloneFormGenAnonFunctionalTestCase.afterSetUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
 
@@ -39,6 +40,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         self.assertEqual(statify.itemsSaved(), 0)
 
+        # Test back-end (authenticated)
         request = FakeRequest(topic='test subject', 
                               replyto='test@test.org', 
                               comments='test comments')
@@ -50,15 +52,48 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual( errors, {} )
 
         self.assertEqual(statify.itemsSaved(), 1)
-        res = statify.getStatefulData()
+        statefuldata = statify.getStatefulData()
         key = statify.getKey(request)
-        self.failUnless(key in res.keys())
-        self.failUnless('topic' in res[key].keys())
-        self.failUnless(res[key]['topic'] == 'test subject')
+        self.failUnless(key in statefuldata.keys())
+        self.failUnless('topic' in statefuldata[key].keys())
+        self.failUnless(statefuldata[key]['topic'] == 'test subject')
 
         defaultval = statify.getDefaultFieldValue(self.ff1.topic, request)
         self.assertEqual(defaultval, 'test subject')
 
+        # Test front-end (anonymously)
+        formfolder_url = self.ff1.absolute_url()
+        self.browser.open(formfolder_url)
+        self.browser.getControl(name='topic').value = 'test subject 2'
+        self.browser.getControl(name='replyto').value = 'test2@test.org'
+        self.browser.getControl(name='comments').value = 'test comments 2'
+        self.browser.getControl(name='form_submit').click()
+
+        statefuldata = statify.getStatefulData()
+        self.assertEqual(statify.itemsSaved(), 2)
+
+        setcookie = self.browser.headers.get('set-cookie')
+        import Cookie
+        c = Cookie.SmartCookie()
+        c.load(setcookie)
+        self.failUnless(COOKIENAME in c.keys())
+        key = c[COOKIENAME].value
+        self.failUnless(key in statefuldata.keys())
+        self.failUnless('topic' in statefuldata[key].keys())
+        self.failUnless(statefuldata[key]['topic'] == 'test subject 2')
+
+        # from base64 import b64encode
+
+        # Re-open the page and check values
+        #self.browser.addHeader('cookie', '%s=%s' % (COOKIENAME, b64encode(key)))
+        #self.browser.open(formfolder_url)
+
+        #self.assertEqual(self.browser.getControl(name='topic').value,
+        #                 'test subject 2')
+        #self.assertEqual(self.browser.getControl(name='replyto').value,
+        #                 'test2@test.org')
+        #self.assertEqual(self.browser.getControl(name='comments').value,
+        #                 'test comments 2')
 
 if  __name__ == '__main__':
     framework()
