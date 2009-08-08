@@ -58,9 +58,30 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.failUnless('topic' in statefuldata[key].keys())
         self.failUnless(statefuldata[key]['topic'] == 'test subject')
 
+
         defaultval = statify.getDefaultFieldValue(self.ff1.topic, request)
         self.assertEqual(defaultval, 'test subject')
 
+        # Test back-end (with another user)
+        self.membership = self.portal.portal_membership
+        self.membership.addMember('cesku', 'secret', ['Member'], [])
+        self.login('cesku')
+        
+        cesku_request = FakeRequest(topic='cesku subject', 
+                                    replyto='cesku@test.org', 
+                                    comments='cesku comments')
+                              
+        defaultval = statify.getDefaultFieldValue(self.ff1.topic, request)
+        self.assertEqual(defaultval, None)
+
+        self.ff1.fgvalidate(REQUEST=cesku_request) # simulate form submit 
+        statefuldata = statify.getStatefulData()
+        self.failUnless('cesku' in statefuldata.keys())
+        self.failUnless('topic' in statefuldata[key].keys())
+        self.failUnless(statefuldata['cesku']['topic'] == 'cesku subject')
+        self.assertEqual(statify.itemsSaved(), 2)
+        
+        
         # Test front-end (anonymously)
         formfolder_url = self.ff1.absolute_url()
         self.browser.open(formfolder_url)
@@ -70,7 +91,7 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.browser.getControl(name='form_submit').click()
 
         statefuldata = statify.getStatefulData()
-        self.assertEqual(statify.itemsSaved(), 2)
+        self.assertEqual(statify.itemsSaved(), 3)
 
         setcookie = self.browser.headers.get('set-cookie')
         import Cookie
@@ -81,6 +102,8 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.failUnless(key in statefuldata.keys())
         self.failUnless('topic' in statefuldata[key].keys())
         self.failUnless(statefuldata[key]['topic'] == 'test subject 2')
+
+       
 
         # from base64 import b64encode
 
