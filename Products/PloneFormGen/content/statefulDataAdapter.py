@@ -11,6 +11,7 @@ from persistent.dict import PersistentDict
 from Products.ATContentTypes.content.base import registerATCT
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.permissions import View, ModifyPortalContent
 
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter
@@ -82,9 +83,16 @@ class FormStatefulDataAdapter(FormActionAdapter):
         """
         return len(self.statefuldata)
 
+    security.declareProtected(ModifyPortalContent, 'getStatefulData')
     def getStatefulData(self):
         """ Return the current data """
         return self.statefuldata.copy()
+
+    security.declareProtected(ModifyPortalContent, 'resetStatefulData')
+    def resetStatefulData(self):
+        """ reset all my data """
+        self.statefuldata = PersistentDict()
+        return "Reset Stateful Data OK"
 
     def getKey(self, REQUEST):
         """ get key based on logged-in user or cookie/session """

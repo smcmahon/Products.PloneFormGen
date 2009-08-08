@@ -504,6 +504,8 @@ class FormFolder(ATFolder):
                 conditionalfieldvalue = fieldset.getConditionalFieldValue()
                     
                 if conditionalfield and conditionalfieldvalue:
+                    if not request.get('form_submit', None) and not request.get('form_continue', None):
+                        return False
                     currentvalue = request.get(conditionalfield, None)
                     if not currentvalue:
                         return False
