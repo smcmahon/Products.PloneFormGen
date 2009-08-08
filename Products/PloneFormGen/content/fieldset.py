@@ -41,6 +41,27 @@ FieldsetFolderSchema = ATFolderSchema.copy() + Schema((
             i18n_domain = "ploneformgen",
             ),
         ),
+    StringField('conditionalField',
+                required=0,
+                searchable=0,
+                widget=SelectionWidget(label='Conditional Field',
+                                       description='Optionally select the field to be evaluated as the condition for this fieldset.',
+                                       label_msgid = "label_conditionalfield_text",
+                                       description_msgid = "help_conditionalfield_text",
+                                       i18n_domain = "ploneformgen",
+                                       ),
+                vocabulary='conditionalFieldDL',
+                ),
+    StringField('conditionalFieldValue',
+                required=0,
+                searchable=0,
+                widget=StringWidget(label='Conditional Field Value',
+                                    description='If you choose a conditional field, enter the value here such that the condition is evaluated as true.',
+                                    label_msgid = "label_conditionalfieldvalue_text",
+                                    description_msgid = "help_conditionalfieldvalue_text",
+                                    i18n_domain = "ploneformgen",
+                                    ),
+                ),
     ))
 
 FieldsetFolderSchema['description'].widget.label = 'Fieldset Help'
@@ -181,5 +202,22 @@ class FieldsetFolder(ATFolder):
         
         return self.formFolderObject().checkIdAvailable(id)
 
+
+    def conditionalFieldDL(self):
+        """ returns a display list contianing all fields within this form
+        that can be used to evaluate the condition for this fieldset """
+        fields = self.formFolderObject().objectValues('FormSelectionField')
+
+        vocab = DisplayList()
+
+        for f in fields:
+            fieldvocab = f.fgField.Vocabulary(f)
+            fieldvocab = '; '.join(fieldvocab.keys())
+            vocab.add(f.getId(), '%s - %s' % (
+                        f.Title(),
+                        fieldvocab,
+                        ))
+
+        return vocab
 
 registerATCT(FieldsetFolder, PROJECTNAME)

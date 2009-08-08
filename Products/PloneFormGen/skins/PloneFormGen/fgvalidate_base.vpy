@@ -26,8 +26,13 @@ except (ImportError, Unauthorized):
 
 request = context.REQUEST
 
+continuing = request.get('form_continue', None)
+
 errors = state.getErrors()
-errors = context.fgvalidate(REQUEST=request, errors=errors, data=1, metadata=0)
+if continuing:
+    errors = context.fgvalidate(REQUEST=request, errors=errors, data=1, metadata=0, skip_action_adapters=True)
+else:
+    errors = context.fgvalidate(REQUEST=request, errors=errors, data=1, metadata=0)
 
 if errors:
     if P3StyleErrors:
@@ -44,7 +49,10 @@ if errors:
             message = 'Please correct the indicated errors.'
         return state.set(status='failure', errors=errors, portal_status_message=message)
 else:
-    nextAction = context.fgGetSuccessAction()
+    if continuing:
+        nextAction = 'traverse_to_action:string:view'
+    else:
+        nextAction = context.fgGetSuccessAction()
     state.setNextAction( nextAction )
 
     if nextAction.find('fg_result_view') > 0:

@@ -491,6 +491,25 @@ class FormFolder(ATFolder):
                 secure_url = self.REQUEST['URL'].replace('http://', 'https://')
                 raise Redirect, secure_url
 
+    security.declareProtected(View, 'canSubmitForm')
+    def canSubmitForm(self, request=None):
+        """
+        determines if we can submit this form - i.e. whether all conditional
+        fieldsets that need a condition to be evaluated have a value
+        selected by the user
+        """
+        if request:
+            for fieldset in self.objectValues('FieldsetFolder'):
+                conditionalfield = fieldset.getConditionalField()
+                conditionalfieldvalue = fieldset.getConditionalFieldValue()
+                    
+                if conditionalfield and conditionalfieldvalue:
+                    currentvalue = request.get(conditionalfield, None)
+                    if not currentvalue:
+                        return False
+
+        return True
+
     security.declareProtected(View, 'fgFields')
     def fgFields(self, request=None, displayOnly=False, excludeServerSide=True):
         """ generate fields on the fly; also primes request with
@@ -523,6 +542,40 @@ class FormFolder(ATFolder):
 
         return myFields
 
+    def activeFieldIds(self, request):
+        """ 
+        based on any conditional fieldsets and their conditions
+        return a list of the ids of the fields which need to be
+        included in the form, validated and submitted
+        """
+        skipfieldset = 0
+        fgFields = self.fgFields(request)
+        activeids = []
+        for obj in fgFields:
+            if skipfieldset:
+                if IField.isImplementedBy(obj) and obj.getName() == 'FieldSetEnd':
+                    skipfieldset = 0
+                continue
+            
+            if IField.isImplementedBy(obj):
+                if request and obj.getName() in self.objectIds('FieldsetFolder'):
+                    fieldset = getattr(self, obj.getName())
+                    conditionalfield = fieldset.getConditionalField()
+                    conditionalfieldvalue = fieldset.getConditionalFieldValue()
+                
+                    if conditionalfield and conditionalfieldvalue:
+                        if not request.get('form_submit', None) and not request.get('form_continue', None):
+                            return activeids
+                        currentvalue = request.get(conditionalfield, None)
+                        if not currentvalue:
+                            return activeids
+                        elif currentvalue <> conditionalfieldvalue:
+                            skipfieldset = 1
+                            continue
+            activeids.append(obj.getName())
+
+        return activeids
+
     security.declareProtected(View, 'fgvalidate')
     def fgvalidate(self,
                    REQUEST=None,
@@ -546,6 +599,9 @@ class FormFolder(ATFolder):
 
         # Get all the form fields. Exclude actual IField fields.
         fields = [fo for fo in self._getFieldObjects() if not IField.isImplementedBy(fo)]
+        activeids = REQUEST.get('activefieldids', [])
+        fields = [f for f in fields if f.fgField.getName() in activeids]
+
         for obj in fields:
             field = obj.fgField
 

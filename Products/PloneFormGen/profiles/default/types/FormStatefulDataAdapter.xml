@@ -10,16 +10,14 @@
  <property name="content_meta_type">FormStatefulDataAdapter</property>
  <property name="product">PloneFormGen</property>
  <property name="factory">addFormStatefulDataAdapter</property>
- <property name="immediate_view">fg_savedata_view_p3</property>
+ <property name="immediate_view">base_view</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">False</property>
  <property name="allowed_content_types"/>
  <property name="allow_discussion">False</property>
- <property name="default_view">fg_savedata_view_p3</property>
+ <property name="default_view">base_view</property>
  <property name="view_methods">
-  <element value="fg_savedata_tabview_p3"/>
-  <element value="fg_savedata_recview_p3"/>
-  <element value="fg_savedata_view_p3"/>
+  <element value="base_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>

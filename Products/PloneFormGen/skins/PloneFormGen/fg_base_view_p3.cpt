@@ -7,6 +7,7 @@
                    default_fieldset string:default;
                    fieldset default_fieldset;
                    fields python:here.fgFields(request);
+		   activefieldids python:here.activeFieldIds(request);
                    portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                    type_name here/getPortalTypeName|here/archetype_name;
                    base_macros here/fg_edit_macros_p3/macros;
@@ -75,6 +76,8 @@
        #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
        #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
        .editHook {text-align:center}
+       #pfg-fieldwrapper .inactive { display: none; }
+       #pfg-fieldwrapper table .inactive { display: block; }
     </style>
     <tal:block define="macro edit_macros/css | nothing"
                     condition="macro">
@@ -86,6 +89,7 @@
   <body>
 
     <metal:fill fill-slot="main">
+
       <metal:main define-macro="main"
                   tal:define="isLocked python:False;
                               canModify python:checkPermission('Modify portal content', here)">
