@@ -28,12 +28,12 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
 
-    def testStateful(self):
+    def testStatefulSave(self):
         """ test save data adapter action """
 
         self.ff1.invokeFactory('FormStatefulDataAdapter', 'statify')
         self.failUnless('statify' in self.ff1.objectIds())
-
+        
         statify = self.ff1.statify
         self.ff1.setActionAdapter( ('statify',) )
         self.assertEqual(self.ff1.actionAdapter, ('statify',))
@@ -45,9 +45,6 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
                               replyto='test@test.org', 
                               comments='test comments')
 
-        defaultval = statify.getDefaultFieldValue(self.ff1.topic, request)
-        self.assertEqual(defaultval, None)
-
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -57,10 +54,6 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.failUnless(key in statefuldata.keys())
         self.failUnless('topic' in statefuldata[key].keys())
         self.failUnless(statefuldata[key]['topic'] == 'test subject')
-
-
-        defaultval = statify.getDefaultFieldValue(self.ff1.topic, request)
-        self.assertEqual(defaultval, 'test subject')
 
         # Test back-end (with another user)
         self.membership = self.portal.portal_membership
@@ -81,8 +74,17 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.failUnless(statefuldata['cesku']['topic'] == 'cesku subject')
         self.assertEqual(statify.itemsSaved(), 2)
         
+    def testDefaultProviderAnon(self):
+        self.ff1.invokeFactory('FormStatefulDataAdapter', 'statify')
+        self.failUnless('statify' in self.ff1.objectIds())
         
-        # Test front-end (anonymously)
+        statify = self.ff1.statify
+        self.ff1.setActionAdapter( ('statify',) )
+        self.assertEqual(self.ff1.actionAdapter, ('statify',))
+        self.ff1.setDefaultFieldValueProvider( ('statify',) )
+        self.assertEqual(self.ff1.defaultFieldValueProvider, ('statify',))
+
+        # Test front-end (anonymously with cookies)
         formfolder_url = self.ff1.absolute_url()
         self.browser.open(formfolder_url)
         self.browser.getControl(name='topic').value = 'test subject 2'
@@ -90,33 +92,14 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.browser.getControl(name='comments').value = 'test comments 2'
         self.browser.getControl(name='form_submit').click()
 
-        statefuldata = statify.getStatefulData()
-        self.assertEqual(statify.itemsSaved(), 3)
-
-        setcookie = self.browser.headers.get('set-cookie')
-        import Cookie
-        c = Cookie.SmartCookie()
-        c.load(setcookie)
-        self.failUnless(COOKIENAME in c.keys())
-        key = c[COOKIENAME].value
-        self.failUnless(key in statefuldata.keys())
-        self.failUnless('topic' in statefuldata[key].keys())
-        self.failUnless(statefuldata[key]['topic'] == 'test subject 2')
-
-       
-
-        # from base64 import b64encode
-
         # Re-open the page and check values
-        #self.browser.addHeader('cookie', '%s=%s' % (COOKIENAME, b64encode(key)))
-        #self.browser.open(formfolder_url)
-
-        #self.assertEqual(self.browser.getControl(name='topic').value,
-        #                 'test subject 2')
-        #self.assertEqual(self.browser.getControl(name='replyto').value,
-        #                 'test2@test.org')
-        #self.assertEqual(self.browser.getControl(name='comments').value,
-        #                 'test comments 2')
+        self.browser.open(formfolder_url)
+        self.assertEqual(self.browser.getControl(name='topic').value,
+                         'test subject 2')
+        self.assertEqual(self.browser.getControl(name='replyto').value,
+                         'test2@test.org')
+        self.assertEqual(self.browser.getControl(name='comments').value,
+                         'test comments 2')
 
 if  __name__ == '__main__':
     framework()

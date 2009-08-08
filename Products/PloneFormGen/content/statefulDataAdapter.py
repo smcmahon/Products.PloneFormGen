@@ -94,11 +94,12 @@ class FormStatefulDataAdapter(FormActionAdapter):
             member = portal_membership.getAuthenticatedMember()
             return member.getId()
 
-        # See if we have a cookie
+        # See if we have a uniqueid
         if REQUEST.has_key(COOKIENAME):
             return REQUEST.get(COOKIENAME)
         # If not, create a cookie
         uniqueid = str(time.time())
+        REQUEST.set(COOKIENAME, uniqueid)
         REQUEST.RESPONSE.setCookie(COOKIENAME, uniqueid, expires='Wed, 19 Feb 2020 14:28:00 GMT')
         return uniqueid
 
