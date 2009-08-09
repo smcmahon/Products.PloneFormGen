@@ -34,7 +34,7 @@ from Products.TALESField import TALESString
 
 from Products.PloneFormGen.interfaces import \
     IPloneFormGenForm, IPloneFormGenActionAdapter, IPloneFormGenThanksPage, \
-    IPloneFormGenDefaultFieldValueProvider
+    IPloneFormGenPersistentActionAdapter
 from Products.PloneFormGen.config import \
     PROJECTNAME, fieldTypes, adapterTypes, thanksTypes, fieldsetTypes, \
     EDIT_TALES_PERMISSION, EDIT_ADVANCED_PERMISSION, BAD_IDS
@@ -104,17 +104,17 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             i18n_domain = "ploneformgen",
             ),
         ),
-    LinesField('defaultFieldValueProvider',
-        vocabulary='defaultFieldValueProvidersDL',
+    LinesField('persistentActionAdapter',
+        vocabulary='persistentActionAdapterDL',
         widget=MultiSelectionWidget(
-            label="Default Field Value Provider",
-            description="""
-                If you wish to look up default values from a specific
-                default value provider, please select it here.
+            label="Persistent Action Adaptor",
+            description="""If you want a user to be able to return
+to this form at a later date, you will need to create and select
+a persistent action adapter.
                 """,
             format='checkbox',
-            label_msgid = "label_defaultfieldvalueprovider_text",
-            description_msgid = "help_defaultfieldvalueprovider_text",
+            label_msgid = "label_persistentactionadapter_text",
+            description_msgid = "help_persistentactionadapter_text",
             i18n_domain = "ploneformgen",
             ),
         ),
@@ -771,15 +771,13 @@ class FormFolder(ATFolder):
 
         return DisplayList()
 
-    security.declareProtected(ModifyPortalContent, 'defaultFieldValueProvidersDL')
-    def defaultFieldValueProvidersDL(self):
-        """ returns Display List (id, title) tuples of contained providers """
+    security.declareProtected(ModifyPortalContent, 'persistentActionAdapterDL')
+    def persistentActionAdapterDL(self):
+        """ returns Display List (id, title) tuples of contained adapters """
+        allAdapters = [(obj.getId(), obj.title) for obj in self.objectValues() if IPloneFormGenPersistentActionAdapter in providedBy(obj)]
 
-        # a default value provider provides IPloneFormGenDefaultFieldValueProvider
-        allProviders = [(obj.getId(), obj.title) for obj in self.objectValues() if IPloneFormGenDefaultFieldValueProvider in providedBy(obj)]
-
-        if allProviders:
-            return DisplayList( allProviders )
+        if allAdapters:
+            return DisplayList( allAdapters )
 
         return DisplayList()
 

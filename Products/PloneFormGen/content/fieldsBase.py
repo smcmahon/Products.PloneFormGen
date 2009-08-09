@@ -767,12 +767,12 @@ class BaseFormField(ATCTContent):
         # try and look up a default value from the form default value provider
         # if one has been selected
         formFolder = self.formFolderObject()
-        defaultFieldValueProvider = formFolder.getRawDefaultFieldValueProvider()
-        if defaultFieldValueProvider:
-            providerId = defaultFieldValueProvider[0]
-            provider = getattr(formFolder.aq_explicit, providerId, None)
-            if provider:
-                value = provider.getDefaultFieldValue(self.aq_base, request)
+        persistentActionAdapter = formFolder.getRawPersistentActionAdapter()
+        if persistentActionAdapter:
+            adapterId = persistentActionAdapter[0]
+            adapter = getattr(formFolder.aq_explicit, adapterId, None)
+            if adapter:
+                value = adapter.getCurrentFieldValue(self.aq_base, request)
 
         if not value:
             if safe_hasattr(self, 'getFgTDefault') and self.getRawFgTDefault():

@@ -64,8 +64,8 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
                                     replyto='cesku@test.org', 
                                     comments='cesku comments')
                               
-        defaultval = statify.getDefaultFieldValue(self.ff1.topic, request)
-        self.assertEqual(defaultval, None)
+        currentval = statify.getCurrentFieldValue(self.ff1.topic, request)
+        self.assertEqual(currentval, None)
 
         self.ff1.fgvalidate(REQUEST=cesku_request) # simulate form submit 
         statefuldata = statify.getStatefulData()
@@ -74,15 +74,15 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         self.failUnless(statefuldata['cesku']['topic'] == 'cesku subject')
         self.assertEqual(statify.itemsSaved(), 2)
         
-    def testDefaultProviderAnon(self):
+    def testStatefulDataAdapterAnon(self):
         self.ff1.invokeFactory('FormStatefulDataAdapter', 'statify')
         self.failUnless('statify' in self.ff1.objectIds())
         
         statify = self.ff1.statify
         self.ff1.setActionAdapter( ('statify',) )
         self.assertEqual(self.ff1.actionAdapter, ('statify',))
-        self.ff1.setDefaultFieldValueProvider( ('statify',) )
-        self.assertEqual(self.ff1.defaultFieldValueProvider, ('statify',))
+        self.ff1.setPersistentActionAdapter( ('statify',) )
+        self.assertEqual(self.ff1.persistentActionAdapter, ('statify',))
 
         # Test front-end (anonymously with cookies)
         formfolder_url = self.ff1.absolute_url()

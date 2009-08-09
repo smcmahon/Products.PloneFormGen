@@ -7,10 +7,10 @@ from zope.interface import Interface, Attribute
 # does not automatically put it on the "add" menu. That
 # needs to be done via portal_types.
 
-class IPloneFormGenDefaultFieldValueProvider(Interface):
-    """statefulActionAdapter interface
+class IPloneFormGenPersistentActionAdapter(Interface):
+    """persistentActionAdapter interface
     """
-    def getDefaultFieldValue(field, REQUEST):
+    def getCurrentFieldValue(field, REQUEST):
         """
         get the previously stored value (if it exists) or None for the field
         object 'field'
@@ -18,4 +18,9 @@ class IPloneFormGenDefaultFieldValueProvider(Interface):
         REQUEST is used to determine a unique identifier for the current user
         (this might be their userid or a unique id within a cookie or
         a session-related id of some kind)
+        """
+
+    def currentUserHasCompletedForm(REQUEST):
+        """
+        if the current user has completed the form, return True
         """

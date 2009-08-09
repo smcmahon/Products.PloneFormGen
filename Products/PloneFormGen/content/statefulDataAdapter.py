@@ -15,7 +15,7 @@ from Products.CMFCore.permissions import View, ModifyPortalContent
 
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter
-from Products.PloneFormGen.interfaces import IPloneFormGenDefaultFieldValueProvider
+from Products.PloneFormGen.interfaces import IPloneFormGenPersistentActionAdapter
 import logging
 
 import time
@@ -25,7 +25,7 @@ logger = logging.getLogger("PloneFormGen")
 COOKIENAME = 'pfg_statefuldata_uniqueid'
 
 class FormStatefulDataAdapter(FormActionAdapter):
-    implements(IPloneFormGenDefaultFieldValueProvider)
+    implements(IPloneFormGenPersistentActionAdapter)
 
     meta_type      = 'FormStatefulDataAdapter'
     portal_type    = 'FormStatefulDataAdapter'
@@ -111,7 +111,7 @@ class FormStatefulDataAdapter(FormActionAdapter):
         REQUEST.RESPONSE.setCookie(COOKIENAME, uniqueid, expires='Wed, 19 Feb 2020 14:28:00 GMT')
         return uniqueid
 
-    def getDefaultFieldValue(self, field, REQUEST):
+    def getCurrentFieldValue(self, field, REQUEST):
         key = self.getKey(REQUEST)
         if key in self.statefuldata.keys():
             data = self.statefuldata[key]
