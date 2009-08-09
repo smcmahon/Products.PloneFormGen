@@ -24,3 +24,8 @@ class IPloneFormGenPersistentActionAdapter(Interface):
         """
         if the current user has completed the form, return True
         """
+
+    def resetCurrentUserPersistentData(REQUEST):
+        """
+        Reset the current user's data for this form 
+        """

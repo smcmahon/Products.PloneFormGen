@@ -90,6 +90,15 @@
         <metal:block define-slot="extra_top" />
 
         <metal:block define-slot="widgets">
+	  <dl class="portalMessage info"
+	      tal:condition="python: hascompleted and not 
+			     (request.form.get('form_submit', '')
+			     or request.form.get('form_continue', ''))">
+	    <dt>Info</dt>
+	    <dd>Welcome back! It appears that you have already submitted this form. You can change your submission below, or 
+	      <a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData">start again</a>.</dd>
+	  </dl>
+
           <div id="pfg-fieldwrapper"
 	       tal:define="fieldids python: [ x.getName() for x in fields ];
 			   lastfieldid request/pfg_lastfieldid|nothing;
@@ -104,7 +113,7 @@
 				 field.getName() == 'FieldSetEnd'
 				 or field.getName() in context.objectIds('FieldsetFolder')">
 		<dl class="portalMessage info"
-		    tal:condition="newfieldmarker">
+		    tal:condition="python: newfieldmarker and active">
 		  <dt>Info</dt>
 		  <dd>Please complete the additional fields below.</dd>
 		</dl>

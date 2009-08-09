@@ -8,6 +8,7 @@
                    fieldset default_fieldset;
                    fields python:here.fgFields(request);
 		   activefieldids python:here.activeFieldIds(request);
+		   hascompleted python:here.currentUserHasCompletedForm(request);
                    portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                    type_name here/getPortalTypeName|here/archetype_name;
                    base_macros here/fg_edit_macros_p3/macros;

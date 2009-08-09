@@ -81,8 +81,8 @@ class TestFunctions(pfgtc.PloneFormGenAnonFunctionalTestCase):
         statify = self.ff1.statify
         self.ff1.setActionAdapter( ('statify',) )
         self.assertEqual(self.ff1.actionAdapter, ('statify',))
-        self.ff1.setPersistentActionAdapter( ('statify',) )
-        self.assertEqual(self.ff1.persistentActionAdapter, ('statify',))
+        self.ff1.setPersistentActionAdapter('statify')
+        self.assertEqual(self.ff1.persistentActionAdapter, 'statify')
 
         # Test front-end (anonymously with cookies)
         formfolder_url = self.ff1.absolute_url()

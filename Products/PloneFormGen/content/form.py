@@ -104,15 +104,14 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             i18n_domain = "ploneformgen",
             ),
         ),
-    LinesField('persistentActionAdapter',
+    StringField('persistentActionAdapter',
         vocabulary='persistentActionAdapterDL',
-        widget=MultiSelectionWidget(
+        widget=SelectionWidget(
             label="Persistent Action Adaptor",
             description="""If you want a user to be able to return
 to this form at a later date, you will need to create and select
 a persistent action adapter.
                 """,
-            format='checkbox',
             label_msgid = "label_persistentactionadapter_text",
             description_msgid = "help_persistentactionadapter_text",
             i18n_domain = "ploneformgen",
@@ -578,6 +577,23 @@ class FormFolder(ATFolder):
 
         return activeids
 
+    def currentUserHasCompletedForm(self, REQUEST):
+        """ Has the current user already completed this form? """
+        adapterId = self.getRawPersistentActionAdapter()
+        if adapterId:
+            adapter = getattr(self, adapterId)
+            return adapter.currentUserHasCompletedForm(REQUEST)
+        return False
+
+    def resetCurrentUserPersistentData(self, REQUEST):
+        """ reset the current user's data """
+        adapterId = self.getRawPersistentActionAdapter()
+        if adapterId:
+            adapter = getattr(self, adapterId)
+            adapter.resetCurrentUserPersistentData(REQUEST)
+        referer = REQUEST.get('HTTP_REFERER', '')
+        return REQUEST.RESPONSE.redirect(referer)
+
     security.declareProtected(View, 'fgvalidate')
     def fgvalidate(self,
                    REQUEST=None,
@@ -762,10 +778,8 @@ class FormFolder(ATFolder):
     security.declareProtected(ModifyPortalContent, 'actionAdaptersDL')
     def actionAdaptersDL(self):
         """ returns Display List (id, title) tuples of contained adapters """
-
         # an adapter provides IPloneFormGenActionAdapter
         allAdapters = [(obj.getId(), obj.title) for obj in self.objectValues() if IPloneFormGenActionAdapter in providedBy(obj)]
-
         if allAdapters:
             return DisplayList( allAdapters )
 
@@ -774,7 +788,8 @@ class FormFolder(ATFolder):
     security.declareProtected(ModifyPortalContent, 'persistentActionAdapterDL')
     def persistentActionAdapterDL(self):
         """ returns Display List (id, title) tuples of contained adapters """
-        allAdapters = [(obj.getId(), obj.title) for obj in self.objectValues() if IPloneFormGenPersistentActionAdapter in providedBy(obj)]
+        allAdapters = [('', 'None'), ]
+        allAdapters.extend([(obj.getId(), obj.title) for obj in self.objectValues() if IPloneFormGenPersistentActionAdapter in providedBy(obj)])
 
         if allAdapters:
             return DisplayList( allAdapters )

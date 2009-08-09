@@ -119,4 +119,15 @@ class FormStatefulDataAdapter(FormActionAdapter):
                 return data[field.id]
         return None
 
+    def currentUserHasCompletedForm(self, REQUEST):
+        key = self.getKey(REQUEST)
+        if key in self.statefuldata.keys():
+            return True
+        return False
+
+    def resetCurrentUserPersistentData(self, REQUEST):
+        key = self.getKey(REQUEST)
+        if key in self.statefuldata.keys():
+            del(self.statefuldata[key])
+
 registerATCT(FormStatefulDataAdapter, PROJECTNAME)
