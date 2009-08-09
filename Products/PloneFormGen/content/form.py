@@ -551,7 +551,7 @@ class FormFolder(ATFolder):
         included in the form, validated and submitted
         """
         skipfieldset = 0
-        fgFields = self.fgFields(request)
+        fgFields = self.fgFields(request, excludeServerSide=False)
         activeids = []
         for obj in fgFields:
             if skipfieldset:
@@ -601,8 +601,9 @@ class FormFolder(ATFolder):
 
         # Get all the form fields. Exclude actual IField fields.
         fields = [fo for fo in self._getFieldObjects() if not IField.isImplementedBy(fo)]
-        activeids = REQUEST.get('activefieldids', [])
-        fields = [f for f in fields if f.fgField.getName() in activeids]
+        activeids = REQUEST.get('activefieldids', None)
+        if activeids is not None:
+            fields = [f for f in fields if f.fgField.getName() in activeids]
 
         for obj in fields:
             field = obj.fgField

@@ -9,6 +9,7 @@
                     default_fieldset string:default;
                     fieldset default_fieldset;
                     fields python:context.fgFields(request);
+		    activefieldids python:here.activeFieldIds(request);
                     enable_unload_protection options/enable_unload_protection|python:False;
                     enable_auto_focus options/enable_auto_focus|python:False">
         <tal:block metal:use-macro="context/fg_edit_macros_p3/macros/body"/>
