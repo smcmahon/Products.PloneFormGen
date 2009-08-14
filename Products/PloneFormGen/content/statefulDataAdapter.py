@@ -31,8 +31,8 @@ class FormStatefulDataAdapter(FormActionAdapter):
     portal_type    = 'FormStatefulDataAdapter'
     archetype_name = 'Stateful Data Adapter'
 
-    immediate_view = 'base_view'
-    default_view   = 'base_view'
+    immediate_view = 'fg_statefuldata_view'
+    default_view   = 'fg_statefuldata_view'
     suppl_views    = ()
     
     security       = ClassSecurityInfo()
@@ -86,7 +86,8 @@ class FormStatefulDataAdapter(FormActionAdapter):
     security.declareProtected(ModifyPortalContent, 'getStatefulData')
     def getStatefulData(self):
         """ Return the current data """
-        return self.statefuldata.copy()
+        result = dict(self.statefuldata.copy())
+        return result
 
     security.declareProtected(ModifyPortalContent, 'resetStatefulData')
     def resetStatefulData(self):

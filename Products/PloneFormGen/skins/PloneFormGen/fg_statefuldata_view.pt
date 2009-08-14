@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main"
+        tal:define="content_type here/get_content_type|here/Format;
+                    canEdit python:checkPermission('Modify portal content', here);
+		    fgFields python: 
+		    context.formFolderObject().fgFields(displayOnly=True)
+                   ">
+
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+
+        <h1 tal:content="object_title" class="documentFirstHeading">
+            Title or id
+        </h1>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
+
+	<tal:view condition="canEdit">
+
+	  <table tal:define="data context/getStatefulData;
+			     portal_membership context/portal_membership;
+			     fieldids python:[ x.getName() for x in fgFields ]"
+		 class="listing">
+	    <tr>
+	      <th>User</th>
+	      <th tal:repeat="field fgFields">
+		<span tal:content="python: field.getName()" />
+	      </th>
+	    </tr>
+	    <tr tal:repeat="userid data/keys">
+	      <td tal:define="user python: 
+			      portal_membership.getMemberById(userid)">
+		<span tal:content="python: 
+				   user.getProperty('fullname', userid)" />
+	      </td>
+	      <td tal:repeat="fid fieldids">
+		<span tal:content="python: data[userid].get(fid, '')" />
+	      </td>
+	    </tr>
+	  </table>
+	  
+	</tal:view>
+
+	<tal:noview condition="not:canEdit">
+	  You do not have permission to view this data.
+	</tal:noview>
+
+    </tal:main-macro>
+</div>
+
+</body>
+
+</html>

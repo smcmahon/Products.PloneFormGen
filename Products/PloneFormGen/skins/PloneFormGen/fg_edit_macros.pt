@@ -75,18 +75,54 @@
 
           <metal:block define-slot="extra_top" />
 
-          <metal:block define-slot="widgets">
+          <metal:block define-slot="widgets"
+		       tal:define="fieldids python: [ x.getName() for x in fields ];
+				   lastfieldid request/pfg_lastfieldid|nothing;
+				   lastfieldindex python: lastfieldid and
+				   fieldids.index(lastfieldid)">
+            <div class="portalMessage"
+		tal:condition="python: hascompleted and not 
+			       (request.form.get('form_submit', '')
+			       or request.form.get('form_continue', ''))">
+	      Welcome back! It appears that you have already submitted this 
+	      form. You can change your submission below, or 
+	      <a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData">start again</a>.
+	    </div>
             <tal:fields repeat="field fields">
-      			  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-                <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-      			  </tal:block>
-              <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
-                   tal:attributes="id string:archetypes-fieldname-${field/getName}"
-                   class="field PFG-RichLabel"
-                   tal:content="structure python:request.form.get(field.getName(), field.default)">
-                  Rich Label
-              </div>
+	      <tal:block define="newfieldmarker python: lastfieldindex and 
+				 repeat['field'].index == lastfieldindex+1;
+				 active python: 
+				 field.getName() in activefieldids;
+				 isFSMarker python: 
+				 field.getName() == 'FieldSetEnd'
+				 or field.getName() in context.objectIds('FieldsetFolder')">
+		<p class="pfg-message"
+		    tal:condition="python: newfieldmarker and active">
+		  Please complete the additional fields below.
+		</p>
+		<div tal:attributes="class python: 
+				     active and 'active' or 'inactive'"
+		     tal:omit-tag="isFSMarker">
+      		  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+                    <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+      		  </tal:block>
+		  <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
+                       tal:attributes="id string:archetypes-fieldname-${field/getName}"
+                       class="field PFG-RichLabel"
+                       tal:content="structure python:request.form.get(field.getName(), field.default)">
+                    Rich Label
+		  </div>
+		</div>
+	      </tal:block>
             </tal:fields>
+	    <input type="hidden"
+		   name="pfg_lastfieldid"
+		   tal:condition="activefieldids"
+		   tal:attributes="value python:activefieldids[-1]" />
+	    <input tal:repeat="aid activefieldids"
+		   type="hidden"
+		   name="activefieldids:list"
+		   tal:attributes="value aid" />
           </metal:block>
 
           <metal:block define-slot="extra_bottom" />
@@ -173,7 +209,9 @@
 
             <metal:block define-slot="buttons"
                    tal:define="fieldset_index python:fieldsets.index(fieldset);
-                               n_fieldsets python:len(fieldsets)">
+                               n_fieldsets python:len(fieldsets);
+			       canSubmitForm python:
+			       context.canSubmitForm(request)">
 
                 <input tal:condition="python:fieldset_index &gt; 0"
                        class="context"
@@ -195,15 +233,22 @@
                        tal:attributes="tabindex tabindex/next;
                                        disabled python:test(isLocked, 'disabled', None);"
                        />
-                <input class="context"
-                       tabindex=""
-                       type="submit"
-                       name="form_submit"
-                       value="Save"
-                       tal:attributes="value python:getattr(here,'submitLabel','Submit');
-                                       tabindex tabindex/next;
-                                       disabled python:test(isLocked, 'disabled', None);"
-                       />
+              <input tal:condition="canSubmitForm"
+		     class="context"
+                     type="submit"
+                     name="form_submit"
+                     value="Save"
+                     tal:attributes="value python:getattr(here,'submitLabel','Submit');
+                                     disabled python:test(isLocked, 'disabled', None);"
+                     />
+              <input tal:condition="not:canSubmitForm"
+		     class="context"
+                     type="submit"
+                     name="form_continue"
+                     value="Continue"
+                     i18n:attributes="value"
+                     tal:attributes="disabled python:test(isLocked, 'disabled', None);"
+                     />
                 <input class="standalone"
                        tabindex=""
                        type="reset"

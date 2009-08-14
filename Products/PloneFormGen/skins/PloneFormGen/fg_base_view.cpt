@@ -6,6 +6,8 @@
                    default_fieldset string:default;
                    fieldset default_fieldset;
                    fields python:here.fgFields(request);
+		   activefieldids python:here.activeFieldIds(request);
+		   hascompleted python:here.currentUserHasCompletedForm(request);
                    portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                    type_name here/getPortalTypeName|here/archetype_name;
                    base_macros here/fg_edit_macros/macros;
@@ -65,6 +67,11 @@
              tal:content="string:@import url($portal_url/$item);">
       </style>
     </tal:css>
+    <style type="text/css"
+           media="all">
+      p.pfg-message { padding: 10px; background-color: #ffffe7; }
+      .inactive { display: none; }
+    </style>
     <tal:block define="macro edit_macros/css | nothing"
                     condition="macro">
       <metal:block use-macro="macro" />
