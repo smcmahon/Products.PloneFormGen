@@ -25,11 +25,13 @@ def install(self):
         
         # run the standard install process
         setup_tool.setImportContext('profile-Products.PloneFormGen:default')
-        setup_tool.runAllImportSteps()
+        setup_tool.runImportStep('pleonformgen')
+        #setup_tool.runAllImportSteps()
         
         # BBB: make 2.5.x specific overrides
         setup_tool.setImportContext('profile-Products.PloneFormGen:typeoverrides25x')
-        setup_tool.runAllImportSteps()
+        setup_tool.runImportStep('pleonformgen')
+        #setup_tool.runAllImportSteps()
         
         setup_tool.setImportContext(old_context)
     
