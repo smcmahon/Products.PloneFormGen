@@ -81,12 +81,16 @@
 				   lastfieldindex python: lastfieldid and
 				   fieldids.index(lastfieldid)">
             <div class="portalMessage"
-		tal:condition="python: hascompleted and not 
-			       (request.form.get('form_submit', '')
-			       or request.form.get('form_continue', ''))">
+		 i18n:translate=""
+		 i18n:domain="plone"
+		 tal:condition="python: hascompleted and not 
+				(request.form.get('form_submit', '')
+				or request.form.get('form_continue', ''))">
 	      Welcome back! It appears that you have already submitted this 
 	      form. You can change your submission below, or 
-	      <a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData">start again</a>.
+	      <span i18n:name="start-again">
+		<a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData" i18n:translate="">start again</a>.
+	      </span>
 	    </div>
             <tal:fields repeat="field fields">
 	      <tal:block define="newfieldmarker python: lastfieldindex and 
@@ -97,7 +101,8 @@
 				 field.getName() == 'FieldSetEnd'
 				 or field.getName() in context.objectIds('FieldsetFolder')">
 		<p class="pfg-message"
-		    tal:condition="python: newfieldmarker and active">
+		   i18n:translate=""
+		   tal:condition="python: newfieldmarker and active">
 		  Please complete the additional fields below.
 		</p>
 		<div tal:attributes="class python: 

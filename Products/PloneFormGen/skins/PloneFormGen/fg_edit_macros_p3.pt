@@ -95,8 +95,12 @@
 			     (request.form.get('form_submit', '')
 			     or request.form.get('form_continue', ''))">
 	    <dt>Info</dt>
-	    <dd>Welcome back! It appears that you have already submitted this form. You can change your submission below, or 
-	      <a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData">start again</a>.</dd>
+	    <dd>
+	      Welcome back! It appears that you have already submitted this form. You can change your submission below, or 
+	      <span i18n:name="start-again">
+		<a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData" i18n:translate="">start again</a>.
+	      </span>
+	    </dd>
 	  </dl>
 
           <div id="pfg-fieldwrapper"
@@ -114,8 +118,10 @@
 				 or field.getName() in context.objectIds('FieldsetFolder')">
 		<dl class="portalMessage info"
 		    tal:condition="python: newfieldmarker and active">
-		  <dt>Info</dt>
-		  <dd>Please complete the additional fields below.</dd>
+		  <dt i18n:translate="">Info</dt>
+		  <dd i18n:translate="">
+		    Please complete the additional fields below.
+		  </dd>
 		</dl>
 		<div tal:attributes="class python: 
 				     active and 'active' or 'inactive'"
@@ -264,6 +270,7 @@
                      type="submit"
                      name="form_continue"
                      value="Continue"
+		     i18n:attributes="value"
                      tal:attributes="disabled python:test(isLocked, 'disabled', None);"
                      />
               <input class="standalone"

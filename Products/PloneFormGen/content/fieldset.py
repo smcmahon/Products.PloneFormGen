@@ -29,6 +29,7 @@ from Products.PloneFormGen.interfaces import IPloneFormGenFieldset
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 import zope.i18n
+from zExceptions import BadRequest
 
 FieldsetFolderSchema = ATFolderSchema.copy() + Schema((
     BooleanField('useLegend',

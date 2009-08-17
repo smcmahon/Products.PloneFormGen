@@ -427,3 +427,25 @@ msgstr ""
 #. Default     Note that only HTTP Post actions will be allowed.
 msgid "help_csrf"
 msgstr ""
+
+#. Default: "Welcome back! It appears that you have already submitted this form. You can change your submission below, or ${start-again}"
+#: skins/PloneFormGen/fg_edit_macros.pt:91
+msgid "Welcome back! It appears that you have already submitted this form. You can change your submission below, or ${start-again}"
+msgstr ""
+
+#. Default: "Please complete the additional fields below."
+#: skins/PloneFormGen/fg_edit_macros.pt:103
+msgid "Please complete the additional fields below."
+msgstr ""
+
+#. Default: "Continue"
+#: skins/PloneFormGen/fg_edit_macros.pt:249
+msgid "Continue"
+msgstr ""
+
+#. Default: "start again"
+#: skins/PloneFormGen/fg_edit_macros.pt:92
+msgid "start again"
+msgstr ""
+
+
