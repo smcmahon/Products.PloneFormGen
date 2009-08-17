@@ -412,3 +412,22 @@ msgstr "sjabloon"
 msgid "Rich Label Field"
 msgstr "Label met opmaak"
 
+#. Default: "Welcome back! It appears that you have already submitted this form. You can change your submission below, or ${start-again}"
+#: skins/PloneFormGen/fg_edit_macros.pt:91
+msgid "Welcome back! It appears that you have already submitted this form. You can change your submission below, or ${start-again}"
+msgstr "Welkom terug! Blijkt dat je dit formulier reeds verstuurd hebt. Je kan dit hieronder alsnog wijzigen of ${start-again}"
+
+#. Default: "Please complete the additional fields below."
+#: skins/PloneFormGen/fg_edit_macros.pt:103
+msgid "Please complete the additional fields below."
+msgstr "Gelieve de onderstaande velden te vervolledigen."
+
+#. Default: "Continue"
+#: skins/PloneFormGen/fg_edit_macros.pt:249
+msgid "Continue"
+msgstr "Ga Verder"
+
+#. Default: "start again"
+#: skins/PloneFormGen/fg_edit_macros.pt:92
+msgid "start again"
+msgstr "opnieuw starten"

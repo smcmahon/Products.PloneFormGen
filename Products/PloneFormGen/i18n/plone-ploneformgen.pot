@@ -447,5 +447,3 @@ msgstr ""
 #: skins/PloneFormGen/fg_edit_macros.pt:92
 msgid "start again"
 msgstr ""
-
-
