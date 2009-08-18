@@ -404,3 +404,22 @@ msgstr "surcharges"
 msgid "template"
 msgstr "modèle"
 
+#. Default: "Welcome back! It appears that you have already submitted this form. You can change your submission below, or ${start-again}"
+#: skins/PloneFormGen/fg_edit_macros.pt:91
+msgid "Welcome back! It appears that you have already submitted this form. You can change your submission below, or ${start-again}"
+msgstr "Bienvenue! Il semble que tu as déjà envoyé ce formulaire. Tu peux encore le modifier ou ${start-again}"
+
+#. Default: "Please complete the additional fields below."
+#: skins/PloneFormGen/fg_edit_macros.pt:103
+msgid "Please complete the additional fields below."
+msgstr "Prière de remplir les champs supplémentaires ci-dessous."
+
+#. Default: "Continue"
+#: skins/PloneFormGen/fg_edit_macros.pt:249
+msgid "Continue"
+msgstr "Continue"
+
+#. Default: "start again"
+#: skins/PloneFormGen/fg_edit_macros.pt:92
+msgid "start again"
+msgstr "recommencer"
