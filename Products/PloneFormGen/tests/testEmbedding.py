@@ -108,9 +108,18 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         # should raise a retry exception triggering a new publish attempt
         # with the new URL
         # XXX do a full publish for this test
+        self.app.REQUEST._orig_env['PATH_TRANSLATED'] = '/plone'
         view = self.ff1.restrictedTraverse('@@embedded')
         self.assertRaises(Retry, view)
+        
+        self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
+            '/plone/Members/test_user_1_/ff1/thank-you')
 
+        # make sure it can deal with VHM URLs
+        self.app.REQUEST._orig_env['PATH_TRANSLATED'] = '/VirtualHostBase/http/nohost:80/VirtualHostRoot'
+        self.assertRaises(Retry, view)
+        self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
+            '/VirtualHostBase/http/nohost:80/VirtualHostRoot/plone/Members/test_user_1_/ff1/thank-you')
 
 if  __name__ == '__main__':
     framework()

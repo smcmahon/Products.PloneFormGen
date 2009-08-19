@@ -4,6 +4,9 @@ Change History
 1.5.1 (unreleased)
 -----
 
+ - Fixed embedded forms so that traversal to a thank you page works properly
+   with VirtualHostMonster URLs. (David Glick)
+
  - The mail adapter field selection wasn't working with attachments.
    (Fixes #256, thanks Angela Wong)
 

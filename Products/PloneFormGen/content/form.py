@@ -658,10 +658,13 @@ class FormFolder(ATFolder):
         if is_embedded:
             # Change the request URL and then raise a Retry exception
             # so the traversed page renders using the same request
-            url = '%s/%s' % (self.absolute_url(), target)
-            path = url.replace(self.REQUEST['SERVER_URL'], '')
+            path = self.REQUEST._orig_env['PATH_TRANSLATED']
+            try:
+                path = path[:path.index('VirtualHostRoot') + 15] + '/'
+            except ValueError:
+                path = '/'
+            path = path + '/'.join(self.REQUEST.physicalPathToVirtualPath(self.getPhysicalPath())) + '/' + target
             self.REQUEST._orig_env['PATH_INFO'] = self.REQUEST._orig_env['PATH_TRANSLATED'] = path
-            self.REQUEST._orig_env['SERVER_URL'] = url[:len(url) - len(path)]
             self.REQUEST._orig_env['X_PFG_RETRY'] = '1'
             raise Retry
         else:
