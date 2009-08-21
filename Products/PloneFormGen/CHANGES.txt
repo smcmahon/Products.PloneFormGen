@@ -4,6 +4,9 @@ Change History
 1.5.1 (unreleased)
 -----
 
+ - Adjusted the isZipCode string validator to also accept Canadian postal
+   codes. (David Glick)
+
  - Fixed embedded forms so that traversal to a thank you page works properly
    with VirtualHostMonster URLs. (David Glick)
 
