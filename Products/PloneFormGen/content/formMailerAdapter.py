@@ -118,7 +118,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
                 Choose a form field from which you wish to extract
                 input for the To header. If you choose anything other
                 than "None", this will override the "Recipient's e-mail address"
-                setting above. Be very cautious about allowing unguarded userdest
+                setting above. Be very cautious about allowing unguarded user
                 input for this purpose.
                 """,
             description_msgid = "help_formmailer_to_extract",
