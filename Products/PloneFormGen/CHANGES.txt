@@ -1,3 +1,9 @@
+1.2.8
+
+ - Backport r76873 from trunk (1.5): Allow use of any string field for mailer 
+   recipient choice. A bit scary until we get captchas built in. 
+   (Steve McMahon, backported by Martijn Pieters)
+
 1.2.7
 
  - If mail adapter received a UTF-8 subject where it expected unicode,
