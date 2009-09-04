@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.5.1 (unreleased)
+1.5.1
 -----
 
  - Adjusted the isZipCode string validator to also accept Canadian postal

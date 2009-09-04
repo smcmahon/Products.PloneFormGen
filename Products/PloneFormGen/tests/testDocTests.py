@@ -16,7 +16,7 @@ def test_suite():
 
         ztc.FunctionalDocFileSuite(
             f, package='Products.PloneFormGen.tests',
-            test_class=PloneFormGenFunctionalTestCase,
+            test_class=ptc.FunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
         
             for f in testfiles
