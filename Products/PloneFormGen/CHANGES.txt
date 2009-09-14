@@ -1,6 +1,13 @@
 Change History
 ==============
 
+1.5.2
+-----
+
+ - Changed the wording of the postal code validator to say "postal code"
+   instead of "zip code," since the former is understandable in both the US and
+   Canada. (David Glick)
+
 1.5.1
 -----
 
