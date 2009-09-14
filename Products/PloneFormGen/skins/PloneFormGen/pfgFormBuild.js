@@ -1,6 +1,7 @@
 // pdgFormBuild class
 var pfgFormBuild = {};
 
+pfgFormBuild.blankPlaceHolder = null;
 pfgFormBuild.selectedfield = null;
 pfgFormBuild.form = null;
 pfgFormBuild.fieldstable = null;
@@ -8,6 +9,9 @@ pfgFormBuild.fields = null;
 pfgFormBuild.actions = null;
 pfgFormBuild.thanks = null;
 pfgFormBuild.controls = null;
+pfgFormBuild.helperjs = null;
+pfgFormBuild.helpercss = null;
+pfgFormBuild.baseurl = null;
 
 pfgFormBuild.initialize = function() {
     this.form = jq("#fgform");
@@ -17,14 +21,151 @@ pfgFormBuild.initialize = function() {
     this.actions = jq("#pfgActionEdit");
     this.thanks = jq("#pfgThanksEdit");
     this.selectedfield = null;
+    this.helperjs = [];
+    this.helpercss = [];
+
+    //Create a blank place holder (use for add object)
+    var divTag = document.createElement("div");
+    divTag.id = "fgfield-blankspaceholder";
+    divTag.className ="fgfield-placeholder";
+    divTag.style.display = "none";
+    divTag.innerHTML = "";
+    document.body.appendChild(divTag);
     this.blankPlaceHolder = jq("#fgfield-blankspaceholder");
 
+    //Make form dropable (receive other item than fields)
+//    this.form.droppable({
+//        accept : ".addableItem-fgadapter, .addableItem-fgthanker",
+//        drop : function (event, ui){
+//                    var drag = ui.draggable;
+//                    var fieldtype = drag.attr("id").substr("addableItem-".length);
+//                    pfgFormBuild.addField(fieldtype, jq(this));
+//                    pfgFormBuild.blankPlaceHolder.css("display", "none");
+//                    //Silly fix for propagation problem: Disable drop on parent
+//                    jq(this).parents(".fgfield-wrapper").droppable('enable');
+//                    return false;
+//                },
+//        over : function (event, ui) {
+//                },
+//        out : function (event, ui) {
+//                }
+//    });
+
     //Make fields sortable
-    this.fieldstable.sortable({
+    jq(".fgfield-sortable").each(function() {
+         pfgFormBuild.makeSortable(jq(this));
+    });
+
+    //Bind switch buttons
+    jq("#switch-fgform").bind("click", this.switchToForm);
+    jq("#switch-fgother").bind("click", this.switchToOther);
+
+    //Add fields' bindings
+    for (var i = 0; i < this.fields.length; i++) {
+        var field = jq(this.fields[i]);
+        this.addEventHandlers(field);
+    }
+    this.fieldstable.find(".fgfield-blank").each(function() {
+         pfgFormBuild.makeDroppable(jq(this));
+    });
+    //reindex fieldlist
+    this._reindexFieldList();
+}
+
+//Add event handler for field's buttons
+pfgFormBuild.addEventHandlers = function(field) {
+
+    var fieldview = field.children(".fgfield-view-wrapper")
+    var editbuttons = field.children(".fgfield-editbuttons");
+    var fieldedit = field.children(".fgfield-edit-wrapper");
+
+    //Make dropable
+    pfgFormBuild.makeDroppable(field);
+    
+    //Focus + select
+    field.hover(
+        function(event){
+            pfgFormBuild.focus(jq(this));
+        },
+        function(event){
+            pfgFormBuild.unfocus(jq(this));
+        });
+
+    fieldview.bind("click", function(event){
+        //We just bind fgfield-view with click event
+        //to avoid double event handling at this and editbuttons
+        var field = jq(event.currentTarget).parents(".fgfield-wrapper:first");
+        if (pfgFormBuild.getSelect(field))
+            pfgFormBuild.unselect();
+        else
+            pfgFormBuild.select(field);
+        return false;
+    });
+
+    //Copy/Edit/Delete buttons
+    editbuttons.children(".fgfield-editbutton-edit").bind("click", function(event){
+        var field = jq(event.currentTarget).parent(".fgfield-editbuttons").parent(".fgfield-wrapper");
+        if (!pfgFormBuild.getShowEdit(field)) {
+            //If not showed then show 
+            pfgFormBuild.select(field);
+            pfgFormBuild.showEdit(field);
+        } 
+        else {
+            pfgFormBuild.hideEdit(field);
+        }
+        return false;
+    });
+    editbuttons.children(".fgfield-editbutton-copy").bind("click", function(event){
+        var field = jq(event.currentTarget).parents(".fgfield-wrapper:first");
+        pfgFormBuild.copyField(field);
+        return false;
+    });
+    editbuttons.children(".fgfield-editbutton-delete").bind("click", function(event){
+        var field = jq(event.currentTarget).parents(".fgfield-wrapper:first");
+        pfgFormBuild.deleteField(field);
+        return false;
+    });
+    fieldedit.find(".fgfield-formbutton-save").bind("click", function(event){
+        var field = jq(event.currentTarget).parents(".fgfield-wrapper:first");
+        pfgFormBuild.saveField(field);
+        return false;
+    });
+    fieldedit.find(".fgfield-formbutton-cancel").bind("click", function(event){
+        var field = jq(event.currentTarget).parents(".fgfield-wrapper:first");
+        pfgFormBuild.unselect();
+        return false;
+    });
+
+    var fieldset = fieldview.find(".fgfield-fieldset:first")
+    if (fieldset.length > 0) {
+        //This means we caught a fieldset
+        var children = fieldset.children(".fgfield-wrapper");
+        for (var i = 0; i < children.length; i++) {
+            pfgFormBuild.addEventHandlers(jq(children[i]));
+        }
+        this.makeSortable(fieldset);
+        this.makeDroppable(fieldset.children(".fgfield-blank"));
+    } 
+    else {
+        //This means we caught a field. Disable input is needed then.
+        fieldview.find(":input:first").each( function(i) {
+            jq(this).get(0).disabled = true;
+        });
+    }
+}
+
+pfgFormBuild.makeSortable = function(fieldset) {
+    fieldset.sortable({
         item : ".fgfield-wrapper",
-        revert : "false",
-        forcePlaceholderSize : "true",
+        revert : false,
+        connectWith: ".fgfield-sortable",
+        delay : 100,
+        //forcePlaceholderSize : true,
         placeholder : "fgfield-placeholder",
+//        tolerance: 'pointer',
+        over : function (event, element) {
+            event.stopPropagation();
+        },
         helper : function (event, element) {
             //Custom helper: + Clone the field view only (not the whole object)
             //               + Remove all decorator class (highlight, focus...) 
@@ -37,105 +178,100 @@ pfgFormBuild.initialize = function() {
         stop: function(event, ui) { 
             //When stop: Call move function
             var field = ui.item;
-            var fieldid = field.attr("id").substr("fgfield-".length);
             var pos = pfgFormBuild.getPosition(field);
-            result = pfgFormBuild.moveField(jq(field), pos);
+            var parent = field.parents(".fgfield-wrapper:first");
+            var containerpath = '';
+            if (parent.length > 0) 
+                containerpath = pfgFormBuild.getFieldPath(parent);
+            result = pfgFormBuild.moveField(jq(field), containerpath, pos);
             if (result.status == "failure")
                 jq(this).sortable("cancel");
+            event.stopPropagation();
         }
-    });
-
-    //Add event handlers, make dropable
-    for (var i = 0; i < this.fields.length; i++) {
-        var field = jq(this.fields[i]);
-        this.addEventHandlers(field);
-        this.makeDropable(field);
-    //Add fields' index
-    }
-    this._refreshFieldList();
-}
-
-//Add event handler for field's buttons
-pfgFormBuild.addEventHandlers = function(field) {
-
-    //Disable input
-    field.attr("disabled", true);
-    
-    //Focus + select
-    field.bind("mouseover", function(event){
-        pfgFormBuild.focus(jq(event.currentTarget));
-    });
-    field.bind("mouseout", function(event){
-        pfgFormBuild.unfocus(jq(event.currentTarget));
-    });
-    field.children(".fgfield-view-wrapper").bind("click", function(event){
-        //We just bind fgfield-view with click event
-        //to avoid double event handling at this and editbuttons
-        var field = jq(event.currentTarget).parents(".fgfield-wrapper");
-        if (pfgFormBuild.getSelect(field))
-            pfgFormBuild.unselect();
-        else
-            pfgFormBuild.select(field)
-    });
-
-    //Copy/Edit/Delete buttons
-    field.find(".fgfield-editbutton-edit").bind("click", function(event){
-        var field = jq(event.currentTarget).parents(".fgfield-wrapper");
-        if (!pfgFormBuild.getShowEdit(field)) {
-            //If not showed then show 
-            pfgFormBuild.select(field);
-            pfgFormBuild.showEdit(field);
-        } 
-        else {
-            pfgFormBuild.hideEdit(field);
-        }
-    });
-    field.find(".fgfield-editbutton-copy").bind("click", function(event){
-        var field = jq(event.currentTarget).parents(".fgfield-wrapper");
-        pfgFormBuild.copyField(field);
-    });
-    field.find(".fgfield-editbutton-delete").bind("click", function(event){
-        var field = jq(event.currentTarget).parents(".fgfield-wrapper");
-        pfgFormBuild.deleteField(field);
-    });
-    field.find(".fgfield-formbutton-save").bind("click", function(event){
-        var field = jq(event.currentTarget).parents(".fgfield-wrapper");
-        pfgFormBuild.saveField(field);
-    });
-    field.find(".fgfield-formbutton-cancel").bind("click", function(event){
-        var field = jq(event.currentTarget).parents(".fgfield-wrapper");
-        pfgFormBuild.unselect();
     });
 }
 
-pfgFormBuild.makeDropable = function(field) {
+pfgFormBuild.makeDroppable = function(field) {
     field.droppable({
-            accept : ".addableItem",
-            drop : function (event, ui){
-                        var drag = ui.draggable;
-                        var fieldtype = drag.attr("id").substr("addableItem-".length);
-                        var index = parseInt(jq(this).attr("index"));
-                        pfgFormBuild.addField(fieldtype, index);
-                        pfgFormBuild.blankPlaceHolder.css("display", "none");
-                    },
-            over : function (event, ui) {
-                        var placeholder = pfgFormBuild.blankPlaceHolder;
-                        jq(this).before(placeholder[0]);
-                        placeholder.css("display", "block");
-                    },
-            out : function (event, ui) {
-                        pfgFormBuild.blankPlaceHolder.css("display", "none");
-                    }
-            });
+        accept : ".addableItem-fgfield",
+        drop : function (event, ui){
+                    var drag = ui.draggable;
+                    var fieldtype = drag.attr("id").substr("addableItem-".length);
+                    pfgFormBuild.addField(fieldtype, jq(this));
+                    pfgFormBuild.blankPlaceHolder.css("display", "none");
+                    //Silly fix for propagation problem: Disable drop on parent
+                    jq(this).parents(".fgfield-wrapper").droppable('enable');
+                    return false;
+                },
+        over : function (event, ui) {
+                    //Silly fix for propagation problem: Disable drop on parent
+                    jq(this).parents(".fgfield-wrapper").droppable('disable');
+                    event.stopPropagation();
+                    var placeholder = pfgFormBuild.blankPlaceHolder;
+                    jq(this).before(placeholder[0]);
+                    placeholder.css("display", "block");
+                    return false;
+                },
+        out : function (event, ui) {
+                    //Silly fix for propagation problem: Disable drop on parent
+                    jq(this).parents(".fgfield-wrapper").droppable('enable');
+                    pfgFormBuild.blankPlaceHolder.css("display", "none");
+                }
+    });
 }
 
-pfgFormBuild._refreshFieldList = function() {
+
+pfgFormBuild.switchToForm = function(){
+    //Switch to form (field) build tab
+    jq("#switch-fgform").css("display", "none");
+    jq("#switch-fgother").css("display", "block");
+    jq("#fgform").css("display", "none");
+    jq("#fgother").css("display", "block");
+}
+
+pfgFormBuild.switchToOther = function(){
+    //Switch to other tab (adapter, thankspage ...)
+    jq("#switch-fgform").css("display", "block");
+    jq("#switch-fgother").css("display", "none");
+    jq("#fgform").css("display", "block");
+    jq("#fgother").css("display", "none");
+}
+
+pfgFormBuild.getFieldPath = function (field){
+    //Get fieldPath
+    return field.attr("id").substr("fgfield-".length);
+}
+
+pfgFormBuild.getFieldByPath = function(fieldPath) {
+    //Return jq wrapper of field object or null if not found
+    var field = this.fieldstable.find("#fgfield-%s" %fieldPath);
+    if (field.length) return field;
+    return null;
+}
+
+pfgFormBuild.getPosition = function(field) {
+    //Get field"s position
+    var pos = field.parent().children('.fgfield-wrapper').index(field.get(0));
+    return pos;
+}
+
+pfgFormBuild._reindexField_recurse = function(fieldtable) {
+    //Update the position of available field
+    var fields = fieldtable.children(".fgfield-wrapper");
+    fields.each(function(i) {
+        var field = jq(this);
+        field.attr("index", i);
+        var fieldset = field.find(".fgfield-fieldset:first");
+        if (fieldset.length > 0){
+            pfgFormBuild._reindexField_recurse(fieldset);
+        }
+    });
+}
+
+pfgFormBuild._reindexFieldList = function() {
     //Update the field list
     this.fields = this.fieldstable.children(".fgfield-wrapper");
-    //Update the position of available field
-    this.fields.each(function(i) {
-        jq(this).attr("index", i)
-    });
+    this._reindexField_recurse(this.fieldstable)
 }
 
 pfgFormBuild.focus = function(field) {
@@ -143,8 +279,14 @@ pfgFormBuild.focus = function(field) {
     if (this.selectedfield != null) 
         //If we already selected a field, then we need to disable focus
         return;
+    //Focus means focus to only one element
+    var focuses = this.fieldstable.find(".fgfield-focus");
+    if (focuses.length > 0)
+        for (var i = 0; i < focuses.length; i++) {
+            pfgFormBuild.unfocus(jq(focuses[i]));
+        };
     field.addClass("fgfield-focus");
-    field.find(".fgfield-editbuttons").css("display", "block"); 
+    field.children(".fgfield-editbuttons").css("display", "block"); 
 }
 
 pfgFormBuild.unfocus = function(field) {
@@ -152,7 +294,7 @@ pfgFormBuild.unfocus = function(field) {
     field.removeClass("fgfield-focus");
     if (this.selectedfield == null)
         //Dangerous set, should only call when not in select
-        field.find(".fgfield-editbuttons").css("display", "none"); 
+        field.children(".fgfield-editbuttons").css("display", "none"); 
 }
 
 pfgFormBuild.getSelect = function(field) {
@@ -161,8 +303,13 @@ pfgFormBuild.getSelect = function(field) {
 }
 
 pfgFormBuild.select = function(field) {
-    //If already selected: unselect the old 
     if (this.selectedfield != null) 
+        if (this.getShowEdit(this.selectedfield)) {
+            parents = this.selectedfield.parents(".fgfield-wrapper");
+            for (var i = 0; i < parents.length; i++)
+                if (jq(parents[i]).attr("id") == field.attr("id"))
+                    return false;
+        }
         //If we already selected a field, then we need to unselect first
         this.unselect();
     //We also need to unfocus all focused fields    
@@ -171,13 +318,11 @@ pfgFormBuild.select = function(field) {
     });
     //Select the field
     field.addClass("fgfield-selected");
-    field.find(".fgfield-view-wrapper").addClass("fgfield-highlight");
-    field.find(".fgfield-editbuttons").css("display", "block"); 
+    field.children(".fgfield-view-wrapper").addClass("fgfield-highlight");
+    field.children(".fgfield-editbuttons").css("display", "block"); 
     this.selectedfield=field;
     //Remove focus classes if have
     field.removeClass("fgfield-focus");
-    //Disable sortable and draggable
-    this.fieldstable.sortable("disable")
 }
 
 pfgFormBuild.unselect = function() {
@@ -186,8 +331,8 @@ pfgFormBuild.unselect = function() {
     //Free the select field
     var field = this.selectedfield;
     field.removeClass("fgfield-selected");
-    field.find(".fgfield-view-wrapper").removeClass("fgfield-highlight");
-    field.find(".fgfield-editbuttons").css("display", "none"); 
+    field.children(".fgfield-view-wrapper").removeClass("fgfield-highlight");
+    field.children(".fgfield-editbuttons").css("display", "none"); 
     pfgFormBuild.hideEdit(field)
     this.selectedfield=null;
     //Enable sortable and draggable
@@ -201,53 +346,110 @@ pfgFormBuild.getShowEdit = function(field) {
 
 pfgFormBuild.showEdit = function(field) {
     field.children(".fgfield-edit-wrapper").css("display", "block");
+    //Disable sortable and draggable
+    this.fieldstable.sortable("disable")
 }
 
 pfgFormBuild.hideEdit = function(field) {
     field.children(".fgfield-edit-wrapper").css("display", "none");
 }
 
-pfgFormBuild.getFieldById = function(fieldId) {
-    //Return jq wrapper of field object or null if not found
-    var field = this.fieldstable.children("#fgfield-%s" %fieldId);
-    if (field.length) return field;
-    return null;    
+pfgFormBuild.getCss = function(url){
+    //Load css on-demand
+
+    //
+    for (var i = 0; i < this.helperjs.length; i++)
+        if (this.helperjs[i] == url) return true;
+
+    if (document.createStyleSheet){
+        document.createStyleSheet(this.baseURL + '/' + url);
+    }
+    else {
+        var styleTag = document.createElement('link');
+        jq(styleTag).attr({
+            href    : this.baseURL + '/' + url,
+            type    : 'text/css',
+            media   : 'screen',
+            rel     : 'stylesheet'
+        }).appendTo(jq('head').get(0));
+    }
+    this.helpercss.push(url);
+    return true;
 }
 
-pfgFormBuild.getFieldByPosition = function(pos) {
-    //Return jq wrapper of field object or null if not found
-    if (this.fields.length > pos) return jq(this.fields[pos]);
-    return null;    
+pfgFormBuild.getJs = function(url){
+    //Load js on-demand
+
+    //
+    for (var i = 0; i < this.helperjs.length; i++)
+        if (this.helperjs[i] == url) return true;
+
+    var result;
+    jQuery.ajax({
+        url: this.baseURL + '/' + url,
+        error: function(request, statusmsg, errorthrow) {
+            addPortalMessage("error", statusmsg);
+            result = false;
+        },
+        success: function(result) {
+            if (result.isOk == false) {
+                msg = "Unable to load " + url + 
+                      ". Some of UI functions may not work.";
+                addPortalMessage("error", statusmsg);
+                result = false;
+            } else {
+                pfgFormBuild.helperjs.push(url);
+                result = true;
+            }
+        },
+        async: false,
+        dataType: "script",
+    });
+    return result;
 }
 
-pfgFormBuild.getPosition = function(field) {
-    //Get field"s position
-    var pos = pfgFormBuild.fieldstable.children('.fgfield-wrapper').index(field[0]);
-    return pos == -1 ? null : pos;
-}
-
-pfgFormBuild.addField = function(fieldtype, pos) {
-    //Add new field
+pfgFormBuild.addField = function(fieldtype, afterfield) {
+    //Add new field before the afterfield
     var response;
     var data = {"fieldtype": fieldtype};
-    if (pos >= 0)
+    var containerpath = "";
+    if (afterfield != null) {
+        var pos = this.getPosition(afterfield);
         data.position = pos;
-    response = jqPost("add", JSON.stringify(data));    
-    response = JSON.parse(response);
+        container = afterfield.parents(".fgfield-wrapper:first");
+        if (container.length > 0) {
+            containerpath = this.getFieldPath(container);
+            data.containerpath = containerpath;
+        }
+    }
+    response = jqPost("add", JSON.stringify(data));
+    if (response == null)
+        return false;
     if (response.status == "success") {
         //Create new field
         var newfield = jq("<div/>");
         newfield.attr("class", "fgfield-wrapper");
-        newfield.attr("id", "fgfield-" + response.data.fieldid);
+        newfield.attr("id", "fgfield-" + response.data.fieldpath);
         newfield.html(response.data.html);
+        //Add helper css and js
+        var css = response.data.css;
+        for (var i = 0; i < css.length; i ++)
+            this.getCss(css[i]);
+        var js = response.data.js;
+        for (var i = 0; i < js.length; i ++)
+            this.getJs(js[i]);
         //Add to position pos
-        this.getFieldByPosition(pos).before(newfield);
-        //Create form tabbing
-        newfield.find("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
+        if (afterfield != null) {
+            afterfield.before(newfield);
+        }
+        else {
+            //Add to the end of the form
+            this.fields[this.fields.length-1].after(newfield);
+        }
         this.addEventHandlers(newfield);
-        this.makeDropable(newfield);
+        newfield.parents(".fgfield-fieldset").sortable('refresh');
         this.fieldstable.sortable('refresh');
-        this._refreshFieldList();
+        this._reindexFieldList();
         //Do select the new field
         this.select(newfield);
         this.showEdit(newfield);
@@ -258,23 +460,24 @@ pfgFormBuild.addField = function(fieldtype, pos) {
 
 pfgFormBuild.copyField = function(field) {
     //Clone the current field
-    var data = {"fieldid": field.attr("id").substr("fgfield-".length)};
+    var data = {"fieldpath": field.attr("id").substr("fgfield-".length)};
     var response = jqPost("copy", JSON.stringify(data));    
-    response = JSON.parse(response);
+    if (response == null)
+        return false;
     if (response.status == "success") {
         //Create new field
         var newfield = jq("<div/>");
         newfield.attr("class", "fgfield-wrapper");
-        newfield.attr("id", "fgfield-" + response.data.fieldid);
+        var fieldpath = this.getFieldPath(field);
+        fieldpath = fieldpath.substr(0, fieldpath.lastIndexOf(":")) + response.data.fieldid;
+        newfield.attr("id", "fgfield-" + fieldpath);
         newfield.html(response.data.html);
         //Add right after current field
         field.after(newfield);
-        //Create form tabbing
-        newfield.find("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
         this.addEventHandlers(newfield);
-        this.makeDropable(newfield);
+        newfield.parents(".fgfield-fieldset").sortable('refresh');
         this.fieldstable.sortable('refresh');
-        this._refreshFieldList();
+        this._reindexFieldList();
         //Do select the new field
         this.select(newfield);
         return true;
@@ -282,75 +485,65 @@ pfgFormBuild.copyField = function(field) {
     return false;
 }
 
-pfgFormBuild.moveField = function(field, newpos) {
-    var data = {"fieldid" : field.attr("id").substr("fgfield-".length),
+pfgFormBuild.moveField = function(field, newpath, newpos) {
+    var data = {"fieldpath" : this.getFieldPath(field),
+                "containerpath": newpath,
                 "position" : newpos
                };
     var response =  jqPost("move", JSON.stringify(data));
-    response = JSON.parse(response);
+    if (response == null)
+        return false;
     if (response.status == "success") {
-        this._refreshFieldList();
+        var oldpath = this.getFieldPath(field);
+        var fieldid = oldpath;
+        var pos = oldpath.lastIndexOf(":");
+        if (pos >= 0)
+            fieldid = oldpath.substr(pos+1);
+        if (newpath != "")
+            field.attr("id", "fgfield-" + newpath + ":" + fieldid)
+        else
+            field.attr("id", "fgfield-" + fieldid)
+        this._reindexFieldList();
         return true;
     }
     return false
 }
 
 pfgFormBuild.deleteField = function(field) {
-    var data = {"fieldid" : field.attr("id").substr("fgfield-".length)};
+    var data = {"fieldpath" : this.getFieldPath(field)};
     var response =  jqPost("delete", JSON.stringify(data));
-    response = JSON.parse(response);
+    if (response == null)
+        return false;
     if (response.status == "success") {
         //Unselect it we're selecting something
         this.unselect();
         //Selfdestruct
         field.remove();      
         this.fieldstable.sortable('refresh');
-        this._refreshFieldList();
+        this._reindexFieldList();
     }
     return false;
 }
 
 pfgFormBuild.saveField = function(field) {
-    var data = {"fieldid" : field.attr("id").substr("fgfield-".length), 
+    var data = {"fieldpath" : this.getFieldPath(field), 
                 "poststr" : field.find(":input").serialize()
                };
     var response =  jqPost("save", JSON.stringify(data));
-    response = JSON.parse(response);
+    if (response == null)
+        return false;
     //Update the field
     field.html(response.data.html);
-    field.find("form.enableFormTabbing,div.enableFormTabbing").each(ploneFormTabbing.initializeForm);
     this.addEventHandlers(field);
-    this.makeDropable(field);
+    field.parents('.fgfield-fieldset').sortable('refresh');
     this.fieldstable.sortable('refresh');
-    this._refreshFieldList();
+    this._reindexFieldList();
+    this.select(field);
 
     if (response.status != "success") {
         //if not success: Show the edit form (with errors)
-        this.select(field);
         this.showEdit(field);
         return true;
     }
     return false;
 }
-
-// App code
-jq(document).ready(function() {
-
-    //Create a blank place holder (use for add object)
-    var divTag = document.createElement("div");
-    divTag.id = "fgfield-blankspaceholder";
-    divTag.className ="fgfield-placeholder";
-    divTag.style.display = "none";
-    divTag.innerHTML = "";
-    document.body.appendChild(divTag);
-
-    //Initialize the form build manager
-    pfgFormBuild.initialize()
-    
-    //Make addable types drag & dropable 
-    jq(".addableItem").draggable({
-        helper: "clone"
-    });
-
-})
-

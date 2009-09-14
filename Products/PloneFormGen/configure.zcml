@@ -115,6 +115,10 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <!-- Product dependencies -->
+  <include package="collective.js.jquery"/>
+  <include package="collective.js.jqueryui"/>
+
   <include package=".adapters"/>
   <include package=".portlets"/>
   <include package=".browser"/>

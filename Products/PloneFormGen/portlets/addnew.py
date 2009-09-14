@@ -10,6 +10,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
 from Products.PloneFormGen.interfaces import IPloneFormGenForm
+from Products.PloneFormGen.browser.formbuild.interfaces import IPFGFormBuildView
 
 class IAddnewPortlet(IPortletDataProvider):
     pass
@@ -47,6 +48,7 @@ class Renderer(base.Renderer):
         #+ If you don't have permission, you'll also unable to see this
         #+ When we are not in a form object, you shouldn't see this too
         return IPloneFormGenForm.providedBy(self.context) and \
+               IPFGFormBuildView.providedBy(self.view) and \
                self.membership.checkPermission('Modify portal content', \
                                                                 self.context) 
 

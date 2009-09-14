@@ -6,20 +6,24 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PloneFormGen.interfaces import IPloneFormGenForm
 
 class EmbeddedEdit(BrowserView):
-    """Use to render the view,
-       so that we could extend the fossil view marco
+    """Quick edit form of an object
     """
     template = ViewPageTemplateFile('embedded_edit.pt')
 
-    def __init__(self, context, request):
-        BrowserView.__init__(self, context, request)
-        #caculate the form object, TODO: should be a field method
-        self.form = aq_parent(aq_inner(self.context))
-        while self.form and not IPloneFormGenForm.providedBy(self.form):
-            self.form = aq_parent(self.form)
-        self.field = context
+    def __init__(self, context, request, view):
+        super(BrowserView, self).__init__(context, request)
+        self.__parent__ = view
+        self.context = context
+        self.request = request
+        self.view = view
+        #caculate the form object, TODO: should be a field object method
+        self.fgform = view.fgform
         self.fieldId = context.getId()
-        self.errors = self.request.form.get('errors',{})
+        self.rel_path = view.rel_path
+        self.errors = view.errors
 
-    def __call__(self):
+    def update(self):
+        pass
+
+    def render(self):
         return self.template()

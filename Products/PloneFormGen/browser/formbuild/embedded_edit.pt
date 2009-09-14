@@ -1,14 +1,13 @@
 <tal:edit_embedded define="plone_view context/@@plone;
                            foo plone_view/globalize;
-                           form nocall: view/form;
-                           field nocall: view/field;
+                           field nocall: context;
                            fieldId view/fieldId;
                            portal_type field/portal_type;
                            errors nocall: view/errors;
                            atview field/@@at_base_edit_view;
                            allow_tabbing python: not atview.isMultiPageSchema();
                            schematas field/Schemata;
-                           fieldsets python:[key for key in schematas.keys() if (schematas[key].editableFields(field, visible_only=True))];">
+                           fieldsets python:['default'];">
 
   <form name="edit_form"
         method="post"
@@ -34,6 +33,7 @@
           </fieldset>
         </tal:fieldsets>
       </tal:tabbed>
+      <tal:comment replace="nothing"> Required hidden input for formbuild case </tal:comment>
       <div class="formControls">
         <input type="button" value="Save" class="context fgfield-formbutton-save" 
                tal:attributes="id string:fgfield-${fieldId}-formbutton-save"/>

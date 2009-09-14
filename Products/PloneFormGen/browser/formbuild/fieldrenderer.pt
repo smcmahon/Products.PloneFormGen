@@ -5,17 +5,17 @@
                    fieldsets python:['default'];
                    default_fieldset string:default;
                    fieldset default_fieldset;
-                   form python:view.form;
+                   form python:view.fgform;
                    field python:view.context;
                    fieldid field/getId;
                    value nocall: view/value;
                    mode view/mode;
-                   isATField python:view.isATField;
-                   context python:form;">
+                   isATField python:view.isATField;">
 
   <tal:comment replace="nothing"> Field's view content </tal:comment>
   <div class="fgfield-view-wrapper">
-    <tal:atfield condition = "isATField" define = "field python:field.fgField">
+    <tal:atfield condition = "isATField" define = "field python:field.fgField; 
+                                                   context python:form;">
       <tal:block tal:condition="python: field.widget.macro != 'widget_richlabel'">
 
         <tal:comment replace="nothing"> In view mode: render with a value </tal:comment>
@@ -63,7 +63,7 @@
       
     <div class="fgfield-edit-wrapper" 
          style="display:none" >
-      <tal:editform replace="structure view/editview"/>
+      <tal:editform content="structure provider:pfg.embedded_edit"/>
       <tal:controls replace="nothing">Add control button here (or use modified form button ?)</tal:controls>
     </div>
   </tal:fieldedit>

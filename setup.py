@@ -31,7 +31,9 @@ setup(name='Products.PloneFormGen',
           'Products.TemplateFields',
           'Products.PythonField',
           'simplejson',
-          'zope.httpform'
+          'zope.httpform',
+          'collective.js.jquery',
+          'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

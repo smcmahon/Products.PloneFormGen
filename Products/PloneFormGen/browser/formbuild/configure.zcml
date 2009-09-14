@@ -1,5 +1,5 @@
 <configure
-    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="ploneformgen">
   
@@ -9,7 +9,7 @@
       class=".formbuild.FormBuildView"
       permission="cmf.ModifyPortalContent"
       />
-  
+
   <browser:page
       for="Products.PloneFormGen.interfaces.IPloneFormGenField"
       name="fieldrenderer"
@@ -18,10 +18,10 @@
       />
   
   <browser:page
-      for="Products.PloneFormGen.interfaces.IPloneFormGenField"
-      name="embedded_edit"
-      class=".embedded_edit.EmbeddedEdit"
-      permission="cmf.ModifyPortalContent"
+      for="Products.PloneFormGen.interfaces.IPloneFormGenFieldset"
+      name="fieldrenderer"
+      class=".fieldsetrenderer.FieldsetRenderer"
+      permission="zope2.View"
       />
   
   <browser:page
@@ -30,5 +30,15 @@
       class=".formbuild_view.PFGFormBuildView"
       permission="cmf.ModifyPortalContent"
       />
-  
+      
+  <!--TODO: Update the * -->
+  <adapter
+      for="*
+           zope.publisher.interfaces.IRequest
+           Products.PloneFormGen.browser.formbuild.interfaces.IPFGFieldRenderer"
+      name="pfg.embedded_edit"
+      provides="zope.contentprovider.interfaces.IContentProvider"
+      factory=".embedded_edit.EmbeddedEdit"
+      />
+
 </configure>

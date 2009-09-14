@@ -5,12 +5,28 @@ from Products.CMFCore.utils import getToolByName
 
 from StringIO import StringIO
 
+DEPENDENCIES = ['collective.js.jquery', 'collective.js.jqueryui']
+
+def installDependencies(self):
+    """ Install required products """
+    portal = getToolByName(self,'portal_url').getPortalObject()
+    qi = getToolByName(portal, 'portal_quickinstaller')
+    for product in DEPENDENCIES:
+        if not qi.isProductInstalled(product):
+            if qi.isProductInstallable(product):
+                qi.installProduct(product)
+            else:
+                raise "Product %s not installable" % product
+
 def install(self):
     """ BBB: Make for a pleasant installation experience in 2.5.x.
         To be removed when eliminating support for < 3.x.
     """
     out = StringIO()
     
+    print >> out, "Installing Dependencies"
+    installDependencies(self)
+
     # We install our product by running a GS profile.  We use the old-style Install.py module 
     # so that our product works w/ the Quick Installer in Plone 2.5.x
     print >> out, "Installing PloneFormGen"

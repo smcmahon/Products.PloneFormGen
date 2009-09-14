@@ -7,7 +7,7 @@
                    default_fieldset string:default;
                    fieldset default_fieldset;
                    fgfields python:context.fgFields(request);
-                   fields nocall: view/fields;
+                   fields nocall: view/fgfields;
                    portal_type python:context.getPortalTypeName().lower().replace(' ', '_');
                    type_name context/getPortalTypeName|context/archetype_name;
                    base_macros context/fg_edit_macros_p3/macros;
@@ -16,9 +16,7 @@
                    header_macro edit_macros/header | header_macro | base_macros/header;
                    typedescription_macro edit_macros/typedescription | typedescription_macro | base_macros/typedescription;
                    body_macro edit_macros/body | body_macro | base_macros/body;
-                   footer_macro edit_macros/footer | footer_macro | base_macros/footer;
-                   css python:context.getUniqueWidgetAttr(fields, 'helper_css');
-                   js python:context.getUniqueWidgetAttr(fields, 'helper_js');">
+                   footer_macro edit_macros/footer | footer_macro | base_macros/footer;">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -41,18 +39,10 @@
                condition="macro">
       <metal:block use-macro="macro" />
     </tal:block>
-    <tal:js condition="js"
-            repeat="item js">
-      <script type="text/javascript"
-              charset="iso-8859-1"
-              tal:condition="python:exists('portal/%s' % item)"
-              tal:attributes="src string:$portal_url/$item">
-      </script>
-    </tal:js>
-    <script type="text/javascript" tal:attributes="src string:$portal_url/jquery-ui-1.6.full.js"></script>
     <script type="text/javascript" tal:attributes="src string:$portal_url/json2.js"></script>
     <script type="text/javascript" tal:attributes="src string:$portal_url/pfgFormBuild.js"></script>
     <script type="text/javascript" tal:attributes="src string:$portal_url/pfgFormBuild-utils.js"></script>
+    <script type="text/javascript" tal:content="view/jsapp"></script>
 
     <tal:block define="macro edit_macros/javascript_head | nothing"
                     condition="macro">
@@ -61,14 +51,6 @@
   </metal:javascript_head>
 
   <metal:css fill-slot="css_slot">
-    <tal:css condition="css"
-             repeat="item css">
-      <style type="text/css"
-             media="all"
-             tal:condition="python:exists('portal/%s' % item)"
-             tal:content="structure string:<!-- @import url($portal_url/$item); -->">
-      </style>
-    </tal:css>
     <style type="text/css"
            media="all"
            tal:content="structure string:<!-- @import url($portal_url/pfgFormBuild.css); -->">
@@ -94,9 +76,9 @@
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         
         <!-- switch buttons -->
-        <div id="switch-pfgfields" class="switchbutton" style="display:none"
+        <div id="switch-fgform" class="fgswitchbutton" style="display:block"
             tal:content="structure context/maintenance_icon.gif" />
-        <div id="switch-others" class="switchbutton" style="display:none" 
+        <div id="switch-fgother" class="fgswitchbutton" style="display:none" 
             tal:content="structure context/form_icon.gif" />
 
         <h1 tal:content="context/Title" class="documentFirstHeading">
@@ -111,99 +93,104 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <p tal:replace="structure context/getFormPrologue | nothing" />
+        <div id="fgother" style="display:none" >
+          <table id="pfgActionEdit"
+                 class="listing"
+                 summary="Field listing"
+                 tal:define="liveAdapters context/getActionAdapter">
+              <thead>
+              <tr>
+                  <th>Form Actions</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tal:block tal:repeat="row python:context.actionAdaptersDL().items()">
+                  <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
+                      <td tal:content="python:row[1]" />
+                      <td class="editHook">
+                        <form action="#">
+                            <input type="checkbox" value="1"
+                                tal:attributes="checked python:(row[0] in liveAdapters) and 'checked' or None;
+                                id python:'cbaction-%s' % row[0];
+                                name python:'cbaction-%s' % row[0]" />
+                        </form>
+                      </td>
+                      <td class="editHook">
+                          <a href="#" 
+                             tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                             title="Delete Action"
+                             ><img src="delete_icon.gif" alt="Delete" /></a>
+                      </td>
+                      <td class="editHook">
+                          <a href="#" 
+                             tal:attributes="href python:'%s/edit' % row[0]"
+                             title="Edit Field"
+                             ><img src="edit.gif" alt="Edit" /></a>
+                      </td>                    
+                  </tr>
+                  </tal:block>
+              </tbody>
+          </table>
+
+          <table id="pfgThanksEdit"
+                 class="listing"
+                 summary="Field listing"
+                 tal:define="liveThanks context/thanksPage">
+              <thead>
+                  <tr>
+                      <th>Thanks Pages</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tal:block tal:repeat="row python:context.thanksPageVocabulary().items()">
+                  <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
+                      <td tal:content="python:row[1]" />
+                      <td class="editHook">
+                        <form action="#">
+                            <input type="radio" name="thanksRadio"
+                                tal:attributes="value python:row[0];
+                                  checked python:(row[0] == liveThanks) and 'checked' or None" />
+                        </form>
+                      </td>
+                      <td class="editHook">
+                          <a href="#" tal:condition="python:row[0]"
+                             tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                             title="Delete Page"
+                             ><img src="delete_icon.gif" alt="Delete" /></a>
+                          <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                      </td>
+                      <td class="editHook">
+                          <a href="#" tal:condition="python:row[0]"
+                             tal:attributes="href python:'%s/edit' % row[0]"
+                             title="Edit Page"
+                             ><img src="edit.gif" alt="Edit" /></a>
+                         <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                      </td>                    
+                  </tr>
+                  </tal:block>
+              </tbody>
+          </table>
+        </div>
 
         <div id="fgform">
-            <div id="fgfields">
-              <tal:fieldrender repeat="field fields">
-                <div class="fgfield-wrapper" 
-                    tal:attributes="id string:fgfield-${field/getId}"
-                    tal:content="structure field/fieldrenderer"/>
-              </tal:fieldrender>
-            </div>
+          <p tal:replace="structure context/getFormPrologue | nothing" />
+
+          <div id="fgfields" class="fgfield-sortable">
+            <tal:fieldrender repeat="field fields">
+              <div class="fgfield-wrapper" 
+                  tal:attributes="id string:fgfield-${field/getId}"
+                  tal:content="structure field/fieldrenderer"/>
+            </tal:fieldrender>
+            <tal:comment replace="nothing">Blank space holder for add to the end</tal:comment>
+            <div class="fgfield-blank"/>
+          </div>
+
+          <div class="fgfield-blank"> &nbsp; </div>
+
+          <p tal:replace="structure context/getFormEpilogue | nothing" />
+
         </div>
-        
-        <p tal:replace="structure context/getFormEpilogue | nothing" />
-
-        <table id="pfgActionEdit"
-               class="listing"
-               summary="Field listing"
-               style="display:none"
-               tal:define="liveAdapters context/getActionAdapter">
-            <thead>
-            <tr>
-                <th>Form Actions</th><th>Enabled</th><th>Delete</th><th>Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tal:block tal:repeat="row python:context.actionAdaptersDL().items()">
-                <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
-                    <td tal:content="python:row[1]" />
-                    <td class="editHook">
-                      <form action="#">
-                          <input type="checkbox" value="1"
-                              tal:attributes="checked python:(row[0] in liveAdapters) and 'checked' or None;
-                              id python:'cbaction-%s' % row[0];
-                              name python:'cbaction-%s' % row[0]" />
-                      </form>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" 
-                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
-                           title="Delete Action"
-                           ><img src="delete_icon.gif" alt="Delete" /></a>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" 
-                           tal:attributes="href python:'%s/edit' % row[0]"
-                           title="Edit Field"
-                           ><img src="edit.gif" alt="Edit" /></a>
-                    </td>                    
-                </tr>
-                </tal:block>
-            </tbody>
-        </table>
-
-        <table id="pfgThanksEdit"
-               class="listing"
-               summary="Field listing"
-               style="display:none"
-               tal:define="liveThanks context/thanksPage">
-            <thead>
-                <tr>
-                    <th>Thanks Pages</th><th>Enabled</th><th>Delete</th><th>Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tal:block tal:repeat="row python:context.thanksPageVocabulary().items()">
-                <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
-                    <td tal:content="python:row[1]" />
-                    <td class="editHook">
-                      <form action="#">
-                          <input type="radio" name="thanksRadio"
-                              tal:attributes="value python:row[0];
-                                checked python:(row[0] == liveThanks) and 'checked' or None" />
-                      </form>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" tal:condition="python:row[0]"
-                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
-                           title="Delete Page"
-                           ><img src="delete_icon.gif" alt="Delete" /></a>
-                        <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" tal:condition="python:row[0]"
-                           tal:attributes="href python:'%s/edit' % row[0]"
-                           title="Edit Page"
-                           ><img src="edit.gif" alt="Edit" /></a>
-                       <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-                    </td>                    
-                </tr>
-                </tal:block>
-            </tbody>
-        </table>
-
+      
         <div tal:replace="structure provider:plone.belowcontentbody"/>
 
       </metal:main>

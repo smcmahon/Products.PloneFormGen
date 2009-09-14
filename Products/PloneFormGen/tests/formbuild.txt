@@ -46,24 +46,24 @@ Try a bad action. This should return failure::
 Let's try moving a field::
 
     >>> rform['action'] = 'move'
-    >>> rform['data'] = '{"fieldid":"replyto", "position":1}'
+    >>> rform['data'] = '{"fieldpath":"replyto", "position":1}'
     >>> view = form.restrictedTraverse('@@formbuild')
     >>> view()
     '{"status": "success", "message": null, "data": null}'
     
     >>> form.objectIds()
-    ['mailer', 'topic', 'replyto', 'comments', 'thank-you']
+    ['mailer', 'replyto', 'topic', 'comments', 'thank-you']
     
 We should also be able to delete a field::
 
     >>> rform['action'] = 'delete'
-    >>> rform['data'] = '{"fieldid":"comments"}'
+    >>> rform['data'] = '{"fieldpath":"comments"}'
     >>> view = form.restrictedTraverse('@@formbuild')
     >>> view()
     '{"status": "success", "message": {"content": "Field deleted", "type": "info"}, "data": null}'
 
     >>> form.objectIds()
-    ['mailer', 'topic', 'replyto', 'thank-you']
+    ['mailer', 'replyto', 'topic', 'thank-you']
 
 If we try to delete that field again, we should fail::
 

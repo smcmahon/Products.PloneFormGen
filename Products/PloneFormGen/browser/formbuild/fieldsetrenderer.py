@@ -3,22 +3,23 @@ import sys, traceback
 from zope import component, interface
 from Acquisition import aq_inner, aq_parent, aq_base
 
-from plone.memoize.view import memoize
+from plone.memoize.instance import memoize
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.Field import Field as BaseField
 
-from Products.PloneFormGen.interfaces import IPloneFormGenForm
+from Products.PloneFormGen.interfaces import IPloneFormGenForm, \
+                                    IPloneFormGenField, IPloneFormGenFieldset
 from Products.PloneFormGen.browser.formbuild.interfaces import IPFGFieldRenderer
 
-class FieldRenderer(BrowserView):
-    """Render a field base on the request.
+class FieldsetRenderer(BrowserView):
+    """Render a fieldset base on the request.
     """
-    template = ViewPageTemplateFile('fieldrenderer.pt')
+    template = ViewPageTemplateFile('fieldsetrenderer.pt')
     interface.implements(IPFGFieldRenderer)
-
+    
     def __init__(self, context, request):
         BrowserView.__init__(self, context, request)
         self.fgform = aq_parent(aq_inner(self.context))
@@ -36,11 +37,14 @@ class FieldRenderer(BrowserView):
             self.rendermode = ''
         else:
             self.rendermode = request.form.get('rendermode', 'edit')
-        self.field = context
         self.fieldname = context.getId()
-        self.isATField = isinstance(aq_base(self.context).fgField,BaseField) 
         #TODO: How should we pass errors for the view when render :((
         self.errors = {} #request.form.get('errors', {})
+
+    @property
+    def fgfields(self):
+        filters = {"object_provides": {"query":[IPloneFormGenField.__identifier__, IPloneFormGenFieldset.__identifier__], "operator": "or"}}
+        return [b.getObject() for b in self.context.getFolderContents(filters)]
 
     def value(self):
         """Return field's value, just have meaning when we're in view mode
@@ -49,7 +53,7 @@ class FieldRenderer(BrowserView):
         if self.mode != 'view':
             return None
         return self.request.form.get('value', '')
-
+    
     def __call__(self):
         #TODO: Better exception handle needed ? atm just raise all of them out
         if self.fgform is None:
@@ -63,26 +67,31 @@ class FieldRenderer(BrowserView):
     @memoize
     def atfields(self):
         result = []
-        if not self.isATField:
-            return result
         schematas = self.context.Schemata()
         interested_fieldsets = ['default']
         for fieldset in interested_fieldsets:
             result.extend(schematas[fieldset].editableFields(self.context, visible_only=True))
         return result
 
+    @property
+    @memoize
+    def fgfield_renderers(self):
+        return [field.restrictedTraverse('fieldrenderer') 
+                for field in self.fgfields]
+
     def helperjs(self):
         """Return list of helper js-es those are needed to render the field
         """
         result = set(self.context.getUniqueWidgetAttr(self.atfields, 'helper_js'))
-        result.update(self.fgform.getUniqueWidgetAttr([self.context.fgField] , 'helper_js'))
+        for fieldrenderer in self.fgfield_renderers:
+            result.update(fieldrenderer.helperjs())
         return result
-
 
     def helpercss(self):
         """Return list of helper css-es those are needed to render the field
         """
         result = set(self.context.getUniqueWidgetAttr(self.atfields, 'helper_css'))
-        result.update(self.fgform.getUniqueWidgetAttr([self.context.fgField] , 'helper_css'))
+        for fieldrenderer in self.fgfield_renderers:
+            result.update(fieldrenderer.helpercss())
         return result
 

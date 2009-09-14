@@ -10,6 +10,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 
 from Products.PloneFormGen.adapters.interfaces import IFieldFactory
+from Products.PloneFormGen.interfaces import IPloneFormGenForm, \
+                                    IPloneFormGenField, IPloneFormGenFieldset
 
 def processSaveData(rawinp):
     """Process raw input and return as dictionary value
@@ -37,6 +39,15 @@ class FormBuildView(BrowserView):
         self.portal = getToolByName(context,'portal_url').getPortalObject()
         self.fieldfactory = IFieldFactory(self.context)
 
+    def getRealPos(self, pos):
+        #Since the pos that we get from the client is the position of the field 
+        #compare to JUST other field only, we need to get the real pos 
+        if pos == 0: 
+            return 0
+        filters = {"object_provides": {"query":[IPloneFormGenField.__identifier__, IPloneFormGenFieldset.__identifier__], "operator": "or"}}
+        fields = self.context.getFolderContents(filters)
+        return fields[pos].getObject().getObjPositionInParent()
+
     def setStatus(self, status, message=None):
         self._response['status'] = status
         self._response['message'] = message
@@ -47,8 +58,11 @@ class FormBuildView(BrowserView):
     def doAdd(self):
         """Action = adding new field
         """
+        containerpath = self.postdata.get('containerpath', '')
         fieldtype = self.postdata.get('fieldtype', '')
         pos = self.postdata.get('position', -1);
+        if containerpath == "" and pos != -1:
+            pos = self.getRealPos(pos)
         if not fieldtype:
             self.setStatus('failure', 
                            {'type':'error', 
@@ -56,7 +70,7 @@ class FormBuildView(BrowserView):
                            })
             return 
         try:
-            newfield = self.fieldfactory.addField(fieldtype, pos, 
+            fieldpath = self.fieldfactory.addField(fieldtype, containerpath, pos, 
                                                   {
                                                    "title" : "New %s" %fieldtype
                                                   })
@@ -68,24 +82,30 @@ class FormBuildView(BrowserView):
                             'content': '%s: %s' %(sys.exc_type, sys.exc_value)
                            })
             return
-        #TODO: Do restrictedTraverse save ? 
-        newfield = getattr(self.context, newfield)
+        newfield = self.context.restrictedTraverse(fieldpath.replace(':','/'))
         renderer = newfield.restrictedTraverse('fieldrenderer')
-        self.setResponse({'fieldid':newfield.getId(), 'html':renderer()})
+        self.setResponse({'fieldpath': fieldpath, 
+                          'html': renderer(),
+                          'js': list(renderer.helperjs()),
+                          'css': list(renderer.helpercss())
+                        })
 
     def doMove(self):
         """Action = sorting fields
         """
-        fieldid = self.postdata.get('fieldid', '')
-        pos = self.postdata.get('position', -1);
+        fieldpath = self.postdata.get('fieldpath', '')
+        containerpath = self.postdata.get('containerpath', '')
+        pos = self.postdata.get('position', -1)
         if pos < 0 :
             self.setStatus('failure', 
                            {'type':'error', 
                             'content': 'Invalid new position'
                            })
             return
+        if containerpath == "":
+            pos = self.getRealPos(pos)
         try:
-            self.fieldfactory.moveField(fieldid, pos)
+            self.fieldfactory.moveField(fieldpath, containerpath, pos)
         except:
             traceback.print_exc()
             print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
@@ -98,10 +118,10 @@ class FormBuildView(BrowserView):
     def doSave(self):
         """Action = save form settings
         """
-        fieldid = self.postdata.get('fieldid', '')
+        fieldpath = self.postdata.get('fieldpath','')
         poststr = self.postdata.get('poststr')
         data = processSaveData(poststr)
-        errors = self.fieldfactory.saveField(fieldid, data)
+        errors = self.fieldfactory.saveField(fieldpath, data)
         if errors:
             self.setStatus('failure', 
                            {'type':'error', 
@@ -114,7 +134,7 @@ class FormBuildView(BrowserView):
                            })
 
         #Generate return's html
-        field = getattr(self.context, fieldid)
+        field = self.context.restrictedTraverse(fieldpath.replace(':','/'))
         renderer = field.restrictedTraverse('fieldrenderer')
         #TODO: Since I don't know how to make a request programatically
         #      I created the field then set the errors attribute
@@ -125,15 +145,15 @@ class FormBuildView(BrowserView):
     def doDelete(self):
         """Action = delete field
         """
-        fieldid = self.postdata.get('fieldid', '')
-        if not fieldid:
+        fieldpath = self.postdata.get('fieldpath', '')
+        if not fieldpath:
             self.setStatus('failure', 
                            {'type':'error', 
-                            'content': 'Field not found'
+                            'content': 'Field not found.'
                            })
             return 
         try:
-            self.fieldfactory.deleteField(fieldid)
+            self.fieldfactory.deleteField(fieldpath)
         except:
             traceback.print_exc()
             print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
@@ -150,9 +170,9 @@ class FormBuildView(BrowserView):
     def doCopy(self):
         """Action = clone a existed field
         """
-        fieldid = self.postdata.get('fieldid', '')
+        fieldpath = self.postdata.get('fieldpath', '')
         try:
-            newfield = self.fieldfactory.copyField(fieldid)
+            newfield = self.fieldfactory.copyField(fieldpath)
         except:
             traceback.print_exc()
             print 'Got %s: %s' %(sys.exc_type, sys.exc_value)
@@ -161,9 +181,9 @@ class FormBuildView(BrowserView):
                             'content': '%s: %s' %(sys.exc_type, sys.exc_value)
                            })
             return
-        #TODO: Do restrictedTraverse save ? 
         newfield = getattr(self.context, newfield)
         renderer = newfield.restrictedTraverse('fieldrenderer')
+        self.setStatus('success', {'type':'info', 'content':'Field copied'})
         self.setResponse({'fieldid':newfield.getId(), 'html':renderer()})
 
     def __call__(self):

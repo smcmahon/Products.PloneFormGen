@@ -1,0 +1,60 @@
+<tal:block metal:define-macro="master"
+           define="errors nocall: view/errors;
+                   form python:view.fgform;
+                   field python:view.context;
+                   fieldid field/getId;
+                   value nocall: view/value;
+                   mode view/mode;">
+
+  <tal:comment replace="nothing"> Field's view content </tal:comment>
+  <div class="fgfield-view-wrapper">
+    <fieldset >
+      <legend>
+      <span tal:content="context/Title">Fielset name</span>
+      </legend>
+      <div class="formHelp"
+           tal:attributes="id string:fgfield-fieldset-${fieldid}_help"
+           tal:content="context/Description"/>
+
+      <div tal:attributes="id string:fgfield-fieldsetname-${fieldid}" 
+              class="fgfield-fieldset fgfield-sortable">
+        <tal:fieldrender repeat="fieldrenderer view/fgfield_renderers">
+          <div class="fgfield-wrapper" 
+              tal:attributes="id string:fgfield-${view/rel_path}:${fieldrenderer/fieldname}"
+              tal:content="structure fieldrenderer"/>
+        </tal:fieldrender>
+      </div>
+
+      <div class="fgfield-blank"> &nbsp; </div>
+    </fieldset>
+  </div>
+  
+  <tal:comment replace="nothing"> Field's edit content: For manipulate field object. 
+                               Use in form build mode 
+  </tal:comment>
+  <tal:fieldedit condition="python: view.rendermode == 'edit'">
+    <div class="fgfield-editbuttons" style="display:none">
+      <a href="#" 
+         class="fgfield-editbutton fgfield-editbutton-edit" 
+         onClick="javascript: return false">
+        <img src="edit.gif"/>
+      </a>
+      <a href="#" 
+         class="fgfield-editbutton fgfield-editbutton-copy" 
+         onClick="javascript: return false">
+        <img src="add_icon.gif"/>
+      </a>
+      <a href="#" 
+         class="fgfield-editbutton fgfield-editbutton-delete" 
+         onClick="javascript: return false">
+        <img src="delete_icon.gif"/>
+      </a>
+    </div>
+      
+    <div class="fgfield-edit-wrapper" 
+         style="display:none" >
+      <tal:editform content="structure provider:pfg.embedded_edit"/>
+      <tal:controls replace="nothing">Add control button here (or use modified form button ?)</tal:controls>
+    </div>
+  </tal:fieldedit>
+</tal:block>
