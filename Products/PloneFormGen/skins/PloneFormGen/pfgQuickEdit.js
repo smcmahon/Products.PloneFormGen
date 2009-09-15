@@ -89,7 +89,7 @@ pfgQEdit.updatePositionOnServer = function() {
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
 
-    jq("#pfg-fieldwrapper").children().each(
+    jq("#pfg-fieldwrapper").children('.field').each(
         function () {
             var fname = this.id;
             if (fname.indexOf("archetypes-fieldname-") == 0) {                      
