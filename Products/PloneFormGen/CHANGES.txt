@@ -4,8 +4,7 @@ Change History
 1.5.2 (unreleased)
 ------------------
 
- - Temporary fix for #261 (PFG misbehaves on hidden fields). This will
-   keep the quick editor working, but unable to reach hidden fields.
+ - Fix for #261, PFG misbehaves on hidden fields.
    (Thanks, Ralf Hemmecke)
 
  - Changed the wording of the postal code validator to say "postal code"
