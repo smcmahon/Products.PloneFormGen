@@ -6,6 +6,7 @@ from Products.PloneFormGen.tests.pfgtc import PloneFormGenFunctionalTestCase
 
 testfiles = (
     'browser.txt',
+    'attachment.txt',
     'ssl.txt',
     'serverside_field.txt',
     '../dollarReplace.py',
@@ -16,7 +17,7 @@ def test_suite():
 
         ztc.FunctionalDocFileSuite(
             f, package='Products.PloneFormGen.tests',
-            test_class=ptc.FunctionalTestCase,
+            test_class=PloneFormGenFunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
         
             for f in testfiles

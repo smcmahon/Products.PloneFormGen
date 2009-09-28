@@ -1,4 +1,6 @@
 
+import email
+
 # Import the base test case classes
 from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
@@ -41,6 +43,7 @@ class MailHostMock(SecureMailHost):
     def _send(self, mfrom, mto, messageText):
         print '<sent mail from %s to %s>' % (mfrom, mto)
         self.msgtext = messageText
+        self.msg = email.message_from_string(messageText.lstrip())
 
 class PloneFormGenTestCase(PloneTestCase.PloneTestCase):
     def _setup(self):
