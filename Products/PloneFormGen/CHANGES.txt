@@ -4,6 +4,9 @@ Change History
 1.5.2 (unreleased)
 ------------------
 
+ - Fix for #262, File Field does not send attachment.
+   (David Glick; thanks, Melnychuk Taras)
+
  - Fix for #261, PFG misbehaves on hidden fields.
    (Thanks, Ralf Hemmecke)
 
