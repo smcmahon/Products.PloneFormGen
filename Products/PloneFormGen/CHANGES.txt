@@ -1,8 +1,8 @@
 Change History
 ==============
 
-1.5.2 (unreleased)
-------------------
+1.5.2
+-----
 
  - Fix for #262, File Field does not send attachment.
    (David Glick; thanks, Melnychuk Taras)
