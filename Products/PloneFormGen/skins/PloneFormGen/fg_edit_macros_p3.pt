@@ -95,9 +95,9 @@
 			     (request.form.get('form_submit', '')
 			     or request.form.get('form_continue', ''))">
 	    <dt>Info</dt>
-	    <dd>
+	    <dd i18n:translate="">
 	      Welcome back! It appears that you have already submitted this form. You can change your submission below, or 
-	      <span i18n:name="start-again">
+	      <span i18n:name="start_again">
 		<a tal:attributes="href string:${here_url}/resetCurrentUserPersistentData" i18n:translate="">start again</a>.
 	      </span>
 	    </dd>
