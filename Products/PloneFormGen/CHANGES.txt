@@ -4,6 +4,8 @@ Change History
 1.5.3 (unreleased)
 ------------------
 
+ - Add a 'show_text' option for fg_embedded_view_p3 which causes the prologue
+   and epilogue to be displayed. (David Glick)
 
 1.5.2
 -----
