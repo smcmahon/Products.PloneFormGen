@@ -4,6 +4,9 @@ Change History
 1.5.3 (unreleased)
 ------------------
 
+ - Don't try to get the recipient e-mail from the owner of the form folder if
+   the user no longer exists. (David Glick)
+
  - Add a 'show_text' option for fg_embedded_view_p3 which causes the prologue
    and epilogue to be displayed. (David Glick)
 

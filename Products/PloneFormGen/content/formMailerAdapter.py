@@ -879,7 +879,9 @@ class FormMailerAdapter(FormActionAdapter):
             ownerinfo = self.getOwner()
             ownerid=ownerinfo.getId()
             userdest = pms.getMemberById(ownerid)
-            toemail = userdest.getProperty('email', '')
+            toemail = ''
+            if userdest is not None:
+                toemail = userdest.getProperty('email', '')
             if not toemail:
                 toemail = portal.getProperty('email_from_address')                
             assert toemail, """
