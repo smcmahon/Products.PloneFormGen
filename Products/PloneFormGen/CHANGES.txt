@@ -1,8 +1,12 @@
 Change History
 ==============
 
-1.5.4 unreleased
-----------------
+1.5.4
+-----
+
+ - Restoring tests to the distribution restored the Windows install problem.
+   Yuck. Reverted deletion of MANIFEST.in. Those needing to run the tests
+   should check out PFG from svn. (Steve)
 
 1.5.3
 -----
