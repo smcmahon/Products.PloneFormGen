@@ -103,6 +103,9 @@
 	    </dd>
 	  </dl>
 
+	  <metal:choose-user
+	     use-macro="here/fg_edit_macros/macros/choose-user" />
+
           <div id="pfg-fieldwrapper"
 	       tal:define="fieldids python: [ x.getName() for x in fields ];
 			   lastfieldid request/pfg_lastfieldid|nothing;
@@ -138,6 +141,7 @@
 		</div>
 	      </tal:block>
             </tal:fields>
+
 	    <input type="hidden"
 		   name="pfg_lastfieldid"
 		   tal:condition="activefieldids"

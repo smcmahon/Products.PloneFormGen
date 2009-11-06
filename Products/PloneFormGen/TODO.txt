@@ -4,3 +4,5 @@ Check recent schema additions to make sure there are no unguarded
 attribute accesses that will break old forms.
 
 Make fieldset view use quickedit.
+
+Deal with file fields when saving data in a stateful form adapter.

@@ -7,11 +7,16 @@
 
     <div metal:fill-slot="main">
       <tal:main-macro metal:define-macro="main"
-		      tal:define="content_type here/get_content_type|here/Format;
-				  canEdit python:checkPermission('Modify portal content', here);
+		      tal:define="content_type
+				  here/get_content_type|here/Format;
+				  canEdit python:checkPermission(
+				  'Modify portal content', here,
+				  );
 				  portal_membership context/portal_membership;
 				  fgFields python: 
-				  context.formFolderObject().fgFields(displayOnly=True)
+				  context.formFolderObject().fgFields(
+				  displayOnly=True,
+				  )
 				  ">
         <tal:block condition="exists: request/clearSavedFormInput">
           <span tal:define="dummy here/clearSavedFormInput" />
@@ -33,30 +38,18 @@
         
         <div tal:replace="structure provider:plone.abovecontentbody" />
         
-	<tal:view condition="canEdit">
+	<tal:view condition="canEdit"
+		  define="data context/getStatefulData;">
 
-	  <table tal:define="data context/getStatefulData;
-			     portal_membership context/portal_membership;
-			     fieldids python:[ x.getName() for x in fgFields ]"
-		 class="listing">
-	    <tr>
-	      <th>User</th>
-	      <th tal:repeat="field fgFields">
-		<span tal:content="python: field.getName()" />
-	      </th>
-	    </tr>
-	    <tr tal:repeat="userid data/keys">
-	      <td tal:define="user python: 
-			      portal_membership.getMemberById(userid)">
-		<span tal:content="python: 
-				   user.getProperty('fullname', userid)" />
-	      </td>
-	      <td tal:repeat="fid fieldids">
-		<span tal:content="python: data[userid].get(fid, '')" />
-	      </td>
-	    </tr>
-	  </table>
+	  <metal:table
+	     use-macro="here/fg_statefuldata_view/macros/table" />
 	  
+	  <metal:summary
+	     use-macro="here/fg_statefuldata_view/macros/download" />
+
+	  <metal:summary
+	     use-macro="here/fg_statefuldata_view/macros/summary" />
+
 	</tal:view>
 
 	<tal:noview condition="not:canEdit">

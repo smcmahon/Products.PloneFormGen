@@ -17,8 +17,11 @@ from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter
 from Products.PloneFormGen.interfaces import IPloneFormGenPersistentActionAdapter
 import logging
-
 import time
+import re
+from csv import writer
+from StringIO import StringIO
+
 
 logger = logging.getLogger("PloneFormGen")    
 
@@ -62,25 +65,33 @@ class FormStatefulDataAdapter(FormActionAdapter):
                 if target.meta_type == 'FormStatefulDataAdapter':
                     target.onSuccess(fields, REQUEST, loopstop=True)
                     return
-
-        key = self.getKey(REQUEST)
-        data = {}
+        
+        final_data = {}
         for f in fields:
             if f.isFileField():
                 # TODO - deal with file fields
                 pass
             elif not f.isLabel():
-                fname = f.fgField.getName()
-                val = REQUEST.form.get(fname,None)
-                data[fname] = val
+                fname_id = f.fgField.getName()
+                val = REQUEST.form.get(fname_id,None)
+                title = f.title
+                type = f.portal_type
+                final_data[fname_id] = dict(field_value = val, title = title, field_type = type)
 
-        #statefuldata = getattr(self, 'statefuldata')
-        self.statefuldata[key] = data
-        #setattr(self, 'statefuldata', statefuldata)
+        # If the user has selected to fill this form in as another user
+        # use this as the key, if not, use they key in the REQUEST
+        if self.REQUEST.form.has_key('user-select'):
+            if self.REQUEST.form['user-select'] == 'default':
+                key = self.getKey(REQUEST)
+            else:
+                key = self.REQUEST.form['user-select']
+        else:
+            key = self.getKey(REQUEST)
+
+        self.statefuldata[key] = final_data
 
     def itemsSaved(self):
-        """Download the saved data
-        """
+        """Download the saved data"""
         return len(self.statefuldata)
 
     security.declareProtected(ModifyPortalContent, 'getStatefulData')
@@ -94,6 +105,37 @@ class FormStatefulDataAdapter(FormActionAdapter):
         """ reset all my data """
         self.statefuldata = PersistentDict()
         return "Reset Stateful Data OK"
+
+    def saveStatefulDataCSV(self):
+        """ Save the data out as a csv """
+        data = self.getStatefulData()
+
+        title = re.sub('\s+', '', self.title)
+        csv_file_name = title + '.csv'
+
+        output = StringIO()
+        csv_writer = writer(output)
+        
+        for key in data:
+            write_list = []
+            write_list.append(key)
+            content_keys = data[key].keys()
+            for content_key in content_keys:
+                # If we have a list, insert them as a colon seperated string
+                if type(data[key][content_key]['field_value']) == list:
+                    csv_list_content = ' : '.join(data[key][content_key]['field_value'])
+                    write_list.append(csv_list_content)
+                else:
+                    write_list.append(data[key][content_key]['field_value'])
+            csv_writer.writerow(write_list)
+
+        self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
+        self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
+                                           "attachment;filename=%s" % csv_file_name)
+
+        value = output.getvalue() 
+        output.close()
+        return value
 
     def getKey(self, REQUEST):
         """ get key based on logged-in user or cookie/session """
@@ -113,12 +155,20 @@ class FormStatefulDataAdapter(FormActionAdapter):
         return uniqueid
 
     def getCurrentFieldValue(self, field, REQUEST):
+        """ get the value for the field from the statefuldata """
         key = self.getKey(REQUEST)
         if key in self.statefuldata.keys():
             data = self.statefuldata[key]
             if field.id in data.keys():
-                return data[field.id]
+                return data[field.id]['field_value']
         return None
+
+    def getStatefulFieldValue(self, data, user_id, field_id):
+        """ get the correct value for the stateful adapter view """
+        if data[user_id].has_key(field_id):
+            return data[user_id][field_id]['field_value']
+        else:
+            return ''
 
     def currentUserHasCompletedForm(self, REQUEST):
         key = self.getKey(REQUEST)
@@ -130,5 +180,40 @@ class FormStatefulDataAdapter(FormActionAdapter):
         key = self.getKey(REQUEST)
         if key in self.statefuldata.keys():
             del(self.statefuldata[key])
+
+    def getFullName(self, user, userid):
+        """ try to get the fullname of the user """
+        try:
+            fullname = user.getProperty('fullname', userid)
+        except AttributeError:
+            fullname = 'No user'
+        return fullname
+
+    def statefulFormAdapterSummary(self, data):
+        """ return statistics for select and checkbox fields """
+        users = data.keys()
+        field_types = ['FormSelectionField', 'FormMultiSelectionField']
+
+        data_oc = []
+        data_types = []
+        for user in users:
+            for key in data[user]:
+                d_value = data[user][key]['field_value']
+                if data[user][key]['field_type'] in field_types:
+                    if type(d_value) is list and len(d_value) == 1:
+                        f_value = data[user][key]['field_value'][0]
+                    else:
+                        f_value = data[user][key]['field_value']
+                    data_oc.append(f_value)
+                    if f_value not in data_types:
+                        data_types.append(f_value)
+
+        final_counts = {}
+        for data_type in data_types:
+            count = data_oc.count(data_type)
+            data_type = str(data_type)
+            final_counts[data_type] = count
+                    
+        return final_counts
 
 registerATCT(FormStatefulDataAdapter, PROJECTNAME)
