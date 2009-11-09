@@ -115,7 +115,17 @@ class FormStatefulDataAdapter(FormActionAdapter):
 
         output = StringIO()
         csv_writer = writer(output)
-        
+
+        #The first column should always be the user
+        first_row = ['User']
+        main_keys = data.keys()
+        # Write out header row
+        if main_keys: 
+            ids = data[main_keys[0]].keys()
+            for id in ids:
+                first_row.append(id)
+            csv_writer.writerow(first_row)
+
         for key in data:
             write_list = []
             write_list.append(key)
