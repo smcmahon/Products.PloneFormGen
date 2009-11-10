@@ -151,8 +151,10 @@ class FormStatefulDataAdapter(FormActionAdapter):
         """ get key based on logged-in user or cookie/session """
         portal_membership = getToolByName(self, 'portal_membership')
         isAnon = portal_membership.isAnonymousUser()
+        member = portal_membership.getAuthenticatedMember()
+        if REQUEST.form.get('override_key') and 'Manager' in member.getRolesInContext(self):
+            return REQUEST.form.get('override_key')
         if not isAnon:
-            member = portal_membership.getAuthenticatedMember()
             return member.getId()
 
         # See if we have a uniqueid
