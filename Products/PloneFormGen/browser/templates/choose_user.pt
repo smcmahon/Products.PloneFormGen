@@ -16,7 +16,6 @@
 	    method="post">
 	<select id="all-users-select"
 		name="user-select">
-	  <option value="default">Default</option>
 	  <option tal:repeat="user view/all_users"
 		  tal:content="python:user.getProperty('fullname')"
 		  tal:attributes="value user/id">User</option>
