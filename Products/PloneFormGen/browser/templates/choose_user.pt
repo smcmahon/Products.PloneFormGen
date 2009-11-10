@@ -9,7 +9,21 @@
 
     <metal:main fill-slot="main">
 
-      <p>Choose user</p>
+      <h2>Choose user</h2>
+      <p>Choose a user to submit the main form on their behalf.</p>
+
+      <form id="choose-user"
+	    method="post">
+	<select id="all-users-select"
+		name="user-select">
+	  <option value="default">Default</option>
+	  <option tal:repeat="user view/all_users"
+		  tal:content="python:user.getProperty('fullname')"
+		  tal:attributes="value user/id">User</option>
+	</select>
+	<br /><br />
+	<input type="submit" name="submit" value="Submit" class="context" />
+      </form>
 
     </metal:main>
 

@@ -10,7 +10,7 @@ class ChooseUserView(BrowserView):
     """
 
     def update(self):
-        pass
+        self.all_users = self.context.portal_membership.listMembers()
 
     def __call__(self):
         self.update()
