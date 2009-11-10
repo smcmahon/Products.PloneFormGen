@@ -9,3 +9,9 @@ class ChooseUserView(BrowserView):
     View for the choose user page.
     """
 
+    def update(self):
+        pass
+
+    def __call__(self):
+        self.update()
+        return super(ChooseUserView, self).__call__()
