@@ -84,7 +84,7 @@
 	      By default this form will be submitted as yourself.
 	      To choose a user and submit this form on their behalf, 
 	      <a href="#"
-		 tal:attributes="href string:${here_url}/chooseUser">please select a user.</a>
+		 tal:attributes="href string:${here_url}/choose-user">please select a user.</a>
 	    </div>
 	  </div>
 	</metal:choose-user>
