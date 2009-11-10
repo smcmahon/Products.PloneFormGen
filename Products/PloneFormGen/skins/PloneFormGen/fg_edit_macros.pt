@@ -71,30 +71,22 @@
             action=""
             enctype="multipart/form-data"
             class="enableUnloadProtection"
-            tal:attributes="action here/fgGetFormSubmitAction">
+            tal:attributes="action here/fgGetFormSubmitAction">	 
 
         <metal:block define-slot="extra_top" />
 
 	<metal:choose-user define-macro="choose-user">
-
 	  <div class="field ArchetypesSelectionWidget"
 	       tal:condition="python:
-			      'Manager' in member.getRolesInContext(context)">
-	    <label for="all-users-select"
-		   class="formQuestion">Choose a User</label><br />
+			      'Manager' in member.getRolesInContext(context)">	       
+	    <h3>Choose a User</h3>
 	    <div class="formHelp">
-	      Leave as default to submit as yourself,
-	      or choose a user to submit this form on their behalf.
+	      By default this form will be submitted as yourself.
+	      To choose a user and submit this form on their behalf, 
+	      <a href="#"
+		 tal:attributes="href string:${here_url}/chooseUser">please select a user.</a>
 	    </div>
-	    <select id="all-users-select"
-		    name="user-select">
-	      <option value="default">Default</option>
-	      <option tal:repeat="user context/portal_membership/listMembers"
-		      tal:content="python:user.getProperty('fullname')"
-		      tal:attributes="value user/id">User</option>
-	    </select>
 	  </div>
-
 	</metal:choose-user>
 
         <metal:block define-slot="widgets"
