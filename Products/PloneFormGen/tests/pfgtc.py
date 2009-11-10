@@ -38,9 +38,9 @@ class Session(dict):
     def set(self, key, value):
         self[key] = value
 
-from Products.SecureMailHost.SecureMailHost import SecureMailHost
-class MailHostMock(SecureMailHost):
-    def _send(self, mfrom, mto, messageText):
+from Products.MailHost.MailHost import MailHost
+class MailHostMock(MailHost):
+    def _send(self, mfrom, mto, messageText, immediate=False):
         print '<sent mail from %s to %s>' % (mfrom, mto)
         self.msgtext = messageText
         self.msg = email.message_from_string(messageText.lstrip())

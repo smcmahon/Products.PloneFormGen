@@ -1,4 +1,6 @@
-from Products.validation import validation, interfaces
+from zope.interface import implements
+from Products.validation.interfaces.IValidator import IValidator
+from Products.validation import validation
 
 from Products.CMFPlone.utils import safe_hasattr
 
@@ -8,8 +10,7 @@ class MaxLengthValidator:
         from the kwargs in a call or from widget attributes.
     """
 
-
-    __implements__ = (interfaces.ivalidator,)
+    implements(IValidator)
 
     name = 'MaxLengthValidator'
 

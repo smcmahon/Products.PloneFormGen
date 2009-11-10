@@ -1,4 +1,7 @@
-from Products.validation import validation, interfaces
+from zope.interface import implements
+from Products.validation.interfaces.IValidator import IValidator
+from Products.validation import validation
+
 from zope.component import getMultiAdapter
 from Acquisition import aq_inner
 
@@ -6,7 +9,7 @@ class CaptchaValidator:
     """ Archetypes field validator for use with collective.captcha or collective.recaptcha
     """
 
-    __implements__ = (interfaces.ivalidator,)
+    implements(IValidator)
 
     name = 'CaptchaValidator'
 

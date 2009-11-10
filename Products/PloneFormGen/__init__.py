@@ -90,11 +90,15 @@ else:
 
 # Check for Plone versions
 try:
-    from Products.CMFPlone.migrations import v3_0
-except ImportError:
-    HAS_PLONE30 = False
-else:
+    from plone.app.upgrade import v40
     HAS_PLONE30 = True
+except ImportError:
+    try:
+        from Products.CMFPlone.migrations import v3_0
+    except ImportError:
+        HAS_PLONE30 = False
+    else:
+        HAS_PLONE30 = True
 
 if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
     from monkey import installExceptionHook

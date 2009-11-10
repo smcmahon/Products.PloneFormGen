@@ -1,6 +1,5 @@
 <tal:block metal:define-macro="master"
            define="errors options/state/getErrors | nothing;
-                   Iterator python:modules['Products.Archetypes'].IndexIterator;
                    schematas nothing;
                    allow_tabbing python:False;
                    fieldsets python:['default'];
