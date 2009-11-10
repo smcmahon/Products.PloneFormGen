@@ -87,6 +87,8 @@
 		 tal:attributes="href string:${here_url}/choose-user">please select a user.</a>
 	    </div>
 	  </div>
+	  <input type="hidden" name="user-select" 
+		 tal:attributes="value python:context.REQUEST.form.get('override_key', '')" />
 	</metal:choose-user>
 
         <metal:block define-slot="widgets"
