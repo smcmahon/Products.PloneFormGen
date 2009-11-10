@@ -80,11 +80,8 @@ class FormStatefulDataAdapter(FormActionAdapter):
 
         # If the user has selected to fill this form in as another user
         # use this as the key, if not, use they key in the REQUEST
-        if self.REQUEST.form.has_key('user-select'):
-            if self.REQUEST.form['user-select'] == 'default':
-                key = self.getKey(REQUEST)
-            else:
-                key = self.REQUEST.form['user-select']
+        if self.REQUEST.form.get('user-select'):
+            key = self.REQUEST.form['user-select']
         else:
             key = self.getKey(REQUEST)
 
