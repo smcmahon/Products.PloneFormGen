@@ -10,19 +10,33 @@
     <metal:main fill-slot="main">
 
       <h2>Choose user</h2>
-      <p>Choose a user to submit the main form on their behalf.</p>
-
-      <form id="choose-user"
+      <p>Search for a user by their first name:</p>
+      <form id="user-search"
 	    method="post">
-	<select id="all-users-select"
-		name="user-select">
-	  <option tal:repeat="user view/all_users"
-		  tal:content="python:user.getProperty('fullname')"
-		  tal:attributes="value user/id">User</option>
-	</select>
+	<input type="text" name="user-search" />
 	<br /><br />
 	<input type="submit" name="submit" value="Submit" class="context" />
-      </form>
+      </form><br />
+
+      <div tal:condition="view/users">
+	<p>Choose a user to submit the main form on their behalf.</p>
+	<form id="user-select"
+	      method="post">
+	  <tal:r tal:repeat="user view/users">
+	    <input type="radio" 
+		   name="user-select" 
+		   tal:attributes="value user/username;
+				   id string:user-result-${repeat/user/index}" />
+	    <label tal:content="user/fullname" /><br />
+	  </tal:r>
+	  <br /><br />
+	  <input type="submit" name="submit" value="Submit" class="context" />
+	</form>
+      </div>
+
+      <div tal:condition="view/no_users">
+	<p tal:content="view/no_users" />
+      </div>
 
     </metal:main>
 
