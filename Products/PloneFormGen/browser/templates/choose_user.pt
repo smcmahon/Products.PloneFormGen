@@ -9,33 +9,40 @@
 
     <metal:main fill-slot="main">
 
-      <h2>Choose user</h2>
-      <p>Search for a user by their first name:</p>
+      <h2>Choose User</h2>
+
+      <p>Search for a user by their username or full name:</p>
+
       <form id="user-search"
 	    method="post">
 	<input type="text" name="user-search" />
-	<br /><br />
-	<input type="submit" name="submit" value="Submit" class="context" />
-      </form><br />
+	<input type="submit" name="submit" value="Search" class="context" />
+      </form>
 
       <div tal:condition="view/users">
-	<p>Choose a user to submit the main form on their behalf.</p>
+	<p>Choose a user to submit the form on their behalf:</p>
 	<form id="user-select"
 	      method="post">
 	  <tal:r tal:repeat="user view/users">
 	    <input type="radio" 
 		   name="user-select" 
-		   tal:attributes="value user/username;
+		   tal:attributes="value user/id;
 				   id string:user-result-${repeat/user/index}" />
-	    <label tal:content="user/fullname" /><br />
+	    <label tal:content="python:user.getProperty('fullname')"
+		   tal:attributes="for string:user-result-${repeat/user/index}"
+		   /><br />
 	  </tal:r>
-	  <br /><br />
-	  <input type="submit" name="submit" value="Submit" class="context" />
+	  <br />
+	  <input type="submit" name="submit" value="Continue" class="context" />
 	</form>
       </div>
 
       <div tal:condition="view/no_users">
-	<p tal:content="view/no_users" />
+	<p>
+	  <em>
+	    No matching users were found.
+	  </em>
+	</p>
       </div>
 
     </metal:main>
