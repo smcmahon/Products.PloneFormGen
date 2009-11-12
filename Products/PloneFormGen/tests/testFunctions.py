@@ -31,7 +31,7 @@ class FakeRequest(dict):
 class TestFunctions(pfgtc.PloneFormGenTestCase):
     """ tests that mostly concern functionality beyond the unit """
 
-    def dummy_send( self, mfrom, mto, messageText ):
+    def dummy_send( self, mfrom, mto, messageText, immediate=False ):
         self.mfrom = mfrom
         self.mto = mto
         self.messageText = messageText

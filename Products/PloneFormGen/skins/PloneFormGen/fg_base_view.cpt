@@ -83,7 +83,7 @@
             Document actions (print, sendto etc)
         </div>
 
-        <h1 tal:content="object_title" class="documentFirstHeading">
+        <h1 tal:content="context/@@plone_context_state/object_title" class="documentFirstHeading">
           Title or id
         </h1>
     

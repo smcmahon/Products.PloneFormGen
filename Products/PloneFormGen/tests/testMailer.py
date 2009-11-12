@@ -15,10 +15,11 @@ from Products.CMFCore.utils import getToolByName
 class TestFunctions(pfgtc.PloneFormGenTestCase):
     """ test ya_gpg.py """
     
-    def dummy_send( self, mfrom, mto, messageText ):
+    def dummy_send( self, mfrom, mto, messageText, immediate=False ):
         self.mfrom = mfrom
         self.mto = mto
         self.messageText = messageText
+        self.messageBody = '\n\n'.join(messageText.split('\n\n')[1:])
 
 
     def afterSetUp(self):
@@ -104,8 +105,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = self.LoadRequestForm(topic = 'test ${subject}', replyto='test@test.org', comments='test comments')
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        # note: we expect the subject to be base64 encoded when braces are present
-        self.failUnless( self.messageText.find('Subject: =?utf-8?b?dGVzdCAke3N1YmplY3R9?=') > 0 )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_=24=7Bsubject=7D?=') > 0 )
 
         # we should get substitution in a basic override
         mailer.subject_field = ''
@@ -143,10 +143,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        messageText = self.messageText.split('\n\n')[-1].decode('base64')
-        self.failUnless( messageText.find('Hello test subject,') > 0 )
-        self.failUnless( messageText.find('Thanks, test subject!') > 0 )
-        self.failUnless( messageText.find('Eat my footer, test subject.') > 0 )
+        self.failUnless( self.messageBody.find('Hello test subject,') > 0 )
+        self.failUnless( self.messageBody.find('Thanks, test subject!') > 0 )
+        self.failUnless( self.messageBody.find('Eat my footer, test subject.') > 0 )
 
 
     def test_UTF8Subject(self):
@@ -302,33 +301,30 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # make sure all fields are sent unless otherwise specified
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        messageText = self.messageText.split('\n\n')[-1].decode('base64')
         self.failUnless(
-            messageText.find('test subject') > 0 and
-            messageText.find('test@test.org') > 0 and
-            messageText.find('test comments') > 0          
+            self.messageBody.find('test subject') > 0 and
+            self.messageBody.find('test@test.org') > 0 and
+            self.messageBody.find('test comments') > 0          
           )
         
         # setting some show fields shouldn't change that
         mailer.setShowFields( ('topic', 'comments',) )
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        messageText = self.messageText.split('\n\n')[-1].decode('base64')
         self.failUnless(
-            messageText.find('test subject') > 0 and
-            messageText.find('test@test.org') > 0 and
-            messageText.find('test comments') > 0          
+            self.messageBody.find('test subject') > 0 and
+            self.messageBody.find('test@test.org') > 0 and
+            self.messageBody.find('test comments') > 0          
           )
 
         # until we turn off the showAll flag
         mailer.showAll = False
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        messageText = self.messageText.split('\n\n')[-1].decode('base64')
         self.failUnless(
-            messageText.find('test subject') > 0 and
-            messageText.find('test@test.org') < 0 and
-            messageText.find('test comments') > 0          
+            self.messageBody.find('test subject') > 0 and
+            self.messageBody.find('test@test.org') < 0 and
+            self.messageBody.find('test comments') > 0          
           )
         
         # check includeEmpties
@@ -338,12 +334,11 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         mailer.showAll = True
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        messageText = self.messageText.split('\n\n')[-1].decode('base64')
         # look for labels
         self.failUnless(
-            messageText.find('Subject') > 0 and
-            messageText.find('Your E-Mail Address') > 0 and
-            messageText.find('Comments') > 0          
+            self.messageBody.find('Subject') > 0 and
+            self.messageBody.find('Your E-Mail Address') > 0 and
+            self.messageBody.find('Comments') > 0          
           )
 
         # now, turn off required for a field and leave it empty
@@ -351,11 +346,10 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org',)
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        messageText = self.messageText.split('\n\n')[-1].decode('base64')
         self.failUnless(
-            messageText.find('Subject') > 0 and
-            messageText.find('Your E-Mail Address') > 0 and
-            messageText.find('Comments') < 0          
+            self.messageBody.find('Subject') > 0 and
+            self.messageBody.find('Your E-Mail Address') > 0 and
+            self.messageBody.find('Comments') < 0          
           )
 
 

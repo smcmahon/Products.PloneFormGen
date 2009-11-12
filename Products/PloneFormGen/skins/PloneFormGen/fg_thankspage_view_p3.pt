@@ -9,14 +9,14 @@
 
   <body>
 
-    <metal:main fill-slot="main">
+    <metal:main fill-slot="main" tal:define="view context/@@plone_context_state">
       <metal:main_macro>
 
         <div tal:condition="exists:request/form/fieldset" tal:omit-tag="">
       
             <div tal:replace="structure provider:plone.abovecontenttitle" />
             
-            <h1 tal:content="object_title" class="documentFirstHeading">
+            <h1 tal:content="view/object_title" class="documentFirstHeading">
                 Title or id
             </h1>
             

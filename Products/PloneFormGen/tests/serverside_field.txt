@@ -18,6 +18,7 @@ Add a new form folder and mark the subject input variable as a server side varia
     >>> self.portal.testform.topic.setServerSide(True)
     >>> self.portal.testform.topic.getServerSide()
     True
+
     >>> self.portal.testform.topic.setFgDefault('asdf')
 
 And confirm that the server-side field is absent from the rendered form::
@@ -34,13 +35,14 @@ thank you page::
     >>> browser.getControl('Comments').value = 'Now with double the rockage...'
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
+
     >>> 'Subject' in browser.contents
     False
 
 Test for 'Subject' in the mail body::
 
     >>> msgtext = self.portal.MailHost.msgtext[self.portal.MailHost.msgtext.index('\n\n'):]
-    >>> 'Subject' in self.portal.MailHost.msgtext.split('\n\n')[-1].decode('base64')
+    >>> 'Subject' in '\n\n'.join(self.portal.MailHost.msgtext.split('\n\n')[1:])
     False
 
 Specifically list the field as one that should be included in the thank
@@ -55,7 +57,9 @@ you page, and then it should show up in mail and thanks page::
     >>> browser.getControl('Comments').value = 'Now with double the rockage...'
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
-    >>> 'Subject' in self.portal.MailHost.msgtext.split('\n\n')[-1].decode('base64')
+
+    >>> 'Subject' in '\n\n'.join(self.portal.MailHost.msgtext.split('\n\n')[1:])
     True
+
     >>> 'Subject' in browser.contents
     True

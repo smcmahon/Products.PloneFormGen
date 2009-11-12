@@ -44,7 +44,7 @@ Submit the form with an attachment::
 Make sure the attachment was included in the email message::
 
     >>> self.portal.MailHost.msg.get_payload()
-    [<email.Message.Message instance at ...>, <email.Message.Message instance at ...>]
+    [<email.message.Message instance at ...>, <email.message.Message instance at ...>]
     >>> self.portal.MailHost.msg.get_payload()[1].get_payload(decode=True)
     'file contents'
 
