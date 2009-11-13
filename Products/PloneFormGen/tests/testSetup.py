@@ -28,7 +28,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
         
-        self.kupu         = self.portal.kupu_library_tool
+        self.kupu         = getattr(self.portal, 'kupu_library_tool', None)
         self.skins        = self.portal.portal_skins
         self.types        = self.portal.portal_types
         self.factory      = self.portal.portal_factory
@@ -157,9 +157,12 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             self.assertEqual(self.workflow.getChainForPortalType(f), ())
 
     def testKupuResources(self):
-        linkable = self.kupu.getPortalTypesForResourceType('linkable')
-        self.failUnless('FormFolder' in linkable) # make sure we made it in ...
-        self.failIf(len(linkable) <= 1) # without clobbering everything else
+        if self.kupu is not None:
+            linkable = self.kupu.getPortalTypesForResourceType('linkable')
+            self.failUnless('FormFolder' in linkable) # make sure we made it in ...
+            self.failIf(len(linkable) <= 1) # without clobbering everything else
+        else:
+            print "Skipping kupu resource tests."
 
     def test_FormGenTool(self):
         self.failUnless( getToolByName(self.portal, 'formgen_tool')) 
