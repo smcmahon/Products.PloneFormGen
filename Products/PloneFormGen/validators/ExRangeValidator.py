@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implements, Interface
 from Products.validation.interfaces.IValidator import IValidator
 from Products.validation import validation
 
@@ -8,7 +8,11 @@ class ExRangeValidator:
         from the kwargs in a call or from field attributes.
     """
 
-    implements(IValidator)
+    if issubclass(IValidator, Interface):
+        implements(IValidator)
+    else:
+        #BBB
+        __implements__ = (IValidator, )
 
     name = 'ExRangeValidator'
 

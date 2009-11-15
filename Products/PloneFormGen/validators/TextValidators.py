@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implements, Interface
 from Products.validation.interfaces.IValidator import IValidator
 from Products.validation import validation
 
@@ -13,7 +13,11 @@ class LinkSpamValidator:
         repeat of this logic.)
     """
 
-    implements(IValidator)
+    if issubclass(IValidator, Interface):
+        implements(IValidator)
+    else:
+        #BBB
+        __implements__ = (IValidator, )
 
     name = 'LinkSpamValidator'
 
