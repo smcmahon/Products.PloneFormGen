@@ -3,7 +3,7 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
-from zope.interface import implements
+from zope.interface import implements, providedBy
 
 import transaction
 import zExceptions
@@ -243,7 +243,7 @@ class FormThanksPage(ATCTContent):
         # get a list of all candidate fields
         myFields = []
         for obj in self.aq_parent._getFieldObjects():
-            if not (IField.providedBy(obj) or obj.isLabel()):
+            if (IField not in providedBy(obj) or obj.isLabel()):
                 # if field list hasn't been specified explicitly, exclude server side fields
                 if self.showAll and obj.getServerSide():
                     continue 

@@ -3,6 +3,7 @@ import logging
 from Acquisition import aq_parent, aq_inner
 from zope.component import adapter
 from zope.app.container.interfaces import IObjectAddedEvent
+from zope.interface import providedBy
 
 from Products.CMFPlone.interfaces import IFactoryTool
 
@@ -15,7 +16,7 @@ def form_adapter_pasted(form_adapter, event):
        adapter isn't newly created in the portal_factory.
     """
     form_adapter = aq_inner(form_adapter)
-    if IFactoryTool.providedBy(aq_parent(aq_parent(form_adapter))):
+    if IFactoryTool in providedBy(aq_parent(aq_parent(form_adapter))):
         return
         
     form = aq_parent(form_adapter)

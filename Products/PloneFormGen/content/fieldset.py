@@ -5,7 +5,7 @@ __docformat__ = 'plaintext'
 
 from types import BooleanType
 
-from zope.interface import implements, providedBy
+from zope.interface import implements
 
 import logging
 

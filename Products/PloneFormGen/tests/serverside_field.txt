@@ -1,6 +1,13 @@
 Server-side only field
 ----------------------
 
+    >>> try:
+    ...     import plone.app.upgrade
+    ...     HAS_PLONE4 = True
+    ... except ImportError:
+    ...     HAS_PLONE4 = False
+
+
 Get our test browser::
 
     >>> from Products.Five.testbrowser import Browser
@@ -42,7 +49,12 @@ thank you page::
 Test for 'Subject' in the mail body::
 
     >>> msgtext = self.portal.MailHost.msgtext[self.portal.MailHost.msgtext.index('\n\n'):]
-    >>> 'Subject' in '\n\n'.join(self.portal.MailHost.msgtext.split('\n\n')[1:])
+    >>> if HAS_PLONE4:
+    ...     body = '\n\n'.join(self.portal.MailHost.msgtext.split('\n\n')[1:])
+    ... else:
+    ...     body = self.portal.MailHost.msgtext.split('\n\n')[-1].decode('base64')
+    
+    >>> 'Subject' in body
     False
 
 Specifically list the field as one that should be included in the thank
@@ -58,7 +70,11 @@ you page, and then it should show up in mail and thanks page::
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
 
-    >>> 'Subject' in '\n\n'.join(self.portal.MailHost.msgtext.split('\n\n')[1:])
+    >>> if HAS_PLONE4:
+    ...     body = '\n\n'.join(self.portal.MailHost.msgtext.split('\n\n')[1:])
+    ... else:
+    ...     body = self.portal.MailHost.msgtext.split('\n\n')[-1].decode('base64')
+    >>> 'Subject' in body
     True
 
     >>> 'Subject' in browser.contents

@@ -514,7 +514,7 @@ class FormFolder(ATFolder):
 
         myFields = []
         for obj in self._getFieldObjects(includeFSMarkers=not displayOnly):
-            if IField.providedBy(obj):
+            if IField in providedBy(obj):
                 # this is a field -- not a form field -- and may be
                 # added directly to the field list.
                 if not displayOnly:
@@ -554,7 +554,7 @@ class FormFolder(ATFolder):
 
         # Get all the form fields. Exclude actual IField fields.
         fields = [fo for fo in self._getFieldObjects()
-                  if not IField.providedBy(fo)]
+                  if IField not in providedBy(fo)]
         for obj in fields:
             field = obj.fgField
 
@@ -627,7 +627,7 @@ class FormFolder(ATFolder):
     def fgProcessActionAdapters(self, errors, fields=None, REQUEST=None):
         if fields is None:
             fields = [fo for fo in self._getFieldObjects()
-                      if not IField.providedBy(fo)]
+                      if IField not in providedBy(fo)]
 
         if not errors:
             if self.getRawAfterValidationOverride():
