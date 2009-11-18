@@ -6,6 +6,7 @@ __docformat__ = 'plaintext'
 from zope.interface import implements, providedBy
 
 import logging
+import transaction
 
 from ZPublisher.Publish import Retry
 from zExceptions import Redirect
@@ -666,6 +667,8 @@ class FormFolder(ATFolder):
             path = path + '/'.join(self.REQUEST.physicalPathToVirtualPath(self.getPhysicalPath())) + '/' + target
             self.REQUEST._orig_env['PATH_INFO'] = self.REQUEST._orig_env['PATH_TRANSLATED'] = path
             self.REQUEST._orig_env['X_PFG_RETRY'] = '1'
+            # commit current transaction since raising Retry would abort it
+            transaction.commit()
             raise Retry
         else:
             # if not embedded, simple CMFFormController traversal will work fine

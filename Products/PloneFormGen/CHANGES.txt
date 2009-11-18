@@ -4,6 +4,10 @@ Change History
 1.5.5 unreleased
 -----
 
+ - Fix issue where the saved data adapter did not save data when using an
+   embedded form whose action on success is to traverse to another page.
+   (Thomas Buchberger, David Glick)
+
 1.5.4
 -----
 
