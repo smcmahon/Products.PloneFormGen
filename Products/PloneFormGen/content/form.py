@@ -3,7 +3,7 @@
 __author__ = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
-from zope.interface import implements, providedBy
+from zope.interface import implements
 
 import logging
 
@@ -45,6 +45,8 @@ from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import implementedOrProvidedBy
+
 
 try:
     import plone.protect
@@ -514,7 +516,7 @@ class FormFolder(ATFolder):
 
         myFields = []
         for obj in self._getFieldObjects(includeFSMarkers=not displayOnly):
-            if IField in providedBy(obj):
+            if implementedOrProvidedBy(IField, obj):
                 # this is a field -- not a form field -- and may be
                 # added directly to the field list.
                 if not displayOnly:
@@ -554,7 +556,7 @@ class FormFolder(ATFolder):
 
         # Get all the form fields. Exclude actual IField fields.
         fields = [fo for fo in self._getFieldObjects()
-                  if IField not in providedBy(fo)]
+                  if not implementedOrProvidedBy(IField, fo)]
         for obj in fields:
             field = obj.fgField
 
@@ -627,7 +629,7 @@ class FormFolder(ATFolder):
     def fgProcessActionAdapters(self, errors, fields=None, REQUEST=None):
         if fields is None:
             fields = [fo for fo in self._getFieldObjects()
-                      if IField not in providedBy(fo)]
+                      if not implementedOrProvidedBy(IField, fo)]
 
         if not errors:
             if self.getRawAfterValidationOverride():
@@ -734,7 +736,7 @@ class FormFolder(ATFolder):
 
         # an adapter provides IPloneFormGenActionAdapter
         allAdapters = [(obj.getId(), obj.title) for obj in self.objectValues()
-          if IPloneFormGenActionAdapter in providedBy(obj)]
+          if implementedOrProvidedBy(IPloneFormGenActionAdapter, obj)]
 
         if allAdapters:
             return DisplayList(allAdapters)
@@ -786,7 +788,7 @@ class FormFolder(ATFolder):
         tpages = [('', _(u'vocabulary_none_text', u'None')), ]
 
         for obj in self.objectValues():
-            if IPloneFormGenThanksPage in providedBy(obj) or \
+            if implementedOrProvidedBy(IPloneFormGenThanksPage, obj) or \
               getattr(obj.aq_explicit, 'portal_type', 'none') in defaultPageTypes:
                 tpages.append((obj.getId(), obj.title))
 
