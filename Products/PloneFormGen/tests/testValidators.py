@@ -125,6 +125,7 @@ class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
         # Canadian zip codes
         self.failUnlessEqual( v.validate('pfgv_isZipCode', 'T2X 1V4'), 1)
         self.failUnlessEqual( v.validate('pfgv_isZipCode', 'T2X1V4'), 1)
+        self.failUnlessEqual( v.validate('pfgv_isZipCode', 't2x 1v4'), 1)
 
 
 if  __name__ == '__main__':

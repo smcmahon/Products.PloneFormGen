@@ -102,7 +102,7 @@ stringValidators = (
         'title':u'Is a valid postal code',
         'errmsg':u'This is not a valid postal code.',
         'errid':'pfg_isZipCode',
-        'regex':r'^\d{5}(\d{4})?$|^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1}\d{1}[A-Z]{1}\d{1}$',
+        'regex':r'^\d{5}(\d{4})?$|^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1}\d{1}[A-Za-z]{1}\d{1}$',
         'ignore':'[\- ]',
     },
     {'id': 'isNotLinkSpam',
