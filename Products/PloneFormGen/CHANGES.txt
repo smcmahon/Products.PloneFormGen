@@ -1,8 +1,14 @@
 Change History
 ==============
 
-1.5.5 unreleased
+1.6.0 unreleased
 -----
+
+ - Plone 4 Compatibility.
+
+ - Save Data Adapter now checks for existence of LinguaPlone canonical
+   language form's adapter before trying to use it.
+   Thanks, Jean-Pascal Houde. Fixes #270.
 
 1.5.4
 -----
