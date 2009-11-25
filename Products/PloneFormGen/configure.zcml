@@ -115,6 +115,14 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <gs:registerProfile
+      name="loadtest"
+      title="PloneFormGen load test fixtures"
+      directory="profiles/loadtest"
+      description="PloneFormGen load test fixtures"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
   <include package=".browser"/>
 
   <subscriber handler=".events.form_adapter_pasted" />  

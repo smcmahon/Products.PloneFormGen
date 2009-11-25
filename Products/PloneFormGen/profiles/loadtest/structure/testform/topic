@@ -1,0 +1,28 @@
+id: topic
+title: Subject
+description: 
+required: True
+hidden: False
+fgTDefault: 
+fgTValidator: python:False
+fgTEnabled: 
+serverSide: False
+fgDefault: 
+fgmaxlength: 255
+fgsize: 30
+fgStringValidator: 
+subject: 
+relatedItems: 
+location: 
+language: 
+effectiveDate: None
+expirationDate: None
+creation_date: 2009/11/24 20:48:58.044 US/Pacific
+modification_date: 2009/11/24 20:48:58.064 US/Pacific
+creators: admin
+contributors: 
+rights: 
+allowDiscussion: False
+excludeFromNav: False
+Content-Type: text/plain
+
