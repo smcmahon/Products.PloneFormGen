@@ -105,6 +105,15 @@ defaults and validators. You may wish to add additional roles, but keep
 in mind that this is a potential security risk; it basically gives the
 same powers as scripting or skin editing.
 
+Javascript/CSS Support for Some Fields
+======================================
+
+Some fields, like the rich text editor and the calendar widget on the 
+date/time field require JS or CSS support that often is not loaded
+for anonymous users. If you wish this support for anon users, you'll
+need to remove the "not: portal/portal_membership/isAnonymousUser"
+condition for their support code in portal_css and portal_javascripts.
+
 Known Problems
 ==============
 

@@ -1,0 +1,68 @@
+File attachments
+================
+
+    >>> import cStringIO
+    >>> browser = self.browser
+
+Add a new Form Folder::
+
+    >>> browser.open(self.portal_url)
+    >>> browser.getLink('Form Folder').click()
+    >>> browser.getControl('Title').value = 'attachmentform'
+    >>> browser.getControl('Save').click()
+    >>> browser.url
+    'http://nohost/plone/attachmentform/...'
+
+Add a File field::
+
+    >>> browser.getLink('File Field').click()
+    >>> browser.getControl('Field Label').value = 'attachment'
+    >>> browser.getControl('Save').click()
+
+And confirm that it renders properly::
+    
+    >>> browser.url
+    'http://nohost/plone/attachmentform...'
+    >>> print browser.contents
+    <!DOCTYPE...
+    ...
+    <input type="file" ... />
+    ...
+
+Submit the form with an attachment::
+
+    >>> self.portal.attachmentform.mailer.setRecipient_email('mdummy@address.com')
+    >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
+    >>> browser.getControl('Subject').value = 'test'
+    >>> browser.getControl('Comments').value = 'PFG rocks!'
+    >>> browser.getControl(name='attachment_file').add_file(cStringIO.StringIO('file contents'), 'text/plain', 'test.txt')
+    >>> browser.getControl('Submit').click()
+    <sent mail from ...to ['mdummy@address.com']>
+    >>> 'Thanks for your input.' in browser.contents
+    True
+
+Make sure the attachment was included in the email message::
+
+    >>> self.portal.MailHost.msg.get_payload()
+    [<email.Message.Message instance at ...>, <email.Message.Message instance at ...>]
+    >>> self.portal.MailHost.msg.get_payload()[1].get_payload(decode=True)
+    'file contents'
+
+Excluded fields
+---------------
+
+Make sure the attachment is not included in the email if showAll is False and
+the file field is not listed in the mailer's showFields::
+
+    >>> self.portal.attachmentform.mailer.setShowAll(False)
+    >>> self.portal.MailHost.msg = None
+    
+    >>> browser.open('http://nohost/plone/attachmentform')
+    >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
+    >>> browser.getControl('Subject').value = 'test'
+    >>> browser.getControl('Comments').value = 'PFG rocks!'
+    >>> browser.getControl(name='attachment_file').add_file(cStringIO.StringIO('file contents'), 'text/plain', 'test.txt')
+    >>> browser.getControl('Submit').click()
+    <sent mail from ...to ['mdummy@address.com']>
+    >>> self.portal.MailHost.msg.get_payload(decode=True)
+    '<html xmlns="http://www.w3.org/1999/xhtml">\n\n  <head><title></title></head>\n\n  <body>\n    <p></p>\n    <dl>\n    </dl>\n    <p></p>\n    <pre></pre>\n  </body>\n</html>\n'

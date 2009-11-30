@@ -626,6 +626,20 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
             self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
 
 
+        def testBooleanRequired(self):
+            """ test for issue  #202: bad enforcement of required
+                on boolean fields
+            """
+
+            self.ff1.invokeFactory('FormBooleanField', 'fbf')
+            self.ff1.fbf.setRequired(True)
+
+            request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+            errors = self.ff1.fgvalidate(REQUEST=request)
+            self.assertEqual( errors, {} )
+
+
+
 if  __name__ == '__main__':
     framework()
 

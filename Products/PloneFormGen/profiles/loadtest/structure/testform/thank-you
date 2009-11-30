@@ -1,0 +1,24 @@
+id: thank-you
+title: Thank You
+description: Thanks for your input.
+showAll: True
+showFields: 
+includeEmpties: True
+thanksPrologue: 
+thanksEpilogue: 
+noSubmitMessage: <p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>
+subject: 
+relatedItems: 
+location: 
+language: 
+effectiveDate: None
+expirationDate: None
+creation_date: 2009/11/24 20:48:58.131 US/Pacific
+modification_date: 2009/11/24 20:48:58.178 US/Pacific
+creators: admin
+contributors: 
+rights: 
+allowDiscussion: False
+excludeFromNav: False
+Content-Type: text/plain
+

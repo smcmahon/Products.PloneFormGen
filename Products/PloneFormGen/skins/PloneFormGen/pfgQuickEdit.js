@@ -89,7 +89,7 @@ pfgQEdit.updatePositionOnServer = function() {
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
 
-    jq("#pfg-fieldwrapper").children().each(
+    jq("#pfg-fieldwrapper").children('.field').each(
         function () {
             var fname = this.id;
             if (fname.indexOf("archetypes-fieldname-") == 0) {                      
@@ -98,6 +98,9 @@ pfgQEdit.addTable = function () {
                 fname = this.id.substr('pfg-fieldsetname-'.length);
             }
             felem = jq('#'+this.id)
+            if (felem.hasClass('pfgHidden')) {
+                felem.append('<div class="pfgqemarkup">Hidden field: '+fname+'</div>')
+            }
             felem.wrap(
                 '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
                 '<td class="ofield"></td></tr>'
@@ -174,6 +177,8 @@ pfgQEdit.stripTable = function () {
   var content = jq("#pfg-qetable td.ofield").children();
   // substitute for table
   jq("#pfg-qetable").after(content).remove();
+  // hidden field descriptions
+  jq("div.pfgqemarkup").remove();
 }
 
 pfgQEdit.noedit = function (e) {

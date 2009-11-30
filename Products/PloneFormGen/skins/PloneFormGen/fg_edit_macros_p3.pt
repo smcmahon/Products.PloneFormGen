@@ -93,7 +93,14 @@
             <div id="pfg-fieldwrapper">
             <tal:fields repeat="field fields">
     	        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-                <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+	            <tal:block tal:condition="python:field.widget.visible != -1">
+                    <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+                </tal:block>
+	            <tal:block tal:condition="python:field.widget.visible == -1">
+	                <div tal:attributes="id string:archetypes-fieldname-${field/getName}" class="field pfgHidden">
+                        <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
+                    </div>
+                </tal:block>
     	        </tal:block>
     	        <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
     	             tal:attributes="id string:archetypes-fieldname-${field/getName}"

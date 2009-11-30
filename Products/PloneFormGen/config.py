@@ -19,7 +19,7 @@ DEFAULT_MAILTEMPLATE_BODY = \
   <body>
     <p tal:content="here/getBody_pre | nothing" />
     <dl>
-        <tal:block repeat="field options/wrappedFields">
+        <tal:block repeat="field options/wrappedFields | nothing">
             <dt tal:content="field/fgField/widget/label" />
             <dd tal:content="structure python:field.htmlValue(request)" />
         </tal:block>
@@ -99,11 +99,11 @@ stringValidators = (
     },
     {'id':'isZipCode',
         'i18nid':'vocabulary_iszipcode_text',
-        'title':u'Is a valid zip code',
-        'errmsg':u'This is not a valid zip code.',
+        'title':u'Is a valid postal code',
+        'errmsg':u'This is not a valid postal code.',
         'errid':'pfg_isZipCode',
-        'regex':r'^(\d{5}|\d{9})$',
-        'ignore':'[\-]',
+        'regex':r'^\d{5}(\d{4})?$|^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1}\d{1}[A-Za-z]{1}\d{1}$',
+        'ignore':'[\- ]',
     },
     {'id': 'isNotLinkSpam',
         'i18nid':'vocabulary_isnotlinkspam_text',

@@ -8,7 +8,8 @@ setup(name='Products.PloneFormGen',
       description="A through-the-web form generator for Plone",
       long_description=open(os.path.join("Products", "PloneFormGen", "README.txt")).read() \
                        + "\n\n" + \
-                       open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read(),
+                       # CHANGES.txt has lots of UTF8, which PyPI won't accept
+                       open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read().decode('UTF8').encode('ASCII', 'replace'),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Programming Language :: Python",

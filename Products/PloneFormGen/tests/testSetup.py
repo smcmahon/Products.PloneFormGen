@@ -227,17 +227,18 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         defaultPageTypes = list(siteProperties.getProperty('default_page_types'))
         self.failUnless('FormFolder' in defaultPageTypes)
 
-    # # test no longer necessary now that allowed types are set by interface
-    # def test_customAllowedTypesNotPurgedOnReinstall(self):
-    #     # add a (bogus) custom type to the list of allowed types
-    #     self.types['FormFolder'].allowed_content_types = ['foobar'] + list(self.types['FormFolder'].allowed_content_types)
-    #     
-    #     # reinstall
-    #     qi = self.portal.portal_quickinstaller
-    #     qi.reinstallProducts(['PloneFormGen'])
-    #     
-    #     # make sure our custom type is still in the list
-    #     self.failUnless('foobar' in self.types['FormFolder'].allowed_content_types)
+
+    def testTypeViews(self):
+        if HAS_PLONE30:
+            self.assertEqual(self.types.FormFolder.getAvailableViewMethods(self.types), ('fg_base_view_p3',))
+            self.assertEqual(self.types.FormThanksPage.getAvailableViewMethods(self.types), ('fg_thankspage_view_p3',))
+            self.assertEqual(self.types.FormSaveDataAdapter.getAvailableViewMethods(self.types), ('fg_savedata_tabview_p3', 'fg_savedata_recview_p3', 'fg_savedata_view_p3'))
+        else:
+            self.assertEqual(self.types.FormFolder.getAvailableViewMethods(self.types), ('fg_base_view',))
+            self.assertEqual(self.types.FormThanksPage.getAvailableViewMethods(self.types), ('fg_thankspage_view',))
+            self.assertEqual(self.types.FormSaveDataAdapter.getAvailableViewMethods(self.types), ('fg_savedata_tabview', 'fg_savedata_recview', 'fg_savedata_view'))
+
+
 
         
 class TestContentCreation(pfgtc.PloneFormGenTestCase):
@@ -557,8 +558,6 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         self.failIf( fsf2.checkIdAvailable('sf2') )
         
         
-
-
 class TestGPG(pfgtc.PloneFormGenTestCase):
     """ test ya_gpg.py """
     

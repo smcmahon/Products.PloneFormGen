@@ -6,6 +6,7 @@ __docformat__ = 'plaintext'
 from zope.interface import implements, providedBy
 
 import logging
+import transaction
 
 from ZPublisher.Publish import Retry
 from zExceptions import Redirect
@@ -513,7 +514,8 @@ class FormFolder(ATFolder):
                    REQUEST=None,
                    errors=None,
                    data=None,
-                   metadata=None):
+                   metadata=None,
+                   skip_action_adapters=False):
         """Validates the field data from the request.
         """
 
@@ -587,6 +589,15 @@ class FormFolder(ATFolder):
                 if cerr:
                     errors[field.getName()] = cerr
 
+        if not skip_action_adapters:
+            return self.fgProcessActionAdapters(errors, fields, REQUEST)
+
+        return errors
+
+    def fgProcessActionAdapters(self, errors, fields=None, REQUEST=None):
+        if fields is None:
+            fields = [fo for fo in self._getFieldObjects() if not IField.isImplementedBy(fo)]
+
         if not errors:
             if self.getRawAfterValidationOverride():
                 # evaluate the override.
@@ -648,11 +659,16 @@ class FormFolder(ATFolder):
         if is_embedded:
             # Change the request URL and then raise a Retry exception
             # so the traversed page renders using the same request
-            url = '%s/%s' % (self.absolute_url(), target)
-            path = url.replace(self.REQUEST['SERVER_URL'], '')
+            path = self.REQUEST._orig_env.get('PATH_TRANSLATED', '/')
+            try:
+                path = path[:path.index('VirtualHostRoot') + 15] + '/'
+            except ValueError:
+                path = '/'
+            path = path + '/'.join(self.REQUEST.physicalPathToVirtualPath(self.getPhysicalPath())) + '/' + target
             self.REQUEST._orig_env['PATH_INFO'] = self.REQUEST._orig_env['PATH_TRANSLATED'] = path
-            self.REQUEST._orig_env['SERVER_URL'] = url[:len(url) - len(path)]
             self.REQUEST._orig_env['X_PFG_RETRY'] = '1'
+            # commit current transaction since raising Retry would abort it
+            transaction.commit()
             raise Retry
         else:
             # if not embedded, simple CMFFormController traversal will work fine
@@ -797,9 +813,12 @@ class FormFolder(ATFolder):
         self.setResetLabel(zope.i18n.translate(_(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
 
         oids = self.objectIds()
+        
+        # if we have *any* content already, we don't need
+        # the sample content
+        if not oids:
 
-        haveMailer = False
-        if 'mailer' not in oids:
+            haveMailer = False
             # create a mail action
             try:
                 self.invokeFactory('FormMailerAdapter','mailer')
@@ -815,7 +834,6 @@ class FormFolder(ATFolder):
             except Unauthorized:
                 logger.warn('User not authorized to create mail adapters. Form Folder created with no action adapter.')
 
-        if 'replyto' not in oids:
             # create a replyto field
             self.invokeFactory('FormStringField','replyto')
             obj = self['replyto']
@@ -833,7 +851,6 @@ class FormFolder(ATFolder):
             if haveMailer:
                 mailer.replyto_field = 'replyto'
 
-        if 'topic' not in oids:
             # create a subject field
             self.invokeFactory('FormStringField','topic')
             obj = self['topic']
@@ -848,7 +865,6 @@ class FormFolder(ATFolder):
             if haveMailer:
                 mailer.subject_field = 'topic'
 
-        if 'comments' not in oids:
             # create a comments field
             self.invokeFactory('FormTextField','comments')
             obj = self['comments']
@@ -861,7 +877,6 @@ class FormFolder(ATFolder):
             self._pfFixup(obj)
 
 
-        if 'thank-you' not in oids:
             # create a thanks page
             self.invokeFactory('FormThanksPage','thank-you')
             obj = self['thank-you']

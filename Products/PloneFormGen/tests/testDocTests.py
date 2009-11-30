@@ -6,6 +6,7 @@ from Products.PloneFormGen.tests.pfgtc import PloneFormGenFunctionalTestCase
 
 testfiles = (
     'browser.txt',
+    'attachment.txt',
     'ssl.txt',
     'serverside_field.txt',
     '../dollarReplace.py',

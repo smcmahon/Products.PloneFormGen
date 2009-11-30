@@ -1,3 +1,5 @@
+
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
@@ -97,12 +99,12 @@ msgstr "感謝のページ"
 #. Default: "A thank-you page that can display form input"
 #: content/thanksPage.py
 msgid "A thank-you page that can display form input"
-msgstr "入力から、表示できる感謝のページ（１）"
+msgstr "完了時に表示する感謝のページ"
 
 #. Default: "A thank-you page that can display form input."
 #: content/thanksPage.py
 msgid "A thank-you page that can display form input."
-msgstr "入力から、表示できる感謝のページ（２）"
+msgstr "完了時に表示する感謝のページ。"
 
 #. Default: "Boolean Field"
 #: content/fields.py
@@ -325,7 +327,7 @@ msgstr "上書き"
 #. Default: "addressing"
 #: content/formMailerAdapter.py
 msgid "addressing"
-msgstr ""
+msgstr "アドレッシング"
 
 #. Default: "message"
 #: content/formMailerAdapter.py
@@ -345,7 +347,7 @@ msgstr "ヘッダ"
 #. Default: "encryption"
 #: content/formMailerAdapter.py
 msgid "encryption"
-msgstr ""
+msgstr "暗号化"
 
 #. String Field
 #. Default: "Field Help"
@@ -367,7 +369,7 @@ msgstr "フィールドセットフォルダ"
 #. Default: "A folder which groups form fields as a fieldset."
 #: content/fieldset.py
 msgid "A folder which groups form fields as a fieldset."
-msgstr ""
+msgstr "入力欄をまとめるフォルダ"
 
 #. Default: "Custom Script Adapter"
 #: content/customScriptAdapter.py
@@ -387,6 +389,10 @@ msgstr "代替えロールなし"
 #. Default: "True Display String"
 msgid "label_fgbooleantruestring_text"
 msgstr "文字列の表示を有効"
+
+#. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
+msgid "help_fgbooleantruestring_text"
+msgstr "チェックマークがある場合、謝辞ページとメールに使う文字列を入力"
 
 #. Default: "False Display String"
 msgid "label_fgbooleanfalsestring_text"
@@ -409,3 +415,13 @@ msgstr "評価スケール"
 msgid "A rating-scale field using rows of radio buttons."
 msgstr ""
 
+#. Form
+#. Default 'CSRF Protection',
+msgid "label_csrf"
+msgstr "クロスサイトスクリプト対策"
+
+#. Form
+#. Default     Check this to employ Cross-Site Request Forgery protection.
+#. Default     Note that only HTTP Post actions will be allowed.
+msgid "help_csrf"
+msgstr "クロスサイトスクリプト対策をする場合チェック"

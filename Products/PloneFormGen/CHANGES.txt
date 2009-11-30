@@ -1,8 +1,103 @@
 Change History
 ==============
 
+1.5.5 unreleased
+-----
+
+ - Accept Canadian postal codes with lowercase letters. (David Glick)
+
+ - Fix issue where the saved data adapter did not save data when using an
+   embedded form whose action on success is to traverse to another page.
+   (Thomas Buchberger, David Glick)
+
+1.5.4
+-----
+
+ - Restoring tests to the distribution restored the Windows install problem.
+   Yuck. Reverted deletion of MANIFEST.in. Those needing to run the tests
+   should check out PFG from svn. (Steve)
+
+1.5.3
+-----
+
+ - Don't try to get the recipient e-mail from the owner of the form folder if
+   the user no longer exists. (David Glick)
+
+ - Add a 'show_text' option for fg_embedded_view_p3 which causes the prologue
+   and epilogue to be displayed. (David Glick)
+   
+ - Restore tests pruned in 1.5rc2, hoping using zip rather than tgz will fix.
+   (SteveM)
+
+1.5.2
+-----
+
+ - Fix for #262, File Field does not send attachment.
+   (David Glick; thanks, Melnychuk Taras)
+
+ - Fix for #261, PFG misbehaves on hidden fields.
+   (Thanks, Ralf Hemmecke)
+
+ - Changed the wording of the postal code validator to say "postal code"
+   instead of "zip code," since the former is understandable in both the US and
+   Canada. (David Glick)
+
+1.5.1
+-----
+
+ - Adjusted the isZipCode string validator to also accept Canadian postal
+   codes. (David Glick)
+
+ - Fixed embedded forms so that traversal to a thank you page works properly
+   with VirtualHostMonster URLs. (David Glick)
+
+ - The mail adapter field selection wasn't working with attachments.
+   (Fixes #256, thanks Angela Wong)
+
+1.5.0
+------
+
+ - We weren't using the fg_thankspage_view_p3 view with Plone3+, an error in
+   the switch to GS. (Fixes #252, thanks Matthew Sital-Singh)
+
+ - Fixed fieldset settings 'Show Title as Legend'
+   (Radim Novotny)
+
+ - Boolean (checkbox) required field behavior was not as advertised. Probably due
+   to a change in archetypes at some point. Making a checkbox required will now do
+   nothing but show the required indicator. (Fixes #202, thanks Dylan Jay)
+
+1.5rc2
+------
+
+ - Pruned tests directory from the Python Package. Installation had been failing
+   on some Windows machines while copying the deeply nested tests. We're guessing
+   that path length restrictions were exceeded. Those needing to run the tests
+   should check out PFG from svn. (Steve)
+
+ - Factored action adapter processing out of the fgvalidate method of the form
+   folder, and added a 'skip_action_adapters' parameter to fgvalidate (default:
+   False), so it's possible to validate without calling the action adapters, or
+   vice versa. (David Glick)
+
 1.5rc1
 ------
+
+ - Add "action" to form tags for quick editor to be more XHTML compliant.
+   (Thanks: jonstahl, #248)
+
+ - Fix bad numbering of savedata_tabview 
+   (gotcha)
+
+ - Prevent the automatic action adapter activation handler from
+   duplicating an adapter that is already activated. (Fixes #247)
+   (David Glick)
+
+ - Prevent creation of sample content when forms are imported from
+   .zexp or schemas are recreated. (Fixes #218; Thanks Marie Robichon)
+
+ - Added warning on startup if PFGCaptchaField is still installed.
+   (David Glick)
 
  - The captcha field edit should not show default, length ...
    fields that are not relevant. (Steve)

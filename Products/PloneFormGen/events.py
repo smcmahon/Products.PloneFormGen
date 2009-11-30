@@ -20,5 +20,6 @@ def form_adapter_pasted(form_adapter, event):
         
     form = aq_parent(form_adapter)
     adapters = list(form.actionAdapter)
-    adapters.append(form_adapter.id)
-    form.setActionAdapter(adapters)
+    if form_adapter.id not in adapters:
+        adapters.append(form_adapter.id)
+        form.setActionAdapter(adapters)

@@ -115,10 +115,10 @@ class FieldsetFolder(ATFolder):
         """ set useLegend as attribute and widget attribute """
         if type(value) == BooleanType:
             self.fsStartField.widget.show_legend = value
+            self.useLegend = value
         else:
-            self.fsStartField.widget.show_legend = value == '1'
-
-        self.useLegend = value == '1' or value == 'True'
+            self.fsStartField.widget.show_legend = value == '1' or value == 'True'
+            self.useLegend = value == '1' or value == 'True'
 
 
     security.declarePrivate('fieldsetFields')

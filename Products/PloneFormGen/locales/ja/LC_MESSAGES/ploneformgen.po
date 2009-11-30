@@ -1,16 +1,23 @@
+# Takanori <takanori@takanory.net>, 2009
+# Naotaka Jay Hotta <naotaka@we.care.jp> 2009
+# Shigeo Honda <shigeo.honda@gmail.com> 2009
+
+
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Naotaka Hotta <naotaka@we.care.jp>\n"
-"Language-Team: Naotaka Hotta <naotaka@we.care.jp>\n"
+"Last-Translator: Shigeo Honda <shigeo.honda@gmail.com> \n"
+"Language-Team: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Japanese\n"
-"X-Poedit-Country: JAPAN\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: ja\n"
+"Language-Name: Japanese\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: ploneformgen\n"
 
 #. Default: "${items} inputs saved"
 #: skins/PloneFormGen/fg_savedata_view.pt
@@ -25,7 +32,7 @@ msgstr "入力を保存する"
 #. Form Folder
 #. Default: "Submit Button Label"
 msgid "label_submitlabel_text"
-msgstr "提出"
+msgstr "提出ボタンに表示される名称"
 
 #. Form Folder
 #. Default: "Show Reset Button"
@@ -33,7 +40,10 @@ msgid "label_showcancel_text"
 msgstr "リセットボタンを表示"
 
 #. Form Folder
-#. Default: "Reset Button Label",
+#. Default: "Reset Button Label"
+msgid "label_reset_button"
+msgstr "リセットボタンに表示される名称"
+
 #. Form Folder
 #. Initial value for Submit Button Label
 #. Default: "Submit"
@@ -59,32 +69,33 @@ msgstr "アクションアダプタ"
 #. form and select the active ones.
 #. Default: "
 msgid "help_actionadapter_text"
-msgstr ""
+msgstr "フォームから入力内容が提出されたときの処理方法を指定: 一つ以上のアクションアダプタをフォームフォルダに追加して設定し、選択されたアクションを使用して結果が処理されます"
+
 
 #. Form Folder
 #. Default: "Form Prologue"
 msgid "label_prologue_text"
-msgstr "前書きフォーム"
+msgstr "フォームの前書き部分のテキスト"
 
 #. Form Folder
 #. Default: "This text will be displayed above the form fields."
 msgid "help_prologue_text"
-msgstr "このテキストは、フォームフィールドの上に表示されます。"
+msgstr "このテキストはフォームフィールドの上に表示されます"
 
 #. Form Folder
 #. Default: "Form Epilogue"
 msgid "label_epilogue_text"
-msgstr "後書きのフォーム"
+msgstr "フォームの後書き部分のテキスト"
 
 #. Form Folder
 #. Default: "The text will be displayed after the form fields."
 msgid "help_epilogue_text"
-msgstr "このテキストはフォームフィールの後に表示されます"
+msgstr "このテキストはフォームフィールドの下に表示されます"
 
 #. Form Folder
 #. Default: "Thanks Page"
 msgid "label_thankspage_text"
-msgstr "謝辞ページ"
+msgstr "完了ページ"
 
 #. Form Folder
 #. Default: "
@@ -93,12 +104,12 @@ msgstr "謝辞ページ"
 #. Default: field values.
 #. Default: "
 msgid "help_thankspage_text"
-msgstr ""
+msgstr "フォームの提出が正常に終了したときに表示されるページを選択します。（もし一つもなければ追加してください。）「該当しない」を選択すると単純にフォームを再表示します"
 
 #. Form Folder
 #. Default: "Custom Success Action"
 msgid "label_thankspageoverride_text"
-msgstr "成功時のアクション（特別）"
+msgstr "成功時のカスタム・アクション"
 
 #. Form Folder
 #. Default: "
@@ -114,11 +125,14 @@ msgstr "成功時のアクション（特別）"
 #. Default: "
 msgid "help_thankspageoverride_text"
 msgstr ""
+"自分で設定したアクションアダプタがあれば、それが呼び出された後で表示される完了ページのフィールドして使用されます。これはカスタム完了テンプレートまたはスクリプトで使います。"
+"あるいは「CMFFormController」のアクション（例: \"redirect_to\" または \"traverse_to\"）とargument（TALES式）を記入して、実行させることもできます。"
+"例えば、\"redirect_to:string:thanks-page\" と指定すると「完了ページに」にリダイレクトします。"
 
 # Form Folder
 # label="Custom Form Action"
 msgid "label_formactionoverride_text"
-msgstr ""
+msgstr "カスタム・フォームアクション"
 
 # Form Folder
 # description="""
@@ -128,7 +142,7 @@ msgstr ""
 #        adapter and thanks page.
 #    """
 msgid "help_formactionoverride_text"
-msgstr ""
+msgstr "このフィールドはフォームのアクション属性をフォームの中身をポストする先のURLを指定したもので上書きします。フォームのバリデーション、正常終了時のアクションと完了ページの処理をパスします"
 
 # Form Folder
 #. Default "Form Setup Script"
@@ -146,12 +160,12 @@ msgstr "フォームセットアップスクリプト"
 # an error on form display.
 # """
 msgid "help_OnDisplayOverride_text"
-msgstr ""
+msgstr "フォームを表示する時に呼び出されるTALES式を指定します。不要な場合は空欄とします。このフォールドはフォームに予めデフォルトとなる複数選択のフィールドセットのPythonスクリプトを呼び出すために一般的に使われます。この式のいかなる値も無視されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 # Form Folder
 # label="After Validation Script"
 msgid "label_AfterValidationOverride_text"
-msgstr ""
+msgstr "バリデーション後のスクリプト"
 
 # Form Folder
 # description="""
@@ -167,7 +181,7 @@ msgstr ""
 # an error on form display.
 # """
 msgid "help_AfterValidationOverride_text"
-msgstr ""
+msgstr "フォームが正常にバリデートされたら呼びされるTALES式になりますが、完了ページの表示あるいはアクションアダプタの前に呼び出されます。必要のない場合は空欄としてください。このフォールドはフォームに予めデフォルトとなる複数選択のフィールドセットのPythonスクリプトを呼び出すために一般的に使われます。この式のいかなる値も無視されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
 
 # label="Header Injection"
 msgid "label_headerInjection_text"
@@ -182,7 +196,7 @@ msgstr "ヘッダー追加"
 # an error on form display.
 # """
 msgid "help_headerInjection_text"
-msgstr ""
+msgstr "この上書きフィールドはXHTMLの先頭にコンテンツを挿入することを許可します。これはカスタムCSSやJavaScriptを加えたいときに使用します。TALES式の戻り値を指定ください。文字列はそのまま挿入されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
 
 #. String Field
 #. Default: "Field Label"
@@ -197,7 +211,7 @@ msgstr "ヘルプフィールド"
 #. String Field
 #. Default: "Required"
 msgid "label_required_text"
-msgstr "必要事項"
+msgstr "必須項目"
 
 #. String Field
 #. Default: "Hidden"
@@ -215,7 +229,7 @@ msgstr "初期値"
 #. Default: Note that this may be overridden dynamically.
 #. Default: "
 msgid "help_fgdefault_text"
-msgstr ""
+msgstr "フォームが最初に表示されるときにはフィールドに値が含まれていないとなりません。これは動的に上書きされます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
 
 #. String Field
 #. Default: "Max Length"
@@ -227,7 +241,7 @@ msgstr "最大値"
 #. The maximum number of characters the user will be able to input.
 #. Use 0 for no limit.
 msgid "help_fgmaxlength_text"
-msgstr "ユーザが入力できる最大値"
+msgstr "ユーザが入力できる最大文字数"
 
 #. String Field
 #. Default: "Size"
@@ -247,7 +261,7 @@ msgstr "入力内容のバリデート"
 #. String Field
 #. Default: "Tests input against simple string patterns."
 msgid "help_fgstringvalidator_text"
-msgstr "ストリングのテスト"
+msgstr "単純な文字列パターンのテスト"
 
 #. String Field
 #. Default: "Plone 2.5 Note"
@@ -259,7 +273,7 @@ msgstr "Plone 2.5 ノート"
 #. Default: TALES overrides are disabled when viewing the field. They should work when viewing the form.
 #. Default: "
 msgid "help_plone25note_text"
-msgstr ""
+msgstr "フィールドを表示するときにTALES式の上書きを無効にします。フォームの表示時のみに動作します。"
 
 #. String Field
 #. Default: "Default Expression"
@@ -275,7 +289,7 @@ msgstr "表示初期値"
 #. Default: an error on form display.
 #. Default: "
 msgid "help_fgtdefault_text"
-msgstr ""
+msgstr "フィールドの初期値を取得してフォームが表示されるときに評価されるTALES式なります。必要のないときは空欄にします。文字列として評価されます。"
 
 #. String Field
 #. Default: "Custom Validator"
@@ -293,7 +307,7 @@ msgstr "独自バリデータ"
 #. Default: an error on form display.
 #. Default: "
 msgid "help_fgtvalidator_text"
-msgstr ""
+msgstr "フォームがバリデートされたときに評価されるTALES式です。入力フィールドが含む「値」に対してバリデートを行います。有効な場合は「False」が返ります。有効でなかったときはテキストのエラーメッセージを返します。例：「python: test(value=='eggs', False, 'input must be eggs') はeggsが必要です」。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Integer Field
 #. Default: "Minimum Acceptable Value"
@@ -305,7 +319,7 @@ msgstr "最小値"
 #. Default: The form will not accept values less than the number you enter here.
 #. Default: "
 msgid "help_minval_text"
-msgstr "フォームは、ここに入力した数値以下を受け付けます"
+msgstr "フォームはここに入力された数値以下を受け付けません"
 
 #. Integer Field
 #. Default: "Maximum Acceptable Value"
@@ -317,7 +331,7 @@ msgstr "最大値"
 #. Default: The form will not accept values greater than the number you enter here.
 #. Default: "
 msgid "help_maxval_text"
-msgstr "フォームはここに入力した数値以上を受け付けます"
+msgstr "フォームはここに入力した数値以上を受け付けません"
 
 #. Boolean Field
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond
@@ -325,7 +339,7 @@ msgstr "フォームはここに入力した数値以上を受け付けます"
 #. Default: particular input, choose a validator below.
 #. Default: "
 msgid "help_boolrequired_text"
-msgstr ""
+msgstr "【註記】チェックボックスフィールドでは、必須フラグはラベル横の必須のマークを付けること以外はしません。もし特定の値を指定したいときは、下部のバリデータを選択してください"
 
 #. Boolean Field
 #. Default: "Validator"
@@ -335,7 +349,7 @@ msgstr "バリデータ"
 #. Boolean Field
 #. Default: "Choose a validator to require a particular response."
 msgid "help_fgbooleanvalidator_text"
-msgstr "レスポンスをするためにバリデータの選択が必要"
+msgstr "特定のレスポンス得るにはバリデータの選択が必要"
 
 #. Date/Time Field
 #. Default: "Show Time Selection Options"
@@ -354,7 +368,7 @@ msgstr "初期値"
 #. Default: Note that this may be overridden dynamically.
 #. Default: "
 msgid "help_fglinesdefault_text"
-msgstr ""
+msgstr "フォームが最初に表示されるときにフォールド内に既定表示される値です。一行ごとに一つの値を使います。これは動的に置き換えられます"
 
 #. Lines Field
 #. Default: "Rows"
@@ -375,7 +389,7 @@ msgstr "表示初期値"
 #. Default: an error on form display.
 #. Default: "
 msgid "help_fgtlinesdefault_text"
-msgstr ""
+msgstr "初期値を取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。リストまたはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Selection Field
 #. Default: "Options"
@@ -389,7 +403,7 @@ msgstr "オプション"
 #. Default: [Note, you may optionally use a "value|label" format.]
 #. Default: "
 msgid "help_fgvocabulary_text"
-msgstr ""
+msgstr "一行に一つのオプションを使います。これは動的に置き換えられます「値|ラベル」のとしてオプションで使えます"
 
 #. Selection Field
 #. Default: "Presentation Widget"
@@ -411,7 +425,7 @@ msgstr "オプションの辞書"
 #. Default: an error on form display.
 #. Default: "
 msgid "help_fgtvocabulary_text"
-msgstr ""
+msgstr "フィールドオプションを取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。TALES式はリスト（キー、値）またはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Multi-Select Field
 #. Default: "Presentation Widget"
@@ -429,7 +443,7 @@ msgstr "初期値"
 #. Default: Note that this may be overridden dynamically.
 #. Default: "
 msgid "help_fgtextdefault_text"
-msgstr ""
+msgstr "フォームが最初に表示されたときに既定文字列が入るフィールドです。これは動的に上書きされます"
 
 #. Text Field
 #. Default: "Default Expression"
@@ -445,17 +459,17 @@ msgstr "表示初期値"
 #. Default: an error on form display.
 #. Default: "
 msgid "help_fgtlistdefault_text"
-msgstr ""
+msgstr "フィールド初期値を取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。TALES式はリストたはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. File Field
 #. Default: "Maximum Upload Size (Megabytes)"
 msgid "label_filemaxmb_text"
-msgstr "アップロードの最大値（Mb）"
+msgstr "アップロードの最大値（MB）"
 
 #. File Field
 #. Default: "Set to 0 for no limit."
 msgid "help_filemaxmb_text"
-msgstr "無制限は０をセット"
+msgstr "無制限は０を入力"
 
 # Rich Text Field
 # description="""Input tests using HTMLTidy (if installed)."""
@@ -477,19 +491,19 @@ msgstr "例外条件"
 #. an error on form display.
 #. """
 msgid "help_execcondition_text"
-msgstr ""
+msgstr "このアクションを実行するかどうかを決定するときに評価されるTALES式です。必要のないときは空欄します。真偽値として評価しアクションを実行するときは真が戻り値でなければなりません。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Mailer Adapter
 #. Default: "Recipient's full name"
 msgid "label_formmailer_recipient_fullname"
-msgstr "受信者の氏名"
+msgstr "受信者のフルネーム"
 
 #. Mailer Adapter
 #. Default: "
 #. Default: The full name of the recipient of the mailed form.
 #. Default: "
 msgid "help_formmailer_recipient_fullname"
-msgstr "メールの受信者の氏名"
+msgstr "送信されたフォームの受信者のフルネーム"
 
 #. Mailer Adapter
 #. Default: "Recipient's e-mail address"
@@ -504,7 +518,7 @@ msgstr "受信者のメールアドレス"
 #. Mailer Adapter
 #. Default: "Extract Recipient From"
 msgid "label_formmailer_to_extract"
-msgstr "受信者のメールフォームを抽出"
+msgstr "受信者を抽出"
 
 #. Mailer Adapter
 #. Default: "
@@ -516,7 +530,7 @@ msgstr "受信者のメールフォームを抽出"
 #. Default: may be validated against your specified options.
 #. Default: "
 msgid "help_formmailer_to_extract"
-msgstr ""
+msgstr "メールヘッダのTOに該当するフォームフィールドを選択ください。「なし」以外を選択すると受信メールアドレスを上記で置き換えられます。自分の指定したオプションに対してバリデートするため選択フィールドのみが対象となります"
 
 #. Mailer Adapter
 #. Default: "CC Recipients"
@@ -541,7 +555,7 @@ msgstr "BCC受信者のメールアドレス"
 #. Mailer Adapter
 #. Default: "Extract Reply-To From"
 msgid "label_formmailer_replyto_extract"
-msgstr "Reply-To フォームの抽出"
+msgstr "Reply-To From抽出"
 
 #. Mailer Adapter
 #. Default: "
@@ -551,12 +565,12 @@ msgstr "Reply-To フォームの抽出"
 #. Default: field.
 #. Default: "
 msgid "help_formmailer_replyto_extract"
-msgstr ""
+msgstr "メールヘッダのReply-Toに該当するフォームフィールドを選択ください。【註記】指定したフィールドのメールアドレス確認を有効にしてください"
 
 #. Mailer Adapter
 #. Default: "Subject"
 msgid "label_formmailer_subject"
-msgstr "用件"
+msgstr "メールタイトル（Subject）"
 
 #. Mailer Adapter
 #. Default: "
@@ -565,12 +579,12 @@ msgstr "用件"
 #. Default: is empty.
 #. Default: "
 msgid "help_formmailer_subject"
-msgstr ""
+msgstr "メッセージのタイトル（Subject）行。タイトルのフィールドが指定されていない、またはフィールドが空のときに使用されます"
 
 #. Mailer Adapter
 #. Default: "Extract Subject From"
 msgid "label_formmailer_subject_extract"
-msgstr ""
+msgstr "タイトルのFrom欄を抽出"
 
 #. Mailer Adapter
 #. Default: "
@@ -578,17 +592,17 @@ msgstr ""
 #. Default: input for the mail subject line.
 #. Default: "
 msgid "help_formmailer_subject_extract"
-msgstr ""
+msgstr "メールタイトル行に抜き出すフィールドを選択してください"
 
 #. Mailer Adapter
 #. Default: "Body (prepended)"
 msgid "label_formmailer_body_pre"
-msgstr "本文"
+msgstr "本文（先頭に追加）"
 
 #. Mailer Adapter
 #. Default: "Text prepended to fields listed in mail-body"
 msgid "help_formmailer_body_pre"
-msgstr "このフィールドに入力した内容はメールのボディーの入ります"
+msgstr "このフィールドに入力した内容はメールの本文に入ります"
 
 #. Mailer Adapter
 #. Default: "Body (appended)"
@@ -598,7 +612,7 @@ msgstr "本文（添付）"
 #. Mailer Adapter
 #. Default: "Text appended to fields listed"
 msgid "help_formmailer_body_post"
-msgstr "テキストはリストしたフィールドに添付されます"
+msgstr "テキストはリスト表示されたフィールドに添付されます"
 
 #. Mailer Adapter
 #. Default: "Body (signature)"
@@ -618,22 +632,23 @@ msgstr "メール本文のテンプレート"
 #. Mailer Adapter
 #. Default: "This is a Zope Page Template used for rendering of the mail-body. You don't need to modify it, but if you know TAL (Zope's Template Attribute Language) you have the full power to customize your outgoing mails."
 msgid "help_formmailer_body_pt"
-msgstr ""
+msgstr "これはメール本文をレンダリングするZopeページテンプレートです。これを変更する必要はありません。しかしTAL(Zope's Template Attribute Language) の知識があればメール出力をすべてカスタマイズすることができます"
+
 
 #. Mailer Adapter
 #. Default: "Mail-Body Type"
 msgid "label_formmailer_body_type"
-msgstr "メールボディーのタイプ"
+msgstr "メール本文のタイプ"
 
 #. Mailer Adapter
 #. Default: "Set the mime-type of the mail-body. Change this setting only if you know exactly what you are doing. Leave it blank for default behaviour."
 msgid "help_formmailer_body_type"
-msgstr ""
+msgstr "メール本文のMIMEタイプを決めます。自分が何をしようとしてるか十分理解しているときのみ設定を変更してください。初期動作でよい場合は何もしません"
 
 #. Mailer Adapter
 #. Default: "HTTP Headers"
 msgid "label_xinfo_headers_text"
-msgstr "HTTPのヘッダ"
+msgstr "HTTPヘッダ"
 
 #. Mailer Adapter
 #. Default: "
@@ -642,7 +657,7 @@ msgstr "HTTPのヘッダ"
 #. Default: message.
 #. Default: "
 msgid "help_xinfo_headers_text"
-msgstr ""
+msgstr "HTTPヘッダからどんな情報でも取り出します。メッセージにXヘッダを挿入できます。"
 
 #. Mailer Adapter
 #. Default: "Additional Headers"
@@ -655,7 +670,7 @@ msgstr "追加のヘッダ"
 #. Default: Only use RFC822-compliant headers.
 #. Default: "
 msgid "help_formmailer_additional_headers"
-msgstr ""
+msgstr "追加の電子メールヘッダ情報。RFC822に準拠したもののみを使用してください。"
 
 #. Mailer Adapter
 #. Default "Key-Id"
@@ -674,13 +689,14 @@ msgstr "キー ID"
 #. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
 #. Default """
 msgid "help_gpg_key_id"
-msgstr ""
+msgstr "現在のキーリングから合致する公開鍵、メールアドレス、キーIDを与えます。これはメッセージ本文を暗号化するために使われます。新しい公開鍵が必要なときはシステム管理者に問い合わせてください。【註記】暗号化を利用するにはメッセージテンプレートをテキストのみに変更することになるでしょう。この機能はテストする前に本番で使用してはいけません。"
 
 #####
 # Mailer adapter overrides schema
+
 # "Subject Expression"
 msgid "label_subject_override_text"
-msgstr "用件の表示方法"
+msgstr "タイトル（Subject）の表示方法"
 
 # A TALES expression that will be evaluated to override any value
 # otherwise entered for the e-mail subject header.
@@ -688,7 +704,7 @@ msgstr "用件の表示方法"
 # PLEASE NOTE: errors in the evaluation of this expression will cause
 # an error on form display.
 msgid "help_subject_override_text"
-msgstr ""
+msgstr "メールのタイトル欄に入力された値で置き換えるために評価されるTALES式です。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
 # "Sender Expression"
 msgid "label_sender_override_text"
@@ -699,7 +715,7 @@ msgstr "送信者の表示方法"
 # PLEASE NOTE: errors in the evaluation of this expression will cause
 # an error on form display.
 msgid "help_sender_override_text"
-msgstr ""
+msgstr "From欄を置き換えるために評価されるTALES式です。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
 # "Recipient Expression"
 msgid "label_recipient_override_text"
@@ -712,7 +728,7 @@ msgstr "受信者の表示方法"
 # PLEASE NOTE: errors in the evaluation of this expression will cause
 # an error on form display.
 msgid "help_recipient_override_text"
-msgstr ""
+msgstr "メールのメール受取人欄に入力された値で置き換えるために評価されるTALES式です。この目的でバリデートされていないデータを要求することは強く警告されます。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
 #. Save Data Adapter
 #. Default: "Extra Data"
@@ -729,15 +745,17 @@ msgstr "入力から追加で保存する項目を選択"
 #. Save Data Adapter
 #. Default: "Download Format"
 msgid "label_downloadformat_text"
-msgstr "ダウンロードのフォーマット"
+msgstr "ダウンロードフォーマット"
 
 # "Include Column Names"
 msgid "label_usecolumnnames_text"
-msgstr "コラム名を追加"
+msgstr "列名を含む"
 
 # "Do you wish to have column names on the first line of downloaded input?"
 msgid "help_usecolumnnames_text"
-msgstr ""
+msgstr "ダウンロードデータの最小の行に列名を含むことを希望しますか？"
+
+##########
 
 #. Save Data Adapter
 #. Default: "Saved Form Input"
@@ -752,7 +770,7 @@ msgstr "保存内容を削除"
 #. Thanks Page
 #. Default: "Show All Fields"
 msgid "label_showallfields_text"
-msgstr "全てのフィールドの削除"
+msgstr "全てのフィールドを表示"
 
 #. Thanks Page
 #. Default: "
@@ -762,7 +780,7 @@ msgstr "全てのフィールドの削除"
 #. Default: will be ignored.
 #. Default: "
 msgid "help_showallfields_text"
-msgstr ""
+msgstr "これをチェックするとラベルとファイルフィールドを除くすべての入力フィールドの内容を表示します。以下からチェックされたものは除外されます"
 
 #. Thanks Page
 #. Default: "Show Responses"
@@ -775,7 +793,7 @@ msgstr "レスポンスを表示"
 #. Default: the success page.
 #. Default: "
 msgid "help_showfields_text"
-msgstr ""
+msgstr "完了後のページに表示するフィールドを選んでください"
 
 #. Thanks Page
 #. Default: "Include Empties"
@@ -789,12 +807,12 @@ msgstr "空を含む"
 #. Default: to leave fields with no input off the list.
 #. Default: "
 msgid "help_includeEmpties_text"
-msgstr ""
+msgstr "これをチェックすると入力がなかったフィールドを表示します。チェックしないと入力がないものは表示されません"
 
 #. Thanks Page
 #. Default: "Thanks Prologue"
 msgid "label_thanksprologue_text"
-msgstr "謝辞（前書き）"
+msgstr "完了ページ前書き"
 
 #. Thanks Page
 #. Default: "This text will be displayed above the selected field inputs."
@@ -804,7 +822,7 @@ msgstr "このテキストは、選択されたフィールドの入力に前に
 #. Thanks Page
 #. Default: "Thanks Epilogue"
 msgid "label_thanksepilogue_text"
-msgstr "謝辞（後書き）"
+msgstr "完了ページ後書き"
 
 #. Thanks Page
 #. Default: "The text will be displayed after the field inputs."
@@ -814,29 +832,34 @@ msgstr "このテキストは、選択されたフィールドの入力に後に
 #. Thanks Page
 #. Default: "No Submit Message"
 msgid "label_nosubmit_text"
-msgstr "提出時のメッセージを出さない"
+msgstr "提出できなかった時のメッセージ"
 
+#. Thanks Page
 # description = """
 # The text to display if the browser reaches this
 # thanks page without submitting a form. Typically, this
 # would direct the reader to the form.
 # """
-#. Thanks Page
 msgid "help_nosubmit_text"
-msgstr ""
+msgstr "フォームを送信することなくブラウザが完了ページになったときに表示するテキストです。これは利用者をフォームに誘導する天典型的な方法です"
 
 # *** Vocabularies
+
 #. Default: "None"
 msgid "vocabulary_none_text"
 msgstr "該当しない"
 
 #. Default: "Is an E-Mail Address"
 msgid "vocabulary_isemailaddress_text"
-msgstr "メールアドレス"
+msgstr "メールアドレスです"
+
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+msgid "vocabulary_isemailaddresslist_text"
+msgstr "一つまたはそれ以上のコンマで区切られたメールアドレスです"
 
 #. Default: "Contains only printable characters"
 msgid "vocabulary_onlyprintable_text"
-msgstr "プリントできるキャラクターのみ"
+msgstr "表示できるキャラクターのみ含む"
 
 #. Default: "Is a well-formed URL"
 msgid "vocabulary_isurl_text"
@@ -844,7 +867,7 @@ msgstr "正規のURL"
 
 #. Default: "Is a valid US phone number"
 msgid "vocabulary_isusphone_text"
-msgstr "有効なUSの電話番号"
+msgstr "有効な米国内の電話番号"
 
 #. Default: "Is a valid international phone number"
 msgid "vocabulary_isintphone_text"
@@ -852,7 +875,11 @@ msgstr "有効な国際電話番号"
 
 #. Default: "Is a valid zip code"
 msgid "vocabulary_iszipcode_text"
-msgstr "有効なzipコード"
+msgstr "有効な郵便番号コード"
+
+#. Default: "Does not contain link spam"
+msgid "vocabulary_isnotlinkspam_text"
+msgstr "スパムへのリンクを含まない"
 
 #. Default: "Is checked"
 msgid "vocabulary_ischecked_text"
@@ -864,7 +891,7 @@ msgstr "未チェック"
 
 #. Default: "Flexible (radio for short, select for longer)"
 msgid "vocabulary_flex_text"
-msgstr "可変（ラジオ又はショート、選択又はロング）"
+msgstr "可変（ラジオボタンは短く、選択肢は長く）"
 
 #. Default: "Selection list"
 msgid "vocabulary_selection_text"
@@ -881,23 +908,23 @@ msgstr "チェクボックスリスト"
 # save data adapter
 #. Default: 'Posting Date/Time'
 msgid "vocabulary_postingdt_text"
-msgstr "ポスト日時"
+msgstr "送信日時"
 
 #. Default: 'Tab-Separated Values'
 msgid "vocabulary_tsv_text"
-msgstr "タブ切りの値"
+msgstr "タブ切り値"
 
 #. Default: 'Comma-Separated Values'
 msgid "vocabulary_csv_text"
-msgstr "コンマ切りの値"
+msgstr "コンマ切り値"
 
 #. Default: 'Is Tidy HTML (fails on errors and warnings)')
 msgid "vocabulary_istidyhtml_text"
-msgstr ""
+msgstr "Tidy HTML（エラーや警告に失敗）"
 
 #. Default: 'Tidy HTML With Cleanup (fails on errors, cleans up rest)')
 msgid "vocabulary_istidyhtmlwithcleanup_text"
-msgstr ""
+msgstr "消去されたTidy HTML（エラーに失敗、残りを削除）"
 
 #. Rich Label Field
 #. Default: 'Label body',
@@ -911,158 +938,179 @@ msgstr "フォームに表示するテキスト"
 
 #########
 # Custom Script Adapter
+
 # 'Proxy role',
 msgid "label_script_proxy"
-msgstr ""
+msgstr "プロキシロール"
 
 # """ Role under which to run the script. """
 msgid "help_script_proxy"
-msgstr ""
+msgstr "スクリプトの実行権"
+
+# 'Script body'
+msgid "label_script_body"
+msgstr "スクリプト本文"
+
+# """ Write your script here. """
+msgid  "help_script_body"
+msgstr "自分のスクリプトをここに記入"
 
 ##########
 # validationMessages hack to clean up Archetypes validation messages
 #. Default: "This field requires a decimal value."
 msgid "pfg_isDecimal"
-msgstr ""
+msgstr "このフィールドは、小数点を含む値が必要です"
 
 #. Default: "This field requires an integer value."
 msgid "pfg_isInt"
-msgstr "このフィールドには、整数が必要です"
+msgstr "このフィールドは、整数値が必要です"
 
 #. Default: "This value contains unprintable characters"
 msgid "pfg_isPrintable"
-msgstr "この入力の中には、印刷できない文字が含まれています"
+msgstr "この値の中には表示できない文字が含まれています"
 
 #. Default: "This is not a well formed SSN."
 msgid "pfg_isSSN"
-msgstr "この入力は、SSNに成っていません。"
+msgstr "これは、適切なSSNではありません"
 
 #. Default: "This is not a valid us phone number."
 msgid "pfg_isUSPhoneNumber"
-msgstr "この入力は、有効な米国の電話番号ではありません。"
+msgstr "これは有効な米国の電話番号ではありません"
 
 #. Default: "This is not a valid international phone number."
 msgid "pfg_isInternationalPhoneNumber"
-msgstr "この入力は有効な国際電話番号ではありません"
+msgstr "これは有効な国際電話番号ではありません"
 
 #. Default: "This is not a valid zip code."
 msgid "pfg_isZipCode"
-msgstr ""
+msgstr "これは有効な郵便番号ではありません"
+
+#. Default: "This text appears to contain links."
+msgid "pfg_isnotlinkspam"
+msgstr "このテキストにはリンクが含まれています"
 
 #. Default: "This is not a valid url."
 msgid "pfg_isURL"
-msgstr ""
+msgstr "これは正しいURLの書式ではありません"
 
 #. Default: "This is not a valid email address."
 msgid "pfg_isEmail"
-msgstr ""
+msgstr "これは正しいメールアドレスではありません"
+
+#. Default: "This is not a valid list of email addresses (separated by commas)."
+msgid "pfg_isEmailAddressList"
+msgstr "これはコンマで区切られた正しいメールアドレスではありません"
 
 #. Default: "This is not a valid mailto: url."
 msgid "pfg_isMailto"
-msgstr ""
+msgstr "これは正しいmailto:の書式ではありません"
+
+#. Default: "This name is not a valid identifier"
+msgid "pfg_isUnixLikeName"
+msgstr "これは有効なidentifierではありません"
 
 #. Default: "This box must be checked."
 msgid "pfg_isChecked"
-msgstr ""
+msgstr "このボックスはチェックされなくてはなりません"
 
 #. Default: "This box must be unchecked."
 msgid "pfg_isUnchecked"
-msgstr ""
+msgstr "このボックスのチェックは外されなくてはなりません"
 
 #. Default: "This field is required."
 msgid "pfg_isRequired"
-msgstr ""
+msgstr "このフィールドは必須です"
 
 #. Default: "Clear Saved Input"
 #: PloneFormGen\skins\PloneFormGen\fg_savedata_view.pt
 msgid "Clear Saved Input"
-msgstr ""
+msgstr "保存された内容をクリアします"
 
 #. Default: "Set defaults for addressing fields for new mail-action adapters. Please note that your input here is not verified. So, make sure you use valid addresses."
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 msgid "description_ploneformgen_addressing"
-msgstr ""
+msgstr "新しいメールアクションアダプタのアドレスフィールドに初期値をセットします。ここに入力したものは確認されません。ですので正しいフォーマットのアドレスを入力してください。"
 
 #. Default: "You may set up a default body and MIME type for the mail-action adapter here. These values will be used whenever a new mail-action adapter is created."
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 msgid "description_ploneformgen_mtemplate"
-msgstr ""
+msgstr "メールアクションアダプタの本文とMIMEタイプの初期値を設定します。これらの値は新しいメールアクションアダプタがつくられるときはいつもの参照されます"
 
 #. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
 msgid "description_ploneformgen_permissions"
-msgstr ""
+msgstr "特定のポータルセキュリティロールを調整することで許可された利用者によりPloneFormGenの機能性は表示したり隠したりできます。以下のフォームはサイト全体のロールやパーミッションを調整できます。ZMIのセキュリティタブでフォルダ単位で権限の微調整をすることも可能です"
 
 #. Default: "PloneFormGen Mail Addressing Defaults"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 msgid "heading_ploneformgen_addressing"
-msgstr ""
+msgstr "PloneFormGenのメールアドレスの初期値"
 
 #. Default: "PloneFormGen Mail Template"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 msgid "heading_ploneformgen_mtemplate"
-msgstr ""
+msgstr "PloneFormGenのメールテンプレート"
 
 #. Default: "PloneFormGen Permissions"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
 msgid "heading_ploneformgen_permissions"
-msgstr ""
+msgstr "PloneFormGenの権限"
 
 #. Default: "CAUTION: Input for the body is not validated. Invalid XHTML or TAL will cause errors on form processing. Try your code out in a mail adapter before pasting here."
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 msgid "help_novalidation_caution"
-msgstr ""
+msgstr "【警告】本文への入力はバリデートされていません。処理中に不正なXHTMLやTAL式でのエラーが発生します。自分のコードをここにペーストするまえに前にメールアダプタで確認してください"
 
 #. Default: "Mail Addressing"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
 msgid "label_ploneformgen_addressing"
-msgstr ""
+msgstr "メールアドレス"
 
 #. Default: "BCC Recipients"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 msgid "label_ploneformgen_bcc_recipients"
-msgstr ""
+msgstr "BCC受信者"
 
 #. Default: "CC Recipients"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 msgid "label_ploneformgen_cc_recipients"
-msgstr ""
+msgstr "CC受信者"
 
 #. Default: "Mail Body Template"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 msgid "label_ploneformgen_mailbodytemplate"
-msgstr ""
+msgstr "メール本文のテンプレート"
 
 #. Default: "Mail Template"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
 msgid "label_ploneformgen_mtemplate"
-msgstr ""
+msgstr "メールテンプレート"
 
 #. Default: "Permissions"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_mtemplate.cpt
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_permits.cpt
 msgid "label_ploneformgen_permissions"
-msgstr ""
+msgstr "許可"
 
 #. Default: "Recipient Address"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 msgid "label_ploneformgen_recipient_email"
-msgstr ""
+msgstr "受信アドレス"
 
 #. Default: "Recipient Name"
 #: PloneFormGen\skins\PloneFormGen\prefs_pfg_addressing.cpt
 msgid "label_ploneformgen_recipient_name"
-msgstr ""
+msgstr "受信人氏名"
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #: PloneFormGen\content\fields.py
 msgid "help_fprequired_text"
-msgstr ""
+msgstr "【註記】固定小数点フォールドは０を入力することが許可されません"
 
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "Please enter a number here."
@@ -1082,35 +1130,36 @@ msgstr "${value}が大きすぎます、${max}以下が必要です"
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "'Entry too long. It should be no more than ${max} characters."
 msgid "pfg_too_long"
-msgstr "入力が長過ぎます ${max}文字以下である必要があります。"
+msgstr "入力が長過ぎます ${max}文字以下である必要があります"
 
 # permission names -- used in configlet
+
 msgid "Add Content"
-msgstr "コンテントを追加"
+msgstr "コンテントを追加する"
 
 msgid "Add Mailers"
-msgstr "メーラを追加"
+msgstr "メーラーを追加する"
 
 msgid "Add Data Savers"
-msgstr "データ保存を追加"
+msgstr "データ保存を追加する"
 
 msgid "Add Custom Scripts"
-msgstr "カスタムスクリプトを追加"
+msgstr "カスタムスクリプトを追加する"
 
 msgid "Edit TALES Field"
-msgstr "タブフィールドを編集"
+msgstr "タブフィールドを編集する"
 
 msgid "Edit Python Fields"
-msgstr "Pythonフィールドを編集"
+msgstr "Pythonフィールドを編集する"
 
 msgid "Edit Advanced Fields"
-msgstr "アドバンスフィールドを編集"
+msgstr "アドバンスフィールドを編集する"
 
 msgid "Edit Mail Addresses"
 msgstr "メールアドレスを編集する"
 
 msgid "Edit Encryption Specs"
-msgstr ""
+msgstr "暗号化の方式を編集する"
 
 msgid "Download Saved Input"
 msgstr "入力の保存内容をダウンロードする"
@@ -1123,7 +1172,7 @@ msgstr "表現を有効にする"
 #. PloneFormGen\contents\fieldsBase.py
 #. Default "A TALES expression that will be evaluated when the form is displayed. to determine whether or not the field is enabled. Your expression should evaluate as True if the field should be included in the form, False if it should be omitted. Leave this expression field empty if unneeded: the field will be included. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 msgid "help_fgtenable_text"
-msgstr ""
+msgstr "フォームが表示されるときに評価されるTALES式です。どのフィールドが有効かを判断します。フォームにそのフィールドが含まれていれば真を、ないときは偽を返します。必要ないときは空欄にします。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
 
 #. PloneFormGen\contents\fields.py
 #. DateTimeField
@@ -1153,13 +1202,13 @@ msgstr "ドロップダウンに表示する最後の年"
 #. DateTimeField
 #. Default "Future Years To Display"
 msgid "label_fgfutureyears_text"
-msgstr "将来の日付の表示"
+msgstr "将来表示する年数"
 
 #. PloneFormGen\contents\fields.py
 #. DateTimeField
 #. Default "The number of future years to offer in the year drop-down. (This is only applicable if you have not specified an ending year.)"
 msgid "help_fgfutureyears_text"
-msgstr ""
+msgstr "将来の年数はドロップダウンに表示されます。自分で終了年を指定しないときにのみ誘導です"
 
 #. PloneFormGen\contents\fields.py
 #. DateTimeField
@@ -1192,3 +1241,53 @@ msgstr "質問リスト"
 msgid "pfg_allRequired"
 msgstr "質問に対する回答が必要です"
 
+#. Mailer
+#. Default "Include All Fields"
+msgid "label_mailallfields_text"
+msgstr "すべてのフィールドを含む"
+
+#. Mailer
+#. Default Check this to include input for all fields
+#. Default (except label and file fields). If you check
+#. Default this, the choices in the pick box below
+#. Default will be ignored.
+msgid "help_mailallfields_text"
+msgstr "これをチェックするとラベルとファイルフィールドを除くすべてのフィールドが含まれます。これをチェックすると下記で選択したものは無視されます"
+
+#. Mailer
+#. Default "Show Responses"
+msgid "label_mailfields_text"
+msgstr "レスポンスを表示"
+
+#. Mailer
+#. Default Pick the fields whose inputs you'd like to include in
+#. Default the e-mail.
+msgid "help_mailfields_text"
+msgstr "メールに含む入力フィールドを選びますl"
+
+#. Mailer
+#. Default "Include Empties"
+msgid "label_mailEmpties_text"
+msgstr "空白を含みます"
+
+#. Mailer
+#. Default Check this to include titles
+#. Default for fields that received no input. Uncheck
+#. Default to leave fields with no input out of the e-mail.
+msgid "help_mailEmpties_text"
+msgstr "これをチェックすると入力のないフィールドのタイトルを含みます。チェックを外すと入力のないものはメールに含みません"
+
+#. Mailer
+#. Default BCC Recipients
+#msgid "label_formmailer_bcc_recipients"
+#msgstr "BCC 受信者"
+
+#.Mailer
+#. PloneFormGen\contents\fieldsBase.py
+#. Default "A TALES expression that will be evaluated when the form is displayed. to determine whether or not the field is enabled. Your expression should evaluate as True if the field should be included in the form, False if it should be omitted. Leave this expression field empty if unneeded: the field will be included. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
+#msgid "help_fgtenable_text"
+#msgstr "フォームが表示されるときに評価されるTALES式です。フィールドが有効かどうかを決定します。フィールドがフォームに含まれていれば真の値となり、含まれていないときは偽の値となります。必要ないときはフィールドが含まれるように空欄としてください。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
+
+#.Default = 'E-mail addresses which receive a blind carbon copy.'
+#msgid "help_formmailer_bcc_recipients"
+#msgstr "BCC 受信者のメールアドレス"

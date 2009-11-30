@@ -40,7 +40,7 @@ msgstr ""
 #. Form Folder
 #. Default: "Reset Button Label",
 msgid "label_reset_button"
-
+msgstr ""
 
 #. Form Folder
 #. Initial value for Submit Button Label
@@ -178,7 +178,7 @@ msgstr ""
 
 # Form Folder
 # description="""
-# A TALES expression that will be called after the form is 
+# A TALES expression that will be called after the form is
 # successfully validated, but before calling an action adapter
 # (if any) or displaying a thanks page.
 # Form input will be in the request.form dictionary.
@@ -539,7 +539,7 @@ msgstr ""
 #. Default """
 #. A TALES expression that will be evaluated to determine whether or not
 #. to execute this action.
-#. Leave empty if unneeded, and the ection will be executed. 
+#. Leave empty if unneeded, and the ection will be executed.
 #. Your expression should evaluate as a boolean; return True if you wish
 #. the action to execute.
 #. PLEASE NOTE: errors in the evaluation of this expression will cause
@@ -766,7 +766,7 @@ msgstr ""
 #. Default Give your key-id, e-mail address or
 #. Default whatever works to match a public key from current keyring.
 #. Default It will be used to encrypt the message body.
-#. Default Contact the site administrator if you need to 
+#. Default Contact the site administrator if you need to
 #. Default install a new public key.
 #. Default Note that you will probably wish to change your message
 #. Default template to plain text if you're using encryption.

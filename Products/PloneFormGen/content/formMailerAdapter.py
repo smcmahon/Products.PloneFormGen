@@ -719,7 +719,8 @@ class FormMailerAdapter(FormActionAdapter):
         attachments = []
 
         for field in fields:
-            if field.isFileField():
+            if field.isFileField() and (getattr(self, 'showAll', True) \
+                or field.fgField.getName() in getattr(self, 'showFields', ())):
                 file = request.form.get('%s_file' % field.__name__, None)
                 if file and isinstance(file, FileUpload) and file.filename != '':
                     file.seek(0) # rewind
@@ -878,7 +879,9 @@ class FormMailerAdapter(FormActionAdapter):
             ownerinfo = self.getOwner()
             ownerid=ownerinfo.getId()
             userdest = pms.getMemberById(ownerid)
-            toemail = userdest.getProperty('email', '')
+            toemail = ''
+            if userdest is not None:
+                toemail = userdest.getProperty('email', '')
             if not toemail:
                 toemail = portal.getProperty('email_from_address')                
             assert toemail, """

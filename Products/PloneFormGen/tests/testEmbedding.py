@@ -5,12 +5,22 @@ if __name__ == '__main__':
 
 from Products.PloneFormGen.tests import pfgtc
 
+import transaction
 from ZPublisher.Publish import Retry
 
 class FakeRequest(dict):
 
     def __init__(self, **kwargs):
         self.form = kwargs
+
+class TrueOnceCalled(object):
+    """ A mock function that evaluates to True once it has been called. """
+    def __init__(self):
+        self.called = False
+    def __call__(self, *args, **kw):
+        self.called = True
+    def __bool__(self):
+        return self.called
 
 class TestEmbedding(pfgtc.PloneFormGenTestCase):
     """ test embedding of a PFG in another template """
@@ -98,22 +108,40 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.failUnless('This field is required.' in res)
 
     def test_render_thank_you_on_success(self):
+        # We need to be able to make sure the transaction commit was called
+        # before the Retry exception, without actually committing our test
+        # fixtures.
+        real_transaction_commit = transaction.commit
+        transaction.commit = committed = TrueOnceCalled()
+
         self.LoadRequestForm(**{
             'form.submitted': True,
             'topic': 'monkeys',
             'comments': 'I am not a walnut.',
             'replyto': 'foobar@example.com'
             })
-
         # should raise a retry exception triggering a new publish attempt
         # with the new URL
         # XXX do a full publish for this test
+        self.app.REQUEST._orig_env['PATH_TRANSLATED'] = '/plone'
         view = self.ff1.restrictedTraverse('@@embedded')
         self.assertRaises(Retry, view)
+        
+        self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
+            '/plone/Members/test_user_1_/ff1/thank-you')
+        
+        # make sure the transaction was committed
+        self.failUnless(committed)
 
+        # make sure it can deal with VHM URLs
+        self.app.REQUEST._orig_env['PATH_TRANSLATED'] = '/VirtualHostBase/http/nohost:80/VirtualHostRoot'
+        self.assertRaises(Retry, view)
+        self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
+            '/VirtualHostBase/http/nohost:80/VirtualHostRoot/plone/Members/test_user_1_/ff1/thank-you')
 
-if  __name__ == '__main__':
-    framework()
+        # clean up
+        transaction.commit = real_transaction_commit
+
 
 def test_suite():
     from unittest import TestSuite, makeSuite

@@ -1,0 +1,6 @@
+replyto,FormStringField
+topic,FormStringField
+comments,FormTextField
+thank-you,FormThanksPage
+saved-data,FormSaveDataAdapter
+mailer,FormMailerAdapter

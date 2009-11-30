@@ -61,7 +61,7 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
                              '"%s" should be considered a link.' % b)
 
 
-    def test_isNotTooLong(self):
+    def test_isNotTooLong2(self):
         v = validation.validatorFor('isNotTooLong')
         v.maxlength = 10
         self.failUnlessEqual(v('abc'), 1)
@@ -120,7 +120,12 @@ class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
 
         self.failUnlessEqual( v.validate('pfgv_isEmail', 'test@test.com'), 1 )
 
+        self.failUnlessEqual( v.validate('pfgv_isZipCode', '12345'), 1 )
         self.failUnlessEqual( v.validate('pfgv_isZipCode', '12345-1234'), 1 )
+        # Canadian zip codes
+        self.failUnlessEqual( v.validate('pfgv_isZipCode', 'T2X 1V4'), 1)
+        self.failUnlessEqual( v.validate('pfgv_isZipCode', 'T2X1V4'), 1)
+        self.failUnlessEqual( v.validate('pfgv_isZipCode', 't2x 1v4'), 1)
 
 
 if  __name__ == '__main__':
