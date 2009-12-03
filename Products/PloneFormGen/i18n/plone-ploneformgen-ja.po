@@ -1,11 +1,10 @@
-
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
 "POT-Creation-Date: 2008-11-05 22:26+0200\n"
 "PO-Creation-Date: 2008-11.05 22:26+0200\n"
 "Last-Translator: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
+"Last-Translator: Shigeo Honda <shigeo.honda@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -19,12 +18,12 @@ msgstr ""
 #. Default: "This item is in use by someone else and cannot be modified"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "description_webdav_locked"
-msgstr "wevdavがロックされました"
+msgstr "このアイテムは他に使用している人がいるため変更することができません"
 
 #. Default: "Edit ${itemtype}"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "heading_edit_item"
-msgstr "エディングアイテム"
+msgstr "編集 ${itemtype}"
 
 #. Default: "Cancel"
 #: skins/PloneFormGen/fg_edit_macros.pt
@@ -39,12 +38,12 @@ msgstr "ファイルタイプ"
 #. Default: "Next"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "label_next"
-msgstr "次"
+msgstr "次へ"
 
 #. Default: "Previous"
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "label_previous"
-msgstr "戻る"
+msgstr "前へ"
 
 #. Default: "Size"
 #: skins/PloneFormGen/fg_savedata_view.pt
@@ -59,52 +58,52 @@ msgstr "フォームフォルダ"
 #. Default: "A folder which can contain form fields."
 #: content/form.py
 msgid "A folder which can contain form fields."
-msgstr "フォームフィールドを含むフォールダ"
+msgstr "フォームフィールドを含むフォルダ"
 
 #. Default: "A folder which creates a form view from contained form fields."
 #: content/form.py
 msgid "A folder which creates a form view from contained form fields."
-msgstr ""
+msgstr "含まれているフォールフィールドからフォームビューが作られるフォルダ"
 
 #. Default: "Mailer Adapter"
 #: content/formMailerAdapter.py
 msgid "Mailer Adapter"
-msgstr "メールアダプター"
+msgstr "メールアダプタ"
 
 #. Default: " A form action adapter that will e-mail form input. "
 #: content/formMailerAdapter.py
 msgid " A form action adapter that will e-mail form input. "
-msgstr "入力から、メールを送信するアダプタ"
+msgstr "入力からメールを送信するフォームアクション・アダプタ"
 
 #. Default: "An adapter that supplies a form action."
 #: content/actionAdapter.py
 msgid "An adapter that supplies a form action."
-msgstr "フォームアクションを提供するアダプタ"
+msgstr "フォームのアクションを提供するアダプタ"
 
 #. Default: "Save Data Adapter"
 #: content/saveDataAdapter.py
 msgid "Save Data Adapter"
-msgstr "データをセーブするためのアダプタ"
+msgstr "データを保存するためのアダプタ"
 
 #. Default: "A form action adapter that will save form input data in tab-delimited format."
 #: content/saveDataAdapter.py
 msgid "A form action adapter that will save form input data in tab-delimited format."
-msgstr ""
+msgstr "入力されたデータをタブ区切りで保存するフォームアクションアダプタ"
 
 #. Default: "Thanks Page"
 #: content/thanksPage.py
 msgid "Thanks Page"
-msgstr "感謝のページ"
+msgstr "完了ページ"
 
 #. Default: "A thank-you page that can display form input"
 #: content/thanksPage.py
 msgid "A thank-you page that can display form input"
-msgstr "完了時に表示する感謝のページ"
+msgstr "フォーム送信完了時に表示するページ"
 
 #. Default: "A thank-you page that can display form input."
 #: content/thanksPage.py
 msgid "A thank-you page that can display form input."
-msgstr "完了時に表示する感謝のページ。"
+msgstr "フォーム送信完了時に表示するページ"
 
 #. Default: "Boolean Field"
 #: content/fields.py
@@ -159,12 +158,12 @@ msgstr "フィクスドポイントフィールド"
 #. Default: " Fixed-Point (float) entry field "
 #: content/fields.py
 msgid " Fixed-Point (float) entry field "
-msgstr "フィクスドポイント入力フィールド（フラット）"
+msgstr "固定小数点入力フィールド（浮動小数点）"
 
 #. Default: "A fixed-point (float) field"
 #: content/fields.py
 msgid "A fixed-point (float) field"
-msgstr "フィクスドポイントフィールド（フラット）"
+msgstr "固定小数点入力フィールド（浮動小数点）"
 
 #. Default: "Integer Field"
 #: content/fields.py
@@ -219,7 +218,7 @@ msgstr "複数選択フィールド"
 #. Default: " Multiple selection field (select with multiple or check boxes) "
 #: content/fields.py
 msgid " Multiple selection field (select with multiple or check boxes) "
-msgstr "複数選択フィールド（マルチプルかチェックボックスで選択）"
+msgstr "複数選択フィールド（複数選択可かチェックボックスで選択）"
 
 #. Default: "A multiple-selection field"
 #: content/fields.py
@@ -244,7 +243,7 @@ msgstr "パスワードフィールド"
 #. Default: "RichText Field"
 #: content/fields.py
 msgid "RichText Field"
-msgstr "WYSWGエディター"
+msgstr "WYSWGエディタ"
 
 #. Default: " Rich-text (visual editor) field "
 #: content/fields.py
@@ -264,7 +263,7 @@ msgstr "選択フィールド"
 #. Default: " Selection Field (radio buttons or select) "
 #: content/fields.py
 msgid " Selection Field (radio buttons or select) "
-msgstr "選択フィールド"
+msgstr "選択フィールド（ラジオボタンまたは選択）"
 
 #. Default: "A selection field"
 #: content/fields.py
@@ -279,12 +278,12 @@ msgstr "文字列フィールド"
 #. Default: " A string entry field "
 #: content/fields.py
 msgid " A string entry field "
-msgstr "選択フィールドの項目"
+msgstr "文字列入力フィールド"
 
 #. Default: " A string field "
 #: content/fields.py
 msgid "A string field"
-msgstr "文字列フィルド"
+msgstr "文字列フィールド"
 
 #. Default: "Text Field"
 #: content/fields.py
@@ -294,7 +293,7 @@ msgstr "テキストフィールド"
 #. Default: " Text (textarea) field "
 #: content/fields.py
 msgid " Text (textarea) field "
-msgstr "テキストエリアフィルド"
+msgstr "テキストエリアフィールド"
 
 #. Default: "A text area field"
 #: content/fields.py
@@ -353,7 +352,7 @@ msgstr "暗号化"
 #. Default: "Field Help"
 #: content/fields.py
 msgid "label_fieldhelp_text"
-msgstr "フィルドヘルプ"
+msgstr "フィールドヘルプ"
 
 #. String Field
 #. Default: "Field Label"
@@ -392,7 +391,7 @@ msgstr "文字列の表示を有効"
 
 #. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
 msgid "help_fgbooleantruestring_text"
-msgstr "チェックマークがある場合、謝辞ページとメールに使う文字列を入力"
+msgstr "チェックマークがある場合、完了ページとメールに使用するテキストを入力"
 
 #. Default: "False Display String"
 msgid "label_fgbooleanfalsestring_text"
@@ -400,7 +399,7 @@ msgstr "文字列の表示を無効"
 
 #. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
 msgid "help_fgbooleanfalsestring_text"
-msgstr "謝辞とメールに使うための文字列"
+msgstr "チェックマークがない場合、完了ページとメールに使用するテキストを入力"
 
 #. Rich Label Field
 #. Default: 'Rich Label Field',
@@ -413,7 +412,7 @@ msgstr "評価スケール"
 
 #. Likert Field Description
 msgid "A rating-scale field using rows of radio buttons."
-msgstr ""
+msgstr "ラジオボタンを使用した評価スケール"
 
 #. Form
 #. Default 'CSRF Protection',
@@ -424,4 +423,4 @@ msgstr "クロスサイトスクリプト対策"
 #. Default     Check this to employ Cross-Site Request Forgery protection.
 #. Default     Note that only HTTP Post actions will be allowed.
 msgid "help_csrf"
-msgstr "クロスサイトスクリプト対策をする場合チェック"
+msgstr "クロスサイトスクリプト対策をする場合チェックしてください。HTTPのPOSTアクションのみが許可されます"
