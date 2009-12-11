@@ -1,4 +1,6 @@
-from Products.validation import validation, interfaces
+from zope.interface import implements, Interface
+from Products.validation.interfaces.IValidator import IValidator
+from Products.validation import validation
 
 class LinkSpamValidator:
     """ Validates whether or not a string has anything that seems link-like. For
@@ -11,7 +13,11 @@ class LinkSpamValidator:
         repeat of this logic.)
     """
 
-    __implements__ = (interfaces.ivalidator,)
+    if issubclass(IValidator, Interface):
+        implements(IValidator)
+    else:
+        #BBB
+        __implements__ = (IValidator, )
 
     name = 'LinkSpamValidator'
 

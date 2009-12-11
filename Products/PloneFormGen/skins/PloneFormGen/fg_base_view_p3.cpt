@@ -1,6 +1,5 @@
 <tal:block metal:define-macro="master"
            define="errors options/state/getErrors | nothing;
-                   Iterator python:modules['Products.Archetypes'].IndexIterator;
                    schematas nothing;
                    allow_tabbing python:False;
                    fieldsets python:['default'];
@@ -110,11 +109,11 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-    		<p tal:replace="structure here/getFormPrologue | nothing" />
+    		<p tal:replace="structure here/getRawFormPrologue | nothing" />
 
         <metal:use_body use-macro="body_macro" />
 
-    		<p tal:replace="structure here/getFormEpilogue | nothing" />
+    		<p tal:replace="structure here/getRawFormEpilogue | nothing" />
 
         <table tal:condition="canModify" 
                id="pfgActionEdit"

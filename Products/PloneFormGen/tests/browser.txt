@@ -2,6 +2,7 @@ Integration tests
 =================
 
     >>> browser = self.browser
+    >>> browser.handleErrors = False
 
 Standalone form
 ---------------

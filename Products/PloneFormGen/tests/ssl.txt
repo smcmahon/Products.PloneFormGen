@@ -40,5 +40,6 @@ well (so the user sees a security icon in their browser.) ::
     >>> from Products.Five.testbrowser import Browser
     >>> browser = Browser()
     >>> browser.open(self.portal_url + '/testform')
-    >>> browser.headers['Bobo-Exception-Type']
-    'Redirect'
+    >>> browser.headers['Bobo-Exception-Type'] in ('Redirect', "<class 'zExceptions.Redirect'>")
+    True
+    

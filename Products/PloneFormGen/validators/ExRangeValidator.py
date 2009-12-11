@@ -1,4 +1,6 @@
-from Products.validation import validation, interfaces
+from zope.interface import implements, Interface
+from Products.validation.interfaces.IValidator import IValidator
+from Products.validation import validation
 
 class ExRangeValidator:
     """ Validates whether or not a numeric value is within a range.
@@ -6,8 +8,11 @@ class ExRangeValidator:
         from the kwargs in a call or from field attributes.
     """
 
-
-    __implements__ = (interfaces.ivalidator,)
+    if issubclass(IValidator, Interface):
+        implements(IValidator)
+    else:
+        #BBB
+        __implements__ = (IValidator, )
 
     name = 'ExRangeValidator'
 

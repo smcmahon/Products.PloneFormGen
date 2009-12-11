@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object>
+ <resourcetypes>
+  <linkable purge="false">
+   <element value="FormFolder"/>
+  </linkable>
+ </resourcetypes>
+</object>

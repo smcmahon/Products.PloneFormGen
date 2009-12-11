@@ -26,6 +26,7 @@ from Products.PloneFormGen.interfaces import IPloneFormGenThanksPage
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30, dollarReplace
+from Products.PloneFormGen import implementedOrProvidedBy
 
 import zope.i18n
 
@@ -243,7 +244,7 @@ class FormThanksPage(ATCTContent):
         # get a list of all candidate fields
         myFields = []
         for obj in self.aq_parent._getFieldObjects():
-            if not (IField.isImplementedBy(obj) or obj.isLabel()):
+            if (not implementedOrProvidedBy(IField, obj) or obj.isLabel()):
                 # if field list hasn't been specified explicitly, exclude server side fields
                 if self.showAll and obj.getServerSide():
                     continue 

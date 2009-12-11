@@ -264,7 +264,7 @@ class FormSaveDataAdapter(FormActionAdapter):
                 # If so, call its onSuccess method
                 cf = parent.getCanonical()
                 target = cf.get(self.getId())
-                if target.meta_type == 'FormSaveDataAdapter':
+                if target is not none and target.meta_type == 'FormSaveDataAdapter':
                     target.onSuccess(fields, REQUEST, loopstop=True)
                     return
 

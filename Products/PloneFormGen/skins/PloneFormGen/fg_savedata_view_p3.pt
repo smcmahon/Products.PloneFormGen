@@ -5,7 +5,7 @@
 
 <body>
 
-<div metal:fill-slot="main">
+<div metal:fill-slot="main" tal:define="view context/@@plone_context_state">
     <tal:main-macro metal:define-macro="main"
            tal:define="content_type here/get_content_type|here/Format;
                        canEdit python:checkPermission('Modify portal content', here);
@@ -16,7 +16,7 @@
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         
-        <h1 tal:content="object_title" class="documentFirstHeading">
+        <h1 tal:content="view/object_title" class="documentFirstHeading">
             Title or id
         </h1>
         
@@ -34,7 +34,7 @@
 
           <p>
               <a href=""
-                 tal:attributes="href string:${here_url}/download">
+                 tal:attributes="href string:${view/object_url}/download">
                   <img src="" tal:define="icon python:here.getIcon(1)" tal:attributes="src string:${portal_url}/${icon}" alt="" />
                   <tal:block i18n:translate="label_click_to_get_input" i18n:domain="ploneformgen">
                   Click here to get the saved input

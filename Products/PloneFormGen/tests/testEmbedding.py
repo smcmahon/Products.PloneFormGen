@@ -25,7 +25,7 @@ class TrueOnceCalled(object):
 class TestEmbedding(pfgtc.PloneFormGenTestCase):
     """ test embedding of a PFG in another template """
 
-    def dummy_send( self, mfrom, mto, messageText ):
+    def dummy_send( self, mfrom, mto, messageText, immediate=False ):
         self.mfrom = mfrom
         self.mto = mto
         self.messageText = messageText

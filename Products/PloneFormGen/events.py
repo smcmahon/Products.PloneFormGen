@@ -6,7 +6,7 @@ from zope.app.container.interfaces import IObjectAddedEvent
 
 from Products.CMFPlone.interfaces import IFactoryTool
 
-from Products.PloneFormGen import interfaces
+from Products.PloneFormGen import interfaces, implementedOrProvidedBy
 
 @adapter(interfaces.IPloneFormGenActionAdapter, IObjectAddedEvent)
 def form_adapter_pasted(form_adapter, event):
@@ -15,7 +15,7 @@ def form_adapter_pasted(form_adapter, event):
        adapter isn't newly created in the portal_factory.
     """
     form_adapter = aq_inner(form_adapter)
-    if IFactoryTool.providedBy(aq_parent(aq_parent(form_adapter))):
+    if implementedOrProvidedBy(IFactoryTool, aq_parent(aq_parent(form_adapter))):
         return
         
     form = aq_parent(form_adapter)

@@ -1,8 +1,7 @@
 Product home is http://plone.org/products/ploneformgen .
-A documentation
-area http://plone.org/products/ploneformgen/documentation and issue
-tracker http://plone.org/products/ploneformgen/issues are available at
-this location.
+A documentation area http://plone.org/products/ploneformgen/documentation
+and issue tracker http://plone.org/products/ploneformgen/issues are available
+at this location.
 
 Please use the Plone users' mailing list or the #plone irc channel for
 support requests. If you are unable to get your questions answered
@@ -33,16 +32,11 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
-Plone 2.5.x (2.1 no longer supported) or Plone 3.1+
-Some features are only available in 3.1+.
+Plone: Plone 3.1+
 
 Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
 (automatically loaded if you install via Python package).
-
-Five, version 1.4+.  If you're using Plone 2.5.x, it's likely that the version
-of Zope is in the 2.9.x line and you'll need to upgrade Five.  In 3.x+ the 
-default version of Five shipped with Zope should suffice.
 
 Encryption of e-mail requires the Gnu Privacy Guard, GnuPG, also known
 as gpg. See README_GPG.txt for details.
@@ -56,23 +50,8 @@ Installation
 Buildout
 --------
 
-Just add ``Products.PloneFormGen`` to the eggs section of your buildout
-configuration and run buildout.
-
-Traditional Zope Product
-------------------------
-
-Typical for a Zope/Plone product:
-
-*   Install dependencies.
-
-*   Download a tarball from http://plone.org/products/ploneformgen.
-
-*   Unpack the product package into the Products folder of the
-    Zope/Plone instance. Check your ownership and permissions.
-
-Either Method Final Steps
--------------------------
+*   Just add ``Products.PloneFormGen`` to the eggs section of your buildout
+    configuration and run buildout.
 
 *   Restart Zope.
 
@@ -114,13 +93,6 @@ for anonymous users. If you wish this support for anon users, you'll
 need to remove the "not: portal/portal_membership/isAnonymousUser"
 condition for their support code in portal_css and portal_javascripts.
 
-Known Problems
-==============
-
-The "max length" setting for text fields causes problems with all versions
-of Plone except 2.5.3. While the field works, every keystroke will cause
-javascript errors. The problem is due to various, mutating integration
-problems between Archetypes, the i18n machinery, and KSS.
 
 Rationale For This Product
 ==========================
@@ -175,6 +147,9 @@ Special thanks to David, for the CAPTCHA work, and Andrew for export/
 import.
 
 Thomas Buchberger provided the initial CAPTCHA field implementation.
+
+David Glick effectively has been co-maintainer for versions since
+1.2.5. Thanks, David!
 
 See the CHANGES.txt file for the very long list of people who helped
 with particular features or bugs.

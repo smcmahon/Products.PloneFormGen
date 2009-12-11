@@ -90,15 +90,29 @@ else:
 
 # Check for Plone versions
 try:
-    from Products.CMFPlone.migrations import v3_0
-except ImportError:
-    HAS_PLONE30 = False
-else:
+    from plone.app.upgrade import v40
     HAS_PLONE30 = True
+    HAS_PLONE40 = True
+except ImportError:
+    HAS_PLONE40 = False
+    try:
+        from Products.CMFPlone.migrations import v3_0
+    except ImportError:
+        HAS_PLONE30 = False
+    else:
+        HAS_PLONE30 = True
 
 if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
     from monkey import installExceptionHook
     installExceptionHook()
+
+# BBB for Z2 vs Z3 interfaces checks
+def implementedOrProvidedBy(anInterface, anObject):
+    if HAS_PLONE40:
+        return anInterface.providedBy(anObject)
+    else:
+        return anInterface.isImplementedBy(anObject)
+
 
 # alias for legacy instances of PFGCaptchaField from when it was
 # a separate product
