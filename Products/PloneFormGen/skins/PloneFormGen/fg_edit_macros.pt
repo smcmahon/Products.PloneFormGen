@@ -97,10 +97,6 @@
 		       tal:attributes="value override_key" />
 	      </div>
 	    </div>
-	    <p tal:condition="not:here/getPersistentActionAdapter">
-	      Note: you can not submit this form on behalf of another user
-	      as no Persistent Action Adaptor has been selected.
-	    </p>
 	  </tal:manager>
 	</metal:choose-user>
 

@@ -211,6 +211,8 @@ class FieldsetFolder(ATFolder):
 
         vocab = DisplayList()
 
+        vocab.add('', '')
+
         for f in fields:
             fieldvocab = f.fgField.Vocabulary(f)
             fieldvocab = '; '.join(fieldvocab.keys())
