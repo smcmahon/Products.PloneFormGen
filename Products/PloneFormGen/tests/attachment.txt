@@ -35,7 +35,7 @@ Submit the form with an attachment::
     >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
     >>> browser.getControl('Subject').value = 'test'
     >>> browser.getControl('Comments').value = 'PFG rocks!'
-    >>> browser.getControl(name='attachment_file').add_file(cStringIO.StringIO('file contents'), 'text/plain', 'test.txt')
+    >>> browser.getControl(name='attachment_file').mech_control.add_file(cStringIO.StringIO('file contents'), 'text/plain', 'test.txt')
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
     >>> 'Thanks for your input.' in browser.contents
@@ -61,7 +61,7 @@ the file field is not listed in the mailer's showFields::
     >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
     >>> browser.getControl('Subject').value = 'test'
     >>> browser.getControl('Comments').value = 'PFG rocks!'
-    >>> browser.getControl(name='attachment_file').add_file(cStringIO.StringIO('file contents'), 'text/plain', 'test.txt')
+    >>> browser.getControl(name='attachment_file').mech_control.add_file(cStringIO.StringIO('file contents'), 'text/plain', 'test.txt')
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
     >>> self.portal.MailHost.msg.get_payload(decode=True)
