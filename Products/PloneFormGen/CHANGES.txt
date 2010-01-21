@@ -4,6 +4,9 @@ Change History
 1.5.5 unreleased
 -----
 
+ - Add infrastructure for upgrade steps for the GenericSetup profile.
+   (David Glick)
+
  - Accept Canadian postal codes with lowercase letters. (David Glick)
 
  - Fix issue where the saved data adapter did not save data when using an
