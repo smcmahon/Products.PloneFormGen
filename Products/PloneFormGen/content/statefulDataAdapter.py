@@ -26,6 +26,7 @@ from StringIO import StringIO
 logger = logging.getLogger("PloneFormGen")    
 
 COOKIENAME = 'pfg_statefuldata_uniqueid'
+LARGE_DATA_SET_LENGTH = 8
 
 class FormStatefulDataAdapter(FormActionAdapter):
     implements(IPloneFormGenPersistentActionAdapter)
@@ -102,6 +103,12 @@ class FormStatefulDataAdapter(FormActionAdapter):
         """ reset all my data """
         self.statefuldata = PersistentDict()
         return "Reset Stateful Data OK"
+
+    def isLargeStatefulDataSet(self):
+        """ check if the data set is larger than 8 columns """
+        data = self.formFolderObject().fgFields(displayOnly=True)
+        if len(data) > LARGE_DATA_SET_LENGTH:
+            return True
 
     def saveStatefulDataCSV(self):
         """ Save the data out as a csv """
