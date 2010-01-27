@@ -6,6 +6,8 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+from AccessControl import Unauthorized
+
 from Products.PloneFormGen.tests import pfgtc
 from Products.PloneFormGen import HAS_PLONE30
 
@@ -440,7 +442,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
 
     def testCreateFieldsAdaptersOutsideFormFolder(self):
         for f in self.fieldTypes + self.adapterTypes + self.thanksTypes + self.fieldsetTypes:
-            self.assertRaises(ValueError, self.folder.invokeFactory, f, 'f1')
+            self.assertRaises(Unauthorized, self.folder.invokeFactory, f, 'f1')
 
     def testBadIdField(self):
         # test for tracker #32 - Field with id 'language' causes problems with PTS
