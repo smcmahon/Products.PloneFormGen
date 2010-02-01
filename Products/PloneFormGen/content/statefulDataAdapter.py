@@ -21,12 +21,13 @@ import time
 import re
 from csv import writer
 from StringIO import StringIO
+from DateTime import DateTime
 
 
 logger = logging.getLogger("PloneFormGen")    
 
 COOKIENAME = 'pfg_statefuldata_uniqueid'
-LARGE_DATA_SET_LENGTH = 8
+LARGE_DATA_SET_LENGTH = 7
 
 class FormStatefulDataAdapter(FormActionAdapter):
     implements(IPloneFormGenPersistentActionAdapter)
@@ -50,7 +51,6 @@ class FormStatefulDataAdapter(FormActionAdapter):
         saves data in a stateful manner.
         """
         logger.info("FormStatefulDataAdapter: onSuccess")
-
         if LP_SAVE_TO_CANONICAL and not loopstop:
             # LinguaPlone functionality:
             # check to see if we're in a translated
@@ -76,8 +76,12 @@ class FormStatefulDataAdapter(FormActionAdapter):
                 fname_id = f.fgField.getName()
                 val = REQUEST.form.get(fname_id,None)
                 title = f.title
-                type = f.portal_type
-                final_data[fname_id] = dict(field_value = val, title = title, field_type = type)
+                final_data[fname_id] = dict(field_value = val, title = title, field_type = f.portal_type)
+
+        # add in the date this was submitted
+        final_data['submission_date'] = dict(field_value = DateTime().strftime('%c'),
+                                             title = 'Submission Date',
+                                             field_type = 'FormStringField')
 
         # If the user has selected to fill this form in as another user
         # use this as the key, if not, use they key in the REQUEST
@@ -85,8 +89,26 @@ class FormStatefulDataAdapter(FormActionAdapter):
             key = self.REQUEST.form['user-select']
         else:
             key = self.getKey(REQUEST)
-
-        self.statefuldata[key] = final_data
+        
+        # Check to see if this is a single submission form or a multi submission form
+        if self.aq_parent.getPersistentActionAdapter():
+            # This is a single submission form so overwrite the data
+            self.statefuldata[key] = [final_data]
+        else:
+            # This is a multi submission form
+            # Check if we have any data stored
+            try:
+                saved_data_type = type(self.statefuldata[key])
+            except KeyError:
+                self.statefuldata[key] = []
+                saved_data_type = type(self.statefuldata[key])
+            if saved_data_type == dict:
+                # This data needs to be extracted and reformatted
+                self.statefuldata[key] = [self.statefuldata[key]]
+                self.statefuldata[key].append(final_data)
+            else:
+                # Add to the data to the list
+                self.statefuldata[key].append(final_data)
 
     def itemsSaved(self):
         """Download the saved data"""
@@ -96,7 +118,28 @@ class FormStatefulDataAdapter(FormActionAdapter):
     def getStatefulData(self):
         """ Return the current data """
         result = dict(self.statefuldata.copy())
-        return result
+        user_keys = result.keys()
+
+        # check if we have a multi submission or single
+        # XXX we should no longer get passed dicts
+        if type(result[user_keys[0]]) == dict:
+            # each user should have a list containing one or more dicts
+            for user in user_keys:
+                result[user] = [result[user]]
+
+        # create a new data structure
+        sane_data = {}
+        for user in user_keys:
+            for index, data in enumerate(result[user]):
+                new_key = user + '-' + str(index)
+                member = self.portal_membership.getMemberById(user)
+                data['user'] = dict(user_key = user, 
+                                    field_value = self.getFullName(member, user),
+                                    title = 'User',
+                                    field_type = 'FormStringField'
+                                    )
+                sane_data[new_key] = data                
+        return sane_data
 
     security.declareProtected(ModifyPortalContent, 'resetStatefulData')
     def resetStatefulData(self):
@@ -174,17 +217,25 @@ class FormStatefulDataAdapter(FormActionAdapter):
         """ get the value for the field from the statefuldata """
         key = self.getKey(REQUEST)
         if key in self.statefuldata.keys():
-            data = self.statefuldata[key]
+            # get the most recent submission
+            last_submission = len(self.statefuldata[key]) - 1
+            data = self.statefuldata[key][last_submission]
             if field.id in data.keys():
                 return data[field.id]['field_value']
         return None
 
     def getStatefulFieldValue(self, data, user_id, field_id):
-        """ get the correct value for the stateful adapter view """
-        if data[user_id].has_key(field_id):
-            return data[user_id][field_id]['field_value']
+        """ get the correct value for the stateful adapter view """        
+        if type(data[user_id]) == dict:
+            if data[user_id].has_key(field_id):
+                return data[user_id][field_id]['field_value']
+            else:
+                return ''
         else:
-            return ''
+            if data[user_id][0].has_key(field_id):
+                return data[user_id][0][field_id]['field_value']
+            else:
+                return ''
 
     def currentUserHasCompletedForm(self, REQUEST):
         key = self.getKey(REQUEST)
@@ -206,20 +257,25 @@ class FormStatefulDataAdapter(FormActionAdapter):
         return fullname
 
     def statefulFormAdapterSummary(self, data):
-        """ return statistics for select and checkbox fields """
+        """ return statistics for select and checkbox fields """        
         users = data.keys()
         field_types = ['FormSelectionField', 'FormMultiSelectionField']
 
         data_oc = []
-        data_types = []
+        data_types = []        
+        
         for user in users:
-            for key in data[user]:
-                d_value = data[user][key]['field_value']
-                if data[user][key]['field_type'] in field_types:
+            if type(data[user]) == dict:
+                user_data = data[user]
+            else:
+                user_data = data[user][0]
+            for key in user_data:
+                d_value = user_data[key]['field_value']
+                if user_data[key]['field_type'] in field_types:
                     if type(d_value) is list and len(d_value) == 1:
-                        f_value = data[user][key]['field_value'][0]
+                        f_value = user_data[key]['field_value'][0]
                     else:
-                        f_value = data[user][key]['field_value']
+                        f_value = user_data[key]['field_value']
                     data_oc.append(f_value)
                     if f_value not in data_types:
                         data_types.append(f_value)
