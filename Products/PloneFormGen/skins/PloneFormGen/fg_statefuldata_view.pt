@@ -66,7 +66,9 @@
 	      <tr tal:repeat="userid_key data/keys">
 		<td tal:content="python:data[userid_key]['user']['field_value']">User here
 		</td>
-		<td tal:content="python:data[userid_key]['submission_date']['field_value']">01/01/01</td>
+		<td tal:content="python:data[userid_key]['submission_date']['field_value']">
+		  01/01/01
+		</td>
 		<tal:large condition="not:context/isLargeStatefulDataSet">
 		  <td tal:repeat="fid fieldids">
 		    <span tal:content="python:context.getStatefulFieldValue(

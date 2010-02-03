@@ -94,21 +94,11 @@ class FormStatefulDataAdapter(FormActionAdapter):
         if self.aq_parent.getPersistentActionAdapter():
             # This is a single submission form so overwrite the data
             self.statefuldata[key] = [final_data]
-        else:
+        else:            
             # This is a multi submission form
-            # Check if we have any data stored
-            try:
-                saved_data_type = type(self.statefuldata[key])
-            except KeyError:
-                self.statefuldata[key] = []
-                saved_data_type = type(self.statefuldata[key])
-            if saved_data_type == dict:
-                # This data needs to be extracted and reformatted
-                self.statefuldata[key] = [self.statefuldata[key]]
-                self.statefuldata[key].append(final_data)
-            else:
-                # Add to the data to the list
-                self.statefuldata[key].append(final_data)
+            new_data = self.statefuldata[key][:]
+            new_data.append(final_data)
+            self.statefuldata[key] = new_data
 
     def itemsSaved(self):
         """Download the saved data"""
