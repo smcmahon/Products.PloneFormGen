@@ -1,8 +1,8 @@
 Change History
 ==============
 
-1.6.0 unreleased
------
+1.6.0b1
+-------
 
  - Accept Canadian postal codes with lowercase letters. (David Glick)
 
