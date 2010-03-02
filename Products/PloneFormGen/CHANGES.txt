@@ -1,6 +1,11 @@
 Change History
 ==============
 
+1.6.0b2
+-------
+
+- Adjust ScriptableFields version requirements.
+
 1.6.0b1
 -------
 

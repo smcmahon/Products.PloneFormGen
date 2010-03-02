@@ -28,9 +28,9 @@ setup(name='Products.PloneFormGen',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.TALESField>=1.1.2',
-          'Products.TemplateFields>=1.2.3',
-          'Products.PythonField>=1.1.2',
+          'Products.TALESField>=1.1.3',
+          'Products.TemplateFields>=1.2.4',
+          'Products.PythonField>=1.1.3',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
