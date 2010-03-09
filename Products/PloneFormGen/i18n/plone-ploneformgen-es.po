@@ -430,3 +430,7 @@ msgstr "Tamaño"
 msgid "help_csrf"
 msgstr ""
 
+#. Default: "Please complete the additional fields below."
+#: skins/PloneFormGen/fg_edit_macros.pt:103
+msgid "Please complete the additional fields below."
+msgstr "Por favor, cumplimenta los campos en base al tipo de servicio que solicitas."
