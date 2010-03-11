@@ -168,7 +168,7 @@ class FormSaveDataAdapter(FormActionAdapter):
             each row is an (id, sequence of fields) tuple
         """
         if base_hasattr(self, '_inputStorage'):
-            return self._inputStorage.iteritems()
+            return self._inputStorage.items()
         else:
             return enumerate(self.SavedFormInput)
 
