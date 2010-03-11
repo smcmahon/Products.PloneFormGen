@@ -272,8 +272,8 @@ class FormSaveDataAdapter(FormActionAdapter):
             id = int(time.time() * 1000)
             while id in self._inputStorage: # avoid collisions during testing
                 id += 1
-            self._length.change(1)
         self._inputStorage[id] = value
+        self._length.change(1)
 
 
     security.declareProtected(ModifyPortalContent, 'addDataRow')
