@@ -4,6 +4,9 @@ Change History
 1.6.0b3 (unreleased)
 --------------------
 
+- Make sure the non-default profiles don't show up when creating a new site in
+  Plone 4. (David Glick)
+
 - Use an LOBTree to store results in the saved data adapter when available
   (i.e. with ZODB>=3.8.x), allowing us to stop keeping track of the result
   count in the _inputItems attribute, thereby greatly reducing the number of

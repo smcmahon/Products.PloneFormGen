@@ -103,7 +103,7 @@
       name="default"
       title="PloneFormGen"
       directory="profiles/default"
-      description="PloneFormGen"
+      description="Makes it possible to build forms via a through-the-web UI"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
@@ -122,6 +122,9 @@
       description="PloneFormGen load test fixtures"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+  
+  <utility factory=".setuphandlers.HiddenProfiles"
+           name="Products.PloneFormGen"/>
 
   <include package=".browser"/>
 

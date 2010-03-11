@@ -1,6 +1,8 @@
 from zope.component import queryMultiAdapter
+from zope.interface import implements
 
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces import INonInstallable
 
 from Products.PloneFormGen.config import PROPERTY_SHEET_NAME, \
     DEFAULT_MAILTEMPLATE_BODY, EXTRA_ALLOWED
@@ -12,8 +14,14 @@ from Products.PloneFormGen.interfaces.fieldset import \
   IPloneFormGenFieldset
 from Products.PloneFormGen.interfaces.thanksPage import \
   IPloneFormGenThanksPage
-  
-  
+
+class HiddenProfiles(object):
+    implements(INonInstallable)
+    
+    def getNonInstallableProfiles(self):
+        return [u'Products.PloneFormGen:typeoverrides25x',
+                u'Products.PloneFormGen:loadtest']
+
 def update_kupu_resources(out, site):
     """ At the time of this writing, kupu's GS export/import
         handling is impractical.  We manage our interactions
@@ -58,26 +66,6 @@ def safe_add_purgeable_properties(out, site):
         propSheet.manage_addProperty('mail_recipient_name', '', 'string')
     if not propSheet.hasProperty('csv_delimiter'):
         propSheet.manage_addProperty('csv_delimiter', ',', 'string')        
-    
-
-def setAllowed(pti, types):
-    """
-    Add types to allowed in a portal type
-    """
-    
-    changed = False
-    
-    newType = 'FormCaptchaField'
-    if haveCaptcha:
-        if newType not in myTypes:
-            myTypes.append(newType)
-            changed = True
-    else:
-        if newType in myTypes:
-            myTypes.remove(newType)
-            changed = True
-    if changed:
-        ptType.manage_changeProperties(allowed_content_types = myTypes)
     
 
 def importVarious(context):
