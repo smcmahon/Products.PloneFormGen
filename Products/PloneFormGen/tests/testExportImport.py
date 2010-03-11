@@ -315,7 +315,11 @@ class TestFormExport(ExportImportTester):
         form_folder_export = getMultiAdapter((self.folder.ff1, self.app.REQUEST), 
                                               name='export-form-folder')
         fileish = StringIO( form_folder_export() )
-        self._verifyTarballContents( fileish, toc_list)
+        try:
+            self._verifyTarballContents( fileish, toc_list)
+        except AssertionError:
+            toc_list.append('structure')
+            self._verifyTarballContents( fileish, toc_list)
     
 
 class TestFormImport(ExportImportTester):
@@ -384,9 +388,6 @@ class TestFormImport(ExportImportTester):
         self._verifyProfileForm(self.ff1)
         self._verifyFormStockFields(self.ff1, purge=True)
     
-
-if  __name__ == '__main__':
-    framework()
 
 def test_suite():
     from unittest import TestSuite, makeSuite

@@ -7,7 +7,7 @@
 
 <div metal:fill-slot="main">
     <tal:main-macro metal:define-macro="main"
-           tal:define="results here/getSavedFormInput;
+           tal:define="results here/getSavedFormInputItems;
                        canEdit python:checkPermission('Modify portal content', here);
                        Batch python:modules['Products.CMFPlone'].Batch;
                        b_size python:30;
@@ -47,11 +47,12 @@
                 <tbody>
                     <tr tal:repeat="row batch">
                         <tal:index define="rownumber repeat/row/number;
-                                           index python:rownumber+b_start;">
+                                           index python:rownumber+b_start;
+                                           record_id python:row[0]">
                         <td style="text-align: center" tal:content="index" />
-                        <td tal:repeat="cell row" tal:content="cell">cell</td>
+                        <td tal:repeat="cell python:row[1]" tal:content="cell">cell</td>
                         <td tal:condition="canEdit" style="text-align: center">
-                            <a tal:attributes="href string:${context/absolute_url}/fg_savedata_editview?id:int=${index}">
+                            <a tal:attributes="href string:${context/absolute_url}/fg_savedata_editview?id:int=${record_id}">
                                 <img src="edit.gif" />
                             </a>
                         </td>

@@ -1,7 +1,7 @@
 # Integration tests specific to save-data adapter.
 #
 
-import os, sys, email
+import os, sys
 
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
@@ -169,16 +169,16 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # save a row
         saver.setSavedFormInput('one,two,three')
         self.assertEqual(saver.itemsSaved(), 1)
-        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage.values()[0], ['one', 'two', 'three'])
         
         data = cd()
         setattr(data, 'item-0', 'four')
         setattr(data, 'item-1', 'five')
         setattr(data, 'item-2', 'six')
 
-        saver.manage_saveData(1, data)
+        saver.manage_saveData(saver._inputStorage.keys()[0], data)
         self.assertEqual(saver.itemsSaved(), 1)
-        self.assertEqual(saver._inputStorage[0], ['four', 'five', 'six'])
+        self.assertEqual(saver._inputStorage.values()[0], ['four', 'five', 'six'])
         
     def testEditSavedFormInputWithAlternateDelimiter(self):
         """ test manage_saveData functionality when an alternate csv delimiter is used """
@@ -196,16 +196,16 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # save a row
         saver.setSavedFormInput('one|two|three')
         self.assertEqual(saver.itemsSaved(), 1)
-        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage.values()[0], ['one', 'two', 'three'])
         
         data = cd()
         setattr(data, 'item-0', 'four')
         setattr(data, 'item-1', 'five')
         setattr(data, 'item-2', 'six')
 
-        saver.manage_saveData(1, data)
+        saver.manage_saveData(saver._inputStorage.keys()[0], data)
         self.assertEqual(saver.itemsSaved(), 1)
-        self.assertEqual(saver._inputStorage[0], ['four', 'five', 'six']) 
+        self.assertEqual(saver._inputStorage.values()[0], ['four', 'five', 'six']) 
 
     def testRetrieveDataSavedBeforeSwitchingDelimiter(self):
         """ test manage_saveData functionality when an alternate csv delimiter is used """
@@ -218,7 +218,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # save a row
         saver.setSavedFormInput('one,two,three')
         self.assertEqual(saver.itemsSaved(), 1)
-        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage.values()[0], ['one', 'two', 'three'])
         
         # switch prefered delimiter
         pft = getToolByName(self.portal, 'formgen_tool')
@@ -227,7 +227,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         # verify we can retrieve based on new delimiter
         self.assertEqual(saver.itemsSaved(), 1)
-        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage.values()[0], ['one', 'two', 'three'])
     
     def testDeleteSavedFormInput(self):
         """ test manage_deleteData functionality """
@@ -243,10 +243,10 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         saver._addDataRow( ['seven','eight','nine'] )
         self.assertEqual(saver.itemsSaved(), 3)
         
-        saver.manage_deleteData(2)
+        saver.manage_deleteData(saver._inputStorage.keys()[1])
         self.assertEqual(saver.itemsSaved(), 2)
-        self.assertEqual(saver._inputStorage[0], ['one', 'two', 'three'])
-        self.assertEqual(saver._inputStorage[1], ['seven', 'eight', 'nine'])
+        self.assertEqual(saver._inputStorage.values()[0], ['one', 'two', 'three'])
+        self.assertEqual(saver._inputStorage.values()[1], ['seven', 'eight', 'nine'])
     
 
     def testSaverInputAsDictionaries(self):
@@ -333,10 +333,6 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( len(cn) == 4 )
         self.failUnless( cn[3] == 'Posting Date/Time' )
 
-
-
-if  __name__ == '__main__':
-    framework()
 
 def test_suite():
     from unittest import TestSuite, makeSuite

@@ -6,9 +6,15 @@ __docformat__ = 'plaintext'
 from AccessControl import ClassSecurityInfo
 
 from BTrees.IOBTree import IOBTree
+try:
+    from BTrees.LOBTree import LOBTree
+    SavedDataBTree = LOBTree
+except ImportError:
+    SavedDataBTree = IOBTree
+from BTrees.Length import Length
 
 from Products.CMFCore.utils import getToolByName
-from Products.CMFCore.permissions import View, ModifyPortalContent
+from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 
 from Products.Archetypes.public import *
@@ -22,6 +28,7 @@ from Products.PloneFormGen.content.actionAdapter import \
     FormActionAdapter, FormAdapterSchema
 
 import logging
+import time
 
 from DateTime import DateTime
 import csv
@@ -123,20 +130,24 @@ class FormSaveDataAdapter(FormActionAdapter):
 
 
     def _migrateStorage(self):
-        # we're going to use an IOBTree for storage. we need to
+        # we're going to use an LOBTree for storage. we need to
         # consider the possibility that self is from an
         # older version that uses the native Archetypes storage
         # in the SavedFormInput field.
         
         if not base_hasattr(self, '_inputStorage'):
-            self._inputStorage = IOBTree()
+            self._inputStorage = SavedDataBTree()
+            i = 0
             self._inputItems = 0
-        
+            self._length = Length()
+
             if base_hasattr(self, 'SavedFormInput') and len(self.SavedFormInput):
                 for row in self.SavedFormInput:
-                    self._inputStorage[self._inputItems] = row
-                    self._inputItems += 1
-                self.SavedFormInput = []                
+                    self._inputStorage[i] = row
+                    i += 1
+                self.SavedFormInput = []
+                self._inputItems = i
+                self._length.set(i)
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInput')
@@ -149,6 +160,17 @@ class FormSaveDataAdapter(FormActionAdapter):
             return self._inputStorage.values()
         else:
             return self.SavedFormInput
+
+
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputItems')
+    def getSavedFormInputItems(self):
+        """ returns saved input as an iterable;
+            each row is an (id, sequence of fields) tuple
+        """
+        if base_hasattr(self, '_inputStorage'):
+            return self._inputStorage.iteritems()
+        else:
+            return enumerate(self.SavedFormInput)
 
 
     security.declareProtected(ModifyPortalContent, 'getSavedFormInputForEdit')
@@ -172,7 +194,9 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._migrateStorage()
 
         self._inputStorage.clear()
+        i = 0
         self._inputItems = 0
+        self._length.set(0)
 
         if len(value):
             delimiter = self.csvDelimiter()
@@ -180,8 +204,10 @@ class FormSaveDataAdapter(FormActionAdapter):
             reader = csv.reader(sbuf, delimiter=delimiter)
             for row in reader:
                 if row:
-                    self._inputStorage[self._inputItems] = row
-                    self._inputItems += 1
+                    self._inputStorage[i] = row
+                    i += 1
+                self._inputItems = i
+                self._length.set(i)
             sbuf.close()
 
         # logger.debug("setSavedFormInput: %s items" % self._inputItems)
@@ -195,12 +221,13 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         self._inputStorage.clear()
         self._inputItems = 0
+        self._length.set(0)
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputById')
     def getSavedFormInputById(self, id):
         """ Return the data stored for record with 'id' """
-        lst =  [field.replace('\r','').replace('\n', r'\n') for field in self._inputStorage[id-1]]
+        lst =  [field.replace('\r','').replace('\n', r'\n') for field in self._inputStorage[id]]
         return lst
 
  
@@ -214,7 +241,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         for i in range(0, len(self.getColumnNames())):
             lst.append(getattr(data, 'item-%d' % i, '').replace(r'\n', '\n'))
  
-        self._inputStorage[id-1] = lst
+        self._inputStorage[id] = lst
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
 
@@ -224,10 +251,9 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         self._migrateStorage()
 
-        for i in range(id, self._inputItems):
-            self._inputStorage[i-1] = self._inputStorage[i]
-        del self._inputStorage[self._inputItems-1]
+        del self._inputStorage[id]
         self._inputItems -= 1
+        self._length.change(-1)
         
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
@@ -236,8 +262,18 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         self._migrateStorage()
 
-        self._inputStorage[self._inputItems] = value
-        self._inputItems += 1
+        if isinstance(self._inputStorage, IOBTree):
+            # 32-bit IOBTree; use a key which is more likely to conflict
+            # but which won't overflow the key's bits
+            id = self._inputItems
+            self._inputItems += 1
+        else:
+            # 64-bit LOBTree
+            id = int(time.time() * 1000)
+            while id in self._inputStorage: # avoid collisions during testing
+                id += 1
+            self._length.change(1)
+        self._inputStorage[id] = value
 
 
     security.declareProtected(ModifyPortalContent, 'addDataRow')
@@ -447,14 +483,16 @@ class FormSaveDataAdapter(FormActionAdapter):
         """Delimiter character for CSV downloads
         """
         fgt = getToolByName(self, 'formgen_tool')
-        return fgt.getCSVDelimiter()        
+        return fgt.getCSVDelimiter()
     
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'itemsSaved')
     def itemsSaved(self):
         """Download the saved data
         """
 
-        if base_hasattr(self, '_inputItems'):
+        if base_hasattr(self, '_length'):
+            return self._length()
+        elif base_hasattr(self, '_inputItems'):
             return self._inputItems
         else:
             return len(self.SavedFormInput)
