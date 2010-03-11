@@ -442,7 +442,11 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
 
     def testCreateFieldsAdaptersOutsideFormFolder(self):
         for f in self.fieldTypes + self.adapterTypes + self.thanksTypes + self.fieldsetTypes:
-            self.assertRaises(Unauthorized, self.folder.invokeFactory, f, 'f1')
+            try:
+                self.folder.invokeFactory(f, 'f1')
+            except (Unauthorized, ValueError):
+                return
+            self.fail('Expected error when creating form field or adapter outside form folder.')
 
     def testBadIdField(self):
         # test for tracker #32 - Field with id 'language' causes problems with PTS
@@ -573,9 +577,6 @@ class TestGPG(pfgtc.PloneFormGenTestCase):
             print "\nSkipping GPG tests; gpg binary not found"
         else:
             self.assertRaises(GPGError, gpg.encrypt, 'spam', 'eggs')
-
-if  __name__ == '__main__':
-    framework()
 
 def test_suite():
     from unittest import TestSuite, makeSuite

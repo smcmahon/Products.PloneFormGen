@@ -2,15 +2,13 @@
 # Integration tests. See other test modules for specific components.
 #
 
-import os, sys, email
+import os, sys
 
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.tests import pfgtc
-
-from Products.CMFCore.utils import getToolByName
 
 import zExceptions
 
@@ -349,7 +347,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ We really don't want to save or act on trailing spaces in inputs """
 
         request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
-        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
 
 
@@ -638,10 +636,6 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
             errors = self.ff1.fgvalidate(REQUEST=request)
             self.assertEqual( errors, {} )
 
-
-
-if  __name__ == '__main__':
-    framework()
 
 def test_suite():
     from unittest import TestSuite, makeSuite
