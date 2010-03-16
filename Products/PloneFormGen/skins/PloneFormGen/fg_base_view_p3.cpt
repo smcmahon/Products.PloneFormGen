@@ -57,30 +57,19 @@
                     condition="macro">
       <metal:block use-macro="macro" />
     </tal:block>
-  </metal:javascript_head>
 
-  <metal:css fill-slot="css_slot">
-    <tal:css condition="css"
-             repeat="item css">
-      <style type="text/css"
-             media="all"
-             tal:condition="python:exists('portal/%s' % item)"
-             tal:content="structure string:<!-- @import url($portal_url/$item); -->">
-      </style>
-    </tal:css>
     <style type="text/css"
            media="all"
            tal:condition="python:checkPermission('Modify portal content', here)">
        #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
        #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
        .editHook {text-align:center}
+       .editHook a {border-bottom:none !important}
     </style>
-    <tal:block define="macro edit_macros/css | nothing"
-                    condition="macro">
-      <metal:block use-macro="macro" />
-    </tal:block>
+
 	<tal:expr replace="structure here/getHeaderInjection | nothing" />
-  </metal:css>
+  </metal:javascript_head>
+
     
   <body>
 

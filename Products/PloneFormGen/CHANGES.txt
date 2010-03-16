@@ -4,6 +4,8 @@ Change History
 1.6.0b3 (unreleased)
 --------------------
 
+- Fix styling of quick edit for P4; also header injection. (Steve)
+
 - Fix preferences panel. (Steve McMahon)
 
 - Make sure the non-default profiles don't show up when creating a new site in
