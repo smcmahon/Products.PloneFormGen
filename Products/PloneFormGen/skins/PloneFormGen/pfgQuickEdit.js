@@ -166,11 +166,38 @@ pfgQEdit.qedit = function (e) {
   jq("#pfgActionEdit").show();
   jq("#pfgThanksEdit").show();
   jq("#pfgnedit").fadeIn();
+  
+  if (jq.fn.prepOverlay) {
+      jq('.editHook a[href$=edit]').prepOverlay(
+          {
+              subtype: 'ajax',
+              filter: "#content form",
+              formselector: 'form[id$=base-edit]',
+              noform: 'reload',
+              closeselector:'[name=form.button.Cancel]'
+          }
+      );
+      jq('.editHook a[href$=delete_confirmation]').prepOverlay(
+          {
+              subtype: 'ajax',
+              filter: "#content",
+              formselector: 'form',
+              noform: 'reload',
+              closeselector:'[name=form.button.Cancel]'
+          }
+      );
+  }
 }
 
 pfgQEdit.stripTable = function () {
   // remove the table elements required for quick edit of fields
 
+  // remove overlay divs
+  jq("td.editHook a[rel^=#pb]").each(function () {
+      var o = jq(this);
+      jq(o.attr('rel')).remove();
+  });
+  
   // strip editHook cells
   jq("div.pfg-form td.editHook").remove();
   // find remaining cell contents
@@ -182,7 +209,7 @@ pfgQEdit.stripTable = function () {
 }
 
 pfgQEdit.noedit = function (e) {
-  // turn on field editing
+  // turn off field editing
   jq("#pfgnedit").hide();
 
   if (pfgQEdit.dragging) pfgQEdit.doUp(false);
@@ -218,5 +245,6 @@ jq(document).ready(function() {
   } else {
     pfgQEdit.qedit();
   }
+
 })
 
