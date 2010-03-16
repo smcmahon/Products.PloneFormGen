@@ -11,12 +11,11 @@
 <div metal:fill-slot="prefs_configlet_content"
     tal:define="pfgTool python: modules['Products.CMFCore.utils'].getToolByName(here, 'formgen_tool');">
 
-    <div id="content" class="documentEditable" i18n:domain="ploneformgen"
+    <div class="documentEditable" i18n:domain="ploneformgen"
          tal:condition="python:checkPermission('Manage portal', here)">
 
-        <h5 class="hiddenStructure">Views</h5>
-
-        <ul class="contentViews">
+       <div id="edit-bar">
+        <ul id="content-views" class="contentViews">
             <li>
             <a href="prefs_pfg_permits"
                 i18n:translate="label_ploneformgen_permissions">Permissions</a>
@@ -29,9 +28,8 @@
             <a href="prefs_pfg_mtemplate"
                 i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
             </li>
-            <li>
+            <li tal:condition="context/@@pfg-captcha-settings/has_recaptcha">
             <a href="@@pfg-captcha-settings"
-                tal:condition="context/@@pfg-captcha-settings/has_recaptcha"
                 i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
             </li>
             <li class="selected">
@@ -39,9 +37,9 @@
                 i18n:translate="label_ploneformgen_savedata">Saved Data</a>
             </li>                   
         </ul>
-
         <div class="contentActions">
             &nbsp;
+        </div>
         </div>
 
         <div class="documentContent" id="region-content">
@@ -66,7 +64,7 @@
                 Set defaults for data adapters. 
             </p>
     
-            <form action="" method="post" tal:attributes="action template_id">
+            <form action="" method="post" tal:attributes="action template/getId">
 
                 <input type="hidden" name="form.submitted" value="1" />
                 
@@ -77,20 +75,17 @@
                     a save-data adapter.
                 </div>
                 <input type="text" name="csv_delimiter" id="csv_delimiter" size='1' value="delimiter"
-                tal:attributes="value pfgTool/getCSVDelimiter;
-                                tabindex tabindex/next;"
+                tal:attributes="value pfgTool/getCSVDelimiter"
                 />
 
                 </div>
 
                 <div class="formControls">
                 <input class="context"
-                    tabindex=""
                     type="submit"
                     value="Apply Changes"
                     i18n:domain="plone"
                     i18n:attributes="value label_apply_changes;"
-                    tal:attributes="tabindex tabindex/next;"
                     />
                 </div>
             </form>

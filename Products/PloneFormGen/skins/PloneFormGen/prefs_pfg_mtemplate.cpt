@@ -11,38 +11,36 @@
 <div metal:fill-slot="prefs_configlet_content"
     tal:define="pfgTool python: modules['Products.CMFCore.utils'].getToolByName(here, 'formgen_tool');">
 
-    <div id="content" class="documentEditable" i18n:domain="ploneformgen"
+    <div class="documentEditable" i18n:domain="ploneformgen"
          tal:condition="python:checkPermission('Manage portal', here)">
 
-        <h5 class="hiddenStructure">Views</h5>
-
-        <ul class="contentViews">
-            <li>
-            <a href="prefs_pfg_permits"
-                i18n:translate="label_ploneformgen_permissions">Permissions</a>
-            </li>
-            <li>
-            <a href="prefs_pfg_addressing"
-                i18n:translate="label_ploneformgen_addressing">Mail Addressing</a>
-            </li>
-            <li class="selected">
-            <a href="prefs_pfg_mtemplate"
-                i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
-            </li>
-            <li>
-            <a href="@@pfg-captcha-settings"
-                tal:condition="context/@@pfg-captcha-settings/has_recaptcha"
-                i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
-            </li>
-            <li>
-            <a href="prefs_pfg_savedata"
-                i18n:translate="label_ploneformgen_savedata">Saved Data</a>
-            </li>                   
-        </ul>
-
-        <div class="contentActions">
-            &nbsp;
-        </div>
+         <div id="edit-bar">
+              <ul id="content-views" class="contentViews">
+                  <li>
+                  <a href="prefs_pfg_permits"
+                      i18n:translate="label_ploneformgen_permissions">Permissions</a>
+                  </li>
+                  <li>
+                  <a href="prefs_pfg_addressing"
+                      i18n:translate="label_ploneformgen_addressing">Mail Addressing</a>
+                  </li>
+                  <li class="selected">
+                  <a href="prefs_pfg_mtemplate"
+                      i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
+                  </li>
+                  <li tal:condition="context/@@pfg-captcha-settings/has_recaptcha">
+                  <a href="@@pfg-captcha-settings"
+                      i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
+                  </li>
+                  <li>
+                  <a href="prefs_pfg_savedata"
+                      i18n:translate="label_ploneformgen_savedata">Saved Data</a>
+                  </li>                   
+              </ul>
+              <div class="contentActions">
+                  &nbsp;
+              </div>
+         </div>
 
         <div class="documentContent" id="region-content">
                 <a name="documentContent"></a>
@@ -67,7 +65,7 @@
                 These values will be used whenever a new mail-action adapter is created.
             </p>
     
-            <form action="" method="post" tal:attributes="action template_id">
+            <form action="" method="post" tal:attributes="action template/getId">
 
                 <input type="hidden" name="form.submitted" value="1" />
                 
@@ -79,7 +77,6 @@
                     pasting here.
                 </div>
                 <textarea name="body" id="body" rows="10" style="width:100%"
-                    tal:attributes="tabindex tabindex/next;"
                     tal:content="pfgTool/getDefaultMailTemplateBody">
                     Mail Body Template
                 </textarea>
@@ -102,12 +99,10 @@
                 
                 <div class="formControls">
                 <input class="context"
-                    tabindex=""
                     type="submit"
                     value="Apply Changes"
                     i18n:domain="plone"
                     i18n:attributes="value label_apply_changes;"
-                    tal:attributes="tabindex tabindex/next;"
                     />
                 </div>
             </form>

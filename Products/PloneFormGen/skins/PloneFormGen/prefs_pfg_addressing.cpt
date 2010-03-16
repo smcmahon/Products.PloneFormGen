@@ -11,37 +11,35 @@
 <div metal:fill-slot="prefs_configlet_content"
     tal:define="pfgTool python: modules['Products.CMFCore.utils'].getToolByName(here, 'formgen_tool');">
 
-    <div id="content" class="documentEditable" i18n:domain="ploneformgen"
+    <div class="documentEditable" i18n:domain="ploneformgen"
          tal:condition="python:checkPermission('Manage portal', here)">
 
-        <h5 class="hiddenStructure">Views</h5>
-
-        <ul class="contentViews">
-            <li>
-            <a href="prefs_pfg_permits"
-                i18n:translate="label_ploneformgen_permissions">Permissions</a>
-            </li>
-            <li class="selected">
-            <a href="prefs_pfg_addressing"
-                i18n:translate="label_ploneformgen_addressing">Mail Addressing</a>
-            </li>
-            <li>
-            <a href="prefs_pfg_mtemplate"
-                i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
-            </li>
-            <li>
-            <a href="@@pfg-captcha-settings"
-                tal:condition="context/@@pfg-captcha-settings/has_recaptcha"
-                i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
-            </li>
-            <li>
-            <a href="prefs_pfg_savedata"
-                i18n:translate="label_ploneformgen_savedata">Saved Data</a>
-            </li>                   
-        </ul>
-
-        <div class="contentActions">
-            &nbsp;
+        <div id="edit-bar">
+             <ul id="content-views" class="contentViews">
+                 <li>
+                 <a href="prefs_pfg_permits"
+                     i18n:translate="label_ploneformgen_permissions">Permissions</a>
+                 </li>
+                 <li class="selected">
+                 <a href="prefs_pfg_addressing"
+                     i18n:translate="label_ploneformgen_addressing">Mail Addressing</a>
+                 </li>
+                 <li>
+                 <a href="prefs_pfg_mtemplate"
+                     i18n:translate="label_ploneformgen_mtemplate">Mail Template</a>
+                 </li>
+                 <li tal:condition="context/@@pfg-captcha-settings/has_recaptcha">
+                 <a href="@@pfg-captcha-settings"
+                     i18n:translate="label_ploneformgen_captcha_settings">Captcha</a>
+                 </li>
+                 <li>
+                 <a href="prefs_pfg_savedata"
+                     i18n:translate="label_ploneformgen_savedata">Saved Data</a>
+                 </li>                   
+             </ul>
+             <div class="contentActions">
+                 &nbsp;
+             </div>
         </div>
 
         <div class="documentContent" id="region-content">
@@ -68,7 +66,7 @@
                 So, make sure you use valid addresses.
             </p>
     
-            <form action="" method="post" tal:attributes="action template_id">
+            <form action="" method="post" tal:attributes="action template/getId">
 
                 <input type="hidden" name="form.submitted" value="1" />
                 
@@ -76,8 +74,7 @@
 	                <label for="recipient_email" i18n:translate="label_ploneformgen_recipient_email">Recipient Address</label>
 					<br />
 					<input type="text" name="recipient_email" id="recipient_email" value="email"
-						tal:attributes="value pfgTool/getDefaultMailRecipient;
-							tabindex tabindex/next;"
+						tal:attributes="value pfgTool/getDefaultMailRecipient"
 						/>
 
                 </div>
@@ -86,8 +83,7 @@
 	                <label for="recipient_name" i18n:translate="label_ploneformgen_recipient_name">Recipient Name</label>
 					<br />
 					<input type="text" name="recipient_name" id="recipient_name" value="name"
-						tal:attributes="value pfgTool/getDefaultMailRecipientName;
-	                    	tabindex tabindex/next;"
+						tal:attributes="value pfgTool/getDefaultMailRecipientName"
 						/>
                 </div>
 
@@ -95,7 +91,6 @@
 	                <label for="cc_recipients" i18n:translate="label_ploneformgen_cc_recipients">CC Recipients</label>
 					<br />
 	                <textarea name="cc_recipients" id="cc_recipients" rows="5"
-	                    tal:attributes="tabindex tabindex/next;"
 	                    tal:content="python: '\n'.join(pfgTool.getDefaultMailCC())">
 	                    CC Recipients
 	                </textarea>
@@ -105,7 +100,6 @@
 	                <label for="bcc_recipients" i18n:translate="label_ploneformgen_bcc_recipients">BCC Recipients</label>
 					<br />
 	                <textarea name="bcc_recipients" id="bcc_recipients" rows="5"
-	                    tal:attributes="tabindex tabindex/next;"
 	                    tal:content="python: '\n'.join(pfgTool.getDefaultMailBCC())">
 	                    BCC Recipients
 	                </textarea>
@@ -113,12 +107,10 @@
 
                 <div class="formControls">
                 <input class="context"
-                    tabindex=""
                     type="submit"
                     value="Apply Changes"
                     i18n:domain="plone"
                     i18n:attributes="value label_apply_changes;"
-                    tal:attributes="tabindex tabindex/next;"
                     />
                 </div>
             </form>
