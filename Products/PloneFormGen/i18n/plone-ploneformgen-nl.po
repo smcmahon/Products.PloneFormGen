@@ -156,6 +156,10 @@ msgstr "Een veld waarin meerdere opties geselecteerd kunnen worden."
 msgid "A password field (input masked)"
 msgstr "Een wachtwoordveld (input wordt verborgen)"
 
+#. Likert Field Description
+msgid "A rating-scale field using rows of radio buttons."
+msgstr ""
+
 #. Default: "A rich text area field"
 #: content/fields.py
 msgid "A rich text area field"
@@ -187,6 +191,7 @@ msgid "A thank-you page that can display form input."
 msgstr "Een 'Bedankt' pagina die de invoer van het formulier toont."
 
 #. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
 #: content/actionAdapter.py
 msgid "An adapter that supplies a form action."
 msgstr "Een actie die uitgevoerd wordt bij het verzenden van een formulier."
@@ -266,6 +271,15 @@ msgstr "Geen proxy rol"
 msgid "Password Field"
 msgstr "Wachtwoord veld"
 
+#. Likert Field Name
+msgid "Rating-Scale Field"
+msgstr ""
+
+#. Rich Label Field
+#. Default: 'Rich Label Field',
+msgid "Rich Label Field"
+msgstr "Label met opmaak"
+
 #. Default: "RichText Field"
 #: content/fields.py
 msgid "RichText Field"
@@ -333,6 +347,12 @@ msgstr "Headers"
 msgid "heading_edit_item"
 msgstr "\"Bewerken ${itemtype}\""
 
+#. Form
+#. Default     Check this to employ Cross-Site Request Forgery protection.
+#. Default     Note that only HTTP Post actions will be allowed.
+msgid "help_csrf"
+msgstr ""
+
 #. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
 msgid "help_fgbooleanfalsestring_text"
 msgstr "Tekst die wordt gebruikt op de 'bedankt' pagina, indien deze optie niet is aangevinkt."
@@ -345,6 +365,11 @@ msgstr "Tekst die wordt gebruikt op de 'bedankt' pagina, indien deze optie is aa
 #: skins/PloneFormGen/fg_edit_macros.pt
 msgid "label_cancel"
 msgstr "Annuleren"
+
+#. Form
+#. Default 'CSRF Protection',
+msgid "label_csrf"
+msgstr ""
 
 #. Default: "False Display String"
 msgid "label_fgbooleanfalsestring_text"
@@ -406,9 +431,4 @@ msgstr "overschrijven"
 #: content/formMailerAdapter.py
 msgid "template"
 msgstr "sjabloon"
-
-#. Rich Label Field
-#. Default: 'Rich Label Field',
-msgid "Rich Label Field"
-msgstr "Label met opmaak"
 
