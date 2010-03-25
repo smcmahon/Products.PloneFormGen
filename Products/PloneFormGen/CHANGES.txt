@@ -4,6 +4,9 @@ Change History
 1.6.0b3 (unreleased)
 --------------------
 
+- Form prologues and epilogues weren't showing for anon users.
+  Thanks, Ricardo! (Steve)
+
 - Fix styling of quick edit for P4; also header injection. (Steve)
 
 - Fix preferences panel. (Steve McMahon)

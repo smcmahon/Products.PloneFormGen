@@ -98,11 +98,11 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-    		<p tal:replace="structure here/getRawFormPrologue | nothing" />
+    		<p tal:replace="structure here/formPrologue | nothing" />
 
         <metal:use_body use-macro="body_macro" />
 
-    		<p tal:replace="structure here/getRawFormEpilogue | nothing" />
+    		<p tal:replace="structure here/formEpilogue | nothing" />
 
         <table tal:condition="canModify" 
                id="pfgActionEdit"

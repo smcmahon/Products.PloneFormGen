@@ -171,7 +171,7 @@ pfgQEdit.qedit = function (e) {
       jq('.editHook a[href$=edit]').prepOverlay(
           {
               subtype: 'ajax',
-              filter: "#content form",
+              filter: "#content",
               formselector: 'form[id$=base-edit]',
               noform: 'reload',
               closeselector:'[name=form.button.Cancel]'
@@ -181,10 +181,19 @@ pfgQEdit.qedit = function (e) {
           {
               subtype: 'ajax',
               filter: "#content",
-              formselector: 'form',
+              formselector: 'form:has(input[value=Delete])',
               noform: 'reload',
               closeselector:'[name=form.button.Cancel]'
           }
+      );
+      jq('#plone-contentmenu-factories .actionMenuContent a[id^=form]').prepOverlay(
+            {
+                subtype: 'ajax',
+                filter: "#content",
+                formselector: 'form[id$=base-edit]',
+                noform: 'reload',
+                closeselector:'[name=form.button.Cancel]'
+            }
       );
   }
 }
