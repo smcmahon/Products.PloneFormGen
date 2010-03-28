@@ -174,7 +174,7 @@ pfgQEdit.qedit = function (e) {
               filter: "#content",
               formselector: 'form[id$=base-edit]',
               noform: 'reload',
-              closeselector:'[name=form.button.Cancel]'
+              closeselector:'[name=form.button.cancel]'
           }
       );
       jq('.editHook a[href$=delete_confirmation]').prepOverlay(
