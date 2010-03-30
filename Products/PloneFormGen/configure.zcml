@@ -127,6 +127,9 @@
            name="Products.PloneFormGen"/>
 
   <include package=".browser"/>
+  <include 
+    zcml:condition="installed Products.GenericSetup.upgrade"
+    file="upgrades.zcml"/>
 
   <subscriber handler=".events.form_adapter_pasted" />  
 

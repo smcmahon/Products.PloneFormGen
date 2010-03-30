@@ -1,0 +1,24 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <genericsetup:upgradeStep
+        source="1.5.4"
+        destination="1.5.5"
+        title="Empty upgrade step"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler="Products.PloneFormGen.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.5.5"
+        destination="1.6.0b3"
+        title="Empty upgrade step"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler="Products.PloneFormGen.upgrades.null_upgrade_step"
+        />
+
+</configure>
