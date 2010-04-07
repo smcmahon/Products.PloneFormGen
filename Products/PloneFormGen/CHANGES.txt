@@ -1,8 +1,8 @@
 Change History
 ==============
 
-1.6.0b3 (unreleased)
---------------------
+1.6.0b3
+-------
 
 - Add infrastructure for upgrade steps. (David Glick)
 
