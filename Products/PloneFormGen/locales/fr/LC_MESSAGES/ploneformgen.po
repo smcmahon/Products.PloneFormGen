@@ -882,7 +882,7 @@ msgstr "Condition d'exécution"
 
 #. Default: A TALES expression that will be evaluated to determine whether or not
 #. Default: to execute this action.
-#. Default: Leave empty if unneeded, and the ection will be executed. 
+#. Default: Leave empty if unneeded, and the action will be executed. 
 #. Default: Your expression should evaluate as a boolean; return True if you wish
 #. Default: the action to execute.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause

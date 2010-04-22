@@ -539,7 +539,7 @@ msgstr ""
 #. Default """
 #. A TALES expression that will be evaluated to determine whether or not
 #. to execute this action.
-#. Leave empty if unneeded, and the ection will be executed.
+#. Leave empty if unneeded, and the action will be executed.
 #. Your expression should evaluate as a boolean; return True if you wish
 #. the action to execute.
 #. PLEASE NOTE: errors in the evaluation of this expression will cause

@@ -120,11 +120,11 @@ msgstr "MERK OP: voor een aan/uitveld doet de 'verplicht' markering niets anders
 msgid "help_epilogue_text"
 msgstr "Deze tekst zal worden getoond onder de velden van het formulier."
 
-#. Default "A TALES expression that will be evaluated to determine whether or not to execute this action. Leave empty if unneeded, and the ection will be executed. Your expression should evaluate as a boolean; return True if you wish the action to execute. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
+#. Default "A TALES expression that will be evaluated to determine whether or not to execute this action. Leave empty if unneeded, and the action will be executed. Your expression should evaluate as a boolean; return True if you wish the action to execute. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
 #. Default """
 #. A TALES expression that will be evaluated to determine whether or not
 #. to execute this action.
-#. Leave empty if unneeded, and the ection will be executed.
+#. Leave empty if unneeded, and the action will be executed.
 #. Your expression should evaluate as a boolean; return True if you wish
 #. the action to execute.
 #. PLEASE NOTE: errors in the evaluation of this expression will cause
