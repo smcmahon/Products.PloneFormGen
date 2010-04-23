@@ -93,10 +93,13 @@ class FormStatefulDataAdapter(FormActionAdapter):
         # Check to see if this is a single submission form or a multi submission form
         if self.aq_parent.getPersistentActionAdapter():
             # This is a single submission form so overwrite the data
-            self.statefuldata[key] = [final_data]
+            self.statefuldata[key] = [final_data, ]
         else:            
             # This is a multi submission form
-            new_data = self.statefuldata[key][:]
+            if key in self.statefuldata.keys():
+                new_data = self.statefuldata[key]
+            else:
+                new_data = []
             new_data.append(final_data)
             self.statefuldata[key] = new_data
 
@@ -112,7 +115,7 @@ class FormStatefulDataAdapter(FormActionAdapter):
 
         # check if we have a multi submission or single
         # XXX we should no longer get passed dicts
-        if type(result[user_keys[0]]) == dict:
+        if user_keys and type(result[user_keys[0]]) == dict:
             # each user should have a list containing one or more dicts
             for user in user_keys:
                 result[user] = [result[user]]
