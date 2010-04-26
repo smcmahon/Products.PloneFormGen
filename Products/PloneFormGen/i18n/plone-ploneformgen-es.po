@@ -434,3 +434,6 @@ msgstr ""
 #: skins/PloneFormGen/fg_edit_macros.pt:103
 msgid "Please complete the additional fields below."
 msgstr "Por favor, cumplimenta los campos en base al tipo de servicio que solicitas."
+
+msgid "Continue"
+msgstr "Continuar"
