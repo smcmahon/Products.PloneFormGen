@@ -10,8 +10,8 @@ pfgQEdit.rows = null;
 pfgQEdit.targetId = null;
 
 pfgQEdit.doDown = function(e) {
-    var dragging =  jq(this).parents('.draggable:first');
-    if (!dragging.length) return;
+    var dragging =  jQuery(this).parents('.draggable:first');
+    if (!dragging.length) {return;}
     pfgQEdit.rows.mousemove(pfgQEdit.doDrag);
 
     pfgQEdit.dragging = dragging;
@@ -27,15 +27,15 @@ pfgQEdit.getPos = function(node) {
 
 pfgQEdit.doDrag = function(e) {
     var dragging = pfgQEdit.dragging;
-    if (!dragging) return;
+    if (!dragging) {return;}
     var target = this;
-    if (!target) return;
-    var targetId = jq(target).attr('id');
+    if (!target) {return;}
+    var targetId = jQuery(target).attr('id');
 
     if (targetId != dragging.attr('id')) {
-        pfgQEdit.swapElements(jq(target), dragging);
+        pfgQEdit.swapElements(jQuery(target), dragging);
         pfgQEdit.targetId = targetId;
-    };
+    }
     return false;
 };
 
@@ -52,8 +52,8 @@ pfgQEdit.swapElements = function(child1, child2) {
                                        child1[0]);
         child1.insertBefore(child2);
         child2.insertBefore(t);
-        jq(t).remove();
-    };
+        jQuery(t).remove();
+    }
     // odd and even are 0-based, so we want them the other way around
     parent.children('[id]:odd').addClass('even');
     parent.children('[id]:even').addClass('odd');
@@ -61,14 +61,14 @@ pfgQEdit.swapElements = function(child1, child2) {
 
 pfgQEdit.doUp = function(e) {
     var dragging = pfgQEdit.dragging;
-    if (!dragging) return;
+    if (!dragging) {return;}
 
     dragging.removeClass("dragging");
     pfgQEdit.updatePositionOnServer();
     dragging._position = null;
     try {
         delete dragging._position;
-    } catch(e) {};
+    } catch(e) {}
     dragging = null;
     pfgQEdit.rows.unbind('mousemove', pfgQEdit.doDrag);
     return false;
@@ -76,37 +76,37 @@ pfgQEdit.doUp = function(e) {
 
 pfgQEdit.updatePositionOnServer = function() {
     var dragging = pfgQEdit.dragging;
-    if (!dragging) return;
+    if (!dragging) {return;}
     
     var args = {
       item_id: dragging.attr('id').substr('folder-contents-item-'.length),
       target_id: pfgQEdit.targetId.substr('folder-contents-item-'.length)
     };
-    jQuery.post('reorderField', args)
+    jQuery.post('reorderField', args);
 };
 
 
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
 
-    jq("#pfg-fieldwrapper").children('.field').each(
+    jQuery("#pfg-fieldwrapper").children('.field').each(
         function () {
             var fname = this.id;
-            if (fname.indexOf("archetypes-fieldname-") == 0) {                      
+            if (fname.indexOf("archetypes-fieldname-") === 0) {                      
                 fname = this.id.substr('archetypes-fieldname-'.length);
             } else {
                 fname = this.id.substr('pfg-fieldsetname-'.length);
             }
-            felem = jq('#'+this.id)
+            felem = jQuery('#'+this.id);
             if (felem.hasClass('pfgHidden')) {
-                felem.append('<div class="pfgqemarkup">Hidden field: '+fname+'</div>')
+                felem.append('<div class="pfgqemarkup">Hidden field: '+fname+'</div>');
             }
             felem.wrap(
                 '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
                 '<td class="ofield"></td></tr>'
                 );
-            felem = felem.parent()
-            felem.after('<td class="draggable draggingHook editHook">::</td>')
+            felem = felem.parent();
+            felem.after('<td class="draggable draggingHook editHook">::</td>');
             felem.after(
                 '<td class="editHook">'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
@@ -119,36 +119,36 @@ pfgQEdit.addTable = function () {
                 );
         }
     );
-    jq("#pfg-fieldwrapper")
+    jQuery("#pfg-fieldwrapper")
      .wrapInner(
          '<table id="pfg-qetable" class="listing" summary="Field listing"><tbody>'+
          '</tbody></table>'
          );
-    jq("table#pfg-qetable").prepend(
+    jQuery("table#pfg-qetable").prepend(
         '<thead><tr>'+
         '<th>Field</th><th>Delete</th><th>Edit</th><th>Order</th>'+
         '</tr>'
         );
-}
+};
 
 pfgQEdit.initDnD = function () {
   // tie to folder-contents drag drop
   table = '#pfg-qetable';
-  pfgQEdit.table = jq(table);
+  pfgQEdit.table = jQuery(table);
   if (pfgQEdit.table.length) {
-    pfgQEdit.rows = jq(table + " > tr," +
+    pfgQEdit.rows = jQuery(table + " > tr," +
                               table + " > tbody > tr");
-    jq( table + " td.draggable")
+    jQuery( table + " td.draggable")
         .mousedown(pfgQEdit.doDown)
-        .mouseup(pfgQEdit.doUp)
+        .mouseup(pfgQEdit.doUp);
   }
-}
+};
 
 pfgQEdit.qedit = function (e) {
-  jq("#pfgqedit").hide();
-  jq(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
+  jQuery("#pfgqedit").hide();
+  jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
-  blurrable = jq("div.pfg-form .blurrable, div.pfg-form input")
+  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") {
@@ -159,16 +159,16 @@ pfgQEdit.qedit = function (e) {
   blurrable.css('opacity', 0.5);
   
   pfgQEdit.addTable();
-  jq("div.pfg-form table tr:nth-child(even)").addClass('even');
+  jQuery("div.pfg-form table tr:nth-child(even)").addClass('even');
 
   pfgQEdit.initDnD();
 
-  jq("#pfgActionEdit").show();
-  jq("#pfgThanksEdit").show();
-  jq("#pfgnedit").fadeIn();
+  jQuery("#pfgActionEdit").show();
+  jQuery("#pfgThanksEdit").show();
+  jQuery("#pfgnedit").fadeIn();
   
-  if (jq.fn.prepOverlay) {
-      jq('.editHook a[href$=edit]').prepOverlay(
+  if (jQuery.fn.prepOverlay) {
+      jQuery('.editHook a[href$=edit]').prepOverlay(
           {
               subtype: 'ajax',
               filter: "#content",
@@ -177,7 +177,7 @@ pfgQEdit.qedit = function (e) {
               closeselector:'[name=form.button.cancel]'
           }
       );
-      jq('.editHook a[href$=delete_confirmation]').prepOverlay(
+      jQuery('.editHook a[href$=delete_confirmation]').prepOverlay(
           {
               subtype: 'ajax',
               filter: "#content",
@@ -186,7 +186,7 @@ pfgQEdit.qedit = function (e) {
               closeselector:'[name=form.button.Cancel]'
           }
       );
-      jq('#plone-contentmenu-factories .actionMenuContent a[id^=form]').prepOverlay(
+      jQuery('#plone-contentmenu-factories .actionMenuContent a[id^=form]').prepOverlay(
             {
                 subtype: 'ajax',
                 filter: "#content",
@@ -197,65 +197,65 @@ pfgQEdit.qedit = function (e) {
       );
   }
   location.hash = "qedit";
-}
+};
 
 pfgQEdit.stripTable = function () {
   // remove the table elements required for quick edit of fields
 
   // remove overlay divs
-  jq("td.editHook a[rel^=#pb]").each(function () {
-      var o = jq(this);
-      jq(o.attr('rel')).remove();
+  jQuery("td.editHook a[rel^=#pb]").each(function () {
+      var o = jQuery(this);
+      jQuery(o.attr('rel')).remove();
   });
   
   // strip editHook cells
-  jq("div.pfg-form td.editHook").remove();
+  jQuery("div.pfg-form td.editHook").remove();
   // find remaining cell contents
-  var content = jq("#pfg-qetable td.ofield").children();
+  var content = jQuery("#pfg-qetable td.ofield").children();
   // substitute for table
-  jq("#pfg-qetable").after(content).remove();
+  jQuery("#pfg-qetable").after(content).remove();
   // hidden field descriptions
-  jq("div.pfgqemarkup").remove();
-}
+  jQuery("div.pfgqemarkup").remove();
+};
 
 pfgQEdit.noedit = function (e) {
   // turn off field editing
-  jq("#pfgnedit").hide();
+  jQuery("#pfgnedit").hide();
 
-  if (pfgQEdit.dragging) pfgQEdit.doUp(false);
+  if (pfgQEdit.dragging) {pfgQEdit.doUp(false);}
 
   pfgQEdit.stripTable();
   // enable all blurred elements
-  blurrable = jq("div.pfg-form .blurrable, div.pfg-form input")
+  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
-      if (typeof this.disabled != "undefined") this.disabled = false;
+      if (typeof this.disabled != "undefined") {this.disabled = false;}
       }
     );
-  blurrable.css('opacity', 1)
+  blurrable.css('opacity', 1);
 
-  jq("#pfgActionEdit").hide();
-  jq("#pfgThanksEdit").hide();
-  jq("#pfgqedit").fadeIn();
+  jQuery("#pfgActionEdit").hide();
+  jQuery("#pfgThanksEdit").hide();
+  jQuery("#pfgqedit").fadeIn();
   location.hash = "";
-}
+};
 
-jq(document).ready(function() {
-  jq("#pfgqedit").bind('click', pfgQEdit.qedit);
-  jq("#pfgnedit").bind('click', pfgQEdit.noedit);
+jQuery(document).ready(function() {
+  jQuery("#pfgqedit").bind('click', pfgQEdit.qedit);
+  jQuery("#pfgnedit").bind('click', pfgQEdit.noedit);
   
-  jq("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
-    jq.post('toggleActionActive', {item_id: this.name.substr('cbaction-'.length)});
+  jQuery("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
+    jQuery.post('toggleActionActive', {item_id: this.name.substr('cbaction-'.length)});
   });
-  jq("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
-    jq.post('setThanksPage', {value: this.value});
+  jQuery("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
+    jQuery.post('setThanksPage', {value: this.value});
   });
 
   if (location.hash.indexOf('qedit') == -1) {
-    jq("#content #pfgqedit").show();
+    jQuery("#content #pfgqedit").show();
   } else {
     pfgQEdit.qedit();
   }
 
-})
+});
 
