@@ -196,6 +196,7 @@ pfgQEdit.qedit = function (e) {
             }
       );
   }
+  location.hash = "qedit";
 }
 
 pfgQEdit.stripTable = function () {
@@ -236,6 +237,7 @@ pfgQEdit.noedit = function (e) {
   jq("#pfgActionEdit").hide();
   jq("#pfgThanksEdit").hide();
   jq("#pfgqedit").fadeIn();
+  location.hash = "";
 }
 
 jq(document).ready(function() {
@@ -249,7 +251,7 @@ jq(document).ready(function() {
     jq.post('setThanksPage', {value: this.value});
   });
 
-  if (document.URL.indexOf('?qedit') == -1) {
+  if (location.hash.indexOf('qedit') == -1) {
     jq("#content #pfgqedit").show();
   } else {
     pfgQEdit.qedit();

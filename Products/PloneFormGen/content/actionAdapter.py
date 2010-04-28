@@ -155,4 +155,4 @@ class FormActionAdapter(ATCTContent):
         referer = self.REQUEST.form.get('last_referer', None)
         if referer is not None and referer.split('/')[-1] != self.getId():
             transaction.commit()
-            raise zExceptions.Redirect, "%s?qedit=1" % self.formFolderObject().absolute_url()
+            raise zExceptions.Redirect, "%s#qedit" % self.formFolderObject().absolute_url()

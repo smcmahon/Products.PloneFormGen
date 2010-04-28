@@ -4,6 +4,11 @@ Change History
 1.6.0b4 (unreleased)
 --------------------
 
+- Switch to using a hash rather than a query string for indicating
+  quick edit mode. More stable since the browser doesn't care.
+  (Steve McMahon)
+  
+
 1.6.0b3
 -------
 
