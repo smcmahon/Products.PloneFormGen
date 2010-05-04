@@ -12,6 +12,7 @@ import logging
 from AccessControl import ClassSecurityInfo
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.exceptions import BadRequest
 
 from Products.CMFPlone.utils import safe_hasattr, base_hasattr
 
