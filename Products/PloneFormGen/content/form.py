@@ -55,7 +55,6 @@ try:
 except ImportError:
     HAS_PLONE_PROTECT = False
 
-from types import StringTypes
 
 import zope.i18n
 
@@ -581,7 +580,7 @@ class FormFolder(ATFolder):
             # for list fields. No need to worry about polymorphism here,
             # as this is a very particular case.
             if isinstance(value, type([])) and len(value) and \
-              (type(value[-1]) in StringTypes) and (len(value[-1]) == 0):
+              (isinstance(value[-1]), basestring) and (len(value[-1]) == 0):
                 value.pop()
 
             # eliminate trailing white space in string types.

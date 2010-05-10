@@ -38,7 +38,6 @@ from Products.PloneFormGen.widgets import RichLabelWidget, CaptchaWidget
 
 from Products.PloneFormGen.content.fieldsBase import *
 
-from types import StringTypes, BooleanType
 from DateTime import DateTime
 import cgi
 
@@ -444,7 +443,7 @@ class FGBooleanField(BaseFormField):
         """ Return value instead of key """
 
         value = REQUEST.form.get(self.__name__, 'No Input')
-        if type(value) == BooleanType:
+        if isinstance(value, bool):
             if value:
                 return self.fgBoolTrueString
         elif value == '1':
@@ -546,7 +545,7 @@ class FGDateField(BaseFormField):
     def setFgShowHM(self, value, **kw):
         """ set show_hm """
 
-        if type(value) == BooleanType:
+        if isinstance(value, bool):
             self.fgField.widget.show_hm = value
         else:
             self.fgField.widget.show_hm = value == '1'

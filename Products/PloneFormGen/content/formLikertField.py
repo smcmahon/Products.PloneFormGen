@@ -44,7 +44,6 @@ from Products.PloneFormGen.content.likertField import LikertField
 from Products.PloneFormGen.config import PROJECTNAME
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
-from types import StringTypes
 
 default_questions =  ('Question Number One','Question Number Two')
 default_answers = (
@@ -115,7 +114,7 @@ class FGLikertField(fieldsBase.BaseFormField):
 
     security.declareProtected(ModifyPortalContent, 'setLikertAnswers')
     def setLikertAnswers(self, value, **kwargs):
-        if value in StringTypes:
+        if isinstance(value, basestring):
             self.fgField.answerSet = tuple([a.strip() for a in value.split(',')])
         else:
             self.fgField.answerSet = tuple(value)
@@ -124,7 +123,7 @@ class FGLikertField(fieldsBase.BaseFormField):
 
     security.declareProtected(ModifyPortalContent, 'setLikertQuestions')
     def setLikertQuestions(self, value, **kwargs):
-        if value in StringTypes:
+        if isinstance(value, basestring):
             self.fgField.questionSet = tuple([q.strip() for q in value.split(',')])
         else:
             self.fgField.questionSet = tuple(value)

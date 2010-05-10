@@ -9,7 +9,6 @@ __docformat__ = 'plaintext'
 from Products.CMFCore.utils import getToolByName
 
 import re
-from types import StringTypes
 
 verrorRE = re.compile("Validation failed\((.+)\):")
 enrMessageRE = re.compile( "Validation failed\(inExNumericRange\): could not convert '(.+)' to number" )
@@ -47,7 +46,7 @@ def cleanupMessage(original, context, instance):
         return an improved, translatable message if available.
     """
 
-    if type(original) in StringTypes:
+    if isinstance(original, basestring):
         if original.find('is required, please correct.') > 0:
             return newRequiredMessage
         else:

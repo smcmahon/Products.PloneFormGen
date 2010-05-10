@@ -3,7 +3,6 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
-from types import StringTypes
 
 from AccessControl import ClassSecurityInfo
 from AccessControl.PermissionRole import rolesForPermissionOn

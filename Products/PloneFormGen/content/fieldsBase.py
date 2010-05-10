@@ -5,8 +5,6 @@ __docformat__ = 'plaintext'
 
 import cgi
 
-from types import StringTypes, BooleanType
-
 import transaction
 import zExceptions
 
@@ -827,7 +825,7 @@ class BaseFormField(ATCTContent):
         # no need to worry about polymorphism here, as this is a very particular
         # case.
         if isinstance(value, type([])) and len(value) and \
-            (type(value[-1]) in StringTypes) and (len(value[-1]) == 0):
+            (isinstance(value[-1]), basestring) and (len(value[-1]) == 0):
             value.pop()
 
         # eliminate trailing white space in string types.

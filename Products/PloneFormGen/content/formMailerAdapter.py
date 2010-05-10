@@ -45,7 +45,6 @@ from email.MIMEImage import MIMEImage
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
-from types import StringTypes
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30, dollarReplace
@@ -799,7 +798,7 @@ class FormMailerAdapter(FormActionAdapter):
             returns a well-formatted address field
         """
 
-        if type(input) in StringTypes:
+        if isinstance(input, basestring):
             input = [s for s in input.split(',')]
         input = [s for s in input if s]
         filtered_input = [s.strip().encode('utf-8') for s in input]

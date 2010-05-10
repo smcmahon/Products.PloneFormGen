@@ -33,7 +33,6 @@ import time
 from DateTime import DateTime
 import csv
 from StringIO import StringIO
-from types import StringTypes
 
 try:
     # 3.0+
@@ -325,7 +324,7 @@ class FormSaveDataAdapter(FormActionAdapter):
                     data.append( 'NO UPLOAD' )
             elif not f.isLabel():
                 val = REQUEST.form.get(f.fgField.getName(),'')
-                if not type(val) in StringTypes:
+                if not isinstance(val, basestring):
                     # Zope has marshalled the field into
                     # something other than a string
                     val = str(val)

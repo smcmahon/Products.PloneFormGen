@@ -2,7 +2,6 @@ from zope.interface import implements, Interface
 from Products.validation.interfaces.IValidator import IValidator
 from Products.validation import validation
 
-from types import BooleanType, StringTypes
 
 class IsCheckedValidator:
     """ Validates a Boolean field, which should have a "1" (checked)
@@ -24,8 +23,8 @@ class IsCheckedValidator:
 
     def __call__(self, value, *args, **kwargs):
 
-        if (type(value) == BooleanType) and value or \
-           (type(value) in StringTypes) and (value == '1'):
+        if (isinstancee(value, bool) and value or \
+           (isinstance(value, basestring) and (value == '1'):
             return True
 
         return ("Validation failed(%s): must be checked." % self.name)
@@ -53,8 +52,8 @@ class IsUncheckedValidator:
 
     def __call__(self, value, *args, **kwargs):
 
-        if (type(value) == BooleanType) and not value or \
-           (type(value) in StringTypes) and (value == '0'):
+        if (isinstance(value, bool) and not value or \
+           (isinstance(value, basestring) and (value == '0'):
             return True
 
         return ("Validation failed(%s): must be unchecked." % self.name)
