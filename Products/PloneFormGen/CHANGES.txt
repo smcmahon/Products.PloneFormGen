@@ -9,6 +9,9 @@ Change History
   (Steve McMahon)
 
 - fieldset.py: fixed missing import 
+
+- action adapter interface: fix indention
+  [seletz]
   
 
 1.6.0b3

@@ -44,17 +44,17 @@ class IPloneFormGenActionAdapter(Interface):
         Messages may be string types or zope.i18nmessageid objects.                
         """
 
-        execCondition = Attribute("Execution Condition")
-        """
-        If this attribute exists, the form folder will
-        use getRawExecCondition.
-        """
+    execCondition = Attribute("Execution Condition")
+    """
+    If this attribute exists, the form folder will
+    use getRawExecCondition.
+    """
 
-        def getRawExecCondition():
-            """
-            Optional.
-            
-            Should return a TALES expession that will be evaluated
-            in the context of the object to determine whether or not
-            to execute an action adapter's onSuccess method.
-            """
+    def getRawExecCondition():
+        """
+        Optional.
+        
+        Should return a TALES expession that will be evaluated
+        in the context of the object to determine whether or not
+        to execute an action adapter's onSuccess method.
+        """
