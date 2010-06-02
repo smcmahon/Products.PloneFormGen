@@ -111,7 +111,10 @@ def implementedOrProvidedBy(anInterface, anObject):
     if HAS_PLONE40:
         return anInterface.providedBy(anObject)
     else:
-        return anInterface.isImplementedBy(anObject)
+        try:
+            return anInterface.providedBy(anObject)
+        except AttributeError:
+            return anInterface.isImplementedBy(anObject)
 
 
 # alias for legacy instances of PFGCaptchaField from when it was
