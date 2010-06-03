@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope">
+  
+    <adapter
+        for="* zope.publisher.interfaces.IRequest"
+        name="PloneFormGen forms"
+        factory=".tracking.PFGAnalyticsPlugin"
+        />
+
+</configure>

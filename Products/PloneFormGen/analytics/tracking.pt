@@ -1,0 +1,9 @@
+<script type="text/javascript"
+    tal:define="form_status view/form_status;"
+    tal:condition="form_status"
+    tal:content="structure string:
+    jq(function() {
+        _gaq.push(['_trackPageview', '${view/relative_url}/${form_status}']);
+    });
+">
+</script>

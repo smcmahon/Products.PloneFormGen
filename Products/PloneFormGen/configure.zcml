@@ -130,6 +130,9 @@
   <include 
     zcml:condition="installed Products.GenericSetup.upgrade"
     file="upgrades.zcml"/>
+  <include 
+    zcml:condition="installed collective.googleanalytics.tracking"
+    package=".analytics"/>
 
   <subscriber handler=".events.form_adapter_pasted" />  
 
