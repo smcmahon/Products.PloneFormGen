@@ -146,10 +146,9 @@ pfgQEdit.initDnD = function () {
 
 pfgQEdit.qedit = function (e) {
   jQuery("#pfgqedit").hide();
-  // hide the error messages, if exist
-  if (jQuery(".error").css("display")=="inline" && jQuery(".error").css("visibility")=="visible") {
-	jQuery(".error").fadeOut();
-  }
+  // hide the error messages
+  jQuery(".error").hide();
+
   jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
   blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
