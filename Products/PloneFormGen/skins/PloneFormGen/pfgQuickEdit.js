@@ -148,6 +148,8 @@ pfgQEdit.qedit = function (e) {
   jQuery("#pfgqedit").hide();
   // hide the error messages
   jQuery(".error").hide();
+  // show widgets manager
+  jQuery("#pfgWidgetWrapper").fadeIn();
 
   jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
@@ -224,6 +226,9 @@ pfgQEdit.stripTable = function () {
 pfgQEdit.noedit = function (e) {
   // turn off field editing
   jQuery("#pfgnedit").hide();
+  // hide widgets manager
+  jQuery("#pfgWidgetWrapper").hide();
+
 
   if (pfgQEdit.dragging) {pfgQEdit.doUp(false);}
 

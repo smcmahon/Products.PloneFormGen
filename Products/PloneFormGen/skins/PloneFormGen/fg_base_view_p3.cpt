@@ -68,7 +68,7 @@
        .editHook a {border-bottom:none !important}
     </style>
 	<link rel="stylesheet" type="text/css" href="css/validator.css" />
-
+	<link rel="stylesheet" type="text/css" href="css/widgets.css" tal:condition="python:checkPermission('Modify portal content', here)" />
 	<tal:expr replace="structure here/getHeaderInjection | nothing" />
   </metal:javascript_head>
 
@@ -105,6 +105,20 @@
         <metal:use_body use-macro="body_macro" />
 
     		<p tal:replace="structure here/formEpilogue | nothing" />
+
+			<div tal:condition="canModify" 
+	               id="pfgWidgetWrapper"
+	               class="widgetManager"
+	               summary="Widget Manager"
+	               style="display:none"
+	               tal:define="liveAdapters here/getActionAdapter"> <!-- define the fields -->
+				<div class="header">
+					<h3>Widgets Manager</h3>
+				</div>
+				<div class="widgets">
+					to be populated...
+				</div>
+			</div>
 
         <table tal:condition="canModify" 
                id="pfgActionEdit"

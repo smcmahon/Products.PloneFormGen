@@ -1,0 +1,40 @@
+/** Widgets manager styles **/
+
+.pfg-form {
+	width: 60%;
+	float: left;
+}
+
+#pfgWidgetWrapper {
+	width: 250px;
+	float: right;
+	clear: right;
+	-moz-border-radius:6px 6px 6px 6px;
+	background:none repeat scroll 0 0 #DDDDDD !important;
+}
+
+.header {
+	-moz-border-radius-topleft:6px;
+	-moz-border-radius-topright:6px;
+	border:1px solid gray;
+	margin:0 auto;
+	text-align: center;
+	color: #FFFFFF;
+	background-color:LightBlue;
+}
+
+div.header h3 {
+	font-size:13px;
+	height:19px;
+	margin:0;
+	overflow:hidden;
+	padding:5px 12px;
+}
+
+div.widgets {
+	-moz-border-radius-bottomleft:6px;
+	-moz-border-radius-bottomright:6px;
+	border-style:none solid solid;
+	border-width:0 1px 1px;
+	padding:5px 15px;
+}
