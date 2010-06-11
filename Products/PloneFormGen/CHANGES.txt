@@ -12,6 +12,15 @@ Change History
 
 - action adapter interface: fix indention
   [seletz]
+
+- javascript based validator using "validator" plugin for jQueryTools
+  (Manca)
+
+- added widgets manager pane in quick edit mode
+  (Manca)
+
+- new styles for form and widgets manager
+  (Manca)
   
 
 1.6.0b3
