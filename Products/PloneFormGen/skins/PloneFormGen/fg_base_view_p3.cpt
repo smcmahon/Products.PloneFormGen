@@ -124,8 +124,8 @@
                id="pfgActionEdit"
                class="listing"
                summary="Field listing"
-               style="display:none"
-               tal:define="liveAdapters here/getActionAdapter">
+               style="display:none; clear: none"
+               tal:define="liveAdapters here/getActionAdapter"> <!-- in style uses clear: right, that screws up the look in some browsers. Unnecessary thing -->
             <thead>
             <tr>
                 <th>Form Actions</th><th>Enabled</th><th>Delete</th><th>Edit</th>
