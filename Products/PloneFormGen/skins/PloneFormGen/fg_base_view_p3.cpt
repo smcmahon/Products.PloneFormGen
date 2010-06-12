@@ -159,7 +159,7 @@
                 </tal:block>
             </tbody>
         </table>
-
+		<form action="#">   
         <table tal:condition="canModify" 
                id="pfgThanksEdit"
                class="listing"
@@ -176,11 +176,9 @@
                 <tr tal:attributes="class python:test(repeat['row'].index % 2,'even','odd')">
                     <td tal:content="python:row[1]" />
                     <td class="editHook">
-                      <form action="#">
                           <input type="radio" name="thanksRadio"
                               tal:attributes="value python:row[0];
-                                checked python:test(row[0] == liveThanks, 'checked', None)" />
-                      </form>
+                                checked python:test(row[0] == liveThanks, 'checked', None)" />                   
                     </td>
                     <td class="editHook">
                         <a href="#" tal:condition="python:row[0]"
@@ -200,7 +198,7 @@
                 </tal:block>
             </tbody>
         </table>
-
+		</form>
         <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
 
       </metal:main>
