@@ -159,7 +159,7 @@
                 </tal:block>
             </tbody>
         </table>
-		<form action="#">   
+		<form action="#" tal:condition="canModify">   
         <table tal:condition="canModify" 
                id="pfgThanksEdit"
                class="listing"
