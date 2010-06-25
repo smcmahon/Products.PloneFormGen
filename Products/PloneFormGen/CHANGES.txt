@@ -22,6 +22,8 @@ Change History
 - new styles for form and widgets manager
   (Manca)
   
+- Fixed Thanks pages radio buttons, where all inputs had their own forms, instead of only one
+  (Manca)
 
 1.6.0b3
 -------

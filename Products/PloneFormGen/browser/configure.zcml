@@ -33,4 +33,12 @@
       allowed_attributes="has_recaptcha"
       />
 
+  <browser:page
+	  name="pfg-conditions"
+	  for="*"
+	  class=".conditions.FormConditional"
+	  permission="cmf.ManagePortal"
+	  allowed_attributes="fieldBelongsToSet"
+	  />
+	
 </configure>

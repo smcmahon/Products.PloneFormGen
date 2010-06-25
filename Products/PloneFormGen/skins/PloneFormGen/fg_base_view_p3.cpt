@@ -16,7 +16,8 @@
                    body_macro edit_macros/body | body_macro | base_macros/body;
                    footer_macro edit_macros/footer | footer_macro | base_macros/footer;
                    css python:here.getUniqueWidgetAttr(fields, 'helper_css');
-                   js python:here.getUniqueWidgetAttr(fields, 'helper_js');">
+                   js python:here.getUniqueWidgetAttr(fields, 'helper_js');
+				   conditions python:here.restrictedTraverse('@@pfg-conditions')">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -111,12 +112,24 @@
 	               class="widgetManager"
 	               summary="Widget Manager"
 	               style="display:none"
-	               tal:define="liveAdapters here/getActionAdapter"> <!-- define the fields -->
+	               tal:define="addtypes context/@@folder_factories/addable_types"> <!-- define the fields -->
 				<div class="header">
 					<h3>Widgets Manager</h3>
 				</div>
-				<div class="widgets">
-					to be populated...
+     			<div class="widgets">
+					<!-- List of Fields, followed by the list of Adapters and Pages -->
+					<!-- The only problem here is that the traversal is done all the time on the whole set, it's not big set, but still -->
+                    <tal:typelist repeat="item addtypes">
+                        <dt tal:define="set item/id" tal:condition="python: conditions.fieldBelongsToSet(set, 'Field')">
+                           <span tal:replace="item/title" >Type title</span>      
+                        </dt>
+                    </tal:typelist>
+					<hr>
+                    <tal:typelist repeat="item addtypes">
+                        <dt tal:define="set item/id" tal:condition="python: not conditions.fieldBelongsToSet(set, 'Field')">
+                           <span tal:replace="item/title" >Type title</span>      
+                        </dt>
+                    </tal:typelist>
 				</div>
 			</div>
 
