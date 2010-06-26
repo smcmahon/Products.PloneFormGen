@@ -8,6 +8,7 @@ pfgQEdit.dragging = null;
 pfgQEdit.table = null;
 pfgQEdit.rows = null;
 pfgQEdit.targetId = null;
+pfgQEdit.endPos = null;
 
 pfgQEdit.doDown = function(e) {
     var dragging =  jQuery(this).parents('.draggable:first');
@@ -16,6 +17,7 @@ pfgQEdit.doDown = function(e) {
 
     pfgQEdit.dragging = dragging;
     dragging._position = pfgQEdit.getPos(dragging);
+	pfgQEdit.endPos = dragging._position;
     dragging.addClass("dragging");
     return false;
 };
@@ -33,6 +35,7 @@ pfgQEdit.doDrag = function(e) {
     var targetId = jQuery(target).attr('id');
 
     if (targetId != dragging.attr('id')) {
+		pfgQEdit.endPos = -99; // different position
         pfgQEdit.swapElements(jQuery(target), dragging);
         pfgQEdit.targetId = targetId;
     }
@@ -61,11 +64,13 @@ pfgQEdit.swapElements = function(child1, child2) {
 
 pfgQEdit.doUp = function(e) {
     var dragging = pfgQEdit.dragging;
+
     if (!dragging) {return;}
 
     dragging.removeClass("dragging");
-	if (e!=false) // we don't want another POST sent to server when we exit the edit mode
+	if (e!=false && pfgQEdit.endPos != dragging._position) { // we don't want another POST sent to server when we exit the edit mode and we actually have target(new place)!
     	pfgQEdit.updatePositionOnServer();
+	}
     dragging._position = null;
     try {
         delete dragging._position;
