@@ -64,7 +64,8 @@ pfgQEdit.doUp = function(e) {
     if (!dragging) {return;}
 
     dragging.removeClass("dragging");
-    pfgQEdit.updatePositionOnServer();
+	if (e!=false) // we don't want another POST sent to server when we exit the edit mode
+    	pfgQEdit.updatePositionOnServer();
     dragging._position = null;
     try {
         delete dragging._position;

@@ -1073,7 +1073,7 @@ class FormFolder(ATFolder):
 
 
     security.declareProtected(ModifyPortalContent, 'reorderField')
-
+   
     def reorderField(self, item_id, target_id, **kw):
         """ move item to target"""
 

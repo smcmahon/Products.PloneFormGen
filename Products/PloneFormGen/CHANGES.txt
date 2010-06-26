@@ -25,6 +25,9 @@ Change History
 - Fixed Thanks pages radio buttons, where all inputs had their own forms, instead of only one
   (Manca)
 
+- Fixed ordering of fields in edit mode. Another request was sent to server when the "exit edit mode" button was pressed
+  (Manca)
+
 1.6.0b3
 -------
 
