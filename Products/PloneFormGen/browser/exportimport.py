@@ -3,7 +3,10 @@ from zope.formlib import form
 from zope.component import getMultiAdapter
 
 from Products.Five import BrowserView
-from Products.Five.formlib import formbase
+try:
+    from Products.Five.formlib import formbase
+except: # Zope2.13 compatibility
+    from five.formlib import formbase
 
 from Products.statusmessages.interfaces import IStatusMessage
 

@@ -15,6 +15,8 @@ Change History
 - action adapter interface: fix indention
   [seletz]
   
+- Updated to use five.formlib. 
+  [vangheem]
 
 1.6.0b3
 -------
