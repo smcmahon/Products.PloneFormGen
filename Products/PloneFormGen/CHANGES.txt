@@ -4,6 +4,9 @@ Change History
 1.6.0b4 (unreleased)
 --------------------
 
+- Updated exportimport to use five.formlib. 
+  [vangheem]
+
 - Add form tracking plugin for collective.googleanalytics. (Matt Yoder)
 
 - Switch to using a hash rather than a query string for indicating
@@ -15,7 +18,6 @@ Change History
 - action adapter interface: fix indention
   [seletz]
   
-
 1.6.0b3
 -------
 

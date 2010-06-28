@@ -108,13 +108,10 @@ if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
 
 # BBB for Z2 vs Z3 interfaces checks
 def implementedOrProvidedBy(anInterface, anObject):
-    if HAS_PLONE40:
+    try:
         return anInterface.providedBy(anObject)
-    else:
-        try:
-            return anInterface.providedBy(anObject)
-        except AttributeError:
-            return anInterface.isImplementedBy(anObject)
+    except AttributeError:
+        return anInterface.isImplementedBy(anObject)
 
 
 # alias for legacy instances of PFGCaptchaField from when it was
