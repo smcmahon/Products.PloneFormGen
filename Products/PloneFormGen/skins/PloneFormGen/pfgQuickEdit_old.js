@@ -10,6 +10,75 @@ pfgQEdit.rows = null;
 pfgQEdit.targetId = null;
 pfgQEdit.endPos = null;
 
+pfgQEdit.doDown = function(e) {
+    var dragging =  jQuery(this).parents('.draggable:first');
+    if (!dragging.length) {return;}
+    pfgQEdit.rows.mousemove(pfgQEdit.doDrag);
+
+    pfgQEdit.dragging = dragging;
+    dragging._position = pfgQEdit.getPos(dragging);
+	pfgQEdit.endPos = dragging._position;
+    dragging.addClass("dragging");
+    return false;
+};
+
+pfgQEdit.getPos = function(node) {
+    var pos = node.parent().children('.draggable').index(node[0]);
+    return pos == -1 ? null : pos;
+};
+
+pfgQEdit.doDrag = function(e) {
+    var dragging = pfgQEdit.dragging;
+    if (!dragging) {return;}
+    var target = this;
+    if (!target) {return;}
+    var targetId = jQuery(target).attr('id');
+
+    if (targetId != dragging.attr('id')) {
+		pfgQEdit.endPos = -99; // different position
+        pfgQEdit.swapElements(jQuery(target), dragging);
+        pfgQEdit.targetId = targetId;
+    }
+    return false;
+};
+
+pfgQEdit.swapElements = function(child1, child2) {
+    var parent = child1.parent();
+    var items = parent.children('[id]');
+    items.removeClass('even').removeClass('odd');
+    if (child1[0].swapNode) {
+        // IE proprietary method
+        child1[0].swapNode(child2[0]);
+    } else {
+        // swap the two elements, using a textnode as a position marker
+        var t = parent[0].insertBefore(document.createTextNode(''),
+                                       child1[0]);
+        child1.insertBefore(child2);
+        child2.insertBefore(t);
+        jQuery(t).remove();
+    }
+    // odd and even are 0-based, so we want them the other way around
+    parent.children('[id]:odd').addClass('even');
+    parent.children('[id]:even').addClass('odd');
+};
+
+pfgQEdit.doUp = function(e) {
+    var dragging = pfgQEdit.dragging;
+
+    if (!dragging) {return;}
+
+    dragging.removeClass("dragging");
+	if (e!=false && pfgQEdit.endPos != dragging._position) { // we don't want another POST sent to server when we exit the edit mode and we actually have target(new place)!
+    	pfgQEdit.updatePositionOnServer();
+	}
+    dragging._position = null;
+    try {
+        delete dragging._position;
+    } catch(e) {}
+    dragging = null;
+    pfgQEdit.rows.unbind('mousemove', pfgQEdit.doDrag);
+    return false;
+};
 
 pfgQEdit.updatePositionOnServer = function() {
     var dragging = pfgQEdit.dragging;
@@ -68,6 +137,19 @@ pfgQEdit.addTable = function () {
         );
 };
 
+pfgQEdit.initDnD = function () {
+  // tie to folder-contents drag drop
+  table = '#pfg-qetable';
+  pfgQEdit.table = jQuery(table);
+  if (pfgQEdit.table.length) {
+    pfgQEdit.rows = jQuery(table + " > tr," +
+                              table + " > tbody > tr");
+    jQuery( table + " td.draggable")
+        .mousedown(pfgQEdit.doDown)
+        .mouseup(pfgQEdit.doUp);
+  }
+};
+
 pfgQEdit.qedit = function (e) {
   jQuery("#pfgqedit").hide();
   // hide the error messages
@@ -89,6 +171,8 @@ pfgQEdit.qedit = function (e) {
   
   pfgQEdit.addTable();
   jQuery("div.pfg-form table tr:nth-child(even)").addClass('even');
+
+  pfgQEdit.initDnD();
 
   jQuery("#pfgActionEdit").show();
   jQuery("#pfgThanksEdit").show();
@@ -124,8 +208,6 @@ pfgQEdit.qedit = function (e) {
       );
   }
   location.hash = "qedit";
-  pfgWidgets.init();
-  
 };
 
 pfgQEdit.stripTable = function () {
@@ -152,6 +234,9 @@ pfgQEdit.noedit = function (e) {
   jQuery("#pfgnedit").hide();
   // hide widgets manager
   jQuery("#pfgWidgetWrapper").hide();
+
+
+  if (pfgQEdit.dragging) {pfgQEdit.doUp(false);}
 
   pfgQEdit.stripTable();
   // enable all blurred elements

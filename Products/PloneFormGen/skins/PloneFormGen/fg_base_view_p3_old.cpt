@@ -53,16 +53,6 @@
             type="text/javascript"
             tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
     </script>
-	<script src="js/jquery-ui-1.8.2.custom.min.js"
-			type="text/javascript"
-			tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
-	</script>
-	
-	<script src="js/pfgWidgets.js"
-			type="text/javascript"
-			tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
-	</script>
-	
 	<script src="js/validator.js" type="text/javascript"></script>
 
     <tal:block define="macro edit_macros/javascript_head | nothing"
