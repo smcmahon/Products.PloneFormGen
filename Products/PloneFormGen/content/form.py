@@ -1085,6 +1085,13 @@ class FormFolder(ATFolder):
 
         return "<done />"
 
+	security.declareProtected(ModifyPortalContent, 'updateTitle')
+
+	def updateTitle(self, item_id, title, **kw):
+		item_id.setTitle(title)
+		
+		return "<done />"
+		
 registerATCT(FormFolder, PROJECTNAME)
 
 #    security.declareProtected(ModifyPortalContent, 'myi18n')
