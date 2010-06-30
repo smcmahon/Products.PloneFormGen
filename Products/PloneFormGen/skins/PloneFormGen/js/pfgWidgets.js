@@ -73,11 +73,11 @@ pfgWidgets = {
 			$(node).blur(function(e) {
 		  		$(this).wrap("<label class='formQuestion' for='"+ tmpfor +"'></label>");
 		  		$(this).parent().html($(this).val())
-				var arg = {
-					item_id: $(this).name,
+				var args = {
+					item_id: tmpfor,
 					title: $(this).val()
-				}
-				$.post("updateTitle",arg,function() {alert("Sent!")});
+				};
+				$.post("updateFieldTitle",args);
 		 	});
 		});
 
