@@ -167,6 +167,7 @@ pfgQEdit.noedit = function (e) {
   jQuery("#pfgThanksEdit").hide();
   jQuery("#pfgqedit").fadeIn();
   location.hash = "";
+  pfgWidgets.deinit();
 };
 
 jQuery(document).ready(function() {

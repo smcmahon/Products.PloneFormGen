@@ -36,6 +36,8 @@ pfgWidgets = {
 				pfgWidgets.updatePositionOnServer(item, target)
 			}
 		});
+		
+		this.editTitles();
 	},
 	
 	getPos: function(node) {
@@ -49,6 +51,40 @@ pfgWidgets = {
 	      target_id: t
 	    };
 	    $.post('reorderField', args)
+	},
+	
+	editTitles: function() {
+		// first we create a new dynamic node (which will be used to edit content)
+		var node = document.createElement("input");
+		node.setAttribute('name', "change");
+		node.setAttribute("type", "text");
+		
+		// then we attach a new event to label fields
+		$("label.formQuestion").live('dblclick', function(e) {
+			e.preventDefault();
+			var content = $(this).text();
+			var tmpfor = $(this).attr('for');
+			$(this).append(node);
+			$(this).html($(node).val(content));
+			$(node).fadeIn();
+			$(this).children().unwrap();
+			node.focus();
+		 
+			$(node).blur(function(e) {
+		  		$(this).wrap("<label class='formQuestion' for='"+ tmpfor +"'></label>");
+		  		$(this).parent().html($(this).val())
+				var arg = {
+					item_id: $(this).name,
+					title: $(this).val()
+				}
+				$.post("updateTitle",arg,function() {alert("Sent!")});
+		 	});
+		});
+
+	},
+	
+	deinit: function() {
+		$("label.formQuestion").die(); // removes even handlers setup by .live
 	}
 	
 	
