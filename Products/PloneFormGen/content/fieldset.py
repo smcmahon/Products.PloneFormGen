@@ -41,19 +41,14 @@ FieldsetFolderSchema = ATFolderSchema.copy() + Schema((
         required=0,
         searchable=0,
         default='1',
-        widget=BooleanWidget(label='Show Title as Legend',
-            label_msgid = "label_showlegend_text",
-            description_msgid = "help_showlegend_text",
-            i18n_domain = "ploneformgen",
+        widget=BooleanWidget(label=_(u'label_showlegend_text', default=u'Show Title as Legend'),
+            description=_(u'help_showlegend_text', default=u''),
             ),
         ),
     ))
 
-FieldsetFolderSchema['description'].widget.label = 'Fieldset Help'
-FieldsetFolderSchema['description'].widget.i18n_domain = 'ploneformgen'
-FieldsetFolderSchema['description'].widget.label_msgid = 'label_fieldsethelp_text'
+FieldsetFolderSchema['description'].widget.label = _(u'label_fieldsethelp_text', default=u'Fieldset Help')
 FieldsetFolderSchema['description'].widget.description = None
-FieldsetFolderSchema['description'].widget.description_msgid = None
 FieldsetFolderSchema.moveField('description', after='useLegend')
 
 

@@ -66,11 +66,9 @@ class FGLikertField(fieldsBase.BaseFormField):
             required=1,
             default=default_questions,
             widget=LinesWidget(
-                label='Questions',
-                description = """List of questions; these will be the rows of the table.""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fglikert_questions",
-                description_msgid = "help_fglikert_questions",
+                label=_(u'label_fglikert_questions', default=u'Questions'),
+                description = _(u'help_fglikert_questions',
+                    default=u"""List of questions; these will be the rows of the table."""),
             ),
         ),
         LinesField('likertAnswers',
@@ -78,12 +76,10 @@ class FGLikertField(fieldsBase.BaseFormField):
             required=1,
             default=default_answers,
             widget=LinesWidget(
-                label='Answers',
-                description = """List of possible answers for each of the questions;
-                    these will be the columns of the table.""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fglikert_answers",
-                description_msgid = "help_fglikert_answers",
+                label=_(u'label_fglikert_answers', default=u'Answers'),
+                description = _(u'help_fglikert_answers',
+                default=u"""List of possible answers for each of the questions;
+                    these will be the columns of the table."""),
             ),
         ),
     ))

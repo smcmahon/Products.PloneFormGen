@@ -67,10 +67,8 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         searchable=0,
         default="Submit",
         widget=StringWidget(
-            label="Submit Button Label",
-            label_msgid = "label_submitlabel_text",
-            description_msgid = "help_submitlabel_text",
-            i18n_domain = "ploneformgen",
+            label=_(u'label_submitlabel_text', default=u"Submit Button Label"),
+            description = _(u'help_submitlabel_text', default=u""),
             ),
         ),
     BooleanField('useCancelButton',
@@ -78,10 +76,9 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         searchable=0,
         default='0',
         languageIndependent=1,
-        widget=BooleanWidget(label='Show Reset Button',
-            label_msgid = "label_showcancel_text",
-            description_msgid = "help_showcancel_text",
-            i18n_domain = "ploneformgen",
+        widget=BooleanWidget(label=_(u'label_showcancel_text',
+                                     default=u'Show Reset Button'),
+            description=_(u'help_showcancel_text', default=u''),
             ),
         ),
     StringField('resetLabel',
@@ -89,25 +86,20 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         searchable=0,
         default="Reset",
         widget=StringWidget(
-                label="Reset Button Label",
-                label_msgid = "label_reset_button",
-                i18n_domain = 'ploneformgen',
+                label=_(u'label_reset_button', default=u"Reset Button Label"),
                 ),
         ),
     LinesField('actionAdapter',
         vocabulary='actionAdaptersDL',
         widget=MultiSelectionWidget(
-            label="Action Adapter",
-            description="""
+            label=_(u'label_actionadapter_text', default=u"Action Adapter"),
+            description=_(u'help_actionadapter_text', default=u"""
                 To make your form do something useful when submitted:
                 add one or more form action adapters to the form folder,
                 configure them, then return to this
                 form and select the active ones.
-                """,
+                """),
             format='checkbox',
-            label_msgid = "label_actionadapter_text",
-            description_msgid = "help_actionadapter_text",
-            i18n_domain = "ploneformgen",
             ),
         ),
     StringField('thanksPage',
@@ -115,16 +107,13 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         required=False,
         vocabulary='thanksPageVocabulary',
         widget=SelectionWidget(
-            label='Thanks Page',
-            label_msgid = "label_thankspage_text",
-            description="""
+            label=_(u'label_thankspage_text', default=u'Thanks Page'),
+            description=_(u'help_thankspage_text', default=u"""
                 Pick a contained page you wish to show on a successful
                 form submit. (If none are available, add one.)
                 Choose none to simply display the form
                 field values.
-            """,
-            description_msgid = "help_thankspage_text",
-            i18n_domain = "ploneformgen",
+            """),
             ),
         ),
     BooleanField('forceSSL',
@@ -132,17 +121,14 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default=False,
         # write_permission=EDIT_ADVANCED_PERMISSION,
         widget=BooleanWidget(
-            label='Force SSL connection',
-            label_msgid='label_force_ssl',
-            description="""
+            label=_(u'label_force_ssl', default=u'Force SSL connection'),
+            description=_(u'help_force_ssl', default=u"""
                 Check this to make the form redirect to an SSL-enabled
                 version of itself (https://) if accessed via a non-SSL
                 URL (http://).  In order to function properly,
                 this requires a web server that has been configured to
                 handle the HTTPS protocol on port 443 and forward it to Zope.
-            """,
-            description_msgid = 'help_force_ssl',
-            i18n_domain = 'ploneformgen',
+            """),
             ),
         ),
     TextField('formPrologue',
@@ -157,12 +143,10 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
         widget = RichWidget(
-            label = "Form Prologue",
-            label_msgid = "label_prologue_text",
-            description = "This text will be displayed above the form fields.",
-            description_msgid = "help_prologue_text",
+            label = _(u'label_prologue_text', default=u"Form Prologue"),
+            description = _(u'help_prologue_text',
+                default=u"This text will be displayed above the form fields."),
             rows = 8,
-            i18n_domain = "ploneformgen",
             allow_file_upload = zconf.ATDocument.allow_document_upload,
             ),
         ),
@@ -178,12 +162,10 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
         widget = RichWidget(
-            label = "Form Epilogue",
-            label_msgid = "label_epilogue_text",
-            description = "The text will be displayed after the form fields.",
-            description_msgid = "help_epilogue_text",
+            label = _(u'label_epilogue_text', default=u"Form Epilogue"),
+            description = _(u'help_epilogue_text',
+                default=u"The text will be displayed after the form fields."),
             rows = 8,
-            i18n_domain = "ploneformgen",
             allow_file_upload = zconf.ATDocument.allow_document_upload,
             ),
         ),
@@ -193,8 +175,9 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         required=0,
         languageIndependent=1,
         write_permission=EDIT_TALES_PERMISSION,
-        widget=StringWidget(label="Custom Success Action",
-            description="""
+        widget=StringWidget(label=_(u'label_thankspageoverride_text',
+                                    default=u"Custom Success Action"),
+            description=_(u'help_thankspageoverride_text', default=u"""
                 Use this field in place of a thanks-page designation
                 to determine final action after calling
                 your action adapter (if you have one). You would usually use
@@ -206,11 +189,8 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
                 and a TALES expression. For example,
                 "redirect_to:string:thanks-page" would redirect to
                 'thanks-page'.
-            """,
+            """),
             size=70,
-            label_msgid = "label_thankspageoverride_text",
-            description_msgid = "help_thankspageoverride_text",
-            i18n_domain = "ploneformgen",
             ),
         ),
     StringField('formActionOverride',
@@ -219,17 +199,14 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         required=0,
         write_permission=EDIT_ADVANCED_PERMISSION,
         languageIndependent=1,
-        widget=StringWidget(label="Custom Form Action",
-            description="""
+        widget=StringWidget(label=_(u'label_formactionoverride_text', default=u"Custom Form Action"),
+            description=_(u'help_formactionoverride_text', default=u"""
                 Use this field to override the form action attribute.
                 Specify a URL to which the form will post.
                 This will bypass form validation, success action
                 adapter and thanks page.
-            """,
+            """),
             size=70,
-            label_msgid = "label_formactionoverride_text",
-            description_msgid = "help_formactionoverride_text",
-            i18n_domain = "ploneformgen",
             ),
         ),
     TALESString('onDisplayOverride',
@@ -240,8 +217,9 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         default='',
         languageIndependent=1,
-        widget=StringWidget(label="Form Setup Script",
-            description="""
+        widget=StringWidget(label=_(u'label_OnDisplayOverride_text',
+                                    default=u"Form Setup Script"),
+            description=_(u'help_OnDisplayOverride_text', default=u"""
                 A TALES expression that will be called when the form is
                 displayed.
                 Leave empty if unneeded.
@@ -251,11 +229,8 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
                 Any value returned by the expression is ignored.
                 PLEASE NOTE: errors in the evaluation of this expression
                 will cause an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_OnDisplayOverride_text",
-            description_msgid = "help_OnDisplayOverride_text",
             ),
         ),
     TALESString('afterValidationOverride',
@@ -266,8 +241,9 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         default='',
         languageIndependent=1,
-        widget=StringWidget(label="After Validation Script",
-            description="""
+        widget=StringWidget(label=_(u'label_AfterValidationOverride_text',
+                                    default=u"After Validation Script"),
+            description=_(u'help_AfterValidationOverride_text', default=u"""
                 A TALES expression that will be called after the form is
                 successfully validated, but before calling an action adapter
                 (if any) or displaying a thanks page.
@@ -278,11 +254,8 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
                 Any value returned by the expression is ignored.
                 PLEASE NOTE: errors in the evaluation of this expression will
                 cause an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_AfterValidationOverride_text",
-            description_msgid = "help_AfterValidationOverride_text",
             ),
         ),
     TALESString('headerInjection',
@@ -293,19 +266,17 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         default='',
         languageIndependent=1,
-        widget=StringWidget(label="Header Injection",
-            description="""
+        widget=StringWidget(label=_(u'label_headerInjection_text',
+                                    default=u"Header Injection"),
+            description=_(u'help_headerInjection_text', default=u"""
                 This override field allows you to insert content into the xhtml
                 head. The typical use is to add custom CSS or JavaScript.
                 Specify a TALES expression returning a string. The string will
                 be inserted with no interpretation.
                 PLEASE NOTE: errors in the evaluation of this expression will
                 cause an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_headerInjection_text",
-            description_msgid = "help_headerInjection_text",
             ),
         ),
     ))
@@ -319,14 +290,11 @@ if HAS_PLONE_PROTECT:
             schemata='overrides',
             write_permission=EDIT_ADVANCED_PERMISSION,
             widget=BooleanWidget(
-                label='CSRF Protection',
-                label_msgid='label_csrf',
-                description="""
+                label=_(u'label_csrf', default=u'CSRF Protection'),
+                description=_(u'help_csrf', default=u"""
                     Check this to employ Cross-Site Request Forgery protection.
                     Note that only HTTP Post actions will be allowed.
-                """,
-                description_msgid = 'help_csrf',
-                i18n_domain = 'ploneformgen',
+                """),
                 ),
             ),
     ))

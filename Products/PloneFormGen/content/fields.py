@@ -53,11 +53,10 @@ class FGStringField(BaseFormField):
         StringField('fgStringValidator',
             vocabulary='stringValidatorsDL',
             enforceVocabulary=1,
-            widget=SelectionWidget(label='Validator',
-                description="""Tests input against simple string patterns.""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgstringvalidator_text",
-                description_msgid = "help_fgstringvalidator_text",
+            widget=SelectionWidget(label=_(u'label_fgstringvalidator_text',
+                                           default=u'Validator'),
+                description=_(u'help_fgstringvalidator_text',
+                  default=u"""Tests input against simple string patterns."""),
                 ),
         ),
     ))
@@ -171,13 +170,11 @@ class FGIntegerField(BaseFormField):
             required=1,
             default='0',
             widget=IntegerWidget(
-                label="Minimum Acceptable Value",
-                description="""
-                    The form will not accept values less than the number you enter here.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_minval_text",
-                description_msgid = "help_minval_text",
+                label=_(u'label_minval_text',
+                        default=u"Minimum Acceptable Value"),
+                description=_(u'help_minval_text', default=u"""
+            The form will not accept values less than the number you enter here.
+                """),
                 ),
             ),
         IntegerField('maxval',
@@ -185,13 +182,10 @@ class FGIntegerField(BaseFormField):
             required=1,
             default='10000',
             widget=IntegerWidget(
-                label="Maximum Acceptable Value",
-                description="""
+                label=_(u'label_maxval_text', default=u"Maximum Acceptable Value"),
+                description=_(u'help_maxval_text', default=u"""
                     The form will not accept values greater than the number you enter here.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_maxval_text",
-                description_msgid = "help_maxval_text",
+                """),
                 ),
             ),
         maxlengthField,
@@ -241,14 +235,12 @@ class FGFixedPointField(BaseFormField):
             required=0,
             default='0.0',
             widget=DecimalWidget(
-                label="Minimum Acceptable Value",
-                description="""
-                    The form will not accept values less than the number you enter here.
-                """,
+                label=_(u'label_minval_text',
+                        default=u"Minimum Acceptable Value"),
+                description=_(u'help_minval_text', default=u"""
+            The form will not accept values less than the number you enter here.
+                """),
                 size=8,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_minval_text",
-                description_msgid = "help_minval_text",
                 ),
             ),
         FixedPointField('maxval',
@@ -256,14 +248,11 @@ class FGFixedPointField(BaseFormField):
             required=1,
             default='10000.0',
             widget=DecimalWidget(
-                label="Maximum Acceptable Value",
-                description="""
+                label=_(u'label_maxval_text', default=u"Maximum Acceptable Value"),
+                description=_(u'help_maxval_text', default=u"""
                     The form will not accept values greater than the number you enter here.
-                """,
+                """),
                 size=8,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_maxval_text",
-                description_msgid = "help_maxval_text",
                 ),
             ),
         maxlengthField,
@@ -337,20 +326,15 @@ class FGBooleanField(BaseFormField):
             searchable=0,
             required=0,
             widget=BooleanWidget(
-                label='Default',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgdefault_text",
-                description_msgid = "help_fgdefault_text",
+                label=_(u'label_fgdefault_text', default=u'Default'),
+                description=_(u'help_fgdefault_text', default=u''),
                 ),
         ),
         StringField('fgBooleanValidator',
             vocabulary='boolVocabDL',
             enforceVocabulary=1,
-            widget=SelectionWidget(label='Validator',
-                description="""Choose a validator to require a particular response.""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgbooleanvalidator_text",
-                description_msgid = "help_fgbooleanvalidator_text",
+            widget=SelectionWidget(label=_(u'label_fgbooleanvalidator_text', default=u'Validator'),
+                description=_(u'help_fgbooleanvalidator_text', default=u"""Choose a validator to require a particular response."""),
                 ),
         ),
         StringField('fgBoolTrueString',
@@ -358,11 +342,8 @@ class FGBooleanField(BaseFormField):
             searchable=0,
             default='1',
             widget=StringWidget(
-                label="True Display String",
-                description="""String to use in thanks page and mail when the field's checkbox is checked.""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgbooleantruestring_text",
-                description_msgid = "help_fgbooleantruestring_text",
+                label=_(u'label_fgbooleantruestring_text', default=u"True Display String"),
+                description=_(u'help_fgbooleantruestring_text', default=u"""String to use in thanks page and mail when the field's checkbox is checked."""),
                 ),
             ),
         StringField('fgBoolFalseString',
@@ -370,20 +351,16 @@ class FGBooleanField(BaseFormField):
             searchable=0,
             default='0',
             widget=StringWidget(
-                label="False Display String",
-                description="""String to use in thanks page and mail when the field's checkbox is unchecked.""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgbooleanfalsestring_text",
-                description_msgid = "help_fgbooleanfalsestring_text",
+                label=_(u'label_fgbooleanfalsestring_text', default=u"False Display String"),
+                description=_(u'help_fgbooleanfalsestring_text', default=u"""String to use in thanks page and mail when the field's checkbox is unchecked."""),
                 ),
             ),
     ))
     schema['required'].widget.description = \
-        """NOTE: For a checkbox field, the required flag doesn't do anything beyond
+        _(u'help_boolrequired_text', default=u"""NOTE: For a checkbox field, the required flag doesn't do anything beyond
            putting a 'required' marker next to the label. If you wish to require a
            particular input, choose a validator below.
-        """
-    schema['required'].widget.description_msgid = "help_boolrequired_text"
+        """)
 
     # 'hidden' isn't really useful for this field.
     del schema['hidden']
@@ -468,10 +445,8 @@ class FGDateField(BaseFormField):
             required=0,
             default=1,
             widget=BooleanWidget(
-                label='Show Time Selection Options',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgshowhm_text",
-                description_msgid = "help_fgshowhm_text",
+                label=_(u'label_fgshowhm_text', default=u'Show Time Selection Options'),
+                description=_(u'help_fgshowhm_text', default=u''),
                 ),
         ),
         IntegerField('fgStartingYear',
@@ -479,10 +454,8 @@ class FGDateField(BaseFormField):
             required=0,
             default='1999',
             widget=IntegerWidget(
-                label='Starting Year',
-                i18n_domain = "ploneformgen",
+                label=_(u'label_fgstartingyear_text', default=u'Starting Year'),
                 label_msgid = "label_fgstartingyear_text",
-                description = "The first year to offer in the year drop-down.",
                 description_msgid = "help_fgstartingyear_text",
                 ),
         ),
@@ -491,12 +464,9 @@ class FGDateField(BaseFormField):
             required=0,
             default=None,
             widget=IntegerWidget(
-                label='Ending Year',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgendingyear_text",
-                description = """The last year to offer in the year drop-down.
-                 Leave this empty if you wish to instead use a number of future years.""",
-                description_msgid = "help_fgendingyear_text",
+                label=_(u'label_fgendingyear_text', default=u'Ending Year'),
+                description = _(u'help_fgendingyear_text', default=u"""The last year to offer in the year drop-down.
+                 Leave this empty if you wish to instead use a number of future years."""),
                 ),
         ),
         IntegerField('fgFutureYears',
@@ -504,12 +474,9 @@ class FGDateField(BaseFormField):
             required=0,
             default='5',
             widget=IntegerWidget(
-                label='Future Years To Display',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgfutureyears_text",
-                description = """The number of future years to offer in the year drop-down.
-                 (This is only applicable if you have not specified an ending year.)""",
-                description_msgid = "help_fgfutureyears_text",
+                label=_(u'label_fgfutureyears_text', default=u'Future Years To Display'),
+                description = _(u'help_fgfutureyears_text', default=u"""The number of future years to offer in the year drop-down.
+                 (This is only applicable if you have not specified an ending year.)"""),
                 ),
         ),
 ))
@@ -738,10 +705,8 @@ class FGSelectionField(BaseFormField):
             enforceVocabulary=1,
             vocabulary='formatVocabDL',
             widget=SelectionWidget(
-                label='Presentation Widget',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgformat_text",
-                description_msgid = "help_fgformat_text",
+                label=_(u'label_fgformat_text', default=u'Presentation Widget'),
+                description=_(u'help_fgformat_text', default=u''),
                 ),
         ),
     ))
@@ -837,10 +802,8 @@ class FGMultiSelectField(BaseFormField):
             enforceVocabulary=1,
             vocabulary='formatVocabDL',
             widget=SelectionWidget(
-                label='Presentation Widget',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgmsformat_text",
-                description_msgid = "help_fgmsformat_text",
+                label=_(u'label_fgmsformat_text', default=u'Presentation Widget'),
+                description=_(u'help_fgmsformat_text', default=u''),
                 ),
         ),
     ))
@@ -973,11 +936,8 @@ class FGTextField(BaseFormField):
             required=0,
             default=False,
             widget=BooleanWidget(
-                label="Reject Text with Links?",
-                description="""Useful for stopping spam""",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_validate_link_spam_text",
-                description_msgid = "help_fgmsformat_text",
+                label=_(u'label_validate_link_spam_text', default=u"Reject Text with Links?"),
+                description=_(u'help_fgmsformat_text', default=u"""Useful for stopping spam"""),
                 ),
             ),
         ))
@@ -1065,11 +1025,8 @@ class FGRichTextField(BaseFormField):
                 vocabulary='htmlValidatorsDL',
                 enforceVocabulary=1,
                 default='isTidyHtmlWithCleanup',
-                widget=SelectionWidget(label='Validator',
-                    description="""Input tests using HTMLTidy (if installed).""",
-                    i18n_domain = "ploneformgen",
-                    label_msgid = "label_fgstringvalidator_text",
-                    description_msgid = "help_fgrtvalidator_text",
+                widget=SelectionWidget(label=_(u'label_fgstringvalidator_text', default=u'Validator'),
+                    description=_(u'help_fgrtvalidator_text', default=u"""Input tests using HTMLTidy (if installed)."""),
                     ),
                 ),
         ))
@@ -1148,13 +1105,10 @@ class FGRichLabelField(BaseFormField):
             default_content_type = 'text/html',
             default_output_type = 'text/x-html-safe',
             allowable_content_types = zconf.ATDocument.allowed_content_types,
-            widget=RichWidget(label='Label body',
-                description="""
+            widget=RichWidget(label=_(u'label_fglabelbody_text', default=u'Label body'),
+                description=_(u'help_fglabelbody_text', default=u"""
                     The text to display in the form.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fglabelbody_text",
-                description_msgid = "help_fglabelbody_text",
+                """),
                 allow_file_upload = False,
                 ),
             ),
@@ -1165,26 +1119,21 @@ class FGRichLabelField(BaseFormField):
             validators=('talesvalidator',),
             default='',
             write_permission=EDIT_TALES_PERMISSION,
-            widget=StringWidget(label="Default Expression",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtdefault_text', default=u"Default Expression"),
+                description=_(u'help_fgtdefault_text', default=u"""
                     A TALES expression that will be evaluated when the form is displayed
                     to get the field default value.
                     Leave empty if unneeded. Your expression should evaluate as a string.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtdefault_text",
-                description_msgid = "help_fgtdefault_text",
                 ),
             ),
         ))
 
-    schema['title'].widget.label = "Title"
-    schema['title'].widget.label_msgid='label_title'
-    schema['title'].widget.description = "Not displayed on form."
-    schema['title'].widget.description_msgid = 'help_notdisplayed_text'
+    schema['title'].widget.label = _(u'label_title', default=u"Title")
+    schema['title'].widget.description = _(u'help_notdisplayed_text', default=u"Not displayed on form.")
     schema['description'].widget.visible = {'view':'invisible','edit':'invisible'}
 
     # Standard content type setup
@@ -1245,11 +1194,8 @@ class FGFileField(BaseFormField):
             required=0,
             default=0,
             widget=IntegerWidget(
-                label='Maximum Upload Size (Megabytes)',
-                description="""Set to 0 for no limit.""",
-                label_msgid = "label_filemaxmb_text",
-                description_msgid = "help_filemaxmb_text",
-                i18n_domain = "ploneformgen",
+                label=_(u'label_filemaxmb_text', default=u'Maximum Upload Size (Megabytes)'),
+                description=_(u'help_filemaxmb_text', default=u"""Set to 0 for no limit."""),
                 ),
         ),
 
