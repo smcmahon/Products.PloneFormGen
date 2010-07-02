@@ -133,16 +133,25 @@ class FormSaveDataAdapter(FormActionAdapter):
         # we're going to use an LOBTree for storage. we need to
         # consider the possibility that self is from an
         # older version that uses the native Archetypes storage
+        # or the former IOBTree (<= 1.6.0b2 )
         # in the SavedFormInput field.
-        
-        if not base_hasattr(self, '_inputStorage'):
+        updated = base_hasattr(self, '_inputStorage') and \
+                  base_hasattr(self, '_inputItems') and \
+                  base_hasattr(self, '_length')
+
+        if not updated:
+            try:
+                saved_input = self.getSavedFormInput()
+            except AttributeError:
+                saved_input = []
+
             self._inputStorage = SavedDataBTree()
             i = 0
             self._inputItems = 0
             self._length = Length()
 
-            if base_hasattr(self, 'SavedFormInput') and len(self.SavedFormInput):
-                for row in self.SavedFormInput:
+            if len(saved_input):
+                for row in saved_input:
                     self._inputStorage[i] = row
                     i += 1
                 self.SavedFormInput = []

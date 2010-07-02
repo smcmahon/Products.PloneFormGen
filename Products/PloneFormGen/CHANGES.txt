@@ -4,6 +4,11 @@ Change History
 1.6.0b4 (unreleased)
 --------------------
 
+- Fix FormSaveDataAdapter to transparently
+  migrate storage to LOBTree introduced in 1.6.0b4
+  This closes http://plone.org/products/ploneformgen/issues/295 
+  [hplocher]
+
 - Updated exportimport to use five.formlib. 
   [vangheem]
 
