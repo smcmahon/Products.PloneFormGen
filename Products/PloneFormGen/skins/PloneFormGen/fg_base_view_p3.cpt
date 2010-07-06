@@ -17,7 +17,7 @@
                    footer_macro edit_macros/footer | footer_macro | base_macros/footer;
                    css python:here.getUniqueWidgetAttr(fields, 'helper_css');
                    js python:here.getUniqueWidgetAttr(fields, 'helper_js');
-				   conditions python:here.restrictedTraverse('@@pfg-conditions')">
+				   ">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -116,15 +116,23 @@
         <metal:use_body use-macro="body_macro" />
 
     		<p tal:replace="structure here/formEpilogue | nothing" />
-
-			<div tal:condition="canModify" 
-	               id="pfgWidgetWrapper"
+			<tal:block tal:condition="canModify">
+			<div id="pfgWidgetWrapper"
 	               class="widgetManager"
 	               summary="Widget Manager"
 	               style="display:none"
-	               tal:define="addtypes context/@@folder_factories/addable_types"> <!-- define the fields -->
+				   tal:define="conditions python:here.restrictedTraverse('@@pfg-conditions');
+							 addtypes context/@@folder_factories/addable_types">  <!-- define the fields -->				
+
 				<div class="header">
-					<h3>Widgets Manager</h3>
+					<h3>Widgets Manager
+						<span>
+							<img alt="Ajax Loader" 
+								tal:attributes="src string:${context/portal_url}/ajax-loader.gif"
+								style="visibility:hidden" 
+								class="ajax-loader" />
+						</span>
+					</h3>
 				</div>
      			<div class="widgets">
 					<!-- List of Fields, followed by the list of Adapters and Pages -->
@@ -142,7 +150,7 @@
                     </tal:typelist>
 				</div>
 			</div>
-
+		</tal:block>
         <table tal:condition="canModify" 
                id="pfgActionEdit"
                class="listing"

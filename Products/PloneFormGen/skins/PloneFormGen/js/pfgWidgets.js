@@ -38,6 +38,7 @@ pfgWidgets = {
 		});
 		
 		this.editTitles();
+		this.toggleRequired();
 	},
 	
 	getPos: function(node) {
@@ -46,11 +47,14 @@ pfgWidgets = {
 	},
 	
 	updatePositionOnServer: function(i, t) {
+		if (i && t) {
+			$("img.ajax-loader").css('visibility', 'visible');
+		}
 	    var args = {
 	      item_id: i,
 	      target_id: t
 	    };
-	    $.post('reorderField', args)
+	    $.post('reorderField', args, function() { $("img.ajax-loader").css('visibility', 'hidden')} )
 	},
 	
 	editTitles: function() {
@@ -68,7 +72,7 @@ pfgWidgets = {
 			$(this).html($(node).val(content));
 			$(node).fadeIn();
 			$(this).children().unwrap();
-			node.focus();
+			node.focus(); node.select();
 		 
 			$(node).blur(function(e) {
 		  		$(this).wrap("<label class='formQuestion' for='"+ tmpfor +"'></label>");
@@ -77,14 +81,26 @@ pfgWidgets = {
 					item_id: tmpfor,
 					title: $(this).val()
 				};
-				$.post("updateFieldTitle",args);
+				if (args['title']!=content) { // only update if we actually changed the field
+					$("img.ajax-loader").css('visibility', 'visible');					
+					$.post("updateFieldTitle",args, function() { $("img.ajax-loader").css('visibility', 'hidden')});
+				}
 		 	});
 		});
 
 	},
 	
+	toggleRequired: function() {
+		$("span.required").css('cursor', 'pointer');
+		$("span.required").click(function() {
+			var parentId = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
+			$(this).css('color', '#000000');
+			alert('Changed!');
+		})
+	},
+	
 	deinit: function() {
-		$("label.formQuestion").die(); // removes even handlers setup by .live
+		$("label.formQuestion").die(); // removes event handlers setup by .live
 	}
 	
 	

@@ -49,3 +49,11 @@ tr.placeholder td {
 	height: 100px;
 	border: 1px dashed gray;
 }
+
+td.editHook * {
+	margin-right: 5px;
+}
+
+td.draggingHook {
+	cursor: move;
+}

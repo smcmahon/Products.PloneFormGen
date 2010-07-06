@@ -10,19 +10,6 @@ pfgQEdit.rows = null;
 pfgQEdit.targetId = null;
 pfgQEdit.endPos = null;
 
-
-pfgQEdit.updatePositionOnServer = function() {
-    var dragging = pfgQEdit.dragging;
-    if (!dragging) {return;}
-    
-    var args = {
-      item_id: dragging.attr('id').substr('folder-contents-item-'.length),
-      target_id: pfgQEdit.targetId.substr('folder-contents-item-'.length)
-    };
-    jQuery.post('reorderField', args);
-};
-
-
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
 
@@ -45,13 +32,12 @@ pfgQEdit.addTable = function () {
             felem = felem.parent();
             felem.after('<td class="draggable draggingHook editHook">::</td>');
             felem.after(
-                '<td class="editHook">'+
+                '<td class="editHook" style="width: 94px">'+
+				'<input type="checkbox" name="' + fname +'-required" />'+
+				'<a href="' + fname + '/edit" title="Edit Field">'+
+                '<img src="edit.gif" alt="Edit" /></a>'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
                 '<img src="delete_icon.gif" alt="Delete" /></a>'+
-                '</td>'+
-                '<td class="editHook">'+
-                '<a href="' + fname + '/edit" title="Edit Field">'+
-                '<img src="edit.gif" alt="Edit" /></a>'+
                 '</td>'
                 );
         }
@@ -63,7 +49,7 @@ pfgQEdit.addTable = function () {
          );
     jQuery("table#pfg-qetable").prepend(
         '<thead><tr>'+
-        '<th>Field</th><th>Delete</th><th>Edit</th><th>Order</th>'+
+        '<th>Field</th><th style="text-align:center">Actions</th><th>Order</th>'+
         '</tr>'
         );
 };
@@ -182,7 +168,7 @@ jQuery(document).ready(function() {
   });
 
   if (location.hash.indexOf('qedit') == -1) {
-    jQuery("#content #pfgqedit").show();
+    jQuery("div#pfgqedit").show();
   } else {
     pfgQEdit.qedit();
   }
