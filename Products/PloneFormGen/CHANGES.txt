@@ -28,6 +28,24 @@ Change History
 - Fixed ordering of fields in edit mode. Another request was sent to server when the "exit edit mode" button was pressed
   (Manca)
 
+- Implemented jQuery UI plugin for better sorting, dragging and dropping fields
+  (Manca)
+
+- On the fly editing Field Titles (by double clicking on its label)
+  (Manca)
+
+- Ajax feedback image for all the ajax based actions (near Widgets Manager header)
+  (Manca)
+
+- Edit and Delete table columns merged under one called "Actions"
+  (Manca)
+
+- Added on the fly toggling of required attribute for available fields
+  (Manca)
+
+- Optimized code for ajax requests
+  (Manca)
+
 1.6.0b3
 -------
 

@@ -91,12 +91,34 @@ pfgWidgets = {
 	},
 	
 	toggleRequired: function() {
-		$("span.required").css('cursor', 'pointer');
-		$("span.required").click(function() {
-			var parentId = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
-			$(this).css('color', '#000000');
-			alert('Changed!');
-		})
+		var requiredParent = $("span.required").parent();
+		$(requiredParent).each(function () {
+			var parentId = $(this).attr('id').substr('archetypes-fieldname-'.length);
+			var checked = parentId?'checked':'none';
+			$("#pfg-qetable input[name=required-"+ parentId + "]").attr("checked", checked);			
+		});
+		$("#pfg-qetable input[name^=required-]").change(function() {
+			var id = $(this).attr('name').substr('required-'.length);
+			var requiredSpan = $('#archetypes-fieldname-'+id).find("span.required");
+			$("img.ajax-loader").css('visibility', 'visible');				
+			$.post('toggleRequired', {item_id: id }, function() {
+				// we put the required actions after we are sure the toggle is done on the server!
+				if (requiredSpan.length) { // remove the little tile and set input's required attr
+					requiredSpan.fadeOut(1000).remove();
+//					requiredSpan.remove();
+					$('#archetypes-fieldname-'+id+' #'+id).removeAttr("required");
+				}
+				else {
+					var spel = document.createElement("span");	// create a new span element to mark required fields
+					$(spel).attr("class", "required");
+				 	$(spel).css('color','rgb(255, 0, 0)');
+					$(spel).html("            ■");
+					$('#archetypes-fieldname-'+id+' label.formQuestion').after($(spel).fadeIn(1000));
+					$('#archetypes-fieldname-'+id+' #'+id).attr("required", "required")
+				}
+				$("img.ajax-loader").css('visibility', 'hidden')
+			});
+		});
 	},
 	
 	deinit: function() {

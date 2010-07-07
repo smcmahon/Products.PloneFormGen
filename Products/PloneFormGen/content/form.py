@@ -1092,6 +1092,19 @@ class FormFolder(ATFolder):
         self[item_id].setTitle(title)
         
         return "<done />"
+
+    security.declareProtected(ModifyPortalContent, 'toggleRequired')
+
+    def toggleRequired(self, item_id, **kw):
+	  """ toggle required Field attribute """
+	  
+	  if self[item_id].fgField.required==True:
+	  	self[item_id].fgField.required = False
+	  else:
+		self[item_id].fgField.required = True
+		
+	  return "<done />"
+		
 		
 registerATCT(FormFolder, PROJECTNAME)
 
