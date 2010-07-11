@@ -28,18 +28,18 @@ pfgQEdit.addTable = function () {
             }
             felem.wrap(
                 '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
-                '<td class="ofield" style="width: 50%"></td></tr>'
+                '<td class="ofield"></td></tr>'
                 );
             felem = felem.parent();
-            felem.after('<td class="draggable draggingHook editHook" style="width:10%"><div style="width: 100%">::</div></td>');
+            felem.after('<td class="draggable draggingHook editHook">::</td>');
             felem.after(
-                '<td class="editHook" style="width: 40%"><div style="width: 100%">'+ // 94px
+                '<td class="editHook">'+ // 94px
 				'<input type="checkbox" name="required-' + fname + '" title="Required?" />'+
 				'<a href="' + fname + '/edit" title="Edit Field">'+
                 '<img src="edit.gif" alt="Edit" /></a>'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
                 '<img src="delete_icon.gif" alt="Delete" /></a>'+
-                '</div></td>'
+                '</td>'
                 );
         }
     );

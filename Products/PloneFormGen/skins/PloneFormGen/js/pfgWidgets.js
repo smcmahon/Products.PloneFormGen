@@ -40,6 +40,11 @@ pfgWidgets = {
 		
 		this.editTitles();
 		this.toggleRequired();
+		/* handle AJAX error */
+		$(document).ajaxError(function(event, request, settings) {
+			$("img.ajax-loader").css('visibility', 'hidden');
+			alert("The has been an AJAX error on requesting page: " + settings.url);
+		});
 	},
 	
 	getPos: function(node) {
@@ -65,7 +70,7 @@ pfgWidgets = {
 		node.setAttribute("type", "text");
 		
 		// then we attach a new event to label fields
-		$("label.formQuestion").live('dblclick', function(e) {
+		$("#pfg-qetable label.formQuestion").live('dblclick', function(e) {
 			var content = $(this).text();
 			var tmpfor = $(this).attr('for');
 			$(this).append(node);

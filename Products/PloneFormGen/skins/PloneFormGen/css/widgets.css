@@ -1,7 +1,7 @@
 /** Widgets manager styles **/
 
 .pfg-form {
-	width: 50%;
+	width: 500px;
 	float: left;
 }
 
@@ -9,8 +9,16 @@
 	width: 100%;
 }
 
-.field {
-	width: 360px; /* because of the helper clone in sortable function */
+#pfg-qetable .ofield {
+	width: 330px;
+}
+
+#pfg-qetable .editHook {
+	width: 100px;
+}
+
+#pfg-qetable .draggingHook {
+	width: 50px;
 }
 
 #pfgWidgetWrapper {
