@@ -24,6 +24,7 @@ pfgWidgets = {
 		    handle: '> td.draggingHook',
 		    cursor: 'move',
 		    placeholder: 'placeholder',
+			containment: 'document',
 		    update: function(e, ui) {
 				finalPos = pfgWidgets.getPos(ui.item)
 				if (initPos > finalPos) { // we came from lower rows
