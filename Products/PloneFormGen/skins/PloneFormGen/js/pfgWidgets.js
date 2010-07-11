@@ -8,9 +8,10 @@ pfgWidgets = {
 		var item, target, table = $("#pfg-qetable tbody");
 		var initPos, finalPos;
 		var fixHelper = function(e, ui) {
-		    ui.children().each(function() {
-			  $(this).width($(this).width());
-		     });
+		    ui.children().each(function()  {
+			  $(this).clone(true);
+	//		  $(this).width($(this).width());
+		    });
 		    return ui;	
 		};
 		
@@ -19,7 +20,7 @@ pfgWidgets = {
 		       ui.placeholder.html('<td>&nbsp;</td>');
 			   initPos = pfgWidgets.getPos(ui.item);
 		    },			
-			helper: fixHelper,
+			helper: 'clone',
 		    handle: '> td.draggingHook',
 		    cursor: 'move',
 		    placeholder: 'placeholder',
@@ -65,7 +66,6 @@ pfgWidgets = {
 		
 		// then we attach a new event to label fields
 		$("label.formQuestion").live('dblclick', function(e) {
-			e.preventDefault();
 			var content = $(this).text();
 			var tmpfor = $(this).attr('for');
 			$(this).append(node);
@@ -94,10 +94,11 @@ pfgWidgets = {
 		var requiredParent = $("span.required").parent();
 		$(requiredParent).each(function () {
 			var parentId = $(this).attr('id').substr('archetypes-fieldname-'.length);
-			var checked = parentId?'checked':'none';
-			$("#pfg-qetable input[name=required-"+ parentId + "]").attr("checked", checked);			
+			$("#pfg-qetable").find("input[name=required-"+ parentId + "]").attr("checked", "checked");			
 		});
-		$("#pfg-qetable input[name^=required-]").change(function() {
+		
+		$("#pfg-qetable").find("input[name^=required-]").bind('change', function(event) {
+		//	event.preventDefault();
 			var id = $(this).attr('name').substr('required-'.length);
 			var requiredSpan = $('#archetypes-fieldname-'+id).find("span.required");
 			$("img.ajax-loader").css('visibility', 'visible');				
@@ -106,7 +107,7 @@ pfgWidgets = {
 				if (requiredSpan.length) { // remove the little tile and set input's required attr
 					requiredSpan.fadeOut(1000).remove();
 //					requiredSpan.remove();
-					$('#archetypes-fieldname-'+id+' #'+id).removeAttr("required");
+					$('#archetypes-fieldname-'+id).find('[name^='+id+']').removeAttr("required");
 				}
 				else {
 					var spel = document.createElement("span");	// create a new span element to mark required fields
@@ -114,10 +115,11 @@ pfgWidgets = {
 				 	$(spel).css('color','rgb(255, 0, 0)');
 					$(spel).html("            ■");
 					$('#archetypes-fieldname-'+id+' label.formQuestion').after($(spel).fadeIn(1000));
-					$('#archetypes-fieldname-'+id+' #'+id).attr("required", "required")
+					$('#archetypes-fieldname-'+id).find('[name^='+id+']').attr("required", "required")
 				}
 				$("img.ajax-loader").css('visibility', 'hidden')
 			});
+			return true;
 		});
 	},
 	

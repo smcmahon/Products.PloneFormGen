@@ -1,8 +1,16 @@
 /** Widgets manager styles **/
 
 .pfg-form {
-	width: 60%;
+	width: 50%;
 	float: left;
+}
+
+#pfg-qetable {
+	width: 100%;
+}
+
+.field {
+	width: 360px; /* because of the helper clone in sortable function */
 }
 
 #pfgWidgetWrapper {
@@ -56,4 +64,8 @@ td.editHook * {
 
 td.draggingHook {
 	cursor: move;
+}
+
+.ui-sortable-helper {
+	width: 75%;
 }
