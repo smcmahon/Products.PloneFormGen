@@ -17,7 +17,7 @@ pfgWidgets = {
 		
 		table.sortable({
 		  	start: function (event, ui) {
-		       ui.placeholder.html('<td>&nbsp;</td>');
+		       ui.placeholder.html('<td class="placeholder">&nbsp;</td>');
 			   initPos = pfgWidgets.getPos(ui.item);
 		    },			
 			helper: 'clone',

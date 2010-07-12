@@ -60,10 +60,11 @@ div.widgets {
 	padding:5px 15px;
 }
 
-tr.placeholder td {
+table.listing tbody tr.placeholder td {
 	width: 300px;
 	height: 100px;
 	border: 1px dashed gray;
+	background-color: #F1F1F1;
 }
 
 td.editHook * {
