@@ -41,6 +41,18 @@ pfgWidgets = {
 		
 		this.editTitles();
 		this.toggleRequired();
+		this.limitFields();
+		
+		$("div.widget").tooltip({
+			tip: ".tooltip",
+			position: "top center",
+			relative: "true",
+			offset: [-3, 0],
+			effect: "fade",
+			predelay: 700,
+			opacity: 0.9
+		});
+		
 		/* handle AJAX error */
 		$(document).ajaxError(function(event, request, settings) {
 			$("img.ajax-loader").css('visibility', 'hidden');
@@ -129,8 +141,30 @@ pfgWidgets = {
 		});
 	},
 	
+	limitFields: function() {
+		$("div.w-field").slice(7).hide();
+		if (!$(".more").length)
+			$("div.w-field:not(:hidden):last").after("<div class='more'>More fields...</div>");
+
+		$(".more").toggle(
+			function() {
+				$(this).hide();
+				$("div.w-field").slice(7).fadeIn();
+				$(this).insertAfter("div.w-field:not(:hidden):last");
+				$(this).html("Less fields...").show();
+			},
+			function() {
+				$(this).hide();
+				$("div.w-field").slice(7).fadeOut();
+				$(this).insertAfter("div.w-field:not(:hidden):last");
+				$(this).html("More fields...").show();
+			}
+		)
+	},
+	
 	deinit: function() {
 		$("label.formQuestion").die(); // removes event handlers setup by .live
+		$(".more").remove();
 	}
 	
 	
