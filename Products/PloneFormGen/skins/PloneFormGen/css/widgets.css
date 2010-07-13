@@ -63,8 +63,8 @@ div.widget {
 	width:210px;
 }
 
-div.widget-top h4 {
-	-moz-border-radius:6px;
+h4.widget-header {
+	-moz-border-radius:6px 6px 6px 6px;
 	-webkit-border-bottom-left-radius: 6px;
 	-webkit-border-bottom-right-radius: 6px;
 	-webkit-border-top-left-radius: 6px;
@@ -78,6 +78,11 @@ div.widget-top h4 {
 	margin-bottom: 4px;
 	overflow: hidden;
 	white-space:nowrap;
+}
+
+div.widget-inside {
+	padding: 5px;
+	display: none;
 }
 
 table.listing tbody tr.placeholder td {
@@ -125,4 +130,25 @@ div.widgets .fields-header, div.widgets .actions-header {
 	margin:auto;
 	text-align:center;
 	text-shadow:0 1px #FFFFFF;
+}
+
+#content .ui-sortable h4.widget-header {
+	margin: 0;
+	border: 0;
+	-moz-border-radius:6px 6px 0px 0px;
+	-webkit-border-bottom-left-radius: 0px;
+	-webkit-border-bottom-right-radius: 0px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;	
+}
+
+.ui-sortable div.widget {
+	width: 100%;
+	-moz-border-radius:6px 6px 6px 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	border: 1px solid #000000;
+	margin-bottom: 10px;
 }

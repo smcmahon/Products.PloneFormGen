@@ -141,10 +141,8 @@
                     <tal:typelist repeat="item addtypes">
     				<tal:block tal:define="set item/id" tal:condition="python: conditions.fieldBelongsToSet(set, 'Field')">
                     	<div class="widget w-field">
-                            <div class="widget-top">
-							  <h4><span tal:replace="item/title" >Type title</span></h4>
-							</div>
-							<div class="widget-inside" style="display:none">
+							<h4 class="widget-header" tal:content="item/title">Type title</h4>
+							<div class="widget-inside">
 								content
 							</div>
                         </div>
@@ -158,10 +156,8 @@
                     <tal:typelist repeat="item addtypes">
 					<tal:block tal:define="set item/id; desc item/description" tal:condition="python: not conditions.fieldBelongsToSet(set, 'Field')">
                         <div class="widget w-action">
-						   <div class="widget-top">
-                             <h4><span tal:replace="item/title" >Type title</span></h4>
-						   </div>
-						   <div class="widget-inside" style="display:none">
+                           <h4 class="widget-header" tal:content="item/title">Type title</h4>
+						   <div class="widget-inside">
 							 content
 						   </div>
                         </div>

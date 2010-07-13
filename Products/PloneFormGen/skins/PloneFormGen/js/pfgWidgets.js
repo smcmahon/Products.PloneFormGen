@@ -16,7 +16,7 @@ pfgWidgets = {
 		};
 		
 		table.sortable({
-		  	start: function (event, ui) {
+			start: function (event, ui) {
 		       ui.placeholder.html('<td class="placeholder">&nbsp;</td>');
 			   initPos = pfgWidgets.getPos(ui.item);
 		    },			
@@ -26,16 +26,24 @@ pfgWidgets = {
 		    placeholder: 'placeholder',
 			containment: 'document',
 		    update: function(e, ui) {
-				finalPos = pfgWidgets.getPos(ui.item)
-				if (initPos > finalPos) { // we came from lower rows
-					target = $(ui.item).next()
+				if (ui.item.is("div")) {
+					// perform the operations on the newly dragged element from the widgets manager
+					var item = ui.item;
+					$(item).children("div.widget-inside").slideDown();
+					
 				}
-				else { // we came from upper rows
-					target = $(ui.item).prev()
+				else {
+					finalPos = pfgWidgets.getPos(ui.item)
+					if (initPos > finalPos) { // we came from lower rows
+						target = $(ui.item).next()
+					}
+					else { // we came from upper rows
+						target = $(ui.item).prev()
+					}
+					item = $(ui.item).attr('id').substr('folder-contents-item-'.length)
+					target = target.attr('id').substr('folder-contents-item-'.length)
+					pfgWidgets.updatePositionOnServer(item, target)
 				}
-				item = $(ui.item).attr('id').substr('folder-contents-item-'.length)
-				target = target.attr('id').substr('folder-contents-item-'.length)
-				pfgWidgets.updatePositionOnServer(item, target)
 			}
 		});
 		
@@ -52,6 +60,12 @@ pfgWidgets = {
 			predelay: 700,
 			opacity: 0.9
 		});
+		
+		$("div.widget").draggable({
+		  connectToSortable: "#pfg-qetable tbody",
+		  helper: 'clone',
+		  containment: 'document'
+		})
 		
 		/* handle AJAX error */
 		$(document).ajaxError(function(event, request, settings) {
@@ -124,7 +138,6 @@ pfgWidgets = {
 				// we put the required actions after we are sure the toggle is done on the server!
 				if (requiredSpan.length) { // remove the little tile and set input's required attr
 					requiredSpan.fadeOut(1000).remove();
-//					requiredSpan.remove();
 					$('#archetypes-fieldname-'+id).find('[name^='+id+']').removeAttr("required");
 				}
 				else {
@@ -143,7 +156,7 @@ pfgWidgets = {
 	
 	limitFields: function() {
 		$("div.w-field").slice(7).hide();
-		if (!$(".more").length)
+		if (!$(".more").length)			// if there's no "More fields..." link, create it.
 			$("div.w-field:not(:hidden):last").after("<div class='more'>More fields...</div>");
 
 		$(".more").toggle(
@@ -164,7 +177,7 @@ pfgWidgets = {
 	
 	deinit: function() {
 		$("label.formQuestion").die(); // removes event handlers setup by .live
-		$(".more").remove();
+		$(".more").remove();		// remove the item with bounded events to avoid conflict when "quick-edit mode" is called again
 	}
 	
 	
