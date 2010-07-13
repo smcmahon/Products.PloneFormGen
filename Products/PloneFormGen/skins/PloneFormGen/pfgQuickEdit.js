@@ -97,7 +97,7 @@ pfgQEdit.addTable = function () {
             } else {
                 fname = this.id.substr('pfg-fieldsetname-'.length);
             }
-            felem = jQuery('#'+this.id);
+            var felem = jQuery('#'+this.id);
             if (felem.hasClass('pfgHidden')) {
                 felem.append('<div class="pfgqemarkup">Hidden field: '+fname+'</div>');
             }
@@ -106,7 +106,7 @@ pfgQEdit.addTable = function () {
                 '<td class="ofield"></td></tr>'
                 );
             felem = felem.parent();
-            felem.after('<td class="draggable draggingHook editHook">::</td>');
+            felem.before('<td class="draggable draggingHook editHook">⣿</td>');
             felem.after(
                 '<td class="editHook">'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
@@ -126,14 +126,14 @@ pfgQEdit.addTable = function () {
          );
     jQuery("table#pfg-qetable").prepend(
         '<thead><tr>'+
-        '<th>Field</th><th>Delete</th><th>Edit</th><th>Order</th>'+
+        '<th>&nbsp;</th><th>Field</th><th class="editHook">Delete</th><th class="editHook">Edit</th>'+
         '</tr>'
         );
 };
 
 pfgQEdit.initDnD = function () {
   // tie to folder-contents drag drop
-  table = '#pfg-qetable';
+  var table = '#pfg-qetable';
   pfgQEdit.table = jQuery(table);
   if (pfgQEdit.table.length) {
     pfgQEdit.rows = jQuery(table + " > tr," +
@@ -148,7 +148,7 @@ pfgQEdit.qedit = function (e) {
   jQuery("#pfgqedit").hide();
   jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
-  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+  var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") {
@@ -173,7 +173,7 @@ pfgQEdit.qedit = function (e) {
               subtype: 'ajax',
               filter: "#content",
               formselector: 'form[id$=base-edit]',
-              noform: 'reload',
+              noform:  function(){location.reload();},
               closeselector:'[name=form.button.cancel]'
           }
       );
@@ -182,7 +182,7 @@ pfgQEdit.qedit = function (e) {
               subtype: 'ajax',
               filter: "#content",
               formselector: 'form:has(input[value=Delete])',
-              noform: 'reload',
+              noform: function(){location.reload();},
               closeselector:'[name=form.button.Cancel]'
           }
       );
@@ -191,7 +191,7 @@ pfgQEdit.qedit = function (e) {
                 subtype: 'ajax',
                 filter: "#content",
                 formselector: 'form[id$=base-edit]',
-                noform: 'reload',
+                noform:  function(){location.reload();},
                 closeselector:'[name=form.button.Cancel]'
             }
       );
@@ -226,7 +226,7 @@ pfgQEdit.noedit = function (e) {
 
   pfgQEdit.stripTable();
   // enable all blurred elements
-  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+  var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") {this.disabled = false;}

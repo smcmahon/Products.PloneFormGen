@@ -4,6 +4,13 @@ Change History
 1.6.0b4 (unreleased)
 --------------------
 
+- Clean up quick edit visuals; make the drag and drop look like Plone 4.
+  [stevem]
+
+- Quick Edit reload after delete or other change wasn't working (at least in
+  firefox) as the browser wasn't reloading if there was a hash tag.
+  [stevem]
+
 - Fix FormSaveDataAdapter to transparently
   migrate storage to LOBTree introduced in 1.6.0b4
   This closes http://plone.org/products/ploneformgen/issues/295 
