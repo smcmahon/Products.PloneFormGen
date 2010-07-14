@@ -5,33 +5,42 @@ var pfgWidgets;
 pfgWidgets = {
 	
 	init: function() {
-		var item, target, table = $("#pfg-qetable tbody");
+		var item, target, table = $("#pfg-qetable");
 		var initPos, finalPos;
 		var fixHelper = function(e, ui) {
 		    ui.children().each(function()  {
-			  $(this).clone(true);
-	//		  $(this).width($(this).width());
+	//		  $(this).clone(true);
+			  $(this).width($(this).width());
 		    });
 		    return ui;	
 		};
 		
+		$("div.qefield").each(function() {
+			$(this).height($(this).height()); // workaround for children's height not being able to set using %s
+		})
+		
 		table.sortable({
 			start: function (event, ui) {
-		       ui.placeholder.html('<td class="placeholder">&nbsp;</td>');
-			   initPos = pfgWidgets.getPos(ui.item);
+		//       ui.placeholder.html('<td>&nbsp;</td><td class="placeholder">&nbsp;</td>');
+			   ui.placeholder.height(ui.item.height())
+			   initPos = pfgWidgets.getPos(ui.item);	
 		    },			
 			helper: 'clone',
-		    handle: '> td.draggingHook',
-		    cursor: 'move',
+			items: '.qefield',
+		    handle: '> div.draggingHook',
+//		    cursor: 'move',
 		    placeholder: 'placeholder',
 			containment: 'document',
 		    update: function(e, ui) {
-				if (ui.item.is("div")) {
+				if (ui.item.is("div.widget")) {
 					// perform the operations on the newly dragged element from the widgets manager
 					var item = ui.item;
+					$(item).addClass("qechild");
+					$(item).wrap("<div class='qefield'></div>"); // on the fly wrapping with necessary table elements
+					$(item).before("<div class='draggable draggingHook editHook qechild'>::</td>");
+					$(item).after('<div class="editHook qechild">&nbsp;</td>');
 					$(item).children("div.widget-inside").slideDown();
-					
-				}
+				} 
 				else {
 					finalPos = pfgWidgets.getPos(ui.item)
 					if (initPos > finalPos) { // we came from lower rows
@@ -40,8 +49,8 @@ pfgWidgets = {
 					else { // we came from upper rows
 						target = $(ui.item).prev()
 					}
-					item = $(ui.item).attr('id').substr('folder-contents-item-'.length)
-					target = target.attr('id').substr('folder-contents-item-'.length)
+					item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length)
+					target = target.find(".field").attr('id').substr('folder-contents-item-'.length)
 					pfgWidgets.updatePositionOnServer(item, target)
 				}
 			}
@@ -62,7 +71,7 @@ pfgWidgets = {
 		});
 		
 		$("div.widget").draggable({
-		  connectToSortable: "#pfg-qetable tbody",
+		  connectToSortable: "#pfg-qetable",
 		  helper: 'clone',
 		  containment: 'document'
 		})
@@ -75,7 +84,7 @@ pfgWidgets = {
 	},
 	
 	getPos: function(node) {
-	    var pos = node.parent().children('.draggable').index(node[0]);
+	    var pos = node.parent().children('.qefield').index(node[0]);
 	    return pos == -1 ? null : pos;
 	},
 	
@@ -162,13 +171,13 @@ pfgWidgets = {
 		$(".more").toggle(
 			function() {
 				$(this).hide();
-				$("div.w-field").slice(7).fadeIn();
+				$("div.widgets div.w-field").slice(7).fadeIn();
 				$(this).insertAfter("div.w-field:not(:hidden):last");
 				$(this).html("Less fields...").show();
 			},
 			function() {
 				$(this).hide();
-				$("div.w-field").slice(7).fadeOut();
+				$("div.widgets div.w-field").slice(7).fadeOut();
 				$(this).insertAfter("div.w-field:not(:hidden):last");
 				$(this).html("More fields...").show();
 			}

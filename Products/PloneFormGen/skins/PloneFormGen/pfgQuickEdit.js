@@ -22,36 +22,37 @@ pfgQEdit.addTable = function () {
             } else {
                 fname = this.id.substr('pfg-fieldsetname-'.length);
             }
-            felem = jQuery('#'+this.id);
+            var felem = jQuery('#'+this.id);
             if (felem.hasClass('pfgHidden')) {
                 felem.append('<div class="pfgqemarkup">Hidden field: '+fname+'</div>');
             }
-            felem.wrap(
+         /*   felem.wrap(
                 '<tr id="folder-contents-item-' + fname + '" class="draggable">'+
                 '<td class="ofield"></td></tr>'
-                );
-            felem = felem.parent();
-            felem.after('<td class="draggable draggingHook editHook">::</td>');
+                ); */
+         //   felem = felem.parent();
+			felem.addClass('qechild');
+			felem.wrap("<div class='qefield'></div>");
+            felem.before('<div class="draggable draggingHook editHook qechild">::</div>');
             felem.after(
-                '<td class="editHook">'+ // 94px
+                '<div class="editHook qechild">'+ // 94px
 				'<input type="checkbox" name="required-' + fname + '" title="Required?" />'+
 				'<a href="' + fname + '/edit" title="Edit Field">'+
                 '<img src="edit.gif" alt="Edit" /></a>'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+
                 '<img src="delete_icon.gif" alt="Delete" /></a>'+
-                '</td>'
+                '</div>'
                 );
         }
     );
     jQuery("#pfg-fieldwrapper")
      .wrapInner(
-         '<table id="pfg-qetable" class="listing" summary="Field listing"><tbody>'+
-         '</tbody></table>'
+         '<div id="pfg-qetable" class="listing" summary="Field listing"></div>'
          );
-    jQuery("table#pfg-qetable").prepend(
-        '<thead><tr>'+
-        '<th>Field</th><th style="text-align:center">Actions</th><th>Order</th>'+
-        '</tr>'
+    jQuery("div#pfg-qetable").before(
+        '<div class="theader">'+
+        '<div style="width: 8%">Order</div><div style="width: 50%">Field</div><div style="text-align:center; width: 26%">Actions</div>'+
+        '</div>'
         );
 };
 
@@ -64,7 +65,7 @@ pfgQEdit.qedit = function (e) {
 
   jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
-  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+  var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") {
@@ -87,7 +88,7 @@ pfgQEdit.qedit = function (e) {
               subtype: 'ajax',
               filter: "#content",
         //      formselector: 'form[id$=base-edit]',
-              noform: 'reload',
+              noform: function(){location.reload();},
               closeselector:'[name=form.button.cancel]'
           }
       );
@@ -96,7 +97,7 @@ pfgQEdit.qedit = function (e) {
               subtype: 'ajax',
               filter: "#content",
               formselector: 'form:has(input[value=Delete])',
-              noform: 'reload',
+              noform: function(){location.reload();},
               closeselector:'[name=form.button.Cancel]'
           }
       );
@@ -105,7 +106,7 @@ pfgQEdit.qedit = function (e) {
                 subtype: 'ajax',
                 filter: "#content",
                 formselector: 'form[id$=base-edit]',
-                noform: 'reload',
+                noform: function(){location.reload();},
                 closeselector:'[name=form.button.Cancel]'
             }
       );
@@ -119,15 +120,20 @@ pfgQEdit.stripTable = function () {
   // remove the table elements required for quick edit of fields
 
   // remove overlay divs
-  jQuery("td.editHook a[rel^=#pb]").each(function () {
+  jQuery("div.editHook a[rel^=#pb]").each(function () {
       var o = jQuery(this);
       jQuery(o.attr('rel')).remove();
   });
   
   // strip editHook cells
-  jQuery("div.pfg-form td.editHook").remove();
+  jQuery("div.pfg-form div.editHook").remove();
+
+  // remove header and unfinished widgets
+  jQuery("div.theader").remove();
+  jQuery('#pfg-qetable div.widget').remove();
+
   // find remaining cell contents
-  var content = jQuery("#pfg-qetable td.ofield").children();
+  var content = jQuery("#pfg-qetable div.qefield").children();
   // substitute for table
   jQuery("#pfg-qetable").after(content).remove();
   // hidden field descriptions
@@ -142,7 +148,7 @@ pfgQEdit.noedit = function (e) {
 
   pfgQEdit.stripTable();
   // enable all blurred elements
-  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+  var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled != "undefined") {this.disabled = false;}

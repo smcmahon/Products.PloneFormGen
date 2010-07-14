@@ -5,22 +5,6 @@
 	float: left;
 }
 
-#pfg-qetable {
-	width: 100%;
-}
-
-#pfg-qetable .ofield {
-	width: 330px;
-}
-
-#pfg-qetable .editHook {
-	width: 100px;
-}
-
-#pfg-qetable .draggingHook {
-	width: 50px;
-}
-
 #pfgWidgetWrapper {
 	width: 250px;
 	float: right;
@@ -85,19 +69,13 @@ div.widget-inside {
 	display: none;
 }
 
-table.listing tbody tr.placeholder td {
+div.placeholder {
 	width: 300px;
 	height: 100px;
 	border: 1px dashed gray;
 	background-color: #F1F1F1;
-}
-
-td.editHook * {
-	margin-right: 5px;
-}
-
-td.draggingHook {
-	cursor: move;
+	clear: both;
+	margin-bottom: 15px;
 }
 
 .ui-sortable-helper {
@@ -132,6 +110,71 @@ div.widgets .fields-header, div.widgets .actions-header {
 	text-shadow:0 1px #FFFFFF;
 }
 
+
+
+/*** fields table styles ****/
+
+div.theader {
+	width: 100%;
+}
+
+div.theader div {
+	float: left;
+	border: 0.1em #E7E7E7;
+	border-style: solid none none;
+	color: #666;
+	text-align: left;
+	line-height: 2em;
+	padding: 0.5em 1em;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+#pfg-qetable {
+	width: 100%;
+	clear: both;
+}
+
+#pfg-qetable .qefield {
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 1em;
+}
+
+#pfg-qetable .field {
+	clear: none;
+}
+
+#pfg-qetable .qefield .qechild {
+	float: left;
+	padding:0.5em 1em;
+	height: 90%;
+}
+
+#pfg-qetable .field {
+	width: 50%;
+	margin: 0;
+}
+
+#pfg-qetable .editHook {
+	width: 26%;
+}
+
+#pfg-qetable .draggingHook {
+	width: 8%;
+}
+
+#pfg-qetable div.editHook * {
+	margin-left: 5px;
+}
+
+#pfg-qetable div.draggable {
+	background: #DDD !important;
+	border-bottom: 1px solid white;
+	padding: 0.4em 0.4em 0px 0.5em;
+	text-shadow: white 1px 1px 1px;
+}
+
 #content .ui-sortable h4.widget-header {
 	margin: 0;
 	border: 0;
@@ -142,13 +185,16 @@ div.widgets .fields-header, div.widgets .actions-header {
 	-webkit-border-top-right-radius: 6px;	
 }
 
-.ui-sortable div.widget {
-	width: 100%;
+#pfg-qetable .qefield div.widget {
 	-moz-border-radius:6px 6px 6px 6px;
 	-webkit-border-bottom-left-radius: 6px;
 	-webkit-border-bottom-right-radius: 6px;
 	-webkit-border-top-left-radius: 6px;
 	-webkit-border-top-right-radius: 6px;
 	border: 1px solid #000000;
-	margin-bottom: 10px;
+	margin: 0.5em 1em;
+	margin-top: 0;
+	padding: 0;
+	width: 50%;
 }
+

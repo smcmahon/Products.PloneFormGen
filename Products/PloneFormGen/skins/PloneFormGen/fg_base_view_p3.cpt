@@ -77,6 +77,8 @@
        #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
        .editHook {text-align:center}
        .editHook a {border-bottom:none !important}
+       div.draggable.draggingHook {cursor:ns-resize;vertical-align:middle} 
+	   .editHook {text-align:center !important}
     </style>
 	<link rel="stylesheet" type="text/css" href="css/validator.css" />
 	<link rel="stylesheet" type="text/css" href="css/widgets.css" tal:condition="python:checkPermission('Modify portal content', here)" />
@@ -177,7 +179,7 @@
                tal:define="liveAdapters here/getActionAdapter"> <!-- in style uses clear: right, that screws up the look in some browsers. Unnecessary thing -->
             <thead>
             <tr>
-                <th>Form Actions</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                <th>Form Actions</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -217,7 +219,7 @@
                tal:define="liveThanks here/thanksPage">
             <thead>
                 <tr>
-                    <th>Thanks Pages</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                    <th>Thanks Pages</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
                 </tr>
             </thead>
             <tbody>
