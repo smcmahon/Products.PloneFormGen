@@ -1,6 +1,6 @@
 #!/bin/sh
 PRODUCTNAME='ploneformgen'
-I18NDOMAIN='Products.PloneFormGen'
+I18NDOMAIN='ploneformgen'
 
 # Synchronise the .pot with the templates.
 i18ndude rebuild-pot --pot locales/${PRODUCTNAME}.pot --create ${I18NDOMAIN} .
