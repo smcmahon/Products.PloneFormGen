@@ -65,6 +65,8 @@
        #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
        .editHook {text-align:center}
        .editHook a {border-bottom:none !important}
+       td.draggable.draggingHook {cursor:ns-resize;vertical-align:middle}
+       .editHook {text-align:center !important}
     </style>
 
 	<tal:expr replace="structure here/getHeaderInjection | nothing" />
@@ -112,7 +114,7 @@
                tal:define="liveAdapters here/getActionAdapter">
             <thead>
             <tr>
-                <th>Form Actions</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                <th>Form Actions</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -152,7 +154,7 @@
                tal:define="liveThanks here/thanksPage">
             <thead>
                 <tr>
-                    <th>Thanks Pages</th><th>Enabled</th><th>Delete</th><th>Edit</th>
+                    <th>Thanks Pages</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
                 </tr>
             </thead>
             <tbody>
