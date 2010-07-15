@@ -37,16 +37,13 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=0,
         default='1',
         widget=BooleanWidget(
-            label="Show All Fields",
-            description="""
+            label=_(u'label_showallfields_text', default=u"Show All Fields"),
+            description=_(u'help_showallfields_text', default=u"""
                 Check this to display input for all fields
                 (except label and file fields). If you check
                 this, the choices in the pick box below
                 will be ignored.
-                """,
-            label_msgid = "label_showallfields_text",
-            description_msgid = "help_showallfields_text",
-            i18n_domain = "ploneformgen",
+                """),
             ),
         ),
     LinesField('showFields',
@@ -54,14 +51,11 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=0,
         vocabulary='fieldDisplayList',
         widget=PicklistWidget(
-            label="Show Responses",
-            description="""
+            label=_(u'label_showfields_text', default=u"Show Responses"),
+            description=_(u'help_showfields_text', default=u"""
                 Pick the fields whose inputs you'd like to display on
                 the success page.
-                """,
-            label_msgid = "label_showfields_text",
-            description_msgid = "help_showfields_text",
-            i18n_domain = "ploneformgen",
+                """),
             ),
         ),
     BooleanField('includeEmpties',
@@ -69,12 +63,12 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=0,
         default='1',
         widget=BooleanWidget(
-            label="Include Empties",
-            description="""
+            label=_(u'label_includeEmpties_text', default=u"Include Empties"),
+            description=_(u'', default=u"""
                 Check this to display field titles
                 for fields that received no input. Uncheck
                 to leave fields with no input off the list.
-                """,
+                """),
             label_msgid = "label_includeEmpties_text",
             description_msgid = "help_includeEmpties_text",
             i18n_domain = "ploneformgen",

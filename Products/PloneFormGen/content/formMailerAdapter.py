@@ -276,14 +276,12 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         default_method = 'getMailBodyDefault',
         read_permission=ModifyPortalContent,
-        widget=TextAreaWidget(description = 'This is a Zope Page Template '
-            'used for rendering of the mail-body. You don\'t need to modify '
-            'it, but if you know TAL (Zope\'s Template Attribute Language) '
-            'you have the full power to customize your outgoing mails.',
-            description_msgid = "help_formmailer_body_pt",
-            label = 'Mail-Body Template',
-            label_msgid = "label_formmailer_body_pt",
-            i18n_domain = "ploneformgen",
+        widget=TextAreaWidget(description = _(u'help_formmailer_body_pt',
+            default=u"""This is a Zope Page Template
+            used for rendering of the mail-body. You don\'t need to modify 
+            it, but if you know TAL (Zope\'s Template Attribute Language) 
+            you have the full power to customize your outgoing mails."""),
+            label = _(u'label_formmailer_body_pt', default=u'Mail-Body Template'),
             rows = 20,
             visible = {'edit':'visible','view':'invisible'},
             ) ,
@@ -295,13 +293,11 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         vocabulary = MIME_LIST,
         write_permission=EDIT_ADVANCED_PERMISSION,
         read_permission=ModifyPortalContent,
-        widget=SelectionWidget(description = 'Set the mime-type of the mail-body. '
-            'Change this setting only if you know exactly what you are doing. '
-            'Leave it blank for default behaviour.',
-            description_msgid = "help_formmailer_body_type",
-            label = 'Mail-Body Type',
-            label_msgid = "label_formmailer_body_type",
-            i18n_domain = "ploneformgen",
+        widget=SelectionWidget(description = _(u'help_formmailer_body_type',
+            default=u"""Set the mime-type of the mail-body. 
+            Change this setting only if you know exactly what you are doing. 
+            Leave it blank for default behaviour."""),
+            label = _(u'label_formmailer_body_type', default=u'Mail-Body Type'),
             ),
         ),
     LinesField('xinfo_headers',
@@ -319,16 +315,13 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
             ('HTTP_REFERER', 'HTTP_REFERER'),
             ), ),
         widget=MultiSelectionWidget(
-            label='HTTP Headers',
-            description="""
+            label=_(u'label_xinfo_headers_text', default=u'HTTP Headers'),
+            description=_(u'help_xinfo_headers_text', default=u"""
                 Pick any items from the HTTP headers that
                 you'd like to insert as X- headers in the
                 message.
-                """,
+                """),
             format='checkbox',
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_xinfo_headers_text",
-            description_msgid = "help_xinfo_headers_text",
             ),
         ),
     LinesField('additional_headers',
@@ -339,14 +332,11 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         write_permission=EDIT_ADVANCED_PERMISSION,
         read_permission=ModifyPortalContent,
         widget=LinesWidget(
-            label = 'Additional Headers',
-            description="""
+            label = _(u,'label_formmailer_additional_headers',default=u'Additional Headers'),
+            description=_(u'help_formmailer_additional_headers', default=u"""
                 Additional e-mail-header lines.
                 Only use RFC822-compliant headers.
-                """,
-            description_msgid = "help_formmailer_additional_headers",
-            label_msgid = "label_formmailer_additional_headers",
-            i18n_domain = "ploneformgen",
+                """),
             ),
         ),
 ))
@@ -360,7 +350,7 @@ if gpg is not None:
             write_permission=USE_ENCRYPTION_PERMISSION,
             read_permission=ModifyPortalContent,
             widget=StringWidget(
-                description = """
+                description = _(u'help_gpg_key_id',default=u"""
                     Give your key-id, e-mail address or
                     whatever works to match a public key from current keyring.
                     It will be used to encrypt the message body.
@@ -369,11 +359,8 @@ if gpg is not None:
                     Note that you will probably wish to change your message
                     template to plain text if you're using encryption.
                     TEST THIS FEATURE BEFORE GOING PUBLIC!
-                    """,
-                description_msgid = "help_gpg_key_id",
-                label = 'Key-Id',
-                label_msgid = "label_gpg_key_id",
-                i18n_domain='ploneformgen',
+                    """),
+                label = _(u'label_gpg_key_id', default=u'Key-Id'),
                 ),
             ),
         ))
@@ -389,18 +376,16 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         read_permission=ModifyPortalContent,
         isMetadata=True, # just to hide from base view
-        widget=StringWidget(label="Subject Expression",
-            description="""
+        widget=StringWidget(label=_(u'label_subject_override_text', default=u"Subject Expression"),
+            description=_(u'help_subject_override_text', default=u"""
                 A TALES expression that will be evaluated to override any value
                 otherwise entered for the e-mail subject header.
                 Leave empty if unneeded. Your expression should evaluate as a string.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
-            """,
+            """),
             size=70,
             i18n_domain = "ploneformgen",
-            label_msgid = "label_subject_override_text",
-            description_msgid = "help_subject_override_text",
         ),
     ),
     TALESString('senderOverride',
@@ -412,17 +397,15 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         read_permission=ModifyPortalContent,
         isMetadata=True, # just to hide from base view
-        widget=StringWidget(label="Sender Expression",
-            description="""
+        widget=StringWidget(label=_(u'label_sender_override_text',
+                                    default=u"Sender Expression"),
+            description=_(u'help_sender_override_text', default=u"""
                 A TALES expression that will be evaluated to override the "From" header.
                 Leave empty if unneeded. Your expression should evaluate as a string.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_sender_override_text",
-            description_msgid = "help_sender_override_text",
         ),
     ),
     TALESString('recipientOverride',
@@ -434,19 +417,16 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         read_permission=ModifyPortalContent,
         isMetadata=True, # just to hide from base view
-        widget=StringWidget(label="Recipient Expression",
-            description="""
+        widget=StringWidget(label=_(u'label_recipient_override_text', default=u"Recipient Expression"),
+            description=_(u'help_recipient_override_text', default=u"""
                 A TALES expression that will be evaluated to override any value
                 otherwise entered for the recipient e-mail address. You are strongly
                 cautioned against using unvalidated data from the request for this purpose.
                 Leave empty if unneeded. Your expression should evaluate as a string.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_recipient_override_text",
-            description_msgid = "help_recipient_override_text",
         ),
     ),
     TALESString('bccOverride',
@@ -458,19 +438,16 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         read_permission=ModifyPortalContent,
         isMetadata=True, # just to hide from base view
-        widget=StringWidget(label="BCC Expression",
-            description="""
+        widget=StringWidget(label=_(u'label_bcc_override_text', default=u"BCC Expression"),
+            description=_(u'help_bcc_override_text', default=u"""
                 A TALES expression that will be evaluated to override any value
                 otherwise entered for the BCC list. You are strongly
                 cautioned against using unvalidated data from the request for this purpose.
                 Leave empty if unneeded. Your expression should evaluate as a sequence of string.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_bcc_override_text",
-            description_msgid = "help_bcc_override_text",
         ),
     ),
 ))
