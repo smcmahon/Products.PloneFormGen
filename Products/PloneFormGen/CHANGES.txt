@@ -4,6 +4,10 @@ Change History
 1.6.0b4 (unreleased)
 --------------------
 
+- Update all schemas to use message factory instead of _msgid. Now it is
+  i18ndude compatible, so you can use rebuild pot script.
+  [toutpt]
+
 - Clean up quick edit visuals; make the drag and drop look like Plone 4.
   [stevem]
 

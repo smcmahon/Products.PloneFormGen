@@ -23,6 +23,7 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
 
 from Products.PloneFormGen import HAS_PLONE30
+from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import \
     FormActionAdapter, FormAdapterSchema
@@ -59,14 +60,11 @@ class FormSaveDataAdapter(FormActionAdapter):
     schema = FormAdapterSchema.copy() + Schema((
         LinesField('ExtraData',
             widget=MultiSelectionWidget(
-                label='Extra Data',
-                description="""
+                label=_(u'label_savedataextra_text', default='Extra Data'),
+                description=_(u'help_savedataextra_text', default=u"""
                     Pick any extra data you'd like saved with the form input.
-                    """,
+                    """),
                 format='checkbox',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_savedataextra_text",
-                description_msgid = "help_savedataextra_text",
                 ),
             vocabulary = 'vocabExtraDataDL',
             ),
@@ -76,20 +74,15 @@ class FormSaveDataAdapter(FormActionAdapter):
             default='csv',
             vocabulary = 'vocabFormatDL',
             widget=SelectionWidget(
-                label='Download Format',
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_downloadformat_text",
+                label=_(u'label_downloadformat_text', default=u'Download Format'),
                 ),
             ),
         BooleanField("UseColumnNames",
             required=False,
             searchable=False,
             widget=BooleanWidget(
-                label = "Include Column Names",
-                description = "Do you wish to have column names on the first line of downloaded input?",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_usecolumnnames_text",
-                description_msgid = "help_usecolumnnames_text",
+                label = _(u'label_usecolumnnames_text', default=u"Include Column Names"),
+                description = _(u'help_usecolumnnames_text', default=u"Do you wish to have column names on the first line of downloaded input?"),
                 ),
             ),
         ExLinesField('SavedFormInput',
@@ -101,10 +94,8 @@ class FormSaveDataAdapter(FormActionAdapter):
             schemata="saved data",
             read_permission=DOWNLOAD_SAVED_PERMISSION,
             widget=TextAreaWidget(
-                label="Saved Form Input",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_savedatainput_text",
-                description_msgid = "help_savedatainput_text",
+                label=_(u'label_savedatainput_text', default=u"Saved Form Input"),
+                description=_(u'help_savedatainput_text'),
                 ),
             ),
     ))

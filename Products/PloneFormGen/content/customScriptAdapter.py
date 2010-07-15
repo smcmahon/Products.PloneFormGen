@@ -35,6 +35,7 @@ from Products.PloneFormGen import config
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import \
     FormActionAdapter, FormAdapterSchema
+from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 logger = logging.getLogger("PloneFormGen")    
 
@@ -90,11 +91,8 @@ class FormCustomScriptAdapter(FormActionAdapter):
             write_permission=EDIT_PYTHON_PERMISSION,
             vocabulary="getProxyRoleChoices",
             widget=SelectionWidget(
-                label='Proxy role',
-                description = """ Role under which to run the script. """,
-                label_msgid = "label_script_proxy",
-                i18n_domain = "ploneformgen",
-                description_msgid = "help_script_proxy",
+                label=_(u'label_script_proxy', default=u'Proxy role'),
+                description = _(u'help_script_proxy', default=u""" Role under which to run the script. """),
                 ),
             ),            
      
@@ -105,13 +103,10 @@ class FormCustomScriptAdapter(FormActionAdapter):
             read_permission=ModifyPortalContent,
             write_permission=EDIT_PYTHON_PERMISSION,
             widget=TextAreaWidget(
-                label='Script body',
+                label=_(u'label_script_body', default=u'Script body'),
                 rows=10,
                 visible={'view': 'invisible','edit': 'visible'},    
-                description = """ Write your script here. """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_script_body",
-                description_msgid = "help_script_body"
+                description = _(u'help_script_body', default=u""" Write your script here. """),
                 ),
             ),            
     ))

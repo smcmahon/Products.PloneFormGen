@@ -37,16 +37,13 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=0,
         default='1',
         widget=BooleanWidget(
-            label="Show All Fields",
-            description="""
+            label=_(u'label_showallfields_text', default=u"Show All Fields"),
+            description=_(u'help_showallfields_text', default=u"""
                 Check this to display input for all fields
                 (except label and file fields). If you check
                 this, the choices in the pick box below
                 will be ignored.
-                """,
-            label_msgid = "label_showallfields_text",
-            description_msgid = "help_showallfields_text",
-            i18n_domain = "ploneformgen",
+                """),
             ),
         ),
     LinesField('showFields',
@@ -54,14 +51,11 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=0,
         vocabulary='fieldDisplayList',
         widget=PicklistWidget(
-            label="Show Responses",
-            description="""
+            label=_(u'label_showfields_text', default=u"Show Responses"),
+            description=_(u'help_showfields_text', default=u"""
                 Pick the fields whose inputs you'd like to display on
                 the success page.
-                """,
-            label_msgid = "label_showfields_text",
-            description_msgid = "help_showfields_text",
-            i18n_domain = "ploneformgen",
+                """),
             ),
         ),
     BooleanField('includeEmpties',
@@ -69,15 +63,12 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=0,
         default='1',
         widget=BooleanWidget(
-            label="Include Empties",
-            description="""
+            label=_(u'label_includeEmpties_text', default=u"Include Empties"),
+            description=_(u'help_includeEmpties_text', default=u"""
                 Check this to display field titles
                 for fields that received no input. Uncheck
                 to leave fields with no input off the list.
-                """,
-            label_msgid = "label_includeEmpties_text",
-            description_msgid = "help_includeEmpties_text",
-            i18n_domain = "ploneformgen",
+                """),
             ),
         ),
     TextField('thanksPrologue',
@@ -91,12 +82,9 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
         widget = RichWidget(
-            label = "Thanks Prologue",
-            label_msgid = "label_thanksprologue_text",
-            description = "This text will be displayed above the selected field inputs.",
-            description_msgid = "help_thanksprologue_text",
+            label = _(u"label_thanksprologue_text", default=u"Thanks Prologue"),
+            description = _(u"help_thanksprologue_text", default=u"This text will be displayed above the selected field inputs."),
             rows = 8,
-            i18n_domain = "ploneformgen",
             allow_file_upload = zconf.ATDocument.allow_document_upload,
             ),
         ),
@@ -111,12 +99,9 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
         widget = RichWidget(
-            label = "Thanks Epilogue",
-            label_msgid = "label_thanksepilogue_text",
-            description = "The text will be displayed after the field inputs.",
-            description_msgid = "help_thanksepilogue_text",
+            label = _(u"label_thanksepilogue_text", default=u"Thanks Epilogue"),
+            description = _(u"help_thanksepilogue_text", default=u"The text will be displayed after the field inputs."),
             rows = 8,
-            i18n_domain = "ploneformgen",
             allow_file_upload = zconf.ATDocument.allow_document_upload,
             ),
         ),
@@ -133,16 +118,13 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
             """,
         allowable_content_types = zconf.ATDocument.allowed_content_types,
         widget = RichWidget(
-            label = "No Submit Message",
-            label_msgid = "label_nosubmit_text",
-            description = """
+            label = _(u"label_nosubmit_text", default=u"No Submit Message"),
+            description = _(u"help_nosubmit_text", default=u"""
                 The text to display if the browser reaches this
                 thanks page without submitting a form. Typically, this
                 would direct the reader to the form.
-                """,
-            description_msgid = "help_nosubmit_text",
+                """),
             rows = 4,
-            i18n_domain = "ploneformgen",
             allow_file_upload = zconf.ATDocument.allow_document_upload,
             ),
         ),

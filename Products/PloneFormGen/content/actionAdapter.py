@@ -22,6 +22,7 @@ from Products.ATContentTypes.content.base import registerATCT
 
 from Products.TALESField import TALESString
 
+from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.interfaces import IPloneFormGenActionAdapter
@@ -36,8 +37,8 @@ FormAdapterSchema = ATContentTypeSchema.copy() + Schema((
         write_permission=EDIT_TALES_PERMISSION,
         read_permission=ModifyPortalContent,
         isMetadata=True, # just to hide from base view
-        widget=StringWidget(label="Execution Condition",
-            description="""
+        widget=StringWidget(label=_(u'label_execcondition_text', default=u"Execution Condition"),
+            description=_(u'help_execcondition_text', default=u"""
                 A TALES expression that will be evaluated to determine whether or not
                 to execute this action.
                 Leave empty if unneeded, and the action will be executed. 
@@ -45,11 +46,8 @@ FormAdapterSchema = ATContentTypeSchema.copy() + Schema((
                 the action to execute.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_execcondition_text",
-            description_msgid = "help_execcondition_text",
         ),
     ),
     ))

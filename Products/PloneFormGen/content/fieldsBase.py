@@ -75,8 +75,8 @@ validatorOverrideField = \
             validators=('talesvalidator',),
             default="python:False",
             write_permission=EDIT_TALES_PERMISSION,
-            widget=StringWidget(label="Custom Validator",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtvalidator_text', default=u"Custom Validator"),
+                description=_(u'help_fgtvalidator_text', default=u"""
                     A TALES expression that will be evaluated when the form is validated.
                     Validate against 'value', which will contain the field input.
                     Return False if valid; if not valid return a string error message.
@@ -84,11 +84,8 @@ validatorOverrideField = \
                     require "eggs" for input.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtvalidator_text",
-                description_msgid = "help_fgtvalidator_text",
                 ),
             )
 
@@ -97,10 +94,8 @@ rowsField = \
         searchable=0,
         required=0,
         default='5',
-        widget=IntegerWidget(label='Rows',
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_rows_text",
-            description_msgid = "help_rows_text",
+        widget=IntegerWidget(label=_(u'label_rows_text', default=u'Rows'),
+            description=_(u'help_rows_text', default=u''),
             ),
         )
 
@@ -108,13 +103,10 @@ maxlengthField = \
     IntegerField('fgmaxlength',
         default=255,
         widget=IntegerWidget(
-            label='Max Length',
-            description="""
+            label=_(u'label_fgmaxlength_text', default=u'Max Length'),
+            description=_(u'help_fgmaxlength_text', default=u"""
                 The maximum number of characters the user will be able to input.
-                """,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_fgmaxlength_text",
-            description_msgid = "help_fgmaxlength_text",
+                """),
             ),
         )
 
@@ -122,14 +114,11 @@ maxlengthField0 = \
         IntegerField('fgmaxlength',
             default=0,
             widget=IntegerWidget(
-                label='Max Length',
-                description="""
+                label=_(u'label_fgmaxlength_text', default=u'Max Length'),
+                description=_(u'help_fgmaxlength_text', default=u"""
                     The maximum number of characters the user will be able to input.
                     Use 0 for no limit.
-                    """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgmaxlength_text",
-                description_msgid = "help_fgmaxlength_text",
+                    """),
                 ),
             )
 
@@ -137,14 +126,11 @@ maxlengthField4k = \
         IntegerField('fgmaxlength',
             default='4096',
             widget=IntegerWidget(
-                label='Max Length',
-                description="""
+                label=_(u'label_fgmaxlength_text', default=u'Max Length'),
+                description=_(u'help_fgmaxlength_text', default=u"""
                     The maximum number of characters the user will be able to input.
                     Use 0 for no limit.
-                    """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgmaxlength_text",
-                description_msgid = "help_fgmaxlength_text",
+                    """),
                 ),
             )
 
@@ -152,10 +138,8 @@ sizeField = \
     IntegerField('fgsize',
         default=30,
         widget=IntegerWidget(
-            label='Size',description='The size of the text-entry box, in characters.',
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_fgsize_text",
-            description_msgid = "help_fgsize_text",
+            label=_(u'label_fgsize_text', default=u'Size'),
+            description=_(u'help_fgsize_text', default=u'The size of the text-entry box, in characters.'),
             ),
         )
 
@@ -163,15 +147,13 @@ vocabularyField = \
     LinesField('fgVocabulary',
         searchable=0,
         required=0,
-        widget=LinesWidget(label='Options',
-            description="""
+        widget=LinesWidget(label=_(u'label_fgvocabulary_text',
+                                   default=u'Options'),
+            description=_(u'help_fgvocabulary_text', default=u"""
                 Use one line per option.
                 Note that this may be overridden dynamically.
                 [Note, you may optionally use a "value|label" format.]
-                """,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_fgvocabulary_text",
-            description_msgid = "help_fgvocabulary_text",
+                """),
             ),
         )
 
@@ -183,19 +165,17 @@ vocabularyOverrideField = \
         validators=('talesvalidator',),
         default='',
         write_permission=EDIT_TALES_PERMISSION,
-        widget=StringWidget(label="Options Vocabulary",
-            description="""
+        widget=StringWidget(label=_(u'label_fgtvocabulary_text',
+                                    default=u"Options Vocabulary"),
+            description=_(u'help_fgtvocabulary_text', default=u"""
                 A TALES expression that will be evaluated when the form is displayed
                 to get the field options.
                 Leave empty if unneeded.
                 Your TALES expression should evaluate as a list of (key, value) tuples.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
-            """,
+            """),
             size=70,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_fgtvocabulary_text",
-            description_msgid = "help_fgtvocabulary_text",
             ),
         )
 
@@ -203,16 +183,10 @@ vocabularyOverrideField = \
 # only label field uses this without change
 BareFieldSchema = ATContentTypeSchema.copy()
 BareFieldSchema['title'].searchable = False
-BareFieldSchema['title'].widget.label = 'Field Label'
-BareFieldSchema['title'].widget.i18n_domain = "ploneformgen"
-BareFieldSchema['title'].widget.label_msgid = 'label_fieldlabel_text'
+BareFieldSchema['title'].widget.label = _(u'label_fieldlabel_text', default=u'Field Label')
 BareFieldSchema['description'].searchable = False
-BareFieldSchema['description'].widget.label = 'Field Help'
-BareFieldSchema['description'].widget.i18n_domain = "ploneformgen"
-BareFieldSchema['description'].widget.label_msgid = 'label_fieldhelp_text'
+BareFieldSchema['description'].widget.label = _(u'label_fieldhelp_text', default=u'Field Help')
 BareFieldSchema['description'].widget.description = None
-BareFieldSchema['description'].widget.description_msgid = None
-
 
 ###
 # BaseFieldSchema -- more common baseline
@@ -223,9 +197,7 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             searchable=0,
             required=0,
             widget=BooleanWidget(
-                label="Required",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_required_text",
+                label=_(u'label_required_text', default=u"Required"),
                 ),
             ),
         BooleanField('hidden',
@@ -233,9 +205,7 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             required=0,
             write_permission=EDIT_ADVANCED_PERMISSION,
             widget=BooleanWidget(
-                label="Hidden",
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_hidden_text",
+                label=_(u'label_hidden_text', default=u"Hidden"),
                 ),
             ),
         TALESString('fgTDefault',
@@ -245,18 +215,16 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             validators=('talesvalidator',),
             write_permission=EDIT_TALES_PERMISSION,
             default='',
-            widget=StringWidget(label="Default Expression",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtdefault_text',
+                                        default=u"Default Expression"),
+                description=_(u'help_fgtdefault_text', default=u"""
                     A TALES expression that will be evaluated when the form is displayed
                     to get the field default value.
                     Leave empty if unneeded. Your expression should evaluate as a string.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtdefault_text",
-                description_msgid = "help_fgtdefault_text",
                 ),
             ),
         validatorOverrideField,
@@ -267,8 +235,8 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             validators=('talesvalidator',),
             write_permission=EDIT_TALES_PERMISSION,
             default='',
-            widget=StringWidget(label="Enabling Expression",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtenable_text', default=u"Enabling Expression"),
+                description=_(u'help_fgtenable_text', default=u"""
                     A TALES expression that will be evaluated when the form is displayed
                     to determine whether or not the field is enabled.
                     Your expression should evaluate as True if
@@ -276,11 +244,8 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                     Leave this expression field empty if unneeded: the field will be included. 
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtenable_text",
-                description_msgid = "help_fgtenable_text",
                 ),
             ),
         BooleanField('serverSide',
@@ -290,14 +255,12 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             write_permission=EDIT_ADVANCED_PERMISSION,
             default='',
             widget=BooleanWidget(
-                label="Server-Side Variable",
-                description="""
+                label=_(u'label_server_side_text', default=u"Server-Side Variable"),
+                description=_(u'description_server_side_text', default=u"""
                     Mark this field as a value to be injected into the
                     request form for use by action adapters and is not 
                     modifiable by or exposed to the client.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_server_side_text",
+                """),
                 ),
             ),
     ))
@@ -311,14 +274,11 @@ BaseFieldSchemaStringDefault = BaseFieldSchema.copy() + Schema((
         StringField('fgDefault',
             searchable=0,
             required=0,
-            widget=StringWidget(label='Default',
-            description="""
+            widget=StringWidget(label=_(u'label_fgdefault_text', default=u'Default'),
+            description=_(u'help_fgdefault_text', default=u"""
                 The value the field should contain when the form is first displayed.
                 Note that this may be overridden dynamically.
-            """,
-            i18n_domain = "ploneformgen",
-            label_msgid = "label_fgdefault_text",
-            description_msgid = "help_fgdefault_text",
+            """),
             ),
         ),
     ))
@@ -332,15 +292,12 @@ BaseFieldSchemaLinesDefault = BaseFieldSchema.copy() + Schema((
         LinesField('fgDefault',
             searchable=0,
             required=0,
-            widget=LinesWidget(label='Default',
-                description="""
+            widget=LinesWidget(label=_(u'label_fglinesdefault_text', default=u'Default'),
+                description=_(u'help_fglinesdefault_text', default=u"""
                     The values the field should contain when the form is first displayed.
                     Use one value per line.
                     Note that this may be overridden dynamically.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fglinesdefault_text",
-                description_msgid = "help_fglinesdefault_text",
+                """),
                 ),
             ),
         rowsField,
@@ -351,18 +308,15 @@ BaseFieldSchemaLinesDefault = BaseFieldSchema.copy() + Schema((
             validators=('talesvalidator',),
             default='',
             write_permission=EDIT_TALES_PERMISSION,
-            widget=StringWidget(label="Default Expression",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtlinesdefault_text', default=u"Default Expression"),
+                description=_(u'help_fgtlinesdefault_text', default=u"""
                     A TALES expression that will be evaluated when the form is displayed
                     to get the field default value.
                     Leave empty if unneeded. Your expression should evaluate as a list or tuple.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtlinesdefault_text",
-                description_msgid = "help_fgtlinesdefault_text",
                 ),
             ),
         validatorOverrideField,
@@ -377,14 +331,11 @@ BaseFieldSchemaTextDefault = BaseFieldSchema.copy() + Schema((
         TextField('fgDefault',
             searchable=0,
             required=0,
-            widget=TextAreaWidget(label='Default',
-                description="""
+            widget=TextAreaWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
+                description=_(u'help_fgtextdefault_text', default=u"""
                     The text the field should contain when the form is first displayed.
                     Note that this may be overridden dynamically.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtextdefault_text",
-                description_msgid = "help_fgtextdefault_text",
+                """),
                 ),
             ),
         rowsField,
@@ -396,18 +347,15 @@ BaseFieldSchemaTextDefault = BaseFieldSchema.copy() + Schema((
             validators=('talesvalidator',),
             default='',
             write_permission=EDIT_TALES_PERMISSION,
-            widget=StringWidget(label="Default Expression",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtdefault_text', default=u"Default Expression"),
+                description=_(u'help_fgtdefault_text', default=u"""
                     A TALES expression that will be evaluated when the form is displayed
                     to get the field default value.
                     Leave empty if unneeded. Your expression should evaluate as a string.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtdefault_text",
-                description_msgid = "help_fgtdefault_text",
             ),
         ),
         validatorOverrideField,
@@ -425,14 +373,11 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
             default_content_type = 'text/html',
             default_output_type = 'text/x-html-safe',
             allowable_content_types = zconf.ATDocument.allowed_content_types,
-            widget=RichWidget(label='Default',
-                description="""
+            widget=RichWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
+                description=_(u'help_fgtextdefault_text', default=u"""
                     The text the field should contain when the form is first displayed.
                     Note that this may be overridden dynamically.
-                """,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtextdefault_text",
-                description_msgid = "help_fgtextdefault_text",
+                """),
                 allow_file_upload = False,
                 ),
             ),
@@ -445,18 +390,15 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
             validators=('talesvalidator',),
             default='',
             write_permission=EDIT_TALES_PERMISSION,
-            widget=StringWidget(label="Default Expression",
-                description="""
+            widget=StringWidget(label=_(u'label_fgtdefault_text', default=u"Default Expression"),
+                description=_(u'help_fgtdefault_text', default=u"""
                     A TALES expression that will be evaluated when the form is displayed
                     to get the field default value.
                     Leave empty if unneeded. Your expression should evaluate as a string.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
-                """,
+                """),
                 size=70,
-                i18n_domain = "ploneformgen",
-                label_msgid = "label_fgtdefault_text",
-                description_msgid = "help_fgtdefault_text",
             ),
         ),
         validatorOverrideField,
