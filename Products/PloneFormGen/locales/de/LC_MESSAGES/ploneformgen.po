@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2010-07-15 15:22+0000\n"
+"POT-Creation-Date: 2010-07-15 15:45+0000\n"
 "PO-Revision-Date: 2009-08-04 17:27+0200\n"
 "Last-Translator: Sven Deichmann <deichmann@werkbank.com>\n"
 "Language-Team: German Translation Team <plone-i18n@lists.sourceforge.net>\n"
@@ -16,16 +16,8 @@ msgstr ""
 "Domain: ploneformgen\n"
 "X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
 
-#: ./content/formMailerAdapter.py:101
-msgid "Extract Recipient From"
-msgstr ""
-
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
-
-#: ./content/formMailerAdapter.py:102
-msgid "None", this will override the "Recipient's e-mail address"
 msgstr ""
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
@@ -94,7 +86,6 @@ msgid "heading_ploneformgen_savedata"
 msgstr ""
 
 #. Form Folder
-#. Default: Leave empty if unneeded.
 #. Default: The most common use of this field is to call a python script
 #. Default: to clean up form input or to script an alternative action.
 #. Default: Any value returned by the expression is ignored.
@@ -107,7 +98,6 @@ msgid "help_AfterValidationOverride_text"
 msgstr "Ein TALES-Ausdruck, der aufgerufen wird, nachdem das Formular erfolgreich validiert wurde, aber bevor ein Aktionsadapter (falls konfiguriert) oder die Anzeige einer Danke-Seite aufgerufen wird. Der Inhalt des Formulars wird im Wörterbuch 'request.form' sein. Dieses Feld leer lassen, wenn kein Bedarf besteht. Die gängigste Verwendung dieses Feldes ist der Aufruf eines Python-Scripts, der den Formularinhalt säubert oder um eine alternative Aktion zu programmieren. Jeglicher von diesem Ausdruck zurückgegebener Wert wird ignoriert. ACHTUNG: Fehler in der Berechnung dieses Ausdrucks werden einen Fehler bei der Anzeige des Formulars bewirken."
 
 #. Form Folder
-#. Default: Any value returned by the expression is ignored.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                A TALES expression that will be called when the form is\n                displayed.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                that sets defaults for multiple fields by pre-populating\n                request.form.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression\n                will cause an error on form display.\n            "
@@ -287,7 +277,6 @@ msgid "help_fgstringvalidator_text"
 msgstr "Prüft die Eingaben durch einfache Zeichenketten-Muster."
 
 #. String Field
-#. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fields.py:1121
 #: ./content/fieldsBase.py:220
@@ -310,7 +299,6 @@ msgid "help_fgtextdefault_text"
 msgstr "Feldtext, wenn das Formular erstmals angezeigt wird. Dieser kann dynamisch überschrieben werden."
 
 #. Lines Field
-#. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:312
 #, fuzzy
@@ -318,7 +306,6 @@ msgid "help_fgtlinesdefault_text"
 msgstr "Ein TALES-Ausdruck, der berechnet wird, wenn das Formular zur Eingabe der Default-Werte des Feldes angezeigt wird. Leer lassen, wenn Sie dies nicht benötigen. Ihr Ausdruck sollte als Liste oder Tupel berechnet werden. ACHTUNG: Fehler in der Berechnung dieses Ausdrucks werden einen Fehler bei der Anzeige des Formulars bewirken."
 
 #. String Field
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: Validate against 'value', which will contain the field input.
 #. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
@@ -330,7 +317,6 @@ msgid "help_fgtvalidator_text"
 msgstr "Ein TALES-Ausdruck, der berechnet wird, wenn das Formular validiert wird. Die Validierung überprüft request.form['Ihre_Feld_ID']. Gibt False zurück, wenn er gültig ist, ansonsten gibt es eine Fehlermeldung als Zeichenkette zurück. Verwenden Sie 'python:False', wenn Sie dies nicht benötigen. ACHTUNG: Fehler in der Berechnung dieses Ausdrucks werden einen Fehler bei der Anzeige des Formulars bewirken. Bsp: \"python:test(value=='eggs', False, 'input must be eggs') wird die Eingabe \"eggs\" zwingend verlangen."
 
 #. Selection Field
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/fieldsBase.py:170
@@ -454,6 +440,11 @@ msgstr "Betreff der Nachricht. Dieser wird verwendet, wenn Sie kein Betreff-Feld
 msgid "help_formmailer_subject_extract"
 msgstr "Wählen Sie ein Formularfeld aus dem die Eingabe für den Betreff der Mail gelesen werden soll."
 
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
+#: ./content/formMailerAdapter.py:102
+msgid "help_formmailer_to_extract"
+msgstr ""
+
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
 #: ./content/fields.py:268
@@ -476,7 +467,6 @@ msgid "help_gpg_key_id"
 msgstr "Geben Sie Ihre key-id, E-Mail-Adresse oder irgendetwas an, das mit Ihrem aktuellen Public Key übereinstimmt. Es wird genutzt, um den Mail-Textkörper zu verschlüsseln. Kontaktieren Sie Ihren Webmaster, wenn Sie einen neuen Public Key installieren müssen. Bemerkung: Sie werden vermutlich Ihr E-Mail-Template auf Volltext ändern müssen, wenn Sie Verschlüsselung nutzen wollen. TESTEN SIE DIESE FUNKTION, BEVOR SIE SIE ÖFFENTLICH NUTZEN!"
 
 #. Form Folder
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
 #: ./content/form.py:271
@@ -587,13 +577,13 @@ msgstr ""
 
 # """ Write your script here. """
 #. Default: " Write your script here. "
-#: ./content/customScriptAdapter.py:108
+#: ./content/customScriptAdapter.py:109
 msgid "help_script_body"
 msgstr "Tragen Sie hier Ihr Script ein."
 
 # """ Role under which to run the script. """
 #. Default: " Role under which to run the script. "
-#: ./content/customScriptAdapter.py:94
+#: ./content/customScriptAdapter.py:95
 msgid "help_script_proxy"
 msgstr "Rolle unter der das Script ausgeführt wird."
 
@@ -656,7 +646,6 @@ msgid "help_thankspage_text"
 msgstr "Wählen Sie eine angelegte Seite, die nach erfolgreichem Versand des Formulars angezeigt werden soll (wenn keine existiert, legen Sie eine an). Ohne werden einfach die Feldwerte angezeigt."
 
 #. Form Folder
-#. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
 #. Default: action type and argument,
 #. Default: complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
 #. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
@@ -1023,6 +1012,11 @@ msgstr "Betreff"
 msgid "label_formmailer_subject_extract"
 msgstr "Betreff herauslesen aus"
 
+#. Default: "Extract Recipient From"
+#: ./content/formMailerAdapter.py:101
+msgid "label_formmailer_to_extract"
+msgstr ""
+
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
@@ -1198,7 +1192,7 @@ msgstr "Gespeicherte Formulareingabe"
 
 # 'Script body'
 #. Default: "Script body"
-#: ./content/customScriptAdapter.py:105
+#: ./content/customScriptAdapter.py:106
 msgid "label_script_body"
 msgstr "Script-Rumpf"
 
@@ -1206,7 +1200,7 @@ msgstr "Script-Rumpf"
 # Custom Script Adapter
 # 'Proxy role',
 #. Default: "Proxy role"
-#: ./content/customScriptAdapter.py:93
+#: ./content/customScriptAdapter.py:94
 msgid "label_script_proxy"
 msgstr "Proxy-Rolle"
 

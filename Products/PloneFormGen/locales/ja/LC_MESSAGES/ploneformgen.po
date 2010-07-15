@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
-"POT-Creation-Date: 2010-07-15 15:22+0000\n"
+"POT-Creation-Date: 2010-07-15 15:45+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Shigeo Honda <shigeo.honda@gmail.com>\n"
 "Language-Team: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
@@ -17,16 +17,8 @@ msgstr ""
 "Preferred-Encodings: utf-8\n"
 "Domain: ploneformgen\n"
 
-#: ./content/formMailerAdapter.py:101
-msgid "Extract Recipient From"
-msgstr ""
-
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
-
-#: ./content/formMailerAdapter.py:102
-msgid "None", this will override the "Recipient's e-mail address"
 msgstr ""
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
@@ -144,7 +136,6 @@ msgid "help_bcc_override_text"
 msgstr ""
 
 #. Boolean Field
-#. Default: "
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:359
 #, fuzzy
@@ -247,7 +238,6 @@ msgid "help_fglikert_questions"
 msgstr "質問リスト"
 
 #. Lines Field
-#. Default: Note that this may be overridden dynamically.
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
 #: ./content/fieldsBase.py:296
 #, fuzzy
@@ -298,7 +288,6 @@ msgid "help_fgstringvalidator_text"
 msgstr "単純な文字列パターンのテスト"
 
 #. String Field
-#. Default: Leave empty if unneeded. Your expression should evaluate as a string.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
@@ -323,7 +312,6 @@ msgid "help_fgtextdefault_text"
 msgstr "フォームが最初に表示されたときに既定文字列が入るフィールドです。これは動的に上書きされます"
 
 #. Lines Field
-#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
@@ -333,7 +321,6 @@ msgid "help_fgtlinesdefault_text"
 msgstr "初期値を取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。リストまたはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. String Field
-#. Default: Return False if valid; if not valid return a string error message.
 #. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
 #. Default: require "eggs" for input.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
@@ -345,7 +332,6 @@ msgid "help_fgtvalidator_text"
 msgstr "フォームがバリデートされたときに評価されるTALES式です。入力フィールドが含む「値」に対してバリデートを行います。有効な場合は「False」が返ります。有効でなかったときはテキストのエラーメッセージを返します。例：「python: test(value=='eggs', False, 'input must be eggs') はeggsが必要です」。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Selection Field
-#. Default: Leave empty if unneeded.
 #. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
@@ -356,7 +342,6 @@ msgid "help_fgtvocabulary_text"
 msgstr "フィールドオプションを取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。TALES式はリスト（キー、値）またはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Selection Field
-#. Default: [Note, you may optionally use a "value|label" format.]
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
 #: ./content/fieldsBase.py:152
 #, fuzzy
@@ -452,7 +437,6 @@ msgid "help_formmailer_recipient_fullname"
 msgstr "送信されたフォームの受信者のフルネーム"
 
 #. Mailer Adapter
-#. Default: activate e-mail address verification for the designated
 #. Default: field.
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
 #: ./content/formMailerAdapter.py:150
@@ -461,7 +445,6 @@ msgid "help_formmailer_replyto_extract"
 msgstr "メールヘッダのReply-Toに該当するフォームフィールドを選択ください。【註記】指定したフィールドのメールアドレス確認を有効にしてください"
 
 #. Mailer Adapter
-#. Default: is empty.
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
 #: ./content/formMailerAdapter.py:166
 #, fuzzy
@@ -474,6 +457,11 @@ msgstr "メッセージのタイトル（Subject）行。タイトルのフィ�
 #, fuzzy
 msgid "help_formmailer_subject_extract"
 msgstr "メールタイトル行に抜き出すフィールドを選択してください"
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
+#: ./content/formMailerAdapter.py:102
+msgid "help_formmailer_to_extract"
+msgstr ""
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
@@ -510,7 +498,6 @@ msgid "help_headerInjection_text"
 msgstr "この上書きフィールドはXHTMLの先頭にコンテンツを挿入することを許可します。これはカスタムCSSやJavaScriptを加えたいときに使用します。TALES式の戻り値を指定ください。文字列はそのまま挿入されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
 
 #. Thanks Page
-#. Default: to leave fields with no input off the list.
 #. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
 #: ./content/thanksPage.py:67
 #, fuzzy
@@ -613,13 +600,13 @@ msgstr ""
 
 # """ Write your script here. """
 #. Default: " Write your script here. "
-#: ./content/customScriptAdapter.py:108
+#: ./content/customScriptAdapter.py:109
 msgid "help_script_body"
 msgstr "自分のスクリプトをここに記入"
 
 # """ Role under which to run the script. """
 #. Default: " Role under which to run the script. "
-#: ./content/customScriptAdapter.py:94
+#: ./content/customScriptAdapter.py:95
 msgid "help_script_proxy"
 msgstr "スクリプトの実行権"
 
@@ -633,7 +620,6 @@ msgid "help_sender_override_text"
 msgstr "From欄を置き換えるために評価されるTALES式です。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
 #. Thanks Page
-#. Default: this, the choices in the pick box below
 #. Default: will be ignored.
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:41
@@ -677,7 +663,6 @@ msgid "help_thanksepilogue_text"
 msgstr "このテキストは、選択されたフィールドの入力に後に表示されます"
 
 #. Form Folder
-#. Default: field values.
 #. Default: "\n                Pick a contained page you wish to show on a successful\n                form submit. (If none are available, add one.)\n                Choose none to simply display the form\n                field values.\n            "
 #: ./content/form.py:111
 #, fuzzy
@@ -685,7 +670,6 @@ msgid "help_thankspage_text"
 msgstr "フォームの提出が正常に終了したときに表示されるページを選択します。（もし一つもなければ追加してください。）「該当しない」を選択すると単純にフォームを再表示します"
 
 #. Form Folder
-#. Default: your action adapter (if you have one). You would usually use this for a custom
 #. Default: success template or script.
 #. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
 #. Default: action type and argument,
@@ -711,7 +695,6 @@ msgid "help_usecolumnnames_text"
 msgstr "ダウンロードデータの最小の行に列名を含むことを希望しますか？"
 
 #. Mailer Adapter
-#. Default: message.
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
 #: ./content/formMailerAdapter.py:319
 #, fuzzy
@@ -1052,6 +1035,11 @@ msgstr "メールタイトル（Subject）"
 msgid "label_formmailer_subject_extract"
 msgstr "タイトルのFrom欄を抽出"
 
+#. Default: "Extract Recipient From"
+#: ./content/formMailerAdapter.py:101
+msgid "label_formmailer_to_extract"
+msgstr ""
+
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
@@ -1226,7 +1214,7 @@ msgstr "フォームの入力内容を保存"
 
 # 'Script body'
 #. Default: "Script body"
-#: ./content/customScriptAdapter.py:105
+#: ./content/customScriptAdapter.py:106
 msgid "label_script_body"
 msgstr "スクリプト本文"
 
@@ -1234,7 +1222,7 @@ msgstr "スクリプト本文"
 # Custom Script Adapter
 # 'Proxy role',
 #. Default: "Proxy role"
-#: ./content/customScriptAdapter.py:93
+#: ./content/customScriptAdapter.py:94
 msgid "label_script_proxy"
 msgstr "プロキシロール"
 

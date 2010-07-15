@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2010-07-15 15:22+0000\n"
+"POT-Creation-Date: 2010-07-15 15:45+0000\n"
 "PO-Revision-Date: 2007-03-09 09:14+0100\n"
 "Last-Translator: Jacob Vestergaard <jacobv@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,16 +15,8 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ploneformgen\n"
 
-#: ./content/formMailerAdapter.py:101
-msgid "Extract Recipient From"
-msgstr ""
-
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
-
-#: ./content/formMailerAdapter.py:102
-msgid "None", this will override the "Recipient's e-mail address"
 msgstr ""
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
@@ -245,7 +237,6 @@ msgid "help_fglikert_questions"
 msgstr "Liste af spørgsmål"
 
 #. Lines Field
-#. Default: Note that this may be overridden dynamically.
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
 #: ./content/fieldsBase.py:296
 #, fuzzy
@@ -296,7 +287,6 @@ msgid "help_fgstringvalidator_text"
 msgstr "Tester input for en bestemt indholdstype"
 
 #. String Field
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fields.py:1121
@@ -319,7 +309,6 @@ msgid "help_fgtextdefault_text"
 msgstr "Den værdi som feltet skal indeholde når formularen bliver vist første gang. Bemærk, at dette kan overskrives dynamisk"
 
 #. Lines Field
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:312
@@ -327,7 +316,6 @@ msgid "help_fgtlinesdefault_text"
 msgstr ""
 
 #. String Field
-#. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
 #. Default: require "eggs" for input.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
@@ -337,7 +325,6 @@ msgid "help_fgtvalidator_text"
 msgstr ""
 
 #. Selection Field
-#. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
@@ -346,7 +333,6 @@ msgid "help_fgtvocabulary_text"
 msgstr ""
 
 #. Selection Field
-#. Default: Note that this may be overridden dynamically.
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
 #: ./content/fieldsBase.py:152
 #, fuzzy
@@ -441,7 +427,6 @@ msgid "help_formmailer_recipient_fullname"
 msgstr "Fulde navn på den der modtager mailen"
 
 #. Mailer Adapter
-#. Default: field.
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
 #: ./content/formMailerAdapter.py:150
 #, fuzzy
@@ -461,6 +446,11 @@ msgstr "Besked i emnefeltet. Denne bliver brugt, hvis du ikke specificerer et em
 #, fuzzy
 msgid "help_formmailer_subject_extract"
 msgstr "Vælg et formularfelt, hvorfra du vil trække indhold til emnefeltet"
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
+#: ./content/formMailerAdapter.py:102
+msgid "help_formmailer_to_extract"
+msgstr ""
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
@@ -599,13 +589,13 @@ msgstr ""
 
 # """ Write your script here. """
 #. Default: " Write your script here. "
-#: ./content/customScriptAdapter.py:108
+#: ./content/customScriptAdapter.py:109
 msgid "help_script_body"
 msgstr ""
 
 # """ Role under which to run the script. """,
 #. Default: " Role under which to run the script. "
-#: ./content/customScriptAdapter.py:94
+#: ./content/customScriptAdapter.py:95
 msgid "help_script_proxy"
 msgstr ""
 
@@ -619,7 +609,6 @@ msgid "help_sender_override_text"
 msgstr ""
 
 #. Thanks Page
-#. Default: will be ignored.
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:41
 #, fuzzy
@@ -669,7 +658,6 @@ msgid "help_thankspage_text"
 msgstr "Vælg en side, som du vil vise ved når formularafsendelse går igennem (Hvis der ikke eksisterer nogen, så tilføj en). Vælg Ingen for bare at vise værdierne fra formularfelterne"
 
 #. Form Folder
-#. Default: success template or script.
 #. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
 #. Default: action type and argument,
 #. Default: complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
@@ -1034,6 +1022,11 @@ msgstr "Emne"
 msgid "label_formmailer_subject_extract"
 msgstr "Udtræk Emne fra"
 
+#. Default: "Extract Recipient From"
+#: ./content/formMailerAdapter.py:101
+msgid "label_formmailer_to_extract"
+msgstr ""
+
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
@@ -1206,7 +1199,7 @@ msgstr "Gemt formularinput"
 
 # 'Script body'
 #. Default: "Script body"
-#: ./content/customScriptAdapter.py:105
+#: ./content/customScriptAdapter.py:106
 msgid "label_script_body"
 msgstr ""
 
@@ -1214,7 +1207,7 @@ msgstr ""
 # Custom Script Adapter
 # 'Proxy role',
 #. Default: "Proxy role"
-#: ./content/customScriptAdapter.py:93
+#: ./content/customScriptAdapter.py:94
 msgid "label_script_proxy"
 msgstr ""
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2010-07-15 15:22+0000\n"
+"POT-Creation-Date: 2010-07-15 15:45+0000\n"
 "PO-Revision-Date: 2009-04-03 23:08+0100\n"
 "Last-Translator: Four Digits<maarten@fourdigits.nl>, Arjen Dijkstra<dijkstra@gw20e.com>\n"
 "Language-Team: \n"
@@ -19,16 +19,8 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Is-Fallback-For: nl-be\n"
 
-#: ./content/formMailerAdapter.py:101
-msgid "Extract Recipient From"
-msgstr ""
-
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
-
-#: ./content/formMailerAdapter.py:102
-msgid "None", this will override the "Recipient's e-mail address"
 msgstr ""
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
@@ -125,7 +117,6 @@ msgid "help_bcc_override_text"
 msgstr ""
 
 #. Boolean Field
-#. Default: "
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:359
 #, fuzzy
@@ -228,7 +219,6 @@ msgid "help_fglikert_questions"
 msgstr ""
 
 #. Lines Field
-#. Default: Note that this may be overridden dynamically.
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
 #: ./content/fieldsBase.py:296
 #, fuzzy
@@ -279,7 +269,6 @@ msgid "help_fgstringvalidator_text"
 msgstr "Test invoer tegen eenvoudige woordpatronen."
 
 #. String Field
-#. Default: Leave empty if unneeded. Your expression should evaluate as a string.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
@@ -304,7 +293,6 @@ msgid "help_fgtextdefault_text"
 msgstr "De tekst die het veld zou moeten bevatten als het formulier voor het eerst wordt getoond. Merk op dat dit dynamisch overschreven kan worden."
 
 #. Lines Field
-#. Default: Leave empty if unneeded. Your expression should evaluate as a list or tuple.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
@@ -314,7 +302,6 @@ msgid "help_fgtlinesdefault_text"
 msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet een 'list' of 'tuple' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. String Field
-#. Default: Return False if valid; if not valid return a string error message.
 #. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
 #. Default: require "eggs" for input.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
@@ -326,7 +313,6 @@ msgid "help_fgtvalidator_text"
 msgstr "Een TALES-expressie die wordt geëvalueerd als het formulier wordt gevalideerd. Validatie is tegen 'value' welke de formulier invoer zal bevatten. Geeft 'False' terug indien valide; indien niet valide wordt een 'string' met foutmelding teruggegeven. Voorbeeld: \"python: test(value=='eieren', False, 'invoer moet eieren zijn')\" stelt \"eieren\" als verplichte invoer. . MERK OP: fouten in deze expressie zullen resulteren in een fout bij het weergeven van het formulier."
 
 #. Selection Field
-#. Default: Leave empty if unneeded.
 #. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
 #. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
 #. Default: an error on form display.
@@ -337,7 +323,6 @@ msgid "help_fgtvocabulary_text"
 msgstr "Een TALES-expressie die wordt geëvalueerd wanneer het formulier wordt getoond om de veldopties te verkrijgen. Leeglaten indien niet nodig. Uw TALES-expressie zou een lijst van (sleutel, waarde) 'tuples' moeten bevatten. MERK OP: fouten in deze expressie zullen resulteren in een fout bij het weergeven van het formulier."
 
 #. Selection Field
-#. Default: [Note, you may optionally use a "value|label" format.]
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
 #: ./content/fieldsBase.py:152
 #, fuzzy
@@ -427,7 +412,6 @@ msgid "help_formmailer_recipient_fullname"
 msgstr "De volledige naam van de ontvanger van het verstuurde formulier."
 
 #. Mailer Adapter
-#. Default: activate e-mail address verification for the designated
 #. Default: field.
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
 #: ./content/formMailerAdapter.py:150
@@ -436,7 +420,6 @@ msgid "help_formmailer_replyto_extract"
 msgstr "Kies een formulierveld waarvan u de invoer wilt extraheren voor de 'Reply-To' header. MERK OP: U moet e-mailadres verificatie activeren voor het desbetreffende veld."
 
 #. Mailer Adapter
-#. Default: is empty.
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
 #: ./content/formMailerAdapter.py:166
 #, fuzzy
@@ -449,6 +432,11 @@ msgstr "Onderwerpregel van het bericht. Dit wordt gebruikt als u niet een onderw
 #, fuzzy
 msgid "help_formmailer_subject_extract"
 msgstr "Kies een formulierveld vanwaar u de invoer wilt extraheren voor de onderwerpregel van de e-mail."
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
+#: ./content/formMailerAdapter.py:102
+msgid "help_formmailer_to_extract"
+msgstr ""
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
@@ -479,7 +467,6 @@ msgid "help_headerInjection_text"
 msgstr "Dit overschrijfveld biedt u de mogelijkheid om inhoud in de xhtml-head toe te voegen. Typisch gebruik hiervan is voor maatwerk CSS of JavaScript. Geef een TALES-expressie op die een 'string' terug geeft. Deze 'string' zal zonder interpretatie worden ingevoegd. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. Thanks Page
-#. Default: to leave fields with no input off the list.
 #. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
 #: ./content/thanksPage.py:67
 #, fuzzy
@@ -560,13 +547,13 @@ msgid "help_savedatainput_text"
 msgstr ""
 
 #. Default: " Write your script here. "
-#: ./content/customScriptAdapter.py:108
+#: ./content/customScriptAdapter.py:109
 #, fuzzy
 msgid "help_script_body"
 msgstr "Schrijf hier uw script."
 
 #. Default: " Role under which to run the script. "
-#: ./content/customScriptAdapter.py:94
+#: ./content/customScriptAdapter.py:95
 #, fuzzy
 msgid "help_script_proxy"
 msgstr "Rol waarmee dit script wordt uitgevoerd."
@@ -578,7 +565,6 @@ msgid "help_sender_override_text"
 msgstr "Een TALES-expressie die geëvalueerd zal worden om het \"Van\" veld te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet een 'string' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\""
 
 #. Thanks Page
-#. Default: this, the choices in the pick box below
 #. Default: will be ignored.
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:41
@@ -618,7 +604,6 @@ msgid "help_thanksepilogue_text"
 msgstr "De tekst die getoond zal worden onder de invoervelden."
 
 #. Form Folder
-#. Default: field values.
 #. Default: "\n                Pick a contained page you wish to show on a successful\n                form submit. (If none are available, add one.)\n                Choose none to simply display the form\n                field values.\n            "
 #: ./content/form.py:111
 #, fuzzy
@@ -626,7 +611,6 @@ msgid "help_thankspage_text"
 msgstr "Selecteer een pagina die u wilt tonen na het verzenden van het formulier. (Als er geen pagina beschikbaar is, voeg er één toe.). Indien u geen pagina selecteert, wordt het ingevulde formulier getoond."
 
 #. Form Folder
-#. Default: your action adapter (if you have one). You would usually use this for a custom
 #. Default: success template or script.
 #. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
 #. Default: action type and argument,
@@ -989,6 +973,11 @@ msgstr "Onderwerp"
 msgid "label_formmailer_subject_extract"
 msgstr "Gebruik onderwerp van"
 
+#. Default: "Extract Recipient From"
+#: ./content/formMailerAdapter.py:101
+msgid "label_formmailer_to_extract"
+msgstr ""
+
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
@@ -1156,7 +1145,7 @@ msgstr "Opgeslagen formuliergegevens"
 
 # 'Script body'
 #. Default: "Script body"
-#: ./content/customScriptAdapter.py:105
+#: ./content/customScriptAdapter.py:106
 msgid "label_script_body"
 msgstr "Script body"
 
@@ -1164,7 +1153,7 @@ msgstr "Script body"
 # Custom Script Adapter
 # 'Proxy role',
 #. Default: "Proxy role"
-#: ./content/customScriptAdapter.py:93
+#: ./content/customScriptAdapter.py:94
 msgid "label_script_proxy"
 msgstr "Proxy rol"
 
