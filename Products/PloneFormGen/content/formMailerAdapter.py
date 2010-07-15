@@ -98,8 +98,8 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         read_permission=ModifyPortalContent,
         vocabulary='fieldsDisplayList',
         widget=SelectionWidget(
-            label = _(u'', default=u'Extract Recipient From'),
-            description = _(u'', default=\
+            label = _(u'label_formmailer_to_extract', default=u'Extract Recipient From'),
+            description = _(u'help_formmailer_to_extract', default=\
                 u"""
                 Choose a form field from which you wish to extract
                 input for the To header. If you choose anything other
