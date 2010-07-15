@@ -265,11 +265,10 @@ class FGFixedPointField(BaseFormField):
     del schema['serverSide']
 
     # and, required has only limited use ...
-    schema['required'].widget.description = \
-        """NOTE: For a fixed-point field, the required flag will not allow
+    schema['required'].widget.description = _(u"help_fprequired_text", default = \
+        u"""NOTE: For a fixed-point field, the required flag will not allow
            entry of a '0' value.
-        """
-    schema['required'].widget.description_msgid = "help_fprequired_text"
+        """)
 
     # hide references & discussion
     finalizeFieldSchema(schema, folderish=True, moveDiscussion=False)
@@ -455,8 +454,7 @@ class FGDateField(BaseFormField):
             default='1999',
             widget=IntegerWidget(
                 label=_(u'label_fgstartingyear_text', default=u'Starting Year'),
-                label_msgid = "label_fgstartingyear_text",
-                description_msgid = "help_fgstartingyear_text",
+                description = _(u"help_fgstartingyear_text"),
                 ),
         ),
         IntegerField('fgEndingYear',

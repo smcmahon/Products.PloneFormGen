@@ -385,7 +385,6 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
                 an error on form display.
             """),
             size=70,
-            i18n_domain = "ploneformgen",
         ),
     ),
     TALESString('senderOverride',
