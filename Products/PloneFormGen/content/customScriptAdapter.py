@@ -35,6 +35,7 @@ from Products.PloneFormGen import config
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import \
     FormActionAdapter, FormAdapterSchema
+from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 logger = logging.getLogger("PloneFormGen")    
 

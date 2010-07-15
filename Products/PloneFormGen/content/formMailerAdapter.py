@@ -332,7 +332,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         write_permission=EDIT_ADVANCED_PERMISSION,
         read_permission=ModifyPortalContent,
         widget=LinesWidget(
-            label = _(u,'label_formmailer_additional_headers',default=u'Additional Headers'),
+            label = _(u'label_formmailer_additional_headers',default=u'Additional Headers'),
             description=_(u'help_formmailer_additional_headers', default=u"""
                 Additional e-mail-header lines.
                 Only use RFC822-compliant headers.
