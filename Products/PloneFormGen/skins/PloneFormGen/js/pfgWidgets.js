@@ -94,6 +94,7 @@ pfgWidgets = {
 		      else {
 		    	ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
 		    	ui.helper.wrapInner("<h4 class='widget-header-helper'></h4>");
+		    	ui.helper.addClass("widget");
 				ui.helper.removeClass("qefield");
 				ui.helper.width("210px")
 				return;
@@ -128,7 +129,7 @@ pfgWidgets = {
 		
 		$("div.widgets").droppable({
 			accept: function(obj) {
-				return !$(obj).parent().hasClass('widgets') && !$(obj).hasClass('widget');
+				return !$(obj).parent().hasClass('widgets') && !$(obj).hasClass('w-field');
 			},
 			drop: function(e, ui) {
 				alert("I came from ", ui.item);
