@@ -47,7 +47,7 @@ div.widget {
 	width:210px;
 }
 
-h4.widget-header {
+h4.widget-header, h4.widget-header-helper {
 	-moz-border-radius:6px 6px 6px 6px;
 	-webkit-border-bottom-left-radius: 6px;
 	-webkit-border-bottom-right-radius: 6px;
@@ -82,8 +82,6 @@ div.placeholder {
 	width: 75%;
 }
 
-
-
 .tooltip {
 	display:none;
 	background-color:#ffa;
@@ -110,7 +108,16 @@ div.widgets .fields-header, div.widgets .actions-header {
 	text-shadow:0 1px #FFFFFF;
 }
 
-
+span#deactivate-widget {
+	display: none;
+	color: #EC580E;
+	font-size: 12px;
+	padding-left: 6px;
+	text-shadow: 0 1px 0 #FFFFFF;
+	position:relative;
+	right:-16px;
+	top:-7px;
+}
 
 /*** fields table styles ****/
 
@@ -162,6 +169,14 @@ div.theader div {
 
 #pfg-qetable .draggingHook {
 	width: 8%;
+	vertical-align: middle;
+	cursor: ns-resize;
+}
+#pfg-qetable .draggingHook .dhcenter { /* workaround to center contents of dragging hook */
+	display: inline-block; 
+	vertical-align: middle; 
+	height: 100%;
+	margin: 0;
 }
 
 #pfg-qetable div.editHook * {
@@ -195,6 +210,6 @@ div.theader div {
 	margin: 0.5em 1em;
 	margin-top: 0;
 	padding: 0;
-	width: 50%;
+	width: 80%;
 }
 

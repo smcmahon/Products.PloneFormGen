@@ -7,6 +7,7 @@ pfgWidgets = {
 	init: function() {
 		var item, target, table = $("#pfg-qetable");
 		var initPos, finalPos;
+		var i = 0; // counter of newly added elements
 		var fixHelper = function(e, ui) {
 		    ui.children().each(function()  {
 	//		  $(this).clone(true);
@@ -18,28 +19,58 @@ pfgWidgets = {
 		$("div.qefield").each(function() {
 			$(this).height($(this).height()); // workaround for children's height not being able to set using %s
 		})
-		
+
 		table.sortable({
 			start: function (event, ui) {
 		//       ui.placeholder.html('<td>&nbsp;</td><td class="placeholder">&nbsp;</td>');
 			   ui.placeholder.height(ui.item.height())
-			   initPos = pfgWidgets.getPos(ui.item);	
+			   initPos = pfgWidgets.getPos(ui.item);
 		    },			
 			helper: 'clone',
 			items: '.qefield',
 		    handle: '> div.draggingHook',
 //		    cursor: 'move',
 		    placeholder: 'placeholder',
-			containment: 'document',
+//			containment: 'document',
 		    update: function(e, ui) {
 				if (ui.item.is("div.widget")) {
 					// perform the operations on the newly dragged element from the widgets manager
 					var item = ui.item;
 					$(item).addClass("qechild");
+					$(item).addClass("item_" + i)
 					$(item).wrap("<div class='qefield'></div>"); // on the fly wrapping with necessary table elements
 					$(item).before("<div class='draggable draggingHook editHook qechild'>::</td>");
-					$(item).after('<div class="editHook qechild">&nbsp;</td>');
-					$(item).children("div.widget-inside").slideDown();
+					$("img.ajax-loader").css('visibility', 'visible');	
+					// AJAX stuff
+					$(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function(response, status, xhr) {
+						if (status=="error") {
+							var msg = "Sorry but there was an error: ";
+						    $(this).html(msg + xhr.status + " " + xhr.statusText);
+						}
+						else {
+							$(this).find("legend").remove();
+							$(this).find("#fieldset-overrides").remove();
+							$(this).find(".formHelp").remove();
+						}
+						$("img.ajax-loader").css('visibility', 'hidden');
+						$(this).slideDown();
+					});
+					
+					// bind the toggle event for toggling slideUp/slideDown
+					$(".qefield div.item_" + i +" .widget-header").toggle(
+						function() {
+							$(this).siblings("div.widget-inside").slideUp();
+						},
+						function() {
+							$(this).siblings("div.widget-inside").slideDown();
+						}
+					)
+					
+					// current position in the table
+					var currpos = $(".item_" + i).parent().index();
+					
+					
+					i++; // increment i on each addition
 				} 
 				else {
 					finalPos = pfgWidgets.getPos(ui.item)
@@ -53,7 +84,26 @@ pfgWidgets = {
 					target = target.find(".field").attr('id').substr('folder-contents-item-'.length)
 					pfgWidgets.updatePositionOnServer(item, target)
 				}
-			}
+			},
+			out: function(e, ui) { 
+		      if (!ui.helper) return;
+		
+			  if (ui.helper.hasClass("widget")) {
+			    return;
+		      }
+		      else {
+		    	ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
+		    	ui.helper.wrapInner("<h4 class='widget-header-helper'></h4>");
+				ui.helper.removeClass("qefield");
+				ui.helper.width("210px")
+				return;
+		      }
+		      return;
+		  	},
+		    stop: function(e, ui) {
+			  if (ui.item.hasClass('ui-draggable'))
+ 			    ui.item.draggable('destroy');
+		   }
 		});
 		
 		this.editTitles();
@@ -73,10 +123,29 @@ pfgWidgets = {
 		$("div.widget").draggable({
 		  connectToSortable: "#pfg-qetable",
 		  helper: 'clone',
-		  containment: 'document'
+	//	  containment: 'document'
 		})
 		
-		/* handle AJAX error */
+		$("div.widgets").droppable({
+			accept: function(obj) {
+				return !$(obj).parent().hasClass('widgets') && !$(obj).hasClass('widget');
+			},
+			drop: function(e, ui) {
+				alert("I came from ", ui.item);
+				$("span#deactivate-widget").hide();
+			},
+			over: function(e, ui) {
+				$("div#pfg-qetable div.placeholder").hide();
+				$("span#deactivate-widget").show();
+			},
+			out: function(e, ui) {
+				$("div#pfg-qetable div.placeholder").show();
+				$("span#deactivate-widget").hide();
+			},
+			tolerance: 'pointer'
+		});
+		
+		/* handle global AJAX error */
 		$(document).ajaxError(function(event, request, settings) {
 			$("img.ajax-loader").css('visibility', 'hidden');
 			alert("The has been an AJAX error on requesting page: " + settings.url);

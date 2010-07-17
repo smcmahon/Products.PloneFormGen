@@ -7,9 +7,6 @@ var pfgQEdit = {};
 pfgQEdit.dragging = null;
 pfgQEdit.table = null;
 pfgQEdit.rows = null;
-pfgQEdit.targetId = null;
-pfgQEdit.endPos = null;
-var widgetsInit = false;
 
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
@@ -33,7 +30,7 @@ pfgQEdit.addTable = function () {
          //   felem = felem.parent();
 			felem.addClass('qechild');
 			felem.wrap("<div class='qefield'></div>");
-            felem.before('<div class="draggable draggingHook editHook qechild">::</div>');
+            felem.before('<div class="draggable draggingHook editHook qechild"><span class="dhcenter"></span>::</div>');
             felem.after(
                 '<div class="editHook qechild">'+ // 94px
 				'<input type="checkbox" name="required-' + fname + '" title="Required?" />'+

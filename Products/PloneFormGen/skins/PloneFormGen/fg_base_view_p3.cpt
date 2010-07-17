@@ -75,9 +75,7 @@
            tal:condition="python:checkPermission('Modify portal content', here)">
        #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
        #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
-       .editHook {text-align:center}
        .editHook a {border-bottom:none !important}
-       div.draggable.draggingHook {cursor:ns-resize;vertical-align:middle} 
 	   .editHook {text-align:center !important}
     </style>
 	<link rel="stylesheet" type="text/css" href="css/validator.css" />
@@ -134,6 +132,7 @@
 								style="visibility:hidden" 
 								class="ajax-loader" />
 						</span>
+						<span id="deactivate-widget">Deactivate</span>
 					</h3>
 				</div>
      			<div class="widgets">
@@ -142,10 +141,9 @@
 					<h2 class="fields-header">Fields/Folders</h2>
                     <tal:typelist repeat="item addtypes">
     				<tal:block tal:define="set item/id" tal:condition="python: conditions.fieldBelongsToSet(set, 'Field')">
-                    	<div class="widget w-field">
+                    	<div class="widget w-field" tal:attributes="id item/id">
 							<h4 class="widget-header" tal:content="item/title">Type title</h4>
 							<div class="widget-inside">
-								content
 							</div>
                         </div>
 						<div class="tooltip">
@@ -157,7 +155,7 @@
 					<h2 class="actions-header">Actions/Pages</h2>
                     <tal:typelist repeat="item addtypes">
 					<tal:block tal:define="set item/id; desc item/description" tal:condition="python: not conditions.fieldBelongsToSet(set, 'Field')">
-                        <div class="widget w-action">
+                        <div class="widget w-action" tal:attributes="id item/id">
                            <h4 class="widget-header" tal:content="item/title">Type title</h4>
 						   <div class="widget-inside">
 							 content
