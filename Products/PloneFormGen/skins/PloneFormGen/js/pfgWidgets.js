@@ -6,7 +6,7 @@ pfgWidgets = {
 	
 	init: function() {
 		var item, target, table = $("#pfg-qetable");
-		var initPos, finalPos;
+		var initPos, finalPos, tmphelper, tmpw, tmph;
 		var i = 0; // counter of newly added elements
 		var fixHelper = function(e, ui) {
 		    ui.children().each(function()  {
@@ -88,19 +88,41 @@ pfgWidgets = {
 			out: function(e, ui) { 
 		      if (!ui.helper) return;
 		
-			  if (ui.helper.hasClass("widget")) {
+			  if (ui.helper.hasClass("widget") && ui.helper.hasClass("w-field")) {
 			    return;
 		      }
-		      else {
-		    	ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
+			  else {
+				tmphelper = ui.helper.html();
+				tmpw = ui.helper.width();
+				tmph = ui.helper.height();								
+				ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
 		    	ui.helper.wrapInner("<h4 class='widget-header-helper'></h4>");
 		    	ui.helper.addClass("widget");
 				ui.helper.removeClass("qefield");
-				ui.helper.width("210px")
+				ui.helper.width("210px");
+				ui.helper.height("32px");
 				return;
-		      }
+			  }
 		      return;
 		  	},
+			over: function(e, ui) {
+			  if (ui.helper.hasClass("widget") && !ui.helper.hasClass("w-field")) {
+				ui.helper.html(tmphelper);
+				ui.helper.addClass("qefield");
+				ui.helper.removeClass("widget");
+				ui.helper.width(tmpw);
+				ui.helper.height(tmph);
+				
+		//		ui.helper.html(tmphelper.html());
+		//		ui.helper.addClass("qefield");
+		//		ui.helper.height(tmphelper.height());
+		//		ui.helper.width(tmphelper.width());
+				return;
+		      }	
+			  else {
+				return;
+			  }
+			},
 		    stop: function(e, ui) {
 			  if (ui.item.hasClass('ui-draggable'))
  			    ui.item.draggable('destroy');
@@ -118,10 +140,24 @@ pfgWidgets = {
 		   }
 		});
 		
+		/**** nice playing with cursor offset - but not something I wanted *****
+		$("div.draggingHook").click(function(e) {
+		//	alert("Clicked at: "+ e.pageY + " Y and: " + e.pageX + "\nMy pos is: " + $(this).offset().top + " " + $(this).offset().left)
+			var xoff = e.pageX - $(this).offset().left;
+			var yoff = e.pageY - $(this).offset().top;
+			if (xoff> $(this).width()) xoff = $(this).width();
+			if (yoff > $(this).height()) yoff = $(this).height();
+			alert("X off:" + xoff + "\nY off: "+ yoff);
+			table.sortable("option", "cursorAt", {top: yoff, left: xoff});
+		})
+		*/
+				
+		/* Initializers for editing titles, toggling required attribute on fields and limiting number of widgets in Widgets Manager */
 		this.editTitles();
 		this.toggleRequired();
 		this.limitFields();
 		
+		/* set the tooltip for the widgets in Widget Manager */
 		$("div.widget").tooltip({
 			tip: ".tooltip",
 			position: "top center",
@@ -132,12 +168,14 @@ pfgWidgets = {
 			opacity: 0.9
 		});
 		
+		/* Make the widgets inside the widgets manager draggable */
 		$("div.widget").draggable({
 		  connectToSortable: "#pfg-qetable",
 		  helper: 'clone',
 	//	  containment: 'document'
 		})
 		
+		/* Make the widgets manager droppable */
 		$("div.widgets").droppable({
 			accept: function(obj) {
 				return !$(obj).parent().hasClass('widgets') && !$(obj).hasClass('w-field');
