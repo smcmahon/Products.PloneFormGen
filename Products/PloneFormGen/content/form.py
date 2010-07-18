@@ -48,7 +48,6 @@ from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen import implementedOrProvidedBy
 
-
 try:
     import plone.protect
     HAS_PLONE_PROTECT = True
@@ -1104,7 +1103,15 @@ class FormFolder(ATFolder):
 		self[item_id].fgField.required = True
 		
 	  return "<done />"
-		
+
+    security.declareProtected(ModifyPortalContent, 'toggleRequired')
+
+    def removeFieldFromForm(self, item_id, **kw):
+	  """ remove field on the fly from the form"""
+	  self.manage_delObjects([item_id])
+	
+	  return "<done />"
+	
 		
 registerATCT(FormFolder, PROJECTNAME)
 

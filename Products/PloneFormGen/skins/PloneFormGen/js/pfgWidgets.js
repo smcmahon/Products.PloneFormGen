@@ -104,6 +104,17 @@ pfgWidgets = {
 		    stop: function(e, ui) {
 			  if (ui.item.hasClass('ui-draggable'))
  			    ui.item.draggable('destroy');
+			  
+			  // AJAX action to remove the item from the form 
+			  if (ui.item.hasClass('deleting')) {
+				var iid = ui.item.children(".field").attr("id").substr("archetypes-fieldname-".length);
+				$("img.ajax-loader").css('visibility', 'visible');
+				ui.item.remove();	// remove the original item (from the DOM and thus the form)
+				$.post("removeFieldFromForm", {item_id: iid}, function() { 
+					$("img.ajax-loader").css('visibility', 'hidden');
+				});
+				return;
+			  }
 		   }
 		});
 		
@@ -132,7 +143,7 @@ pfgWidgets = {
 				return !$(obj).parent().hasClass('widgets') && !$(obj).hasClass('w-field');
 			},
 			drop: function(e, ui) {
-				alert("I came from ", ui.item);
+				ui.draggable.addClass("deleting");
 				$("span#deactivate-widget").hide();
 			},
 			over: function(e, ui) {

@@ -23,6 +23,7 @@
 	margin:0 auto;
 	text-align: center;
 	color: #FFFFFF;
+	position: relative;
 	background-color:LightBlue;
 }
 
@@ -114,9 +115,9 @@ span#deactivate-widget {
 	font-size: 12px;
 	padding-left: 6px;
 	text-shadow: 0 1px 0 #FFFFFF;
-	position:relative;
-	right:-16px;
-	top:-7px;
+	position:absolute;
+	right: 7px;
+	top: 0;
 }
 
 /*** fields table styles ****/
