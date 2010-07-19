@@ -19,87 +19,87 @@ msgstr ""
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "A Likert form entry"
-msgstr ""
+msgstr "Champ de saisie (méthode de Likert)"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "A captcha field to prevent spam."
-msgstr ""
+msgstr "Un champ captcha pour éviter le spam."
 
 #: ./profiles/default/types/FormFolder.xml
 msgid "A folder which can contain form fields."
-msgstr ""
+msgstr "Un dossier pouvant contenir des champs de formulaire."
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
-msgstr ""
+msgstr "Un dossier qui regroupe les champs de formulaire en tant que fieldset."
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "A form action adapter that will e-mail form input."
-msgstr ""
+msgstr "Une action qui enverra un courriel avec le contenu du formulaire."
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "A line entry field. This appears as a textarea without wordwrap."
-msgstr ""
+msgstr "Un champ de saisie ligne. Il apparait comme un textarea sans retour à la ligne."
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "A string entry field"
-msgstr ""
+msgstr "Un champ chaine de caractère"
 
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "A thank-you page that can display form input"
-msgstr ""
+msgstr "Une page de remerciements qui peut afficher la saisie"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
-msgstr ""
+msgstr "Booléen"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "Captcha Field"
-msgstr ""
+msgstr "Champ Captcha"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Checkbox Field"
-msgstr "Champ Checkbox"
+msgstr "Champ Case à cocher"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Custom Script Adapter"
-msgstr ""
+msgstr "Action Script Personnalisée"
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
-msgstr ""
+msgstr "Champ de saisie de date et/ou heure"
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Field"
-msgstr ""
+msgstr "Champ date et/ou heure"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Decimal Number Field"
-msgstr ""
+msgstr "Champ nombre décimale"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Executes a Python script for form data"
-msgstr ""
+msgstr "un script python pour traiter les données du formulaire."
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
-msgstr ""
+msgstr "Dossier groupeur de champs"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File (upload) field"
-msgstr ""
+msgstr "Champ Fichier (upload)"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File Field"
-msgstr ""
+msgstr "Champ Fichier"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Fixed-Point (float) entry field"
-msgstr ""
+msgstr "Champ nombre à virgule flottante"
 
 #: ./profiles/default/types/FormFolder.xml
 msgid "Form Folder"
-msgstr ""
+msgstr "Formulaire"
 
 #: ./browser/exportimport.py:57
 msgid "Form imported."
@@ -107,39 +107,39 @@ msgstr "Fomulaire importé."
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Integer entry field"
-msgstr ""
+msgstr "Champ nombre entier"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label Field"
-msgstr ""
+msgstr "Champ libellé"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label-Only field (no input component)"
-msgstr ""
+msgstr "Libellé seul (champ sans saisie)"
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "Lines Field"
-msgstr ""
+msgstr "Champ liste"
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "Mailer Adapter"
-msgstr ""
+msgstr "Action Envoi d'un courriel"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multi-Select Field"
-msgstr ""
+msgstr "Champ Selection multiple"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multiple selection field (select with multiple or check boxes)"
-msgstr ""
+msgstr "Champ à sélection multiple (avec des cases à cocher ou sélection avec controle)"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password Field"
-msgstr ""
+msgstr "Champ mot de passe"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password entry field (input is masked)"
-msgstr ""
+msgstr "Champ de saisie de mot de passe (l'affichage est masqué)"
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
 msgid "Please correct the indicated errors."
@@ -147,7 +147,7 @@ msgstr "Veuillez corriger les erreurs indiquées."
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "Rating-Scale Field"
-msgstr ""
+msgstr "Champ Notation"
 
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
@@ -155,47 +155,47 @@ msgstr "Retirer les champs existants dans le formulaire ?"
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich Label Field"
-msgstr ""
+msgstr "Champ libellé riche"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "Rich-text (visual editor) field"
-msgstr ""
+msgstr "Champ pour afficher un texte riche (éditeur visuel)"
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich-text label field"
-msgstr ""
+msgstr "Champ libellé riche"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "RichText Field"
-msgstr ""
+msgstr "Champ texte riche"
 
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "Save Data Adapter"
-msgstr ""
+msgstr "Action enregistrement"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field"
-msgstr ""
+msgstr "Champ sélection"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field (radio buttons or select)"
-msgstr ""
+msgstr "Champ sélection (bouton radio ou sélection)"
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "String Field"
-msgstr ""
+msgstr "Champ ligne de texte"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text (textarea) field"
-msgstr ""
+msgstr "Champ texte (plusieurs lignes)"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text Field"
-msgstr ""
+msgstr "Champ texte"
 
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "Thanks Page"
-msgstr ""
+msgstr "Page de remerciement"
 
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
@@ -203,7 +203,7 @@ msgstr "Télécharger (up)"
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Whole Number Field"
-msgstr ""
+msgstr "Champ nombre entier"
 
 # value="Clear Saved Input"
 #. Save Data Adapter
