@@ -6,23 +6,16 @@ pfgWidgets = {
 	
 	init: function() {
 		var item, target, table = $("#pfg-qetable");
-		var initPos, finalPos, tmphelper, tmpw, tmph;
-		var i = 0; // counter of newly added elements
-		var fixHelper = function(e, ui) {
-		    ui.children().each(function()  {
-	//		  $(this).clone(true);
-			  $(this).width($(this).width());
-		    });
-		    return ui;	
-		};
+		var initPos, finalPos; // initial and final positions of element being sorted (dragged)
+		var i = 0; // counter of newly added elements to the form
 		
 		$("div.qefield").each(function() {
 			$(this).height($(this).height()); // workaround for children's height not being able to set using %s
+			$(this).width($(this).width());  // the same for width, for the new ui-sortable-helper
 		})
 
 		table.sortable({
 			start: function (event, ui) {
-		//       ui.placeholder.html('<td>&nbsp;</td><td class="placeholder">&nbsp;</td>');
 			   ui.placeholder.height(ui.item.height())
 			   initPos = pfgWidgets.getPos(ui.item);
 		    },			
@@ -69,7 +62,6 @@ pfgWidgets = {
 					// current position in the table
 					var currpos = $(".item_" + i).parent().index();
 					
-					
 					i++; // increment i on each addition
 				} 
 				else {
@@ -91,32 +83,28 @@ pfgWidgets = {
 			  if (ui.helper.hasClass("widget") && ui.helper.hasClass("w-field")) {
 			    return;
 		      }
-			  else {
-				tmphelper = ui.helper.html();
-				tmpw = ui.helper.width();
-				tmph = ui.helper.height();								
+			  else {						
 				ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
 		    	ui.helper.wrapInner("<h4 class='widget-header-helper'></h4>");
 		    	ui.helper.addClass("widget");
 				ui.helper.removeClass("qefield");
 				ui.helper.width("210px");
 				ui.helper.height("32px");
+				// let the helper follow the mouse! (w/o any offset between the cursor and the element)
+				$(document).mousemove(function(e) {
+					ui.helper.offset({top: e.pageY-15, left: e.pageX-25})
+				});
 				return;
 			  }
 		      return;
 		  	},
 			over: function(e, ui) {
 			  if (ui.helper.hasClass("widget") && !ui.helper.hasClass("w-field")) {
-				ui.helper.html(tmphelper);
 				ui.helper.addClass("qefield");
 				ui.helper.removeClass("widget");
-				ui.helper.width(tmpw);
-				ui.helper.height(tmph);
-				
-		//		ui.helper.html(tmphelper.html());
-		//		ui.helper.addClass("qefield");
-		//		ui.helper.height(tmphelper.height());
-		//		ui.helper.width(tmphelper.width());
+				ui.helper.html(ui.item.html());
+				ui.helper.width(ui.item.width());
+				ui.helper.height(ui.item.height());
 				return;
 		      }	
 			  else {
@@ -139,18 +127,6 @@ pfgWidgets = {
 			  }
 		   }
 		});
-		
-		/**** nice playing with cursor offset - but not something I wanted *****
-		$("div.draggingHook").click(function(e) {
-		//	alert("Clicked at: "+ e.pageY + " Y and: " + e.pageX + "\nMy pos is: " + $(this).offset().top + " " + $(this).offset().left)
-			var xoff = e.pageX - $(this).offset().left;
-			var yoff = e.pageY - $(this).offset().top;
-			if (xoff> $(this).width()) xoff = $(this).width();
-			if (yoff > $(this).height()) yoff = $(this).height();
-			alert("X off:" + xoff + "\nY off: "+ yoff);
-			table.sortable("option", "cursorAt", {top: yoff, left: xoff});
-		})
-		*/
 				
 		/* Initializers for editing titles, toggling required attribute on fields and limiting number of widgets in Widgets Manager */
 		this.editTitles();
