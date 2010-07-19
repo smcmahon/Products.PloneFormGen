@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <object name="FormLinesField"
    meta_type="Factory-based Type Information with dynamic views"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title">Lines Field</property>
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   i18n:domain="ploneformgen">
+ <property name="title" i18n:translate="">Lines Field</property>
  <property
-    name="description"> A line entry field. This appears as a textarea without wordwrap. </property>
+    name="description" i18n:translate=""> A line entry field. This appears as a textarea without wordwrap. </property>
  <property name="content_icon">LinesField.gif</property>
  <property name="content_meta_type">FormLinesField</property>
  <property name="product">PloneFormGen</property>

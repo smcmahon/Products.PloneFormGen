@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
-"POT-Creation-Date: 2010-07-15 15:45+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2007-01-09 15:12+0100\n"
 "Last-Translator: Łukasz Lichota\n"
 "Language-Team: webservice.pl\n"
@@ -17,20 +17,192 @@ msgstr ""
 "Domain: ploneformgen\n"
 "PO-Creation-Date: 2006-01-04 22:26+0200\n"
 
+#: ./profiles/default/types/FormLikertField.xml
+msgid "A Likert form entry"
+msgstr ""
+
+#: ./profiles/default/types/FormCaptchaField.xml
+msgid "A captcha field to prevent spam."
+msgstr ""
+
+#: ./profiles/default/types/FormFolder.xml
+msgid "A folder which can contain form fields."
+msgstr ""
+
+#: ./profiles/default/types/FieldsetFolder.xml
+msgid "A folder which groups form fields as a fieldset."
+msgstr ""
+
+#: ./profiles/default/types/FormMailerAdapter.xml
+msgid "A form action adapter that will e-mail form input."
+msgstr ""
+
+#: ./profiles/default/types/FormLinesField.xml
+msgid "A line entry field. This appears as a textarea without wordwrap."
+msgstr ""
+
+#: ./profiles/default/types/FormStringField.xml
+msgid "A string entry field"
+msgstr ""
+
+#: ./profiles/default/types/FormThanksPage.xml
+msgid "A thank-you page that can display form input"
+msgstr ""
+
+#: ./profiles/default/types/FormBooleanField.xml
+msgid "Boolean (checkbox) field"
+msgstr ""
+
+#: ./profiles/default/types/FormCaptchaField.xml
+msgid "Captcha Field"
+msgstr ""
+
+#: ./profiles/default/types/FormBooleanField.xml
+msgid "Checkbox Field"
+msgstr ""
+
+#: ./profiles/default/types/FormCustomScriptAdapter.xml
+msgid "Custom Script Adapter"
+msgstr ""
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Entry Field"
+msgstr ""
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Field"
+msgstr ""
+
+#: ./profiles/default/types/FormFixedPointField.xml
+msgid "Decimal Number Field"
+msgstr ""
+
+#: ./profiles/default/types/FormCustomScriptAdapter.xml
+msgid "Executes a Python script for form data"
+msgstr ""
+
+#: ./profiles/default/types/FieldsetFolder.xml
+msgid "Fieldset Folder"
+msgstr ""
+
+#: ./profiles/default/types/FormFileField.xml
+msgid "File (upload) field"
+msgstr ""
+
+#: ./profiles/default/types/FormFileField.xml
+msgid "File Field"
+msgstr ""
+
+#: ./profiles/default/types/FormFixedPointField.xml
+msgid "Fixed-Point (float) entry field"
+msgstr ""
+
+#: ./profiles/default/types/FormFolder.xml
+msgid "Form Folder"
+msgstr ""
+
 #: ./browser/exportimport.py:57
 msgid "Form imported."
+msgstr ""
+
+#: ./profiles/default/types/FormIntegerField.xml
+msgid "Integer entry field"
+msgstr ""
+
+#: ./profiles/default/types/FormLabelField.xml
+msgid "Label Field"
+msgstr ""
+
+#: ./profiles/default/types/FormLabelField.xml
+msgid "Label-Only field (no input component)"
+msgstr ""
+
+#: ./profiles/default/types/FormLinesField.xml
+msgid "Lines Field"
+msgstr ""
+
+#: ./profiles/default/types/FormMailerAdapter.xml
+msgid "Mailer Adapter"
+msgstr ""
+
+#: ./profiles/default/types/FormMultiSelectionField.xml
+msgid "Multi-Select Field"
+msgstr ""
+
+#: ./profiles/default/types/FormMultiSelectionField.xml
+msgid "Multiple selection field (select with multiple or check boxes)"
+msgstr ""
+
+#: ./profiles/default/types/FormPasswordField.xml
+msgid "Password Field"
+msgstr ""
+
+#: ./profiles/default/types/FormPasswordField.xml
+msgid "Password entry field (input is masked)"
 msgstr ""
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
 msgid "Please correct the indicated errors."
 msgstr ""
 
+#: ./profiles/default/types/FormLikertField.xml
+msgid "Rating-Scale Field"
+msgstr ""
+
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
 msgstr ""
 
+#: ./profiles/default/types/FormRichLabelField.xml
+msgid "Rich Label Field"
+msgstr ""
+
+#: ./profiles/default/types/FormRichTextField.xml
+msgid "Rich-text (visual editor) field"
+msgstr ""
+
+#: ./profiles/default/types/FormRichLabelField.xml
+msgid "Rich-text label field"
+msgstr ""
+
+#: ./profiles/default/types/FormRichTextField.xml
+msgid "RichText Field"
+msgstr ""
+
+#: ./profiles/default/types/FormSaveDataAdapter.xml
+msgid "Save Data Adapter"
+msgstr ""
+
+#: ./profiles/default/types/FormSelectionField.xml
+msgid "Selection Field"
+msgstr ""
+
+#: ./profiles/default/types/FormSelectionField.xml
+msgid "Selection Field (radio buttons or select)"
+msgstr ""
+
+#: ./profiles/default/types/FormStringField.xml
+msgid "String Field"
+msgstr ""
+
+#: ./profiles/default/types/FormTextField.xml
+msgid "Text (textarea) field"
+msgstr ""
+
+#: ./profiles/default/types/FormTextField.xml
+msgid "Text Field"
+msgstr ""
+
+#: ./profiles/default/types/FormThanksPage.xml
+msgid "Thanks Page"
+msgstr ""
+
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
+msgstr ""
+
+#: ./profiles/default/types/FormIntegerField.xml
+msgid "Whole Number Field"
 msgstr ""
 
 # value="Clear Saved Input"
@@ -266,8 +438,6 @@ msgid "help_fgstringvalidator_text"
 msgstr "Sprawdź czy podany tekst pasuje do wzorca."
 
 #. String Field
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
-#. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fields.py:1121
 #: ./content/fieldsBase.py:220
@@ -288,8 +458,6 @@ msgid "help_fgtextdefault_text"
 msgstr "Domyślna wartość jaką powinno zawierać pole po wyświetleniu formularza. Zauważ, że to może być nadpisane dynamicznie."
 
 #. Lines Field
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
-#. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:312
 #, fuzzy
@@ -297,10 +465,6 @@ msgid "help_fgtlinesdefault_text"
 msgstr "Wyrażenie TALES, które zwraca wartość, która będzie wartością domyślną dla pola. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić liste albo tuple. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
 
 #. String Field
-#. Default: E.G., "python: test(value=='eggs', False, 'input must be eggs') will
-#. Default: require "eggs" for input.
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
-#. Default: an error on form display.
 #. Default: "\n                    A TALES expression that will be evaluated when the form is validated.\n                    Validate against 'value', which will contain the field input.\n                    Return False if valid; if not valid return a string error message.\n                    E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will\n                    require \"eggs\" for input.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:79
 #, fuzzy
@@ -308,9 +472,6 @@ msgid "help_fgtvalidator_text"
 msgstr "Wyrażenie TALES, które zostanie obliczone gdy sprawdzana jest wartość pola. Sprawdzana wartość wejściowa jest w zmiennej 'value'. Zwróć 'False' jesli jest poprawna, jeśli nie poprawna zwróć komunikat błędu. Na przykład: \"python: test(value=='eggs', False, 'input must be eggs')\" będzie sprawdzać czy podaną wartością wejściową jest wyraz 'eggs'. UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
 
 #. Selection Field
-#. Default: Your TALES expression should evaluate as a list of (key, value) tuples.
-#. Default: PLEASE NOTE: errors in the evaluation of this expression will cause
-#. Default: an error on form display.
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/fieldsBase.py:170
 #, fuzzy
@@ -413,7 +574,6 @@ msgid "help_formmailer_recipient_fullname"
 msgstr "Pełna nazwa adresata, do którego zostaną wysłane dane."
 
 #. Mailer Adapter
-#. Default: field.
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
 #: ./content/formMailerAdapter.py:150
 #, fuzzy
@@ -583,7 +743,6 @@ msgid "help_sender_override_text"
 msgstr "Wyrażenie TALES, które zwraca wartość, która zastąpi wartoścć pola 'Od' maila. Zostaw puste jeślie nie jest potrzebne. Wyrażenie powinno zwrócić stringa (ciąg znaków). UWAGA: Błędy w wykonaniu tego wyrażnia spowodują błąd wyświetlenia formularza."
 
 #. Thanks Page
-#. Default: will be ignored.
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:41
 #, fuzzy
@@ -633,12 +792,6 @@ msgid "help_thankspage_text"
 msgstr "Wybierz stronę, która zostanie wyświetlona po pomyślnym wysłaniu formularza (jeśli żadna nie jest dostępna możesz dodać nową). Wybierz 'żadna' ('none') jeśli chcesz by zotały wyświetlone jedynie dane, które zostaly wysłane"
 
 #. Form Folder
-#. Default: success template or script.
-#. Default: Leave empty if unneeded. Otherwise, specify as you would a CMFFormController
-#. Default: action type and argument,
-#. Default: complete with type of action to execute (e.g., "redirect_to" or "traverse_to")
-#. Default: and a TALES expression. For example, "redirect_to:string:thanks-page" would
-#. Default: redirect to 'thanks-page'.
 #. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
 #: ./content/form.py:180
 #, fuzzy
