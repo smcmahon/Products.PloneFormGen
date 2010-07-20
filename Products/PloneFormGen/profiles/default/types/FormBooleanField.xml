@@ -4,7 +4,7 @@
    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
    i18n:domain="ploneformgen">
  <property name="title" i18n:translate="">Checkbox Field</property>
- <property name="description" i18n:translate=""> Boolean (checkbox) field </property>
+ <property name="description" i18n:translate="">Boolean (checkbox) field</property>
  <property name="content_icon">CheckBoxField.gif</property>
  <property name="content_meta_type">FormBooleanField</property>
  <property name="product">PloneFormGen</property>

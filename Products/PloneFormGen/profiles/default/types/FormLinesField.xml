@@ -5,7 +5,7 @@
    i18n:domain="ploneformgen">
  <property name="title" i18n:translate="">Lines Field</property>
  <property
-    name="description" i18n:translate=""> A line entry field. This appears as a textarea without wordwrap. </property>
+    name="description" i18n:translate="">A line entry field. This appears as a textarea without wordwrap.</property>
  <property name="content_icon">LinesField.gif</property>
  <property name="content_meta_type">FormLinesField</property>
  <property name="product">PloneFormGen</property>

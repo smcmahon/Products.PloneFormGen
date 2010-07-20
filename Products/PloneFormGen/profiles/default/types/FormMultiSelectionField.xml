@@ -5,7 +5,7 @@
    i18n:domain="ploneformgen">
  <property name="title" i18n:translate="">Multi-Select Field</property>
  <property
-    name="description" i18n:translate=""> Multiple selection field (select with multiple or check boxes) </property>
+    name="description" i18n:translate="">Multiple selection field (select with multiple or check boxes)</property>
  <property name="content_icon">MultipleListField.gif</property>
  <property name="content_meta_type">FormMultiSelectionField</property>
  <property name="product">PloneFormGen</property>
