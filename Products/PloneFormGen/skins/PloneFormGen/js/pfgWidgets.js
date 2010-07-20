@@ -116,7 +116,8 @@ pfgWidgets = {
 			},
 			sort: function(e, ui) {
 				// helper follows the mouse now and probably it's more efficient than binding mousemove event to document (because it's already binded)
-				ui.helper.offset({top: e.pageY-15, left: e.pageX-25})	
+				if (ui.helper.hasClass("widget"))
+					ui.helper.offset({top: e.pageY-15, left: e.pageX-25})	
 			},
 		    stop: function(e, ui) {
 			  if (ui.item.hasClass('ui-draggable'))
