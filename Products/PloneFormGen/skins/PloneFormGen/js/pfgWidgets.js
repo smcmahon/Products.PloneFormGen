@@ -22,6 +22,7 @@ pfgWidgets = {
 			helper: 'clone',
 			items: '.qefield',
 		    handle: '> div.draggingHook',
+			tolerance: 'pointer',
 //		    cursor: 'move',
 		    placeholder: 'placeholder',
 //			containment: 'document',
@@ -90,10 +91,12 @@ pfgWidgets = {
 				ui.helper.removeClass("qefield");
 				ui.helper.width("210px");
 				ui.helper.height("32px");
-				// let the helper follow the mouse! (w/o any offset between the cursor and the element)
+				/*** let the helper follow the mouse! (w/o any offset between the cursor and the element) - sort: takes care of any mouse move, so this is not necessary ***/
+				/*
 				$(document).mousemove(function(e) {
 					ui.helper.offset({top: e.pageY-15, left: e.pageX-25})
 				});
+				*/
 				return;
 			  }
 		      return;
@@ -110,6 +113,10 @@ pfgWidgets = {
 			  else {
 				return;
 			  }
+			},
+			sort: function(e, ui) {
+				// helper follows the mouse now and probably it's more efficient than binding mousemove event to document (because it's already binded)
+				ui.helper.offset({top: e.pageY-15, left: e.pageX-25})	
 			},
 		    stop: function(e, ui) {
 			  if (ui.item.hasClass('ui-draggable'))
