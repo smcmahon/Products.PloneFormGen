@@ -1,8 +1,8 @@
 Change History
 ==============
 
-1.6.0b4 (unreleased)
---------------------
+1.6.0b4
+-------
 
 - Update all schemas to use message factory instead of _msgid. Now it is
   i18ndude compatible, so you can use rebuild pot script.
