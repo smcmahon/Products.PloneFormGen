@@ -83,7 +83,7 @@ pfgWidgets = {
 			out: function(e, ui) { 
 		      if (!ui.helper) return;
 		
-			  if (ui.helper.hasClass("widget") && ui.helper.hasClass("w-field")) {
+			  if (ui.helper.hasClass("widget") && (ui.helper.hasClass("w-field") || ui.helper.hasClass("w-action"))) {
 			    return;
 		      }
 			  else {						
@@ -104,7 +104,7 @@ pfgWidgets = {
 		      return;
 		  	},
 			over: function(e, ui) {
-			  if (ui.helper.hasClass("widget") && !ui.helper.hasClass("w-field")) {
+			  if (ui.helper.hasClass("widget") && (!ui.helper.hasClass("w-field") && !ui.helper.hasClass("w-action"))) {
 				ui.helper.addClass("qefield");
 				ui.helper.removeClass("widget");
 				ui.helper.html(ui.item.html());
@@ -164,7 +164,7 @@ pfgWidgets = {
 		/* Make the widgets manager droppable */
 		$("div.widgets").droppable({
 			accept: function(obj) {
-				return !$(obj).parent().hasClass('widgets') && !$(obj).hasClass('w-field');
+				return !$(obj).parent().hasClass('widgets') && (!$(obj).hasClass('w-field') && !$(obj).hasClass("w-action"));
 			},
 			drop: function(e, ui) {
 				ui.draggable.addClass("deleting");

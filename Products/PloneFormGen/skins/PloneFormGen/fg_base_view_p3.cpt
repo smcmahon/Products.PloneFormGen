@@ -125,7 +125,7 @@
 							 addtypes context/@@folder_factories/addable_types">  <!-- define the fields -->				
 
 				<div class="header">
-					<h3>Widgets Manager
+					<h3>Toolbox
 						<span>
 							<img alt="Ajax Loader" 
 								tal:attributes="src string:${context/portal_url}/ajax-loader.gif"
@@ -152,9 +152,9 @@
 					</tal:block>
                     </tal:typelist>
 					<hr>
-					<h2 class="actions-header">Actions/Pages</h2>
+					<h2 class="actions-header">Adapters</h2>
                     <tal:typelist repeat="item addtypes">
-					<tal:block tal:define="set item/id; desc item/description" tal:condition="python: not conditions.fieldBelongsToSet(set, 'Field')">
+					<tal:block tal:define="set item/id; desc item/description" tal:condition="python:conditions.fieldBelongsToSet(set, 'Adapter')">
                         <div class="widget w-action" tal:attributes="id item/id">
                            <h4 class="widget-header" tal:content="item/title">Type title</h4>
 						   <div class="widget-inside">
