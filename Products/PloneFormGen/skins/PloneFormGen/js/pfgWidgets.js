@@ -34,7 +34,9 @@ pfgWidgets = {
 					$(item).addClass("item_" + i)
 					$(item).wrap("<div class='qefield'></div>"); // on the fly wrapping with necessary table elements
 					$(item).before("<div class='draggable draggingHook editHook qechild'>::</td>");
-					$("img.ajax-loader").css('visibility', 'visible');	
+					$("img.ajax-loader").css('visibility', 'visible');
+					$(item).width($(item).width());
+				//	$(item).height($(item).height());	
 					// AJAX stuff
 					$(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function(response, status, xhr) {
 						if (status=="error") {
@@ -156,7 +158,7 @@ pfgWidgets = {
 		$("div.widget").draggable({
 		  connectToSortable: "#pfg-qetable",
 		  helper: 'clone',
-	//	  containment: 'document'
+		  containment: 'document'
 		})
 		
 		/* Make the widgets manager droppable */
@@ -209,7 +211,7 @@ pfgWidgets = {
 		node.setAttribute("type", "text");
 		
 		// then we attach a new event to label fields
-		$("#pfg-qetable label.formQuestion").live('dblclick', function(e) {
+		$("#pfg-qetable div.qefield label.formQuestion").live('dblclick', function(e) {
 			var content = $(this).text();
 			var tmpfor = $(this).attr('for');
 			$(this).append(node);
