@@ -172,6 +172,7 @@ div.theader div {
 	width: 8%;
 	vertical-align: middle;
 	cursor: ns-resize;
+	padding: 0;
 }
 #pfg-qetable .draggingHook .dhcenter { /* workaround to center contents of dragging hook */
 	display: inline-block; 

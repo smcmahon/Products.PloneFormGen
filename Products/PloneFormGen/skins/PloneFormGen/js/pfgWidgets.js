@@ -32,7 +32,7 @@ pfgWidgets = {
 					var item = ui.item;
 					$(item).addClass("qechild");
 					$(item).addClass("item_" + i)
-					$(item).wrap("<div class='qefield'></div>"); // on the fly wrapping with necessary table elements
+					$(item).wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
 					$(item).before("<div class='draggable draggingHook editHook qechild'>::</td>");
 					$("img.ajax-loader").css('visibility', 'visible');
 					$(item).width($(item).width());
@@ -127,6 +127,10 @@ pfgWidgets = {
 			  
 			  // AJAX action to remove the item from the form 
 			  if (ui.item.hasClass('deleting')) {
+				if (ui.item.hasClass("new-widget")) {
+					ui.item.remove();
+					return;
+				}
 				var iid = ui.item.children(".field").attr("id").substr("archetypes-fieldname-".length);
 				$("img.ajax-loader").css('visibility', 'visible');
 				ui.item.remove();	// remove the original item (from the DOM and thus the form)
