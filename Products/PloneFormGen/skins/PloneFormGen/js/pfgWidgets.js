@@ -263,7 +263,7 @@ pfgWidgets = {
 				$("img.ajax-loader").css('visibility', 'hidden')
 			});
 			$('#archetypes-fieldname-'+item).find('[name^='+item+']').attr("required", "required")
-			$(this).replaceWith('<span style="color: rgb(255, 0, 0);" title="Required" class="required">■</span>').fadeIn('slow');
+				$(this).replaceWith($('<span style="color: rgb(255, 0, 0);display:none" title="Required" class="required">■</span>').fadeIn('slow'));
 		});
 		
 		$("span.required").live("click", function(event) {
@@ -274,7 +274,7 @@ pfgWidgets = {
 				$("img.ajax-loader").css('visibility', 'hidden')
 			});
 			$('#archetypes-fieldname-'+item).find('[name^='+item+']').removeAttr("required");
-			$(this).replaceWith("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:inline-block;'></span>").fadeIn('slow');
+			$(this).replaceWith($("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:none'></span>").fadeIn('slow').css("display", "inline-block"));
 		});
 		
 		
