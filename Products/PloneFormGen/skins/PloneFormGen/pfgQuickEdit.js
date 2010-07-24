@@ -33,7 +33,7 @@ pfgQEdit.addTable = function () {
             felem.before('<div class="draggable draggingHook editHook qechild"><span class="dhcenter"></span>::</div>');
             felem.after(
                 '<div class="editHook qechild">'+ // 94px
-				'<input type="checkbox" name="required-' + fname + '" title="Required?" />'+
+	//			'<input type="checkbox" name="required-' + fname + '" title="Required?" />'+
 				'<a href="' + fname + '/edit" title="Edit Field">'+
                 '<img src="edit.gif" alt="Edit" /></a>'+
                 '<a href="' + fname + '/delete_confirmation" title="Delete Field">'+

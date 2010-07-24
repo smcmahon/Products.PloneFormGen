@@ -241,12 +241,45 @@ pfgWidgets = {
 	},
 	
 	toggleRequired: function() {
+		/* old checkbox method
 		var requiredParent = $("span.required").parent();
 		$(requiredParent).each(function () {
 			var parentId = $(this).attr('id').substr('archetypes-fieldname-'.length);
 			$("#pfg-qetable").find("input[name=required-"+ parentId + "]").attr("checked", "checked");			
 		});
+		*/
+		var target = $("div.field label").next();
+		target.each(function() {
+		  if (!$(this).is("span")) {
+			$("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:inline-block;'></span>").insertBefore(this);
+		  }
+		})
+				
+		$("span.not-required").live("click", function(event) {
+			var item = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
+			$("img.ajax-loader").css('visibility', 'visible');
+			// AJAX		
+			$.post('toggleRequired', {item_id: item }, function() {
+				$("img.ajax-loader").css('visibility', 'hidden')
+			});
+			$('#archetypes-fieldname-'+item).find('[name^='+item+']').attr("required", "required")
+			$(this).replaceWith('<span style="color: rgb(255, 0, 0);" title="Required" class="required">■</span>').fadeIn('slow');
+		});
 		
+		$("span.required").live("click", function(event) {
+			var item = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
+			$("img.ajax-loader").css('visibility', 'visible');
+			// AJAX		
+			$.post('toggleRequired', {item_id: item }, function() {
+				$("img.ajax-loader").css('visibility', 'hidden')
+			});
+			$('#archetypes-fieldname-'+item).find('[name^='+item+']').removeAttr("required");
+			$(this).replaceWith("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:inline-block;'></span>").fadeIn('slow');
+		});
+		
+		
+		
+		/* old checkbox method
 		$("#pfg-qetable").find("input[name^=required-]").bind('change', function(event) {
 		//	event.preventDefault();
 			var id = $(this).attr('name').substr('required-'.length);
@@ -270,6 +303,7 @@ pfgWidgets = {
 			});
 			return true;
 		});
+		*/
 	},
 	
 	limitFields: function() {
@@ -296,6 +330,9 @@ pfgWidgets = {
 	deinit: function() {
 		$("label.formQuestion").die(); // removes event handlers setup by .live
 		$(".more").remove();		// remove the item with bounded events to avoid conflict when "quick-edit mode" is called again
+		$("span.not-required").die();
+		$("span.not-required").remove(); // we don't want blank square showed in the form
+		$("span.required").die();
 	}
 	
 	
