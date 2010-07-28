@@ -1,6 +1,12 @@
 Change History
 ==============
 
+Unreleased
+----------
+
+- fixed LikertField having invalid fields in it's get and set methods.
+  [vangheem]
+
 1.6.0b4
 -------
 

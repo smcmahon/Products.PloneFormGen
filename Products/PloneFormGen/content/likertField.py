@@ -60,8 +60,8 @@ class LikertField(ObjectField):
         """
 
         value = ObjectField.get(self, instance, **kwargs)
-        if value is None:
-            return tuple([None] * len(questions))
+        if not value:
+            return tuple()
         else:
             return value
 
@@ -69,7 +69,7 @@ class LikertField(ObjectField):
     def set(self, instance, value, **kwargs):
         """ Set the LikertField data """
 
-        if type(value) in STRING_TYPES:
+        if type(value) in (str, unicode):
             value = [v.strip() for v in value.split(',')]
         ObjectField.set(self, instance, value, **kwargs)
 
