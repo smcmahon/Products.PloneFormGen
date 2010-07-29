@@ -12,18 +12,17 @@ pfgWidgets = {
 		$("div.qefield").each(function() {
 			$(this).height($(this).height()); // workaround for children's height not being able to set using %s
 			$(this).width($(this).width());  // the same for width, for the new ui-sortable-helper
-		})
+		});
 
 		table.sortable({
 			start: function (event, ui) {
-			   ui.placeholder.height(ui.item.height())
+			   ui.placeholder.height(ui.item.height());
 			   initPos = pfgWidgets.getPos(ui.item);
 		    },			
 			helper: 'clone',
 			items: '.qefield',
 		    handle: '> div.draggingHook',
 			tolerance: 'pointer',
-//		    cursor: 'move',
 		    placeholder: 'placeholder',
 //			containment: 'document',
 		    update: function(e, ui) {
@@ -31,7 +30,7 @@ pfgWidgets = {
 					// perform the operations on the newly dragged element from the widgets manager
 					var item = ui.item;
 					$(item).addClass("qechild");
-					$(item).addClass("item_" + i)
+					$(item).addClass("item_" + i);
 					$(item).wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
 					$(item).before("<div class='draggable draggingHook editHook qechild'>::</td>");
 					$("img.ajax-loader").css('visibility', 'visible');
@@ -60,7 +59,7 @@ pfgWidgets = {
 						function() {
 							$(this).siblings("div.widget-inside").slideDown();
 						}
-					)
+					);
 					
 					// current position in the table
 					var currpos = $(".item_" + i).parent().index();
@@ -68,20 +67,22 @@ pfgWidgets = {
 					i++; // increment i on each addition
 				} 
 				else {
-					finalPos = pfgWidgets.getPos(ui.item)
+					finalPos = pfgWidgets.getPos(ui.item);
 					if (initPos > finalPos) { // we came from lower rows
-						target = $(ui.item).next()
+						target = $(ui.item).next();
 					}
 					else { // we came from upper rows
-						target = $(ui.item).prev()
+						target = $(ui.item).prev();
 					}
-					item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length)
-					target = target.find(".field").attr('id').substr('folder-contents-item-'.length)
-					pfgWidgets.updatePositionOnServer(item, target)
+					item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length);
+					target = target.find(".field").attr('id').substr('folder-contents-item-'.length);
+					pfgWidgets.updatePositionOnServer(item, target);
 				}
 			},
 			out: function(e, ui) { 
-		      if (!ui.helper) return;
+		      if (!ui.helper) {
+				return;
+			  }
 		
 			  if (ui.helper.hasClass("widget") && (ui.helper.hasClass("w-field") || ui.helper.hasClass("w-action"))) {
 			    return;
@@ -118,13 +119,14 @@ pfgWidgets = {
 			},
 			sort: function(e, ui) {
 				// helper follows the mouse now and probably it's more efficient than binding mousemove event to document (because it's already binded)
-				if (ui.helper.hasClass("widget"))
-					ui.helper.offset({top: e.pageY-15, left: e.pageX-25})	
+				if (ui.helper.hasClass("widget")) {
+					ui.helper.offset({top: e.pageY-15, left: e.pageX-25});
+				}
 			},
 		    stop: function(e, ui) {
-			  if (ui.item.hasClass('ui-draggable'))
+			  if (ui.item.hasClass('ui-draggable')) {
  			    ui.item.draggable('destroy');
-			  
+			  }
 			  // AJAX action to remove the item from the form 
 			  if (ui.item.hasClass('deleting')) {
 				if (ui.item.hasClass("new-widget")) {
@@ -150,7 +152,7 @@ pfgWidgets = {
 		/* set the tooltip for the widgets in Widget Manager */
 		$("div.widget").tooltip({
 			position: "top center",
-			relative: "true",
+			relative: true,
 			offset: [-3, 0],
 			effect: "fade",
 			predelay: 700,
@@ -165,14 +167,17 @@ pfgWidgets = {
 				def: "mouseenter, mouseout click"
 			},
 			onBeforeShow: function() {
-				if (this.getTrigger().attr("title"))
-					this.getTip().html(this.getTrigger().attr("title"))
+				if (this.getTrigger().attr("title")) {
+					this.getTip().html(this.getTrigger().attr("title"));
+				}
 			},
 			onShow: function() {
-				if (this.getTrigger().attr("title"))
-					this.getTrigger().removeAttr("title")
-				if (!this.getTrigger().parent().parent().is("div.qefield"))
-					this.hide();					
+				if (this.getTrigger().attr("title")) {
+					this.getTrigger().removeAttr("title");
+				}
+				if (!this.getTrigger().parent().parent().is("div.qefield")) {
+					this.hide();
+				}
 			},
 			offset: [-6, 0]
 		});
@@ -184,14 +189,17 @@ pfgWidgets = {
 				def: "mouseenter, mouseout click"
 			},
 			onBeforeShow: function() {
-				if (this.getTrigger().attr("title"))
-					this.getTip().html(this.getTrigger().attr("title"))
+				if (this.getTrigger().attr("title")) {
+					this.getTip().html(this.getTrigger().attr("title"));
+				}
 			},
 			onShow: function() {
-				if (this.getTrigger().attr("title"))
-					this.getTrigger().removeAttr("title")
-				if (!this.getTrigger().parent().parent().is("div.qefield"))
-					this.hide();		
+				if (this.getTrigger().attr("title")) {
+					this.getTrigger().removeAttr("title");
+				}
+				if (!this.getTrigger().parent().parent().is("div.qefield")) {
+					this.hide();
+				}
 			},
 			offset: [-4, 0]
 		});
@@ -201,7 +209,7 @@ pfgWidgets = {
 		  connectToSortable: "#pfg-qetable",
 		  helper: 'clone',
 		  containment: 'document'
-		})
+		});
 		
 		/* Make the widgets manager droppable */
 		$("div.widgets").droppable({
@@ -243,7 +251,9 @@ pfgWidgets = {
 	      item_id: i,
 	      target_id: t
 	    };
-	    $.post('reorderField', args, function() { $("img.ajax-loader").css('visibility', 'hidden')} )
+	    $.post('reorderField', args, function() { 
+			$("img.ajax-loader").css('visibility', 'hidden');
+		});
 	},
 	
 	editTitles: function() {
@@ -264,14 +274,16 @@ pfgWidgets = {
 		 
 			$(node).blur(function(e) {
 		  		$(this).wrap("<label class='formQuestion' for='"+ tmpfor +"'></label>");
-		  		$(this).parent().html($(this).val())
+		  		$(this).parent().html($(this).val());
 				var args = {
 					item_id: tmpfor,
 					title: $(this).val()
 				};
 				if (args['title']!=content) { // only update if we actually changed the field
 					$("img.ajax-loader").css('visibility', 'visible');					
-					$.post("updateFieldTitle",args, function() { $("img.ajax-loader").css('visibility', 'hidden')});
+					$.post("updateFieldTitle",args, function() { 
+						$("img.ajax-loader").css('visibility', 'hidden');
+					});
 				}
 		 	});
 		});
@@ -294,16 +306,16 @@ pfgWidgets = {
 		  else {
 		    $(this).attr("title", "Remove required flag?");	
 		  }
-		})
+		});
 				
 		$("span.not-required").live("click", function(event) {
 			var item = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
 			$("img.ajax-loader").css('visibility', 'visible');
 			// AJAX		
 			$.post('toggleRequired', {item_id: item }, function() {
-				$("img.ajax-loader").css('visibility', 'hidden')
+				$("img.ajax-loader").css('visibility', 'hidden');
 			});
-			$('#archetypes-fieldname-'+item).find('[name^='+item+']').attr("required", "required")
+			$('#archetypes-fieldname-'+item).find('[name^='+item+']').attr("required", "required");
 			$(this).removeClass("not-required");
 			$(this).addClass("required");
 			$(this).html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
@@ -316,7 +328,7 @@ pfgWidgets = {
 			$("img.ajax-loader").css('visibility', 'visible');
 			// AJAX		
 			$.post('toggleRequired', {item_id: item }, function() {
-				$("img.ajax-loader").css('visibility', 'hidden')
+				$("img.ajax-loader").css('visibility', 'hidden');
 			});
 			$('#archetypes-fieldname-'+item).find('[name^='+item+']').removeAttr("required");
 			$(this).removeClass("required");
@@ -357,8 +369,9 @@ pfgWidgets = {
 	
 	limitFields: function() {
 		$("div.w-field").slice(7).hide();
-		if (!$(".more").length)			// if there's no "More fields..." link, create it.
+		if (!$(".more").length)	{		// if there's no "More fields..." link, create it.
 			$("div.w-field:not(:hidden):last").next().after("<div class='more'>More fields...</div>");
+		}
 
 		$(".more").toggle(
 			function() {
@@ -373,7 +386,7 @@ pfgWidgets = {
 				$(this).insertAfter($("div.w-field:not(:hidden):last").next());
 				$(this).html("More fields...").show();
 			}
-		)
+		);
 	},
 	
 	deinit: function() {
@@ -381,12 +394,7 @@ pfgWidgets = {
 		$(".more").remove();		// remove the item with bounded events to avoid conflict when "quick-edit mode" is called again
 		$("span.not-required").die();
 		$("span.not-required").remove(); // we don't want blank square showed in the form
-		$("span.required").die(); // remove both live() event listeners (for mouseover and for click!)
-	}
-	
-	
-};
-
-//$(document).ready(function($){ pfgWidgets.init(); });	
-	
-})(jQuery)
+		$("span.required").die(); // remove live() event listener
+	}	
+};	
+})(jQuery);
