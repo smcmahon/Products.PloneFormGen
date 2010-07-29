@@ -149,13 +149,51 @@ pfgWidgets = {
 		
 		/* set the tooltip for the widgets in Widget Manager */
 		$("div.widget").tooltip({
-			tip: ".tooltip",
 			position: "top center",
 			relative: "true",
 			offset: [-3, 0],
 			effect: "fade",
 			predelay: 700,
 			opacity: 0.9
+		});
+		
+		/* Set the initial tooltips for required and not-required spans */
+		$("span.not-required").tooltip({
+			position: "top center",
+			relative: false,
+			events: {
+				def: "mouseenter, mouseout click"
+			},
+			onBeforeShow: function() {
+				if (this.getTrigger().attr("title"))
+					this.getTip().html(this.getTrigger().attr("title"))
+			},
+			onShow: function() {
+				if (this.getTrigger().attr("title"))
+					this.getTrigger().removeAttr("title")
+				if (!this.getTrigger().parent().parent().is("div.qefield"))
+					this.hide();					
+			},
+			offset: [-6, 0]
+		});
+		
+		$("span.required").tooltip({
+			position: "top center",
+			relative: false,
+			events: {
+				def: "mouseenter, mouseout click"
+			},
+			onBeforeShow: function() {
+				if (this.getTrigger().attr("title"))
+					this.getTip().html(this.getTrigger().attr("title"))
+			},
+			onShow: function() {
+				if (this.getTrigger().attr("title"))
+					this.getTrigger().removeAttr("title")
+				if (!this.getTrigger().parent().parent().is("div.qefield"))
+					this.hide();		
+			},
+			offset: [-4, 0]
 		});
 		
 		/* Make the widgets inside the widgets manager draggable */
@@ -251,7 +289,10 @@ pfgWidgets = {
 		var target = $("div.field label").next();
 		target.each(function() {
 		  if (!$(this).is("span")) {
-			$("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:inline-block;'></span>").insertBefore(this);
+			$("<span class='not-required' style='display:inline-block' title='Make it required?'></span>").insertBefore(this);
+		  }
+		  else {
+		    $(this).attr("title", "Remove required flag?");	
 		  }
 		})
 				
@@ -263,7 +304,11 @@ pfgWidgets = {
 				$("img.ajax-loader").css('visibility', 'hidden')
 			});
 			$('#archetypes-fieldname-'+item).find('[name^='+item+']').attr("required", "required")
-				$(this).replaceWith($('<span style="color: rgb(255, 0, 0);display:none" title="Required" class="required">■</span>').fadeIn('slow'));
+			$(this).removeClass("not-required");
+			$(this).addClass("required");
+			$(this).html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
+			$(this).attr("title", "Remove required flag?");
+		//	$(this).replaceWith($('<span style="color: rgb(255, 0, 0);display:none" title="Remove required flag?" class="required">■</span>').fadeIn('slow'));
 		});
 		
 		$("span.required").live("click", function(event) {
@@ -274,7 +319,11 @@ pfgWidgets = {
 				$("img.ajax-loader").css('visibility', 'hidden')
 			});
 			$('#archetypes-fieldname-'+item).find('[name^='+item+']').removeAttr("required");
-			$(this).replaceWith($("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:none'></span>").fadeIn('slow').css("display", "inline-block"));
+			$(this).removeClass("required");
+			$(this).addClass("not-required");
+			$(this).html("").fadeIn().css("display", "inline-block");
+			$(this).attr("title", "Make it required?");
+		//	$(this).replaceWith($("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:none' title='Make it required?'></span>").fadeIn('slow').css("display", "inline-block"));
 		});
 		
 		
@@ -309,19 +358,19 @@ pfgWidgets = {
 	limitFields: function() {
 		$("div.w-field").slice(7).hide();
 		if (!$(".more").length)			// if there's no "More fields..." link, create it.
-			$("div.w-field:not(:hidden):last").after("<div class='more'>More fields...</div>");
+			$("div.w-field:not(:hidden):last").next().after("<div class='more'>More fields...</div>");
 
 		$(".more").toggle(
 			function() {
 				$(this).hide();
 				$("div.widgets div.w-field").slice(7).fadeIn();
-				$(this).insertAfter("div.w-field:not(:hidden):last");
+				$(this).insertAfter($("div.w-field:not(:hidden):last").next());
 				$(this).html("Less fields...").show();
 			},
 			function() {
 				$(this).hide();
 				$("div.widgets div.w-field").slice(7).fadeOut();
-				$(this).insertAfter("div.w-field:not(:hidden):last");
+				$(this).insertAfter($("div.w-field:not(:hidden):last").next());
 				$(this).html("More fields...").show();
 			}
 		)
@@ -332,7 +381,7 @@ pfgWidgets = {
 		$(".more").remove();		// remove the item with bounded events to avoid conflict when "quick-edit mode" is called again
 		$("span.not-required").die();
 		$("span.not-required").remove(); // we don't want blank square showed in the form
-		$("span.required").die();
+		$("span.required").die(); // remove both live() event listeners (for mouseover and for click!)
 	}
 	
 	
