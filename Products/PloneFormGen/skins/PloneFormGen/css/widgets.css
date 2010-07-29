@@ -176,7 +176,7 @@ div.theader div {
 #pfg-qetable .draggingHook .dhcenter { /* workaround to center contents of dragging hook */
 	display: inline-block; 
 	vertical-align: middle; 
-	height: 100%;
+	height: 90%;
 	margin: 0;
 }
 
@@ -222,4 +222,9 @@ div.theader div {
 	border:1px solid red; 
 	width:7px; height:7px; 
 	display:none;
+}
+
+div.deleting {
+	opacity: 0.6;
+	z-index: 99;
 }

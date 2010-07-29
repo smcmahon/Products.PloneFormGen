@@ -26,13 +26,16 @@ pfgWidgets = {
 		    placeholder: 'placeholder',
 //			containment: 'document',
 		    update: function(e, ui) {
+				if (ui.item.hasClass("new-widget")) {
+					return;
+				}
 				if (ui.item.is("div.widget")) {
 					// perform the operations on the newly dragged element from the widgets manager
 					var item = ui.item;
 					$(item).addClass("qechild");
 					$(item).addClass("item_" + i);
 					$(item).wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
-					$(item).before("<div class='draggable draggingHook editHook qechild'>::</td>");
+					$(item).before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
 					$("img.ajax-loader").css('visibility', 'visible');
 					$(item).width($(item).width());
 				//	$(item).height($(item).height());	
@@ -222,9 +225,15 @@ pfgWidgets = {
 			},
 			over: function(e, ui) {
 				$("div#pfg-qetable div.placeholder").hide();
+				ui.draggable.addClass("deleting");
+				ui.helper.addClass("deleting");				
 				$("span#deactivate-widget").show();
 			},
 			out: function(e, ui) {
+				if (ui.draggable.hasClass("deleting")) {
+					ui.draggable.removeClass("deleting");
+					ui.helper.removeClass("deleting");
+				}
 				$("div#pfg-qetable div.placeholder").show();
 				$("span#deactivate-widget").hide();
 			},
