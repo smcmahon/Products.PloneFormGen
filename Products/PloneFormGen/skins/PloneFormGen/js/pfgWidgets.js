@@ -52,6 +52,8 @@ pfgWidgets = {
 						}
 						$("img.ajax-loader").css('visibility', 'hidden');
 						$(this).slideDown();
+						$("form").die(); // test
+						
 					});
 					
 					// bind the toggle event for toggling slideUp/slideDown
@@ -67,12 +69,12 @@ pfgWidgets = {
 					// current position in the table
 					var currpos = $(".item_" + i).parent().index();
 					
-					$("[name=form.button.save]").click(function(e) {
+					$("#pfg-qetable [name=form.button.save]").click(function(e) {
 					    e.preventDefault();
 					    // on the fly addition of the field to the form - a lot of logic goes here!! TO DO
 					});
 					
-					$("[name=form.button.cancel]").live('click', function(e) {
+					$("#pfg-qetable [name=form.button.cancel]").live('click', function(e) {
 					  e.preventDefault();
 					  var widgetParent = $(this).parents("div.qefield");
 					  widgetParent.find("div.widget-inside").slideUp('fast', function() {

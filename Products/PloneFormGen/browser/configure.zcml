@@ -38,7 +38,7 @@
 	  for="*"
 	  class=".conditions.FormConditional"
 	  permission="cmf.ManagePortal"
-	  allowed_attributes="fieldBelongsToSet"
+	  allowed_attributes="displayFields"
 	  />
 	
 </configure>

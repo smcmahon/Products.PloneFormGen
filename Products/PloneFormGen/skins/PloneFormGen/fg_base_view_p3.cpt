@@ -122,7 +122,9 @@
 	               summary="Widget Manager"
 	               style="display:none"
 				   tal:define="conditions python:here.restrictedTraverse('@@pfg-conditions');
-							 addtypes context/@@folder_factories/addable_types">  <!-- define the fields -->				
+							 addtypes context/@@folder_factories/addable_types;
+							 listofFields python:conditions.displayFields(addtypes, 'Field');
+							 listofAdapters python:conditions.displayFields(addtypes, 'Adapter')">  <!-- define the fields -->				
 
 				<div class="header">
 					<h3>Toolbox
@@ -136,25 +138,25 @@
 					</h3>
 				</div>
      			<div class="widgets">
-					<!-- List of Fields, followed by the list of Adapters and Pages -->
+					<!-- List of Fields, followed by the list of Adapters -->
 					<!-- The only problem here is that the traversal is done all the time on the whole set, it's not big set, but still -->
 					<h2 class="fields-header">Fields/Folders</h2>
-                    <tal:typelist repeat="item addtypes">
-    				<tal:block tal:define="set item/id" tal:condition="python: conditions.fieldBelongsToSet(set, 'Field')">
-                    	<div class="widget w-field" tal:attributes="id item/id">
-							<h4 class="widget-header" tal:content="item/title">Type title</h4>
-							<div class="widget-inside">
+					<tal:typelist repeat="item listofFields">
+						<tal:block tal:define="set item/id">
+							<div class="widget w-field" tal:attributes="id item/id">
+								<h4 class="widget-header" tal:content="item/title">Type title</h4>
+								<div class="widget-inside">
+								</div>
+	                        </div>
+							<div class="tooltip">
+								  <span tal:replace="item/description">Type description</span>
 							</div>
-                        </div>
-						<div class="tooltip">
-							  <span tal:replace="item/description">Type description</span>
-						</div>
-					</tal:block>
-                    </tal:typelist>
+						</tal:block>
+					</tal:typelist>
 					<hr>
 					<h2 class="actions-header">Adapters</h2>
-                    <tal:typelist repeat="item addtypes">
-					<tal:block tal:define="set item/id; desc item/description" tal:condition="python:conditions.fieldBelongsToSet(set, 'Adapter')">
+                    <tal:typelist repeat="item listofAdapters">
+					<tal:block tal:define="set item/id; desc item/description">
                         <div class="widget w-action" tal:attributes="id item/id">
                            <h4 class="widget-header" tal:content="item/title">Type title</h4>
 						   <div class="widget-inside">
@@ -165,7 +167,7 @@
 							  <span tal:replace="python:test(desc!='', desc, 'No description')">Type description</span>
 						</div>
 					</tal:block>
-                    </tal:typelist>
+                    </tal:typelist>	
 				</div>
 			</div>
 		</tal:block>
