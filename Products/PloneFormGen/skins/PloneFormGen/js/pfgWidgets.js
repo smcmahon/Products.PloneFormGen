@@ -1,5 +1,5 @@
 var pfgWidgets;
-
+// fieldset support for moving fields between them. Make the fieldsets behave like tabs.
 (function($) {
 	
 pfgWidgets = {
@@ -66,6 +66,21 @@ pfgWidgets = {
 					
 					// current position in the table
 					var currpos = $(".item_" + i).parent().index();
+					
+					$("[name=form.button.save]").click(function(e) {
+					    e.preventDefault();
+					    // on the fly addition of the field to the form - a lot of logic goes here!! TO DO
+					});
+					
+					$("[name=form.button.cancel]").live('click', function(e) {
+					  e.preventDefault();
+					  var widgetParent = $(this).parents("div.qefield");
+					  widgetParent.find("div.widget-inside").slideUp('fast', function() {
+					        widgetParent.fadeOut('slow', function() {
+						  	widgetParent.remove();
+						  });
+					  });
+					});
 					
 					i++; // increment i on each addition
 				} 

@@ -33,6 +33,7 @@ div.header h3 {
 	margin:0;
 	overflow:hidden;
 	padding:5px 12px;
+	text-shadow: 0 1px 0 #FFFFFF;
 }
 
 div.widgets {
