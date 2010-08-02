@@ -14,7 +14,9 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import View, ModifyPortalContent
 
 from Products.PloneFormGen.config import *
-from Products.PloneFormGen.content.actionAdapter import FormActionAdapter
+from Products.Archetypes.public import Schema, StringWidget, StringField, SelectionWidget
+from Products.PloneFormGen.content.actionAdapter import \
+        FormActionAdapter, FormAdapterSchema
 from Products.PloneFormGen.interfaces import IPloneFormGenPersistentActionAdapter
 import logging
 import time
@@ -31,6 +33,20 @@ LARGE_DATA_SET_LENGTH = 7
 
 class FormStatefulDataAdapter(FormActionAdapter):
     implements(IPloneFormGenPersistentActionAdapter)
+
+    schema = FormAdapterSchema.copy() + Schema((
+        StringField('FieldDelimiter',
+            searchable=0,
+            required=0,
+            default=',',
+            vocabulary=((',', ', (recommended)'), (';', ';')),
+            widget=SelectionWidget(
+                label='Field Delimiter',
+                i18n_domain = "ploneformgen",
+                label_msgid = "label_field_delimiter",
+                ),
+            ),
+    ))
 
     meta_type      = 'FormStatefulDataAdapter'
     portal_type    = 'FormStatefulDataAdapter'
@@ -153,8 +169,11 @@ class FormStatefulDataAdapter(FormActionAdapter):
         title = re.sub('\s+', '', self.title)
         csv_file_name = title + '.csv'
 
+        # Set the separator character for the csv writer
+        delimiter = self.getFieldDelimiter()
+
         output = StringIO()
-        csv_writer = writer(output)
+        csv_writer = writer(output, delimiter=delimiter)
 
         #The first column should always be the user
         first_row = ['User']
