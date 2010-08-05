@@ -94,8 +94,19 @@ pfgWidgets = {
 					else { // we came from upper rows
 						target = $(ui.item).prev();
 					}
-					item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length);
-					target = target.find(".field").attr('id').substr('folder-contents-item-'.length);
+					if (target.find(".field").length !=0) {
+						target = target.find(".field").attr('id').substr('folder-contents-item-'.length);
+					}
+					else if (target.find(".PFGFieldsetWidget").length !=0 ) {
+						target = target.find(".PFGFieldsetWidget").attr('id').substr('pfg-fieldsetname-'.length);
+					}
+					
+					if ($(ui.item).find(".field").length != 0) {
+					  item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length);
+					}
+					else if ($(ui.item).find(".PFGFieldsetWidget").length !=0) {
+					  item = $(ui.item).find(".PFGFieldsetWidget").attr('id').substr('pfg-fieldsetname-'.length);
+					}
 					pfgWidgets.updatePositionOnServer(item, target);
 				}
 			},
@@ -153,7 +164,12 @@ pfgWidgets = {
 					ui.item.remove();
 					return;
 				}
-				var iid = ui.item.children(".field").attr("id").substr("archetypes-fieldname-".length);
+				var iid;
+				if (ui.item.children(".field").length != 0) {
+					iid = ui.item.children(".field").attr("id").substr("archetypes-fieldname-".length);
+				} else {
+					iid = ui.item.children(".PFGFieldsetWidget").attr("id").substr("pfg-fieldsetname-".length);
+				}
 				$("img.ajax-loader").css('visibility', 'visible');
 				ui.item.remove();	// remove the original item (from the DOM and thus the form)
 				$.post("removeFieldFromForm", {item_id: iid}, function() { 

@@ -159,7 +159,7 @@ div.theader div {
 	height: 90%;
 }
 
-#pfg-qetable .field {
+#pfg-qetable .field, #pfg-qetable .PFGFieldsetWidget {
 	width: 50%;
 	margin: 0;
 }

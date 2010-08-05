@@ -11,15 +11,22 @@ pfgQEdit.rows = null;
 pfgQEdit.addTable = function () {
     // add the table elements required for quick edit of fields
 
-    jQuery("#pfg-fieldwrapper").children('.field').each(
+    jQuery("#pfg-fieldwrapper").children('.field, fieldset, div').each(
         function () {
             var fname = this.id;
+			var felem;
             if (fname.indexOf("archetypes-fieldname-") === 0) {                      
                 fname = this.id.substr('archetypes-fieldname-'.length);
-            } else {
+				felem = jQuery('#'+this.id);
+            } else if (fname.indexOf("pfg-fieldsetname-") === 0) {
                 fname = this.id.substr('pfg-fieldsetname-'.length);
-            }
-            var felem = jQuery('#'+this.id);
+				felem = jQuery('#'+this.id);
+            } else {
+				var childelid = $(this).find(".field").attr('id');
+				fname = childelid.substr('archetypes-fieldname-'.length);
+				$(this).find(".field").unwrap();
+				felem = jQuery('#' + childelid)
+			}
             if (felem.hasClass('pfgHidden')) {
                 felem.append('<div class="pfgqemarkup">Hidden field: '+fname+'</div>');
             }
