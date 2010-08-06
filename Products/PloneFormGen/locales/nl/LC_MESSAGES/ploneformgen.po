@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2010-08-05 16:42+0200\n"
+"PO-Revision-Date: 2010-08-06 10:24+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,13 +30,15 @@ msgstr ""
 msgid "A captcha field to prevent spam."
 msgstr ""
 
+#. Default: "A folder which can contain form fields."
 #: ./profiles/default/types/FormFolder.xml
 msgid "A folder which can contain form fields."
-msgstr ""
+msgstr "Een map die formuliervelden bevat."
 
+#. Default: "A folder which groups form fields as a fieldset."
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
-msgstr ""
+msgstr "Een map voor het groeperen van velden."
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "A form action adapter that will e-mail form input."
@@ -50,9 +52,10 @@ msgstr ""
 msgid "A string entry field"
 msgstr ""
 
+#. Default: "A thank-you page that can display form input"
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "A thank-you page that can display form input"
-msgstr ""
+msgstr "Een 'Bedankt' pagina die de invoer van het formulier toont"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
@@ -66,17 +69,19 @@ msgstr ""
 msgid "Checkbox Field"
 msgstr ""
 
+#. Default: "Custom Script Adapter"
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Custom Script Adapter"
-msgstr ""
+msgstr "Script actie"
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
 msgstr ""
 
+#. Default: "Date/Time Field"
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Field"
-msgstr ""
+msgstr "Datum/tijd veld"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Decimal Number Field"
@@ -86,25 +91,28 @@ msgstr ""
 msgid "Executes a Python script for form data"
 msgstr ""
 
+#. Default: "Fieldset Folder"
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
-msgstr ""
+msgstr "Groep"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File (upload) field"
 msgstr ""
 
+#. Default: "File Field"
 #: ./profiles/default/types/FormFileField.xml
 msgid "File Field"
-msgstr ""
+msgstr "Bestandsveld"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Fixed-Point (float) entry field"
 msgstr ""
 
+#. Default: "Form Folder"
 #: ./profiles/default/types/FormFolder.xml
 msgid "Form Folder"
-msgstr ""
+msgstr "Formulier"
 
 #: ./browser/exportimport.py:57
 msgid "Form imported."
@@ -114,33 +122,38 @@ msgstr ""
 msgid "Integer entry field"
 msgstr ""
 
+#. Default: "Label Field"
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label Field"
-msgstr ""
+msgstr "Label"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label-Only field (no input component)"
 msgstr ""
 
+#. Default: "Lines Field"
 #: ./profiles/default/types/FormLinesField.xml
 msgid "Lines Field"
-msgstr ""
+msgstr "Lijst veld"
 
+#. Default: "Mailer Adapter"
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "Mailer Adapter"
-msgstr ""
+msgstr "E-mailactie"
 
+#. Default: "Multi-Select Field"
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multi-Select Field"
-msgstr ""
+msgstr "Multi selectie veld"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multiple selection field (select with multiple or check boxes)"
 msgstr ""
 
+#. Default: "Password Field"
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password Field"
-msgstr ""
+msgstr "Wachtwoord veld"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password entry field (input is masked)"
@@ -150,17 +163,20 @@ msgstr ""
 msgid "Please correct the indicated errors."
 msgstr ""
 
+#. Likert Field Name
 #: ./profiles/default/types/FormLikertField.xml
 msgid "Rating-Scale Field"
-msgstr ""
+msgstr "Waardering-keuze veld"
 
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
 msgstr ""
 
+#. Rich Label Field
+#. Default: 'Rich Label Field',
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich Label Field"
-msgstr ""
+msgstr "Label met opmaak"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "Rich-text (visual editor) field"
@@ -170,37 +186,43 @@ msgstr ""
 msgid "Rich-text label field"
 msgstr ""
 
+#. Default: "RichText Field"
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "RichText Field"
-msgstr ""
+msgstr "Opgemaakte tekst veld"
 
+#. Default: "Save Data Adapter"
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "Save Data Adapter"
-msgstr ""
+msgstr "Opslag actie"
 
+#. Default: "Selection Field"
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field"
-msgstr ""
+msgstr "Selectie veld"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field (radio buttons or select)"
 msgstr ""
 
+#. Default: "String Field"
 #: ./profiles/default/types/FormStringField.xml
 msgid "String Field"
-msgstr ""
+msgstr "Tekst veld"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text (textarea) field"
 msgstr ""
 
+#. Default: "Text Field"
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text Field"
-msgstr ""
+msgstr "Tekstvak veld"
 
+#. Default: "Thanks Page"
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "Thanks Page"
-msgstr ""
+msgstr "'Bedankt' pagina"
 
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
@@ -288,17 +310,19 @@ msgstr "Om uw formulier iets nuttigs te laten doen als deze wordt opgestuurd: vo
 msgid "help_bcc_override_text"
 msgstr "Een TALES expressie die gebruikt wordt om de waarde van de BCC adreslijst (blinde kopie) te overschrijven. We raden sterk af om niet gevalideerde data uit het request hiervoor te gebruiken. Laat leeg indien dit niet nodig is. De expressie moet een 'string' terug geven. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
-
 #. Boolean Field
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:359
 msgid "help_boolrequired_text"
 msgstr "MERK OP: voor een aan/uitveld doet de 'verplicht' markering niets anders dan een 'verplicht' teken naast het label tonen. Wanneer u een speficieke invoer wenst, kies dan hieronder een validator."
 
+#. Form
+#. Default     Check this to employ Cross-Site Request Forgery protection.
+#. Default     Note that only HTTP Post actions will be allowed.
 #. Default: "\n                    Check this to employ Cross-Site Request Forgery protection.\n                    Note that only HTTP Post actions will be allowed.\n                "
 #: ./content/form.py:294
 msgid "help_csrf"
-msgstr ""
+msgstr "Selecteer dit om Cross-Site Request Forgery aan te zetten. Let op dat alleen HTTP POST acties worden toegestaan."
 
 #. Default: "Choose a default delimiter to be used when downloading content from a save-data adapter."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:73
@@ -329,12 +353,12 @@ msgstr "Een TALES-expressie die zal worden geëvalueerd om te bepalen of deze ac
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
 #: ./content/fields.py:354
 msgid "help_fgbooleanfalsestring_text"
-msgstr ""
+msgstr "Tekst die wordt gebruikt op de 'bedankt' pagina, indien deze optie niet is aangevinkt."
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
 #: ./content/fields.py:345
 msgid "help_fgbooleantruestring_text"
-msgstr ""
+msgstr "Tekst die wordt gebruikt op de 'bedankt' pagina, indien deze optie is aangevinkt."
 
 #. Default: "Choose a validator to require a particular response."
 #. Boolean Field
@@ -797,10 +821,12 @@ msgstr ""
 msgid "label_click_to_get_input"
 msgstr "Klik hier om de opgeslagen formulieren te downloaden"
 
+#. Form
+#. Default 'CSRF Protection',
 #. Default: "CSRF Protection"
 #: ./content/form.py:293
 msgid "label_csrf"
-msgstr ""
+msgstr "CSRF beveiliging."
 
 #. Save Data Adapter
 #. Default: "Download Format"
@@ -825,12 +851,12 @@ msgstr "Conditie"
 #. Default: "False Display String"
 #: ./content/fields.py:353
 msgid "label_fgbooleanfalsestring_text"
-msgstr ""
+msgstr "'Uit' tekst"
 
 #. Default: "True Display String"
 #: ./content/fields.py:344
 msgid "label_fgbooleantruestring_text"
-msgstr ""
+msgstr "'Aan' tekst"
 
 #. Boolean Field
 #. Default: "Validator"
@@ -975,13 +1001,13 @@ msgstr "Opties"
 #. Default: "Field Help"
 #: ./content/fieldsBase.py:188
 msgid "label_fieldhelp_text"
-msgstr "Help tekst"
+msgstr "Help veld"
 
 #. String Field
 #. Default: "Field Label"
 #: ./content/fieldsBase.py:186
 msgid "label_fieldlabel_text"
-msgstr "Label"
+msgstr "Label veld"
 
 #. Default: "Fieldset Help"
 #: ./content/fieldset.py:50
