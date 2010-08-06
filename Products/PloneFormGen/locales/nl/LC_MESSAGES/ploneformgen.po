@@ -24,11 +24,11 @@ msgstr ""
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "A Likert form entry"
-msgstr ""
+msgstr "Waardering-keuze veld"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "A captcha field to prevent spam."
-msgstr ""
+msgstr "Een captcha-veld om spam te voorkomen"
 
 #. Default: "A folder which can contain form fields."
 #: ./profiles/default/types/FormFolder.xml
@@ -42,15 +42,15 @@ msgstr "Een map voor het groeperen van velden."
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "A form action adapter that will e-mail form input."
-msgstr ""
+msgstr "Een formulieractie die de invoer via e-mail verzendt."
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "A line entry field. This appears as a textarea without wordwrap."
-msgstr ""
+msgstr "Een invoerveld voor regels tekst. Dit wordt getoond als een textarea zonder wordwrap."
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "A string entry field"
-msgstr ""
+msgstr "Een tekst veld"
 
 #. Default: "A thank-you page that can display form input"
 #: ./profiles/default/types/FormThanksPage.xml
@@ -59,15 +59,15 @@ msgstr "Een 'Bedankt' pagina die de invoer van het formulier toont"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
-msgstr ""
+msgstr "Aan/Uit veld"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "Captcha Field"
-msgstr ""
+msgstr "Captcha veld"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Checkbox Field"
-msgstr ""
+msgstr "Aan/Uit veld"
 
 #. Default: "Custom Script Adapter"
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
@@ -76,7 +76,7 @@ msgstr "Script actie"
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
-msgstr ""
+msgstr "Datum/tijd veld"
 
 #. Default: "Date/Time Field"
 #: ./profiles/default/types/FormDateField.xml
@@ -85,11 +85,11 @@ msgstr "Datum/tijd veld"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Decimal Number Field"
-msgstr ""
+msgstr "Decimaal getal veld"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Executes a Python script for form data"
-msgstr ""
+msgstr "Voert een Python script uit voor het verwerken van de ingevulde gegevens."
 
 #. Default: "Fieldset Folder"
 #: ./profiles/default/types/FieldsetFolder.xml
@@ -98,7 +98,7 @@ msgstr "Groep"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File (upload) field"
-msgstr ""
+msgstr "Bestandsupload veld"
 
 #. Default: "File Field"
 #: ./profiles/default/types/FormFileField.xml
@@ -107,7 +107,7 @@ msgstr "Bestandsveld"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Fixed-Point (float) entry field"
-msgstr ""
+msgstr "Decimaal getal veld"
 
 #. Default: "Form Folder"
 #: ./profiles/default/types/FormFolder.xml
@@ -116,11 +116,11 @@ msgstr "Formulier"
 
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
+msgstr "Formulier geïmporteerd"
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Integer entry field"
-msgstr ""
+msgstr "Geheel getal veld"
 
 #. Default: "Label Field"
 #: ./profiles/default/types/FormLabelField.xml
@@ -129,7 +129,7 @@ msgstr "Label"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label-Only field (no input component)"
-msgstr ""
+msgstr "Label (geen invoerveld)"
 
 #. Default: "Lines Field"
 #: ./profiles/default/types/FormLinesField.xml
