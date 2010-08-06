@@ -148,7 +148,7 @@ msgstr "Multi selectie veld"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multiple selection field (select with multiple or check boxes)"
-msgstr ""
+msgstr "Multi selectie veld"
 
 #. Default: "Password Field"
 #: ./profiles/default/types/FormPasswordField.xml
@@ -157,11 +157,11 @@ msgstr "Wachtwoord veld"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password entry field (input is masked)"
-msgstr ""
+msgstr "Wachtwoord veld (invoer wordt verborgen)"
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
 msgid "Please correct the indicated errors."
-msgstr ""
+msgstr "Verbeter alstublieft de aangegeven fouten."
 
 #. Likert Field Name
 #: ./profiles/default/types/FormLikertField.xml
@@ -170,7 +170,7 @@ msgstr "Waardering-keuze veld"
 
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
-msgstr ""
+msgstr "Verwijder bestaande formulieritems?"
 
 #. Rich Label Field
 #. Default: 'Rich Label Field',
@@ -180,11 +180,11 @@ msgstr "Label met opmaak"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "Rich-text (visual editor) field"
-msgstr ""
+msgstr "Opgemaakte tekst veld (visuele editor)"
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich-text label field"
-msgstr ""
+msgstr "Opgemaakte labeltekst veld (visuele editor)"
 
 #. Default: "RichText Field"
 #: ./profiles/default/types/FormRichTextField.xml
@@ -203,7 +203,7 @@ msgstr "Selectie veld"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field (radio buttons or select)"
-msgstr ""
+msgstr "Selectie veld (radioknoppen of selectie)"
 
 #. Default: "String Field"
 #: ./profiles/default/types/FormStringField.xml
@@ -212,7 +212,7 @@ msgstr "Tekst veld"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text (textarea) field"
-msgstr ""
+msgstr "Tekstvak veld (textarea)"
 
 #. Default: "Text Field"
 #: ./profiles/default/types/FormTextField.xml
