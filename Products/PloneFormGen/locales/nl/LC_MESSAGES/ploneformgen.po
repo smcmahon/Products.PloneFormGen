@@ -226,11 +226,11 @@ msgstr "'Bedankt' pagina"
 
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
-msgstr ""
+msgstr "Uploaden"
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Whole Number Field"
-msgstr ""
+msgstr "Geheel getal veld"
 
 # value="Clear Saved Input"
 #. Save Data Adapter
@@ -258,12 +258,12 @@ msgstr "U kunt PloneFormGen functionaliteit verbergen of tonen voor gebruikersgr
 #. Default: "Set defaults for data adapters."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:63
 msgid "description_ploneformgen_savedata"
-msgstr ""
+msgstr "Stel standaardwaardes in voor opslagacties."
 
 #. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
 #: ./content/fieldsBase.py:259
 msgid "description_server_side_text"
-msgstr ""
+msgstr "Markeer dit veld als een waarde die in het request formulier geïnjecteerd wordt voor gebruik door acties en die niet te wijzigen is door of zichtbaar is voor de gebruiker."
 
 #. Default: "PloneFormGen Mail Addressing Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:53
@@ -283,7 +283,7 @@ msgstr "PloneFormGen rechten"
 #. Default: "PloneFormGen Saved Data Adapter Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:53
 msgid "heading_ploneformgen_savedata"
-msgstr ""
+msgstr "PloneFormGen opslagactie standaardwaardes"
 
 #. Default: "\n                A TALES expression that will be called after the form is\n                successfully validated, but before calling an action adapter\n                (if any) or displaying a thanks page.\n                Form input will be in the request.form dictionary.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                to clean up form input or to script an alternative action.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
 #: ./content/form.py:246
@@ -327,7 +327,7 @@ msgstr "Selecteer dit om Cross-Site Request Forgery aan te zetten. Let op dat al
 #. Default: "Choose a default delimiter to be used when downloading content from a save-data adapter."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:73
 msgid "help_csv_delimiter"
-msgstr ""
+msgstr "Kies een standaard scheidingsteken om te gebruiken bij het downloaden van inhoud van een opslagactie."
 
 #. Form Folder
 #. Default: "The text will be displayed after the form fields."
@@ -383,7 +383,7 @@ msgstr "Het laatste jaar dat u wilt aanbieden in de drop-down van het jaar. Laat
 
 #: ./content/fields.py:707
 msgid "help_fgformat_text"
-msgstr ""
+msgstr " "
 
 #. PloneFormGen\contents\fields.py
 #. DateTimeField
@@ -403,12 +403,12 @@ msgstr "De weer te geven tekst in het formulier."
 #. Default: "List of possible answers for each of the questions;\n                    these will be the columns of the table."
 #: ./content/formLikertField.py:80
 msgid "help_fglikert_answers"
-msgstr ""
+msgstr "Lijst met mogelijke antwoorden voor elk van de vragen; dit worden de kolommen van de tabel."
 
 #. Default: "List of questions; these will be the rows of the table."
 #: ./content/formLikertField.py:70
 msgid "help_fglikert_questions"
-msgstr ""
+msgstr "Lijst met vragen; dit worden de rijen van de tabel."
 
 #. Lines Field
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
@@ -427,7 +427,7 @@ msgstr "Het maximum aantal karakters dat de gebruiker kan invoeren."
 
 #: ./content/fields.py:804
 msgid "help_fgmsformat_text"
-msgstr ""
+msgstr " "
 
 #. Description: "Input tests using HTMLTidy (if installed).""
 #. Default: "Input tests using HTMLTidy (if installed)."
@@ -437,7 +437,7 @@ msgstr "Invoertesten die door HTML Tidy (indien geinstalleerd) wordt gebruikt."
 
 #: ./content/fields.py:448
 msgid "help_fgshowhm_text"
-msgstr ""
+msgstr " "
 
 #. Default: "The size of the text-entry box, in characters."
 #. String Field
@@ -511,7 +511,7 @@ msgstr "Zet op 0 voor geen limiet."
 #. Default: "\n                Check this to make the form redirect to an SSL-enabled\n                version of itself (https://) if accessed via a non-SSL\n                URL (http://).  In order to function properly,\n                this requires a web server that has been configured to\n                handle the HTTPS protocol on port 443 and forward it to Zope.\n            "
 #: ./content/form.py:125
 msgid "help_force_ssl"
-msgstr ""
+msgstr " "
 
 #. Default: "\n                Use this field to override the form action attribute.\n                Specify a URL to which the form will post.\n                This will bypass form validation, success action\n                adapter and thanks page.\n            "
 #: ./content/form.py:203
@@ -599,7 +599,7 @@ msgstr "Kies een formulierveld vanwaar u de invoer wilt extraheren voor de onder
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
 #: ./content/formMailerAdapter.py:102
 msgid "help_formmailer_to_extract"
-msgstr ""
+msgstr "Kies een formulierveld vanwaar u invoer wilt extraheren voor de \"Aan\" header. Als u iets anders kiest dan \"None\" zal deze het \"Ontvanger e-mailadres\" instelling van hierboven overschrijven. Wees erg voorzichtig met het toestaan van niet gecontroleerde input van gebruikers voor dit doel (om spam tegen te gaan)."
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
@@ -637,7 +637,7 @@ msgstr "Schakel deze optie in om titels van lege velden te tonen. Indien uitgesc
 #. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
 #: ./content/formMailerAdapter.py:267
 msgid "help_mailEmpties_text"
-msgstr ""
+msgstr "Schakel deze optie in om titels van lege velden te tonen. Indien uitgeschakeld zullen lege velden niet getoond worden."
 
 #. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/formMailerAdapter.py:239
