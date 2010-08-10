@@ -4,6 +4,10 @@ Change History
 Unreleased
 ----------
 
+- Fixed "NameError: global name 'none' is not defined" in save data
+  adapter when using LinguaPlone.
+  [maurits]
+
 - fixed LikertField having invalid fields in it's get and set methods.
   [vangheem]
 
