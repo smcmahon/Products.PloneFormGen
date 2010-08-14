@@ -51,17 +51,48 @@ pfgWidgets = {
 							$(this).find(".formHelp").remove();
 						}
 						$("img.ajax-loader").css('visibility', 'hidden');
+						// set the required attribute for the on the fly validation
+						var inputElem = $(this).find("span.required").parent().find("input");
+						var formElem = $(this).find('form');
+						inputElem.attr({required: "required"});
+						formElem.validator({
+							messageClass: formElem.attr("id") + "_" + (i-1) +" error",
+							position: "center right",
+							offset: [-10, 3]
+						}).submit(function(e) {
+							var tmpArray = new Array();
+							inputElem.each(function(i,v) {
+							  if (!$(v).val())
+								tmpArray.push($(v));
+							});
+							tmpArray[0].focus();
+						});
+						// hide all the error messages so far!
+						if ($("div.error").length > 0) {
+							$("div.error").hide();
+						}
 						$(this).slideDown();
-						$("form").die(); // test
 						
 					});
 					
 					// bind the toggle event for toggling slideUp/slideDown
 					$(".qefield div.item_" + i +" .widget-header").toggle(
 						function() {
+							// hide all the error messages so far!
+							if ($("div.error").length > 0) {
+								$("div.error").hide();
+							}
+							// hide the error messages when manipulating with the widgets							
 							$(this).siblings("div.widget-inside").slideUp();
+							var getId = $(this).siblings("div.widget-inside").find("form").attr("id");
+							var itemNo = $(this).parent().attr("class").substr($(this).parent().attr("class").indexOf("item") + "item_".length);
+							$("div." + getId + "_" + itemNo).hide();
 						},
 						function() {
+							// hide all the error messages so far!
+							if ($("div.error").length > 0) {
+								$("div.error").hide();
+							}							
 							$(this).siblings("div.widget-inside").slideDown();
 						}
 					);
@@ -70,12 +101,16 @@ pfgWidgets = {
 					var currpos = $(".item_" + i).parent().index();
 					
 					$("#pfg-qetable [name=form.button.save]").click(function(e) {
-					    e.preventDefault();
+				//	    e.preventDefault();
 					    // on the fly addition of the field to the form - a lot of logic goes here!! TO DO
 					});
 					
 					$("#pfg-qetable [name=form.button.cancel]").live('click', function(e) {
 					  e.preventDefault();
+						// hide all the error messages so far!
+					  if ($("div.error").length > 0) {
+					 	$("div.error").hide();
+					  }
 					  var widgetParent = $(this).parents("div.qefield");
 					  widgetParent.find("div.widget-inside").slideUp('fast', function() {
 					        widgetParent.fadeOut('slow', function() {
@@ -118,7 +153,11 @@ pfgWidgets = {
 			  if (ui.helper.hasClass("widget") && (ui.helper.hasClass("w-field") || ui.helper.hasClass("w-action"))) {
 			    return;
 		      }
-			  else {						
+			  else {
+				// hide all the error messages so far!
+				if ($("div.error").length > 0) {
+					$("div.error").hide();
+				}						
 				ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
 		    	ui.helper.wrapInner("<h4 class='widget-header-helper'></h4>");
 		    	ui.helper.addClass("widget");
@@ -437,6 +476,10 @@ pfgWidgets = {
 		$("span.not-required").die();
 		$("span.not-required").remove(); // we don't want blank square showed in the form
 		$("span.required").die(); // remove live() event listener
+		// hide all the error messages so far!
+		if ($("div.error").length > 0) {
+			$("div.error").hide();
+		}
 	}	
 };	
 })(jQuery);

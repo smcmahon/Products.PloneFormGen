@@ -544,13 +544,13 @@ $(document).ready(function()
 		position: 'top center', 
 		offset: [-22, 0],
 		message: '<div><em/></div>' // em element is the arrow
-	}).	submit(function(e) {
+	}).submit(function(e) {
 		// this is the part that focuses the required empty fields! (on each form submit)
-		    var required = $(this).find("[required=required]");		// first, select all the required fields
+		    var required = $(this).find("span.required").parent().find(":input"); //$(this).find("[required=required]");		// first, select all the required fields
 		    var empty = new Array();	// create a new array to have the empty ones here
-		   jQuery.each(required, function(index, value) {
+		   required.each(function(index, value) {
 		       if (!$(value).val())
-		         empty.push(required[index]);	// iterate through the elements and add only the empty ones in the array
+		         empty.push($(value));	// iterate through the elements and add only the empty ones in the array
 		    });
 		   empty[0].focus();		// and then change the focus to first empty element
 		});
