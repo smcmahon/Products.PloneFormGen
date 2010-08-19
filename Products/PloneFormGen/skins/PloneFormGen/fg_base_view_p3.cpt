@@ -16,7 +16,8 @@
                    body_macro edit_macros/body | body_macro | base_macros/body;
                    footer_macro edit_macros/footer | footer_macro | base_macros/footer;
                    css python:here.getUniqueWidgetAttr(fields, 'helper_css');
-                   js python:here.getUniqueWidgetAttr(fields, 'helper_js');">
+                   js python:here.getUniqueWidgetAttr(fields, 'helper_js');
+                   portal portal | context/@@plone_portal_state/portal">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"

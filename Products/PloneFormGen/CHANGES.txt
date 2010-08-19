@@ -4,6 +4,10 @@ Change History
 Unreleased
 ----------
 
+- Define 'portal' variable in fg_base_view_p3. If portal is not defined, 
+  widget javascript is not found and thus not loaded.
+  [naro]
+
 - Fixed "NameError: global name 'none' is not defined" in save data
   adapter when using LinguaPlone.
   [maurits]
