@@ -442,7 +442,7 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
                 A TALES expression that will be evaluated to override any value
                 otherwise entered for the BCC list. You are strongly
                 cautioned against using unvalidated data from the request for this purpose.
-                Leave empty if unneeded. Your expression should evaluate as a sequence of string.
+                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
                 an error on form display.
             """),
