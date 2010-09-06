@@ -10,6 +10,7 @@ if __name__ == '__main__':
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.tests import pfgtc
 
+from Testing.makerequest import makerequest
 import zExceptions
 
 if HAS_PLONE30:
@@ -20,12 +21,6 @@ if HAS_PLONE30:
 def stripWhiteSpace(multiLineString):
     return '\n'.join([s.strip() for s in multiLineString.split('\n')])
 
-class FakeRequest(dict):
-
-    def __init__(self, **kwargs):
-        self.form = kwargs
-        self['form'] = kwargs
-
 class TestFunctions(pfgtc.PloneFormGenTestCase):
     """ tests that mostly concern functionality beyond the unit """
 
@@ -35,6 +30,12 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.messageText = messageText
 
 
+    def fakeRequest(self, **kwargs):
+        self.request.form.clear()
+        self.request.form.update(kwargs)
+        return self.request
+
+
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
@@ -42,6 +43,8 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.mailhost = self.folder.MailHost
         self.mailhost._send = self.dummy_send
         self.ff1.mailer.setRecipient_email('mdummy@address.com')
+        self.request = makerequest(self.app).REQUEST
+        self.ff1.checkAuthenticator = False        
 
 
     def testFgFieldsDisplayList(self):
@@ -89,18 +92,18 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def test_Validate(self):
         """ Test required field validation """
 
-        request = FakeRequest(topic = 'test subject')
-
+        request = self.fakeRequest(topic = 'test subject')
+        
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.failUnless( errors['replyto'] )
         self.failUnless( errors['comments'] )
         self.failUnless( errors.get('topic') is None )
 
-        request = FakeRequest(topic = 'test subject', replyto='testtest.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='testtest.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.failUnless( errors['replyto'] )
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -111,7 +114,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def test_selfValidate(self):
         """ Test field self validation """
 
-        request = FakeRequest(topic = 'test subject ')
+        request = self.fakeRequest(topic = 'test subject ')
         errors = self.ff1.topic.fgvalidate(request)
         self.assertEqual( errors, {} )
 
@@ -120,7 +123,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ Test field self validation with required non-ASCII field title """
 
         self.ff1.topic.setTitle('Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es')
-        request = FakeRequest()
+        request = self.fakeRequest()
         errors = self.ff1.topic.fgvalidate(request)
         self.failUnless( errors.has_key('topic') )
 
@@ -132,28 +135,28 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # test in field context (field validating itself)
 
         # make sure it fails when test is invalid
-        request = FakeRequest(topic = 'test subject ')
+        request = self.fakeRequest(topic = 'test subject ')
         self.ff1.topic.setFgTValidator( 'python: 1/0' )
         self.assertRaises(ZeroDivisionError, self.ff1.topic.fgvalidate, request)
 
         # now for a more realistic custom validator
         self.ff1.topic.setFgTValidator( 'python: test(value.find("test") >= 0, 0, "test is missing")' )
 
-        request = FakeRequest(topic = 'test subject ')
+        request = self.fakeRequest(topic = 'test subject ')
         errors = self.ff1.topic.fgvalidate(request)
         self.assertEqual( errors, {} )
 
-        request = FakeRequest(topic = 'no subject ')
+        request = self.fakeRequest(topic = 'no subject ')
         errors = self.ff1.topic.fgvalidate(request)
         self.failUnless( errors['topic'] == 'test is missing' )
 
         # also check in form context (form validating field)
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
-        request = FakeRequest(topic = 'no subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'no subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.failUnless( errors['topic'] == 'test is missing' )
 
@@ -162,23 +165,23 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def testHtmlValue(self):
         """ Test field htmlValue method """
 
-        request = FakeRequest(topic = 'test subject')
+        request = self.fakeRequest(topic = 'test subject')
         self.assertEqual( self.ff1['topic'].htmlValue(request), 'test subject')
 
         # test html escaping
-        request = FakeRequest(topic = 'test < & > subject')
+        request = self.fakeRequest(topic = 'test < & > subject')
         self.assertEqual( self.ff1['topic'].htmlValue(request), 'test &lt; &amp; &gt; subject')
 
         # test list cleanup
-        request = FakeRequest(topic = ['one',])
+        request = self.fakeRequest(topic = ['one',])
         self.assertEqual( self.ff1['topic'].htmlValue(request), "'one'")
 
         # test non-list non-cleanup
-        request = FakeRequest(topic = "['one',]")
+        request = self.fakeRequest(topic = "['one',]")
         self.assertEqual( self.ff1['topic'].htmlValue(request), "['one',]")
 
         # test eol encoding
-        request = FakeRequest(comments = "one\ntwo")
+        request = self.fakeRequest(comments = "one\ntwo")
         self.assertEqual( self.ff1['comments'].htmlValue(request), '<div>one<br />two</div>')
 
 
@@ -189,18 +192,18 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.fsf.fgVocabulary = ('1|one', '2|two', '3|three',)
 
         # first test inside the vocabulary
-        request = FakeRequest(fsf = '2')
+        request = self.fakeRequest(fsf = '2')
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, 'two')
 
         # now, outside the vocabulary
-        request = FakeRequest(fsf = '7')
+        request = self.fakeRequest(fsf = '7')
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, '7')
 
         # now, outside the vocabulary;
         # make sure it's html escaped
-        request = FakeRequest(fsf = '&')
+        request = self.fakeRequest(fsf = '&')
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, '&amp;')
 
@@ -212,23 +215,23 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.fsf.fgVocabulary = ('1|one', '2|two', '3|three',)
 
         # first test inside the vocabulary
-        request = FakeRequest(fsf = ['2', '3', ''])
+        request = self.fakeRequest(fsf = ['2', '3', ''])
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, 'two, three')
 
         # now, outside the vocabulary
-        request = FakeRequest(fsf = ['7', ''])
+        request = self.fakeRequest(fsf = ['7', ''])
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, '7')
 
         # now, outside the vocabulary;
         # make sure it's html-escaped
-        request = FakeRequest(fsf = ['&', ''])
+        request = self.fakeRequest(fsf = ['&', ''])
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, '&amp;')
 
         # now, mixed
-        request = FakeRequest(fsf = ['1', '7', ''])
+        request = self.fakeRequest(fsf = ['1', '7', ''])
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, 'one, 7')
 
@@ -239,11 +242,11 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.invokeFactory('FormDateField', 'fdf')
 
         # good date
-        request = FakeRequest(fdf = '2007/01/01 00:00')
+        request = self.fakeRequest(fdf = '2007/01/01 00:00')
         val = self.ff1['fdf'].htmlValue(request)
 
         # bad date
-        request = FakeRequest(fdf = '2007/01/00 00:00')
+        request = self.fakeRequest(fdf = '2007/01/00 00:00')
         val = self.ff1['fdf'].htmlValue(request)
 
 
@@ -257,7 +260,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.setActionAdapter( ('bogus',) )
         self.assertEqual(self.ff1.actionAdapter, ('bogus',))
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -315,7 +318,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.fsf.fgVocabulary = ('one', 'two', 'three', 'four', 'five')
         self.ff1.fsf.setFgFormat('radio')
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
         self.ff1.fsf.htmlValue(request)
 
 
@@ -328,7 +331,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.fsf.fgVocabulary = ('one', 'two', 'three', 'four', 'five')
         self.ff1.fsf.setFgFormat('checkbox')
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
         self.ff1.fsf.htmlValue(request)
 
 
@@ -337,7 +340,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ check MSF for issue  #79:
             Trailing space in recipient address of mailer causes validation failure"""
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -346,7 +349,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def testTrailSpacesSave(self):
         """ We really don't want to save or act on trailing spaces in inputs """
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
         self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
 
@@ -355,19 +358,19 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def testWhiteSpaceInRequired(self):
         """ white-space only shouldn't validate in required fields  """
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='\n')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='\n')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 1 )
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='xx\n')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='xx\n')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 0 )
 
-        request = FakeRequest(topic = '   ', replyto='test@test.org', comments='xx\n')
+        request = self.fakeRequest(topic = '   ', replyto='test@test.org', comments='xx\n')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 1 )
 
-        request = FakeRequest(topic = 'x   ', replyto='test@test.org', comments='xx\n')
+        request = self.fakeRequest(topic = 'x   ', replyto='test@test.org', comments='xx\n')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 0 )
 
@@ -378,7 +381,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.invokeFactory('FormMultiSelectionField', 'fsf')
         self.ff1.fsf.fgVocabulary = ('one', 'two', 'three', 'four', 'five')
         self.ff1.fsf.setFgFormat('checkbox')
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test', fsf=['one','two',''])
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test', fsf=['one','two',''])
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
         # print request.form['fsf']
@@ -392,19 +395,19 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # whether or not they get validated.
 
         # no enabling condition: should not validate
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 1 )
 
         # explicity enabling: should not validate
         self.ff1.comments.setFgTEnabled('python: True')
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 1 )
 
         # explicity disabling: should validate
         self.ff1.comments.setFgTEnabled('python: False')
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( len(errors), 0 )
 
@@ -412,19 +415,19 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         # no enabling condition: all fields should be in list
         self.ff1.comments.setFgTEnabled('')
-        request = FakeRequest()
+        request = self.fakeRequest()
         fields = self.ff1.fgFields(request=request)
         self.assertEqual( len(fields), 3 )
 
         # explicitly enabled: all fields should be in list
         self.ff1.comments.setFgTEnabled('python: True')
-        request = FakeRequest()
+        request = self.fakeRequest()
         fields = self.ff1.fgFields(request=request)
         self.assertEqual( len(fields), 3 )
 
         # explicitly disabled: one less fields should be in list
         self.ff1.comments.setFgTEnabled('python: False')
-        request = FakeRequest()
+        request = self.fakeRequest()
         fields = self.ff1.fgFields(request=request)
         self.assertEqual( len(fields), 2 )
 
@@ -457,7 +460,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.invokeFactory('FormDateField', 'fdf')
 
         # set non-date fields in request
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
         
         # try with no date at all. should validate, since fdf isn't required
         errors = self.ff1.fgvalidate(REQUEST=request)
@@ -465,14 +468,14 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual( errors, {} )
 
         # try with good date. should validate.
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
          fdf='2007/02/20')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( errors, {} )
 
         # try with bad date. should not validate.
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
          fdf='2007/02/31', fdf_year='2007', fdf_month='02', fdf_day='31')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
@@ -480,7 +483,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         # try required and bad date. should not validate.
         self.ff1.fdf.setRequired(True)
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
          fdf='2007/02/31', fdf_year='2007', fdf_month='02', fdf_day='31')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
@@ -488,14 +491,14 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         # try required and no date. should not validate.
         self.ff1.fdf.setRequired(True)
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( len(errors), 1 )
 
         # try required and good date. should validate.
         self.ff1.fdf.setRequired(True)
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
          fdf='2007/02/21', fdf_year='2007', fdf_month='02', fdf_day='21')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
@@ -554,7 +557,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual(self.ff1.actionAdapter, ('saver1', 'cscript', 'saver2'))
 
         # fake request to fake post
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
 
         # Run a script that returns a non-error status;
         # Something should be saved to both savers,
@@ -600,6 +603,8 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
                   'replyto':'test@test.org',
                   'comments':'test comments'}
 
+            self.ff1.checkAuthenticator = True        
+
             self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
         
             # with authenticator... no error
@@ -632,7 +637,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
             self.ff1.invokeFactory('FormBooleanField', 'fbf')
             self.ff1.fbf.setRequired(True)
 
-            request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+            request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
             errors = self.ff1.fgvalidate(REQUEST=request)
             self.assertEqual( errors, {} )
 

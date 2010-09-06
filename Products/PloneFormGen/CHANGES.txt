@@ -4,6 +4,10 @@ Change History
 Unreleased
 ----------
 
+- Switch to a more realistic request for the functional tests to avoid
+  translation errors during validation in p4.
+  [stevem]
+
 - Define 'portal' variable in fg_base_view_p3. If portal is not defined, 
   widget javascript is not found and thus not loaded.
   [naro]
