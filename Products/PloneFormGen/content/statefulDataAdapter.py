@@ -176,26 +176,30 @@ class FormStatefulDataAdapter(FormActionAdapter):
         csv_writer = writer(output, delimiter=delimiter)
 
         #The first column should always be the user
-        first_row = ['User']
-        main_keys = data.keys()
-        # Write out header row
-        if main_keys: 
-            ids = data[main_keys[0]].keys()
-            for id in ids:
-                first_row.append(id)
-            csv_writer.writerow(first_row)
+        head_row = ['User']
 
-        for key in data:
-            write_list = []
-            write_list.append(key)
-            content_keys = data[key].keys()
-            for content_key in content_keys:
-                # If we have a list, insert them as a colon seperated string
-                if type(data[key][content_key]['field_value']) == list:
-                    csv_list_content = ' : '.join(data[key][content_key]['field_value'])
-                    write_list.append(csv_list_content)
+        # Find all fields---each row may contain only a subset
+        fields = set()
+        for record in data.values():
+            fields.update(record.keys())
+
+        for field in fields:
+            head_row.append(field)
+        csv_writer.writerow(head_row)
+
+        # Now write each row
+        for key, record in data.items():
+            write_list = [key]
+            for field in fields:
+                value_dict = record.get(field, None)
+                if value_dict:
+                    field_value = value_dict['field_value']
+                    if isinstance(field_value, list):
+                        write_list.append(' : '.join(field_value))
+                    else:
+                        write_list.append(field_value)
                 else:
-                    write_list.append(data[key][content_key]['field_value'])
+                    write_list.append("")
             csv_writer.writerow(write_list)
 
         self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
