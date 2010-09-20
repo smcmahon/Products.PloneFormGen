@@ -26,13 +26,8 @@ except ImportError:
 from Products.Archetypes.utils import shasattr, getRelURL
 from Products.Archetypes.interfaces.field import IField
 
-try:
-    from plone.app.folder.folder import ATFolderSchema, ATFolder
-except ImportError:
-    ### BBB for < Plone 4
-    from Products.ATContentTypes.content.folder import ATFolderSchema, ATFolder
-
 from Products.ATContentTypes.content.base import registerATCT
+from Products.ATContentTypes.content.folder import ATFolderSchema, ATFolder
 from Products.ATContentTypes.configuration import zconf
 
 from Products.TALESField import TALESString

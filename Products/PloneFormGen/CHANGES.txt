@@ -4,6 +4,11 @@ Change History
 Unreleased
 ----------
 
+- Fixed LinguaPlone compatibility in Plone 4. The form folder was missing
+  the required base classes. This closes
+  http://plone.org/products/ploneformgen/issues/301.
+  [hannosch]
+
 - Switch to a more realistic request for the functional tests to avoid
   translation errors during validation in p4.
   [stevem]
