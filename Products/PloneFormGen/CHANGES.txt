@@ -4,6 +4,9 @@ Change History
 Unreleased
 ----------
 
+- Avoid deprecation warnings for InitializeClass in Plone 4.
+  [hannosch]
+
 - Fixed LinguaPlone compatibility in Plone 4. The form folder was missing
   the required base classes. This closes
   http://plone.org/products/ploneformgen/issues/301.

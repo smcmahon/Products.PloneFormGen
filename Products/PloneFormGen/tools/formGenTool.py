@@ -19,7 +19,10 @@ from Products.Archetypes.utils import DisplayList
 from Products.validation import validation
 from Products.validation.validators.RegexValidator import RegexValidator
 
-from Globals import InitializeClass 
+try:
+    from App.class_init import InitializeClass
+except ImportError:
+    from Globals import InitializeClass
 
 from Products.PloneFormGen import config
 

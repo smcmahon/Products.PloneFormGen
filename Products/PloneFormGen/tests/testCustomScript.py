@@ -14,7 +14,11 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-from Globals import InitializeClass
+try:
+    from App.class_init import InitializeClass
+except ImportError:
+    from Globals import InitializeClass
+
 from AccessControl import Unauthorized    
 from AccessControl import ClassSecurityInfo
 from Products.PythonScripts.PythonScript import PythonScript, manage_addPythonScript
