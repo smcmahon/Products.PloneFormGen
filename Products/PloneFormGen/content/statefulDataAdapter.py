@@ -174,13 +174,12 @@ class FormStatefulDataAdapter(FormActionAdapter):
 
         output = StringIO()
         def getCSVWriter(iteration):
-            if iteration == 0:
-                iteration = 1
+            if iteration == "standard":
                 return writer(output, delimiter=delimiter)
             else:
                 return UnicodeWriter(output, delimiter=delimiter)
 
-        for iteration in [0,1]:
+        for iteration in ["standard", "utf-8", "latin-1"]:
             try:
                 csv_writer = getCSVWriter(iteration)
 
@@ -220,7 +219,7 @@ class FormStatefulDataAdapter(FormActionAdapter):
 
                 break
             except:
-                if iteration == 1:
+                if iteration == "latin-1":
                     raise
                 pass
 
