@@ -220,6 +220,8 @@ class FormStatefulDataAdapter(FormActionAdapter):
 
                 break
             except:
+                if iteration == 1:
+                    raise
                 pass
 
         return value
