@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2009-08-04 17:27+0200\n"
-"Last-Translator: Sven Deichmann <deichmann@werkbank.com>\n"
+"PO-Revision-Date: 2010-09-23 10:22+0200\n"
+"Last-Translator: Jan Ulrich Hasecke <jan.ulrich@hasecke.com>\n"
 "Language-Team: German Translation Team <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -18,191 +18,191 @@ msgstr ""
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "A Likert form entry"
-msgstr ""
+msgstr "Ein Bewertungsfeld"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "A captcha field to prevent spam."
-msgstr ""
+msgstr "Ein Captcha-Feld, um Spam zu vermeiden."
 
 #: ./profiles/default/types/FormFolder.xml
 msgid "A folder which can contain form fields."
-msgstr ""
+msgstr "Ein Ordner, der Formularfelder enthält."
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
-msgstr ""
+msgstr "Ein Ordner, der Formularfelder in einem Formularsatz gruppiert."
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "A form action adapter that will e-mail form input."
-msgstr ""
+msgstr "Ein Verarbeitungsadapter, der die Formulareingaben per E-Mail verschickt."
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "A line entry field. This appears as a textarea without wordwrap."
-msgstr ""
+msgstr "Ein Feld zur zeilenweisen Eingabe von Text. Im Texteingabebereich gibt es keinen Zeilenumbruch."
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "A string entry field"
-msgstr ""
+msgstr "Ein Feld zur Eingabe einer Zeichenfolge"
 
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "A thank-you page that can display form input"
-msgstr ""
+msgstr "Die Danke-Seite gibt dem Benutzer die Rückmeldung, dass seine Eingaben erfolgreich weiterverarbeitet wurden. Auf ihr können die Eingaben des Benutzers auch angezeigt werden."
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
-msgstr ""
+msgstr "Ja/Nein-Ankreuzfeld"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "Captcha Field"
-msgstr ""
+msgstr "Captcha-Feld"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Checkbox Field"
-msgstr ""
+msgstr "Ankreuzfeld"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Custom Script Adapter"
-msgstr ""
+msgstr "Adapter für eigenes Skript"
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
-msgstr ""
+msgstr "Ein Feld zur Eingabe von Datum und Uhrzeit."
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Field"
-msgstr ""
+msgstr "Datums- und Uhrzeitfeld"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Decimal Number Field"
-msgstr ""
+msgstr "Dezimalzahlfeld"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Executes a Python script for form data"
-msgstr ""
+msgstr "Der Adapter ruft ein Pythonskript zur Verarbeitung der Formulardaten auf."
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
-msgstr ""
+msgstr "Formularsatz"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File (upload) field"
-msgstr ""
+msgstr "Feld zum Hochladen einer Datei."
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File Field"
-msgstr ""
+msgstr "Dateifeld"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Fixed-Point (float) entry field"
-msgstr ""
+msgstr "Festkommazahl-Feld"
 
 #: ./profiles/default/types/FormFolder.xml
 msgid "Form Folder"
-msgstr ""
+msgstr "Formular-Ordner"
 
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
+msgstr "Formular importiert."
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Integer entry field"
-msgstr ""
+msgstr "Ganzzahl-Feld"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label Field"
-msgstr ""
+msgstr "Bezeichnung"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label-Only field (no input component)"
-msgstr ""
+msgstr "Nur Bezeichnung (keine Eingabe vorgesehen)"
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "Lines Field"
-msgstr ""
+msgstr "Zeilenfeld"
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "Mailer Adapter"
-msgstr ""
+msgstr "E-Mail-Adapter"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multi-Select Field"
-msgstr ""
+msgstr "Mehrfachauswahl-Feld"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multiple selection field (select with multiple or check boxes)"
-msgstr ""
+msgstr "Mehrfachauswahl mit Auswahlfeld oder Ankreuzkästchen."
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password Field"
-msgstr ""
+msgstr "Passwort-Feld"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password entry field (input is masked)"
-msgstr ""
+msgstr "Feld zur Eingabe eines Passworts. Die Eingabe wird maskiert."
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
 msgid "Please correct the indicated errors."
-msgstr ""
+msgstr "Bitte korrigieren Sie die angezeigten Fehler."
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "Rating-Scale Field"
-msgstr ""
+msgstr "Bewertungsfeld"
 
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
-msgstr ""
+msgstr "Bestehende Formularfelder entfernen?"
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich Label Field"
-msgstr ""
+msgstr "Bezeichnungsfeld"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "Rich-text (visual editor) field"
-msgstr ""
+msgstr "Feld zur Eingabe von formatierbarem Text mit Hilfe des Texteditors."
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich-text label field"
-msgstr ""
+msgstr "Formatierter Formulartext"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "RichText Field"
-msgstr ""
+msgstr "Texteingabefeld"
 
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "Save Data Adapter"
-msgstr ""
+msgstr "Datenspeicheradapter"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field"
-msgstr ""
+msgstr "Auswahlfeld"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field (radio buttons or select)"
-msgstr ""
+msgstr "Formularfeld mit Auswahlknöpfen oder Auswahlmenü."
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "String Field"
-msgstr ""
+msgstr "Zeichenkettenfeld"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text (textarea) field"
-msgstr ""
+msgstr "Feld zur Eingabe von nicht formatierbarem Text."
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text Field"
-msgstr ""
+msgstr "Einfaches Textfeld"
 
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "Thanks Page"
-msgstr ""
+msgstr "Danke-Seite"
 
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
-msgstr ""
+msgstr "Hochladen"
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Whole Number Field"
-msgstr ""
+msgstr "Ganzzahlfeld"
 
 # value="Clear Saved Input"
 #. Save Data Adapter
@@ -225,7 +225,7 @@ msgstr "Sie können hier Standardvorgaben für den Body und den MIME-Typ des Mai
 #. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:65
 msgid "description_ploneformgen_permissions"
-msgstr "Sie können PloneFormGen-Funktionen vor bestimmten Klassen von Benutzern verstecken oder sie ihnen zeigen, in dem Sie die Berechtigungen für entsprechende Rolleen anpassen. Das Formular unten passt die Rolleen/Berechtigungen auf Site-Level an. Sie können die Berechtigungen auf Verzeichnisebene beeinflussen, wenn Sie den Security-Reiter im ZMI verwenden."
+msgstr "Sie können PloneFormGen-Funktionen vor bestimmten Klassen von Benutzern verstecken oder sie ihnen zeigen, in dem Sie die Berechtigungen für entsprechende Rolleen anpassen. Das Formular unten passt die Rolleen/Berechtigungen auf der gesamten Website an. Sie können die Berechtigungen auf Verzeichnisebene beeinflussen, wenn Sie den Security-Reiter im ZMI verwenden."
 
 #. Default: "Set defaults for data adapters."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:63
@@ -1060,12 +1060,12 @@ msgstr "Hilfe-Feld"
 #. Default: "Field Label"
 #: ./content/fieldsBase.py:186
 msgid "label_fieldlabel_text"
-msgstr "Titel-Feld"
+msgstr "Feldbezeichnung"
 
 #. Default: "Fieldset Help"
 #: ./content/fieldset.py:50
 msgid "label_fieldsethelp_text"
-msgstr ""
+msgstr "Hilfetext"
 
 #. File Field
 #. Default: "Maximum Upload Size (Megabytes)"
@@ -1170,7 +1170,7 @@ msgstr "Betreff herauslesen aus"
 #. Default: "Extract Recipient From"
 #: ./content/formMailerAdapter.py:101
 msgid "label_formmailer_to_extract"
-msgstr ""
+msgstr "Empfänger herauslesen aus"
 
 #. Mailer Adapter
 #. Default "Key-Id"
@@ -1254,17 +1254,17 @@ msgstr "BCC Empfänger"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:32
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:34
 msgid "label_ploneformgen_captcha_settings"
-msgstr ""
+msgstr "Captcha"
 
 #. Default: "CC Recipients"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:91
 msgid "label_ploneformgen_cc_recipients"
-msgstr "CC Empfänger"
+msgstr "CC-Empfänger"
 
 #. Default: "CSV Delimiter"
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:72
 msgid "label_ploneformgen_csv_delimiter"
-msgstr ""
+msgstr "CSV-Trennzeichen"
 
 #. Default: "Mail Body Template"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:73
@@ -1300,7 +1300,7 @@ msgstr "Empfängername"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:36
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:38
 msgid "label_ploneformgen_savedata"
-msgstr ""
+msgstr "Datenspeicher"
 
 #. Form Folder
 #. Default: "Form Prologue"
@@ -1323,7 +1323,6 @@ msgstr "zwingend benötigt"
 #. Form Folder
 #. Default: "Reset Button Label"
 #: ./content/form.py:89
-#, fuzzy
 msgid "label_reset_button"
 msgstr "Bezeichnung der Abbruch-Schaltfläche"
 
