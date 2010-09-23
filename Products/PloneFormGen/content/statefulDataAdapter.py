@@ -173,41 +173,55 @@ class FormStatefulDataAdapter(FormActionAdapter):
         delimiter = self.getFieldDelimiter()
 
         output = StringIO()
-        csv_writer = UnicodeWriter(output, delimiter=delimiter)
+        def getCSVWriter(iteration):
+            if iteration == 0:
+                iteration = 1
+                return writer(output, delimiter=delimiter)
+            else:
+                return UnicodeWriter(output, delimiter=delimiter)
 
-        #The first column should always be the user
-        head_row = ['User']
+        for iteration in [0,1]:
+            try:
+                csv_writer = getCSVWriter(iteration)
 
-        # Find all fields---each row may contain only a subset
-        fields = set()
-        for record in data.values():
-            fields.update(record.keys())
+                #The first column should always be the user
+                head_row = ['User']
 
-        for field in fields:
-            head_row.append(field)
-        csv_writer.writerow(head_row)
+                # Find all fields---each row may contain only a subset
+                fields = set()
+                for record in data.values():
+                    fields.update(record.keys())
 
-        # Now write each row
-        for key, record in data.items():
-            write_list = [key]
-            for field in fields:
-                value_dict = record.get(field, None)
-                if value_dict:
-                    field_value = value_dict['field_value']
-                    if isinstance(field_value, list):
-                        write_list.append(' : '.join(field_value))
-                    else:
-                        write_list.append(field_value)
-                else:
-                    write_list.append("")
-            csv_writer.writerow(write_list)
+                for field in fields:
+                    head_row.append(field)
+                csv_writer.writerow(head_row)
 
-        self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
-        self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
-                                           "attachment;filename=%s" % csv_file_name)
+                # Now write each row
+                for key, record in data.items():
+                    write_list = [key]
+                    for field in fields:
+                        value_dict = record.get(field, None)
+                        if value_dict:
+                            field_value = value_dict['field_value']
+                            if isinstance(field_value, list):
+                                write_list.append(' : '.join(field_value))
+                            else:
+                                write_list.append(field_value)
+                        else:
+                            write_list.append("")
+                    csv_writer.writerow(write_list)
 
-        value = output.getvalue() 
-        output.close()
+                self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
+                self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
+                                                   "attachment;filename=%s" % csv_file_name)
+
+                value = output.getvalue() 
+                output.close()
+
+                break
+            except:
+                pass
+
         return value
 
     def getKey(self, REQUEST):
