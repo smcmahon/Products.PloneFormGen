@@ -177,7 +177,7 @@ class FormStatefulDataAdapter(FormActionAdapter):
             if iteration == "standard":
                 return writer(output, delimiter=delimiter)
             else:
-                return UnicodeWriter(output, delimiter=delimiter)
+                return UnicodeWriter(output, encoding=iteration, delimiter=delimiter)
 
         for iteration in ["standard", "utf-8", "latin-1"]:
             try:
