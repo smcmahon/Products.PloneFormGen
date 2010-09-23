@@ -1,8 +1,8 @@
 Change History
 ==============
 
-Unreleased
-----------
+1.6.0b5
+-------
 
 - Avoid deprecation warnings for InitializeClass in Plone 4.
   [hannosch]
