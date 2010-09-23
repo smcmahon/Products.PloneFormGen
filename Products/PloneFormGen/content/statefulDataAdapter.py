@@ -172,56 +172,54 @@ class FormStatefulDataAdapter(FormActionAdapter):
         # Set the separator character for the csv writer
         delimiter = self.getFieldDelimiter()
 
+        def try_encode(text):
+            """Tries to deduce a string's character encoding"""
+            for charset in 'US-ASCII', 'ISO-8859-1', 'UTF-8':
+                try:
+                    return text.encode(charset)
+                except UnicodeError:
+                    pass
+            return "BAD DATA"
+
         output = StringIO()
-        def getCSVWriter(iteration):
-            if iteration == "standard":
-                return writer(output, delimiter=delimiter)
-            else:
-                return UnicodeWriter(output, encoding=iteration, delimiter=delimiter)
+        csv_writer = writer(output, delimiter=delimiter)
 
-        for iteration in ["standard", "utf-8", "latin-1"]:
+        #The first column should always be the user
+        head_row = ['User']
+
+        # Find all fields---each row may contain only a subset
+        fields = set()
+        for record in data.values():
+            fields.update(record.keys())
+
+        for field in fields:
+            head_row.append(field)
+        csv_writer.writerow(head_row)
+
+        # Now write each row
+        for key, record in data.items():
+            write_list = [key]
+            for field in fields:
+                value_dict = record.get(field, None)
+                if value_dict:
+                    field_value = value_dict['field_value']
+                    if isinstance(field_value, list):
+                        write_list.append(' : '.join(field_value))
+                    else:
+                        write_list.append(field_value)
+                else:
+                    write_list.append("")
             try:
-                csv_writer = getCSVWriter(iteration)
-
-                #The first column should always be the user
-                head_row = ['User']
-
-                # Find all fields---each row may contain only a subset
-                fields = set()
-                for record in data.values():
-                    fields.update(record.keys())
-
-                for field in fields:
-                    head_row.append(field)
-                csv_writer.writerow(head_row)
-
-                # Now write each row
-                for key, record in data.items():
-                    write_list = [key]
-                    for field in fields:
-                        value_dict = record.get(field, None)
-                        if value_dict:
-                            field_value = value_dict['field_value']
-                            if isinstance(field_value, list):
-                                write_list.append(' : '.join(field_value))
-                            else:
-                                write_list.append(field_value)
-                        else:
-                            write_list.append("")
-                    csv_writer.writerow(write_list)
-
-                self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
-                self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
-                                                   "attachment;filename=%s" % csv_file_name)
-
-                value = output.getvalue() 
-                output.close()
-
-                break
+                csv_writer.writerow(write_list)
             except:
-                if iteration == "latin-1":
-                    raise
-                pass
+                csv_writer.writerow([try_encode(s) for s in write_list])
+
+        self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
+        self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
+                                           "attachment;filename=%s" % csv_file_name)
+
+        value = output.getvalue() 
+        output.close()
 
         return value
 
@@ -318,37 +316,5 @@ class FormStatefulDataAdapter(FormActionAdapter):
             final_counts[data_type] = count
                     
         return final_counts
-
-
-import csv, codecs, cStringIO
-
-class UnicodeWriter:
-    """
-    A CSV writer which will write rows to CSV file "f",
-    which is encoded in the given encoding.
-    """
-
-    def __init__(self, f, dialect=csv.excel, encoding="utf-8", **kwds):
-        # Redirect output to a queue
-        self.queue = cStringIO.StringIO()
-        self.writer = csv.writer(self.queue, dialect=dialect, **kwds)
-        self.stream = f
-        self.encoder = codecs.getencoder(encoding)
-
-    def writerow(self, row):
-        self.writer.writerow([s.encode("utf-8") for s in row])
-        # Fetch UTF-8 output from the queue ...
-        data = self.queue.getvalue()
-        data = data.decode("utf-8")
-        # ... and reencode it into the target encoding
-        data = self.encoder(data)[0]
-        # write to the target stream
-        self.stream.write(data)
-        # empty queue
-        self.queue.truncate(0)
-
-    def writerows(self, rows):
-        for row in rows:
-            self.writerow(row)
 
 registerATCT(FormStatefulDataAdapter, PROJECTNAME)
