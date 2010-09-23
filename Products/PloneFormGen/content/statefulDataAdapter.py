@@ -213,10 +213,15 @@ class FormStatefulDataAdapter(FormActionAdapter):
                 csv_writer.writerow(write_list)
             except:
                 csv_writer.writerow([try_encode(s) for s in write_list])
+                #csv_writer.writerow(["Bad data in row; skipped"])
 
         self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
-        self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
-                                           "attachment;filename=%s" % csv_file_name)
+        try:
+            self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
+                                               "attachment;filename=%s" % csv_file_name)
+        except:
+            self.REQUEST.RESPONSE.setHeader("Content-Disposition", 
+                                               "attachment;filename=%s" % "form_data.csv")
 
         value = output.getvalue() 
         output.close()
