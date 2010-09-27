@@ -5,6 +5,10 @@
            xmlns:gs="http://namespaces.zope.org/genericsetup"
            i18n_domain="ploneformgen">
 
+  <permission
+      id="Products.PloneFormGen.downloadSavedInput"
+      title="PloneFormGen: Download Saved Input" />
+
   <i18n:registerTranslations directory="locales"/>
 
   <five:deprecatedManageAddDelete

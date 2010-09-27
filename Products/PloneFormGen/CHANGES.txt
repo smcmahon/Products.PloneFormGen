@@ -4,6 +4,10 @@ Change History
 1.6.0b5
 -------
 
+- Declare downloadSavedInput as z3 permission to be able to use it as 
+  browser view permission in another package.
+  [naro]
+  
 - Avoid deprecation warnings for InitializeClass in Plone 4.
   [hannosch]
 
