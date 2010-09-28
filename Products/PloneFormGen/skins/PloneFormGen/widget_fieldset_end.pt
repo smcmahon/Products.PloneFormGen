@@ -9,11 +9,11 @@
     <!-- Fieldset End Widgets -->
 
     <metal:view_macro define-macro="view">
-          <span tal:replace="structure string:</fieldset>" />
+          <span tal:replace="structure here/fgGetFieldsetEnd" />
     </metal:view_macro>
  
     <metal:define define-macro="edit">
-          <span tal:replace="structure string:</fieldset>" />
+          <span tal:replace="structure here/fgGetFieldsetEnd" />
     </metal:define>
 
     <div metal:define-macro="search">

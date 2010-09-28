@@ -9,16 +9,11 @@
     <!-- Fieldset Start Widgets -->
 
     <metal:view_macro define-macro="view">
-          <span tal:replace="structure string:<fieldset>" />
+          <span tal:replace="structure python:here.fgGetFieldsetStart(field, widget, edit=False)" />
     </metal:view_macro>
  
     <metal:define define-macro="edit">
-          <span tal:replace="structure python:'<fieldset class=\x22PFGFieldsetWidget\x22 id=\x22pfg-fieldsetname-%s\x22>' % field.getName()" />
-          <tal:block condition="widget/show_legend">
-              <span tal:replace="structure string:<legend>" />
-              <span tal:content="python:widget.Label(here)" />
-              <span tal:replace="structure string:</legend>" />
-          </tal:block>
+          <span tal:replace="structure python:here.fgGetFieldsetStart(field, widget, edit=True)" />
           <div class="formHelp"
                tal:define="description python:widget.Description(here)"
                tal:content="structure description"

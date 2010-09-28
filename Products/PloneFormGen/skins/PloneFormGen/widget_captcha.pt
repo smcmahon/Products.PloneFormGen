@@ -15,10 +15,12 @@
         <metal:widget_body fill-slot="widget_body">
 
         <script type="text/javascript">
+        //<![CDATA[
         function playAudio(url) {
         document.getElementById("captcha-audio-embed").innerHTML=
         "<embed src='"+url+"' hidden=true autostart=true loop=false>";
         }
+        //]]>
         </script>        
         <div class="captchaImage">
             <div tal:replace="structure context/@@captcha/image_tag" />&nbsp;

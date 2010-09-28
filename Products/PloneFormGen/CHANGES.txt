@@ -1,6 +1,12 @@
 Change History
 ==============
 
+???????
+-------
+
+- Chameleon compatibility changes
+  [swampmonkey]
+
 1.6.0b5
 -------
 
