@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"PO-Revision-Date: 2009-08-11 21:23+0100\n"
-"Last-Translator: Matouš Hora <matous.hora@dms4u.cz>\n"
-"Language-Team: <info@dms4u.cz>\n"
+"PO-Revision-Date: 2010-09-28 10:05+0100\n"
+"Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
+"Language-Team:  <info@dms4u.cz>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,191 +18,191 @@ msgstr ""
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "A Likert form entry"
-msgstr ""
+msgstr "Hodnocení"
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "A captcha field to prevent spam."
-msgstr ""
+msgstr "Pole Captcha, jako obrana proti SPAMu."
 
 #: ./profiles/default/types/FormFolder.xml
 msgid "A folder which can contain form fields."
-msgstr ""
+msgstr "Složka obsahující pole formuláře."
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
-msgstr ""
+msgstr "Složka seskupující pole do skupin."
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "A form action adapter that will e-mail form input."
-msgstr ""
+msgstr "Akce odeslání formuláře emailem."
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "A line entry field. This appears as a textarea without wordwrap."
-msgstr ""
+msgstr "Pole pro zadávání jednotlivých řádků. Zobrazí se jako textarea bez zalamování řádků."
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "A string entry field"
-msgstr ""
+msgstr "Pole s jednoduchým textem."
 
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "A thank-you page that can display form input"
-msgstr ""
+msgstr "Stránka s poděkováním za vyplnění formuláře."
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
-msgstr ""
+msgstr "Pole se zaškrtávacím políčkem."
 
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "Captcha Field"
-msgstr ""
+msgstr "Pole Captcha"
 
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Checkbox Field"
-msgstr ""
+msgstr "Zaškrtávací pole"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Custom Script Adapter"
-msgstr ""
+msgstr "Akce s uživatelkým skriptem"
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
-msgstr ""
+msgstr "Pole pro zadání data a času."
 
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Field"
-msgstr ""
+msgstr "Pole datum/čas"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Decimal Number Field"
-msgstr ""
+msgstr "Pole Celé číslo"
 
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Executes a Python script for form data"
-msgstr ""
+msgstr "Spustí Python skript pro vyplněný formulář"
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
-msgstr ""
+msgstr "Složka pro skupinu polí"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File (upload) field"
-msgstr ""
+msgstr "Pole pro nahrání souboru"
 
 #: ./profiles/default/types/FormFileField.xml
 msgid "File Field"
-msgstr ""
+msgstr "Pole soubor"
 
 #: ./profiles/default/types/FormFixedPointField.xml
 msgid "Fixed-Point (float) entry field"
-msgstr ""
+msgstr "Desetinné číslo"
 
 #: ./profiles/default/types/FormFolder.xml
 msgid "Form Folder"
-msgstr ""
+msgstr "Formulář"
 
 #: ./browser/exportimport.py:57
 msgid "Form imported."
-msgstr ""
+msgstr "Formulář byl importován"
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Integer entry field"
-msgstr ""
+msgstr "Pole pro zadání celého čísla"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label Field"
-msgstr ""
+msgstr "Pole Statický nadpis"
 
 #: ./profiles/default/types/FormLabelField.xml
 msgid "Label-Only field (no input component)"
-msgstr ""
+msgstr "Pouze textový nadpis - neobsahuje vstupní políčko"
 
 #: ./profiles/default/types/FormLinesField.xml
 msgid "Lines Field"
-msgstr ""
+msgstr "Pole řádků"
 
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "Mailer Adapter"
-msgstr ""
+msgstr "Akce odeslání emailem"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multi-Select Field"
-msgstr ""
+msgstr "Pole vícenásobného výběru"
 
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multiple selection field (select with multiple or check boxes)"
-msgstr ""
+msgstr "Pole pro výbět více hodnot z předdefinovaného seznamu"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password Field"
-msgstr ""
+msgstr "Pole Heslo"
 
 #: ./profiles/default/types/FormPasswordField.xml
 msgid "Password entry field (input is masked)"
-msgstr ""
+msgstr "Pole pro zadání hesla"
 
 #: ./skins/PloneFormGen/fgvalidate_base.vpy:37
 msgid "Please correct the indicated errors."
-msgstr ""
+msgstr "Opravte prosím vyznačené chyby"
 
 #: ./profiles/default/types/FormLikertField.xml
 msgid "Rating-Scale Field"
-msgstr ""
+msgstr "Pole hodnocení"
 
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
-msgstr ""
+msgstr "Smazat vybrané položky?"
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich Label Field"
-msgstr ""
+msgstr "Pole Nadpis s formátováním"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "Rich-text (visual editor) field"
-msgstr ""
+msgstr "Pole s WYSIWYG editorem"
 
 #: ./profiles/default/types/FormRichLabelField.xml
 msgid "Rich-text label field"
-msgstr ""
+msgstr "Pole nadpisu s formátováním"
 
 #: ./profiles/default/types/FormRichTextField.xml
 msgid "RichText Field"
-msgstr ""
+msgstr "Pole s HTML formátováním"
 
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "Save Data Adapter"
-msgstr ""
+msgstr "Uložení dat (CSV)"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field"
-msgstr ""
+msgstr "Pole Výběr"
 
 #: ./profiles/default/types/FormSelectionField.xml
 msgid "Selection Field (radio buttons or select)"
-msgstr ""
+msgstr "Pole pro výběr jedné hodnoty"
 
 #: ./profiles/default/types/FormStringField.xml
 msgid "String Field"
-msgstr ""
+msgstr "Pole Krátký text"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text (textarea) field"
-msgstr ""
+msgstr "Textové pole (textarea)"
 
 #: ./profiles/default/types/FormTextField.xml
 msgid "Text Field"
-msgstr ""
+msgstr "Pole Text"
 
 #: ./profiles/default/types/FormThanksPage.xml
 msgid "Thanks Page"
-msgstr ""
+msgstr "Stránka s poděkováním"
 
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
-msgstr ""
+msgstr "Nahrát"
 
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Whole Number Field"
-msgstr ""
+msgstr "Pole s celým číslem"
 
 # value="Clear Saved Input"
 #. Save Data Adapter
@@ -215,47 +215,47 @@ msgstr "Smazat uložená data"
 #. Default: "Set defaults for addressing fields for new mail-action adapters. Please note that your input here is not verified. So, make sure you use valid addresses."
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:63
 msgid "description_ploneformgen_addressing"
-msgstr ""
+msgstr "Nastavení výchozích hodnot pro nové akce odeslání emailem. Prosím pozor, hodnota zadaná do tohoto pole není kontrolována. Zkontrolujte prosím zadané hodnoty."
 
 #. Default: "You may set up a default body and MIME type for the mail-action adapter here. These values will be used whenever a new mail-action adapter is created."
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:63
 msgid "description_ploneformgen_mtemplate"
-msgstr ""
+msgstr "Zde můžete nastavit výchozí tělo zprávy a MIME typ pro akci odeslání formuláře emailem. Tyto hodnoty budou použity vždy, když bude vytvořena nová akce odelsání formuláře emailem."
 
 #. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:65
 msgid "description_ploneformgen_permissions"
-msgstr ""
+msgstr "Nastavením oprávnění můžete zpřístupnit nebo naopak znepřístupnit funkce produktu PloneFormGen různým skupinám uživatelů. Níže zobrazený formulář umožňuje nastavení oprávnění pro celý portál. Oprávnění pro jednotlivé formuláře lze nastavit pomocí záložky Sdílení u každého formuláře."
 
 #. Default: "Set defaults for data adapters."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:63
 msgid "description_ploneformgen_savedata"
-msgstr ""
+msgstr "Nastavení výchozích hodnot pro akce formuláře."
 
 #. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
 #: ./content/fieldsBase.py:259
 msgid "description_server_side_text"
-msgstr ""
+msgstr "Označí toto pole jako interní pro použití akcemi formuláře. Toto pole nebude zobrazené uživatelům."
 
 #. Default: "PloneFormGen Mail Addressing Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:53
 msgid "heading_ploneformgen_addressing"
-msgstr ""
+msgstr "PFG - Výchozí hodnoty pro mailové akce"
 
 #. Default: "PloneFormGen Mail Template"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:53
 msgid "heading_ploneformgen_mtemplate"
-msgstr ""
+msgstr "PFG - Šablona emailu"
 
 #. Default: "PloneFormGen Permissions"
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:55
 msgid "heading_ploneformgen_permissions"
-msgstr ""
+msgstr "PFG - Oprávnění"
 
 #. Default: "PloneFormGen Saved Data Adapter Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:53
 msgid "heading_ploneformgen_savedata"
-msgstr ""
+msgstr "PFG - Výchozí hodnoty pro akce uložení dat."
 
 # Form Folder
 # description="""
@@ -293,9 +293,8 @@ msgstr "Zde uvedený TALES výraz bude vykonán vždy při zobrazení formulář
 #. Form Folder
 #. Default: "\n                To make your form do something useful when submitted:\n                add one or more form action adapters to the form folder,\n                configure them, then return to this\n                form and select the active ones.\n                "
 #: ./content/form.py:96
-#, fuzzy
 msgid "help_actionadapter_text"
-msgstr "Pokud má tento formulář dělat něco užitečného, musí být napojen na nějakou akci, která se provede po \"odeslání\" formuláře. Do složky formuláře můžete přidat vybranou akci, vrátit do tohoto nastavení a zvolit ji jako  zpracovatele vyplněného formuláře. Příkladem předpřipravených akcí jsou: odeslání emailem nebo uložení do CSV."
+msgstr "Pokud má tento formulář dělat něco užitečného, musí být napojen na nějakou akci, která se provede po \"odeslání\" formuláře. Do složky formuláře můžete přidat vybranou akci, vrátit do tohoto nastavení a zvolit ji jako  zpracovatele vyplněného formuláře. Příkladem předpřipravených akcí je například odeslání emailem."
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:441
@@ -305,7 +304,6 @@ msgstr ""
 #. Boolean Field
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:359
-#, fuzzy
 msgid "help_boolrequired_text"
 msgstr "POZOR: Pro zaškrtávací pole nedělá příznak \"Vyžadováno\" nic jiného než zobrazení textu \"Vyžadováno\" u nadpisu pole. Pokud potřebujete, aby uživatel zadal nějakou hodnotu, použijte prosím validátor."
 
@@ -350,7 +348,6 @@ msgstr "Vyberte validátor podle požadovaného zadání od uživatele."
 #. Default: "\n                The value the field should contain when the form is first displayed.\n                Note that this may be overridden dynamically.\n            "
 #: ./content/fields.py:329
 #: ./content/fieldsBase.py:278
-#, fuzzy
 msgid "help_fgdefault_text"
 msgstr "Výchozí hodnota, kterou má pole obsahovat v okamžiku zobrazení formuláře. Tato hodnota může být změněna dynamicky skriptem."
 
@@ -386,14 +383,12 @@ msgstr ""
 #. Lines Field
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
 #: ./content/fieldsBase.py:296
-#, fuzzy
 msgid "help_fglinesdefault_text"
 msgstr "Hodnoty, které bude pole obsahovat v okamžiku zobrazení formuláře. Zadejte jednu hodnotu na řádek. Prosím pozor, tato hodnota může být předefinována skriptem."
 
 #. String Field
 #. Default: "\n                The maximum number of characters the user will be able to input.\n                "
 #: ./content/fieldsBase.py:107
-#, fuzzy
 msgid "help_fgmaxlength_text"
 msgstr "Maximální počet znaků, který může uživatel vložit do tohoto pole."
 
@@ -432,9 +427,8 @@ msgstr "Zkontroluje pole oproti jednoduchému řetězcovému vzoru"
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fields.py:1121
 #: ./content/fieldsBase.py:220
-#, fuzzy
 msgid "help_fgtdefault_text"
-msgstr "TALES výraz, který bude vykonán v okamžiku zobrazení formuláře. Slouží k naplnění pole výchozí hodnotou. Pokud tuto funkci nepožadujete, ponechte pole prázdné.  Skript by měl vrátit řetězec.POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+msgstr "TALES výraz, který bude vykonán v okamžiku zobrazení formuláře. Slouží k naplnění pole výchozí hodnotou. Pokud tuto funkci nepožadujete, ponechte pole prázdné.  Skript by měl vrátit řetězec. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:239
@@ -444,35 +438,30 @@ msgstr ""
 #. Text Field
 #. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
 #: ./content/fieldsBase.py:335
-#, fuzzy
 msgid "help_fgtextdefault_text"
 msgstr "Text, který bude vložen to tohto pole v okamžiku prvního zobrazení formuláře. Tato hodnota může být předefinována skriptem."
 
 #. Lines Field
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:312
-#, fuzzy
 msgid "help_fgtlinesdefault_text"
 msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře. Pokud toto chování nepotřebujete, ponechte pole prázdné.  Výsledkem výrazu by měl být python seznam (list) nebo tuple. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
 
 #. String Field
 #. Default: "\n                    A TALES expression that will be evaluated when the form is validated.\n                    Validate against 'value', which will contain the field input.\n                    Return False if valid; if not valid return a string error message.\n                    E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will\n                    require \"eggs\" for input.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:79
-#, fuzzy
 msgid "help_fgtvalidator_text"
 msgstr "TALES výraz, který bude vyhodnocen v okamžiku kontroly (validace) formuláře. Validuje se oproti proměnné 'value', která obsahuje hodnotu v daném poli. Skript má vrátit False, pokud je hodnota v pořádku; pokud není má vrátit text chyby. Příklad:  \"python: test(value=='eggs', False, 'musíte zadat text eggs')\" bude vyžadovat od uživatele zadáná textu \"eggs\".  POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
 
 #. Selection Field
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/fieldsBase.py:170
-#, fuzzy
 msgid "help_fgtvocabulary_text"
-msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře a měl by vrátit seznam možností, zobrazených uživateli. Pokud tuto funkci nepotřebujete, ponechte pole prázdné. Tento výraz by měl vrátit seznam (list) tuple. Příklad: python:[('hodnota1','Nadpis 1'), ('hodnota2','Nadpis 2'),]POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
+msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře a měl by vrátit seznam možností, zobrazených uživateli. Pokud tuto funkci nepotřebujete, ponechte pole prázdné. Tento výraz by měl vrátit seznam (list) tuple. Příklad: python:[('hodnota1','Nadpis 1'), ('hodnota2','Nadpis 2'),] POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
 
 #. Selection Field
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
 #: ./content/fieldsBase.py:152
-#, fuzzy
 msgid "help_fgvocabulary_text"
 msgstr "Zadejte jednu hodnotu na každý řádek. Tato hodnota může být dynamicky předefinována skriptem. Poznámka: můžete použít syntaxi \"hodnota|nadpis\"."
 
@@ -502,7 +491,6 @@ msgstr "Do tohoto pole můžete zadat URL, kam bude formulář přesměrován ke
 #. Mailer Adapter
 #. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
 #: ./content/formMailerAdapter.py:336
-#, fuzzy
 msgid "help_formmailer_additional_headers"
 msgstr "Doplňující hlavičky e-mailu. Používejte prosím pouze RFC822 kompatibilní hlavičky. "
 
@@ -521,7 +509,6 @@ msgstr "Text použitý jako patička ve zprávě. Od těla zprávy je oddělena 
 #. Mailer Adapter
 #. Default: "Text appended to fields listed in mail-body"
 #: ./content/formMailerAdapter.py:212
-#, fuzzy
 msgid "help_formmailer_body_post"
 msgstr "Text, který bude zobrazen za seznamem polí v těle zprávy"
 
@@ -534,14 +521,12 @@ msgstr "Text, který bude zobrazen před seznamem polí v těle zprávy"
 #. Mailer Adapter
 #. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
-#, fuzzy
 msgid "help_formmailer_body_pt"
 msgstr "Zope Page Template, které se použije pro tělo zprávy. Není nutné ji modifikovat, ale pokud znáte TAL můžete si libovolně přizpůsobit text odesílané zprávy."
 
 #. Mailer Adapter
 #. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
-#, fuzzy
 msgid "help_formmailer_body_type"
 msgstr "Nastavte mime-type těla e-mailu. Toto pole prosím nastavujte jen v případě, že dobře víte co děláte. Pokud ho ponecháte prázdné, bude použita výchozí hodnota."
 
@@ -560,28 +545,24 @@ msgstr "E-mail adresa příjemce formuláře"
 #. Mailer Adapter
 #. Default: "\n                The full name of the recipient of the mailed form.\n                "
 #: ./content/formMailerAdapter.py:73
-#, fuzzy
 msgid "help_formmailer_recipient_fullname"
 msgstr "Celé jméno příjemce formuláře."
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
 #: ./content/formMailerAdapter.py:150
-#, fuzzy
 msgid "help_formmailer_replyto_extract"
 msgstr "Vyberte pole, ze kterého bude získána hodnota pole Reply-To (adresa, kam má jít odpověď). Doporučení: měli byste zapnout validaci email adresy pro toto pole."
 
 #. Mailer Adapter
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
 #: ./content/formMailerAdapter.py:166
-#, fuzzy
 msgid "help_formmailer_subject"
 msgstr "Předmět zprávy. Používá se v případě, že není definováno pole předmětu zprávy nebo je toto pole prázdné."
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
 #: ./content/formMailerAdapter.py:185
-#, fuzzy
 msgid "help_formmailer_subject_extract"
 msgstr "Vyberte pole, ze kterého bude získán předmět zprávy"
 
@@ -626,7 +607,6 @@ msgstr "Zde je možné vložit nějaké doplňující informce do XHTML hlavičk
 #. Thanks Page
 #. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
 #: ./content/thanksPage.py:67
-#, fuzzy
 msgid "help_includeEmpties_text"
 msgstr "Zaškrtněte tot pole pokud chcete zobrazit i pole, které nebyly vyplněny."
 
@@ -648,14 +628,12 @@ msgstr ""
 #. Integer Field
 #. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "
 #: ./content/fields.py:186
-#, fuzzy
 msgid "help_maxval_text"
 msgstr "Formulář neakceptuje hodnotu větší než je tato hodnota."
 
 #. Integer Field
 #. Default: "\n            The form will not accept values less than the number you enter here.\n                "
 #: ./content/fields.py:175
-#, fuzzy
 msgid "help_minval_text"
 msgstr "Formulář neakceptuje hodnotu nižší než je tato hodnota."
 
@@ -698,9 +676,8 @@ msgstr ""
 #. Save Data Adapter
 #. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
 #: ./content/saveDataAdapter.py:64
-#, fuzzy
 msgid "help_savedataextra_text"
-msgstr "Vyberte, které položky mají výt uloženy spolu s vyplněným formulářem"
+msgstr "Vyberte, které položky mají být uloženy spolu s vyplněným formulářem"
 
 #: ./content/saveDataAdapter.py:98
 msgid "help_savedatainput_text"
@@ -724,7 +701,6 @@ msgstr ""
 #. Thanks Page
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:41
-#, fuzzy
 msgid "help_showallfields_text"
 msgstr "Zaškrtněte toto políčko pokud chcete zobrazit vstup pro všechna pole (kromě label a souborů). Pokud toto pole zaškrtnete, pak se nepoužije výběr z polí níže."
 
@@ -735,7 +711,6 @@ msgstr ""
 #. Thanks Page
 #. Default: "\n                Pick the fields whose inputs you'd like to display on\n                the success page.\n                "
 #: ./content/thanksPage.py:55
-#, fuzzy
 msgid "help_showfields_text"
 msgstr "Vyberte pole, která se mají zobrazit na stránce po úspěšném vyplnění formuláře."
 
@@ -761,14 +736,12 @@ msgstr "Tento text bude zobrazen pod vyplněným formulářem"
 #. Form Folder
 #. Default: "\n                Pick a contained page you wish to show on a successful\n                form submit. (If none are available, add one.)\n                Choose none to simply display the form\n                field values.\n            "
 #: ./content/form.py:111
-#, fuzzy
 msgid "help_thankspage_text"
-msgstr "Zde můžete vybrat jednu ze zakončovacích stránek (stránka s poděkovaním za vyplnění formuláře). Pokud zde není žádná stránka uvedena, přidejte ji do formuláře, pak se vraťte do tohoto nastavení a zvolte ji jako zakončovací stránku. Nevyberete-li žádnou stránku, bude zobrazen pouze seznam vyplněných polí."
+msgstr "Zde můžete vybrat jednu ze zakončovacích stránek (stránka s poděkovaním za vyplnění formuláře). Pokud zde není žádná stránka uvedena, přidejte ji do složky formuláře. Nevyberete-li žádnou stránku, bude zobrazen pouze seznam vyplněných polí."
 
 #. Form Folder
 #. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
 #: ./content/form.py:180
-#, fuzzy
 msgid "help_thankspageoverride_text"
 msgstr "Do tohoto pole můžete zadat výraz, který bude použit pro přesměrování po úspěšném vyplnění formuláře a zpracování uložených dat. Můžete ho použít namísto vytváření vlastní zakončovací stránky. Nejčastěji bude v tomto poli uloženo přesměrování na vlastní šablonu nebo skript. Pole může zůstat prázdné. Pokud jej však chcete využít, zadejte prosím akci a parametr tak, jak je používán v CMFFormController produktu. Příklad: \"redirect_to:string:thanks-page\" přesměruje uživatele na šablonu nebo skript \"thanks-page\"."
 
@@ -786,7 +759,6 @@ msgstr ""
 #. Mailer Adapter
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
 #: ./content/formMailerAdapter.py:319
-#, fuzzy
 msgid "help_xinfo_headers_text"
 msgstr "Vyberte z následujících HTTP hlaviček, které z nich chcete zahrnout jako X-Headers do e-mail zprávy."
 
@@ -845,7 +817,6 @@ msgstr "Formát stažených dat"
 #. Thanks Page
 #. Default: "Form Epilogue"
 #: ./content/form.py:165
-#, fuzzy
 msgid "label_epilogue_text"
 msgstr "Text za formulářem"
 
@@ -1066,9 +1037,8 @@ msgstr "Šablona těla zprávy"
 #. Default: "Mail Format"
 #: ./content/formMailerAdapter.py:300
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:87
-#, fuzzy
 msgid "label_formmailer_body_type"
-msgstr "Typ těla e-mailu"
+msgstr "Formát těla e-mailu"
 
 #. Mailer Adapter
 #. Default: "CC Recipients"
@@ -1303,7 +1273,6 @@ msgstr "Zobrazit všechna pole"
 #. Form Folder
 #. Default: "Show Reset Button"
 #: ./content/form.py:79
-#, fuzzy
 msgid "label_showcancel_text"
 msgstr "Zobrazit tlačítko \"Storno\" ?"
 
