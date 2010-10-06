@@ -2,6 +2,7 @@
 <object name="portal_controlpanel">
  <configlet title="PloneFormGen" action_id="PloneFormGen" appId="PloneFormGen"
     category="Products" condition_expr=""
+	icon_expr="string:$portal_url/Form.gif"
     url_expr="string:${portal_url}/prefs_pfg_permits" visible="True">
   <permission>Manage portal</permission>
  </configlet>
