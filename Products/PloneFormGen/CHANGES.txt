@@ -1,8 +1,18 @@
 Change History
 ==============
 
-1.6.0b5
--------
+1.6.1
+-----
+
+- Make sure the fgTDefault expression gets evaluated with the field object
+  as its expression context object when the field is viewed directly.
+  (The field object is used when evaluating fgTDefault when viewing the entire
+  form, but the form object was previously used when evaluating it when viewing
+  the field, which was a problematic inconsistency.)
+  [davisagli]
+
+1.6.0
+-----
 
 - Declare downloadSavedInput as z3 permission to be able to use it as 
   browser view permission in another package.

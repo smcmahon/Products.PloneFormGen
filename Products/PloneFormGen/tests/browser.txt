@@ -84,7 +84,6 @@ which enhances the standard Zope error handler's treatment of Retry errors.) ::
 
 Now we should be able to render the same form as above, but located at @@form-wrapper::
 
-    >>> browser.handleErrors = False
     >>> browser.open(self.portal_url + '/@@form-wrapper')
     >>> print browser.contents
     <!DOCTYPE...
