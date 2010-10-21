@@ -167,6 +167,7 @@ class FormStatefulDataAdapter(FormActionAdapter):
         data = self.getStatefulData()
 
         title = re.sub('\s+', '', self.title)
+        # TODO normalise string? Then can remove try/except later in code
         csv_file_name = title + '.csv'
 
         # Set the separator character for the csv writer
@@ -213,7 +214,6 @@ class FormStatefulDataAdapter(FormActionAdapter):
                 csv_writer.writerow(write_list)
             except:
                 csv_writer.writerow([try_encode(s) for s in write_list])
-                #csv_writer.writerow(["Bad data in row; skipped"])
 
         self.REQUEST.RESPONSE.setHeader("Content-type", "text/csv")
         try:
