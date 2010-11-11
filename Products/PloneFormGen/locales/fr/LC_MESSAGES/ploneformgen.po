@@ -221,17 +221,17 @@ msgstr "Remplie la valeur par défaut des champs adresses pour l'adaptateur "
 #. Default: "You may set up a default body and MIME type for the mail-action adapter here. These values will be used whenever a new mail-action adapter is created."
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:63
 msgid "description_ploneformgen_mtemplate"
-msgstr ""
+msgstr "Vous devez préciser un corp par défaut ainsi qu'un type MIME pour l'action d'envoie par courriel. Ces valeurs seront utilisées chaque fois qu'une nouvelle action d'envoi de courriel sera créée."
 
 #. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:65
 msgid "description_ploneformgen_permissions"
-msgstr ""
+msgstr "Vous pouvez montrer ou cacher des fonctionnalités de PloneFormGen en ajustant les permissions associés aux rôles des utilisateurs du site. Le formulaire ci dessous s'applique au niveau du site. Vous pouvez également réaliser ce réglage au niveau d'un dossier en passant par l'onglet sécurité dans la ZMI."
 
 #. Default: "Set defaults for data adapters."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:63
 msgid "description_ploneformgen_savedata"
-msgstr ""
+msgstr "Préciser les valeurs par défaut de la sauvegarde de données."
 
 #. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
 #: ./content/fieldsBase.py:259
@@ -241,22 +241,22 @@ msgstr "Marquer le champ comme valeur à injecter dans le formulaire qui sera ut
 #. Default: "PloneFormGen Mail Addressing Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:53
 msgid "heading_ploneformgen_addressing"
-msgstr ""
+msgstr "PloneFormGen destination par défaut des courriels"
 
 #. Default: "PloneFormGen Mail Template"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:53
 msgid "heading_ploneformgen_mtemplate"
-msgstr ""
+msgstr "PloneFormGen modèle de courriel"
 
 #. Default: "PloneFormGen Permissions"
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:55
 msgid "heading_ploneformgen_permissions"
-msgstr ""
+msgstr "PloneFormGen permissions"
 
 #. Default: "PloneFormGen Saved Data Adapter Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:53
 msgid "heading_ploneformgen_savedata"
-msgstr ""
+msgstr "PloneFormGen sauvegarde des données par défaut"
 
 #. Form Folder
 #. Default: "\n                A TALES expression that will be called after the form is\n                successfully validated, but before calling an action adapter\n                (if any) or displaying a thanks page.\n                Form input will be in the request.form dictionary.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                to clean up form input or to script an alternative action.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
@@ -640,7 +640,7 @@ msgstr "N'est pas affiché dans le formulaire."
 #. Default: "CAUTION: Input for the body is not validated. Invalid XHTML or TAL will cause errors on form processing. Try your code out in a mail adapter before pasting here."
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:74
 msgid "help_novalidation_caution"
-msgstr ""
+msgstr "ATTENTION : Le texte du corps n'est pas validé. Un texte XHTML ou une expression TAL invalide provoquera une erreur à la sousmission du formulaire. Essayé votre code sur un formulaire avant de le coller."
 
 #. Form Folder
 #. Default: "This text will be displayed above the form fields."
@@ -652,6 +652,11 @@ msgstr "Ce texte sera affiché avant les champs du formulaire."
 #: ./content/formMailerAdapter.py:420
 msgid "help_recipient_override_text"
 msgstr ""
+msgstr "Une expression TALES qui sera évaluée pour surcharger toute valeur"
+msgstr "saisie  pour le destinataire du message."
+msgstr "Laisser vide si inutilisé."
+msgstr "ATTENTION: Une erreur dans l'évaluation de l'expression provoquera une erreur"
+msgstr "dans l'affichage du formulaire."
 
 #: ./content/fieldsBase.py:98
 msgid "help_rows_text"
@@ -685,7 +690,6 @@ msgstr ""
 #. Thanks Page
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:41
-#, fuzzy
 msgid "help_showallfields_text"
 msgstr "Cochez pour afficher les saisies de tous les champs (excepté les champs label et fichier). Si vous cochez, les choix des cases à cocher ci-dessous seront ignorés."
 
@@ -727,7 +731,6 @@ msgstr "Sélectionner une page qui sera affichée lors d'une soumission réussie
 #. Form Folder
 #. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
 #: ./content/form.py:180
-#, fuzzy
 msgid "help_thankspageoverride_text"
 msgstr "Utilisez ce champ à la place d'une page de remerciements pour déterminer l'action finale effectuée après l'appel de votre adaptateur d'action (si vous en avez un). Vous pouvez utiliser ceci pour utiliser un script ou un template personnalisé lors de la soumission du formulaire. Laissez ce champ vide si vous n'en avez pas besoin. Dans le cas contraire, spécifiez, comme vous le feriez pour un CMFFormControler, une action et ses arguments complétés par le type d'action à éxecuter (c.a.d., \"redirect_to\" ou \"traverse_to\") ainsi qu'une expression TALES. Par exemple, \"redirect_to:string:page-de-remerciements\" redirigerait vers 'page-de-remerciements'."
 
@@ -739,7 +742,6 @@ msgstr "Ce texte sera affiché au dessus des entrées des champ sélectionnés."
 
 #. Default: "Do you wish to have column names on the first line of downloaded input?"
 #: ./content/saveDataAdapter.py:85
-#, fuzzy
 msgid "help_usecolumnnames_text"
 msgstr "Voulez-vous disposer des noms de colonnes sur la première ligne des données téléchargées ?"
 
@@ -854,19 +856,18 @@ msgstr ""
 #. Rich Label Field
 #. Default: "Label body"
 #: ./content/fields.py:1106
-#, fuzzy
 msgid "label_fglabelbody_text"
-msgstr "Corps du label"
+msgstr "Corps du libellé"
 
 #. Default: "Answers"
 #: ./content/formLikertField.py:79
 msgid "label_fglikert_answers"
-msgstr ""
+msgstr "Réponses"
 
 #. Default: "Questions"
 #: ./content/formLikertField.py:69
 msgid "label_fglikert_questions"
-msgstr ""
+msgstr "Questions"
 
 #. Lines Field
 #. Default: "Default"
@@ -901,7 +902,7 @@ msgstr "Taille"
 #. Default: "Starting Year"
 #: ./content/fields.py:456
 msgid "label_fgstartingyear_text"
-msgstr ""
+msgstr "Année de départ"
 
 #. String Field
 #. Default: "Validator"
@@ -1024,9 +1025,8 @@ msgstr "Gabarit du corps du courriel"
 #. Default: "Mail Format"
 #: ./content/formMailerAdapter.py:300
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:87
-#, fuzzy
 msgid "label_formmailer_body_type"
-msgstr "Type du corps du courriel"
+msgstr "Format du courriel"
 
 #. Mailer Adapter
 #. Default: "CC Recipients"
@@ -1067,7 +1067,7 @@ msgstr "Extraire le sujet du formulaire"
 #. Default: "Extract Recipient From"
 #: ./content/formMailerAdapter.py:101
 msgid "label_formmailer_to_extract"
-msgstr ""
+msgstr "Extraire le destinataire à partir de"
 
 #. Mailer Adapter
 #. Default "Key-Id"
@@ -1079,9 +1079,8 @@ msgstr "Key-Id"
 #. Form Folder
 #. Default: "Header Injection"
 #: ./content/form.py:269
-#, fuzzy
 msgid "label_headerInjection_text"
-msgstr "Injection de contenu d'entête"
+msgstr "Injection dans l'entête"
 
 #. String Field
 #. Default: "Hidden"
@@ -1098,17 +1097,17 @@ msgstr "Inclure les valeurs vides"
 #. Default: "Include Empties"
 #: ./content/formMailerAdapter.py:266
 msgid "label_mailEmpties_text"
-msgstr ""
+msgstr "Inclure les champs vides"
 
 #. Default: "Include All Fields"
 #: ./content/formMailerAdapter.py:238
 msgid "label_mailallfields_text"
-msgstr ""
+msgstr "Inclure tous les champs"
 
 #. Default: "Show Responses"
 #: ./content/formMailerAdapter.py:253
 msgid "label_mailfields_text"
-msgstr ""
+msgstr "Montrer les réponses"
 
 #. Integer Field
 #. Default: "Maximum Acceptable Value"
@@ -1133,7 +1132,7 @@ msgstr "Pas de message de soumission"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:24
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:26
 msgid "label_ploneformgen_addressing"
-msgstr ""
+msgstr "Destination de courriel"
 
 #. Default: "BCC Recipients"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:100
@@ -1160,14 +1159,14 @@ msgstr "Délimiteur de texte (CSV)"
 #. Default: "Mail Body Template"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:73
 msgid "label_ploneformgen_mailbodytemplate"
-msgstr ""
+msgstr "Modèle du message"
 
 #. Default: "Mail Template"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:28
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:28
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:30
 msgid "label_ploneformgen_mtemplate"
-msgstr "Template du courriel"
+msgstr "Modèle de courriel"
 
 #. Default: "Permissions"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:20
@@ -1191,7 +1190,7 @@ msgstr "Nom du destinataire"
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:36
 #: ./skins/PloneFormGen/prefs_pfg_permits.cpt:38
 msgid "label_ploneformgen_savedata"
-msgstr ""
+msgstr "Sauvegarde des données"
 
 #. Form Folder
 #. Default: "Form Prologue"
@@ -1202,7 +1201,7 @@ msgstr "Prologue du formulaire"
 #. Default: "Recipient Expression"
 #: ./content/formMailerAdapter.py:419
 msgid "label_recipient_override_text"
-msgstr ""
+msgstr "Expression destinataire"
 
 #. String Field
 #. Default: "Required"
@@ -1246,7 +1245,7 @@ msgstr "Proxy role"
 #. Default: "Sender Expression"
 #: ./content/formMailerAdapter.py:399
 msgid "label_sender_override_text"
-msgstr ""
+msgstr "Expression expéditeur"
 
 #. Default: "Server-Side Variable"
 #: ./content/fieldsBase.py:258
@@ -1444,7 +1443,6 @@ msgstr "Votre adresse courriel"
 
 #. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
 #: ./content/thanksPage.py:191
-#, fuzzy
 msgid "pfg_thankspage_nosubmitmessage"
 msgstr "<p>Aucune donnée n'a été recue. Veuillez <a title=\"Formulaire personnalisé\" href=\".\">remplir le formulaire</a>.</p>"
 
