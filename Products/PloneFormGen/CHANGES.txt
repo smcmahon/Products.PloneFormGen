@@ -4,6 +4,10 @@ Change History
 1.6.1
 -----
 
+- Make the setPrefix and setAction methods of the embedded view callable
+  from restricted Python (so they can be used in templates).
+  [davisagli]
+
 - Make sure the fgTDefault expression gets evaluated with the field object
   as its expression context object when the field is viewed directly.
   (The field object is used when evaluating fgTDefault when viewing the entire

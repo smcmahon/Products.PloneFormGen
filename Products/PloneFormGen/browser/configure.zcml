@@ -23,6 +23,7 @@
       for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
       class=".embedded.EmbeddedPFGView"
       permission="zope2.View"
+      allowed_attributes="setPrefix setAction"
       />
 
   <browser:page
