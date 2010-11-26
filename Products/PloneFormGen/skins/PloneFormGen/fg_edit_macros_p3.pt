@@ -92,22 +92,22 @@
           <metal:block define-slot="widgets">
             <div id="pfg-fieldwrapper">
             <tal:fields repeat="field fields">
-    	        <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
-	            <tal:block tal:condition="python:field.widget.visible != -1">
+                <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+                <tal:block tal:condition="python:field.widget.visible != -1">
                     <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
                 </tal:block>
-	            <tal:block tal:condition="python:field.widget.visible == -1">
-	                <div tal:attributes="id string:archetypes-fieldname-${field/getName}" class="field pfgHidden">
+                <tal:block tal:condition="python:field.widget.visible == -1">
+                    <div tal:attributes="id string:archetypes-fieldname-${field/getName}" class="field pfgHidden">
                         <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
                     </div>
                 </tal:block>
-    	        </tal:block>
-    	        <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
-    	             tal:attributes="id string:archetypes-fieldname-${field/getName}"
+                </tal:block>
+                <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
+                     tal:attributes="id string:archetypes-fieldname-${field/getName}"
                    class="field PFG-RichLabel"
                    tal:content="structure python:request.form.get(field.getName(), field.default)">
-    	            Rich Label
-    	        </div>
+                    Rich Label
+                </div>
             </tal:fields>
             </div>
           </metal:block>
@@ -226,7 +226,7 @@
                        type="reset"
                        name="form.button.cancel"
                        value="Cancel"
-					   tal:condition="python: getattr(here,'useCancelButton',True)"
+                       tal:condition="python: getattr(here,'useCancelButton',True)"
                        tal:attributes="value python:getattr(here,'resetLabel','Reset'); tabindex tabindex/next|nothing"
                        />
             </metal:block>

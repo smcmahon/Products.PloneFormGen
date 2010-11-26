@@ -43,7 +43,6 @@ from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen import implementedOrProvidedBy
 
-
 try:
     import plone.protect
     HAS_PLONE_PROTECT = True
@@ -445,7 +444,7 @@ class FormFolder(ATFolder):
 
         return action
 
-    security.declarePrivate('maybeForceSSL')
+    security.declarePrivate('fgMaybeForceSSL')
 
     def fgMaybeForceSSL(self):
         """ Redirect to an https:// URL if the 'force SSL' option is on.
@@ -1036,7 +1035,7 @@ class FormFolder(ATFolder):
 
 
     security.declareProtected(ModifyPortalContent, 'reorderField')
-
+   
     def reorderField(self, item_id, target_id, **kw):
         """ move item to target"""
 
@@ -1048,79 +1047,32 @@ class FormFolder(ATFolder):
 
         return "<done />"
 
-registerATCT(FormFolder, PROJECTNAME)
+    security.declareProtected(ModifyPortalContent, 'updateFieldTitle')
 
-#    security.declareProtected(ModifyPortalContent, 'myi18n')
-#    def myi18n(self):
-#        """ return i18n declarations from widgets """
-#
-#        boilerplate = """\n#. %s\n#. Default: "%s"\nmsgid "%s"\nmsgstr ""\n"""
-#
-#        res = ''
-#
-#        from Products.PloneFormGen.content.fields import *
-#        from Products.PloneFormGen.content.formMailerAdapter import *
-#        from Products.PloneFormGen.content.saveDataAdapter import *
-#        from Products.PloneFormGen.content.thanksPage import *
-#
-#
-#        klasses = (
-#            FormFolder,
-#            FGStringField,
-#            FGPasswordField,
-#            FGIntegerField,
-#            FGFixedPointField,
-#            FGBooleanField,
-#            FGDateField,
-#            FGLabelField,
-#            FGLinesField,
-#            FGSelectionField,
-#            FGMultiSelectField,
-#            FGTextField,
-#            FGRichTextField,
-#            FGFileField,
-#            FormMailerAdapter,
-#            FormSaveDataAdapter,
-#            FormThanksPage,
-#            )
-#
-#        done = {}
-#
-#        for myclass in klasses:
-#            myname = myclass.archetype_name
-#            myschema = myclass.schema
-#
-#            # res = res + "\n### %s ###\n" % myname
-#
-#            for aschema in myschema.getSchemataNames():
-#                for field in myschema.getSchemataFields(aschema):
-#                    widget = field.widget
-#                    domain = getattr(widget, 'i18n_domain', None)
-#
-#                    if domain == 'ploneformgen':
-#
-#
-#                        id = getattr(widget, 'label_msgid', '***NO label_msgid***')
-#                        val = widget.label
-#                        if done.get(id) != val:
-#                            msg = boilerplate % (myname, val, id)
-#                            res = "%s%s\n" % (res, msg)
-#                            done[id] = val
-#                        #else:
-#                        #    res = res + "\navoided repeating %s for %s" % (id, myname)
-#
-#                        desc = widget.description
-#                        if desc:
-#                            desid = getattr(widget, 'description_msgid', '***NO description_msgid***')
-#                            if done.get(desid) != desc:
-#                                mdesc = "\n#. Default: ".join( [ln.strip() for ln in desc.split('\n')] )
-#                                msg = boilerplate % (myname, mdesc, desid)
-#                                done[desid] = desc
-#                                res = "%s%s\n" % (res, msg)
-#                            #else:
-#                            #    res = res + "\navoided repeating %s for %s" % (desid, myname)
-#
-#                    elif domain not in ('plone', 'atcontenttypes',):
-#                        res = "%s\n***Unexpected domain for %s:%s: %s\n" % (res, myname, widget.label, domain)
-#
-#        return res
+    def updateFieldTitle(self, item_id, title, **kw):
+        """ update item's title"""
+        self[item_id].setTitle(title)
+        
+        return "<done />"
+
+    security.declareProtected(ModifyPortalContent, 'toggleRequired')
+
+    def toggleRequired(self, item_id, **kw):
+      """ toggle required Field attribute """
+      
+      field = self[item_id].fgField
+      field.required = not field.required
+        
+      return "<done />"
+
+    security.declareProtected(ModifyPortalContent, 'toggleRequired')
+
+    def removeFieldFromForm(self, item_id, **kw):
+      """ remove field on the fly from the form"""
+      
+      self.manage_delObjects([item_id])
+    
+      return "<done />"
+    
+        
+registerATCT(FormFolder, PROJECTNAME)

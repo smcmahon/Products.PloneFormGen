@@ -77,9 +77,9 @@
 
           <metal:block define-slot="widgets">
             <tal:fields repeat="field fields">
-      			  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
+                  <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
                 <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />
-      			  </tal:block>
+                  </tal:block>
               <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
                    tal:attributes="id string:archetypes-fieldname-${field/getName}"
                    class="field PFG-RichLabel"
@@ -208,7 +208,7 @@
                        tabindex=""
                        type="reset"
                        name="form.button."
-					   tal:condition="python: getattr(here,'useCancelButton',True)"
+                       tal:condition="python: getattr(here,'useCancelButton',True)"
                        tal:attributes="value python:getattr(here,'resetLabel','Reset'); tabindex tabindex/next"
                        />
             </metal:block>

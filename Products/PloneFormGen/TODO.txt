@@ -1,6 +1,26 @@
 TODO.txt
 
-Check recent schema additions to make sure there are no unguarded
-attribute accesses that will break old forms.
+For merge of manca's branch: these things need checking/fixing
 
-Make fieldset view use quickedit.
+* conditions.py needs a code update
+    - may be using wrong permission (in configure.zcml)
+    - priority fields sorting isn't going to work in anything but English!
+    - why is this a solo view class?
+    - Too much work is done in template; this needs more code.
+    - displayFields should return both fields and adapters in a single call
+        in a tuple.
+   
+* fg_base_view_p3.cpt
+    - why traversing to conditions?
+    - after working, needs to be revisited for cleanup / style
+        css: why "style="display:none; clear: none""?
+
+* pfgQuickEdit.js
+    - should pfgWidgets be merged?
+    - turn into a browser resource
+
+Examine new outside sources (validator and jqueryui dnd)
+    - the validator should be in p.a.jqt
+    
+    
+ 

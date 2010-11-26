@@ -1,0 +1,24 @@
+/* pure CSS arrow */
+.error em {
+    display:block;
+    width:0;
+    height:0;
+    border:8px solid;
+    border-color:#FF0000 transparent transparent;
+
+    /* positioning */
+    position:absolute;
+    bottom:-17px;
+    left:58px;
+}
+
+.error {
+    -moz-border-radius:5px 5px 5px 5px;
+    -webkit-border-radius:5px;
+    background:none repeat scroll 0 0 red;
+    border:1px solid red;
+    font-size:8pt;
+    margin:1em 0;
+    opacity:0.8;
+    padding:0.5em;
+}

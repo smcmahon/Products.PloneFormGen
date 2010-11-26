@@ -1,8 +1,57 @@
 Change History
 ==============
 
-1.6.1
------
+1.7 (unreleased)
+-------------------
+
+- Merged Manca's GSOC branch (-r 118406:123569)
+  [stevem]
+
+- javascript based validator using "validator" plugin for jQueryTools
+  (Manca)
+
+- added widgets manager pane in quick edit mode
+  (Manca)
+
+- new styles for form and widgets manager
+  (Manca)
+
+- Fixed Thanks pages radio buttons, where all inputs had their own forms, instead of only one
+  (Manca)
+
+- Fixed ordering of fields in edit mode. Another request was sent to server when the "exit edit mode" button was pressed
+  (Manca)
+
+- Implemented jQuery UI plugin for better sorting, dragging and dropping fields
+  (Manca)
+
+- On the fly editing Field Titles (by double clicking on its label)
+  (Manca)
+
+- Ajax feedback image for all the ajax based actions (near Widgets Manager header)
+  (Manca)
+
+- Edit and Delete table columns merged under one called "Actions"
+  (Manca)
+
+- Added on the fly toggling of required attribute for available fields
+  (Manca)
+
+- Optimized code for ajax requests
+  (Manca)
+
+- Widgets in widget manager stylized
+  (Manca)
+
+- Added tooltip for each widget to show its description
+  (Manca)
+
+- Widgets can be dragged to sortable list
+  (Manca)
+
+
+1.6.0b4 (unreleased)
+--------------------
 
 - Make the setPrefix and setAction methods of the embedded view callable
   from restricted Python (so they can be used in templates).
@@ -77,7 +126,7 @@ Change History
 
 - action adapter interface: fix indention
   [seletz]
-  
+
 1.6.0b3
 -------
 

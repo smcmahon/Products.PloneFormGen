@@ -33,7 +33,7 @@
   <metal:head fill-slot="top_slot">
     <tal:block define="macro edit_macros/topslot | nothing"
                     condition="macro">
-	<metal:block use-macro="macro" />
+    <metal:block use-macro="macro" />
     </tal:block>
   </metal:head>
   
@@ -70,7 +70,7 @@
       <metal:block use-macro="macro" />
     </tal:block>
 
-	<tal:expr replace="structure here/getHeaderInjection | nothing" />
+    <tal:expr replace="structure here/getHeaderInjection | nothing" />
 
   </metal:css>
     
@@ -97,12 +97,12 @@
             Description
         </p>
 
-		<p tal:replace="structure here/getFormPrologue | nothing" />
+        <p tal:replace="structure here/getFormPrologue | nothing" />
 
         <metal:use_body use-macro="body_macro" />
         <metal:use_footer use-macro="footer_macro" />
 
-		<p tal:replace="structure here/getFormEpilogue | nothing" />
+        <p tal:replace="structure here/getFormEpilogue | nothing" />
 
       </metal:main>
     </metal:fill>
