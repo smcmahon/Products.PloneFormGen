@@ -1,5 +1,8 @@
 TODO.txt
 
+When a field is deleted in the quick editor, a form field editor
+briefly shows in the popup.
+
 For merge of manca's branch: these things need checking/fixing
 
 * conditions.py needs a code update
@@ -27,3 +30,6 @@ For merge of manca's branch: these things need checking/fixing
  
 * There are some strings in the JavaScript that should be passed via
   template so that they may be translated.
+
+* d-n-d field adding is leaving the field at the end of the list.
+  was this working before js cleanup?

@@ -1,3 +1,5 @@
+/*globals alert */
+
 var pfgWidgets;
 // fieldset support for moving fields between them. Make the fieldsets behave like tabs.
 (function($) {
@@ -5,9 +7,14 @@ var pfgWidgets;
 pfgWidgets = {
     
     init: function() {
-        var item, target, table = $("#pfg-qetable");
-        var initPos, finalPos; // initial and final positions of element being sorted (dragged)
-        var i = 0; // counter of newly added elements to the form
+        var item, target, table,
+        initPos, finalPos, // initial and final positions of element being sorted (dragged)
+        i = 0; // counter of newly added elements to the form
+
+        item = $("#pfg-qetable");
+        target = item;
+        table = item;
+        i = 0;
         
         $("div.qefield").each(function() {
             $(this).height($(this).height()); // workaround for children's height not being able to set using %s
@@ -26,7 +33,8 @@ pfgWidgets = {
             placeholder: 'placeholder',
 //          containment: 'document',
             update: function(e, ui) {
-                var item;
+                var item, currpos;
+
                 if (ui.item.hasClass("new-widget")) {
                     return;
                 }
@@ -42,8 +50,10 @@ pfgWidgets = {
                 //  $(item).height($(item).height());   
                     // AJAX stuff
                     $(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function(response, status, xhr) {
+                        var inputElem, formElem, msg;
+                        
                         if (status==="error") {
-                            var msg = "Sorry but there was an error: ";
+                            msg = "Sorry but there was an error: ";
                             $(this).html(msg + xhr.status + " " + xhr.statusText);
                         }
                         else {
@@ -53,8 +63,8 @@ pfgWidgets = {
                         }
                         $("img.ajax-loader").css('visibility', 'hidden');
                         // set the required attribute for the on the fly validation
-                        var inputElem = $(this).find("span.required").parent().find("input");
-                        var formElem = $(this).find('form');
+                        inputElem = $(this).find("span.required").parent().find("input");
+                        formElem = $(this).find('form');
                         inputElem.attr({required: "required"});
                         formElem.validator({
                             messageClass: formElem.attr("id") + "_" + (i-1) +" error",
@@ -67,7 +77,9 @@ pfgWidgets = {
                                   tmpArray.push($(v));
                               }
                             });
-                            tmpArray[0].focus();
+                            if (tmpArray) {
+                                tmpArray[0].focus();
+                            }
                         });
                         // hide all the error messages so far!
                         if ($("div.error").length > 0) {
@@ -80,14 +92,16 @@ pfgWidgets = {
                     // bind the toggle event for toggling slideUp/slideDown
                     $(".qefield div.item_" + i +" .widget-header").toggle(
                         function() {
+                            var getId, itemNo;                            
+
                             // hide all the error messages so far!
                             if ($("div.error").length > 0) {
                                 $("div.error").hide();
                             }
                             // hide the error messages when manipulating with the widgets                           
                             $(this).siblings("div.widget-inside").slideUp();
-                            var getId = $(this).siblings("div.widget-inside").find("form").attr("id");
-                            var itemNo = $(this).parent().attr("class").substr($(this).parent().attr("class").indexOf("item") + "item_".length);
+                            getId = $(this).siblings("div.widget-inside").find("form").attr("id");
+                            itemNo = $(this).parent().attr("class").substr($(this).parent().attr("class").indexOf("item") + "item_".length);
                             $("div." + getId + "_" + itemNo).hide();
                         },
                         function() {
@@ -100,7 +114,7 @@ pfgWidgets = {
                     );
                     
                     // current position in the table
-                    var currpos = $(".item_" + i).parent().index();
+                    currpos = $(".item_" + i).parent().index();
                     
                     $("#pfg-qetable [name=form.button.save]").click(function(e) {
                 //      e.preventDefault();
@@ -346,8 +360,10 @@ pfgWidgets = {
         
         // then we attach a new event to label fields
         $("#pfg-qetable div.qefield label.formQuestion").live('dblclick', function(e) {
-            var content = $(this).text();
-            var tmpfor = $(this).attr('for');
+            var content, tmpfor;
+
+            content = $(this).text();
+            tmpfor = $(this).attr('for');
             $(this).append(node);
             $(this).html($(node).val(content));
             $(node).fadeIn();
