@@ -9,6 +9,8 @@ Plone 2.5 compatibility leftovers?
     - We shouldn't need the variable PLONE_25_PUBLISHER_MONKEYPATCH
       anymore
 
+For merge of manca's branch: these things still need checking/fixing
+
 * fg_base_view_p3.cpt
     - after working, needs to be revisited for cleanup / style
         css: why "style="display:none; clear: none""?
