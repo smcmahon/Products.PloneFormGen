@@ -99,7 +99,8 @@
 
     <metal:fill fill-slot="main">
       <metal:main define-macro="main"
-                  tal:define="isLocked python:False;
+                  tal:define="view context/@@pfg-base;
+                              isLocked python:False;
                               canModify python:checkPermission('Modify portal content', here)">
         
 
@@ -132,11 +133,7 @@
             <div id="pfgWidgetWrapper"
                    class="widgetManager"
                    summary="Widget Manager"
-                   style="display:none"
-                   tal:define="conditions python:here.restrictedTraverse('@@pfg-conditions');
-                             addtypes context/@@folder_factories/addable_types;
-                             listofFields python:conditions.displayFields(addtypes, 'Field');
-                             listofAdapters python:conditions.displayFields(addtypes, 'Adapter')">
+                   style="display:none">
 
                 <div class="header">
                     <h3>Toolbox
@@ -153,7 +150,7 @@
                 <div class="widgets">
                     <!-- List of Fields, followed by the list of Adapters -->
                     <h2 class="fields-header">Fields/Folders</h2>
-                    <tal:typelist repeat="item listofFields">
+                    <tal:typelist repeat="item view/addablePrioritizedFields">
                         <tal:block tal:define="set item/id">
                             <div class="widget w-field" tal:attributes="id item/id">
                                 <h4 class="widget-header" tal:content="item/title">Type title</h4>
@@ -167,7 +164,7 @@
                     </tal:typelist>
                     <hr>
                     <h2 class="actions-header">Adapters</h2>
-                    <tal:typelist repeat="item listofAdapters">
+                    <tal:typelist repeat="item view/addableAdapters">
                     <tal:block tal:define="set item/id; desc item/description">
                         <div class="widget w-action" tal:attributes="id item/id">
                            <h4 class="widget-header" tal:content="item/title">Type title</h4>

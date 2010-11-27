@@ -35,9 +35,9 @@
       />
 
   <browser:page
-      name="pfg-conditions"
+      name="pfg-base"
       for="*"
-      class=".conditions.FormConditional"
+      class=".base.BasePFGView"
       permission="cmf.ModifyPortalContent"
       allowed_attributes="displayFields"
       />

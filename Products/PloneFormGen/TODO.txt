@@ -7,14 +7,7 @@ Strip out Plone 2.5 compat stuff
 
 For merge of manca's branch: these things need checking/fixing
 
-* conditions.py needs a code update
-    - why is this a solo view class?
-    - Too much work is done in template; this needs more code.
-    - displayFields should return both fields and adapters in a single call
-        in a tuple.
-   
 * fg_base_view_p3.cpt
-    - why traversing to conditions?
     - after working, needs to be revisited for cleanup / style
         css: why "style="display:none; clear: none""?
 
