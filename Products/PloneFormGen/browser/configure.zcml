@@ -38,7 +38,7 @@
       name="pfg-conditions"
       for="*"
       class=".conditions.FormConditional"
-      permission="cmf.ManagePortal"
+      permission="cmf.ModifyPortalContent"
       allowed_attributes="displayFields"
       />
     
