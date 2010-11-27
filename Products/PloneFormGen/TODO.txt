@@ -3,6 +3,8 @@ TODO.txt
 When a field is deleted in the quick editor, a form field editor
 briefly shows in the popup.
 
+Strip out Plone 2.5 compat stuff
+
 For merge of manca's branch: these things need checking/fixing
 
 * conditions.py needs a code update

@@ -112,14 +112,6 @@
       />
 
   <gs:registerProfile
-      name="typeoverrides25x"
-      title="PloneFormGen 2.5.x overrides"
-      directory="profiles/typeoverrides25x"
-      description="PloneFormGen 2.5.x overrides"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
-
-  <gs:registerProfile
       name="loadtest"
       title="PloneFormGen load test fixtures"
       directory="profiles/loadtest"

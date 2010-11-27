@@ -8,6 +8,12 @@ support requests. If you are unable to get your questions answered
 there, or are interested in helping develop the product, contact Steve
 McMahon: steve@dcn.org.
 
+1.7 Notes
+=========
+
+1.7dev needs plone.app.jquerytools >= 1.2dev. Until that's on PyPI, it needs to be
+checked out into src.
+
 Overview
 ========
 
@@ -32,7 +38,7 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
-Plone: Plone 3.1+
+Plone: Plone 3.3+
 
 Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 

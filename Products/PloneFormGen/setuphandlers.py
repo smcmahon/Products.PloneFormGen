@@ -19,8 +19,7 @@ class HiddenProfiles(object):
     implements(INonInstallable)
     
     def getNonInstallableProfiles(self):
-        return [u'Products.PloneFormGen:typeoverrides25x',
-                u'Products.PloneFormGen:loadtest']
+        return [u'Products.PloneFormGen:loadtest',]
 
 def update_kupu_resources(out, site):
     """ At the time of this writing, kupu's GS export/import
