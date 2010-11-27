@@ -11,32 +11,33 @@ class FormConditional(BrowserView):
         """
         mset is a set of fields or adapters
         type = 'Field' | 'Adapter'
-        
+
         Returns a list of fields or adapters; if 'Field' then
         returns prioritized first
         """
-        
-        priorityFields = [
-            'String Field', 
-            "Text Field", 
-            "Whole Number Field", 
-            "Checkbox Field", 
-            "Date/Time Field", 
-            "File Field", 
-            "Password Field"]
-        
+
+        priorityFields = {
+            'FormBooleanField': 1,
+            'FormDateField': 1,
+            'FormMultiSelectionField': 1,
+            'FormSelectionField': 1,
+            'FormStringField': 1,
+            'FormTextField': 1,
+            'FormIntegerField': 1,
+        }
+
         displayPriorityFields = []
         displayTheRest = []
         displayAdapters = []
         for field in mset:
-          if field['title'] in priorityFields:
-            displayPriorityFields.append(field)
-          elif field['title'].find("Field") != -1:
-            displayTheRest.append(field)
-          elif field['title'].find("Adapter") != -1:
-            displayAdapters.append(field)
-        
+            if field['id'] in priorityFields:
+                displayPriorityFields.append(field)
+            elif field['title'].find("Field") != -1:
+                displayTheRest.append(field)
+            elif field['title'].find("Adapter") != -1:
+                displayAdapters.append(field)
+
         if type == "Field":
-          return displayPriorityFields + displayTheRest
+            return displayPriorityFields + displayTheRest
         elif type == "Adapter":
-          return displayAdapters
+            return displayAdapters

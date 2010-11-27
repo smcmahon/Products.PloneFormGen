@@ -3,8 +3,6 @@ TODO.txt
 For merge of manca's branch: these things need checking/fixing
 
 * conditions.py needs a code update
-    - may be using wrong permission (in configure.zcml)
-    - priority fields sorting isn't going to work in anything but English!
     - why is this a solo view class?
     - Too much work is done in template; this needs more code.
     - displayFields should return both fields and adapters in a single call
@@ -19,8 +17,16 @@ For merge of manca's branch: these things need checking/fixing
     - should pfgWidgets be merged?
     - turn into a browser resource
 
-Examine new outside sources (validator and jqueryui dnd)
+* Examine new outside sources (validator and jqueryui dnd)
     - the validator should be in p.a.jqt
+    - can we find something lighter-weight for drag-and-drop;
+      in any case, we should avoid a "custom" module.
     
-    
+* Rather than adding new skin directories (css and js), these should
+  become browser resources.
  
+* When a field is added by d-n-d and is saved, there's a form change
+  warning.
+
+* There are some strings in the JavaScript that should be passed via
+  template so that they may be translated.
