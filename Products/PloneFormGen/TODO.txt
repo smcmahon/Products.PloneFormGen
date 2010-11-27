@@ -18,10 +18,8 @@ For merge of manca's branch: these things need checking/fixing
 
 * pfgQuickEdit.js
     - should pfgWidgets be merged?
-    - turn into a browser resource
 
-* Examine new outside sources (validator and jqueryui dnd)
-    - the validator should be in p.a.jqt
+* Examine new outside source (jqueryui dnd)
     - can we find something lighter-weight for drag-and-drop;
       in any case, we should avoid a "custom" module.
     

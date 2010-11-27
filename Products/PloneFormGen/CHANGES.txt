@@ -4,6 +4,10 @@ Change History
 1.7 (unreleased)
 -------------------
 
+- Get validator.js from plone.app.jquerytools. This requires plone.app.jquerytools>=1.2dev.
+  1.2dev is available as p.a.jqt's svn trunk at this moment.
+  [stevem]
+
 - Move some of the .js and .css resources into a browser resource directory
   to begin cutting down on the namespace clutter.
   [stevem]

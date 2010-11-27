@@ -67,7 +67,7 @@
     </script>
     
     <script src="validator.js"
-        tal:attributes="src string:$portal_url/++resource++Products.PloneFormGen.resources/validator.js"
+        tal:attributes="src string:$portal_url/++resource++plone.app.jquerytools.validator.js"
         type="text/javascript">
     </script>
 
