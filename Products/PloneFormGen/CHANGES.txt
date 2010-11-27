@@ -4,6 +4,10 @@ Change History
 1.7 (unreleased)
 -------------------
 
+- Move some of the .js and .css resources into a browser resource directory
+  to begin cutting down on the namespace clutter.
+  [stevem]
+
 - Merged Manca's GSOC branch (-r 118406:123569)
   [stevem]
 

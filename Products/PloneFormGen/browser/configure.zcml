@@ -41,5 +41,11 @@
       permission="cmf.ModifyPortalContent"
       allowed_attributes="displayFields"
       />
+
+  <browser:resourceDirectory
+      name="Products.PloneFormGen.resources"
+      directory="resources"
+      />
+
     
 </configure>

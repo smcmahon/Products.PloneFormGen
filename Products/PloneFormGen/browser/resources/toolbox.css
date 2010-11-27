@@ -11,7 +11,7 @@
     clear: right;
     -moz-border-radius:6px 6px 6px 6px;
     -webkit-border-radius:6px;
-    background:none repeat scroll 0 0 #DDDDDD !important;
+    background:none repeat scroll 0 0 #ddd !important;
 }
 
 .header {
@@ -22,7 +22,7 @@
     border:1px solid gray;
     margin:0 auto;
     text-align: center;
-    color: #FFFFFF;
+    color: #fff;
     position: relative;
     background-color:LightBlue;
 }
@@ -33,7 +33,7 @@ div.header h3 {
     margin:0;
     overflow:hidden;
     padding:5px 12px;
-    text-shadow: 0 1px 0 #FFFFFF;
+    text-shadow: 0 1px 0 #fff;
 }
 
 div.widgets {

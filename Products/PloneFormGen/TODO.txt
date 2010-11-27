@@ -25,9 +25,6 @@ For merge of manca's branch: these things need checking/fixing
     - can we find something lighter-weight for drag-and-drop;
       in any case, we should avoid a "custom" module.
     
-* Rather than adding new skin directories (css and js), these should
-  become browser resources.
- 
 * There are some strings in the JavaScript that should be passed via
   template so that they may be translated.
 
