@@ -3,9 +3,9 @@
 var pfgWidgets;
 // fieldset support for moving fields between them. Make the fieldsets behave like tabs.
 (function($) {
-    
+
 pfgWidgets = {
-    
+
     init: function() {
         var item, target, table,
         initPos, finalPos, // initial and final positions of element being sorted (dragged)
@@ -15,17 +15,18 @@ pfgWidgets = {
         target = item;
         table = item;
         i = 0;
-        
+
         $("div.qefield").each(function() {
-            $(this).height($(this).height()); // workaround for children's height not being able to set using %s
-            $(this).width($(this).width());  // the same for width, for the new ui-sortable-helper
+            var jqt = $(this);
+            jqt.height(jqt.height()); // workaround for children's height not being able to set using %s
+            jqt.width(jqt.width());  // the same for width, for the new ui-sortable-helper
         });
 
         table.sortable({
             start: function (event, ui) {
                ui.placeholder.height(ui.item.height());
                initPos = pfgWidgets.getPos(ui.item);
-            },          
+            },
             helper: 'clone',
             items: '.qefield',
             handle: '> div.draggingHook',
@@ -47,24 +48,26 @@ pfgWidgets = {
                     $(item).before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
                     $("img.ajax-loader").css('visibility', 'visible');
                     $(item).width($(item).width());
-                //  $(item).height($(item).height());   
+                //  $(item).height($(item).height());
                     // AJAX stuff
                     $(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function(response, status, xhr) {
-                        var inputElem, formElem, msg;
-                        
+                        var inputElem, formElem, msg, jqt;
+
+                        jqt = $(this);
+
                         if (status==="error") {
                             msg = "Sorry but there was an error: ";
-                            $(this).html(msg + xhr.status + " " + xhr.statusText);
+                            jqt.html(msg + xhr.status + " " + xhr.statusText);
                         }
                         else {
-                            $(this).find("legend").remove();
-                            $(this).find("#fieldset-overrides").remove();
-                            $(this).find(".formHelp").remove();
+                            jqt.find("legend").remove();
+                            jqt.find("#fieldset-overrides").remove();
+                            jqt.find(".formHelp").remove();
                         }
                         $("img.ajax-loader").css('visibility', 'hidden');
                         // set the required attribute for the on the fly validation
-                        inputElem = $(this).find("span.required").parent().find("input");
-                        formElem = $(this).find('form');
+                        inputElem = jqt.find("span.required").parent().find("input");
+                        formElem = jqt.find('form');
                         inputElem.attr({required: "required"});
                         formElem.validator({
                             messageClass: formElem.attr("id") + "_" + (i-1) +" error",
@@ -85,56 +88,60 @@ pfgWidgets = {
                         if ($("div.error").length > 0) {
                             $("div.error").hide();
                         }
-                        $(this).slideDown();
-                        
+                        jqt.slideDown();
+
                     });
-                    
+
                     // bind the toggle event for toggling slideUp/slideDown
                     $(".qefield div.item_" + i +" .widget-header").toggle(
                         function() {
-                            var getId, itemNo;                            
+                            var getId, itemNo, jqt;
+
+                            jqt = $(this);
 
                             // hide all the error messages so far!
                             if ($("div.error").length > 0) {
                                 $("div.error").hide();
                             }
-                            // hide the error messages when manipulating with the widgets                           
-                            $(this).siblings("div.widget-inside").slideUp();
-                            getId = $(this).siblings("div.widget-inside").find("form").attr("id");
-                            itemNo = $(this).parent().attr("class").substr($(this).parent().attr("class").indexOf("item") + "item_".length);
+                            // hide the error messages when manipulating with the widgets
+                            jqt.siblings("div.widget-inside").slideUp();
+                            getId = jqt.siblings("div.widget-inside").find("form").attr("id");
+                            itemNo = jqt.parent().attr("class").substr(jqt.parent().attr("class").indexOf("item") + "item_".length);
                             $("div." + getId + "_" + itemNo).hide();
                         },
                         function() {
                             // hide all the error messages so far!
                             if ($("div.error").length > 0) {
                                 $("div.error").hide();
-                            }                           
+                            }
                             $(this).siblings("div.widget-inside").slideDown();
                         }
                     );
-                    
+
                     // current position in the table
                     currpos = $(".item_" + i).parent().index();
-                    
+
                     $("#pfg-qetable [name=form.button.save]").click(function(e) {
                 //      e.preventDefault();
                         // on the fly addition of the field to the form - a lot of logic goes here!! TO DO
                     });
-                    
+
                     $("#pfg-qetable [name=form.button.cancel]").live('click', function(e) {
+                        var widgetParent;
+                      
                       e.preventDefault();
                         // hide all the error messages so far!
                       if ($("div.error").length > 0) {
                         $("div.error").hide();
                       }
-                      var widgetParent = $(this).parents("div.qefield");
+                      widgetParent = $(this).parents("div.qefield");
                       widgetParent.find("div.widget-inside").slideUp('fast', function() {
                             widgetParent.fadeOut('slow', function() {
                             widgetParent.remove();
                           });
                       });
                     });
-                    
+
                     i+=1; // increment i on each addition
                 } else {
                     finalPos = pfgWidgets.getPos(ui.item);
@@ -150,7 +157,7 @@ pfgWidgets = {
                     else if (target.find(".PFGFieldsetWidget").length) {
                         target = target.find(".PFGFieldsetWidget").attr('id').substr('pfg-fieldsetname-'.length);
                     }
-                    
+
                     if ($(ui.item).find(".field").length) {
                       item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length);
                     }
@@ -160,11 +167,11 @@ pfgWidgets = {
                     pfgWidgets.updatePositionOnServer(item, target);
                 }
             },
-            out: function(e, ui) { 
+            out: function(e, ui) {
               if (!ui.helper) {
                 return;
               }
-        
+
               if (ui.helper.hasClass("widget") && (ui.helper.hasClass("w-field") || ui.helper.hasClass("w-action"))) {
                 return;
               }
@@ -172,7 +179,7 @@ pfgWidgets = {
                 // hide all the error messages so far!
                 if ($("div.error").length > 0) {
                     $("div.error").hide();
-                }                       
+                }
                 ui.helper.html(ui.helper.find("div.field label.formQuestion").text());
                 ui.helper.wrapInner("<h4 class='widget-header-helper'></h4>");
                 ui.helper.addClass("widget");
@@ -197,7 +204,7 @@ pfgWidgets = {
                 ui.helper.width(ui.item.width());
                 ui.helper.height(ui.item.height());
                 return;
-              } 
+              }
               else {
                 return;
               }
@@ -212,7 +219,7 @@ pfgWidgets = {
               if (ui.item.hasClass('ui-draggable')) {
                 ui.item.draggable('destroy');
               }
-              // AJAX action to remove the item from the form 
+              // AJAX action to remove the item from the form
               if (ui.item.hasClass('deleting')) {
                 if (ui.item.hasClass("new-widget")) {
                     ui.item.remove();
@@ -226,19 +233,19 @@ pfgWidgets = {
                 }
                 $("img.ajax-loader").css('visibility', 'visible');
                 ui.item.remove();   // remove the original item (from the DOM and thus the form)
-                $.post("removeFieldFromForm", {item_id: iid}, function() { 
+                $.post("removeFieldFromForm", {item_id: iid}, function() {
                     $("img.ajax-loader").css('visibility', 'hidden');
                 });
                 return;
               }
            }
         });
-                
+
         /* Initializers for editing titles, toggling required attribute on fields and limiting number of widgets in Widgets Manager */
         this.editTitles();
         this.toggleRequired();
         this.limitFields();
-        
+
         /* set the tooltip for the widgets in Widget Manager */
         $("div.widget").tooltip({
             position: "top center",
@@ -248,7 +255,7 @@ pfgWidgets = {
             predelay: 700,
             opacity: 0.9
         });
-        
+
         /* Set the initial tooltips for required and not-required spans */
         $("span.not-required").tooltip({
             position: "top center",
@@ -271,7 +278,7 @@ pfgWidgets = {
             },
             offset: [-6, 0]
         });
-        
+
         $("span.required").tooltip({
             position: "top center",
             relative: false,
@@ -293,14 +300,14 @@ pfgWidgets = {
             },
             offset: [-4, 0]
         });
-        
+
         /* Make the widgets inside the widgets manager draggable */
         $("div.widget").draggable({
           connectToSortable: "#pfg-qetable",
           helper: 'clone',
           containment: 'document'
         });
-        
+
         /* Make the widgets manager droppable */
         $("div.widgets").droppable({
             accept: function(obj) {
@@ -313,7 +320,7 @@ pfgWidgets = {
             over: function(e, ui) {
                 $("div#pfg-qetable div.placeholder").hide();
                 ui.draggable.addClass("deleting");
-                ui.helper.addClass("deleting");             
+                ui.helper.addClass("deleting");
                 $("span#deactivate-widget").show();
             },
             out: function(e, ui) {
@@ -326,19 +333,19 @@ pfgWidgets = {
             },
             tolerance: 'pointer'
         });
-        
+
         /* handle global AJAX error */
         $(document).ajaxError(function(event, request, settings) {
             $("img.ajax-loader").css('visibility', 'hidden');
             alert("The has been an AJAX error on requesting page: " + settings.url);
         });
     },
-    
+
     getPos: function(node) {
         var pos = node.parent().children('.qefield').index(node[0]);
         return pos === -1 ? null : pos;
     },
-    
+
     updatePositionOnServer: function(i, t) {
         if (i && t) {
             $("img.ajax-loader").css('visibility', 'visible');
@@ -347,39 +354,45 @@ pfgWidgets = {
           item_id: i,
           target_id: t
         };
-        $.post('reorderField', args, function() { 
+        $.post('reorderField', args, function() {
             $("img.ajax-loader").css('visibility', 'hidden');
         });
     },
-    
+
     editTitles: function() {
         // first we create a new dynamic node (which will be used to edit content)
         var node = document.createElement("input");
         node.setAttribute('name', "change");
         node.setAttribute("type", "text");
-        
+
         // then we attach a new event to label fields
         $("#pfg-qetable div.qefield label.formQuestion").live('dblclick', function(e) {
-            var content, tmpfor;
+            var content, tmpfor, jqt;
+            
+            jqt = $(this);
 
-            content = $(this).text();
-            tmpfor = $(this).attr('for');
-            $(this).append(node);
-            $(this).html($(node).val(content));
+            content = jqt.text();
+            tmpfor = jqt.attr('for');
+            jqt.append(node);
+            jqt.html($(node).val(content));
             $(node).fadeIn();
-            $(this).children().unwrap();
+            jqt.children().unwrap();
             node.focus(); node.select();
-         
+
             $(node).blur(function(e) {
-                $(this).wrap("<label class='formQuestion' for='"+ tmpfor +"'></label>");
-                $(this).parent().html($(this).val());
-                var args = {
+                var jqt, args;
+                
+                jqt = $(this);
+
+                jqt.wrap("<label class='formQuestion' for='"+ tmpfor +"'></label>");
+                jqt.parent().html(jqt.val());
+                args = {
                     item_id: tmpfor,
-                    title: $(this).val()
+                    title: jqt.val()
                 };
                 if (args.title !== content) { // only update if we actually changed the field
-                    $("img.ajax-loader").css('visibility', 'visible');                  
-                    $.post("updateFieldTitle",args, function() { 
+                    $("img.ajax-loader").css('visibility', 'visible');
+                    $.post("updateFieldTitle",args, function() {
                         $("img.ajax-loader").css('visibility', 'hidden');
                     });
                 }
@@ -387,84 +400,60 @@ pfgWidgets = {
         });
 
     },
-    
+
     toggleRequired: function() {
-        /* old checkbox method
-        var requiredParent = $("span.required").parent();
-        $(requiredParent).each(function () {
-            var parentId = $(this).attr('id').substr('archetypes-fieldname-'.length);
-            $("#pfg-qetable").find("input[name=required-"+ parentId + "]").attr("checked", "checked");          
-        });
-        */
-        var target = $("div.field label").next();
+        var target, jqt;
+        
+        jqt = $(this);
+        target = $("div.field label").next();
+
         target.each(function() {
-          if (!$(this).is("span")) {
+          var jqt;
+          
+          jqt = $(this);
+          if (!jqt.is("span")) {
             $("<span class='not-required' style='display:inline-block' title='Make it required?'></span>").insertBefore(this);
           }
           else {
-            $(this).attr("title", "Remove required flag?"); 
+            jqt.attr("title", "Remove required flag?");
           }
         });
-                
+
         $("span.not-required").live("click", function(event) {
-            var item = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
+            var item, jqt;
+            
+            jqt = $(this);
+            item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
             $("img.ajax-loader").css('visibility', 'visible');
-            // AJAX     
+            // AJAX
             $.post('toggleRequired', {item_id: item }, function() {
                 $("img.ajax-loader").css('visibility', 'hidden');
             });
             $('#archetypes-fieldname-'+item).find('[name^='+item+']').attr("required", "required");
-            $(this).removeClass("not-required");
-            $(this).addClass("required");
-            $(this).html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
-            $(this).attr("title", "Remove required flag?");
-        //  $(this).replaceWith($('<span style="color: rgb(255, 0, 0);display:none" title="Remove required flag?" class="required">■</span>').fadeIn('slow'));
+            jqt.removeClass("not-required");
+            jqt.addClass("required");
+            jqt.html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
+            jqt.attr("title", "Remove required flag?");
         });
-        
+
         $("span.required").live("click", function(event) {
-            var item = $(this).parent().attr('id').substr('archetypes-fieldname-'.length);
+            var item, jqt;
+
+            jqt = $(this);
+            item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
             $("img.ajax-loader").css('visibility', 'visible');
-            // AJAX     
+            // AJAX
             $.post('toggleRequired', {item_id: item }, function() {
                 $("img.ajax-loader").css('visibility', 'hidden');
             });
             $('#archetypes-fieldname-'+item).find('[name^='+item+']').removeAttr("required");
-            $(this).removeClass("required");
-            $(this).addClass("not-required");
-            $(this).html("").fadeIn().css("display", "inline-block");
-            $(this).attr("title", "Make it required?");
-        //  $(this).replaceWith($("<span class='not-required' style='border:1px solid red; width:7px; height:7px; display:none' title='Make it required?'></span>").fadeIn('slow').css("display", "inline-block"));
+            jqt.removeClass("required");
+            jqt.addClass("not-required");
+            jqt.html("").fadeIn().css("display", "inline-block");
+            jqt.attr("title", "Make it required?");
         });
-        
-        
-        
-        /* old checkbox method
-        $("#pfg-qetable").find("input[name^=required-]").bind('change', function(event) {
-        //  event.preventDefault();
-            var id = $(this).attr('name').substr('required-'.length);
-            var requiredSpan = $('#archetypes-fieldname-'+id).find("span.required");
-            $("img.ajax-loader").css('visibility', 'visible');              
-            $.post('toggleRequired', {item_id: id }, function() {
-                // we put the required actions after we are sure the toggle is done on the server!
-                if (requiredSpan.length) { // remove the little tile and set input's required attr
-                    requiredSpan.fadeOut(1000).remove();
-                    $('#archetypes-fieldname-'+id).find('[name^='+id+']').removeAttr("required");
-                }
-                else {
-                    var spel = document.createElement("span");  // create a new span element to mark required fields
-                    $(spel).attr("class", "required");
-                    $(spel).css('color','rgb(255, 0, 0)');
-                    $(spel).html("            ■");
-                    $('#archetypes-fieldname-'+id+' label.formQuestion').after($(spel).fadeIn(1000));
-                    $('#archetypes-fieldname-'+id).find('[name^='+id+']').attr("required", "required")
-                }
-                $("img.ajax-loader").css('visibility', 'hidden')
-            });
-            return true;
-        });
-        */
     },
-    
+
     limitFields: function() {
         $("div.w-field").slice(7).hide();
         if (!$(".more").length) {       // if there's no "More fields..." link, create it.
@@ -473,20 +462,22 @@ pfgWidgets = {
 
         $(".more").toggle(
             function() {
-                $(this).hide();
+                var jqt = $(this);
+                jqt.hide();
                 $("div.widgets div.w-field").slice(7).fadeIn();
-                $(this).insertAfter($("div.w-field:not(:hidden):last").next());
-                $(this).html("Less fields...").show();
+                jqt.insertAfter($("div.w-field:not(:hidden):last").next());
+                jqt.html("Less fields...").show();
             },
             function() {
-                $(this).hide();
+                var jqt = $(this);
+                jqt.hide();
                 $("div.widgets div.w-field").slice(7).fadeOut();
-                $(this).insertAfter($("div.w-field:not(:hidden):last").next());
-                $(this).html("More fields...").show();
+                jqt.insertAfter($("div.w-field:not(:hidden):last").next());
+                jqt.html("More fields...").show();
             }
         );
     },
-    
+
     deinit: function() {
         $("label.formQuestion").die(); // removes event handlers setup by .live
         $(".more").remove();        // remove the item with bounded events to avoid conflict when "quick-edit mode" is called again
@@ -497,6 +488,6 @@ pfgWidgets = {
         if ($("div.error").length > 0) {
             $("div.error").hide();
         }
-    }   
-};  
+    }
+};
 })(jQuery);
