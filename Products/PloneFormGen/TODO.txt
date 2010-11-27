@@ -25,8 +25,5 @@ For merge of manca's branch: these things need checking/fixing
 * Rather than adding new skin directories (css and js), these should
   become browser resources.
  
-* When a field is added by d-n-d and is saved, there's a form change
-  warning.
-
 * There are some strings in the JavaScript that should be passed via
   template so that they may be translated.
