@@ -26,12 +26,13 @@ pfgWidgets = {
             placeholder: 'placeholder',
 //          containment: 'document',
             update: function(e, ui) {
+                var item;
                 if (ui.item.hasClass("new-widget")) {
                     return;
                 }
                 if (ui.item.is("div.widget")) {
                     // perform the operations on the newly dragged element from the widgets manager
-                    var item = ui.item;
+                    item = ui.item;
                     $(item).addClass("qechild");
                     $(item).addClass("item_" + i);
                     $(item).wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
@@ -41,7 +42,7 @@ pfgWidgets = {
                 //  $(item).height($(item).height());   
                     // AJAX stuff
                     $(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function(response, status, xhr) {
-                        if (status=="error") {
+                        if (status==="error") {
                             var msg = "Sorry but there was an error: ";
                             $(this).html(msg + xhr.status + " " + xhr.statusText);
                         }
@@ -60,10 +61,11 @@ pfgWidgets = {
                             position: "center right",
                             offset: [-10, 3]
                         }).submit(function(e) {
-                            var tmpArray = new Array();
+                            var tmpArray = [];
                             inputElem.each(function(i,v) {
-                              if (!$(v).val())
-                                tmpArray.push($(v));
+                              if (!$(v).val()) {
+                                  tmpArray.push($(v));
+                              }
                             });
                             tmpArray[0].focus();
                         });
@@ -119,9 +121,8 @@ pfgWidgets = {
                       });
                     });
                     
-                    i++; // increment i on each addition
-                } 
-                else {
+                    i+=1; // increment i on each addition
+                } else {
                     finalPos = pfgWidgets.getPos(ui.item);
                     if (initPos > finalPos) { // we came from lower rows
                         target = $(ui.item).next();
@@ -129,17 +130,17 @@ pfgWidgets = {
                     else { // we came from upper rows
                         target = $(ui.item).prev();
                     }
-                    if (target.find(".field").length !=0) {
+                    if (target.find(".field").length) {
                         target = target.find(".field").attr('id').substr('folder-contents-item-'.length);
                     }
-                    else if (target.find(".PFGFieldsetWidget").length !=0 ) {
+                    else if (target.find(".PFGFieldsetWidget").length) {
                         target = target.find(".PFGFieldsetWidget").attr('id').substr('pfg-fieldsetname-'.length);
                     }
                     
-                    if ($(ui.item).find(".field").length != 0) {
+                    if ($(ui.item).find(".field").length) {
                       item = $(ui.item).find(".field").attr('id').substr('folder-contents-item-'.length);
                     }
-                    else if ($(ui.item).find(".PFGFieldsetWidget").length !=0) {
+                    else if ($(ui.item).find(".PFGFieldsetWidget").length) {
                       item = $(ui.item).find(".PFGFieldsetWidget").attr('id').substr('pfg-fieldsetname-'.length);
                     }
                     pfgWidgets.updatePositionOnServer(item, target);
@@ -204,7 +205,7 @@ pfgWidgets = {
                     return;
                 }
                 var iid;
-                if (ui.item.children(".field").length != 0) {
+                if (ui.item.children(".field").length) {
                     iid = ui.item.children(".field").attr("id").substr("archetypes-fieldname-".length);
                 } else {
                     iid = ui.item.children(".PFGFieldsetWidget").attr("id").substr("pfg-fieldsetname-".length);
@@ -321,7 +322,7 @@ pfgWidgets = {
     
     getPos: function(node) {
         var pos = node.parent().children('.qefield').index(node[0]);
-        return pos == -1 ? null : pos;
+        return pos === -1 ? null : pos;
     },
     
     updatePositionOnServer: function(i, t) {
@@ -360,7 +361,7 @@ pfgWidgets = {
                     item_id: tmpfor,
                     title: $(this).val()
                 };
-                if (args['title']!=content) { // only update if we actually changed the field
+                if (args.title !== content) { // only update if we actually changed the field
                     $("img.ajax-loader").css('visibility', 'visible');                  
                     $.post("updateFieldTitle",args, function() { 
                         $("img.ajax-loader").css('visibility', 'hidden');

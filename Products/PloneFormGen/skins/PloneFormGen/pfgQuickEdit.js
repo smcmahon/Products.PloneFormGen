@@ -1,6 +1,6 @@
 // Support for PFG Quick Edit
 
-/*global pfgWidgets */
+/*global pfgWidgets, window */
 
 var pfgQEdit = {};
 
@@ -57,6 +57,18 @@ pfgQEdit.addTable = function () {
 
 
 pfgQEdit.qedit = function (e) {
+  var tool, blurrable;
+
+  // Turn off form-unload protection so that we don't receive
+  // misleading notifications.
+  // But, first save the list of forms with unload protection
+  // so that we may restore it.
+  tool = window.onbeforeunload && window.onbeforeunload.tool;
+  if (tool) {
+      tool.savedForms = tool.forms;
+      tool.forms = [];
+  }    
+    
   jQuery("#pfgqedit").hide();
   // hide the error messages
   jQuery(".error").hide();
@@ -65,7 +77,7 @@ pfgQEdit.qedit = function (e) {
 
   jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
   // disable and dim input elements
-  var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled !== "undefined") {
@@ -141,6 +153,8 @@ pfgQEdit.stripTable = function () {
 };
 
 pfgQEdit.noedit = function (e) {
+  var blurrable, tool;
+  
   // turn off field editing
   jQuery("#pfgnedit").hide();
   // hide widgets manager
@@ -148,13 +162,21 @@ pfgQEdit.noedit = function (e) {
 
   pfgQEdit.stripTable();
   // enable all blurred elements
-  var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+  blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
     function() {
       if (typeof this.disabled !== "undefined") {this.disabled = false;}
       }
     );
   blurrable.css('opacity', 1);
+
+  // if we have a saved list of forms with unload protection, restore it
+  tool = window.onbeforeunload && window.onbeforeunload.tool;
+  if (tool && tool.savedForms) {
+      tool.forms = tool.savedForms;
+      delete tool.savedForms;
+  }    
+
 
   jQuery("#pfgActionEdit").hide();
   jQuery("#pfgThanksEdit").hide();
