@@ -433,7 +433,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
 
     def testTranslationBasics(self):
-        """Sanity check i18n setup against some known translations"""
+        """ Sanity check i18n setup against some known translations
+            This test will fail if .mo files don't exist.
+        """
 
         from Products.PloneFormGen import PloneFormGenMessageFactory as _
         from zope.i18n import translate
