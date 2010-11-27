@@ -4,6 +4,10 @@ Change History
 1.7 (unreleased)
 -------------------
 
+- Remove 2.5 support setup profile and templates. 2.5 hasn't been supported since
+  1.6.
+  [stevem]
+
 - Get validator.js from plone.app.jquerytools. This requires plone.app.jquerytools>=1.2dev.
   1.2dev is available as p.a.jqt's svn trunk at this moment.
   [stevem]
