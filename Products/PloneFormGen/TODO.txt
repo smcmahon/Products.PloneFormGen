@@ -3,7 +3,11 @@ TODO.txt
 When a field is deleted in the quick editor, a form field editor
 briefly shows in the popup.
 
-For merge of manca's branch: these things still need checking/fixing
+Plone 2.5 compatibility leftovers?
+    - Do we still need to patch the ZPublisher? See method
+      patch_publisher_exception_handling in pathes.py
+    - We shouldn't need the variable PLONE_25_PUBLISHER_MONKEYPATCH
+      anymore
 
 * fg_base_view_p3.cpt
     - after working, needs to be revisited for cleanup / style
