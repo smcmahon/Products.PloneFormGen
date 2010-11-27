@@ -3,9 +3,7 @@ TODO.txt
 When a field is deleted in the quick editor, a form field editor
 briefly shows in the popup.
 
-Strip out Plone 2.5 compat stuff
-
-For merge of manca's branch: these things need checking/fixing
+For merge of manca's branch: these things still need checking/fixing
 
 * fg_base_view_p3.cpt
     - after working, needs to be revisited for cleanup / style
@@ -18,8 +16,5 @@ For merge of manca's branch: these things need checking/fixing
     - can we find something lighter-weight for drag-and-drop;
       in any case, we should avoid a "custom" module.
     
-* There are some strings in the JavaScript that should be passed via
-  template so that they may be translated.
-
 * d-n-d field adding is leaving the field at the end of the list.
   was this working before js cleanup?

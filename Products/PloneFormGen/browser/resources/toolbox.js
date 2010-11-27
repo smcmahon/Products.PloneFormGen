@@ -1,4 +1,4 @@
-/*globals alert */
+/*globals alert, pfgQEdit */
 
 var pfgWidgets;
 // fieldset support for moving fields between them. Make the fieldsets behave like tabs.
@@ -337,7 +337,7 @@ pfgWidgets = {
         /* handle global AJAX error */
         $(document).ajaxError(function(event, request, settings) {
             $("img.ajax-loader").css('visibility', 'hidden');
-            alert("The has been an AJAX error on requesting page: " + settings.url);
+            alert(pfgQEdit.messages.AJAX_FAILED_MSG + settings.url);
         });
     },
 
@@ -457,7 +457,7 @@ pfgWidgets = {
     limitFields: function() {
         $("div.w-field").slice(7).hide();
         if (!$(".more").length) {       // if there's no "More fields..." link, create it.
-            $("div.w-field:not(:hidden):last").next().after("<div class='more'>More fields...</div>");
+            $("div.w-field:not(:hidden):last").next().after("<div class='more'>"+pfgQEdit.messages.MORE_FIELDS_MSG+"</div>");
         }
 
         $(".more").toggle(
@@ -466,14 +466,14 @@ pfgWidgets = {
                 jqt.hide();
                 $("div.widgets div.w-field").slice(7).fadeIn();
                 jqt.insertAfter($("div.w-field:not(:hidden):last").next());
-                jqt.html("Less fields...").show();
+                jqt.html(pfgQEdit.messages.LESS_FIELDS_MSG).show();
             },
             function() {
                 var jqt = $(this);
                 jqt.hide();
                 $("div.widgets div.w-field").slice(7).fadeOut();
                 jqt.insertAfter($("div.w-field:not(:hidden):last").next());
-                jqt.html("More fields...").show();
+                jqt.html(pfgQEdit.messages.MORE_FIELDS_MSG).show();
             }
         );
     },

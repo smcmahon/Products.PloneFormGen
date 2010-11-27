@@ -54,6 +54,10 @@
         tal:attributes="src string:$portal_url/++resource++Products.PloneFormGen.resources/quickedit.js"
         tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
     </script>
+    <script src="pfg_javascript_variables.js"
+        type="text/javascript"
+        tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
+    </script>
     <script src="jquery-ui-1.8.2.custom.min.js"
         type="text/javascript"
         tal:attributes="src string:$portal_url/++resource++Products.PloneFormGen.resources/jquery-ui-1.8.2.custom.min.js"

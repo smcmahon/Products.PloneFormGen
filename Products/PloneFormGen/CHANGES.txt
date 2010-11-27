@@ -4,6 +4,9 @@ Change History
 1.7 (unreleased)
 -------------------
 
+- Added simple translation layer for messages embedded in JS.
+  [stevem]
+
 - Remove 2.5 support setup profile and templates. 2.5 hasn't been supported since
   1.6.
   [stevem]

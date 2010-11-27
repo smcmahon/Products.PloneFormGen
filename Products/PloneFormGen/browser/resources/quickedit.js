@@ -50,7 +50,10 @@ pfgQEdit.addTable = function () {
          );
     jQuery("div#pfg-qetable").before(
         '<div class="theader">'+
-        '<div style="width: 8%">Order</div><div style="width: 50%">Field</div><div style="text-align:center; width: 26%">Actions</div>'+
+        '<div style="width: 8%">' + pfgQEdit.messages.ORDER_MSG +
+        '</div><div style="width: 50%">' + pfgQEdit.messages.FIELD_MSG +
+        '</div><div style="text-align:center; width: 26%">' + pfgQEdit.messages.ACTIONS_MSG +
+        '</div>'+
         '</div>'
         );
 };
@@ -75,7 +78,7 @@ pfgQEdit.qedit = function (e) {
   // show widgets manager
   jQuery("#pfgWidgetWrapper").fadeIn();
 
-  jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>Captcha field hidden by form editor. Refresh to view it.</div>");
+  jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>"+pfgQEdit.messages.NO_CAPTCHA_MSG+"</div>");
   // disable and dim input elements
   blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
   blurrable.each(
