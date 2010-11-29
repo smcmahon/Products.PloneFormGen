@@ -12,9 +12,9 @@ from Products.PloneFormGen.tests import pfgtc
 
 from Testing.makerequest import makerequest
 import zExceptions
+from zope.component import getMultiAdapter
 
-if HAS_PLONE30:
-    from plone.protect.authenticator import AuthenticatorView
+from plone.protect.authenticator import AuthenticatorView
 
 
 # too lazy to see if this is already in the library somewhere
@@ -643,6 +643,19 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
             errors = self.ff1.fgvalidate(REQUEST=request)
             self.assertEqual( errors, {} )
 
+
+        def testJSTranslate(self):
+            """test the browser view that supplies translations for javascript
+            """
+            jsvars = getMultiAdapter(
+                (self.ff1, self.fakeRequest()), 
+                name='pfg_javascript_variables.js'
+            )
+            res = jsvars()
+            self.assertEqual(res.find("pfgQEdit.messages = {"), 0)
+            self.failUnless(res.find("ORDER_MSG: 'Order'") > 0)
+            
+            
 
 def test_suite():
     from unittest import TestSuite, makeSuite
