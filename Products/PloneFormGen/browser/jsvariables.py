@@ -23,6 +23,8 @@ messages = {
     
 }
 
+messageTemplate = "pfgQEdit.messages = {\n%s}\n"
+
 class JSVariables(BrowserView):
 
     def __call__(self, *args, **kwargs):
@@ -37,4 +39,4 @@ class JSVariables(BrowserView):
             template = "%s%s: '%s',\n" % (template, key, msg)
 
         # note trimming of last comma
-        return "pfgQEdit.messages = {\n%s}\n" % template[:-2]
+        return messageTemplate % template[:-2]
