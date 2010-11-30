@@ -24,7 +24,6 @@ from Products.TALESField import TALESString
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen.config import *
-from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.interfaces import IPloneFormGenActionAdapter
 
 FormAdapterSchema = ATContentTypeSchema.copy() + Schema((
@@ -52,28 +51,25 @@ FormAdapterSchema = ATContentTypeSchema.copy() + Schema((
     ),
     ))
 
-if not HAS_PLONE30:
-    FormAdapterSchema['description'].schemata = 'metadata'
 finalizeATCTSchema(FormAdapterSchema, folderish=True, moveDiscussion=False)
 
-if HAS_PLONE30:
-    # avoid showing unnecessary schema tabs
-    for afield in ('description',
-                   'subject', 
-                   'relatedItems', 
-                   'location', 
-                   'language', 
-                   'effectiveDate', 
-                   'expirationDate', 
-                   'creation_date', 
-                   'modification_date', 
-                   'creators', 
-                   'contributors', 
-                   'rights', 
-                   'allowDiscussion', 
-                   'excludeFromNav', ):
-        FormAdapterSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
-        FormAdapterSchema[afield].schemata = 'default'
+# avoid showing unnecessary schema tabs
+for afield in ('description',
+               'subject', 
+               'relatedItems', 
+               'location', 
+               'language', 
+               'effectiveDate', 
+               'expirationDate', 
+               'creation_date', 
+               'modification_date', 
+               'creators', 
+               'contributors', 
+               'rights', 
+               'allowDiscussion', 
+               'excludeFromNav', ):
+    FormAdapterSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+    FormAdapterSchema[afield].schemata = 'default'
 
 
 class FormActionAdapter(ATCTContent):

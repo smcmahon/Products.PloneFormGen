@@ -1,8 +1,6 @@
 'Force SSL' setting
 -------------------
 
-    >>> from Products.PloneFormGen import HAS_PLONE30
-
 First let's get our test browser and make sure that it won't re-raise Redirect errors::
 
     >>> browser = self.browser
@@ -14,8 +12,7 @@ Set up a form with the 'force SSL' setting on::
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
     
-    >>> if HAS_PLONE30: browser.getControl(name='forceSSL:boolean').value = '1'
-    >>> if not HAS_PLONE30: browser.getControl(name='forceSSL').value = '1'
+    >>> browser.getControl(name='forceSSL:boolean').value = '1'
     
     >>> browser.getControl('Save').click()
     >>> browser.url

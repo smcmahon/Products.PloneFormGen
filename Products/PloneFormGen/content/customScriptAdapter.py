@@ -30,7 +30,6 @@ from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.PythonField import PythonField as PythonField
 
 # Local imports
-from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen import config
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import \
@@ -110,8 +109,6 @@ class FormCustomScriptAdapter(FormActionAdapter):
                 ),
             ),            
     ))
-    if not HAS_PLONE30:
-        finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
 
     meta_type = portal_type = 'FormCustomScriptAdapter'
     archetype_name = 'Custom Script Adapter'

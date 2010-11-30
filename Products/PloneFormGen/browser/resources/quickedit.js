@@ -112,7 +112,7 @@ pfgQEdit.qedit = function (e) {
               subtype: 'ajax',
               filter: "#content",
               formselector: 'form:has(input[value=Delete])',
-              noform: function(){location.reload();},
+              noform: 'reload',
               closeselector:'[name=form.button.Cancel]'
           }
       );

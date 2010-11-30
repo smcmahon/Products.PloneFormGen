@@ -48,7 +48,7 @@ from email.MIMEText import MIMEText
 from types import StringTypes
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30, dollarReplace
+from Products.PloneFormGen import dollarReplace
 
 try:
     # 3.0+
@@ -451,15 +451,12 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
     ),
 ))
 
-if HAS_PLONE30:
-    # move headers schema items to template schema to keep the schema
-    # count <= 6
-    formMailerAdapterSchema['xinfo_headers'].schemata = 'template'
-    formMailerAdapterSchema['additional_headers'].schemata = 'template'
+# move headers schema items to template schema to keep the schema
+# count <= 6
+formMailerAdapterSchema['xinfo_headers'].schemata = 'template'
+formMailerAdapterSchema['additional_headers'].schemata = 'template'
 
 formMailerAdapterSchema.moveField('execCondition', pos='bottom')
-if not HAS_PLONE30:
-    finalizeATCTSchema(formMailerAdapterSchema, folderish=True, moveDiscussion=False)
 
 
 class FormMailerAdapter(FormActionAdapter):

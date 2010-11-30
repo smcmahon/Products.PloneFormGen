@@ -7,7 +7,6 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
-from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.tests import pfgtc
 
 from Testing.makerequest import makerequest
@@ -585,76 +584,74 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual(saver1.itemsSaved(), 2)
         self.assertEqual(saver2.itemsSaved(), 1)
 
-    if HAS_PLONE30:
-        def testCSRF(self):
-            """ test csrf protection """
+    def testCSRF(self):
+        """ test csrf protection """
 
-            # for this test, we need a bit more serious request simulation
-            from ZPublisher.HTTPRequest import HTTPRequest
-            from ZPublisher.HTTPResponse import HTTPResponse
-            environ = {}
-            environ.setdefault('SERVER_NAME', 'foo')
-            environ.setdefault('SERVER_PORT', '80')
-            environ.setdefault('REQUEST_METHOD',  'POST')        
-            request = HTTPRequest(sys.stdin, 
-                        environ,
-                        HTTPResponse(stdout=sys.stdout))
+        # for this test, we need a bit more serious request simulation
+        from ZPublisher.HTTPRequest import HTTPRequest
+        from ZPublisher.HTTPResponse import HTTPResponse
+        environ = {}
+        environ.setdefault('SERVER_NAME', 'foo')
+        environ.setdefault('SERVER_PORT', '80')
+        environ.setdefault('REQUEST_METHOD',  'POST')        
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
 
-            request.form = \
-                 {'topic':'test subject',
-                  'replyto':'test@test.org',
-                  'comments':'test comments'}
+        request.form = \
+             {'topic':'test subject',
+              'replyto':'test@test.org',
+              'comments':'test comments'}
 
-            self.ff1.checkAuthenticator = True        
+        self.ff1.checkAuthenticator = True        
 
-            self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
-        
-            # with authenticator... no error
-            tag = AuthenticatorView('context', 'request').authenticator()
-            token = tag.split('"')[5]
-            request.form['_authenticator'] = token
-            errors = self.ff1.fgvalidate(REQUEST=request)
-            self.assertEqual( errors, {} )
+        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+    
+        # with authenticator... no error
+        tag = AuthenticatorView('context', 'request').authenticator()
+        token = tag.split('"')[5]
+        request.form['_authenticator'] = token
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual( errors, {} )
 
-            # sneaky GET request
-            environ['REQUEST_METHOD'] = 'GET'
-            request = HTTPRequest(sys.stdin, 
-                        environ,
-                        HTTPResponse(stdout=sys.stdout))
-            self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
+        # sneaky GET request
+        environ['REQUEST_METHOD'] = 'GET'
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
+        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
 
-            # bad authenticator
-            request.form['_authenticator'] = 'inauthentic'
-            request = HTTPRequest(sys.stdin, 
-                        environ,
-                        HTTPResponse(stdout=sys.stdout))
-            self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
-
-
-        def testBooleanRequired(self):
-            """ test for issue  #202: bad enforcement of required
-                on boolean fields
-            """
-
-            self.ff1.invokeFactory('FormBooleanField', 'fbf')
-            self.ff1.fbf.setRequired(True)
-
-            request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
-            errors = self.ff1.fgvalidate(REQUEST=request)
-            self.assertEqual( errors, {} )
+        # bad authenticator
+        request.form['_authenticator'] = 'inauthentic'
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
+        self.assertRaises(zExceptions.Forbidden, self.ff1.fgvalidate, request)
 
 
-        def testJSTranslate(self):
-            """test the browser view that supplies translations for javascript
-            """
-            jsvars = getMultiAdapter(
-                (self.ff1, self.fakeRequest()), 
-                name='pfg_javascript_variables.js'
-            )
-            res = jsvars()
-            self.assertEqual(res.find("pfgQEdit.messages = {"), 0)
-            self.failUnless(res.find("ORDER_MSG: 'Order'") > 0)
-            
+    def testBooleanRequired(self):
+        """ test for issue  #202: bad enforcement of required
+            on boolean fields
+        """
+
+        self.ff1.invokeFactory('FormBooleanField', 'fbf')
+        self.ff1.fbf.setRequired(True)
+
+        request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual( errors, {} )
+
+
+    def testJSTranslate(self):
+        """test the browser view that supplies translations for javascript
+        """
+        jsvars = getMultiAdapter(
+            (self.ff1, self.fakeRequest()), 
+            name='pfg_javascript_variables.js'
+        )
+        res = jsvars()
+        self.assertEqual(res.find("pfgQEdit.messages = {"), 0)
+        self.failUnless(res.find("ORDER_MSG: 'Order'") > 0)
             
 
 def test_suite():

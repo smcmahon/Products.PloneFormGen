@@ -22,7 +22,6 @@ from Products.Five import fiveconfigure
 from Products.GenericSetup.tests.common import DummyExportContext
 from Products.GenericSetup.tests.common import TarballTester
 
-from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen.tests import pfgtc
 
 from Testing import ZopeTestCase
@@ -62,18 +61,7 @@ class TestFormGenGSLayer(PloneSite):
         
         portal_setup = portal.portal_setup
         
-        if HAS_PLONE30:
-            portal_setup.runAllImportStepsFromProfile('profile-Products.PloneFormGen:testing')
-        else:
-            # BBB: remove conditional once PFG no longer supports 2.5.x
-            old_context = portal_setup.getImportContextID()
-
-            # run testing install process
-            portal_setup.setImportContext('profile-Products.PloneFormGen:testing')
-            portal_setup.runAllImportSteps()
-
-            portal_setup.setImportContext(old_context)
-            
+        portal_setup.runAllImportStepsFromProfile('profile-Products.PloneFormGen:testing')            
         
         # drop elevated perms
         noSecurityManager()

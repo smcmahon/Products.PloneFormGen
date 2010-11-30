@@ -40,8 +40,8 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen import implementedOrProvidedBy
+from Products.PloneFormGen import HAS_PLONE40
 
 try:
     import plone.protect
@@ -126,7 +126,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             ),
         ),
     TextField('formPrologue',
-        schemata='decoration',
+        schemata='default',
         required=False,
         # Disable search to bypass a unicode decode error
         # in portal_catalog indexes.
@@ -145,7 +145,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             ),
         ),
     TextField('formEpilogue',
-        schemata='decoration',
+        schemata='default',
         required=False,
         # Disable search to bypass a unicode decode error
         # in portal_catalog indexes.
@@ -293,16 +293,7 @@ if HAS_PLONE_PROTECT:
             ),
     ))
 
-    # Plone 3 switches the schema tab widget to a select box when
-    # the number of schemata is > 6. IMHO, this has worse usability
-    # than packing the default schema.
-    # Also, as of P3.0, rich text fields on non-default schema
-    # still don't function.
-    FormFolderSchema['formPrologue'].schemata = 'default'
-    FormFolderSchema['formEpilogue'].schemata = 'default'
 
-
-#finalizeATCTSchema(ATFolderSchema, folderish=True, moveDiscussion=False)
 
 class FormFolder(ATFolder):
     """A folder which can contain form fields."""
@@ -315,10 +306,7 @@ class FormFolder(ATFolder):
     meta_type = 'FormFolder'
     portal_type = 'FormFolder'
     archetype_name = 'Form Folder'
-    if HAS_PLONE30:
-        default_view = immediate_view = 'fg_base_view_p3'
-    else:
-        default_view = immediate_view = 'fg_base_view'
+    default_view = immediate_view = 'fg_base_view_p3'
     suppl_views = ()
 
     typeDescription = \
@@ -506,7 +494,7 @@ class FormFolder(ATFolder):
         """Validates the field data from the request.
         """
 
-        if HAS_PLONE30 and getattr(self, 'checkAuthenticator', True):
+        if getattr(self, 'checkAuthenticator', True):
             # CSRF check.
             plone.protect.CheckAuthenticator(REQUEST)
             plone.protect.PostOnly(REQUEST)

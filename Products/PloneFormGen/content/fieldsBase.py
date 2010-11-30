@@ -38,30 +38,28 @@ from Products.PloneFormGen.content import validationMessages
 from Products.PloneFormGen.interfaces import IPloneFormGenField
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30
 
 
 def finalizeFieldSchema(schema, folderish=True, moveDiscussion=False):
     """ cleanup typical field schema """
 
     finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
-    if HAS_PLONE30:
-        # avoid showing unnecessary schema tabs
-        for afield in ('subject', 
-                       'relatedItems', 
-                       'location', 
-                       'language', 
-                       'effectiveDate', 
-                       'expirationDate', 
-                       'creation_date', 
-                       'modification_date', 
-                       'creators', 
-                       'contributors', 
-                       'rights', 
-                       'allowDiscussion', 
-                       'excludeFromNav', ):
-            schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
-            schema[afield].schemata = 'default'
+    # avoid showing unnecessary schema tabs
+    for afield in ('subject', 
+                   'relatedItems', 
+                   'location', 
+                   'language', 
+                   'effectiveDate', 
+                   'expirationDate', 
+                   'creation_date', 
+                   'modification_date', 
+                   'creators', 
+                   'contributors', 
+                   'rights', 
+                   'allowDiscussion', 
+                   'excludeFromNav', ):
+        schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+        schema[afield].schemata = 'default'
 
 
 ###
@@ -492,10 +490,7 @@ class BaseFormField(ATCTContent):
     content_icon = 'BasicField.gif'
     typeDescription= 'A form field'
 
-    if HAS_PLONE30:
-        default_view = immediate_view = 'fg_base_view_p3'
-    else:
-        default_view = immediate_view = 'fg_base_view'
+    default_view = immediate_view = 'fg_base_view_p3'
     suppl_views = ()
 
     # Let's not pollute the global "add"

@@ -9,7 +9,6 @@ if __name__ == '__main__':
 from AccessControl import Unauthorized
 
 from Products.PloneFormGen.tests import pfgtc
-from Products.PloneFormGen import HAS_PLONE30
 
 from Products.CMFCore.utils import getToolByName
 
@@ -29,7 +28,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
 
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
-        
+
         self.kupu         = getattr(self.portal, 'kupu_library_tool', None)
         self.skins        = self.portal.portal_skins
         self.types        = self.portal.portal_types
@@ -77,10 +76,10 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
 
     def testSkinLayersInSkinPath(self):
         pfg_layers = self.skins['selections']
-        
+
         for skin_name, path in pfg_layers.items():
             self.failUnless('PloneFormGen' in path.split(','))
-    
+
     def testKssRegsitry(self):
         if 'portal_kss' in self.portal.objectIds():
             # confirm kinetic stylesheet registration
@@ -91,47 +90,40 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
     def testTypesInstalled(self):
         for t in self.metaTypes:
             self.failUnless(t in self.types.objectIds())
-            
+
     def testTypeActions(self):
-        if HAS_PLONE30:
-            # hide properties/references tabs
-            for typ in self.metaTypes:
-                for act in self.types[typ].listActions():
-                    if act.id in ['metadata', 'references']:
-                        self.failIf(act.visible)
-        else:
-            # the 2.5.x way is to enable these tabs
-            for typ in self.metaTypes:
-                for act in self.types[typ].listActions():
-                    if act.id in ['metadata', 'references']:
-                        self.failUnless(act.visible)
-    
+        # hide properties/references tabs
+        for typ in self.metaTypes:
+            for act in self.types[typ].listActions():
+                if act.id in ['metadata', 'references']:
+                    self.failIf(act.visible)
+
     def testArchetypesToolCatalogRegistration(self):
         for t in self.metaTypes:
             self.assertEquals(1, len(self.at_tool.getCatalogsByType(t)))
             self.assertEquals('portal_catalog', self.at_tool.getCatalogsByType(t)[0].getId())
-            
+
     def testControlPanelConfigletInstalled(self):
         self.failUnless('PloneFormGen' in [action.id for action in self.controlpanel.listActions()])
-    
+
     def testAddPermissions(self):
         """ Test to make sure add permissions are as intended """
-        
+
         ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Content'
         CSA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Custom Scripts'
         MA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Mailers'
         SDA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Data Savers'
-      
+
         self.assertEqual( getAddPermission('PloneFormGen', 'Form Folder'), ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Mailer Adapter'), MA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Save Data Adapter'), SDA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Custom Script Adapter'), CSA_ADD_CONTENT_PERMISSION)
-    
+
     def testActionsInstalled(self):
         self.setRoles(['Manager',])
         self.failUnless(self.portal.portal_actions.getActionInfo('object_buttons/export'))
         self.failUnless(self.portal.portal_actions.getActionInfo('object_buttons/import'))
-    
+
     def testPortalFactorySetup(self):
         for f in self.metaTypes:
             self.failUnless(f in self.factory.getFactoryTypes())
@@ -167,7 +159,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             print "Skipping kupu resource tests."
 
     def test_FormGenTool(self):
-        self.failUnless( getToolByName(self.portal, 'formgen_tool')) 
+        self.failUnless( getToolByName(self.portal, 'formgen_tool'))
 
     def test_PropSheetCreation(self):
         props = getattr(self.properties, 'ploneformgen_properties', None)
@@ -180,31 +172,31 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.failUnless( props.hasProperty('mail_bcc_recipients') )
         self.failUnless( props.hasProperty('mail_xinfo_headers') )
         self.failUnless( props.hasProperty('mail_add_headers') )
-        self.failUnless( props.hasProperty('csv_delimiter') )        
-        
+        self.failUnless( props.hasProperty('csv_delimiter') )
+
     def testModificationsToPropSheetNotOverwritten(self):
         newprop = 'foo'
         self.properties.ploneformgen_properties.manage_changeProperties(mail_body_type=newprop)
-        
+
         # reinstall
         qi = self.portal.portal_quickinstaller
         qi.reinstallProducts(['PloneFormGen'])
-        
+
         # make sure we still have our new value for 'mail_body_type'
         self.assertEquals(newprop, self.properties.ploneformgen_properties.getProperty('mail_body_type'))
-    
+
     def testModificationsToPropSheetLinesNotPuged(self):
         pfg_property_mappings = [
             {"propsheet":"navtree_properties",
              "added_props":["metaTypesNotToList",]},
             {"propsheet":"ploneformgen_properties",
-             "added_props":["permissions_used", "mail_cc_recipients", 
+             "added_props":["permissions_used", "mail_cc_recipients",
                 "mail_bcc_recipients", "mail_xinfo_headers","mail_add_headers", "csv_delimiter"]},
             {"propsheet":"site_properties",
              "added_props":["use_folder_tabs", "typesLinkToFolderContentsInFC",
                 "types_not_searched", "default_page_types"]},
         ]
-        
+
         # add garbage prop element to each lines property
         for mapping in pfg_property_mappings:
             sheet = self.properties[mapping['propsheet']]
@@ -212,11 +204,11 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
                 propitems = list(sheet.getProperty(lines_prop))
                 propitems.append('foo')
                 sheet.manage_changeProperties({lines_prop:propitems})
-        
+
         # reinstall
         qi = self.portal.portal_quickinstaller
         qi.reinstallProducts(['PloneFormGen'])
-        
+
         # now make sure our garbage values survived the reinstall
         for mapping in pfg_property_mappings:
             sheet = self.properties[mapping['propsheet']]
@@ -224,8 +216,8 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
                 self.failUnless('foo' in sheet.getProperty(lines_prop),
                     "Our garbage item didn't survive reinstall for property %s"
                     " within property sheet %s" % (lines_prop, mapping["propsheet"]))
-        
-    
+
+
     def test_FormFolderInDefaultPageTypes(self):
         propsTool = getToolByName(self.portal, 'portal_properties')
         siteProperties = getattr(propsTool, 'site_properties')
@@ -234,18 +226,12 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
 
 
     def testTypeViews(self):
-        if HAS_PLONE30:
             self.assertEqual(self.types.FormFolder.getAvailableViewMethods(self.types), ('fg_base_view_p3',))
             self.assertEqual(self.types.FormThanksPage.getAvailableViewMethods(self.types), ('fg_thankspage_view_p3',))
             self.assertEqual(self.types.FormSaveDataAdapter.getAvailableViewMethods(self.types), ('fg_savedata_tabview_p3', 'fg_savedata_recview_p3', 'fg_savedata_view_p3'))
-        else:
-            self.assertEqual(self.types.FormFolder.getAvailableViewMethods(self.types), ('fg_base_view',))
-            self.assertEqual(self.types.FormThanksPage.getAvailableViewMethods(self.types), ('fg_thankspage_view',))
-            self.assertEqual(self.types.FormSaveDataAdapter.getAvailableViewMethods(self.types), ('fg_savedata_tabview', 'fg_savedata_recview', 'fg_savedata_view'))
 
 
 
-        
 class TestContentCreation(pfgtc.PloneFormGenTestCase):
     """Ensure content types can be created and edited"""
 
@@ -354,12 +340,12 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         self.assertRaises(ValueError, fs.invokeFactory, 'FormFolder', 'ffinf')
         self.assertRaises(ValueError, fs.invokeFactory, 'FormThanksPage', 'ffinf')
         self.assertRaises(ValueError, fs.invokeFactory, 'FieldsetFolder', 'ffinf')
-        self.assertRaises(ValueError, fs.invokeFactory, 'FormMailerAdapter', 'ffinf')        
+        self.assertRaises(ValueError, fs.invokeFactory, 'FormMailerAdapter', 'ffinf')
 
         # try finding the fields
         for f in self.fieldTypes:
             fname = "%s1fs" % f
-            self.failUnless( self.ff1.findFieldObjectByName(fname) )                
+            self.failUnless( self.ff1.findFieldObjectByName(fname) )
 
 
     def testFgFieldsDisplayOnly(self):
@@ -373,22 +359,22 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
 
         self.ff1.invokeFactory('FieldsetFolder', 'FieldsetFolder1')
         self.ff1['FieldsetFolder1'].invokeFactory('FormStringField', 'fsf')
-        
+
         noExtras = len(self.ff1.fgFields(displayOnly=True))
         wExtras = len(self.ff1.fgFields())
-        self.failUnlessEqual(wExtras, noExtras+2)    
+        self.failUnlessEqual(wExtras, noExtras+2)
 
         self.ff1.invokeFactory('FormLabelField', 'flf')
         noExtras = len(self.ff1.fgFields(displayOnly=True))
         wExtras = len(self.ff1.fgFields())
         self.failUnlessEqual(wExtras, noExtras+3)
-    
+
         self.ff1.invokeFactory('FormRichLabelField', 'frlf')
         noExtras = len(self.ff1.fgFields(displayOnly=True))
         wExtras = len(self.ff1.fgFields())
         self.failUnlessEqual(wExtras, noExtras+4)
-    
-    
+
+
     def testEditField(self):
         for f in self.fieldTypes:
             fname = "%s1" % f
@@ -450,7 +436,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
 
     def testBadIdField(self):
         # test for tracker #32 - Field with id 'language' causes problems with PTS
-        
+
         from Products.CMFCore.exceptions import BadRequest
 
         fname = 'test_field'
@@ -468,14 +454,14 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         renaming a field should change the __name__ attribute
         of the embedded fgField; tracker issue #42
         """
-            
+
         self.ff1.invokeFactory('FormStringField', 'spam_and_eggs')
         self.failUnless('spam_and_eggs' in self.ff1.objectIds())
 
         myField = getattr(self.ff1, 'spam_and_eggs')
         fgf = getattr(myField, 'fgField')
         self.assertEqual(fgf.__name__, 'spam_and_eggs')
-            
+
         # XXX TODO: figure out what's wrong with this:
         #self.ff1.manage_renameObject('spam_and_eggs', 'spam_spam_and_eggs')
         #self.assertEqual(fgf.__name__, 'spam_spam_and_eggs')
@@ -486,14 +472,14 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         renaming a fieldset should change the __name__ attribute
         of the embedded fsStartField
         """
-            
+
         self.ff1.invokeFactory('FieldsetFolder', 'fsfolder1')
         self.failUnless('fsfolder1' in self.ff1.objectIds())
 
         myField = getattr(self.ff1, 'fsfolder1')
         fgf = getattr(myField, 'fsStartField')
         self.assertEqual(fgf.__name__, 'fsfolder1')
-            
+
 
     def testFieldsetPlusDisplayList(self):
         """ Test for issue  #44 -- Presence of fieldset causes an attribute error
@@ -502,7 +488,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         # create fieldset
         self.ff1.invokeFactory('FieldsetFolder', 'fsf1')
         self.failUnless( self.ff1.fgFieldsDisplayList() )
-        
+
 
     def testUtfInFieldTitle(self):
         """ test for issue # 102, 104: utf8, non-ascii in field title or description
@@ -514,7 +500,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         self.ff1.sf1.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
         # force a reindex
         self.ff1.sf1.reindexObject()
-        
+
 
     def testUtfInFormTitle(self):
         """ test for utf8, non-ascii in form title or description
@@ -536,7 +522,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
 
         # should be OK:
         self.failUnless( self.ff1.checkIdAvailable('somethingunique8723') )
-        
+
         # bad ids should fail
         self.failIf( self.ff1.checkIdAvailable('zip') )
         self.failIf( self.ff1.checkIdAvailable('location') )
@@ -551,28 +537,28 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         fsf1 = self.ff1.fsf1
         self.failUnless( fsf1.checkIdAvailable('somethingunique8723') )
         self.failIf( fsf1.checkIdAvailable('zip') )
-        
+
         # We should also not be able to create a fieldset folder field
         # with an id the same as one in the parent form folder
         self.failIf( fsf1.checkIdAvailable('sf1') )
         # nor in the fieldset folder itself
         fsf1.invokeFactory('FormStringField', 'sf2')
         self.failIf( fsf1.checkIdAvailable('sf2') )
-        
+
         # Let's try it in a sibling fieldset folder
         self.ff1.invokeFactory('FieldsetFolder', 'fsf2')
         fsf2 = self.ff1.fsf2
         self.failUnless( fsf2.checkIdAvailable('somethingunique8723') )
         self.failIf( fsf2.checkIdAvailable('sf1') )
         self.failIf( fsf2.checkIdAvailable('sf2') )
-        
-        
+
+
 class TestGPG(pfgtc.PloneFormGenTestCase):
     """ test ya_gpg.py """
-    
+
     def test_gpg(self):
         from Products.PloneFormGen.content.ya_gpg import gpg, GPGError
-        
+
         if gpg is None:
             print "\nSkipping GPG tests; gpg binary not found"
         else:

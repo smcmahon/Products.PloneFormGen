@@ -5,9 +5,17 @@ briefly shows in the popup.
 
 Plone 2.5 compatibility leftovers?
     - Do we still need to patch the ZPublisher? See method
-      patch_publisher_exception_handling in pathes.py
-    - We shouldn't need the variable PLONE_25_PUBLISHER_MONKEYPATCH
-      anymore
+      patch_publisher_exception_handling in patches.py
+      
+      After clearing out the last of the "not HAS_PLONE3" code,
+      it looks like it only runs in browser.txt, but is needed
+      there to keep the tests working.
+
+Problem: The quick editor as a toggle isn't really such a great idea.
+Consider the case where a form has been submitted with errors, then
+the user hits the quickedit icon and begins to make changes in
+the form composition. Yuck.
+
 
 For merge of manca's branch: these things still need checking/fixing
 

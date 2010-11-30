@@ -8,7 +8,7 @@ Change History
   [stevem]
 
 - Remove 2.5 support setup profile and templates. 2.5 hasn't been supported since
-  1.6.
+  1.6. Stripped all the "not HAS_PLONE30" code.
   [stevem]
 
 - Get validator.js from plone.app.jquerytools. This requires plone.app.jquerytools>=1.2dev.

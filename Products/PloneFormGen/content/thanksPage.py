@@ -25,7 +25,7 @@ from Products.PloneFormGen.config import PROJECTNAME
 from Products.PloneFormGen.interfaces import IPloneFormGenThanksPage
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE30, dollarReplace
+from Products.PloneFormGen import dollarReplace
 from Products.PloneFormGen import implementedOrProvidedBy
 
 import zope.i18n
@@ -132,32 +132,32 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
 
 
 finalizeATCTSchema(ThanksPageSchema, folderish=True, moveDiscussion=False)
-if HAS_PLONE30:
-    # As of P3.0, rich text fields on non-default schema
-    # still don't function.
-    # Reorganize schema as well as possible.
-    ThanksPageSchema['thanksPrologue'].schemata = 'default'
-    ThanksPageSchema['thanksEpilogue'].schemata = 'default'
-    ThanksPageSchema['noSubmitMessage'].schemata = 'default'
-    ThanksPageSchema['includeEmpties'].schemata = 'fields'
-    ThanksPageSchema['showAll'].schemata = 'fields'
-    ThanksPageSchema['showFields'].schemata = 'fields'
-    # simplify schema
-    for afield in ('subject', 
-                   'relatedItems', 
-                   'location', 
-                   'language', 
-                   'effectiveDate', 
-                   'expirationDate', 
-                   'creation_date', 
-                   'modification_date', 
-                   'creators', 
-                   'contributors', 
-                   'rights', 
-                   'allowDiscussion', 
-                   'excludeFromNav', ):
-        ThanksPageSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
-        ThanksPageSchema[afield].schemata = 'default'
+# As of P3.0, rich text fields on non-default schema
+# still don't function.
+# Reorganize schema as well as possible.
+ThanksPageSchema['thanksPrologue'].schemata = 'default'
+ThanksPageSchema['thanksEpilogue'].schemata = 'default'
+ThanksPageSchema['noSubmitMessage'].schemata = 'default'
+ThanksPageSchema['includeEmpties'].schemata = 'fields'
+ThanksPageSchema['showAll'].schemata = 'fields'
+ThanksPageSchema['showFields'].schemata = 'fields'
+# simplify schema
+for afield in ('subject', 
+               'relatedItems', 
+               'location', 
+               'language', 
+               'effectiveDate', 
+               'expirationDate', 
+               'creation_date', 
+               'modification_date', 
+               'creators', 
+               'contributors', 
+               'rights', 
+               'allowDiscussion', 
+               'excludeFromNav', ):
+    ThanksPageSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+    ThanksPageSchema[afield].schemata = 'default'
+
 
 class FormThanksPage(ATCTContent):
     """A thank-you page that can display form input"""

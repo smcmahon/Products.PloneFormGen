@@ -22,7 +22,6 @@ from Products.Archetypes.utils import contentDispositionHeader
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
 
-from Products.PloneFormGen import HAS_PLONE30
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import \
@@ -101,21 +100,14 @@ class FormSaveDataAdapter(FormActionAdapter):
     ))
 
     schema.moveField('execCondition', pos='bottom')
-    if not HAS_PLONE30:
-        finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
 
     meta_type      = 'FormSaveDataAdapter'
     portal_type    = 'FormSaveDataAdapter'
     archetype_name = 'Save Data Adapter'
 
-    if HAS_PLONE30:
-        immediate_view = 'fg_savedata_view_p3'
-        default_view   = 'fg_savedata_view_p3'
-        suppl_views    = ('fg_savedata_tabview_p3', 'fg_savedata_recview_p3',)
-    else:
-        immediate_view = 'fg_savedata_view'
-        default_view   = 'fg_savedata_view'
-        suppl_views    = ('fg_savedata_tabview', 'fg_savedata_recview',)
+    immediate_view = 'fg_savedata_view_p3'
+    default_view   = 'fg_savedata_view_p3'
+    suppl_views    = ('fg_savedata_tabview_p3', 'fg_savedata_recview_p3',)
 
     security       = ClassSecurityInfo()
 

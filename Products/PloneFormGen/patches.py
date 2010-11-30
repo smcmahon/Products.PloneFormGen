@@ -1,6 +1,4 @@
 import logging
-from Products.PloneFormGen import HAS_PLONE30
-from Products.PloneFormGen.config import PLONE_25_PUBLISHER_MONKEYPATCH
 
 def patch_portlet_error_handling():
     """
@@ -101,8 +99,4 @@ def patch_publisher_exception_handling():
     installExceptionHook()
 
 
-if HAS_PLONE30:
-    patch_portlet_error_handling()
-
-if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
-    patch_publisher_exception_handling()
+patch_portlet_error_handling()

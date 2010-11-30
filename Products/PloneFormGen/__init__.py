@@ -16,6 +16,19 @@ except ImportError:
     logger.error("PloneFormGen requires the ScriptableFields bundle. See PloneFormGen's README.txt.")
     raise
 
+# Check for Plone versions
+try:
+    from plone.app.upgrade import v40
+    HAS_PLONE40 = True
+except ImportError:
+    HAS_PLONE40 = False
+    try:
+        from Products.CMFPlone.migrations import v3_1
+    except ImportError:
+        logger.error("PloneFormGen requires Plone >= 3.1.")
+        raise
+
+
 from Products.Archetypes.public import process_types, listTypes
 from Products.CMFCore import utils
 from Products.CMFCore.DirectoryView import registerDirectory
@@ -24,7 +37,7 @@ from AccessControl import ModuleSecurityInfo
 from Products.PloneFormGen.config import PROJECTNAME, \
     ADD_CONTENT_PERMISSION, CSA_ADD_CONTENT_PERMISSION, \
     MA_ADD_CONTENT_PERMISSION, SDA_ADD_CONTENT_PERMISSION, \
-    SKINS_DIR, GLOBALS, PLONE_25_PUBLISHER_MONKEYPATCH
+    SKINS_DIR, GLOBALS
 
 registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 
@@ -88,25 +101,8 @@ except ImportError:
 else:
     PloneFormGenMessageFactory = MessageFactory('ploneformgen')
 
-# Check for Plone versions
-try:
-    from plone.app.upgrade import v40
-    HAS_PLONE30 = True
-    HAS_PLONE40 = True
-except ImportError:
-    HAS_PLONE40 = False
-    try:
-        from Products.CMFPlone.migrations import v3_0
-    except ImportError:
-        HAS_PLONE30 = False
-    else:
-        HAS_PLONE30 = True
 
-if not HAS_PLONE30 and PLONE_25_PUBLISHER_MONKEYPATCH:
-    from monkey import installExceptionHook
-    installExceptionHook()
-
-# BBB for Z2 vs Z3 interfaces checks
+# # BBB for Z2 vs Z3 interfaces checks
 def implementedOrProvidedBy(anInterface, anObject):
     try:
         return anInterface.providedBy(anObject)

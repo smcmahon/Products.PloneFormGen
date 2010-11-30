@@ -1,6 +1,5 @@
 from Acquisition import aq_inner
 from Products.Five import BrowserView
-from Products.PloneFormGen import HAS_PLONE30
 
 DEFAULT_SUBMISSION_MARKER = 'form.submitted'
 
@@ -88,13 +87,10 @@ class EmbeddedPFGView(BrowserView):
         # Delegate to CMFFormController page template so we can share logic with the standalone form
         try:
             context = aq_inner(self.context)
-            if HAS_PLONE30:
-                return context.fg_embedded_view_p3(
-                    enable_unload_protection=self.enable_unload_protection,
-                    enable_auto_focus=self.enable_auto_focus
-                    )
-            else:
-                return context.fg_embedded_view()
+            return context.fg_embedded_view_p3(
+                enable_unload_protection=self.enable_unload_protection,
+                enable_auto_focus=self.enable_auto_focus
+                )
         finally:
             # Clean up
             if fiddled_submission_marker is not None:
