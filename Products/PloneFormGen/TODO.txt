@@ -32,3 +32,6 @@ For merge of manca's branch: these things still need checking/fixing
     
 * d-n-d field adding is leaving the field at the end of the list.
   was this working before js cleanup?
+
+* when the user d-n-d a field to the left we get this error: 
+ "formElem.validator is not a function" toolbox.js(line 75)

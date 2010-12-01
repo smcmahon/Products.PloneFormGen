@@ -1061,6 +1061,20 @@ class FormFolder(ATFolder):
       self.manage_delObjects([item_id])
     
       return "<done />"
+
+    security.declareProtected(ModifyPortalContent, 'lastFieldIdFromForm')
+    def lastFieldIdFromForm(self, **kw):
+        """ Retrieve the last field id in the current form"""
+
+        lastField = ''
+        myFields = []        
+        for field in self.objectValues():
+            if shasattr(field, 'fgField') or shasattr(field, 'fieldsetFields'):
+                myFields.append(field)
+
+        if myFields:
+            lastField = myFields[-1].id
+        return lastField      
     
         
 registerATCT(FormFolder, PROJECTNAME)

@@ -121,9 +121,54 @@ pfgWidgets = {
                     // current position in the table
                     currpos = $(".item_" + i).parent().index();
 
-                    $("#pfg-qetable [name=form.button.save]").click(function(e) {
-                //      e.preventDefault();
-                        // on the fly addition of the field to the form - a lot of logic goes here!! TO DO
+                    $("#pfg-qetable [name=form.button.save]").live('click', function(e) {
+                        var button = $(this);
+                        var formParent = $(this).closest('form');
+                        var formAction = formParent.attr('action');
+                        var values = {};
+                        // json like structure, storing names and values of the form fields
+                        $.each($(formParent).serializeArray(), function(i, field) {
+                            values[field.name] = field.value;
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: formAction,
+                            data: values,  
+                            async: false,
+                            success: function() {
+                                //we have to calculate the position were the field
+                                //was dropped 
+                                var itemPos = pfgWidgets.getPos($('.new-widget'));
+                                var formFields = $('#pfg-qetable .field.qechild, #pfg-qetable .PFGFieldsetWidget.qechild');
+                                if (formFields.length != itemPos) {
+                                    var targetElement = formFields[itemPos];
+                                    var targetId;
+                                    if ($(targetElement).hasClass('PFGFieldsetWidget') === true) {
+                                        targetId = $(targetElement).attr('id').substr('pfg-fieldsetname-'.length);
+                                    } else {
+                                        targetId = $(targetElement).attr('id').substr('archetypes-fieldname-'.length);
+                                    }
+                                    var itemId;
+                                    $.ajax({
+                                        url: 'lastFieldIdFromForm',
+                                        async: false,
+                                        success: function(data) {
+                                            itemId = data;
+                                            pfgWidgets.updatePositionOnServer(itemId, targetId);
+                                        }
+                                    });
+                                }
+                                
+                                var widgetParent = button.parents("div.qefield");
+                                widgetParent.find("div.widget-inside").slideUp('fast', function() {
+                                    //here we have to recreate the field =)
+                                    //temporaly we are going to refresh the page
+                                    location.reload();
+                                });                                
+                            }
+                            });  
+                        e.preventDefault();
+                        return false;
                     });
 
                     $("#pfg-qetable [name=form.button.cancel]").live('click', function(e) {
