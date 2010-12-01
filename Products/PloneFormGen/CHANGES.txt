@@ -4,6 +4,11 @@ Change History
 1.6.1
 -----
 
+- Put the css, especially extra css for specific fields, into the
+  style_slot.  (Backported from trunk.)
+  Fixes http://plone.org/products/ploneformgen/issues/299
+  [maurits]
+
 - Make the setPrefix and setAction methods of the embedded view callable
   from restricted Python (so they can be used in templates).
   [davisagli]
