@@ -4,6 +4,11 @@ Change History
 1.7 (unreleased)
 -------------------
 
+- Put the css, especially extra css for specific fields, into the
+  style_slot.
+  Fixes http://plone.org/products/ploneformgen/issues/299
+  [maurits]
+
 - Added simple translation layer for messages embedded in JS.
   [stevem]
 
