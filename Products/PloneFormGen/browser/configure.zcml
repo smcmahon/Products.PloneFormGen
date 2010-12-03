@@ -54,5 +54,12 @@
       permission="zope.Public"
       />
 
+  <browser:page
+    for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
+    class=".quickedit.QuickEditView"
+    name="quickedit"
+    template="quickedit.pt"
+    permission="cmf.ModifyPortalContent"
+    />
     
 </configure>
