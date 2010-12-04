@@ -57,8 +57,7 @@
   <browser:page
     for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
     class=".quickedit.QuickEditView"
-    name="quickedit"
-    template="quickedit.pt"
+    name="quickeditv"
     permission="cmf.ModifyPortalContent"
     />
     

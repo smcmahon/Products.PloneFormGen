@@ -16,7 +16,7 @@ pfgWidgets = {
         table = item;
         i = 0;
 
-        $("div.qefield").each(function() {
+        $(".qefield").each(function() {
             var jqt = $(this);
             jqt.height(jqt.height()); // workaround for children's height not being able to set using %s
             jqt.width(jqt.width());  // the same for width, for the new ui-sortable-helper

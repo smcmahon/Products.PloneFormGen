@@ -1,3 +1,4 @@
+from Acquisition import aq_inner
 from zope.component import getMultiAdapter
 from Products.Five import BrowserView
 
@@ -8,7 +9,7 @@ class QuickEditView(BrowserView):
     """
 
     def __init__(self, context, request):
-        self.context = context
+        self.context = aq_inner(context)
         self.request = request
         request.controller_state = {'kwargs':{}}
         folder_factories = getMultiAdapter((self.context, self.request),
@@ -48,8 +49,3 @@ class QuickEditView(BrowserView):
                 result.append(item)
 
         return result
-
-        
-    def hello(self):
-        """ test code """
-        return "Hello, qedit"

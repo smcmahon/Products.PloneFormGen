@@ -16,7 +16,8 @@
                    footer_macro edit_macros/footer | footer_macro | base_macros/footer;
                    css python:here.getUniqueWidgetAttr(fields, 'helper_css');
                    js python:here.getUniqueWidgetAttr(fields, 'helper_js');
-                   portal portal | context/@@plone_portal_state/portal">
+                   portal portal | context/@@plone_portal_state/portal;
+                   view context/@@quickeditv">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -81,7 +82,6 @@
 
     <style type="text/css"
            media="all">
-       #pfgnedit,#pfgqedit{float:right;cursor:pointer;}
        #pfgActionEdit, #pfgThanksEdit, #pfg-qetable{clear:right;width:75%;}
        .editHook a {border-bottom:none !important}
        td.draggable.draggingHook {cursor:ns-resize;vertical-align:middle}
@@ -106,11 +106,6 @@
         
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         
-        <tal:block tal:condition="canModify">
-            <div id="pfgqedit" style="display:none" tal:content="structure here/maintenance_icon.gif" />
-            <div id="pfgnedit" style="display:none" tal:content="structure here/form_icon.gif" />
-        </tal:block>
-
         <h1 tal:content="context/Title" class="documentFirstHeading">
           Title or id
         </h1>
@@ -174,8 +169,7 @@
             <tal:block tal:condition="canModify">
             <div id="pfgWidgetWrapper"
                    class="widgetManager"
-                   summary="Widget Manager"
-                   style="display:none">
+                   summary="Widget Manager">
 
                 <div class="header">
                     <h3>Toolbox
@@ -303,6 +297,49 @@
             </tbody>
         </table>
         <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
+
+<script>
+    // XXX: this is just a place to rought out the quickedit code for
+    // the separate template; it'll become part of a .js resource.
+    
+    // disable and dim input elements
+    var blurrable = jQuery("div.pfg-form .blurrable, div.pfg-form input");
+    blurrable.each(
+      function() {
+        if (typeof this.disabled !== "undefined") {
+          this.disabled = true;
+          }
+        }
+      );
+    blurrable.css('opacity', 0.5);
+
+    jQuery(function($){
+        if ($.fn.prepOverlay) {
+            $('.editHook a[href$=edit]').prepOverlay(
+                {
+                    subtype: 'ajax',
+                    filter: "#content",
+                    formselector: 'form[id$=base-edit]',
+                    noform: function(){location.reload();},
+                    closeselector:'[name=form.button.cancel]'
+                }
+            );
+            $('.editHook a[href$=delete_confirmation]').prepOverlay(
+                {
+                    subtype: 'ajax',
+                    filter: "#content",
+                    formselector: 'form:has(input[value=Delete])',
+                    noform: 'reload',
+                    closeselector:'[name=form.button.Cancel]'
+                }
+            );
+        }
+    });
+    
+    
+    
+    pfgWidgets.init();
+</script>
 
       </metal:main>
     </metal:fill>

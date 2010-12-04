@@ -73,4 +73,10 @@
   <permission value="Modify portal content"/>
   <permission value="Review portal content"/>
  </action>
+ <action title="QuickEdit" action_id="quickedit" category="object"
+    condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user"
+    icon_expr="" link_target="" url_expr="string:${object_url}/quickedit"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
 </object>
