@@ -329,7 +329,16 @@
                     subtype: 'ajax',
                     filter: "#content",
                     formselector: 'form:has(input[value=Delete])',
-                    noform: 'reload',
+                    noform: function(athis) {
+                        var match;
+                        
+                        // remove the deleted field's form node
+                        match = athis.url.match(/.+\/(.+?)\/delete_confirmation/);
+                        if (match) {
+                            $('#archetypes-fieldname-' + match[1]).parent().remove();
+                        }
+                        return 'close';
+                    },
                     closeselector:'[name=form.button.Cancel]'
                 }
             );

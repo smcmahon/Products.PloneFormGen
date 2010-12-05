@@ -411,7 +411,7 @@ pfgWidgets = {
         node.setAttribute("type", "text");
 
         // then we attach a new event to label fields
-        $("#pfg-qetable div.qefield label.formQuestion").live('dblclick', function(e) {
+        $("#pfg-qetable .qefield label.formQuestion").live('dblclick', function(e) {
             var content, tmpfor, jqt;
             
             jqt = $(this);
