@@ -15,6 +15,8 @@ Problem: The quick editor as a toggle isn't really such a great idea.
 Consider the case where a form has been submitted with errors, then
 the user hits the quickedit icon and begins to make changes in
 the form composition. Yuck.
+Steve is working on a separate quickedit view that should resolve
+these problems get rid of the #qedit state mechanism.
 
 
 For merge of manca's branch: these things still need checking/fixing
