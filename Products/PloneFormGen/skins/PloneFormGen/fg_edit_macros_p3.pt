@@ -78,14 +78,14 @@
       <form name="edit_form"
             method="post"
             enctype="multipart/form-data"
-            class="enableUnloadProtection enableAutoFocus atBaseEditForm"
+            class="enableUnloadProtection enableAutoFocus atBaseEditForm fgBaseEditForm"
             action=""
             id=""
             tal:define="enable_unload_protection enable_unload_protection|python:True;
                         enable_auto_focus enable_auto_focus|python:True;"
             tal:attributes="action here/fgGetFormSubmitAction;
                             id string:fg-base-edit;
-                            class python:test(enable_unload_protection, 'enableUnloadProtection', '') + test(enable_auto_focus, ' enableAutoFocus', '') + test(path('allow_tabbing|nothing'), 'enableFormTabbing', '');">
+                            class python:'fgBaseEditForm '+ test(enable_unload_protection, 'enableUnloadProtection', '') + test(enable_auto_focus, ' enableAutoFocus', '') + test(path('allow_tabbing|nothing'), 'enableFormTabbing', '');">
 
           <metal:block define-slot="extra_top" />
 

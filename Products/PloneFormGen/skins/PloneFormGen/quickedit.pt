@@ -319,8 +319,8 @@
                 {
                     subtype: 'ajax',
                     filter: "#content",
-                    formselector: 'form[id$=base-edit]',
-                    noform: function(){location.reload();},
+                    formselector: 'form[name=edit_form]:not(.fgBaseEditForm)',
+                    noform: 'reload',
                     closeselector:'[name=form.button.cancel]'
                 }
             );

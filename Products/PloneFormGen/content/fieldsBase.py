@@ -907,16 +907,16 @@ class BaseFormField(ATCTContent):
             self.fgField.__name__ = id
 
 
-    def processForm(self, data=1, metadata=0, REQUEST=None, values=None):
-        # override base so that we can selectively redirect back to the form
-        # rather than to the field view.
-
-        # base processing
-        ATCTContent.processForm(self, data, metadata, REQUEST, values)
-        
-        # if the referer is the item itself, let nature take its course;
-        # if not, redirect to form after a commit.
-        referer = self.REQUEST.form.get('last_referer', None)
-        if referer is not None and referer.split('/')[-1] != self.getId():
-            transaction.commit()
-            raise zExceptions.Redirect, "%s#qedit" % self.formFolderObject().absolute_url()
+    # def processForm(self, data=1, metadata=0, REQUEST=None, values=None):
+    #     # override base so that we can selectively redirect back to the form
+    #     # rather than to the field view.
+    # 
+    #     # base processing
+    #     ATCTContent.processForm(self, data, metadata, REQUEST, values)
+    #     
+    #     # if the referer is the item itself, let nature take its course;
+    #     # if not, redirect to form after a commit.
+    #     referer = self.REQUEST.form.get('last_referer', None)
+    #     if referer is not None and referer.split('/')[-1] != self.getId():
+    #         transaction.commit()
+    #         raise zExceptions.Redirect, "%s#qedit" % self.formFolderObject().absolute_url()
