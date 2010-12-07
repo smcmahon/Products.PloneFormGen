@@ -139,7 +139,7 @@ pfgWidgets = {
                                 //we have to calculate the position were the field
                                 //was dropped 
                                 var itemPos = pfgWidgets.getPos($('.new-widget'));
-                                var formFields = $('#pfg-qetable .field.qechild, #pfg-qetable .PFGFieldsetWidget.qechild');
+                                var formFields = $('#pfg-qetable .qefield:not(.new-widget) .field, #pfg-qetable .PFGFieldsetWidget');
                                 if (formFields.length != itemPos) {
                                     var targetElement = formFields[itemPos];
                                     var targetId;
