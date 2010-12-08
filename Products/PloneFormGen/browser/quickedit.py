@@ -1,6 +1,9 @@
 from Acquisition import aq_inner
 from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 from Products.Five import BrowserView
+
+from plone.app.layout.globals.interfaces import IViewView
 
 
 class QuickEditView(BrowserView):
@@ -9,9 +12,16 @@ class QuickEditView(BrowserView):
     """
 
     def __init__(self, context, request):
-        self.context = aq_inner(context)
+        # mark this view with IViewView so that we get
+        # content actions
+        alsoProvides(self, IViewView)
+
+        self.context = context
         self.request = request
+
+        # some of the Archetypes macros want controller_state
         request.controller_state = {'kwargs':{}}
+
         folder_factories = getMultiAdapter((self.context, self.request),
                                            name='folder_factories')
         self.addable_types = folder_factories.addable_types()
