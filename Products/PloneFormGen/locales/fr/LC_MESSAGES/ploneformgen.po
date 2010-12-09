@@ -1033,7 +1033,7 @@ msgstr "Destinataires en copie"
 #. Default: "Recipient's e-mail address"
 #: ./content/formMailerAdapter.py:86
 msgid "label_formmailer_recipient_email"
-msgstr "Adresse électroinque du destinataire"
+msgstr "Adresse électronique du destinataire"
 
 #. Mailer Adapter
 #. Default: "Recipient's full name"
