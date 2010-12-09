@@ -11,13 +11,8 @@ Plone 2.5 compatibility leftovers?
       it looks like it only runs in browser.txt, but is needed
       there to keep the tests working.
 
-Problem: The quick editor as a toggle isn't really such a great idea.
-Consider the case where a form has been submitted with errors, then
-the user hits the quickedit icon and begins to make changes in
-the form composition. Yuck.
-Steve is working on a separate quickedit view that should resolve
-these problems get rid of the #qedit state mechanism.
-
+Cleanup after moving quickedit into standalone view: clean out the
+js in fg_base_view_p3.
 
 For merge of manca's branch: these things still need checking/fixing
 

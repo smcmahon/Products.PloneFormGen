@@ -3,6 +3,8 @@ from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from Products.Five import BrowserView
 
+from plone.memoize.view import memoize
+
 from plone.app.layout.globals.interfaces import IViewView
 
 
@@ -18,13 +20,15 @@ class QuickEditView(BrowserView):
 
         self.context = context
         self.request = request
-
+        
         # some of the Archetypes macros want controller_state
         request.controller_state = {'kwargs':{}}
-
+    
+    @memoize
+    def _addableTypes(self):
         folder_factories = getMultiAdapter((self.context, self.request),
                                            name='folder_factories')
-        self.addable_types = folder_factories.addable_types()
+        return folder_factories.addable_types()
 
     def addablePrioritizedFields(self):
         """Return a prioritized list of the addable fields in context"""
@@ -38,9 +42,10 @@ class QuickEditView(BrowserView):
             'FormIntegerField': 1,
         }
 
+
         displayPriorityFields = []
         displayTheRest = []
-        for item in self.addable_types:
+        for item in self._addableTypes():
             if item['id'] in priorityFields:
                 displayPriorityFields.append(item)
 
@@ -53,7 +58,7 @@ class QuickEditView(BrowserView):
     def addableAdapters(self):
         """Return a list of addable adapters in context"""
         result = []
-        for item in self.addable_types:
+        for item in self._addableTypes():
             # XXX: this looks too weak a check to discover adapters
             if item['title'].find("Adapter") != -1:
                 result.append(item)

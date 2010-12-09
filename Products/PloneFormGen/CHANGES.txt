@@ -2,7 +2,11 @@ Change History
 ==============
 
 1.7 (unreleased)
--------------------
+----------------
+
+- Move quickedit functionality into a separate view rather than a
+  JavaScript manipulation of the standard view.
+  [stevem]
 
 - Put the css, especially extra css for specific fields, into the
   style_slot.
