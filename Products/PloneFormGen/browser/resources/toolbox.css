@@ -1,7 +1,7 @@
 /** Widgets manager styles **/
 
 .pfg-form {
-    width: 500px;
+    width: 75%;
     float: left;
 }
 
@@ -225,4 +225,19 @@ div.theader div {
 div.deleting {
     opacity: 0.6;
     z-index: 99;
+}
+
+#pfgActionEdit,
+#pfgThanksEdit {
+    width:75%;
+}
+.editHook a {
+    border-bottom:none !important;
+}
+td.draggable.draggingHook {
+    cursor:ns-resize;
+    vertical-align:middle;
+}
+.editHook {
+    text-align:center !important;
 }
