@@ -63,7 +63,6 @@ pfgQEdit.qedit = function (e) {
             closeselector: '[name=form.button.Cancel]'
         });
     }
-    location.hash = "qedit";
     pfgWidgets.init();
 };
 
