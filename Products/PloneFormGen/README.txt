@@ -14,6 +14,9 @@ McMahon: steve@dcn.org.
 1.7dev needs plone.app.jquerytools >= 1.2dev. Until that's on PyPI, it needs to be
 checked out into src.
 
+If upgrading from an earlier version, uninstall and reinstall PFG to add new
+functionality.
+
 Overview
 ========
 

@@ -3,16 +3,7 @@
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
-try:
-    # 3.0+
-    from zope.contenttype import guess_content_type
-except ImportError:
-    try:
-        # 2.5
-        from zope.app.content_types import guess_content_type
-    except ImportError:
-        # 2.1
-        from OFS.content_types import guess_content_type
+from zope.contenttype import guess_content_type
 
 from ZPublisher.HTTPRequest import FileUpload
 

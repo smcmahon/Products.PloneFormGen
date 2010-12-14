@@ -69,10 +69,7 @@
   <body>
 
     <metal:fill fill-slot="main">
-      <metal:main define-macro="main"
-                  tal:define="view context/@@pfg-base;
-                              isLocked python:False;
-                              canModify python:checkPermission('Modify portal content', here)">
+      <metal:main define-macro="main">
 
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />

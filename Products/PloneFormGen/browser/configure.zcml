@@ -34,14 +34,6 @@
       allowed_attributes="has_recaptcha"
       />
 
-  <browser:page
-      name="pfg-base"
-      for="*"
-      class=".base.BasePFGView"
-      permission="cmf.ModifyPortalContent"
-      allowed_attributes="displayFields"
-      />
-
   <browser:resourceDirectory
       name="Products.PloneFormGen.resources"
       directory="resources"
