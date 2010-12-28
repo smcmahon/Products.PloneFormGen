@@ -11,9 +11,6 @@ McMahon: steve@dcn.org.
 1.7 Notes
 =========
 
-1.7dev needs plone.app.jquerytools >= 1.2dev. Until that's on PyPI, it needs to be
-checked out into src.
-
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
 
@@ -159,6 +156,10 @@ Thomas Buchberger provided the initial CAPTCHA field implementation.
 
 David Glick effectively has been co-maintainer for versions since
 1.2.5. Thanks, David!
+
+Nenad Mancevic (Manca) added the widget toolbox and dramatically enhanced
+the quick edit mode for his Google Summer of Code 2010 project. Thanks to
+Manca and Google!
 
 See the CHANGES.txt file for the very long list of people who helped
 with particular features or bugs.
