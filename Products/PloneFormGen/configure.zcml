@@ -88,20 +88,17 @@
     />
 
   <!-- Mark field objects as IDAVAware for exportimport -->
-  <five:implements
-     class=".content.fieldsBase.BaseFormField"
-     interface="Products.GenericSetup.interfaces.IDAVAware"
-     />
+  <class class=".content.fieldsBase.BaseFormField">
+     <implements interface="Products.GenericSetup.interfaces.IDAVAware" />
+  </class>
      
-  <five:implements
-    class=".content.actionAdapter.FormActionAdapter"
-    interface="Products.GenericSetup.interfaces.IDAVAware"
-    />
+  <class class=".content.actionAdapter.FormActionAdapter">
+    <implements interface="Products.GenericSetup.interfaces.IDAVAware" />
+  </class>
 
-  <five:implements
-    class=".content.thanksPage.FormThanksPage"
-    interface="Products.GenericSetup.interfaces.IDAVAware"
-    />
+  <class class=".content.thanksPage.FormThanksPage">
+    <implements interface="Products.GenericSetup.interfaces.IDAVAware" />
+  </class>
 
   <gs:registerProfile
       name="default"
