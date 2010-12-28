@@ -40,7 +40,7 @@ pfgQEdit.qedit = function (e) {
         jQuery('.editHook a[href$=edit]').prepOverlay({
             subtype: 'ajax',
             filter: "#content",
-            //      formselector: 'form[id$=base-edit]',
+            formselector: 'form[id$=base-edit]',
             noform: function () {
                 location.reload();
             },
