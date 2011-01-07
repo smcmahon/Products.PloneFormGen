@@ -32,6 +32,7 @@ setup(name='Products.PloneFormGen',
           'Products.TemplateFields>=1.2.4',
           'Products.PythonField>=1.1.3',
           'plone.app.jquerytools>=1.2dev',
+          'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
