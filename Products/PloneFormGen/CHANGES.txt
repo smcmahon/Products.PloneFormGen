@@ -4,6 +4,11 @@ Change History
 1.7dev Unreleased
 -----------------
 
+- Use collective.js.jqueryui instead of an embeded version custom of jqueryui.
+  make it easy to integrate with other add-ons.
+  Switch profile version from the egg version to an integer to increase with
+  each changes done on the profile.
+  [toutpt]
 
 1.7a1 2010-12-28
 ----------------

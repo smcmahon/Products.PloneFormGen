@@ -21,4 +21,13 @@
         handler="Products.PloneFormGen.upgrades.null_upgrade_step"
         />
 
+    <genericsetup:upgradeStep
+        source="1.7.a1"
+        destination="170"
+        title="Install jqueryui"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler=".upgrades.upgrade_to_170"
+        />
+
 </configure>
