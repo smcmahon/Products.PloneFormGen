@@ -1,0 +1,81 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+
+<div metal:fill-slot="main" tal:define="view context/@@plone_context_state">
+    <tal:main-macro metal:define-macro="main"
+           tal:define="content_type here/get_content_type|here/Format;
+                       canEdit python:checkPermission('Modify portal content', here);
+                      ">
+        <tal:block condition="exists: request/clearSavedFormInput">
+          <span tal:define="dummy here/clearSavedFormInput" />
+        </tal:block>
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+        
+        <h1 tal:content="view/object_title" class="documentFirstHeading">
+            Title or id
+        </h1>
+        
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+        
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
+        
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+        
+        <div tal:condition="here/itemsSaved">
+
+          <p>
+              <a href=""
+                 tal:attributes="href string:${view/object_url}/download">
+                  <img src="" tal:define="icon python:here.getIcon(1)" tal:attributes="src string:${portal_url}/${icon}" alt="" />
+                  <tal:block i18n:translate="label_click_to_get_input" i18n:domain="ploneformgen">
+                  Click here to get the saved input
+                  </tal:block>
+              </a>
+          </p>
+
+          <small class="discreet">
+            <span tal:condition="exists: here/itemsSaved" i18n:translate="items_saved" i18n:domain="ploneformgen">
+                <span tal:content="here/itemsSaved" i18n:name="items">
+                257
+                </span>
+            	inputs saved
+            </span>
+
+              -
+
+            <span i18n:translate="label_file_type">
+            File type
+            </span>
+
+            <span tal:content="here/formatMIME">text/tab-separated-values</span>
+          </small>
+
+          <form action="#"
+           method="post"
+           tal:condition="canEdit"
+           tal:attributes="action here/absolute_url"
+           style="padding-top:2em">
+            <input type="submit" name="clearSavedFormInput" value="Clear Saved Input"  class="standalone"
+              i18n:attributes="value clear-save-input" i18n:domain="ploneformgen"
+              />
+          </form>
+
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+    </tal:main-macro>
+</div>
+
+</body>
+
+</html>
