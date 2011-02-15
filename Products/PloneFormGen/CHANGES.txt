@@ -10,6 +10,9 @@ Change History
   each changes done on the profile.
   [toutpt]
 
+- Add Norwegian translations
+  [mj]
+
 1.7a1 2010-12-28
 ----------------
 
