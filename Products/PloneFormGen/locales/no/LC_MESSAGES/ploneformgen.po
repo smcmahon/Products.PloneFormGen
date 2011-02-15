@@ -1,0 +1,1378 @@
+# Translation of ploneformgen.pot to Norwegian.
+# Tormod Mansåker <tormod@jarn.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: PloneFormGen 1.6\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2011-02-03 08:56+0100\n"
+"Last-Translator: Tormod Mansaker <tormod@jarn.com>\n"
+"Language-Team: Jarn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: no\n"
+"Language-Name: Norwegian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: ploneformgen\n"
+"X-Poedit-Language: Norwegian Bokmal\n"
+"X-Poedit-Country: NORWAY\n"
+
+#: ./profiles/default/types/FormLikertField.xml
+msgid "A Likert form entry"
+msgstr "En Likert dataform registrering"
+
+#: ./profiles/default/types/FormCaptchaField.xml
+msgid "A captcha field to prevent spam."
+msgstr "Capthca felt for å hindre spam"
+
+#: ./profiles/default/types/FormFolder.xml
+msgid "A folder which can contain form fields."
+msgstr "En mappe som kan inneholde skjema"
+
+#: ./profiles/default/types/FieldsetFolder.xml
+msgid "A folder which groups form fields as a fieldset."
+msgstr "En mappe som samler skjema felt som et skjema"
+
+#: ./profiles/default/types/FormMailerAdapter.xml
+msgid "A form action adapter that will e-mail form input."
+msgstr "En hendelse generator som vil send e-mail"
+
+#: ./profiles/default/types/FormLinesField.xml
+msgid "A line entry field. This appears as a textarea without wordwrap."
+msgstr "Tekstlinje registreringsfelt. Vil vises som tekstområde uten ord justering"
+
+#: ./profiles/default/types/FormStringField.xml
+msgid "A string entry field"
+msgstr "Tekstlinje registreringsfelt"
+
+#: ./profiles/default/types/FormThanksPage.xml
+msgid "A thank-you page that can display form input"
+msgstr "En tusen-takk side som kan vise skjema data"
+
+#: ./profiles/default/types/FormBooleanField.xml
+msgid "Boolean (checkbox) field"
+msgstr "Boolean (sjekkboks) felt"
+
+#: ./profiles/default/types/FormCaptchaField.xml
+msgid "Captcha Field"
+msgstr "Captcha felt"
+
+#: ./profiles/default/types/FormBooleanField.xml
+msgid "Checkbox Field"
+msgstr "Sjekkboks felt"
+
+#: ./profiles/default/types/FormCustomScriptAdapter.xml
+msgid "Custom Script Adapter"
+msgstr "Custom Script generator"
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Entry Field"
+msgstr "Dato/Tid registrering"
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Field"
+msgstr "Dato/Tid felt"
+
+#: ./profiles/default/types/FormFixedPointField.xml
+msgid "Decimal Number Field"
+msgstr "Desimal felt"
+
+#: ./profiles/default/types/FormCustomScriptAdapter.xml
+msgid "Executes a Python script for form data"
+msgstr "Kjører et Python script for skjema"
+
+#: ./profiles/default/types/FieldsetFolder.xml
+msgid "Fieldset Folder"
+msgstr "Skjemasamling"
+
+#: ./profiles/default/types/FormFileField.xml
+msgid "File (upload) field"
+msgstr "Last opp fil felt"
+
+#: ./profiles/default/types/FormFileField.xml
+msgid "File Field"
+msgstr "Fil felt"
+
+#: ./profiles/default/types/FormFixedPointField.xml
+msgid "Fixed-Point (float) entry field"
+msgstr ""
+
+#: ./profiles/default/types/FormFolder.xml
+msgid "Form Folder"
+msgstr "Skjema"
+
+#: ./browser/exportimport.py:57
+msgid "Form imported."
+msgstr "Skjema importert."
+
+#: ./profiles/default/types/FormIntegerField.xml
+msgid "Integer entry field"
+msgstr "Interger "
+
+#: ./profiles/default/types/FormLabelField.xml
+msgid "Label Field"
+msgstr "Tittel felt"
+
+#: ./profiles/default/types/FormLabelField.xml
+msgid "Label-Only field (no input component)"
+msgstr "Tittel felt (ingen data registrering)"
+
+#: ./profiles/default/types/FormLinesField.xml
+msgid "Lines Field"
+msgstr "Linje felt"
+
+#: ./profiles/default/types/FormMailerAdapter.xml
+msgid "Mailer Adapter"
+msgstr "Send mail ...."
+
+#: ./profiles/default/types/FormMultiSelectionField.xml
+msgid "Multi-Select Field"
+msgstr "Fler-valg felt"
+
+#: ./profiles/default/types/FormMultiSelectionField.xml
+msgid "Multiple selection field (select with multiple or check boxes)"
+msgstr "Multiple valg felt (velg med multiple eller sjekk bokser)"
+
+#: ./profiles/default/types/FormPasswordField.xml
+msgid "Password Field"
+msgstr "Passord felt"
+
+#: ./profiles/default/types/FormPasswordField.xml
+msgid "Password entry field (input is masked)"
+msgstr "Passord regstrering (maskert)"
+
+#: ./skins/PloneFormGen/fgvalidate_base.vpy:37
+msgid "Please correct the indicated errors."
+msgstr "Vennligst korriger markerte feil."
+
+#: ./profiles/default/types/FormLikertField.xml
+msgid "Rating-Scale Field"
+msgstr "Vurdering-Skala felt"
+
+#: ./interfaces/exportimport.py:23
+msgid "Remove Existing Form Items?"
+msgstr "Fjerne eksisterende skjema element?"
+
+#: ./profiles/default/types/FormRichLabelField.xml
+msgid "Rich Label Field"
+msgstr "Riktekst Tittel Felt"
+
+#: ./profiles/default/types/FormRichTextField.xml
+msgid "Rich-text (visual editor) field"
+msgstr "Rik-tekst (visual editor) felt"
+
+#: ./profiles/default/types/FormRichLabelField.xml
+msgid "Rich-text label field"
+msgstr "Rik-tekst tittel felt"
+
+#: ./profiles/default/types/FormRichTextField.xml
+msgid "RichText Field"
+msgstr "RikTekst felt"
+
+#: ./profiles/default/types/FormSaveDataAdapter.xml
+msgid "Save Data Adapter"
+msgstr "Lagre data funksjon"
+
+#: ./profiles/default/types/FormSelectionField.xml
+msgid "Selection Field"
+msgstr "Velg verdi felt"
+
+#: ./profiles/default/types/FormSelectionField.xml
+msgid "Selection Field (radio buttons or select)"
+msgstr "Velg verdi felt (radio knapper eller valg)"
+
+#: ./profiles/default/types/FormStringField.xml
+msgid "String Field"
+msgstr "Tekstlinje felt"
+
+#: ./profiles/default/types/FormTextField.xml
+msgid "Text (textarea) field"
+msgstr "Tekst (område) felt"
+
+#: ./profiles/default/types/FormTextField.xml
+msgid "Text Field"
+msgstr "Tekst felt"
+
+#: ./profiles/default/types/FormThanksPage.xml
+msgid "Thanks Page"
+msgstr "Takk side"
+
+#: ./interfaces/exportimport.py:19
+msgid "Upload"
+msgstr "Last opp"
+
+#: ./profiles/default/types/FormIntegerField.xml
+msgid "Whole Number Field"
+msgstr "Hel tall felt"
+
+#. Default: "Clear Saved Input"
+#: ./skins/PloneFormGen/fg_savedata_view.pt:69
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:67
+msgid "clear-save-input"
+msgstr ""
+
+#. Default: "Set defaults for addressing fields for new mail-action adapters. Please note that your input here is not verified. So, make sure you use valid addresses."
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:63
+msgid "description_ploneformgen_addressing"
+msgstr ""
+
+#. Default: "You may set up a default body and MIME type for the mail-action adapter here. These values will be used whenever a new mail-action adapter is created."
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:63
+msgid "description_ploneformgen_mtemplate"
+msgstr ""
+
+#. Default: "You may hide or expose PloneFormGen functionality from classes of users by adjusting the permissions allowed to particular portal security roles. The form below adjusts role/permission settings at the site level. You may fine tune permissions on a folder-by-folder basis via the security tab in the ZMI."
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:65
+msgid "description_ploneformgen_permissions"
+msgstr ""
+
+#. Default: "Set defaults for data adapters."
+#: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:63
+msgid "description_ploneformgen_savedata"
+msgstr "Sett standardverdier for data adapter"
+
+#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
+#: ./content/fieldsBase.py:259
+msgid "description_server_side_text"
+msgstr ""
+
+#. Default: "PloneFormGen Mail Addressing Defaults"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:53
+msgid "heading_ploneformgen_addressing"
+msgstr ""
+
+#. Default: "PloneFormGen Mail Template"
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:53
+msgid "heading_ploneformgen_mtemplate"
+msgstr ""
+
+#. Default: "PloneFormGen Permissions"
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:55
+msgid "heading_ploneformgen_permissions"
+msgstr "PloneFormGen tilganger"
+
+#. Default: "PloneFormGen Saved Data Adapter Defaults"
+#: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:53
+msgid "heading_ploneformgen_savedata"
+msgstr "PloneFormGen lagre data adapter standardverdier"
+
+#. Default: "\n                A TALES expression that will be called after the form is\n                successfully validated, but before calling an action adapter\n                (if any) or displaying a thanks page.\n                Form input will be in the request.form dictionary.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                to clean up form input or to script an alternative action.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
+#: ./content/form.py:246
+msgid "help_AfterValidationOverride_text"
+msgstr ""
+
+#. Default: "\n                A TALES expression that will be called when the form is\n                displayed.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                that sets defaults for multiple fields by pre-populating\n                request.form.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression\n                will cause an error on form display.\n            "
+#: ./content/form.py:222
+msgid "help_OnDisplayOverride_text"
+msgstr ""
+
+#. Default: "\n                To make your form do something useful when submitted:\n                add one or more form action adapters to the form folder,\n                configure them, then return to this\n                form and select the active ones.\n                "
+#: ./content/form.py:96
+msgid "help_actionadapter_text"
+msgstr ""
+
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/formMailerAdapter.py:441
+msgid "help_bcc_override_text"
+msgstr ""
+
+#. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
+#: ./content/fields.py:359
+msgid "help_boolrequired_text"
+msgstr ""
+
+#. Default: "\n                    Check this to employ Cross-Site Request Forgery protection.\n                    Note that only HTTP Post actions will be allowed.\n                "
+#: ./content/form.py:294
+msgid "help_csrf"
+msgstr ""
+
+#. Default: "Choose a default delimiter to be used when downloading content from a save-data adapter."
+#: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:73
+msgid "help_csv_delimiter"
+msgstr "Velg standard kolonneskiller for bruk ved nedlasting av data fra en lagre-data-adapter."
+
+#. Default: "The text will be displayed after the form fields."
+#: ./content/form.py:166
+msgid "help_epilogue_text"
+msgstr "Teksten vil bli vist etter skjema feltene"
+
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/actionAdapter.py:41
+msgid "help_execcondition_text"
+msgstr ""
+
+#. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
+#: ./content/fields.py:354
+msgid "help_fgbooleanfalsestring_text"
+msgstr ""
+
+#. Default: "String to use in thanks page and mail when the field's checkbox is checked."
+#: ./content/fields.py:345
+msgid "help_fgbooleantruestring_text"
+msgstr ""
+
+#. Default: "Choose a validator to require a particular response."
+#: ./content/fields.py:336
+msgid "help_fgbooleanvalidator_text"
+msgstr "Velg en validator for å angi registreringsvalg"
+
+#. Default: "\n                The value the field should contain when the form is first displayed.\n                Note that this may be overridden dynamically.\n            "
+#: ./content/fields.py:329
+#: ./content/fieldsBase.py:278
+msgid "help_fgdefault_text"
+msgstr ""
+
+#. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
+#: ./content/fields.py:466
+msgid "help_fgendingyear_text"
+msgstr ""
+"Siste år å vise i nedtrekksmenyen.\n"
+"                 La stå tom dersom du istedenfor ønsker å angi antall fremtidige år som skal vises."
+
+#: ./content/fields.py:707
+msgid "help_fgformat_text"
+msgstr ""
+
+#. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
+#: ./content/fields.py:476
+msgid "help_fgfutureyears_text"
+msgstr ""
+
+#. Default: "\n                    The text to display in the form.\n                "
+#: ./content/fields.py:1107
+msgid "help_fglabelbody_text"
+msgstr ""
+
+#. Default: "List of possible answers for each of the questions;\n                    these will be the columns of the table."
+#: ./content/formLikertField.py:80
+msgid "help_fglikert_answers"
+msgstr ""
+"Liste av moulige svar for hvert av spørsmålene;\n"
+"                    disse vil være kolonnene i tabellen."
+
+#. Default: "List of questions; these will be the rows of the table."
+#: ./content/formLikertField.py:70
+msgid "help_fglikert_questions"
+msgstr "Liste av spørsmål; som vil være radene i tabellen."
+
+#. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
+#: ./content/fieldsBase.py:296
+msgid "help_fglinesdefault_text"
+msgstr ""
+
+#. Default: "\n                The maximum number of characters the user will be able to input.\n                "
+#: ./content/fieldsBase.py:107
+msgid "help_fgmaxlength_text"
+msgstr ""
+
+#: ./content/fields.py:804
+msgid "help_fgmsformat_text"
+msgstr ""
+
+#. Default: "Input tests using HTMLTidy (if installed)."
+#: ./content/fields.py:1027
+msgid "help_fgrtvalidator_text"
+msgstr ""
+
+#: ./content/fields.py:448
+msgid "help_fgshowhm_text"
+msgstr ""
+
+#. Default: "The size of the text-entry box, in characters."
+#: ./content/fieldsBase.py:142
+msgid "help_fgsize_text"
+msgstr ""
+
+#: ./content/fields.py:457
+msgid "help_fgstartingyear_text"
+msgstr ""
+
+#. Default: "Tests input against simple string patterns."
+#: ./content/fields.py:58
+msgid "help_fgstringvalidator_text"
+msgstr "Sjekker registrerte data mot tekstlinje mønster"
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ./content/fields.py:1121
+#: ./content/fieldsBase.py:220
+msgid "help_fgtdefault_text"
+msgstr ""
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ./content/fieldsBase.py:239
+msgid "help_fgtenable_text"
+msgstr ""
+
+#. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
+#: ./content/fieldsBase.py:335
+msgid "help_fgtextdefault_text"
+msgstr ""
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ./content/fieldsBase.py:312
+msgid "help_fgtlinesdefault_text"
+msgstr ""
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is validated.\n                    Validate against 'value', which will contain the field input.\n                    Return False if valid; if not valid return a string error message.\n                    E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will\n                    require \"eggs\" for input.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ./content/fieldsBase.py:79
+msgid "help_fgtvalidator_text"
+msgstr ""
+
+#. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/fieldsBase.py:170
+msgid "help_fgtvocabulary_text"
+msgstr ""
+
+#. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
+#: ./content/fieldsBase.py:152
+msgid "help_fgvocabulary_text"
+msgstr ""
+"Bruk en linje per valgmulighet.\n"
+" Merk at dette kan bli overstyrt dynamisk"
+
+#. Default: "Set to 0 for no limit."
+#: ./content/fields.py:1196
+msgid "help_filemaxmb_text"
+msgstr "Velg 0 for ingen begrensning."
+
+#. Default: "\n                Check this to make the form redirect to an SSL-enabled\n                version of itself (https://) if accessed via a non-SSL\n                URL (http://).  In order to function properly,\n                this requires a web server that has been configured to\n                handle the HTTPS protocol on port 443 and forward it to Zope.\n            "
+#: ./content/form.py:125
+msgid "help_force_ssl"
+msgstr ""
+
+#. Default: "\n                Use this field to override the form action attribute.\n                Specify a URL to which the form will post.\n                This will bypass form validation, success action\n                adapter and thanks page.\n            "
+#: ./content/form.py:203
+msgid "help_formactionoverride_text"
+msgstr ""
+
+#. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
+#: ./content/formMailerAdapter.py:336
+msgid "help_formmailer_additional_headers"
+msgstr ""
+
+#. Default: "E-mail addresses which receive a blind carbon copy."
+#: ./content/formMailerAdapter.py:136
+msgid "help_formmailer_bcc_recipients"
+msgstr "E-mail adresser som mottat en blindkopi (bcc)"
+
+#. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
+#: ./content/formMailerAdapter.py:225
+msgid "help_formmailer_body_footer"
+msgstr "Standardtekst brukt som bunnlinje, skilt fra hovedtekst med stiplet linje."
+
+#. Default: "Text appended to fields listed in mail-body"
+#: ./content/formMailerAdapter.py:212
+msgid "help_formmailer_body_post"
+msgstr "Tekst lagt til som felt i mail-tekst"
+
+#. Default: "Text prepended to fields listed in mail-body"
+#: ./content/formMailerAdapter.py:200
+msgid "help_formmailer_body_pre"
+msgstr ""
+
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#: ./content/formMailerAdapter.py:279
+msgid "help_formmailer_body_pt"
+msgstr ""
+
+#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#: ./content/formMailerAdapter.py:296
+msgid "help_formmailer_body_type"
+msgstr ""
+
+#. Default: "E-mail addresses which receive a carbon copy."
+#: ./content/formMailerAdapter.py:122
+msgid "help_formmailer_cc_recipients"
+msgstr "E-mail adresser som vil motta kopi (CC)"
+
+#. Default: "The recipients e-mail address."
+#: ./content/formMailerAdapter.py:88
+msgid "help_formmailer_recipient_email"
+msgstr "mottakernes e-mail adresse."
+
+#. Default: "\n                The full name of the recipient of the mailed form.\n                "
+#: ./content/formMailerAdapter.py:73
+msgid "help_formmailer_recipient_fullname"
+msgstr ""
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
+#: ./content/formMailerAdapter.py:150
+msgid "help_formmailer_replyto_extract"
+msgstr ""
+
+#. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
+#: ./content/formMailerAdapter.py:166
+msgid "help_formmailer_subject"
+msgstr ""
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
+#: ./content/formMailerAdapter.py:185
+msgid "help_formmailer_subject_extract"
+msgstr ""
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
+#: ./content/formMailerAdapter.py:102
+msgid "help_formmailer_to_extract"
+msgstr ""
+
+#. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
+#: ./content/fields.py:268
+msgid "help_fprequired_text"
+msgstr ""
+
+#. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body.\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
+#: ./content/formMailerAdapter.py:353
+msgid "help_gpg_key_id"
+msgstr ""
+
+#. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
+#: ./content/form.py:271
+msgid "help_headerInjection_text"
+msgstr ""
+
+#. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
+#: ./content/thanksPage.py:67
+msgid "help_includeEmpties_text"
+msgstr ""
+
+#. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
+#: ./content/formMailerAdapter.py:267
+msgid "help_mailEmpties_text"
+msgstr ""
+
+#. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
+#: ./content/formMailerAdapter.py:239
+msgid "help_mailallfields_text"
+msgstr ""
+
+#. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
+#: ./content/formMailerAdapter.py:254
+msgid "help_mailfields_text"
+msgstr ""
+
+#. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "
+#: ./content/fields.py:186
+msgid "help_maxval_text"
+msgstr ""
+
+#. Default: "\n            The form will not accept values less than the number you enter here.\n                "
+#: ./content/fields.py:175
+msgid "help_minval_text"
+msgstr "Skjemaet vil ikke godta verdier mindre enn verdien du setter her"
+
+#. Default: "\n                The text to display if the browser reaches this\n                thanks page without submitting a form. Typically, this\n                would direct the reader to the form.\n                "
+#: ./content/thanksPage.py:122
+msgid "help_nosubmit_text"
+msgstr ""
+
+#. Default: "Not displayed on form."
+#: ./content/fields.py:1134
+msgid "help_notdisplayed_text"
+msgstr "Tekst som ikke vises på skjema"
+
+#. Default: "CAUTION: Input for the body is not validated. Invalid XHTML or TAL will cause errors on form processing. Try your code out in a mail adapter before pasting here."
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:74
+msgid "help_novalidation_caution"
+msgstr ""
+
+#. Default: "This text will be displayed above the form fields."
+#: ./content/form.py:147
+msgid "help_prologue_text"
+msgstr "Denne teksten vil bli vist over skjema feltene"
+
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/formMailerAdapter.py:420
+msgid "help_recipient_override_text"
+msgstr ""
+
+#: ./content/fieldsBase.py:98
+msgid "help_rows_text"
+msgstr ""
+
+#. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
+#: ./content/saveDataAdapter.py:64
+msgid "help_savedataextra_text"
+msgstr "Velg tilleggsdata du vil lagre med skjemainnholdet"
+
+#: ./content/saveDataAdapter.py:98
+msgid "help_savedatainput_text"
+msgstr ""
+
+#. Default: " Write your script here. "
+#: ./content/customScriptAdapter.py:109
+msgid "help_script_body"
+msgstr "Skriv skriptet ditt her"
+
+#. Default: " Role under which to run the script. "
+#: ./content/customScriptAdapter.py:95
+msgid "help_script_proxy"
+msgstr "Regel for når skript skal kjøres"
+
+#. Default: "\n                A TALES expression that will be evaluated to override the \"From\" header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/formMailerAdapter.py:401
+msgid "help_sender_override_text"
+msgstr ""
+
+#. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
+#: ./content/thanksPage.py:41
+msgid "help_showallfields_text"
+msgstr ""
+
+#: ./content/form.py:81
+msgid "help_showcancel_text"
+msgstr ""
+
+#. Default: "\n                Pick the fields whose inputs you'd like to display on\n                the success page.\n                "
+#: ./content/thanksPage.py:55
+msgid "help_showfields_text"
+msgstr "Velg feltene der data skal vises"
+
+#: ./content/fieldset.py:45
+msgid "help_showlegend_text"
+msgstr ""
+
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the e-mail subject header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/formMailerAdapter.py:380
+msgid "help_subject_override_text"
+msgstr ""
+
+#: ./content/form.py:71
+msgid "help_submitlabel_text"
+msgstr ""
+
+#. Default: "The text will be displayed after the field inputs."
+#: ./content/thanksPage.py:103
+msgid "help_thanksepilogue_text"
+msgstr "Teksten vil bli vist etter datafeltene"
+
+#. Default: "\n                Pick a contained page you wish to show on a successful\n                form submit. (If none are available, add one.)\n                Choose none to simply display the form\n                field values.\n            "
+#: ./content/form.py:111
+msgid "help_thankspage_text"
+msgstr ""
+
+#. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
+#: ./content/form.py:180
+msgid "help_thankspageoverride_text"
+msgstr ""
+
+#. Default: "This text will be displayed above the selected field inputs."
+#: ./content/thanksPage.py:86
+msgid "help_thanksprologue_text"
+msgstr "Denne teksten vil bli vist over de valgte datafeltene."
+
+#. Default: "Do you wish to have column names on the first line of downloaded input?"
+#: ./content/saveDataAdapter.py:85
+msgid "help_usecolumnnames_text"
+msgstr "Ønsker du kolonnenavn på første rad i nedlasted datafil?"
+
+#. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
+#: ./content/formMailerAdapter.py:319
+msgid "help_xinfo_headers_text"
+msgstr ""
+
+#: ./browser/exportimport.py:48
+msgid "import"
+msgstr "import"
+
+#. Default: "${items} inputs saved"
+#: ./skins/PloneFormGen/fg_savedata_view.pt:49
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:47
+msgid "items_saved"
+msgstr "${items} data lagret"
+
+#. Default: "After Validation Script"
+#: ./content/form.py:244
+msgid "label_AfterValidationOverride_text"
+msgstr "Etter validering script"
+
+#. Default: "Form Setup Script"
+#: ./content/form.py:220
+msgid "label_OnDisplayOverride_text"
+msgstr "Skjema standard skript"
+
+#. Default: "Action Adapter"
+#: ./content/form.py:95
+msgid "label_actionadapter_text"
+msgstr "Hendelse generator"
+
+#. Default: "BCC Expression"
+#: ./content/formMailerAdapter.py:440
+msgid "label_bcc_override_text"
+msgstr "BCC formel"
+
+#. Default: "Click here to get the saved input"
+#: ./skins/PloneFormGen/fg_savedata_view.pt:41
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:39
+msgid "label_click_to_get_input"
+msgstr "Klikk her for å hente lagret data"
+
+#. Default: "CSRF Protection"
+#: ./content/form.py:293
+msgid "label_csrf"
+msgstr "CSFR beskyttelse"
+
+#. Default: "Download Format"
+#: ./content/saveDataAdapter.py:77
+msgid "label_downloadformat_text"
+msgstr "Format for nedlasting"
+
+#. Default: "Form Epilogue"
+#: ./content/form.py:165
+msgid "label_epilogue_text"
+msgstr "Skjema epilog"
+
+#. Default: "Execution Condition"
+#: ./content/actionAdapter.py:40
+msgid "label_execcondition_text"
+msgstr ""
+
+#. Default: "False Display String"
+#: ./content/fields.py:353
+msgid "label_fgbooleanfalsestring_text"
+msgstr "False tekstlinje"
+
+#. Default: "True Display String"
+#: ./content/fields.py:344
+msgid "label_fgbooleantruestring_text"
+msgstr "True tekstlinje"
+
+#. Default: "Validator"
+#: ./content/fields.py:335
+msgid "label_fgbooleanvalidator_text"
+msgstr "Validator"
+
+#. Default: "Default"
+#: ./content/fields.py:328
+#: ./content/fieldsBase.py:277
+msgid "label_fgdefault_text"
+msgstr "Standard"
+
+#. Default: "Ending Year"
+#: ./content/fields.py:465
+msgid "label_fgendingyear_text"
+msgstr "Slutt år"
+
+#. Default: "Presentation Widget"
+#: ./content/fields.py:706
+msgid "label_fgformat_text"
+msgstr ""
+
+#. Default: "Future Years To Display"
+#: ./content/fields.py:475
+msgid "label_fgfutureyears_text"
+msgstr "Fremtidige år å vise"
+
+#. Default: "Label body"
+#: ./content/fields.py:1106
+msgid "label_fglabelbody_text"
+msgstr "Tittel tekst"
+
+#. Default: "Answers"
+#: ./content/formLikertField.py:79
+msgid "label_fglikert_answers"
+msgstr "Svar"
+
+#. Default: "Questions"
+#: ./content/formLikertField.py:69
+msgid "label_fglikert_questions"
+msgstr "Spørsmål"
+
+#. Default: "Default"
+#: ./content/fieldsBase.py:295
+msgid "label_fglinesdefault_text"
+msgstr ""
+
+#. Default: "Max Length"
+#: ./content/fieldsBase.py:106
+msgid "label_fgmaxlength_text"
+msgstr ""
+
+#. Default: "Presentation Widget"
+#: ./content/fields.py:803
+msgid "label_fgmsformat_text"
+msgstr ""
+
+#. Default: "Show Time Selection Options"
+#: ./content/fields.py:447
+msgid "label_fgshowhm_text"
+msgstr "Vis tid"
+
+#. Default: "Size"
+#: ./content/fieldsBase.py:141
+msgid "label_fgsize_text"
+msgstr "Størrelse"
+
+#. Default: "Starting Year"
+#: ./content/fields.py:456
+msgid "label_fgstartingyear_text"
+msgstr "Start år"
+
+#. Default: "Validator"
+#: ./content/fields.py:56
+msgid "label_fgstringvalidator_text"
+msgstr "Validator"
+
+#. Default: "Default Expression"
+#: ./content/fields.py:1120
+#: ./content/fieldsBase.py:218
+msgid "label_fgtdefault_text"
+msgstr ""
+
+#. Default: "Enabling Expression"
+#: ./content/fieldsBase.py:238
+msgid "label_fgtenable_text"
+msgstr ""
+
+#. Default: "Default"
+#: ./content/fieldsBase.py:334
+msgid "label_fgtextdefault_text"
+msgstr ""
+
+#. Default: "Default Expression"
+#: ./content/fieldsBase.py:311
+msgid "label_fgtlinesdefault_text"
+msgstr "Standard formel"
+
+#. Default: "Custom Validator"
+#: ./content/fieldsBase.py:78
+msgid "label_fgtvalidator_text"
+msgstr ""
+
+#. Default: "Options Vocabulary"
+#: ./content/fieldsBase.py:168
+msgid "label_fgtvocabulary_text"
+msgstr ""
+
+#. Default: "Options"
+#: ./content/fieldsBase.py:150
+msgid "label_fgvocabulary_text"
+msgstr "Valg"
+
+#. Default: "Field Help"
+#: ./content/fieldsBase.py:188
+msgid "label_fieldhelp_text"
+msgstr "Felt hjelp"
+
+#. Default: "Field Label"
+#: ./content/fieldsBase.py:186
+msgid "label_fieldlabel_text"
+msgstr "Felt tittel"
+
+#. Default: "Fieldset Help"
+#: ./content/fieldset.py:50
+msgid "label_fieldsethelp_text"
+msgstr ""
+
+#. Default: "Maximum Upload Size (Megabytes)"
+#: ./content/fields.py:1195
+msgid "label_filemaxmb_text"
+msgstr ""
+
+#. Default: "Force SSL connection"
+#: ./content/form.py:124
+msgid "label_force_ssl"
+msgstr ""
+
+#. Default: "Custom Form Action"
+#: ./content/form.py:202
+msgid "label_formactionoverride_text"
+msgstr ""
+
+#. Default: "Additional Headers"
+#: ./content/formMailerAdapter.py:335
+msgid "label_formmailer_additional_headers"
+msgstr ""
+
+#. Default: "BCC Recipients"
+#: ./content/formMailerAdapter.py:134
+msgid "label_formmailer_bcc_recipients"
+msgstr "BCC mottakere"
+
+#. Default: "Body (signature)"
+#: ./content/formMailerAdapter.py:228
+msgid "label_formmailer_body_footer"
+msgstr ""
+
+#. Default: "Body (appended)"
+#: ./content/formMailerAdapter.py:214
+msgid "label_formmailer_body_post"
+msgstr ""
+
+#. Default: "Body (prepended)"
+#: ./content/formMailerAdapter.py:202
+msgid "label_formmailer_body_pre"
+msgstr ""
+
+#. Default: "Mail-Body Template"
+#: ./content/formMailerAdapter.py:284
+msgid "label_formmailer_body_pt"
+msgstr ""
+
+#. Default: "Mail Format"
+#: ./content/formMailerAdapter.py:300
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:87
+msgid "label_formmailer_body_type"
+msgstr "E-post format"
+
+#. Default: "CC Recipients"
+#: ./content/formMailerAdapter.py:120
+msgid "label_formmailer_cc_recipients"
+msgstr "CC mottakere"
+
+#. Default: "Recipient's e-mail address"
+#: ./content/formMailerAdapter.py:86
+msgid "label_formmailer_recipient_email"
+msgstr "Mottakers e-post adresse"
+
+#. Default: "Recipient's full name"
+#: ./content/formMailerAdapter.py:71
+msgid "label_formmailer_recipient_fullname"
+msgstr ""
+
+#. Default: "Extract Reply-To From"
+#: ./content/formMailerAdapter.py:148
+msgid "label_formmailer_replyto_extract"
+msgstr ""
+
+#. Default: "Subject"
+#: ./content/formMailerAdapter.py:172
+msgid "label_formmailer_subject"
+msgstr ""
+
+#. Default: "Extract Subject From"
+#: ./content/formMailerAdapter.py:183
+msgid "label_formmailer_subject_extract"
+msgstr ""
+
+#. Default: "Extract Recipient From"
+#: ./content/formMailerAdapter.py:101
+msgid "label_formmailer_to_extract"
+msgstr ""
+
+#. Default: "Key-Id"
+#: ./content/formMailerAdapter.py:363
+msgid "label_gpg_key_id"
+msgstr ""
+
+#. Default: "Header Injection"
+#: ./content/form.py:269
+msgid "label_headerInjection_text"
+msgstr ""
+
+#. Default: "Hidden"
+#: ./content/fieldsBase.py:208
+msgid "label_hidden_text"
+msgstr "Skjult"
+
+#. Default: "Include Empties"
+#: ./content/thanksPage.py:66
+msgid "label_includeEmpties_text"
+msgstr "Inkluder tomme"
+
+#. Default: "Include Empties"
+#: ./content/formMailerAdapter.py:266
+msgid "label_mailEmpties_text"
+msgstr ""
+
+#. Default: "Include All Fields"
+#: ./content/formMailerAdapter.py:238
+msgid "label_mailallfields_text"
+msgstr "Inkluder tomme"
+
+#. Default: "Show Responses"
+#: ./content/formMailerAdapter.py:253
+msgid "label_mailfields_text"
+msgstr ""
+
+#. Default: "Maximum Acceptable Value"
+#: ./content/fields.py:185
+msgid "label_maxval_text"
+msgstr ""
+
+#. Default: "Minimum Acceptable Value"
+#: ./content/fields.py:173
+msgid "label_minval_text"
+msgstr ""
+
+#. Default: "No Submit Message"
+#: ./content/thanksPage.py:121
+msgid "label_nosubmit_text"
+msgstr ""
+
+#. Default: "Mail Addressing"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:24
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:24
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:26
+msgid "label_ploneformgen_addressing"
+msgstr ""
+
+#. Default: "BCC Recipients"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:100
+msgid "label_ploneformgen_bcc_recipients"
+msgstr "BCC mottakere"
+
+#. Default: "Captcha"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:32
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:32
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:34
+msgid "label_ploneformgen_captcha_settings"
+msgstr "Captcha"
+
+#. Default: "CC Recipients"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:91
+msgid "label_ploneformgen_cc_recipients"
+msgstr "CC mottakere"
+
+#. Default: "CSV Delimiter"
+#: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:72
+msgid "label_ploneformgen_csv_delimiter"
+msgstr "CSV skiller"
+
+#. Default: "Mail Body Template"
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:73
+msgid "label_ploneformgen_mailbodytemplate"
+msgstr "Mail hovedtekst"
+
+#. Default: "Mail Template"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:28
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:28
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:30
+msgid "label_ploneformgen_mtemplate"
+msgstr "Mail mal"
+
+#. Default: "Permissions"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:20
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:20
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:22
+msgid "label_ploneformgen_permissions"
+msgstr "Rettigheter"
+
+#. Default: "Recipient Address"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:74
+msgid "label_ploneformgen_recipient_email"
+msgstr "mottakers adresse"
+
+#. Default: "Recipient Name"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:83
+msgid "label_ploneformgen_recipient_name"
+msgstr "Mottakers navn"
+
+#. Default: "Saved Data"
+#: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:36
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:36
+#: ./skins/PloneFormGen/prefs_pfg_permits.cpt:38
+msgid "label_ploneformgen_savedata"
+msgstr "Data lagret"
+
+#. Default: "Form Prologue"
+#: ./content/form.py:146
+msgid "label_prologue_text"
+msgstr "Skjema prolog"
+
+#. Default: "Recipient Expression"
+#: ./content/formMailerAdapter.py:419
+msgid "label_recipient_override_text"
+msgstr ""
+
+#. Default: "Required"
+#: ./content/fieldsBase.py:200
+msgid "label_required_text"
+msgstr "Påkrevd"
+
+#. Default: "Reset Button Label"
+#: ./content/form.py:89
+msgid "label_reset_button"
+msgstr "Nullstill knapp tittel"
+
+#. Default: "Rows"
+#: ./content/fieldsBase.py:97
+msgid "label_rows_text"
+msgstr "Rader"
+
+#. Default: "Extra Data"
+#: ./content/saveDataAdapter.py:63
+msgid "label_savedataextra_text"
+msgstr "Ekstra data"
+
+#. Default: "Saved Form Input"
+#: ./content/saveDataAdapter.py:97
+msgid "label_savedatainput_text"
+msgstr "Lagret skjema data"
+
+#. Default: "Script body"
+#: ./content/customScriptAdapter.py:106
+msgid "label_script_body"
+msgstr ""
+
+#. Default: "Proxy role"
+#: ./content/customScriptAdapter.py:94
+msgid "label_script_proxy"
+msgstr ""
+
+#. Default: "Sender Expression"
+#: ./content/formMailerAdapter.py:399
+msgid "label_sender_override_text"
+msgstr ""
+
+#. Default: "Server-Side Variable"
+#: ./content/fieldsBase.py:258
+msgid "label_server_side_text"
+msgstr ""
+
+#. Default: "Show All Fields"
+#: ./content/thanksPage.py:40
+msgid "label_showallfields_text"
+msgstr "Vis alle felt"
+
+#. Default: "Show Reset Button"
+#: ./content/form.py:79
+msgid "label_showcancel_text"
+msgstr "Vis nullstill knapp"
+
+#. Default: "Show Responses"
+#: ./content/thanksPage.py:54
+msgid "label_showfields_text"
+msgstr "Vis respons"
+
+#. Default: "Show Title as Legend"
+#: ./content/fieldset.py:44
+msgid "label_showlegend_text"
+msgstr "Vis tittel som overskrift"
+
+#. Default: "Subject Expression"
+#: ./content/formMailerAdapter.py:379
+msgid "label_subject_override_text"
+msgstr ""
+
+#. Default: "Submit Button Label"
+#: ./content/form.py:70
+msgid "label_submitlabel_text"
+msgstr "Send knapp tittel"
+
+#. Default: "Thanks Epilogue"
+#: ./content/thanksPage.py:102
+msgid "label_thanksepilogue_text"
+msgstr "Tusen takk epilog"
+
+#. Default: "Thanks Page"
+#: ./content/form.py:110
+msgid "label_thankspage_text"
+msgstr "Tusen takk side"
+
+#. Default: "Custom Success Action"
+#: ./content/form.py:178
+msgid "label_thankspageoverride_text"
+msgstr ""
+
+#. Default: "Thanks Prologue"
+#: ./content/thanksPage.py:85
+msgid "label_thanksprologue_text"
+msgstr "Tusen takk prolog"
+
+#. Default: "Title"
+#: ./content/fields.py:1133
+msgid "label_title"
+msgstr "Tittel"
+
+#. Default: "Include Column Names"
+#: ./content/saveDataAdapter.py:84
+msgid "label_usecolumnnames_text"
+msgstr "Inkludere kolonne navn"
+
+#. Default: "Reject Text with Links?"
+#: ./content/fields.py:937
+msgid "label_validate_link_spam_text"
+msgstr "Avvis tekst med lenker?"
+
+#. Default: "HTTP Headers"
+#: ./content/formMailerAdapter.py:318
+msgid "label_xinfo_headers_text"
+msgstr "HTTP overskrift"
+
+#. Default: "An answer is required for each question."
+#: ./content/likertField.py:95
+msgid "pfg_allRequired"
+msgstr "Alle spørsmålene må besvares."
+
+#. Default: "Comments"
+#: ./content/form.py:901
+msgid "pfg_commentsfield_title"
+msgstr "Kommentarer"
+
+#. Default: "Reset"
+#: ./content/form.py:830
+msgid "pfg_formfolder_reset"
+msgstr "Nullstill"
+
+#. Default: "Submit"
+#: ./content/form.py:829
+msgid "pfg_formfolder_submit"
+msgstr "Send"
+
+#. Default: "Form Submission"
+#: ./content/formMailerAdapter.py:482
+msgid "pfg_formmaileradapter_msg_subject"
+msgstr "Form Innsending"
+
+#. Default: "This box must be checked."
+#: ./content/validationMessages.py:37
+msgid "pfg_isChecked"
+msgstr "Denne boksen må være avkrysset."
+
+#. Default: "This field requires a decimal value."
+#: ./content/validationMessages.py:26
+msgid "pfg_isDecimal"
+msgstr "Dette feltet krever en desimal verdi."
+
+#. Default: "This field requires an integer value."
+#: ./content/validationMessages.py:27
+msgid "pfg_isInt"
+msgstr "Dette feltet krever en heltall verdi"
+
+#. Default: "This is not a valid mailto: url."
+#: ./content/validationMessages.py:35
+msgid "pfg_isMailto"
+msgstr "Dette er ikke en gyldig mail-til: url."
+
+#. Default: "This value contains unprintable characters."
+#: ./content/validationMessages.py:28
+msgid "pfg_isPrintable"
+msgstr "Dette feltet inneholder karakterer som ikke kan skrives ut"
+
+#. Default: "This field is required."
+#: ./content/validationMessages.py:43
+msgid "pfg_isRequired"
+msgstr "Dette feltet er nødvendig"
+
+#. Default: "This is not a well formed SSN."
+#: ./content/validationMessages.py:29
+msgid "pfg_isSSN"
+msgstr ""
+
+#. Default: "This box must be unchecked."
+#: ./content/validationMessages.py:38
+msgid "pfg_isUnchecked"
+msgstr "Denne boksen må ikke være avkrysset"
+
+#. Default: "This name is not a valid identifier."
+#: ./content/validationMessages.py:36
+msgid "pfg_isUnixLikeName"
+msgstr "Dette navnet er ikke gyldig som idenfikator"
+
+#. Default: "The date entered was invalid."
+#: ./content/validationMessages.py:39
+msgid "pfg_isValidDate"
+msgstr "Registrert dato er ikke gyldig"
+
+#. Default: "This text appears to contain links."
+#: ./content/validationMessages.py:40
+msgid "pfg_isnotlinkspam"
+msgstr "Denne teksten ser ut til å inneholde lenker"
+
+#. Default: "E-Mails Form Input"
+#: ./content/form.py:849
+msgid "pfg_mailer_description"
+msgstr "E-mails skjema"
+
+#. Default: "Mailer"
+#: ./content/form.py:845
+msgid "pfg_mailer_title"
+msgstr ""
+
+#. Default: "Please enter a number here."
+#: ./content/validationMessages.py:74
+msgid "pfg_not_number"
+msgstr "Vennligst sett inn et tall her"
+
+#. Default: "'${value}' is too large. Must be no greater than ${max}."
+#: ./content/validationMessages.py:84
+msgid "pfg_number_too_large"
+msgstr "'${value}' er for lang. Kan ikke være mer enn ${max}."
+
+#. Default: "'${value}' is too small. Must be at least ${min}."
+#: ./content/validationMessages.py:78
+msgid "pfg_number_too_small"
+msgstr "'${value}' er for kort. Må være minst ${min}."
+
+#. Default: "Your E-Mail Address"
+#: ./content/form.py:866
+msgid "pfg_replytofield_title"
+msgstr "Din e-mail adresse"
+
+#. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
+#: ./content/thanksPage.py:191
+msgid "pfg_thankspage_nosubmitmessage"
+msgstr ""
+
+#. Default: "Thanks for your input."
+#: ./content/form.py:916
+msgid "pfg_thankyou_description"
+msgstr "Takk for din registrering"
+
+#. Default: "Thank You"
+#: ./content/form.py:914
+msgid "pfg_thankyou_title"
+msgstr "Tusen takk"
+
+#. Default: "'Entry too long. It should be no more than ${max} characters."
+#: ./content/validationMessages.py:91
+msgid "pfg_too_long"
+msgstr "Registrering er for lang. Kan ikke være mer enn ${max} karakterer."
+
+#. Default: "Subject"
+#: ./content/form.py:885
+msgid "pfg_topicfield_title"
+msgstr "Subjekt"
+
+#. Default: "Plain Text"
+#: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:95
+msgid "plain_text"
+msgstr "Vanlig tekst"
+
+#. Default: "Checkbox list"
+#: ./content/fields.py:870
+msgid "vocabulary_checkbox_text"
+msgstr "Sjekkboks"
+
+#. Default: "Flexible (radio for short, select for longer)"
+#: ./content/fields.py:756
+msgid "vocabulary_flex_text"
+msgstr "Fleksible (radio for korte, valg for lengre)"
+
+#. Default: "Is checked"
+#: ./content/fields.py:411
+msgid "vocabulary_ischecked_text"
+msgstr "Avkrysset"
+
+#. Default: "Is not checked"
+#: ./content/fields.py:414
+msgid "vocabulary_isnotchecked_text"
+msgstr "Er ikke avkrysset"
+
+#. Default: "Is Tidy HTML (fails on errors and warnings)"
+#: ./content/fields.py:1076
+msgid "vocabulary_istidyhtml_text"
+msgstr ""
+
+#. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
+#: ./content/fields.py:1079
+msgid "vocabulary_istidyhtmlwithcleanup_text"
+msgstr ""
+
+#. Default: "None"
+#: ./content/fields.py:408
+#: ./content/form.py:736
+msgid "vocabulary_none_text"
+msgstr "Ingen"
+
+#. Default: "Radio buttons"
+#: ./content/fields.py:762
+msgid "vocabulary_radio_text"
+msgstr "Radio knapper"
+
+#. Default: "Selection list"
+#: ./content/fields.py:759
+msgid "vocabulary_selection_text"
+msgstr "Valg liste"
+

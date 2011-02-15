@@ -20,6 +20,9 @@ Change History
   the field, which was a problematic inconsistency.)
   [davisagli]
 
+- Add Norwegian translations
+  [mj]
+
 1.6.0
 -----
 
