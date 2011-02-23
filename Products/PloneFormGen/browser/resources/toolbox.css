@@ -11,6 +11,7 @@
     -moz-border-radius:6px 6px 6px 6px;
     -webkit-border-radius:6px;
     background:none repeat scroll 0 0 #ddd !important;
+    border:1px solid #000;
 }
 
 .header {
@@ -18,7 +19,7 @@
     -moz-border-radius-topright:6px;
     -webkit-border-top-left-radius:6px;
     -webkit-border-top-right-radius:6px;
-    border:1px solid gray;
+    border-bottom:1px solid gray;
     margin:0 auto;
     text-align: center;
     color: #fff;
@@ -34,13 +35,8 @@ div.header h3 {
     padding:5px 12px;
 }
 
-div.widgets {
-    -moz-border-radius-bottomleft:6px;
-    -moz-border-radius-bottomright:6px;
-    -webkit-border-bottom-left-radius:6px;
-    -webkit-border-bottom-right-radius:6px;
-    border-style:none solid solid;
-    border-width:0 1px 1px;
+#fieldWidgets,
+#actionWidgets {
     padding:5px 15px;
 }
 div.widget {
@@ -92,7 +88,7 @@ div.placeholder {
     -webkit-box-shadow: 2px 2px 11px #666;
 }
 
-div.widgets div.more {
+#pfgWidgetWrapper div.more {
     text-align: center;
     font-size: 13px;
     color: #0000FF;
@@ -100,7 +96,8 @@ div.widgets div.more {
     cursor: pointer;
 }
 
-div.widgets .fields-header, div.widgets .actions-header {
+#pfgWidgetWrapper .fields-header,
+#pfgWidgetWrapper .actions-header {
     font-size:18px;
     margin: 3px;
     text-align:center;

@@ -458,14 +458,14 @@ jQuery(function ($) {
             });
 
             /* Make the widgets inside the widgets manager draggable */
-            $("div.widget").draggable({
+            $("#fieldWidgets div.widget").draggable({
                 connectToSortable: "#pfg-qetable",
                 helper: 'clone',
                 containment: 'document'
             });
 
             /* Make the widgets manager droppable */
-            $("div.widgets").droppable({
+            $("#pfgWidgetWrapper").droppable({
                 accept: function (obj) {
                     return !$(obj).parent().hasClass('widgets') && (!$(obj).hasClass('w-field') && !$(obj).hasClass("w-action"));
                 },
@@ -620,14 +620,14 @@ jQuery(function ($) {
                 function () {
                     var jqt = $(this);
                     jqt.hide();
-                    $("div.widgets div.w-field").slice(7).fadeIn();
+                    $("#pfgWidgetWrapper div.w-field").slice(7).fadeIn();
                     jqt.insertAfter($("div.w-field:not(:hidden):last").next());
                     jqt.html(pfgQEdit.messages.LESS_FIELDS_MSG).show();
                 },
                 function () {
                     var jqt = $(this);
                     jqt.hide();
-                    $("div.widgets div.w-field").slice(7).fadeOut();
+                    $("#pfgWidgetWrapper div.w-field").slice(7).fadeOut();
                     jqt.insertAfter($("div.w-field:not(:hidden):last").next());
                     jqt.html(pfgQEdit.messages.MORE_FIELDS_MSG).show();
                 }
