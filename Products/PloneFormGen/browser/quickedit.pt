@@ -174,7 +174,7 @@
                         </tal:block>
                     </tal:typelist>
                     <hr>
-                    <h2 class="actions-header">Adapters</h2>
+                    <h2 class="actions-header">Actions</h2>
                     <tal:typelist repeat="item view/addableAdapters">
                     <tal:block tal:define="set item/id; desc item/description">
                         <div class="widget w-action" tal:attributes="id item/id">
