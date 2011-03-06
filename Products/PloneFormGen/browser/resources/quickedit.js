@@ -105,7 +105,7 @@ jQuery(function ($) {
 				match = athis.url.match(/.+\/(.+?)\/delete_confirmation/);
 				if (match) {
 					$('#archetypes-fieldname-' + match[1]).parent().remove();
-					$('#action-name-' + match[1]).parent().remove();
+					$('#action-name-' + match[1]).remove();
 				}
 				return 'close';
 			},
