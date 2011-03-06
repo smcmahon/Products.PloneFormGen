@@ -131,56 +131,57 @@ div.theader div {
     font-weight: bold;
 }
 
-#pfg-qetable {
+.listing {
     width: 100%;
     clear: both;
 }
 
-#pfg-qetable .qefield {
+.qefield {
     width: 100%;
     overflow: hidden;
     margin-bottom: 1em;
+    clear:both;
 }
 
-#pfg-qetable .field {
+.field {
     clear: none;
 }
 
-#pfg-qetable .qefield .qechild,
-#pfg-qetable .qefield .field {
+.qefield .qechild,
+.qefield .field {
     float: left;
     padding:0.5em 1em;
     height: 90%;
 }
 
-#pfg-qetable .field, #pfg-qetable .PFGFieldsetWidget {
+.field, .action, .PFGFieldsetWidget {
     width: 50%;
     margin: 0;
 }
 
-#pfg-qetable .editHook {
+.editHook {
     width: 26%;
 }
 
-#pfg-qetable .draggingHook {
+.draggingHook {
     width: 8%;
     vertical-align: middle;
     cursor: ns-resize;
     padding: 0;
+    text-align: center;
 }
-#pfg-qetable .draggingHook .dhcenter { /* workaround to center contents of dragging hook */
+.draggingHook .dhcenter { /* workaround to center contents of dragging hook */
     display: inline-block; 
     vertical-align: middle; 
     height: 90%;
     margin: 0;
 }
 
-#pfg-qetable div.editHook * {
+div.editHook * {
     margin-right: 5px;
-    text-align: center;
 }
 
-#pfg-qetable div.draggable {
+div.draggable {
     background: #DDD !important;
     border-bottom: 1px solid white;
     padding: 0.4em 0.4em 0px 0.5em;
@@ -196,7 +197,7 @@ div.theader div {
     -webkit-border-top-right-radius: 6px;   
 }
 
-#pfg-qetable .qefield div.widget {
+.qefield div.widget {
     -moz-border-radius:6px 6px 6px 6px;
     -webkit-border-bottom-left-radius: 6px;
     -webkit-border-bottom-right-radius: 6px;
@@ -209,10 +210,10 @@ div.theader div {
     width: 80%;
 }
 
-#pfg-qetable div.qefield div.field span {
+div.qefield div.field span {
     cursor: pointer;
 }
-#pfg-qetable span.not-required {
+span.not-required {
     border:1px solid red; 
     width:7px; height:7px; 
     display:none;
@@ -223,17 +224,10 @@ div.deleting {
     z-index: 99;
 }
 
-#pfgActionEdit,
-#pfgThanksEdit {
-    width:75%;
-}
 .editHook a {
     border-bottom:none !important;
 }
 td.draggable.draggingHook {
     cursor:ns-resize;
     vertical-align:middle;
-}
-.editHook {
-    text-align:center !important;
 }

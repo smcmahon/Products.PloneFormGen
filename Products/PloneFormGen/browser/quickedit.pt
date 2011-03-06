@@ -95,19 +95,73 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-            <p tal:replace="structure here/formPrologue | nothing" />
+        <p tal:replace="structure here/formPrologue | nothing" />
 
-            <div metal:define-macro="body" class="pfg-form"
-                 tal:attributes="class string:pfg-form formid-${here/getId}">
+        <tal:block tal:condition="canModify">
+        <div id="pfgWidgetWrapper"
+               class="widgetManager"
+               summary="Widget Manager">
 
-                  <metal:block define-slot="extra_top" />
+            <div class="header">
+                <h3>Toolbox
+                    <span>
+                        <img alt="Ajax Loader" 
+                            tal:attributes="src string:${context/portal_url}/++resource++Products.PloneFormGen.resources/ajax-loader.gif"
+                            style="visibility:hidden" 
+                            class="ajax-loader" />
+                    </span>
+                    <span id="deactivate-widget">Deactivate</span>
+                </h3>
+            </div>
 
-                  <metal:block define-slot="widgets">
-                    <div id="pfg-fieldwrapper">
+            <div id="fieldWidgets">
+                <!-- List of Fields, followed by the list of Adapters -->
+                <h2 class="fields-header">Fields/Folders</h2>
+                <tal:typelist repeat="item view/addablePrioritizedFields">
+                    <tal:block tal:define="set item/id">
+                        <div class="widget w-field" tal:attributes="id item/id">
+                            <h4 class="widget-header" tal:content="item/title">Type title</h4>
+                            <div class="widget-inside">
+                            </div>
+                        </div>
+                        <div class="tooltip">
+                              <span tal:replace="item/description">Type description</span>
+                        </div>
+                    </tal:block>
+                </tal:typelist>
+            </div>
+            <hr>
+            <div id="actionWidgets">
+                <h2 class="actions-header">Actions</h2>
+                <tal:typelist repeat="item view/addableAdapters">
+                <tal:block tal:define="set item/id; desc item/description">
+                    <div class="widget w-action" tal:attributes="id item/id">
+                       <h4 class="widget-header" tal:content="item/title">Type title</h4>
+                       <div class="widget-inside">
+                         content
+                       </div>
+                    </div>
+                    <div class="tooltip">
+                          <span tal:replace="python:desc or 'No description'">Type description</span>
+                    </div>
+                </tal:block>
+                </tal:typelist>
+            </div>
+
+        </div>
+        </tal:block>
+
+        <div metal:define-macro="body" class="pfg-form"
+             tal:attributes="class string:pfg-form formid-${here/getId}">
+
+            <metal:block define-slot="extra_top" />
+
+            <metal:block define-slot="widgets">
+                <div id="pfg-fieldwrapper">
                     <div class="theader">
                         <div style="width: 8%;">Order</div>
                         <div style="width: 50%;">Field</div>
-                        <div style="text-align: center; width: 26%;">Actions</div>
+                        <div style="width: 26%;">Edit/Delete</div>
                     </div>
                     <div id="pfg-qetable" class="listing" summary="Field listing">
                         <tal:fields repeat="field fields">
@@ -136,143 +190,88 @@
                             </form>
                         </tal:fields>
                     </div>
-                    </div>
-                  </metal:block>
-
-            </div>
-
-            <tal:block tal:condition="canModify">
-            <div id="pfgWidgetWrapper"
-                   class="widgetManager"
-                   summary="Widget Manager">
-
-                <div class="header">
-                    <h3>Toolbox
-                        <span>
-                            <img alt="Ajax Loader" 
-                                tal:attributes="src string:${context/portal_url}/++resource++Products.PloneFormGen.resources/ajax-loader.gif"
-                                style="visibility:hidden" 
-                                class="ajax-loader" />
-                        </span>
-                        <span id="deactivate-widget">Deactivate</span>
-                    </h3>
                 </div>
+            </metal:block>
 
-                <div id="fieldWidgets">
-                    <!-- List of Fields, followed by the list of Adapters -->
-                    <h2 class="fields-header">Fields/Folders</h2>
-                    <tal:typelist repeat="item view/addablePrioritizedFields">
-                        <tal:block tal:define="set item/id">
-                            <div class="widget w-field" tal:attributes="id item/id">
-                                <h4 class="widget-header" tal:content="item/title">Type title</h4>
-                                <div class="widget-inside">
-                                </div>
-                            </div>
-                            <div class="tooltip">
-                                  <span tal:replace="item/description">Type description</span>
-                            </div>
-                        </tal:block>
-                    </tal:typelist>
+            <div tal:condition="canModify" 
+                   class="listing"
+                   summary="Field listing"
+                   style="float: left"
+                   tal:define="liveAdapters here/getActionAdapter">
+                <div class="theader">
+                    <div style="width: 8%;">Order</div>
+                    <div style="width: 50%;">Action</div>
+                    <div style="width: 26%;">Edit/Delete</div>
                 </div>
-                <hr>
-                <div id="actionWidgets">
-                    <h2 class="actions-header">Actions</h2>
-                    <tal:typelist repeat="item view/addableAdapters">
-                    <tal:block tal:define="set item/id; desc item/description">
-                        <div class="widget w-action" tal:attributes="id item/id">
-                           <h4 class="widget-header" tal:content="item/title">Type title</h4>
-                           <div class="widget-inside">
-                             content
-                           </div>
-                        </div>
-                        <div class="tooltip">
-                              <span tal:replace="python:desc or 'No description'">Type description</span>
+                <div id="pfgActionEdit">
+                    <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
+                        <div tal:attributes="id python:'action-name-%s'%row[0]" class="qefield">
+                            <div class="draggable draggingHook editHook qechild"><span class="dhcenter"></span>⣿</div>
+                            <div class="qechild action">
+                                <form action="#">
+                                    <input type="checkbox" value="1"
+                                        tal:attributes="checked python:row[0] in liveAdapters and 'checked' or None;
+                                        id python:'cbaction-%s' % row[0];
+                                        name python:'cbaction-%s' % row[0]" />
+                                    &nbsp;
+                                    <span tal:replace="python:row[1]" />
+                                </form>
+                            </div>
+                            <div class="editHook qechild">
+                             <a href="#" 
+                                tal:attributes="href python:'%s/edit' % row[0]"
+                                title="Edit Field"
+                                ><img src="edit.gif" alt="Edit" /></a>
+                            <a href="#" 
+                               tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                               title="Delete Action"
+                               ><img src="delete_icon.gif" alt="Delete" /></a>
+                            </div>
                         </div>
                     </tal:block>
-                    </tal:typelist>
                 </div>
-
             </div>
-            </tal:block>
-        
-        <table tal:condition="canModify" 
-               id="pfgActionEdit"
-               class="listing"
-               summary="Field listing"
-               style="clear: none"
-               tal:define="liveAdapters here/getActionAdapter">
-            <thead>
-            <tr>
-                <th>Form Actions</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
-                <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
-                    <td tal:content="python:row[1]" />
-                    <td class="editHook">
-                      <form action="#">
-                          <input type="checkbox" value="1"
-                              tal:attributes="checked python:row[0] in liveAdapters and 'checked' or None;
-                              id python:'cbaction-%s' % row[0];
-                              name python:'cbaction-%s' % row[0]" />
-                      </form>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" 
-                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
-                           title="Delete Action"
-                           ><img src="delete_icon.gif" alt="Delete" /></a>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" 
-                           tal:attributes="href python:'%s/edit' % row[0]"
-                           title="Edit Field"
-                           ><img src="edit.gif" alt="Edit" /></a>
-                    </td>                    
-                </tr>
-                </tal:block>
-            </tbody>
-        </table>
-  
-        <table tal:condition="canModify" 
-               id="pfgThanksEdit"
-               class="listing"
-               summary="Field listing"
-               style="clear: none"
-               tal:define="liveThanks here/thanksPage">
-            <thead>
-                <tr>
-                    <th>Thanks Pages</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
-                <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
-                    <td tal:content="python:row[1]" />
-                    <td class="editHook">
-                          <input type="radio" name="thanksRadio"
-                              tal:attributes="value python:row[0];
-                                checked python:row[0] == liveThanks and 'checked' or None" />                   
-                    </td>
-                    <td class="editHook">
-                        <a href="#" tal:condition="python:row[0]"
-                           tal:attributes="href python:'%s/delete_confirmation' % row[0]"
-                           title="Delete Page"
-                           ><img src="delete_icon.gif" alt="Delete" /></a>
-                        <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-                    </td>
-                    <td class="editHook">
-                        <a href="#" tal:condition="python:row[0]"
-                           tal:attributes="href python:'%s/edit' % row[0]"
-                           title="Edit Page"
-                           ><img src="edit.gif" alt="Edit" /></a>
-                       <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-                    </td>                    
-                </tr>
-                </tal:block>
-            </tbody>
-        </table>
+
+            <table tal:condition="canModify" 
+                   id="pfgThanksEdit"
+                   class="listing"
+                   summary="Field listing"
+                   style="clear: none"
+                   tal:define="liveThanks here/thanksPage">
+                <thead>
+                    <tr>
+                        <th>Thanks Pages</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
+                    <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
+                        <td tal:content="python:row[1]" />
+                        <td class="editHook">
+                              <input type="radio" name="thanksRadio"
+                                  tal:attributes="value python:row[0];
+                                    checked python:row[0] == liveThanks and 'checked' or None" />                   
+                        </td>
+                        <td class="editHook">
+                            <a href="#" tal:condition="python:row[0]"
+                               tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                               title="Delete Page"
+                               ><img src="delete_icon.gif" alt="Delete" /></a>
+                            <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                        </td>
+                        <td class="editHook">
+                            <a href="#" tal:condition="python:row[0]"
+                               tal:attributes="href python:'%s/edit' % row[0]"
+                               title="Edit Page"
+                               ><img src="edit.gif" alt="Edit" /></a>
+                           <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+                        </td>                    
+                    </tr>
+                    </tal:block>
+                </tbody>
+            </table>
+        </div>
+
         <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
 
         <p tal:replace="structure here/formEpilogue | nothing" />
