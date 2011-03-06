@@ -37,22 +37,6 @@ pfgQEdit.qedit = function (e) {
 	blurrable.css('opacity', 0.5);
 
 	if (jQuery.fn.prepOverlay) {
-        // jQuery('.editHook a[href$=edit]').prepOverlay({
-        //  subtype: 'ajax',
-        //  filter: "#content",
-        //  formselector: 'form[id$=base-edit]',
-        //  noform: function () {
-        //      location.reload();
-        //  },
-        //  closeselector: '[name=form.button.cancel]'
-        // });
-        // jQuery('.editHook a[href$=delete_confirmation]').prepOverlay({
-        //  subtype: 'ajax',
-        //  filter: "#content",
-        //  formselector: 'form:has(input[value=Delete])',
-        //  noform: 'reload',
-        //  closeselector: '[name=form.button.Cancel]'
-        // });
 		jQuery('#plone-contentmenu-factories .actionMenuContent a[id^=form]').prepOverlay({
 			subtype: 'ajax',
 			filter: "#content",
@@ -68,15 +52,6 @@ pfgQEdit.qedit = function (e) {
 
 
 jQuery(function ($) {
-	// disable and dim input elements
-	// $("div.pfg-form .blurrable, div.pfg-form input")
-	//	   .css('opacity', 0.5)
-	//	   .each(function () {
-	//			   if (typeof this.disabled !== "undefined") {
-	//				   this.disabled = true;
-	//			   }
-	//		   });
-
 	// activate toggles on actions and thanks pages
 	$("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
 		$.post('toggleActionActive', {item_id: this.name.substr('cbaction-'.length)});
@@ -101,7 +76,7 @@ jQuery(function ($) {
 			noform: function (athis) {
 				var match;
 	
-				// remove the deleted field's form node
+				// remove the deleted field/action's node
 				match = athis.url.match(/.+\/(.+?)\/delete_confirmation/);
 				if (match) {
 					$('#archetypes-fieldname-' + match[1]).parent().remove();
@@ -417,7 +392,7 @@ jQuery(function ($) {
 						$(item).before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
 						$("img.ajax-loader").css('visibility', 'visible');
 						$(item).width($(item).width());
-					//	$(item).height($(item).height());
+    					//	$(item).height($(item).height());
 						// AJAX stuff
 						$(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function (response, status, xhr) {
 							var inputElem, formElem, msg, jqt;
@@ -530,8 +505,6 @@ jQuery(function ($) {
 
 									var widgetParent = button.parents("div.qefield");
 									widgetParent.find("div.widget-inside").slideUp('fast', function () {
-										//here we have to recreate the field =)
-										//temporaly we are going to refresh the page
 										location.reload();
 									});								   
 								}
@@ -540,7 +513,7 @@ jQuery(function ($) {
 							return false;
 						});
 
-						$("#pfg-qetable [name=form.button.cancel]").live('click', function (e) {
+						$("#pfg-qetable [name=form.button.cancel], #pfgActionEdit [name=form.button.cancel]").live('click', function (e) {
 							var widgetParent;
 
 							e.preventDefault();
