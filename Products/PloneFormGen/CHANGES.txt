@@ -4,6 +4,10 @@ Change History
 1.7a2 Unreleased
 ----------------
 
+- Add confirm dialog for clearing saved data. The dialog text should
+  be translatable with msgid clear-saved-input-confirm.
+  [stevem]
+
 - Add plone.protect tests to saver's clearSavedFormInput.
   [stevem]
 
