@@ -14,6 +14,17 @@ McMahon: steve@dcn.org.
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
 
+PFG 1.7 needs plone.app.jquerytools >= 1.2dev in order to get the jquerytools
+validation suite. (Very nice! Uses HTML5 semantics.)
+
+If you are using Plone 4.0.x, you will need to pin plone.app.jquerytools to use
+a later version than the one specified in the Plone 4.0.x version configuration.
+This is usually done in a versions section at the end of your buildout config
+file. For example::
+
+    [versions]
+    plone.app.jquerytools=1.2b4
+
 Overview
 ========
 

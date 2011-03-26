@@ -1,8 +1,14 @@
 Change History
 ==============
 
-1.7dev Unreleased
------------------
+1.7a2 Unreleased
+----------------
+
+- Add plone.protect tests to saver's clearSavedFormInput.
+  [stevem]
+
+- Get quickedit's drag and drop working with actions as well as fields.
+  [stevem]
 
 - Use collective.js.jqueryui instead of an embeded version custom of jqueryui.
   make it easy to integrate with other add-ons.

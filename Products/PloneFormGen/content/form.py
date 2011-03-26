@@ -3,13 +3,15 @@
 __author__ = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
-from zope.interface import implements
-
 import logging
 import transaction
 
+from zope.interface import implements
+
 from ZPublisher.Publish import Retry
 from zExceptions import Redirect
+
+import plone.protect
 
 from AccessControl import ClassSecurityInfo, Unauthorized, getSecurityManager
 from Products.CMFCore.permissions import View, ModifyPortalContent
@@ -42,12 +44,6 @@ from Products.PloneFormGen.content import validationMessages
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import implementedOrProvidedBy
 from Products.PloneFormGen import HAS_PLONE40
-
-try:
-    import plone.protect
-    HAS_PLONE_PROTECT = True
-except ImportError:
-    HAS_PLONE_PROTECT = False
 
 from types import StringTypes
 
@@ -273,26 +269,20 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
             size=70,
             ),
         ),
-    ))
-
-if HAS_PLONE_PROTECT:
-    # Add field for CSRF check option
-    FormFolderSchema = FormFolderSchema + Schema((
-        BooleanField('checkAuthenticator',
-            required=False,
-            default=True,
-            schemata='overrides',
-            write_permission=EDIT_ADVANCED_PERMISSION,
-            widget=BooleanWidget(
-                label=_(u'label_csrf', default=u'CSRF Protection'),
-                description=_(u'help_csrf', default=u"""
-                    Check this to employ Cross-Site Request Forgery protection.
-                    Note that only HTTP Post actions will be allowed.
-                """),
-                ),
+    BooleanField('checkAuthenticator',
+        required=False,
+        default=True,
+        schemata='overrides',
+        write_permission=EDIT_ADVANCED_PERMISSION,
+        widget=BooleanWidget(
+            label=_(u'label_csrf', default=u'CSRF Protection'),
+            description=_(u'help_csrf', default=u"""
+                Check this to employ Cross-Site Request Forgery protection.
+                Note that only HTTP Post actions will be allowed.
+            """),
             ),
+        ),
     ))
-
 
 
 class FormFolder(ATFolder):

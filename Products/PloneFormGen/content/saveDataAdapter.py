@@ -13,6 +13,10 @@ except ImportError:
     SavedDataBTree = IOBTree
 from BTrees.Length import Length
 
+from zope.contenttype import guess_content_type
+
+import plone.protect
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
@@ -34,17 +38,6 @@ from DateTime import DateTime
 import csv
 from StringIO import StringIO
 from types import StringTypes
-
-try:
-    # 3.0+
-    from zope.contenttype import guess_content_type
-except ImportError:
-    try:
-        # 2.5
-        from zope.app.content_types import guess_content_type
-    except ImportError:
-        # 2.1
-        from OFS.content_types import guess_content_type
 
 logger = logging.getLogger("PloneFormGen")    
 
@@ -208,6 +201,13 @@ class FormSaveDataAdapter(FormActionAdapter):
     security.declareProtected(ModifyPortalContent, 'clearSavedFormInput')
     def clearSavedFormInput(self, **kwargs):
         """ convenience method to clear input buffer """
+        
+        REQUEST = kwargs.get('request', self.REQUEST)
+        if REQUEST.form.has_key('clearSavedFormInput'):
+            # we're processing a request from the web;
+            # check for CSRF
+            plone.protect.CheckAuthenticator(REQUEST)
+            plone.protect.PostOnly(REQUEST)
 
         self._migrateStorage()
 

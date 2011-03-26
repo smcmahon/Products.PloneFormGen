@@ -6,9 +6,14 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+from ZPublisher.HTTPRequest import HTTPRequest
+from ZPublisher.HTTPResponse import HTTPResponse
+import zExceptions
+
 from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
+from plone.protect.authenticator import AuthenticatorView
 
 # dummy class
 class cd:
@@ -332,6 +337,41 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         cn = saver.getColumnTitles()
         self.failUnless( len(cn) == 4 )
         self.failUnless( cn[3] == 'Posting Date/Time' )
+
+
+    def testCSRF(self):
+        """ test CSRF check on data clear """
+
+        # create a saver and add a record
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+        saver = self.ff1.saver
+        self.ff1.setActionAdapter( ('saver',) )
+        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual( errors, {} )
+
+        # for the rest of this test, we need a bit more serious request simulation
+        environ = {}
+        environ.setdefault('SERVER_NAME', 'foo')
+        environ.setdefault('SERVER_PORT', '80')
+        environ.setdefault('REQUEST_METHOD',  'POST')        
+        request = HTTPRequest(sys.stdin, 
+                    environ,
+                    HTTPResponse(stdout=sys.stdout))
+
+        # clearSavedFormInput is part of the API, so it should work if there's no
+        # request
+        saver.clearSavedFormInput()
+
+        # But, if this is from a form, we should need a valid authenticator
+        request.form = {'clearSavedFormInput':'1',}
+        self.assertRaises(zExceptions.Forbidden, saver.clearSavedFormInput, **{'request':request})
+
+        # with authenticator... no error
+        tag = AuthenticatorView('context', 'request').authenticator()
+        token = tag.split('"')[5]
+        request.form['_authenticator'] = token
+        saver.clearSavedFormInput(request=request)
 
 
 def test_suite():
