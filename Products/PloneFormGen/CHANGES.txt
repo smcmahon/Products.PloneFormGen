@@ -1,6 +1,13 @@
 Change History
 ==============
 
+1.5.6 (unreleased) (2011-03-29)
+----------
+
+- Use sets to avoid duplicate action adapters in form.py. Fixes
+  http://plone.org/products/ploneformgen/issues/263
+  [tkimnguyen]
+
 1.5.5 (2010-01-20)
 ------------------
 
