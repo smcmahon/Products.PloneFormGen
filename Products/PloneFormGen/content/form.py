@@ -581,13 +581,15 @@ class FormFolder(ATFolder):
                 self.getAfterValidationOverride()
                 self.cleanExpressionContext(request=self.REQUEST)
 
-            adapters = self.getRawActionAdapter()
+            adapters = list(set(self.getRawActionAdapter())) # use sets to avoid duplicates
             for adapter in adapters:
                 actionAdapter = getattr(self.aq_explicit, adapter, None)
                 if actionAdapter is None:
                     logger.warn(
-                      "Designated action adapter '%s' is missing; ignored." %
+                      "Designated action adapter '%s' is missing; ignored. "
+                      "Removing it from active list." %
                       adapter)
+                    self.toggleActionActive(adapter)
                 else:
                     # Now, see if we should execute it.
                     # Check to see if execCondition exists and has contents
@@ -692,10 +694,10 @@ class FormFolder(ATFolder):
     def addActionAdapter(self, id):
         """ activate action adapter with id == id """
 
-        aa = list(self.getRawActionAdapter())
+        aa = set(list(self.getRawActionAdapter())) # use sets to avoid duplicates
         if id not in aa:
-            aa.append(id.decode(self.getCharset()))
-        self.actionAdapter = aa
+            aa.add(id.decode(self.getCharset()))
+        self.actionAdapter = list(aa)
 
 
     security.declareProtected(ModifyPortalContent, 'fgFieldsDisplayList')
@@ -995,12 +997,12 @@ class FormFolder(ATFolder):
     def toggleActionActive(self, item_id, **kw):
         """ toggle the active status of an action adapter """
 
-        work = list(self.actionAdapter)
+        work = set(list(self.actionAdapter)) # use sets to avoid duplicates
         if item_id in work:
             work.remove(item_id)
         else:
-            work.append(item_id)
-        self.actionAdapter = work
+            work.add(item_id)
+        self.actionAdapter = list(work)
         return "<done />"
 
     security.declareProtected(ModifyPortalContent, 'setThanksPage')
