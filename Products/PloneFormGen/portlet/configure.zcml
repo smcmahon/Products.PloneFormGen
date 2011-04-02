@@ -1,0 +1,15 @@
+<configure
+    xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    zcml:condition="installed collective.portlet.itemview">
+
+  <browser:page
+    name="itemview_portlet"
+    for="..interfaces.IPloneFormGenForm"
+    class=".itemview.FormGenView"
+    template="itemview.pt"
+    permission="zope2.View"
+    />
+
+</configure>

@@ -126,6 +126,7 @@
   <include 
     zcml:condition="installed collective.googleanalytics.tracking"
     package=".analytics"/>
+  <include package=".portlet"/>
 
   <subscriber handler=".events.form_adapter_pasted" />  
 
