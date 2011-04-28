@@ -5,6 +5,8 @@
            xmlns:gs="http://namespaces.zope.org/genericsetup"
            i18n_domain="ploneformgen">
 
+  <include package="collective.js.jqueryui" />
+
   <permission
       id="Products.PloneFormGen.downloadSavedInput"
       title="PloneFormGen: Download Saved Input" />
