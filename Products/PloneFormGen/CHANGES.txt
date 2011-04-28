@@ -4,6 +4,9 @@ Change History
 1.7a3 Unreleased
 ----------------
 
+- Load ZCML for collective.js.jqueryui.
+  [davisagli]
+
 - Add collective.portlet.itemview integration.
   [toutpt]
 
