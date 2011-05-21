@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7a3 Unreleased
+1.7b1 2011-05-21
 ----------------
 
 - Load ZCML for collective.js.jqueryui.
