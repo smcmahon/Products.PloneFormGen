@@ -85,12 +85,17 @@
         </p>
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
-
-            <p tal:replace="structure here/formPrologue | nothing" />
+            
+            <metal:field tal:condition="here/formPrologue | nothing" use-macro="python:context.widget('formPrologue', mode='view')">
+                Body text
+            </metal:field>
 
             <metal:use_body use-macro="body_macro" />
-
-            <p tal:replace="structure here/formEpilogue | nothing" />
+            
+            <metal:field tal:condition="here/formEpilogue | nothing" use-macro="python:context.widget('formEpilogue', mode='view')">
+                Body text
+            </metal:field>
+            
 
       </metal:main>
     </metal:fill>
