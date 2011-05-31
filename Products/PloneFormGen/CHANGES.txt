@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.6.2
+-----
+
+- Fixed issue with image captions not displaying in form prologue/epilogue.
+  [dextermilo]
+
 1.6.1
 -----
 
