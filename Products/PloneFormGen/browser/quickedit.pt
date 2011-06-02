@@ -103,7 +103,7 @@
                summary="Widget Manager">
 
             <div class="header">
-                <h3>Toolbox
+                <h3 i18n:translate="Toolbox">Toolbox
                     <span>
                         <img alt="Ajax Loader" 
                             tal:attributes="src string:${context/portal_url}/++resource++Products.PloneFormGen.resources/ajax-loader.gif"
@@ -116,7 +116,7 @@
 
             <div id="fieldWidgets">
                 <!-- List of Fields, followed by the list of Adapters -->
-                <h2 class="fields-header">Fields/Folders</h2>
+                <h2 i18n:translate="Fields/Folders" class="fields-header">Fields/Folders</h2>
                 <tal:typelist repeat="item view/addablePrioritizedFields">
                     <tal:block tal:define="set item/id">
                         <div class="widget w-field" tal:attributes="id item/id">
@@ -132,7 +132,7 @@
             </div>
             <hr>
             <div id="actionWidgets">
-                <h2 class="actions-header">Actions</h2>
+                <h2 class="actions-header" i18n:translate="Actions">Actions</h2>
                 <tal:typelist repeat="item view/addableAdapters">
                 <tal:block tal:define="set item/id; desc item/description">
                     <div class="widget w-action" tal:attributes="id item/id">
@@ -159,9 +159,9 @@
             <metal:block define-slot="widgets">
                 <div id="pfg-fieldwrapper">
                     <div class="theader">
-                        <div style="width: 8%;">Order</div>
-                        <div style="width: 50%;">Field</div>
-                        <div style="width: 26%;">Edit/Delete</div>
+                        <div style="width: 8%;" i18n:translate="Order">Order</div>
+                        <div style="width: 50%;" i18n:translate="Field">Field</div>
+                        <div style="width: 26%;" i18n:translate="Edit/Delete">Edit/Delete</div>
                     </div>
                     <div id="pfg-qetable" class="listing" summary="Field listing">
                         <tal:fields repeat="field fields">
@@ -199,9 +199,9 @@
                    style="float: left"
                    tal:define="liveAdapters here/getActionAdapter">
                 <div class="theader">
-                    <div style="width: 8%;">Order</div>
-                    <div style="width: 50%;">Action</div>
-                    <div style="width: 26%;">Edit/Delete</div>
+                    <div style="width: 8%;" i18n:translate="Order">Order</div>
+                    <div style="width: 50%;" i18n:translate="Action">Action</div>
+                    <div style="width: 26%;" i18n:translate="Edit/Delete">Edit/Delete</div>
                 </div>
                 <div id="pfgActionEdit">
                     <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
@@ -240,7 +240,7 @@
                    tal:define="liveThanks here/thanksPage">
                 <thead>
                     <tr>
-                        <th>Thanks Pages</th><th class="editHook">Enabled</th><th class="editHook">Delete</th><th class="editHook">Edit</th>
+                        <th i18n:translate="Thanks Pages">Thanks Pages</th><th i18n:translate="Enabled" class="editHook">Enabled</th><th class="editHook" i18n:translate="Delete">Delete</th><th i18n:translate="Edit" class="editHook">Edit</th>
                     </tr>
                 </thead>
                 <tbody>

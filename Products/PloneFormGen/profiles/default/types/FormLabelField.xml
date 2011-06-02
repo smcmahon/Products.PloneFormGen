@@ -3,9 +3,9 @@
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
    i18n:domain="ploneformgen">
- <property name="title" i18n:translate="">Label Field</property>
+ <property name="title" i18n:translate="Label Field">Label Field</property>
  <property
-    name="description" i18n:translate="">Label-Only field (no input component)</property>
+    name="description" i18n:translate="Label-Only field (no input component)">Label-Only field (no input component)</property>
  <property name="content_icon">LabelField.gif</property>
  <property name="content_meta_type">FormLabelField</property>
  <property name="product">PloneFormGen</property>

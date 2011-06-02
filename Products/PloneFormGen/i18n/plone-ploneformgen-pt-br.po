@@ -1,11 +1,13 @@
 # Gettext Message File for PloneFormGen
 # Sebastien Douche <sdouche@gmail.com>, 2006
 # Érico Andrei <erico@simplesconsultoria.com.br>, 2008
+# Jefferson Ramal Almeida <jeffersonramal@liberiun.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
 "POT-Creation-Date: 2006-09-04 22:26+0200\n"
 "PO-Revision-Date: 2010-09-01 11:40-0300\n"
+"Last-Translator: Liberiun Technologies <contato@liberiun.com>\n"
 "Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <contato@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -424,4 +426,99 @@ msgstr "Proteção CSRF"
 #. Default     Note that only HTTP Post actions will be allowed.
 msgid "help_csrf"
 msgstr "Marque esta opção para habilitar a proteção Cross-Site Request Forgery (CSRF). Observe que apenas ações HTTP Post serão permitidas."
+
+
+#. Form View
+#. Default 'Your E-Mail Address'
+msgid "Your E-Mail Address"
+msgstr "Seu endereço de E-Mail"
+
+#. Form View
+#. Default 'Comments'
+msgid "Comments"
+msgstr "Comentários"
+
+#. Edit bar
+#. Default 'QuickEdit'
+msgid "QuickEdit"
+msgstr "Edição rápida" 
+
+#. Field Captcha Editor
+#. Default 'Captcha field hidden by form editor. Refresh to view it'
+msgid "no_captcha_msg"
+msgstr "Campo oculto pelo editor de fomulário. Atualize a página"
+
+#. Default: "Selection list"
+#: content/fields.py:759
+msgid "vocabulary_selection_text"
+msgstr "Lista de Seleção"
+
+#. Default: "Submit Button Label"
+#: content/form.py:60
+msgid "help_submitlabel_text"
+msgstr "Nome do Botão Enviar"
+
+#. Default: "Reset Button Label"
+#: content/form.py:79
+msgid "label_reset_button"
+msgstr "Nome do Botão Limpar"
+
+#. Default: "Show Reset Button"
+#: content/form.py:70
+msgid "Show Reset Button"
+msgstr "Mostrar Botão Limpar"
+
+#. Default: "Edit/Delete"
+#. browser/quickedit.pt:164
+msgid "Edit/Delete"
+msgstr "Editar/Deletar" 
+
+#. Default: "Field"
+#. browser/quickedit.pt:163
+msgid "Field"
+msgstr "Campos"
+
+#. Default: "Order"
+#. browser/quickedit.pt:162
+msgid "Order"
+msgstr "Ordem"
+
+#. Default: "Thanks Pages"
+#. browser/quickedit.pt:243
+msgid "Thanks Pages"
+msgstr "Páginas De Agradecimentos" 
+
+#. Default: "Enabled"
+#. browser/quickedit.pt:243
+msgid "Enabled"
+msgstr "Ativo"
+      
+#. Default: "Delete"
+#. browser/quickedit.pt:243
+msgid "Delete"
+msgstr "Deletar"
+
+#. Default: "Edit"
+#. browser/quickedit.pt:243
+msgid "Edit"
+msgstr "Editar"
+                
+#. Default: "Fields/Folders"
+#. browser/quickedit.pt:119
+msgid "Fields/Folders"
+msgstr "Campos/Pastas"
+
+#. Default: "Toolbox"
+#. browser/quickedit.pt:106
+msgid "Toolbox"
+msgstr "Caixa De Ferramentas"
+
+#. Default: "Actions"
+#. browser/quickedit.pt:135
+msgid "Actions"
+msgstr "Ações"
+
+
+
+
 

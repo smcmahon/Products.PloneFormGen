@@ -4,6 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2010-07-19 16:00+0000\n"
 "PO-Revision-Date: 2010-09-01 16:43-0300\n"
+"Last-Translator: Liberiun Technologies <contato@liberiun.com>\n"
 "Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <contato@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -1453,4 +1454,17 @@ msgstr "Botões de opção"
 #: content/fields.py:759
 msgid "vocabulary_selection_text"
 msgstr "Lista de Seleção"
+
+
+
+
+
+
+
+
+
+
+
+
+
 

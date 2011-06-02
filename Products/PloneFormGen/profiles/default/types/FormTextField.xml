@@ -3,8 +3,8 @@
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
    i18n:domain="ploneformgen">
- <property name="title" i18n:translate="">Text Field</property>
- <property name="description" i18n:translate="">Text (textarea) field</property>
+ <property name="title" i18n:translate="Text Field">Text Field</property>
+ <property name="description" i18n:translate="Text (textarea) field">Text (textarea) field</property>
  <property name="content_icon">TextAreaField.gif</property>
  <property name="content_meta_type">FormTextField</property>
  <property name="product">PloneFormGen</property>
