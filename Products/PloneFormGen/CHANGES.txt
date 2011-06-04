@@ -4,6 +4,10 @@ Change History
 1.7b2 Unreleased
 ----------------
 
+- Fix misleading failure in attachments tests. Test didn't account for
+  quick editor changes.
+  [smcmahon]
+
 - Form fields could not be independently viewed in Plone 4/4.1.
   [smcmahon]
 

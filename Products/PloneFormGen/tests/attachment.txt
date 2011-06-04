@@ -21,6 +21,7 @@ Add a File field::
 
 And confirm that it renders properly::
     
+    >>> browser.open(self.portal_url + '/attachmentform')
     >>> browser.url
     'http://nohost/plone/attachmentform...'
     >>> print browser.contents
