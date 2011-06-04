@@ -4,6 +4,9 @@ Change History
 1.7b2 Unreleased
 ----------------
 
+- Form fields could not be independently viewed in Plone 4/4.1.
+  [smcmahon]
+
 - Fixed issue with image captions not displaying in form prologue/epilogue
   [dextermilo]
 

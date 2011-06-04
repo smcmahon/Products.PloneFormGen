@@ -65,6 +65,31 @@ base class)::
     >>> 'Thanks for your input.' in browser.contents
     True
 
+We should be able to view an individual field::
+
+    >>> browser.open(self.portal_url + '/testform/comments')
+    >>> browser.url
+    'http://nohost/plone/testform/comments'
+
+    >>> print browser.contents
+    <!DOCTYPE...
+    ...
+     <div class="pfg-form formid-comments">
+          ...
+          <textarea...name="comments"...></textarea>
+          ...
+          <div class="formControls">
+            ...
+            <input type="hidden" name="form.submitted"
+                   value="1" />
+            ...
+            <input class="context" type="submit"
+                   name="form_submit" value="Submit" />
+          </div>
+      </form>
+    </div>
+    ...
+
 
 Embedded form
 -------------
