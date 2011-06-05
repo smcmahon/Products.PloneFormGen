@@ -21,4 +21,21 @@
         handler="Products.PloneFormGen.upgrades.null_upgrade_step"
         />
 
+    <genericsetup:upgradeStep
+        source="1.6.0b3"
+        destination="1.6.0b4"
+        title="Empty upgrade step"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler="Products.PloneFormGen.upgrades.null_upgrade_step"
+        />
+
+    <genericsetup:upgradeStep
+        source="1.6.0b4"
+        destination="1.6.2"
+        title="Empty upgrade step"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler="Products.PloneFormGen.upgrades.null_upgrade_step"
+        />
 </configure>

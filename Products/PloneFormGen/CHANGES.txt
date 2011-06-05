@@ -1,11 +1,18 @@
 Change History
 ==============
 
-1.6.2
+1.6.3
 -----
+
+- Fixed typo in French translation file which prevented its compilation.
+  [smcmahon]
+
 
 - Form fields could not be independently viewed in Plone 4/4.1.
   [smcmahon]
+
+1.6.2
+-----
 
 - Fixed issue with image captions not displaying in form prologue/epilogue
   [dextermilo]

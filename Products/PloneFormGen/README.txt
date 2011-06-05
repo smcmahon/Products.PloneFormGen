@@ -32,7 +32,7 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
-Plone: Plone 3.1+
+Plone: Plone 3.3.5+
 
 Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
@@ -157,6 +157,6 @@ with particular features or bugs.
 License
 =======
 
-Distributed under the GPL.
+Distributed under the GPL v 2.
 
 See LICENSE.txt and LICENSE.GPL for details.
