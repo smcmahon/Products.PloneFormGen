@@ -578,7 +578,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # by the action adapter is returned by fgvalidate
         # and that FORM_ERROR_MARKER is available as an
         # attribute of the context.
-        cscript.setScriptBody(stripWhiteSpace(error_script)) 
+        cscript.setScriptBody(stripWhiteSpace(error_script))
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual(errors, {cscript.FORM_ERROR_MARKER : 'an error message'})
         self.assertEqual(saver1.itemsSaved(), 2)

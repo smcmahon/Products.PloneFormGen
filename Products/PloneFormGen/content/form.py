@@ -581,7 +581,12 @@ class FormFolder(ATFolder):
                 self.getAfterValidationOverride()
                 self.cleanExpressionContext(request=self.REQUEST)
 
-            adapters = list(set(self.getRawActionAdapter())) # use sets to avoid duplicates
+            # get a list of adapters with no duplicates, retaining order
+            adapters = []
+            for adapter in self.getRawActionAdapter():
+                if adapter not in adapters:
+                    adapters.append(adapter)
+
             for adapter in adapters:
                 actionAdapter = getattr(self.aq_explicit, adapter, None)
                 if actionAdapter is None:
