@@ -386,15 +386,18 @@ jQuery(function ($) {
 					if (ui.item.is("div.widget")) {
 						// perform the operations on the newly dragged element from the widgets manager
 						item = ui.item;
-						$(item).addClass("qechild");
-						$(item).addClass("item_" + i);
-						$(item).wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
-						$(item).before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
+						item.addClass("qechild");
+						item.addClass("item_" + i);
+						item.wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
+						item.before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
 						$("img.ajax-loader").css('visibility', 'visible');
-						$(item).width($(item).width());
+						item.width($(item).width());
     					//	$(item).height($(item).height());
 						// AJAX stuff
-						$(item).children("div.widget-inside").load("createObject?type_name=" + $(item).attr("id") + " #content > div:last", function (response, status, xhr) {
+						item.children("div.widget-inside")
+						    .load("createObject?type_name=" + 
+						          ui.item.context.id + " #content > div:last",
+						           function (response, status, xhr) {
 							var inputElem, formElem, msg, jqt;
 
 							jqt = $(this);
