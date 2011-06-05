@@ -651,12 +651,7 @@ msgstr "Ce texte sera affiché avant les champs du formulaire."
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:420
 msgid "help_recipient_override_text"
-msgstr ""
-msgstr "Une expression TALES qui sera évaluée pour surcharger toute valeur"
-msgstr "saisie  pour le destinataire du message."
-msgstr "Laisser vide si inutilisé."
-msgstr "ATTENTION: Une erreur dans l'évaluation de l'expression provoquera une erreur"
-msgstr "dans l'affichage du formulaire."
+msgstr "Une expression TALES qui sera évaluée pour surcharger toute valeur saisie  pour le destinataire du message. Laisser vide si inutilisé. ATTENTION: Une erreur dans l'évaluation de l'expression provoquera une erreur dans l'affichage du formulaire."
 
 #: ./content/fieldsBase.py:98
 msgid "help_rows_text"
