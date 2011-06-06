@@ -47,6 +47,14 @@ pfgQEdit.qedit = function (e) {
 			closeselector: '[name=form.button.Cancel]'
 		});
 	}
+
+    // We need the required markers outside the label
+    jQuery("div.field label span.required").each(function () {
+        var jqt = jQuery(this);
+        
+        jqt.parent().after(jqt.detach());
+    });
+
 	pfgWidgets.init();
 };
 

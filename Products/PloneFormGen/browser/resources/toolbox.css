@@ -210,6 +210,8 @@ div.draggable {
     width: 80%;
 }
 
+span.required,
+span.not-required,
 div.qefield div.field span {
     cursor: pointer;
 }
