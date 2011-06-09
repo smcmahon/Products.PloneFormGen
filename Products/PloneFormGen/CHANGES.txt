@@ -1,6 +1,12 @@
 Change History
 ==============
 
+after 1.7b2
+-----------
+
+- Fix German translation of RangeValidator
+  [fRiSi]
+
 1.7b2 2011-06-05
 ----------------
 
@@ -151,10 +157,10 @@ Change History
 1.6.0
 -----
 
-- Declare downloadSavedInput as z3 permission to be able to use it as 
+- Declare downloadSavedInput as z3 permission to be able to use it as
   browser view permission in another package.
   [naro]
-  
+
 - Avoid deprecation warnings for InitializeClass in Plone 4.
   [hannosch]
 
@@ -167,7 +173,7 @@ Change History
   translation errors during validation in p4.
   [stevem]
 
-- Define 'portal' variable in fg_base_view_p3. If portal is not defined, 
+- Define 'portal' variable in fg_base_view_p3. If portal is not defined,
   widget javascript is not found and thus not loaded.
   [naro]
 
@@ -194,10 +200,10 @@ Change History
 
 - Fix FormSaveDataAdapter to transparently
   migrate storage to LOBTree introduced in 1.6.0b4
-  This closes http://plone.org/products/ploneformgen/issues/295 
+  This closes http://plone.org/products/ploneformgen/issues/295
   [hplocher]
 
-- Updated exportimport to use five.formlib. 
+- Updated exportimport to use five.formlib.
   [vangheem]
 
 - Add form tracking plugin for collective.googleanalytics. (Matt Yoder)
@@ -206,7 +212,7 @@ Change History
   quick edit mode. More stable since the browser doesn't care.
   (Steve McMahon)
 
-- fieldset.py: fixed missing import 
+- fieldset.py: fixed missing import
 
 - action adapter interface: fix indention
   [seletz]
@@ -273,7 +279,7 @@ Change History
 
  - Add a 'show_text' option for fg_embedded_view_p3 which causes the prologue
    and epilogue to be displayed. (David Glick)
-   
+
  - Restore tests pruned in 1.5rc2, hoping using zip rather than tgz will fix.
    (SteveM)
 
@@ -334,7 +340,7 @@ Change History
  - Add "action" to form tags for quick editor to be more XHTML compliant.
    (Thanks: jonstahl, #248)
 
- - Fix bad numbering of savedata_tabview 
+ - Fix bad numbering of savedata_tabview
    (gotcha)
 
  - Prevent the automatic action adapter activation handler from
@@ -357,7 +363,7 @@ Change History
  - Corrected URL for audio captcha icon. (David Glick)
 
  - Added the CHANGES.txt to the long_description so that it show up on
-   pypi, Hello World!  Also cleaned up the reST so that it will render 
+   pypi, Hello World!  Also cleaned up the reST so that it will render
    properly (claytron)
 
 1.5b5
@@ -373,12 +379,12 @@ Change History
 
  - Merged branches/davisagli-captcha, providing a CAPTCHA field utilizing
    either collective.captcha or collective.recaptcha. (Thanks, David Glick!)
-   
+
  - Reworked install strategy for allowed content types for form folders and
    fieldsets to determine what's allowed by interfaces rather than GS profile.
    This makes it much easier to add fields, adapters and thanks pages from
    outside. (Steve McMahon)
-   
+
  - Fixed a problem with boolean fields in later Zope/Archetypes. (Tracker
    #244)
 
@@ -437,17 +443,17 @@ Change History
    back to kupu's linkable's resource. (Steve McMahon)
 
  - guess_content_type, used in htmlValue in the file field, needs the same
-   import protection used in the save data adapter, or it will fail in 
+   import protection used in the save data adapter, or it will fail in
    later Zopes. (Thanks, Tom Gross)
 
 1.5b2
 -----
 
  - Support for export/import of PloneFormGen form folders via generic setup
-   profiles and the portal_setup tool as well as contextual form (i.e. on an 
-   individual form basis) export/import. Feature aimed at improving the 
-   development capabilities of PloneFormGen and simplifying the lives of 
-   integrators. Feature considered experimental.  Use with care and test 
+   profiles and the portal_setup tool as well as contextual form (i.e. on an
+   individual form basis) export/import. Feature aimed at improving the
+   development capabilities of PloneFormGen and simplifying the lives of
+   integrators. Feature considered experimental.  Use with care and test
    thoroughly. (Andrew Burkhalter)
 
  - Make sure server-side only fields can supply a value via the default override.
@@ -470,7 +476,7 @@ Change History
 
  - Add CSRF protection option (on by default). [Plone 3 only] (Steve McMahon)
 
- - Added support for choosing an alternate csv text delimiter for Save Data 
+ - Added support for choosing an alternate csv text delimiter for Save Data
    Adapters. (Jesse Snyder)
 
  - Adapters are now activated when pasted into form folders. (Jesse Snyder)
@@ -503,7 +509,7 @@ Change History
    scary until we get captchas built in. (Steve McMahon)
 
  - Mailer now has an option to select among available fields those
-   which should be included in the e-mail. Interface is identical to 
+   which should be included in the e-mail. Interface is identical to
    thanks page. (Steve McMahon)
 
  - Added support for embedding PFG forms into other templates.  See
@@ -514,14 +520,14 @@ Change History
  - Pulling out removeSkinLayer for arg PloneFormGenPlone3, since
    this appears to have not existed and certainly is unnecessary
    currently (Andrew Burkhalter)
- 
- - Removed unneeded and unused legacy typesonly profile directory 
+
+ - Removed unneeded and unused legacy typesonly profile directory
    (Andrew Burkhalter)
 
  - Installation process is entirely based upon GenericSetup extension
    profiles to the level that is pragmatic for support of Plone 2.5.x
    up to version Plone 3.x. In brief, this means that we have an install
-   method so that we appear installable with the portal_quickinstaller 
+   method so that we appear installable with the portal_quickinstaller
    tool in Plone 2.5.x and that we run relevant profiles in portal_setup
    upon install (Jesse Snyder, Andrew Burkhalter)
 
@@ -572,7 +578,7 @@ Change History
 1.2.2
 -----
 
- - The PicklistWidget used to pick ThanksPage fields doesn't respect the 
+ - The PicklistWidget used to pick ThanksPage fields doesn't respect the
    order of the value it's supplied, so let's always sort the values
    into the same order as the form. (Thanks, Lucia Colombo)
 
@@ -612,7 +618,7 @@ Change History
 -----
 
  - Fixes in nl translation. (Tracker 166: Radek Jankiewicz)
- 
+
  - Remove obsolete migration from PFGDataGrid. (Tracker 169: Thanks, Zippy)
 
 1.2-RC2
@@ -629,7 +635,7 @@ Change History
 
  - Improve error message on mail attempt when no recipient address is
    found and form owner has no e-mail address. Also, make it less likely
-   by using portal email_from_address as a fallback. (Tracker #140, 
+   by using portal email_from_address as a fallback. (Tracker #140,
    thanks Andreas Jung)
 
 1.2-Beta-6
@@ -664,7 +670,7 @@ Change History
  - There was no status message when validation failed in Plone 3. Fixed.
    (Tracker #133, thanks Lucie Lejard)
 
- - Validation script was discarding any errors that might already be in the 
+ - Validation script was discarding any errors that might already be in the
    CMFFormController state. Fixed. (Tracker #134, thanks Lucie Lejard)
 
  - Fields in fieldsets were not being offered as options in the mailer's extract
@@ -678,11 +684,11 @@ Change History
 1.2-Beta-4
 ----------
 
- - In Plone 3, Kupu has started saving "<p>&nbsp;</p>" for empty inputs. This 
+ - In Plone 3, Kupu has started saving "<p>&nbsp;</p>" for empty inputs. This
    forced white space into the the form if prologue and/or epilogue were empty.
    Fixed with custom mutators. (Tracker #120, thanks Michael Dunlap)
 
- - Check ids of fields to make sure they don't collide with known 
+ - Check ids of fields to make sure they don't collide with known
    troublesome ids ('zip', 'location', 'language'). Also prevent use of
    ids that duplicate those in fieldset folders. (Tracker #94, thanks Gregory
    Hnatiuk; Tracker #107, thanks Kim Nielsen)
@@ -697,7 +703,7 @@ Change History
 
  - Partial date entries to a Date/Time Field would raise a DateError exception.
    Fixed. (Tracker #118)
- 
+
  - New Czech translation of plone-ploneformgen domain. Thanks, Jan Pokorny.
 
  - Updated Dutch translations, thanks to: markvl, justi and jladage and
@@ -770,10 +776,10 @@ Change History
    IOBTree rather than Archetypes lines field storage (a sequence).
    This should cure a problem with data object size growing geometrically
    with new inputs (Tracker #81, thanks Jean-Paul Ladage).
-   
+
    Existing save data adapters will be migrated when first touched by the new PFG
    version.
-   
+
    This is NOT backwards compatible! So, you will not be able to save data
    in 1.2 and revert to 1.1.
 
@@ -848,7 +854,7 @@ Change History
  - Removed the "hidden" option from most fields. Archetypes support for
    it was uneven and not really necessary for anything more than strings,
    lines and text. So, why not get it out of the way? (Tracker #69, thanks
-   to Radim Novotny for pointing out the problem.) 
+   to Radim Novotny for pointing out the problem.)
 
  - Added optional tabular and record supplemental views for save data
    adapter.
@@ -1187,7 +1193,7 @@ Change History
    is rude, but better than an unintelligible traceback due to an SMTP error.
    (tracker #7, thanks: Carl Brewer)
 
- - Added checked/unchecked validators for boolean field 
+ - Added checked/unchecked validators for boolean field
    (tracker #4, thanks: Kim Nielsen)
 
  - Removed confusing and unnecessary require & hidden options
