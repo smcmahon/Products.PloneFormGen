@@ -31,6 +31,7 @@ from Products.PloneFormGen.config import *
 from Products.PloneFormGen.widgets import \
     FieldsetStartWidget, FieldsetEndWidget
 
+
 from Products.PloneFormGen.interfaces import IPloneFormGenFieldset
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
@@ -111,7 +112,7 @@ class FieldsetFolder(ATFolder):
         self.getField('description').set(self, value, **kw)
 
 
-    security.declareProtected(ModifyPortalContent, 'setDescription')
+    security.declareProtected(ModifyPortalContent, 'setUseLegend')
     def setUseLegend(self, value, **kw):
         """ set useLegend as attribute and widget attribute """
         if type(value) == BooleanType:
@@ -184,3 +185,154 @@ class FieldsetFolder(ATFolder):
 
 
 registerATCT(FieldsetFolder, PROJECTNAME)
+
+
+
+class FGFieldsetStart(BaseContent):
+    """ Marks start of fieldset (no input component) """
+
+    security  = ClassSecurityInfo()
+
+    schema =  BaseSchema.copy() + Schema((
+        BooleanField('useLegend',
+            required=0,
+            searchable=0,
+            default='1',
+            widget=BooleanWidget(label=_(u'label_showlegend_text', default=u'Show Title as Legend'),
+                description=_(u'help_showlegend_text', default=u''),
+                ),
+            ),
+        ))
+
+    # Standard content type setup
+    portal_type = meta_type = 'FieldsetStart'
+    archetype_name = 'Fieldset Beginning'
+    content_icon = 'LabelField.gif'
+    typeDescription= 'Start a fieldset'
+
+    _at_rename_after_creation = True
+
+    # avoid showing unnecessary schema tabs
+    for afield in ('subject', 
+                   'location', 
+                   'language', 
+                   'effectiveDate', 
+                   'expirationDate', 
+                   'creation_date', 
+                   'modification_date', 
+                   'creators', 
+                   'contributors', 
+                   'rights', 
+                   'allowDiscussion',):
+        schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+        schema[afield].schemata = 'default'
+        schema['description'].schemata = 'default'
+
+    def __init__(self, oid, **kwargs):
+        """ initialize class """
+
+        BaseObject.__init__(self, oid, **kwargs)
+
+        self.fsStartField = StringField('FieldsetStart',
+            searchable=0,
+            required=0,
+            write_permission = View,
+            widget=FieldsetStartWidget(),
+            )
+
+
+    security.declareProtected(ModifyPortalContent, 'setTitle')
+    def setTitle(self, value, **kw):
+        """ set title of object and field label """
+
+        self.title = value
+        self.fsStartField.widget.label = value
+
+
+    security.declareProtected(ModifyPortalContent, 'setDescription')
+    def setDescription(self, value, **kw):
+        """ set description for field widget """
+
+        self.fsStartField.widget.description = value
+        self.getField('description').set(self, value, **kw)
+
+
+    security.declareProtected(ModifyPortalContent, 'setUseLegend')
+    def setUseLegend(self, value, **kw):
+        """ set useLegend as attribute and widget attribute """
+        if type(value) == BooleanType:
+            self.fsStartField.widget.show_legend = value
+            self.useLegend = value
+        else:
+            self.fsStartField.widget.show_legend = value == '1' or value == 'True'
+            self.useLegend = value == '1' or value == 'True'
+
+
+    security.declareProtected(ModifyPortalContent, 'setId')
+    def setId(self, value):
+        """Sets the object id. Changes both object and field id.
+        """
+
+        badIds = (
+            'language',
+            'form',
+            'form_submit',
+            'fieldset',
+            'last_referer',
+            'add_reference',
+            )
+
+        if value in badIds:
+            raise BadRequest, 'The id "%s" is reserved.' % value
+
+        BaseObject.setId(self, value)
+        self.fsStartField.__name__ = self.getId()
+
+registerType(FGFieldsetStart, PROJECTNAME)
+
+
+class FGFieldsetEnd(BaseContent):
+    """ Marks end of fieldset (no input component) """
+
+    security  = ClassSecurityInfo()
+
+    schema =  BaseSchema.copy()
+
+    # Standard content type setup
+    portal_type = meta_type = 'FieldsetEnd'
+    archetype_name = 'Fieldset End'
+    content_icon = 'LabelField.gif'
+    typeDescription= 'End a fieldset'
+
+    _at_rename_after_creation = True
+
+    # avoid showing unnecessary schema tabs
+    for afield in ('subject', 
+                   'location', 
+                   'language', 
+                   'effectiveDate', 
+                   'expirationDate', 
+                   'creation_date', 
+                   'modification_date', 
+                   'creators', 
+                   'contributors', 
+                   'rights', 
+                   'allowDiscussion',
+                   'description'):
+        schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+        schema[afield].schemata = 'default'
+
+    def __init__(self, oid, **kwargs):
+        """ initialize class """
+
+        BaseObject.__init__(self, oid, **kwargs)
+
+        self.fsEndField = StringField('FieldsetEnd',
+            searchable=0,
+            required=0,
+            write_permission = View,
+            widget=FieldsetEndWidget(),
+            )
+
+registerType(FGFieldsetEnd, PROJECTNAME)
+

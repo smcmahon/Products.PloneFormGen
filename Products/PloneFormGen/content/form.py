@@ -316,7 +316,7 @@ class FormFolder(ATFolder):
         # Make sure we look through fieldsets
         if objTypes is not None:
             objTypes = list(objTypes)[:]
-            objTypes.append('FieldsetFolder')
+            objTypes.extend(('FieldsetFolder', 'FieldsetStart', 'FieldsetEnd'))
 
         myObjs = []
 
@@ -342,8 +342,12 @@ class FormFolder(ATFolder):
             if enabled:
                 if shasattr(obj, 'fgField'):
                     myObjs.append(obj)
-                if shasattr(obj, 'fieldsetFields'):
+                elif shasattr(obj, 'fieldsetFields'):
                     myObjs += obj.fieldsetFields(objTypes, includeFSMarkers)
+                elif obj.portal_type == 'FieldsetStart':
+                    myObjs.append(obj.fsStartField)
+                elif obj.portal_type == 'FieldsetEnd':
+                    myObjs.append(obj.fsEndField)
 
         return myObjs
 

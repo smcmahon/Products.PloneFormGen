@@ -63,4 +63,10 @@
  <bindings>
   <type type_id="FieldsetFolder"/>
  </bindings>
+ <bindings>
+  <type type_id="FieldsetStart"/>
+ </bindings>
+ <bindings>
+  <type type_id="FieldsetEnd"/>
+ </bindings>
 </object>

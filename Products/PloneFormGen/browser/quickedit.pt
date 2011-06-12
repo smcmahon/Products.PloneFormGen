@@ -79,7 +79,8 @@
     <metal:fill fill-slot="main">
       <metal:main define-macro="main"
                   tal:define="isLocked python:False;
-                              canModify python:checkPermission('Modify portal content', here)">
+                              canModify python:checkPermission('Modify portal content', here);
+                              quickEdit python:True">
         
         <div tal:replace="structure provider:plone.abovecontenttitle" />
         

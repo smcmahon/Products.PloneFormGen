@@ -1286,3 +1286,85 @@ class FGCaptchaField(FGStringField):
             )
             
 registerATCT(FGCaptchaField, PROJECTNAME)
+
+
+# FieldsetFolderSchema = BareFieldSchema.copy() + Schema((
+#     BooleanField('useLegend',
+#         required=0,
+#         searchable=0,
+#         default='1',
+#         widget=BooleanWidget(label=_(u'label_showlegend_text', default=u'Show Title as Legend'),
+#             description=_(u'help_showlegend_text', default=u''),
+#             ),
+#         ),
+#     ))
+# 
+# FieldsetFolderSchema['description'].widget.label = _(u'label_fieldsethelp_text', default=u'Fieldset Help')
+# FieldsetFolderSchema['description'].widget.description = None
+# FieldsetFolderSchema.moveField('description', after='useLegend')
+# 
+# class FGFieldsetStartField(BaseFormField):
+#     """ Marks start of fieldset (no input component) """
+# 
+#     security  = ClassSecurityInfo()
+# 
+#     schema =  FieldsetFolderSchema.copy()
+#     finalizeFieldSchema(schema, folderish=False, moveDiscussion=False)
+# 
+#     # Standard content type setup
+#     portal_type = meta_type = 'FieldsetStartField'
+#     archetype_name = 'Fieldset Beginning'
+#     content_icon = 'LabelField.gif'
+#     typeDescription= 'Start a fieldset'
+# 
+#     def __init__(self, oid, **kwargs):
+#         """ initialize class """
+# 
+#         BaseFormField.__init__(self, oid, **kwargs)
+# 
+#         # set a preconfigured field as an instance attribute
+#         self.fgField = StringField('fg_fieldset_start_field',
+#             searchable=0,
+#             required=0,
+#             write_permission = View,
+#             widget=LabelWidget(),
+#             )
+# 
+#     def isLabel(self):
+#         return True
+# 
+# registerATCT(FGFieldsetStartField, PROJECTNAME)
+# 
+# 
+# class FGFieldsetEndField(BaseFormField):
+#     """ Marks end of fieldset (no input component) """
+# 
+#     security  = ClassSecurityInfo()
+# 
+#     schema =  BareFieldSchema.copy()
+#     schema['description'].widget.visible = {'view':'invisible','edit':'invisible'}
+#     finalizeFieldSchema(schema, folderish=False, moveDiscussion=False)
+# 
+#     # Standard content type setup
+#     portal_type = meta_type = 'FieldsetEndField'
+#     archetype_name = 'Fieldset End'
+#     content_icon = 'LabelField.gif'
+#     typeDescription= 'End a fieldset'
+# 
+#     def __init__(self, oid, **kwargs):
+#         """ initialize class """
+# 
+#         BaseFormField.__init__(self, oid, **kwargs)
+# 
+#         # set a preconfigured field as an instance attribute
+#         self.fgField = StringField('fg_fieldset_start_field',
+#             searchable=0,
+#             required=0,
+#             write_permission = View,
+#             widget=LabelWidget(),
+#             )
+# 
+#     def isLabel(self):
+#         return True
+# 
+# registerATCT(FGFieldsetEndField, PROJECTNAME)
