@@ -32,7 +32,6 @@
           </div>
         </tal:block>
         <div tal:condition="quickEdit" class="field fsbegin" tal:attributes="id string:archetypes-fieldname-${field/getName}">
-          Fieldset Begin
           <label class="formQuestion"
                  tal:attributes="for python:fieldName">
               <span tal:replace="python:widget.Label(here)" 

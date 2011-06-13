@@ -32,7 +32,7 @@ pfgQEdit.qedit = function (e) {
     //     chillen.unwrap();
 	
 	// disable and dim input elements
-	blurrable = jQuery("#pfg-fieldwrapper .field input");
+	blurrable = jQuery("#pfg-fieldwrapper .field :input");
 	blurrable.each(function () {
 		if (typeof this.disabled !== "undefined") {
 			this.disabled = true;

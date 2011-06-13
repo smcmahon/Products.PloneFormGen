@@ -1304,6 +1304,7 @@ class FGFieldsetStart(BaseFormField):
     schema['fgTValidator'].widget.visible = noview
     schema['serverSide'].widget.visible = noview
     
+    schema['required'].default = True
     schema['required'].widget.label = _(u'label_showlegend_text', default=u'Show Title as Legend')
     schema['required'].widget.description=_(u'help_showlegend_text', default=u'')
 
@@ -1339,13 +1340,13 @@ class FGFieldsetStart(BaseFormField):
 
 registerType(FGFieldsetStart, PROJECTNAME)
 
-# TODO: convert this to field
-class FGFieldsetEnd(BaseContent):
+
+class FGFieldsetEnd(BaseFormField):
     """ Marks end of fieldset (no input component) """
 
     security  = ClassSecurityInfo()
 
-    schema =  BaseSchema.copy()
+    schema =  BaseFieldSchema.copy()
 
     # Standard content type setup
     portal_type = meta_type = 'FieldsetEnd'
@@ -1353,23 +1354,17 @@ class FGFieldsetEnd(BaseContent):
     content_icon = 'LabelField.gif'
     typeDescription= 'End a fieldset'
 
-    _at_rename_after_creation = True
+    _at_rename_after_creation = False
 
-    # avoid showing unnecessary schema tabs
-    for afield in ('subject', 
-                   'location', 
-                   'language', 
-                   'effectiveDate', 
-                   'expirationDate', 
-                   'creation_date', 
-                   'modification_date', 
-                   'creators', 
-                   'contributors', 
-                   'rights', 
-                   'allowDiscussion',
-                   'description'):
-        schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
-        schema[afield].schemata = 'default'
+    del schema['hidden']
+    noview = {'view': 'invisible', 'edit': 'invisible'}
+    schema['fgTEnabled'].widget.visible = noview
+    schema['fgTDefault'].widget.visible = noview
+    schema['fgTValidator'].widget.visible = noview
+    schema['serverSide'].widget.visible = noview
+    schema['required'].widget.visible = noview
+    schema['description'].widget.visible = noview
+    schema['title'].widget.visible = noview
 
     def __init__(self, oid, **kwargs):
         """ initialize class """
@@ -1382,6 +1377,16 @@ class FGFieldsetEnd(BaseContent):
             write_permission = View,
             widget=FieldsetEndWidget(),
             )
+
+    security.declareProtected(ModifyPortalContent, 'setId')
+    def setId(self, value):
+        """Sets the object id. Changes both object and field id.
+        """
+
+        BaseContent.setId(self, value)
+        self.fgField.__name__ = self.getId()
+        self.setTitle(value)
+
 
 registerType(FGFieldsetEnd, PROJECTNAME)
 

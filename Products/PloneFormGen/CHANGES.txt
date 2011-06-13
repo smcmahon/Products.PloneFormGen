@@ -1,8 +1,13 @@
 Change History
 ==============
 
-after 1.7b2
------------
+1.7b3 unreleased
+----------------
+
+- Add fieldset begin/end markers; these will replace fieldset folders going
+  forward so that fieldsets may work better with the quickeditor. Fieldset
+  folders will still work, but will not be addable by default.
+  [smcmahon]
 
 - Fix German translation of RangeValidator
   [fRiSi]

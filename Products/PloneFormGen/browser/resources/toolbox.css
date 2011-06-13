@@ -233,3 +233,15 @@ td.draggable.draggingHook {
     cursor:ns-resize;
     vertical-align:middle;
 }
+
+.fsbegin, .fsend {
+    border: 1px dashed black;
+    margin: 0 6px;
+    height: auto !important;
+}
+.fsbegin {
+    border-bottom: none;
+}
+.fsend {
+    border-top: none;
+}
