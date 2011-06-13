@@ -12,11 +12,15 @@
           <span tal:replace="structure string:<fieldset>" />
     </metal:view_macro>
  
-    <metal:define define-macro="edit">
-          <span tal:replace="structure python:'<fieldset class=\x22PFGFieldsetWidget\x22 id=\x22pfg-fieldsetname-%s\x22>' % field.getName()" />
-          <tal:block condition="widget/show_legend">
-              <span tal:replace="structure string:<legend>" />
-              <span tal:content="python:widget.Label(here)" />
+    <metal:define define-macro="edit"
+      tal:define="fid python:'pfg-fieldsetname-%s' % field.getName();
+                  quickEdit quickEdit | nothing">
+        <tal:block tal:condition="not:quickEdit">
+          <div tal:content="widget/show_legend" />
+          <span tal:replace="structure python:'<fieldset class=\x22PFGFieldsetWidget\x22 id=\x22%s\x22>' % fid" />
+          <tal:block condition="widget/show_legend | nothing">
+              <span tal:replace="structure python:'<legend for=\x22%s\x22>' % fid" />
+              <span tal:replace="python:widget.Label(here)" />
               <span tal:replace="structure string:</legend>" />
           </tal:block>
           <div class="formHelp"
@@ -26,6 +30,22 @@
                i18n:translate="">
             Help
           </div>
+        </tal:block>
+        <div tal:condition="quickEdit" class="field fsbegin" tal:attributes="id string:archetypes-fieldname-${field/getName}">
+          Fieldset Begin
+          <label class="formQuestion"
+                 tal:attributes="for python:fieldName">
+              <span tal:replace="python:widget.Label(here)" 
+                    i18n:translate="" />
+              <span class="required"
+                    tal:condition="field/required"
+                    title="Required"
+                    i18n:attributes="title title_required;"
+                    style="color: #f00;">
+                &#x25a0;
+              </span>
+          </label>
+        </div>
     </metal:define>
 
     <div metal:define-macro="search">

@@ -31,6 +31,7 @@ from Products.PloneFormGen.config import *
 from Products.PloneFormGen.widgets import \
     FieldsetStartWidget, FieldsetEndWidget
 
+
 from Products.PloneFormGen.interfaces import IPloneFormGenFieldset
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
@@ -111,7 +112,7 @@ class FieldsetFolder(ATFolder):
         self.getField('description').set(self, value, **kw)
 
 
-    security.declareProtected(ModifyPortalContent, 'setDescription')
+    security.declareProtected(ModifyPortalContent, 'setUseLegend')
     def setUseLegend(self, value, **kw):
         """ set useLegend as attribute and widget attribute """
         if type(value) == BooleanType:

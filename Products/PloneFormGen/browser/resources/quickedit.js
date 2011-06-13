@@ -27,6 +27,10 @@ pfgQEdit.qedit = function (e) {
 	jQuery("#pfgWidgetWrapper").fadeIn();
 
 	jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
+	
+    // var chillen = jQuery('.PFGFieldsetWidget').children();
+    //     chillen.unwrap();
+	
 	// disable and dim input elements
 	blurrable = jQuery("#pfg-fieldwrapper .field input");
 	blurrable.each(function () {

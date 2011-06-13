@@ -23,5 +23,7 @@
   <type portal_type="FormLikertField"/>
   <type portal_type="FormRichTextField"/>
   <type portal_type="FormCaptchaField"/>
+  <type portal_type="FieldsetStart"/>
+  <type portal_type="FieldsetEnd"/>
  </factorytypes>
 </object>

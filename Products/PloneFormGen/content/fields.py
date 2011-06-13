@@ -1286,3 +1286,102 @@ class FGCaptchaField(FGStringField):
             )
             
 registerATCT(FGCaptchaField, PROJECTNAME)
+
+
+from Products.PloneFormGen.widgets import \
+    FieldsetStartWidget, FieldsetEndWidget
+
+class FGFieldsetStart(BaseFormField):
+    """ Marks start of fieldset (no input component) """
+
+    security  = ClassSecurityInfo()
+
+    schema =  BaseFieldSchema.copy()
+    del schema['hidden']
+    noview = {'view': 'invisible', 'edit': 'invisible'}
+    schema['fgTEnabled'].widget.visible = noview
+    schema['fgTDefault'].widget.visible = noview
+    schema['fgTValidator'].widget.visible = noview
+    schema['serverSide'].widget.visible = noview
+    
+    schema['required'].widget.label = _(u'label_showlegend_text', default=u'Show Title as Legend')
+    schema['required'].widget.description=_(u'help_showlegend_text', default=u'')
+
+    # Standard content type setup
+    portal_type = meta_type = 'FieldsetStart'
+    archetype_name = 'Fieldset Beginning'
+    content_icon = 'LabelField.gif'
+    typeDescription= 'Start a fieldset'
+
+    _at_rename_after_creation = True
+
+    def __init__(self, oid, **kwargs):
+        """ initialize class """
+
+        BaseObject.__init__(self, oid, **kwargs)
+
+        self.fgField = StringField('fg_fieldset_start',
+            searchable=0,
+            required=0,
+            write_permission = View,
+            widget=FieldsetStartWidget(),
+            )
+
+    security.declareProtected(ModifyPortalContent, 'setRequired')
+    def setRequired(self, value, **kw):
+        """ set both required and show_legend as attribute and widget attribute """
+        if type(value) == BooleanType:
+            self.fgField.widget.show_legend = value
+            self.fgField.required = value
+        else:
+            self.fgField.widget.show_legend = value == '1' or value == 'True'
+            self.fgField.required = value == '1' or value == 'True'
+
+registerType(FGFieldsetStart, PROJECTNAME)
+
+# TODO: convert this to field
+class FGFieldsetEnd(BaseContent):
+    """ Marks end of fieldset (no input component) """
+
+    security  = ClassSecurityInfo()
+
+    schema =  BaseSchema.copy()
+
+    # Standard content type setup
+    portal_type = meta_type = 'FieldsetEnd'
+    archetype_name = 'Fieldset End'
+    content_icon = 'LabelField.gif'
+    typeDescription= 'End a fieldset'
+
+    _at_rename_after_creation = True
+
+    # avoid showing unnecessary schema tabs
+    for afield in ('subject', 
+                   'location', 
+                   'language', 
+                   'effectiveDate', 
+                   'expirationDate', 
+                   'creation_date', 
+                   'modification_date', 
+                   'creators', 
+                   'contributors', 
+                   'rights', 
+                   'allowDiscussion',
+                   'description'):
+        schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+        schema[afield].schemata = 'default'
+
+    def __init__(self, oid, **kwargs):
+        """ initialize class """
+
+        BaseObject.__init__(self, oid, **kwargs)
+
+        self.fgField = StringField('FieldsetEnd',
+            searchable=0,
+            required=0,
+            write_permission = View,
+            widget=FieldsetEndWidget(),
+            )
+
+registerType(FGFieldsetEnd, PROJECTNAME)
+
