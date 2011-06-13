@@ -1,5 +1,8 @@
 TODO.txt
 
+Avoid showing fieldset begin/end on thanks page / mailings.
+
+
 Plone 2.5 compatibility leftovers?
     - Do we still need to patch the ZPublisher? See method
       patch_publisher_exception_handling in patches.py
@@ -7,14 +10,3 @@ Plone 2.5 compatibility leftovers?
       After clearing out the last of the "not HAS_PLONE3" code,
       it looks like it only runs in browser.txt, but is needed
       there to keep the tests working.
-
-DND for actions and thanks not enabled
-
-For merge of manca's branch: these things still need checking/fixing
-
-* Examine new outside source (jqueryui dnd)
-    - can we find something lighter-weight for drag-and-drop;
-      in any case, we should avoid a "custom" module.
-    
-* when the user d-n-d a field to the left we get this error: 
- "formElem.validator is not a function" toolbox.js(line 75)

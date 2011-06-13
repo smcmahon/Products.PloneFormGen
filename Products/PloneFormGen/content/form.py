@@ -504,6 +504,9 @@ class FormFolder(ATFolder):
                   if not implementedOrProvidedBy(IField, fo)]
         for obj in fields:
             field = obj.fgField
+            
+            if obj.isLabel():
+                REQUEST.form[obj.__name__] = '1'
 
             if obj.getServerSide():
                 # for server-side only fields, use the default value
@@ -511,6 +514,7 @@ class FormFolder(ATFolder):
                 if obj.__name__ in REQUEST.form:
                     del REQUEST.form[obj.__name__]
                 obj.fgPrimeDefaults(REQUEST)
+
             result = field.widget.process_form(self, field, REQUEST.form,
                                                empty_marker=_marker)
 

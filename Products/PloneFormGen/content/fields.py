@@ -1324,13 +1324,21 @@ class FGFieldsetStart(BaseFormField):
         self.fgField = StringField('fg_fieldset_start',
             searchable=0,
             required=0,
+            default='1',
             write_permission = View,
             widget=FieldsetStartWidget(),
             )
 
+    security.declareProtected(View, 'isLabel')
+    def isLabel(self):
+        """ yes, this is just decorative """
+        return True
+
     security.declareProtected(ModifyPortalContent, 'setRequired')
     def setRequired(self, value, **kw):
-        """ set both required and show_legend as attribute and widget attribute """
+        """ double purpose required field as show_legend field
+            so that we may update easily with the quick editor
+        """
         if type(value) == BooleanType:
             self.fgField.widget.show_legend = value
             self.fgField.required = value
@@ -1387,6 +1395,10 @@ class FGFieldsetEnd(BaseFormField):
         self.fgField.__name__ = self.getId()
         self.setTitle(value)
 
+    security.declareProtected(View, 'isLabel')
+    def isLabel(self):
+        """ yes, this is just decorative """
+        return True
 
 registerType(FGFieldsetEnd, PROJECTNAME)
 

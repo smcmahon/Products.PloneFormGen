@@ -16,7 +16,6 @@
       tal:define="fid python:'pfg-fieldsetname-%s' % field.getName();
                   quickEdit quickEdit | nothing">
         <tal:block tal:condition="not:quickEdit">
-          <div tal:content="widget/show_legend" />
           <span tal:replace="structure python:'<fieldset class=\x22PFGFieldsetWidget\x22 id=\x22%s\x22>' % fid" />
           <tal:block condition="widget/show_legend | nothing">
               <span tal:replace="structure python:'<legend for=\x22%s\x22>' % fid" />
