@@ -251,10 +251,11 @@ class FormThanksPage(ATCTContent):
         for obj in sFields:
             value = obj.htmlValue(request)
             if self.includeEmpties or (value and (value != 'No Input')):
-                res.append( {
-                    'label' : obj.fgField.widget.label,
-                    'value' : value, 
-                    } )
+                if obj.portal_type not in ('FieldsetStart', 'FieldsetEnd'):
+                    res.append( {
+                        'label' : obj.fgField.widget.label,
+                        'value' : value, 
+                        } )
             
         return res
         
