@@ -226,7 +226,7 @@ class FormThanksPage(ATCTContent):
         # get a list of all candidate fields
         myFields = []
         for obj in self.aq_parent._getFieldObjects():
-            if (not implementedOrProvidedBy(IField, obj) or obj.isLabel()):
+            if not (implementedOrProvidedBy(IField, obj) or obj.isLabel()):
                 # if field list hasn't been specified explicitly, exclude server side fields
                 if self.showAll and obj.getServerSide():
                     continue 
@@ -251,11 +251,10 @@ class FormThanksPage(ATCTContent):
         for obj in sFields:
             value = obj.htmlValue(request)
             if self.includeEmpties or (value and (value != 'No Input')):
-                if obj.portal_type not in ('FieldsetStart', 'FieldsetEnd'):
-                    res.append( {
-                        'label' : obj.fgField.widget.label,
-                        'value' : value, 
-                        } )
+                res.append( {
+                    'label' : obj.fgField.widget.label,
+                    'value' : value, 
+                    } )
             
         return res
         

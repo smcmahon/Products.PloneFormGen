@@ -723,7 +723,7 @@ class FormFolder(ATFolder):
             myFields.append((noneValue, _(u'vocabulary_none_text', u'None')))
 
         for obj in self._getFieldObjects(objTypes):
-            if obj.getServerSide():
+            if obj.getServerSide() or obj.isLabel():
                 continue
             if isinstance(obj.title, unicode):
                 myFields.append((obj.getId(), obj.title))
