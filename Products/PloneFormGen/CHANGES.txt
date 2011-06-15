@@ -1,6 +1,11 @@
 Change History
 ==============
 
+1.7b4 unreleased
+----------------
+
+- no changes yet
+
 1.7b3 2011-06-14
 ----------------
 
