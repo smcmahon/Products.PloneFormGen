@@ -4,7 +4,8 @@ Change History
 1.7b4 unreleased
 ----------------
 
-- no changes yet
+- Fix popen2 deprecation warning by using subprocess
+  [toutpt]
 
 1.7b3 2011-06-14
 ----------------

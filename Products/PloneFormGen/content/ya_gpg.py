@@ -38,7 +38,7 @@ __docformat__ = 'plaintext'
 #    repeated path searches, and make it easy to detect
 #    when gpg binary is available.
 
-import os, popen2
+import os, subprocess
 
 class GPGError(ValueError):
     " Error from GPG "
@@ -85,7 +85,11 @@ class gpg_subprocess:
         # the file objects for communicating with it.
         # cmd = self.gpg_binary + ' --yes --status-fd 2 ' + string.join(args)
         cmd = self.gpg_binary + ' --batch --yes --no-secmem-warning ' + " ".join(args)
-        child_stdout, child_stdin, child_stderr = popen2.popen3(cmd)
+        #migrate from popen2 to subprocess following
+        #http://docs.python.org/library/subprocess.html#replacing-functions-from-the-popen2-module
+        PIPE = subprocess.PIPE
+        p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        child_stdout, child_stdin, child_stderr = (p.stdout, p.stdin, p.stderr)
         return child_stdout, child_stdin, child_stderr
 
 
