@@ -177,7 +177,7 @@ jQuery(function ($) {
 			});
 
 			/* Make the widgets inside the widgets manager draggable */
-			$("#fieldWidgets div.widget").draggable({
+			$("#fieldWidgets div.widget, #fieldsetWidgets div.widget").draggable({
 				connectToSortable: "#pfg-qetable",
 				helper: 'clone',
 				containment: 'document'

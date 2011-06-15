@@ -28,7 +28,10 @@ class QuickEditView(BrowserView):
     def _addableTypes(self):
         folder_factories = getMultiAdapter((self.context, self.request),
                                            name='folder_factories')
-        return folder_factories.addable_types()
+        return [atype 
+                for atype in folder_factories.addable_types() 
+                if atype['id'] not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder')
+               ]
 
     def addablePrioritizedFields(self):
         """Return a prioritized list of the addable fields in context"""
@@ -54,6 +57,15 @@ class QuickEditView(BrowserView):
                 displayTheRest.append(item)
 
         return displayPriorityFields + displayTheRest
+
+
+    def addableFieldsets(self):
+        """ Return a list of fieldset markers """
+        return (
+            {'id':'FieldsetStart','title':'Fieldset Start','description':'Begin a fieldset'},
+            {'id':'FieldsetEnd','title':'Fieldset End','description':'End a fieldset'},
+        )
+
 
     def addableAdapters(self):
         """Return a list of addable adapters in context"""

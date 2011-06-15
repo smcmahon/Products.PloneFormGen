@@ -36,6 +36,7 @@ div.header h3 {
 }
 
 #fieldWidgets,
+#fieldsetWidgets,
 #actionWidgets {
     padding:5px 15px;
 }
@@ -97,6 +98,7 @@ div.placeholder {
 }
 
 #pfgWidgetWrapper .fields-header,
+#pfgWidgetWrapper .fieldset-header,
 #pfgWidgetWrapper .actions-header {
     font-size:18px;
     margin: 3px;

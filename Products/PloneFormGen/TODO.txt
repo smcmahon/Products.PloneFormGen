@@ -1,8 +1,5 @@
 TODO.txt
 
-Avoid showing fieldset begin/end on thanks page / mailings.
-
-
 Plone 2.5 compatibility leftovers?
     - Do we still need to patch the ZPublisher? See method
       patch_publisher_exception_handling in patches.py
