@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7b4 unreleased
+1.7b4 2011-06-16
 ----------------
 
 - Move fieldset markers into a separate part of quickedit toolbox.
