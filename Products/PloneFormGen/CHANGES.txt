@@ -1,6 +1,13 @@
 Change History
 ==============
 
+1.6.4
+-----
+
+- Independent viewing of fields caused error in Plone 4.0.5+ when form had
+  epilogue or prologue. Fix in 1.6.3 wasn't adequate. Fixes #330. Thanks
+  Eggert Ehmke. [smcmahon]
+
 1.6.3
 -----
 
