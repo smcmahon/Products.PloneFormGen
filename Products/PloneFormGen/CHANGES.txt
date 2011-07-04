@@ -1,6 +1,16 @@
 Change History
 ==============
 
+1.7b5 unreleased
+----------------
+
+- Disable right and left columns in QuickEdit.
+  [smcmahon]
+
+- Fix to problem viewing form fields independently was inadequate if prologue
+  or epilogue actually existed. Thanks, Eggert Ehmke.
+  [smcmahon]
+
 1.7b4 2011-06-16
 ----------------
 
