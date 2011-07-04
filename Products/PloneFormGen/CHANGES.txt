@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7b5 unreleased
+1.7b5 2011-07-03
 ----------------
 
 - Disable right and left columns in QuickEdit.
