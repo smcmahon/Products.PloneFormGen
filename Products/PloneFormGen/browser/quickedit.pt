@@ -24,7 +24,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="ploneformgen">
 
   <metal:head fill-slot="top_slot">
     <tal:block define="macro edit_macros/topslot | nothing"
