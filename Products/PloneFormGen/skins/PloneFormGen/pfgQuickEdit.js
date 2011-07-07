@@ -181,7 +181,7 @@ pfgQEdit.qedit = function (e) {
           {
               subtype: 'ajax',
               filter: "#content",
-              formselector: 'form:has(input[value=Delete])',
+              formselector: 'form#delete_confirmation',
               noform: function(){location.reload();},
               closeselector:'[name=form.button.Cancel]'
           }

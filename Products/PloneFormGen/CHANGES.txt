@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.6.5 (unreleased)
+------------------
+
+- Fixed field removal in quick-edit mode for non-English sites.
+  [hannosch]
+
 1.6.4
 -----
 
