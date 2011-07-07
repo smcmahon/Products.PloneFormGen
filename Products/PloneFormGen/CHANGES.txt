@@ -1,6 +1,17 @@
 Change History
 ==============
 
+1.7b6 unreleased
+----------------
+
+- nothing changed yet
+
+- change i18n domain of quickedit template from plone to ploneformgen
+  [toutpt]
+
+- locales rebuild & update french translations
+  [toutpt]
+
 1.7b5 2011-07-03
 ----------------
 
