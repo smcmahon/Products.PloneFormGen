@@ -1,8 +1,11 @@
 Change History
 ==============
 
-1.6.5 (unreleased)
-------------------
+1.6.5 2011-07-12
+----------------
+
+- Backport save-data delete confirmation dialog from 1.7.
+  [smcmahon]
 
 - Fixed field removal in quick-edit mode for non-English sites.
   [hannosch]

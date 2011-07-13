@@ -3,6 +3,18 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="plone">
 
+<head>
+    <metal:javascript_head metal:fill-slot="javascript_head_slot">
+    <script type="text/javascript" charset="utf-8">
+      jQuery(function ($) {
+          $('#clearSavedFormInput').click(function () {
+              return confirm($.trim($('#clearSavedFormInput').val()));
+          });
+      });
+    </script>
+    </metal:javascript_head>
+</head>
+
 <body>
 
 <div metal:fill-slot="main" tal:define="view context/@@plone_context_state">
@@ -64,7 +76,7 @@
            tal:condition="canEdit"
            tal:attributes="action here/absolute_url"
            style="padding-top:2em">
-            <input type="submit" name="clearSavedFormInput" value="Clear Saved Input"  class="standalone"
+            <input type="submit" name="clearSavedFormInput" id="clearSavedFormInput" value="Clear Saved Input"  class="standalone"
               i18n:attributes="value clear-save-input" i18n:domain="ploneformgen"
               />
           </form>
