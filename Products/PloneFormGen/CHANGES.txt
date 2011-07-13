@@ -4,7 +4,9 @@ Change History
 1.7b6 unreleased
 ----------------
 
-- nothing changed yet
+- Re-add ability to override edit macros like for other Archetypes content types
+  (Megaphone relies on this).
+  [davisagli]
 
 - change i18n domain of quickedit template from plone to ploneformgen
   [toutpt]

@@ -6,11 +6,15 @@
                    default_fieldset string:default;
                    fieldset default_fieldset;
                    fields python:here.fgFields(request);
+                   portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
+                   type_name here/getPortalTypeName|here/archetype_name;
                    base_macros here/fg_edit_macros_p3/macros;
-                   header_macro base_macros/header;
-                   typedescription_macro base_macros/typedescription;
-                   body_macro base_macros/body;
-                   footer_macro base_macros/footer;
+                   edit_template python:'%s_edit' % portal_type;
+                   edit_macros python:path('here/%s/macros | nothing' % edit_template);
+                   header_macro edit_macros/header | header_macro | base_macros/header;
+                   typedescription_macro edit_macros/typedescription | typedescription_macro | base_macros/typedescription;
+                   body_macro edit_macros/body | body_macro | base_macros/body;
+                   footer_macro edit_macros/footer | footer_macro | base_macros/footer;
                    css python:here.getUniqueWidgetAttr(fields, 'helper_css');
                    js python:here.getUniqueWidgetAttr(fields, 'helper_js');
                    portal portal | context/@@plone_portal_state/portal">
