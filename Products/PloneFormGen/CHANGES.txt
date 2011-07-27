@@ -4,6 +4,9 @@ Change History
 1.7b6 unreleased
 ----------------
 
+- More accurately identify validation errors in Google Analytics tracking.
+  [yomatters]
+
 - Re-add ability to override edit macros like for other Archetypes content types
   (Megaphone relies on this).
   [davisagli]

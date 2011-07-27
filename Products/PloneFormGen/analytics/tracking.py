@@ -18,10 +18,9 @@ class PFGAnalyticsPlugin(AnalyticsBaseTrackingPlugin):
         """
         
         if IPloneFormGenForm.providedBy(self.context):
-            request_method = self.request.environ.get('REQUEST_METHOD', 'GET')
-            if request_method == 'GET':
-                return 'form'
-            return 'error'
+            if 'form_submit' in self.request.form.keys():
+                return 'error'
+            return 'form'
         elif IPloneFormGenThanksPage.providedBy(self.context):
             return 'thank-you'
         return None
