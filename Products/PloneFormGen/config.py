@@ -181,13 +181,13 @@ fieldsetTypes = (
 
 ## Permission for content creation for most types
 ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Content'
-setDefaultRoles(ADD_CONTENT_PERMISSION, ('Manager', 'Owner', 'Contributor',))
+setDefaultRoles(ADD_CONTENT_PERMISSION, ('Manager', 'Owner', 'Contributor', 'Site Administrator'))
 
 ## Exceptions
 MA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Mailers'
-setDefaultRoles(MA_ADD_CONTENT_PERMISSION, ('Manager','Owner',))
+setDefaultRoles(MA_ADD_CONTENT_PERMISSION, ('Manager','Owner','Site Administrator'))
 SDA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Data Savers'
-setDefaultRoles(SDA_ADD_CONTENT_PERMISSION, ('Manager','Owner',))
+setDefaultRoles(SDA_ADD_CONTENT_PERMISSION, ('Manager','Owner','Site Administrator'))
 CSA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Custom Scripts'
 setDefaultRoles(CSA_ADD_CONTENT_PERMISSION, ('Manager',))
 
@@ -201,11 +201,11 @@ setDefaultRoles(EDIT_PYTHON_PERMISSION, ('Manager',))
 
 ## Permission to use advanced fields
 EDIT_ADVANCED_PERMISSION = 'PloneFormGen: Edit Advanced Fields'
-setDefaultRoles(EDIT_ADVANCED_PERMISSION, ('Manager',))
+setDefaultRoles(EDIT_ADVANCED_PERMISSION, ('Manager','Site Administrator'))
 
 ## Permission to use mail adapter addressing fields
 EDIT_ADDRESSING_PERMISSION = 'PloneFormGen: Edit Mail Addresses'
-setDefaultRoles(EDIT_ADDRESSING_PERMISSION, ('Manager','Owner'))
+setDefaultRoles(EDIT_ADDRESSING_PERMISSION, ('Manager','Owner','Site Administrator'))
 
 ## Permission to use encryption fields
 USE_ENCRYPTION_PERMISSION = 'PloneFormGen: Edit Encryption Specs'
@@ -213,7 +213,7 @@ setDefaultRoles(USE_ENCRYPTION_PERMISSION, ('Manager',))
 
 ## Permission to download saved data
 DOWNLOAD_SAVED_PERMISSION = 'PloneFormGen: Download Saved Input'
-setDefaultRoles(DOWNLOAD_SAVED_PERMISSION, ('Manager', 'Owner',))
+setDefaultRoles(DOWNLOAD_SAVED_PERMISSION, ('Manager', 'Owner', 'Site Administrator'))
 
 ## Our list of permissions
 pfgPermitList = [

@@ -4,6 +4,10 @@ Change History
 1.7b6 unreleased
 ----------------
 
+- Grant the Site Administrator role most of the PloneFormGen-related permissions
+  by default.
+  [davisagli]
+
 - More accurately identify validation errors in Google Analytics tracking.
   [yomatters]
 
