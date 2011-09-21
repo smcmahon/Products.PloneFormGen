@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2011-07-07 16:37+0000\n"
-"PO-Revision-Date: 2011-06-02 17:05-0000\n"
-"Last-Translator: Liberiun <contato@liberiun.com.br>\n"
+"PO-Revision-Date: 2011-09-21 12:05-0300\n"
+"Last-Translator: Andre Nogueira <andre@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <contato@simplesconsultoria.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,12 @@ msgstr "Um formulário do tipo Likert"
 #. Default: "A captcha field to prevent spam."
 #: ./profiles/default/types/FormCaptchaField.xml
 msgid "A captcha field to prevent spam"
-msgstr ""
+msgstr "Um campo de captcha para evitar spam"
 
 #. Default: "A folder which can contain form fields."
 #: ./profiles/default/types/FormFolder.xml
 msgid "A folder which can contain form fields"
-msgstr ""
+msgstr "Uma pasta que pode conter campos de formulário"
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
@@ -39,17 +39,17 @@ msgstr "Uma pasta que agrupa campos como um fieldset."
 #. Default: "A form action adapter that will e-mail form input."
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "A form action adapter that will e-mail form input"
-msgstr ""
+msgstr "Um adaptador de ação do formulário que envia os dados do formulário por e-mail"
 
 #. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
-msgstr ""
+msgstr "Um adaptador de ação do formulário que salva os dados do formulário em um arquivo no formato CSV"
 
 #. Default: "A line entry field. This appears as a textarea without wordwrap."
 #: ./profiles/default/types/FormLinesField.xml
 msgid "A line entry field. This appears as a textarea without wordwrap"
-msgstr ""
+msgstr "Um campo de linhas. É exibido como uma textarea sem quebra de linha"
 
 #. Default: "A string entry field"
 #: ./profiles/default/types/FormStringField.xml
@@ -63,11 +63,11 @@ msgstr "Uma página de agradecimento que pode exibir os dados preenchidos pelo u
 
 #: ./browser/quickedit.pt:222
 msgid "Action"
-msgstr ""
+msgstr "Ação"
 
 #: ./browser/quickedit.pt:154
 msgid "Actions"
-msgstr ""
+msgstr "Ações"
 
 #. Default: "Boolean (checkbox) field"
 #: ./profiles/default/types/FormBooleanField.xml
@@ -82,7 +82,7 @@ msgstr "Campo de captcha"
 #. Default: "Checkbox Field"
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Checkbox"
-msgstr ""
+msgstr "Campo Checkbox"
 
 #. Default: "Custom Script Adapter"
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
@@ -92,7 +92,7 @@ msgstr "Adaptador personalizável de script"
 #. Default: "Date/Time Field"
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time"
-msgstr ""
+msgstr "Campo Data/Hora"
 
 #. Default: "Date/Time Entry Field"
 #: ./profiles/default/types/FormDateField.xml
@@ -106,24 +106,24 @@ msgstr "Campo Número Decimal"
 
 #: ./browser/quickedit.pt:262
 msgid "Delete"
-msgstr ""
+msgstr "Excluir"
 
 #: ./browser/quickedit.pt:262
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: ./browser/quickedit.pt:183
 msgid "Edit/Delete"
-msgstr ""
+msgstr "Editar/Remover"
 
 #: ./browser/quickedit.pt:262
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #. Default: "End a fieldset (no input component)"
 #: ./profiles/default/types/FieldsetEnd.xml
 msgid "End a fieldset (no input component)"
-msgstr ""
+msgstr "Terminar fieldset (sem componente de entrada)"
 
 #. Default: "Executes a Python script for form data"
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
@@ -132,16 +132,16 @@ msgstr "Executa um script Python para os dados do formulário"
 
 #: ./browser/quickedit.pt:182
 msgid "Field"
-msgstr ""
+msgstr "Campo"
 
 #: ./browser/quickedit.pt:122
 msgid "Fields"
-msgstr ""
+msgstr "Campos"
 
 #. Default: "Fieldset End"
 #: ./profiles/default/types/FieldsetEnd.xml
 msgid "Fieldset End"
-msgstr ""
+msgstr "Fim do fieldset"
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
@@ -149,7 +149,7 @@ msgstr "Pasta de Fieldset"
 
 #: ./browser/quickedit.pt:138
 msgid "Fieldsets"
-msgstr ""
+msgstr "Fieldsets"
 
 #. Default: "File (upload) field"
 #: ./profiles/default/types/FormFileField.xml
@@ -212,7 +212,7 @@ msgstr "Campo de seleção múltipla (Select múltiplo ou checkboxes)"
 
 #: ./browser/quickedit.pt:181
 msgid "Order"
-msgstr ""
+msgstr "Ordem"
 
 #. Default: "Password Field"
 #: ./profiles/default/types/FormPasswordField.xml
@@ -294,12 +294,12 @@ msgstr "Página de agradecimento"
 
 #: ./browser/quickedit.pt:262
 msgid "Thanks Pages"
-msgstr ""
+msgstr "Página de agradecimento"
 
 #. Default: "Toolbox <span> <img alt=\"Ajax Loader\" style=\"visibility:hidden\" class=\"ajax-loader\" src=\"${DYNAMIC_CONTENT}\" /> </span> <span id=\"deactivate-widget\">Deactivate</span>"
 #: ./browser/quickedit.pt:111
 msgid "Toolbox"
-msgstr ""
+msgstr "Caixa de ferramentas <span> <img alt=\"Ajax Loader\" style=\"visibility:hidden\" class=\"ajax-loader\" src=\"${DYNAMIC_CONTENT}\" /> </span> <span id=\"deactivate-widget\">Desativar</span>\""
 
 #: ./interfaces/exportimport.py:19
 msgid "Upload"
@@ -313,12 +313,12 @@ msgstr "Campo Numérico Inteiro"
 #. Default: "Actions"
 #: ./browser/jsvariables.py:18
 msgid "actions"
-msgstr ""
+msgstr "Ações"
 
 #. Default: "Unable to load resource: "
 #: ./browser/jsvariables.py:20
 msgid "ajax_failed_msg"
-msgstr ""
+msgstr "Não é possível carregar recursos:"
 
 # value="Clear Saved Input"
 #. Default: "Clear Saved Input"
@@ -329,7 +329,7 @@ msgstr "Exclua os dados armazenados"
 #. Default: "Clear all saved input?"
 #: ./skins/PloneFormGen/fg_savedata_view_p3.pt:85
 msgid "clear-saved-input-confirm"
-msgstr ""
+msgstr "Apagar todos os dados salvos?"
 
 #. Default: "Set defaults for addressing fields for new mail-action adapters. Please note that your input here is not verified. So, make sure you use valid addresses."
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:63
@@ -359,7 +359,7 @@ msgstr "Selecione este campo como um valor a ser injetado no request para ser us
 #. Default: "Field"
 #: ./browser/jsvariables.py:17
 msgid "field"
-msgstr ""
+msgstr "Campo"
 
 #. Default: "PloneFormGen Mail Addressing Defaults"
 #: ./skins/PloneFormGen/prefs_pfg_addressing.cpt:53
@@ -421,9 +421,15 @@ msgstr "Para fazer com que o seu formulário realize alguma ação quando enviad
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:441
-#, fuzzy
 msgid "help_bcc_override_text"
-msgstr "Uma expressão TALES que será avaliada para substituir qualquer valor que entrou ao contrário para a lista BCC. Você está fortemente advertido a não usar dados não validados do request para este propósito. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma sequência de string.ATENÇÃO: erros na avaliação da expressão causará um erro na exibição do formulário."
+msgstr ""
+"\n"
+"                Uma expressão TALES que será avaliada para substituir qualquer valor\n"
+"                que entrou ao contrário para a lista BCC. Você está fortemente\n"
+"                 advertido a não usar dados não validados do request para este propósito.\n"
+"                Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma sequência de string.\n"
+"                ATENÇÃO: erros na avaliação da expressão causará\n"
+"                um erro na exibição do formulário.\n"
 
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:350
@@ -432,9 +438,11 @@ msgstr "Observe: Para um campo checkbox, a flag obrigatório não faz nada além
 
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
 #: ./content/form.py:279
-#, fuzzy
 msgid "help_csrf"
-msgstr "Marque esta opção para habilitar a proteção Cross-Site Request Forgery (CSRF). Observe que apenas ações HTTP Post serão permitidas."
+msgstr ""
+"\n"
+"                Marque esta opção para habilitar a proteção Cross-Site Request Forgery (CSRF).\n"
+"                Observe que apenas ações HTTP Post serão permitidas.\n"
 
 #. Default: "Choose a default delimiter to be used when downloading content from a save-data adapter."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:73
@@ -1391,22 +1399,22 @@ msgstr "Cabeçalhos HTTP"
 #. Default: "Less fields..."
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
-msgstr ""
+msgstr "Menos campos..."
 
 #. Default: "More fields..."
 #: ./browser/jsvariables.py:21
 msgid "more_fields_msg"
-msgstr ""
+msgstr "Mais campos..."
 
 #. Default: "Captcha field hidden by form editor. Refresh to view it."
 #: ./browser/jsvariables.py:19
 msgid "no_captcha_msg"
-msgstr ""
+msgstr "Campo captcha escondido pelo editor de formulário. Atualize para visualizá-lo."
 
 #. Default: "Order"
 #: ./browser/jsvariables.py:16
 msgid "order"
-msgstr ""
+msgstr "Ordem"
 
 #. Default: "An answer is required for each question."
 #: ./content/likertField.py:95
