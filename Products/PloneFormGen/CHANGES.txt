@@ -4,6 +4,10 @@ Change History
 1.7b6 unreleased
 ----------------
 
+- Declare dependency on CMFCore's configuration to make sure that its permissions
+  are loaded early enough in Plone 4.1.
+  [davisagli]
+
 - Grant the Site Administrator role most of the PloneFormGen-related permissions
   by default.
   [davisagli]

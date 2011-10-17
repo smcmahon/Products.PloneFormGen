@@ -5,6 +5,7 @@
            xmlns:gs="http://namespaces.zope.org/genericsetup"
            i18n_domain="ploneformgen">
 
+  <include package="Products.CMFCore" />
   <include package="collective.js.jqueryui" />
 
   <permission
