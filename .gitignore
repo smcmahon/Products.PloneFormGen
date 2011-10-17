@@ -1,0 +1,4 @@
+*.pyc
+*.mo
+*.tar.gz
+*.egg-info

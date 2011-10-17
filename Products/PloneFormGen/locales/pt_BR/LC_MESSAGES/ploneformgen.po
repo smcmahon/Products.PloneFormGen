@@ -422,14 +422,12 @@ msgstr "Para fazer com que o seu formulário realize alguma ação quando enviad
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:441
 msgid "help_bcc_override_text"
-msgstr ""
-"\n"
-"                Uma expressão TALES que será avaliada para substituir qualquer valor\n"
+msgstr "                Uma expressão TALES que será avaliada para substituir qualquer valor\n"
 "                que entrou ao contrário para a lista BCC. Você está fortemente\n"
 "                 advertido a não usar dados não validados do request para este propósito.\n"
 "                Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma sequência de string.\n"
 "                ATENÇÃO: erros na avaliação da expressão causará\n"
-"                um erro na exibição do formulário.\n"
+"                um erro na exibição do formulário."
 
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:350
@@ -439,10 +437,8 @@ msgstr "Observe: Para um campo checkbox, a flag obrigatório não faz nada além
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
 #: ./content/form.py:279
 msgid "help_csrf"
-msgstr ""
-"\n"
-"                Marque esta opção para habilitar a proteção Cross-Site Request Forgery (CSRF).\n"
-"                Observe que apenas ações HTTP Post serão permitidas.\n"
+msgstr "                Marque esta opção para habilitar a proteção Cross-Site Request Forgery (CSRF).\n"
+"                Observe que apenas ações HTTP Post serão permitidas."
 
 #. Default: "Choose a default delimiter to be used when downloading content from a save-data adapter."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:73

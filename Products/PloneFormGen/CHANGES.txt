@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7b6 unreleased
+1.7b6 2011-10-17
 ----------------
 
 - Declare dependency on CMFCore's configuration to make sure that its permissions
