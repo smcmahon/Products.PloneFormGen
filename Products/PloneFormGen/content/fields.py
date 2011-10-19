@@ -30,8 +30,16 @@ from Products.PloneFormGen.widgets import RichLabelWidget, CaptchaWidget
 from Products.PloneFormGen.content.fieldsBase import *
 
 from types import StringTypes, BooleanType
-from DateTime import DateTime
 import cgi
+
+from DateTime import DateTime
+try:
+    from DateTime.interfaces import SyntaxError as DateTimeSyntaxError
+    from DateTime.interfaces import DateError as DateError
+except ImportError:
+    DateTimeSyntaxError = DateTime.SyntaxError
+    DateError = DateTime.DateError
+
 
 class FGStringField(BaseFormField):
     """ A string entry field """
@@ -571,7 +579,7 @@ class FGDateField(BaseFormField):
 
         try:
             dt = DateTime(value.replace('-','/'))
-        except (DateTime.SyntaxError, DateTime.DateError):
+        except (DateTimeSyntaxError, DateError):
             # probably better to simply return the input
             return cgi.escape(value)
 
@@ -601,9 +609,9 @@ class FGDateField(BaseFormField):
         if value and not field.required:
             try:
                 dt = DateTime(value)
-            except (DateTime.SyntaxError, DateTime.DateError):
+            except (DateTimeSyntaxError, DateError):
                 return "Validation failed(isValidDate): this is not a valid date."
-        return 0        
+        return 0
 
 
 registerATCT(FGDateField, PROJECTNAME)
