@@ -1,8 +1,11 @@
 Change History
 ==============
 
-1.6.6
------
+1.6.6 unreleased
+----------------
+
+- Provide compatibility with DateTime 3.
+  [hannosch]
 
 - Fixed "NameError: name 'plone_context_state' is not defined" when
   viewing a field with an override.  Other name errors were also
