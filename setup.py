@@ -38,7 +38,7 @@ setup(name='Products.PloneFormGen',
           # -*- Extra requirements: -*-
       ],
       extras_require={
-        'test': ['funkload'],
+        'test': ['collective.funkload'],
         },
       entry_points="""
       # -*- Entry points: -*-

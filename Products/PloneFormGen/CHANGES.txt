@@ -7,7 +7,7 @@ Change History
 - Added dependencies Plone and Products.Archetypes.
   [pumazi]
 
-- Created the test extra requirement to pull in funkload for tests.
+- Created the test extra requirement to pull in collective.funkload for tests.
   [pumazi]
 
 - Updated basque (eu) translation
