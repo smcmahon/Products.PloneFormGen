@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-12-08 18:31+0100\n"
+"PO-Revision-Date: 2011-10-24 12:01+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Tamaina"
 #. Default: "Form Folder"
 #: content/form.py
 msgid "Form Folder"
-msgstr "Datu-orria"
+msgstr "Formularioa"
 
 #. Default: "A folder which can contain form fields."
 #: content/form.py
@@ -65,7 +65,7 @@ msgstr "Barruan dituen eremuak formulario bezala erakusten dituen karpeta"
 #. Default: "Mailer Adapter"
 #: content/formMailerAdapter.py
 msgid "Mailer Adapter"
-msgstr "E-posta ekintza"
+msgstr "E-posta akzioa"
 
 #. Default: " A form action adapter that will e-mail form input. "
 #: content/formMailerAdapter.py
@@ -302,17 +302,17 @@ msgstr "Testu hutsezko kutxa"
 #: content/formMailerAdapter.py
 #: content/fields.py
 msgid "default"
-msgstr "defektuzkoa"
+msgstr "Defektuzkoa"
 
 #. Default: "decoration"
 #: content/form.py
 msgid "decoration"
-msgstr "itxura"
+msgstr "Itxura"
 
 #. Default: "no-input"
 #: content/fields.py
 msgid "no-input"
-msgstr "ez da ezer idatzi"
+msgstr "Ez da ezer idatzi"
 
 #. Default: "overrides"
 #: content/form.py
@@ -323,27 +323,27 @@ msgstr "Balioak gainidatzi"
 #. Default: "addressing"
 #: content/formMailerAdapter.py
 msgid "addressing"
-msgstr "helbideraketa"
+msgstr "Helbideraketa"
 
 #. Default: "message"
 #: content/formMailerAdapter.py
 msgid "message"
-msgstr "mezua"
+msgstr "Mezua"
 
 #. Default: "template"
 #: content/formMailerAdapter.py
 msgid "template"
-msgstr "txantiloia"
+msgstr "Txantiloia"
 
 #. Default: "headers"
 #: content/formMailerAdapter.py
 msgid "headers"
-msgstr "goiburukoak"
+msgstr "Goiburukoak"
 
 #. Default: "encryption"
 #: content/formMailerAdapter.py
 msgid "encryption"
-msgstr "enkriptatzea"
+msgstr "Kriptatzea"
 
 #. String Field
 #. Default: "Field Help"
@@ -384,11 +384,11 @@ msgstr "Proxy-rolik ez"
 
 #. Default: "True Display String"
 msgid "label_fgbooleantruestring_text"
-msgstr "Egiazkoa Testu-katea erakutsi"
+msgstr "Egiazkoa Testu-katea"
 
 #. Default: "False Display String"
 msgid "label_fgbooleanfalsestring_text"
-msgstr "Faltsua Testu-katea erakutsi"
+msgstr "Faltsua Testu-katea"
 
 #. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
 msgid "help_fgbooleanfalsestring_text"
@@ -397,5 +397,5 @@ msgstr "E-postan eta eskertza-orrian eremuak hutsik utzitakoan agertuko den test
 #. Rich Label Field
 #. Default: 'Rich Label Field',
 msgid "Rich Label Field"
-msgstr ""
+msgstr "Testu aberatseko eremua"
 
