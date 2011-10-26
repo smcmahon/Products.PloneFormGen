@@ -4,9 +4,14 @@ Change History
 1.7b7 unreleased
 ----------------
 
+- Added dependencies Plone and Products.Archetypes.
+  [pumazi]
+
+- Created the test extra requirement to pull in funkload for tests.
+  [pumazi]
+
 - Updated basque (eu) translation
   [erral]
-
 
 - Provide compatibility with DateTime 3.
   [hannosch]
