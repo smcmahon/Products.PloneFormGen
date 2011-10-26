@@ -28,6 +28,8 @@ setup(name='Products.PloneFormGen',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.Archetypes',
+          'Plone',
           'Products.TALESField>=1.1.3',
           'Products.TemplateFields>=1.2.4',
           'Products.PythonField>=1.1.3',
@@ -35,6 +37,9 @@ setup(name='Products.PloneFormGen',
           'collective.js.jqueryui',
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+        'test': ['funkload'],
+        },
       entry_points="""
       # -*- Entry points: -*-
       """,
