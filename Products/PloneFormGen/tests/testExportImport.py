@@ -99,13 +99,21 @@ class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
             for f in os.listdir(abs_path):
                 os.chdir(abs_path) # add form data w/o full directory tree
                 archive.add(f, arcname=os.path.join("structure", f))
-        
+
+        # Capture the current working directory for later when we need to
+        # clean up the environment.
+        working_directory = os.path.abspath(os.curdir)
+
         # make me a tarfile in the current dir
         os.chdir(test_dir)
         archive = TarFile.open(name=in_fname, mode='w:gz')
         _add_form_structure_to_archive(archive)
         archive.close()
-        
+
+        # Change back to the working directory in case something tries to
+        # write files (e.g. collective.xmltestreport).
+        os.chdir(working_directory)
+
         # get it and upload
         in_file = open(os.path.join(test_dir, in_fname))
         env = {'REQUEST_METHOD':'PUT'}
