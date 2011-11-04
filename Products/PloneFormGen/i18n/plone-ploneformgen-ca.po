@@ -1,435 +1,1712 @@
-# translation of plone-ploneformgen-ca.po to
-# Pilar Marinas Luis <pilar.marinas@upcnet.es>, 2008.
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# never generate this file with i18ndude, it is managed manual
+# PloneFormGen
+# Steve McMahon <steve@dcn.org>, 2006.
+# -------------------------------------------------------
 msgid ""
 msgstr ""
-"Project-Id-Version: PloneFormGen 0.2\n"
-"POT-Creation-Date: 2006-09-04 22:26+0200\n"
-"PO-Revision-Date: 2008-12-09 09:09+0100\n"
-"Last-Translator: Pilar Marinas Luis <pilar.marinas@upcnet.es>\n"
+"Project-Id-Version: 1.7b5\n"
+"POT-Creation-Date: 2011-10-31 07:54+0000\n"
+"PO-Revision-Date: 2011-11-02 13:18+0100\n"
+"Last-Translator: Corina Riba Santos <corina.riba@upcnet.es>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "Language-Code: ca\n"
-"Language-Name: Catala\n"
+"Language-Name: Catalan\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
-"PO-Creation-Date: 2006-09-04 22:26-0500\n"
-
-#. Default: "This item is in use by someone else and cannot be modified"
-#: skins/PloneFormGen/fg_edit_macros.pt
-msgid "description_webdav_locked"
-msgstr "Aquest element està en ús per algú més i no pot modificar-se"
-
-#. Default: "Edit ${itemtype}"
-#: skins/PloneFormGen/fg_edit_macros.pt
-msgid "heading_edit_item"
-msgstr "Editar ${itemtype}"
-
-#. Default: "Cancel"
-#: skins/PloneFormGen/fg_edit_macros.pt
-msgid "label_cancel"
-msgstr "Cancel.lar"
-
-#. Default: "File type"
-#: skins/PloneFormGen/fg_savedata_view.pt
-msgid "label_file_type"
-msgstr "Tipus d'arxiu"
-
-#. Default: "Next"
-#: skins/PloneFormGen/fg_edit_macros.pt
-msgid "label_next"
-msgstr "Següent"
-
-#. Default: "Previous"
-#: skins/PloneFormGen/fg_edit_macros.pt
-msgid "label_previous"
-msgstr "Anterior"
-
-#. Default: "Size"
-#: skins/PloneFormGen/fg_savedata_view.pt
-msgid "label_size"
-msgstr "Mida"
-
-#. Default: "Form Folder"
-#: content/form.py
-msgid "Form Folder"
-msgstr "Carpeta de Plantilla"
-
-#. Default: "A folder which can contain form fields."
-#: content/form.py
-msgid "A folder which can contain form fields."
-msgstr "Una carpeta que pot contenir camps de plantilles."
-
-#. Default: "A folder which creates a form view from contained form fields."
-#: content/form.py
-msgid "A folder which creates a form view from contained form fields."
-msgstr "Una carpeta que crea una vista de plantilla a partir dels camps de plantilla que conté."
-
-#. Default: "Mailer Adapter"
-#: content/formMailerAdapter.py
-msgid "Mailer Adapter"
-msgstr "Adaptador de Correu"
+"X-Poedit-Language: Catalan\n"
+"X-Poedit-Country: SPAIN\n"
 
 #. Default: " A form action adapter that will e-mail form input. "
 #: content/formMailerAdapter.py
 msgid " A form action adapter that will e-mail form input. "
-msgstr " Un adaptador d'acció que enviarà per correu-e l'entrada de la plantilla. "
+msgstr "Un adaptador d'acció per formularis que envia l'entrada per correu electrònic."
 
-#. Default: "An adapter that supplies a form action."
-#: content/actionAdapter.py
-msgid "An adapter that supplies a form action."
-msgstr "Un adaptador que supleix una acció de la plantilla."
-
-#. Default: "Save Data Adapter"
-#: content/saveDataAdapter.py
-msgid "Save Data Adapter"
-msgstr "Adaptador de Salvar Dades"
-
-#. Default: "A form action adapter that will save form input data in tab-delimited format."
-#: content/saveDataAdapter.py
-msgid "A form action adapter that will save form input data in tab-delimited format."
-msgstr "Un adaptador d'acció de la plantilla que guardarà les dades d'entrada de la plantilla en un format delimitat per tabs."
-
-#. Default: "Thanks Page"
-#: content/thanksPage.py
-msgid "Thanks Page"
-msgstr "Pàgina d'agraïment"
-
-#. Default: "A thank-you page that can display form input"
-#: content/thanksPage.py
-msgid "A thank-you page that can display form input"
-msgstr "Una pàgina d'agraïment que pot mostrar l'entrada de la plantilla"
-
-#. Default: "A thank-you page that can display form input."
-#: content/thanksPage.py
-msgid "A thank-you page that can display form input."
-msgstr "Una pàgina d'agraïment que pot mostrar l'entrada de la plantilla."
-
-#. Default: "Boolean Field"
+#. Default: " A line entry field. This appears as a textarea without wordwrap. "
 #: content/fields.py
-msgid "Boolean Field"
-msgstr "Camp booleà"
+msgid " A line entry field. This appears as a textarea without wordwrap. "
+msgstr "Un camp d'entrada d'una línia. Apareix com una àrea de text sense separació de paraules."
+
+#. Default: " A string entry field "
+#: content/fields.py
+msgid " A string entry field "
+msgstr "Un camp d'entrada de cadenes"
 
 #. Default: " Boolean (checkbox) field "
 #: content/fields.py
 msgid " Boolean (checkbox) field "
-msgstr " Camp (Caixa de revisió) booleà "
-
-#. Default: "A CheckBox (Boolean) field"
-#: content/fields.py
-msgid "A CheckBox (Boolean) field"
-msgstr "Un camp amb una caixa de revisió"
-
-#. Default: "Date/Time Field"
-#: content/fields.py
-msgid "Date/Time Field"
-msgstr "Camp de Data/Hora"
+msgstr "Camp booleà (casella de selecció)"
 
 #. Default: " Date/Time Entry Field "
 #: content/fields.py
 msgid " Date/Time Entry Field "
-msgstr " Camp d'Entrada de Data/Hora "
-
-#. Default: "A date/time field. Time component is optional."
-#: content/fields.py
-msgid "A date/time field. Time component is optional."
-msgstr "Un camp de data/hora. El component d'hora és opcional."
-
-#. Default: "File Field"
-#: content/fields.py
-msgid "File Field"
-msgstr "Camp d'Arxiu"
+msgstr "Camp de Data/Hora"
 
 #. Default: " File (upload) field "
 #: content/fields.py
 msgid " File (upload) field "
-msgstr " Camp d'Arxiu (pujada) "
-
-#. Default: "A file field"
-#: content/fields.py
-msgid "A file field"
-msgstr "Un camp d'arxiu"
-
-#. Default: "Fixed-Point Field"
-#: content/fields.py
-msgid "Fixed-Point Field"
-msgstr "Camp de Punt Fix"
+msgstr "Camp per carregar un fitxer"
 
 #. Default: " Fixed-Point (float) entry field "
 #: content/fields.py
 msgid " Fixed-Point (float) entry field "
-msgstr " Camp d'entrada de punt fix (flotant) "
-
-#. Default: "A fixed-point (float) field"
-#: content/fields.py
-msgid "A fixed-point (float) field"
-msgstr "Un camp de punt fix (flotant)"
-
-#. Default: "Integer Field"
-#: content/fields.py
-msgid "Integer Field"
-msgstr "Camp Senser"
+msgstr "Camp d'entrada decimal"
 
 #. Default: " A integer entry field "
 #: content/fields.py
 msgid " Integer entry field "
-msgstr " Camp d'entrada de senser "
-
-#. Default: "A integer field"
-#: content/fields.py
-msgid "A integer field"
-msgstr "Un camp de sencer"
-
-#. Default: "Label Field"
-#: content/fields.py
-msgid "Label Field"
-msgstr "Camp d'Etiqueta"
+msgstr "Un camp d'entrada d'enter"
 
 #. Default: " Label-Only field (no input component) "
 #: content/fields.py
 msgid " Label-Only field (no input component) "
-msgstr " Camp només amb etiqueta (sense component d'entrada) "
+msgstr "Camp només d'etiqueta (no hi ha entrada)"
+
+#. Default: " Multiple selection field (select with multiple or check boxes) "
+#: content/fields.py
+msgid " Multiple selection field (select with multiple or check boxes) "
+msgstr "Camp de selecció múltiple (desplegable múltiple o caselles de selecció)"
+
+#. Default: " Password entry field (input is masked) "
+#: content/fields.py
+msgid " Password entry field (input is masked) "
+msgstr "Camp d'entrada de contrasenya (l'entrada s'emmascara)"
+
+#. Default: " Rich-text (visual editor) field "
+#: content/fields.py
+msgid " Rich-text (visual editor) field "
+msgstr "Camp de text enriquit (Editor visual)"
+
+#. Default: " Selection Field (radio buttons or select) "
+#: content/fields.py
+msgid " Selection Field (radio buttons or select) "
+msgstr "Camp de selecció (botons d'opció o desplegable)"
+
+#. Default: " Text (textarea) field "
+#: content/fields.py
+msgid " Text (textarea) field "
+msgstr "Camp de text (àrea de text)"
+
+#. Default: "A CheckBox (Boolean) field"
+#: content/fields.py
+msgid "A CheckBox (Boolean) field"
+msgstr "Un camp de casella de selecció (booleana)"
 
 #. Default: "A Label (No Input) field"
 #: content/fields.py
 msgid "A Label (No Input) field"
 msgstr "Un camp d'etiqueta (sense entrada)"
 
-#. Default: "Lines Field"
+#. Default: "A date/time field. Time component is optional."
 #: content/fields.py
-msgid "Lines Field"
-msgstr "Un camp de línies"
+msgid "A date/time field. Time component is optional."
+msgstr "Un camp Data/Hora. On l'hora es opcional"
 
-#. Default: " A line entry field. This appears as a textarea without wordwrap. "
+#. Default: "A file field"
 #: content/fields.py
-msgid " A line entry field. This appears as a textarea without wordwrap. "
-msgstr " Un camp d'entrada de línies. Aquest apareix com un \"textarea\" sense plegat de línies. "
+msgid "A file field"
+msgstr "Un camp de fitxer"
+
+#. Default: "A fixed-point (float) field"
+#: content/fields.py
+msgid "A fixed-point (float) field"
+msgstr "Un camp decimal "
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Una carpeta que pot contenir camps que conformen un formulari."
+
+#. Default: "A folder which creates a form view from contained form fields."
+#: content/form.py
+msgid "A folder which creates a form view from contained form fields."
+msgstr "Una carpeta que crea una vista de formulari amb els camps de formulari que conte"
+
+#. Default: "A folder which groups form fields as a fieldset."
+#: content/fieldset.py
+msgid "A folder which groups form fields as a fieldset."
+msgstr "Una carpeta amb grups d'elements de formulari com a conjunt de camps."
+
+#. Default: "A form action adapter that will save form input data in tab-delimited format."
+#: content/saveDataAdapter.py
+msgid "A form action adapter that will save form input data in tab-delimited format."
+msgstr "Un adaptador d'acció de formulari que desa les dades d'entrada delimitades per tabuladors com format."
+
+#. Default: "A integer field"
+#: content/fields.py
+msgid "A integer field"
+msgstr "Un camp d'enter"
 
 #. Default: "A lines field. This appears as a textarea without wordwrap."
 #: content/fields.py
 msgid "A lines field. This appears as a textarea without wordwrap."
-msgstr "Un camp de línies. Aquest apareix com un \"textarea\" sense plegat de línies."
-
-#. Default: "Multi-Select Field"
-#: content/fields.py
-msgid "Multi-Select Field"
-msgstr "Camp de Selecció Múltiple"
-
-#. Default: " Multiple selection field (select with multiple or check boxes) "
-#: content/fields.py
-msgid " Multiple selection field (select with multiple or check boxes) "
-msgstr " Camp de Selecció Múltiple (Pilar Marinas Luis <pilar.marinas@upcnet.es>, 2008SELECT amb MULTIPLE o caixes de revisió)"
+msgstr "Un camp de línies. Apareix com una àrea de text sense ajust de línia."
 
 #. Default: "A multiple-selection field"
 #: content/fields.py
 msgid "A multiple-selection field"
-msgstr "Un camp de selecció-múltiple"
-
-#. Default: "Password Field"
-#: content/fields.py
-msgid "Password Field"
-msgstr "Camp de Contrasenya"
-
-#. Default: " Password entry field (input is masked) "
-#: content/fields.py
-msgid " Password entry field (input is masked) "
-msgstr " Camp d'entrada de contrasenya (l'entrada està encriptada) "
+msgstr "Un camp de selecció múltiple"
 
 #. Default: "A password field (input masked)"
 #: content/fields.py
 msgid "A password field (input masked)"
-msgstr "Un camp de contrasenya (l'entrada està encriptada)"
+msgstr "Un camp de contrasenya (entrada oculta)"
 
-#. Default: "RichText Field"
-#: content/fields.py
-msgid "RichText Field"
-msgstr "Camp de Text Enriquit"
-
-#. Default: " Rich-text (visual editor) field "
-#: content/fields.py
-msgid " Rich-text (visual editor) field "
-msgstr " Camp de Text Enriquit (editor visual) "
+#. Likert Field Description
+msgid "A rating-scale field using rows of radio buttons."
+msgstr "Un camp d'escala de puntuació amb files de botons de selecció."
 
 #. Default: "A rich text area field"
 #: content/fields.py
 msgid "A rich text area field"
-msgstr "Un camp d'edició de text enriquit"
-
-#. Default: "Selection Field"
-#: content/fields.py
-msgid "Selection Field"
-msgstr "Camp de Selecció"
-
-#. Default: " Selection Field (radio buttons or select) "
-#: content/fields.py
-msgid " Selection Field (radio buttons or select) "
-msgstr " Camp de Selecció (botons o SELECT)"
+msgstr "Un camp amb una àrea de text amb format"
 
 #. Default: "A selection field"
 #: content/fields.py
 msgid "A selection field"
-msgstr "Un camp de selecció"
-
-#. Default: "String Field"
-#: content/fields.py
-msgid "String Field"
-msgstr "Camp de Cadena"
-
-#. Default: " A string entry field "
-#: content/fields.py
-msgid " A string entry field "
-msgstr " Un camp d'entrada de cadena "
+msgstr "Camp de selecció"
 
 #. Default: " A string field "
 #: content/fields.py
 msgid "A string field"
-msgstr " Un camp de cadena "
-
-#. Default: "Text Field"
-#: content/fields.py
-msgid "Text Field"
-msgstr "Camp de Text"
-
-#. Default: " Text (textarea) field "
-#: content/fields.py
-msgid " Text (textarea) field "
-msgstr " Camp de Text (TEXTAREA)"
+msgstr "Camp de cadena"
 
 #. Default: "A text area field"
 #: content/fields.py
 msgid "A text area field"
-msgstr "Un camp d'entrada de text (TEXTAREA)"
+msgstr "Un camp amb una àrea de text"
 
-#. Default: "default"
-#: content/form.py content/formMailerAdapter.py content/fields.py
-msgid "default"
-msgstr "per omissió"
+#. Default: "A thank-you page that can display form input"
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input"
+msgstr "Una pàgina d'agraïment que pot mostrar l'entrada del formulari"
+
+#. Default: "A thank-you page that can display form input."
+#: content/thanksPage.py
+msgid "A thank-you page that can display form input."
+msgstr "Una pàgina d'agraïment que pot mostra l'entrada del formulari"
+
+#: ../skins/PloneFormGen/fg_savedata_tabview_p3.pt:44
+msgid "Action"
+msgstr "Acció"
+
+#. Default: "An adapter that supplies a form action."
+#: content/actionAdapter.py
+msgid "An adapter that supplies a form action."
+msgstr "Un adaptador que proveeix una acció de formulari."
+
+#. Default: "Boolean Field"
+#: content/fields.py
+msgid "Boolean Field"
+msgstr "Camp booleà"
+
+#. Default: "Custom Script Adapter"
+#: content/customScriptAdapter.py
+msgid "Custom Script Adapter"
+msgstr "Adaptador de Script personalitzat."
+
+#. Default: "Date/Time Field"
+#: content/fields.py
+msgid "Date/Time Field"
+msgstr "Camp de Data/Hora."
+
+#: ../skins/PloneFormGen/fg_savedata_editview.pt:15
+msgid "Edit record"
+msgstr "Edita registre"
+
+#. Default: "Executes a Python script for form data."
+#: content/customScriptAdapter.py
+msgid "Executes a Python script for form data."
+msgstr "Executa un script Python per les dades del formulari."
+
+#: ../profiles/default/actions.xml
+msgid "Export"
+msgstr "Exporta"
+
+#. Default: "Fieldset Folder"
+#: content/fieldset.py
+msgid "Fieldset Folder"
+msgstr "Carpeta de conjunt de camps"
+
+#. Default: "File Field"
+#: content/fields.py
+msgid "File Field"
+msgstr "Camp de Fitxer"
+
+#. Default: "Fixed-Point Field"
+#: content/fields.py
+msgid "Fixed-Point Field"
+msgstr "Camp de decimal"
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Carpeta de Formulari"
+
+#: ../browser/exportimport.py:57
+msgid "Form imported."
+msgstr "S'ha importat el formulari"
+
+#: ../profiles/default/actions.xml
+msgid "Import"
+msgstr "Importa"
+
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:36
+msgid "Info"
+msgstr "Informació"
+
+#. Default: "Integer Field"
+#: content/fields.py
+msgid "Integer Field"
+msgstr "Camp d'enter"
+
+#. Default: "Label Field"
+#: content/fields.py
+msgid "Label Field"
+msgstr "Camp d'etiqueta"
+
+#. Default: "Lines Field"
+#: content/fields.py
+msgid "Lines Field"
+msgstr "Camp de línea"
+
+#. Default: "Mailer Adapter"
+#: content/formMailerAdapter.py
+msgid "Mailer Adapter"
+msgstr "Adaptador de correu"
+
+#. Default: "Multi-Select Field"
+#: content/fields.py
+msgid "Multi-Select Field"
+msgstr "Camp desplegable múltiple"
+
+#. Default: "No proxy role"
+#: content/customScriptAdapter
+msgid "No proxy role"
+msgstr "Sense rol proxy"
+
+#. Default: "Password Field"
+#: content/fields.py
+msgid "Password Field"
+msgstr "Camp de contrasenya"
+
+#: ../skins/PloneFormGen/fgvalidate_base.vpy:37
+msgid "Please correct the indicated errors."
+msgstr "Si us plau, corregiu els errors indicats."
+
+#. Likert Field Name
+msgid "Rating-Scale Field"
+msgstr "Camp d'escala de puntuació"
+
+#: ../interfaces/exportimport.py:23
+msgid "Remove Existing Form Items?"
+msgstr "Eliminar elements del formulari existents?"
+
+#. Rich Label Field
+#. Default: 'Rich Label Field',
+msgid "Rich Label Field"
+msgstr "Camp d'etiqueta amb format"
+
+#. Default: "RichText Field"
+#: content/fields.py
+msgid "RichText Field"
+msgstr "Camp de text amb format"
+
+#. Default: "Save Data Adapter"
+#: content/saveDataAdapter.py
+msgid "Save Data Adapter"
+msgstr "Adaptador de desat de dades"
+
+#. Default: "Selection Field"
+#: content/fields.py
+msgid "Selection Field"
+msgstr "Camp de selecció"
+
+#. Default: "String Field"
+#: content/fields.py
+msgid "String Field"
+msgstr "Camp de cadena"
+
+#. Default: "Text Field"
+#: content/fields.py
+msgid "Text Field"
+msgstr "Camp de text"
+
+#. Default: "Thanks Page"
+#: content/thanksPage.py
+msgid "Thanks Page"
+msgstr "Pàgina d'agraïments"
+
+#: ../interfaces/exportimport.py:19
+msgid "Upload"
+msgstr "Carregar"
+
+#. Default: "Actions"
+#: ../browser/jsvariables.py:18
+msgid "actions"
+msgstr "Accions"
+
+#. Default: "addressing"
+#: content/formMailerAdapter.py
+msgid "addressing"
+msgstr "adrecesses"
+
+#. Default: "Unable to load resource: "
+#: ../browser/jsvariables.py:20
+msgid "ajax_failed_msg"
+msgstr "No s'ha pogut carregar el recurs:"
 
 #. Default: "decoration"
 #: content/form.py
 msgid "decoration"
 msgstr "decoració"
 
-#. Default: "no-input"
-#: content/fields.py
-msgid "no-input"
-msgstr "sense entrada"
+#. Default: "default"
+#: content/fields.py content/form.py content/formMailerAdapter.py
+msgid "default"
+msgstr "predeterminat"
 
-#. Default: "overrides"
-#: content/form.py content/fields.py
-msgid "overrides"
-msgstr "sobreescriptures"
+#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
+#: ../content/fieldsBase.py:257
+msgid "description_server_side_text"
+msgstr ""
+"Marca això com valor per afegir a la \n"
+" petició de formulari per utilitzar als adaptadors d'accions i \n"
+" que no sigui modificable o visible pel client."
 
-#. Default: "addressing"
+#. Default: "This item is in use by someone else and cannot be modified"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "description_webdav_locked"
+msgstr "No es pot editar aquest element perquè algú l'esta fent servir."
+
+#. Default: "encryption"
 #: content/formMailerAdapter.py
-msgid "addressing"
-msgstr "direccionado"
+msgid "encryption"
+msgstr "Xifrat"
+
+#. Default: "Field"
+#: ../browser/jsvariables.py:17
+msgid "field"
+msgstr "Camp"
+
+#. Default: "headers"
+#: content/formMailerAdapter.py
+msgid "headers"
+msgstr "Capçaleres"
+
+#. Default: "Add ${itemtype}"
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:16
+msgid "heading_add_item"
+msgstr "Afegeix ${itemtype}"
+
+#. Default: "Edit ${itemtype}"
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:26
+msgid "heading_edit_item"
+msgstr "Edita ${itemtype}"
+
+#. Default: "\n                A TALES expression that will be called after the form is\n                successfully validated, but before calling an action adapter\n                (if any) or displaying a thanks page.\n                Form input will be in the request.form dictionary.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                to clean up form input or to script an alternative action.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
+#: ../content/form.py:236
+msgid "help_AfterValidationOverride_text"
+msgstr ""
+"Una expressió TALES que serà cridada després que el formulari es validi\n"
+"exitosament, però abans de cridar un adaptador d'acció (si\n"
+"hi ha algun) o mostrar la pàgina d'agraïment.\n"
+"L'entrada del formulari estarà en el diccionari \"request.form\".\n"
+"Deixi-la buida si no la necessita.\n"
+"L'ús més comú d'aquest camp és per a cridar un guió Python per a\n"
+"netejar l'entrada del formulari o per a executar una acció\n"
+"alternativa.\n"
+"Qualsevol valor retornat per l'expressió s'ignora.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "\n                A TALES expression that will be called when the form is\n                displayed.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                that sets defaults for multiple fields by pre-populating\n                request.form.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression\n                will cause an error on form display.\n            "
+#: ../content/form.py:212
+msgid "help_OnDisplayOverride_text"
+msgstr ""
+"Una expressió TALES que serà cridada quan el formulari es mostri.\n"
+"Deixar-la en blanc si no es necessita.\n"
+"L'ús habitual d'aquest camp és per cridar a un guió Python que\n"
+"assigna valors per omissió per a múltiples camps pre-omplint\n"
+"\"request.form\".\n"
+"Qualsevol valor retornat per la expressió serà ignorat.\n"
+"SI US PLAU: errors a l'avaluació d'aquesta expressió causaran \n"
+"errors al mostrar el formulari."
+
+#. Default: "\n                To make your form do something useful when submitted:\n                add one or more form action adapters to the form folder,\n                configure them, then return to this\n                form and select the active ones.\n                "
+#: ../content/form.py:86
+msgid "help_actionadapter_text"
+msgstr "Seleccioneu les opcions que voleu que faci el vostre formulari."
+
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ../content/formMailerAdapter.py:441
+msgid "help_bcc_override_text"
+msgstr ""
+"Una expressió TALES que serà avaluada per a sobreescriure qualsevol\n"
+"valor que s'hagi donat per l'assumpte del missatge.\n"
+"Deixi-la buida si no es necessita. La seva expressió s'hauria d'avaluar com una cadena.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
+#: ../content/fields.py:358
+msgid "help_boolrequired_text"
+msgstr ""
+"NOTA: Per un camp marcat, la bandera 'requerit' no fa\n"
+"res més que posar el marcador de requerit al costat de l'etiqueta\n"
+"Si desitja que sigui obligatòria una entrada determinada, esculli\n"
+"un validador sota."
+
+#. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
+#: ../content/form.py:279
+msgid "help_csrf"
+msgstr "Marqueu això per protegir la sol.licitud de falsificació entre llocs. Tingueu en compte que només són admeses les accions HTTP."
+
+#. Default: "The text will be displayed after the form fields."
+#: ../content/form.py:156
+msgid "help_epilogue_text"
+msgstr "Aquest text es mostrarà després dels camps del formulari."
+
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ../content/actionAdapter.py:40
+msgid "help_execcondition_text"
+msgstr ""
+"Una expressió TALES que serà avaluada per a determinar si s'executa\n"
+"aquesta acció o no.\n"
+"Deixi-la buida si no es necessita, i l'acció serà executada.\n"
+"La seva expressió deuria avaluar-se a booleà; retornar True si desitja que\n"
+"s'executi l'acció.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran un\n"
+"error al mostrar el formulari."
+
+#. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
+#: ../content/fields.py:353
+msgid "help_fgbooleanfalsestring_text"
+msgstr "Frase a utilitzar a la pàgina d'agraïment i al correu electrònic quan la casella d'activació està desactivada."
+
+#. Default: "String to use in thanks page and mail when the field's checkbox is checked."
+#: ../content/fields.py:344
+msgid "help_fgbooleantruestring_text"
+msgstr "Frase a utilitzar a la pàgina d'agraïment i al correu electrònic quan la casella d'activació està activada."
+
+#. Default: "Choose a validator to require a particular response."
+#: ../content/fields.py:335
+msgid "help_fgbooleanvalidator_text"
+msgstr "Esculli una validador per tal de requerir una resposta en concret."
+
+#: ../content/fields.py:328
+#: ../content/fieldsBase.py:276
+msgid "help_fgdefault_text"
+msgstr ""
+"El valor que ha de sortir la primera vegada que es mostri el formulari\n"
+"Noti que aquest valor pot ser sobreescrit automàticament."
+
+#. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
+#: ../content/fields.py:465
+msgid "help_fgendingyear_text"
+msgstr "L'ultim any que apareixerà en el desplegable. Deixi'l buit si vol utilitzar el número d'anys indicat en el camp següent."
+
+#: ../content/fields.py:706
+msgid "help_fgformat_text"
+msgstr "Control de Presentació"
+
+#. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
+#: ../content/fields.py:475
+msgid "help_fgfutureyears_text"
+msgstr ""
+"El nombre dels propers anys que apareixerà en el desplegable.\n"
+"(Això només és aplicable si no s'ha especificat l'últim any que ha d'aparèixer.)"
+
+#. Default: "\n                    The text to display in the form.\n                "
+#: ../content/fields.py:1106
+msgid "help_fglabelbody_text"
+msgstr "El text a mostrar en el formulari."
+
+#. Default: "List of possible answers for each of the questions;\n                    these will be the columns of the table."
+#: ../content/formLikertField.py:80
+msgid "help_fglikert_answers"
+msgstr ""
+"Llista de respostes per cada pregunta;\n"
+" aquestes seran les columnes de la taula."
+
+#. Default: "List of questions; these will be the rows of the table."
+#: ../content/formLikertField.py:70
+msgid "help_fglikert_questions"
+msgstr "Llista de preguntes, aquestes seran les files de la taula."
+
+#. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
+#: ../content/fieldsBase.py:294
+msgid "help_fglinesdefault_text"
+msgstr ""
+"Els valors que el camp haurà de contenir quan el formulari es\n"
+"mostri per primer cop.\n"
+"Utilitzi un valor per línia.\n"
+"Observi que això es pot sobreescriure dinàmicament."
+
+#. Default: "\n                The maximum number of characters the user will be able to input.\n                "
+#: ../content/fieldsBase.py:105
+msgid "help_fgmaxlength_text"
+msgstr ""
+"El nombre màxim de caràcters que l'usuari podrà introduir.\n"
+"Ficar 0 per no tenir cap límit."
+
+#: ../content/fields.py:803
+msgid "help_fgmsformat_text"
+msgstr "Control de Presentació"
+
+#. Default: "Input tests using HTMLTidy (if installed)."
+#: ../content/fields.py:1026
+msgid "help_fgrtvalidator_text"
+msgstr "Prova l'entrada amb HTMLTidy (en cas d'estar instal·lat)."
+
+#: ../content/fields.py:447
+msgid "help_fgshowhm_text"
+msgstr "Mostrar opcions de selecció d'hora"
+
+#. Default: "The size of the text-entry box, in characters."
+#: ../content/fieldsBase.py:140
+msgid "help_fgsize_text"
+msgstr "El tamany de la caixa d'entrada de text, en caràcters."
+
+#: ../content/fields.py:456
+msgid "help_fgstartingyear_text"
+msgstr "El primer any que que apareixerà en el desplegable."
+
+#. Default: "Tests input against simple string patterns."
+#: ../content/fields.py:57
+msgid "help_fgstringvalidator_text"
+msgstr "Prova l'entrada contra patrons de cadenes simples."
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ../content/fields.py:1120
+#: ../content/fieldsBase.py:218
+msgid "help_fgtdefault_text"
+msgstr ""
+"Una expressió TALES que serà avaluada quant el formulari es mostri\n"
+"per a obtenir el valor per omissió del camp.\n"
+"Deixi-la buida si no la necessita. La seva expressió s'hauria d'avaluar com\n"
+"una cadena.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ../content/fieldsBase.py:237
+msgid "help_fgtenable_text"
+msgstr ""
+"Una expressió TALES que serà avaluada quant el formulari es mostri\n"
+"per a obtenir el valor per omissió del camp.\n"
+"Deixi-la buida si no la necessita. La seva expressió s'hauria d'avaluar com\n"
+"una cadena.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
+#: ../content/fieldsBase.py:333
+msgid "help_fgtextdefault_text"
+msgstr ""
+"El text que el campo haurà de contenir quan el formulari es mostri\n"
+"per primera vegada.\n"
+"Observi que es pot sobreescriure dinàmicament."
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ../content/fieldsBase.py:310
+msgid "help_fgtlinesdefault_text"
+msgstr ""
+"Una expressió TALES que serà avaluada quant el formulari es mostri\n"
+"per a obtenir el valor per omissió del camp.\n"
+"Deixi-la buida si no la necessita. La seva expressió deuria avaluar com una\n"
+"llista o tupla.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "\n                    A TALES expression that will be evaluated when the form is validated.\n                    Validate against 'value', which will contain the field input.\n                    Return False if valid; if not valid return a string error message.\n                    E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will\n                    require \"eggs\" for input.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ../content/fieldsBase.py:77
+msgid "help_fgtvalidator_text"
+msgstr ""
+"Una expressió TALES que serà avaluada quant el formulari es valida.\n"
+"Validi contra 'value', el qual contindrà l'entrada del camp.\n"
+"Retorni fals si es valida; si no es valida retorni una cadena amb el\n"
+"missatge d'error. Ej.: \"pyton: test(value == 'sal', False, 'necessitem sal per als ous')\n"
+" requerirà 'sal' en l'entrada.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió poden\n"
+"causar un error al mostrar el formulari."
+
+#. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ../content/fieldsBase.py:168
+msgid "help_fgtvocabulary_text"
+msgstr ""
+"Una expressió TALES que serà avaluada quant el formulari es mostri\n"
+"per a obtenir les opcions del camp.\n"
+"Deixi-la buida si no es necessita.\n"
+"La seva expressió TALES s'hauria d'avaluar com una llista de tuplas\n"
+"(clau, valor).\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
+#: ../content/fieldsBase.py:150
+msgid "help_fgvocabulary_text"
+msgstr ""
+"Utilitzi una línia per opció.\n"
+"Observi que això es pot sobreescriure dinàmicament.\n"
+"[Nota: vostè pot opcionalment utilitzar un format \"valor|etiqueta\".]"
+
+#. Default: "Set to 0 for no limit."
+#: ../content/fields.py:1195
+msgid "help_filemaxmb_text"
+msgstr "Ficar a 0 per no tenir límit."
+
+#. Default: "\n                Check this to make the form redirect to an SSL-enabled\n                version of itself (https://) if accessed via a non-SSL\n                URL (http://).  In order to function properly,\n                this requires a web server that has been configured to\n                handle the HTTPS protocol on port 443 and forward it to Zope.\n            "
+#: ../content/form.py:115
+msgid "help_force_ssl"
+msgstr ""
+"Marqueu això per fer una redirecció SSL de si mateix (https: / /) en cas d'accedir a través d'un no-SSL URL (http://). \n"
+"Per funcionar correctament, requereix un servidor web configurat el protocol HTTPS en el port 443 i ho remetrà a Zope.Forçar SSL"
+
+#. Default: "\n                Use this field to override the form action attribute.\n                Specify a URL to which the form will post.\n                This will bypass form validation, success action\n                adapter and thanks page.\n            "
+#: ../content/form.py:193
+msgid "help_formactionoverride_text"
+msgstr ""
+"Utilitzi aquest camp per sobreescriure l'atribut ACTION del formulari.\n"
+"Especifiqui una URL a on el formulari enviarà les dades.  Això \n"
+"evitarà la validació del formulari, adaptadors d'acció amb èxit i\n"
+"plana de agraïments."
+
+#. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
+#: ../content/formMailerAdapter.py:336
+msgid "help_formmailer_additional_headers"
+msgstr "Capçaleres addicionals de correu. Només capçaleres compatibles RFC822."
+
+#. Default: "E-mail addresses which receive a blind carbon copy."
+#: ../content/formMailerAdapter.py:136
+msgid "help_formmailer_bcc_recipients"
+msgstr "Adreces de correu en còpia oculta."
+
+#. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
+#: ../content/formMailerAdapter.py:225
+msgid "help_formmailer_body_footer"
+msgstr "Text usat com a firma, al final, delimitat del cos per una línia ratllada."
+
+#. Default: "Text appended to fields listed in mail-body"
+#: ../content/formMailerAdapter.py:212
+msgid "help_formmailer_body_post"
+msgstr "Text afegit als camps llistats"
+
+#. Default: "Text prepended to fields listed in mail-body"
+#: ../content/formMailerAdapter.py:200
+msgid "help_formmailer_body_pre"
+msgstr "Text afegit al principi dels camps llistats al cos del missatge."
+
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#: ../content/formMailerAdapter.py:279
+msgid "help_formmailer_body_pt"
+msgstr ""
+"Això és una plantilla de Zope (\"Zope Page Template\") utilitzada per la\n"
+"composició del cos del missatge. No cal modificar-la però si sap llenguatge,\n"
+"TAL (Llenguatge d'atributs per plantilles Zope)\n"
+"té control total per personalitzar els seus missatges enviats."
+
+#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#: ../content/formMailerAdapter.py:296
+msgid "help_formmailer_body_type"
+msgstr ""
+"Estableix el tipus MIME del cos del missatge. Deixar buit per\n"
+"fer servir els valors per defecte."
+
+#. Default: "E-mail addresses which receive a carbon copy."
+#: ../content/formMailerAdapter.py:122
+msgid "help_formmailer_cc_recipients"
+msgstr "Adreces de correu en còpia."
+
+#. Default: "The recipients e-mail address."
+#: ../content/formMailerAdapter.py:88
+msgid "help_formmailer_recipient_email"
+msgstr "Adreça de correu del destinatari"
+
+#. Default: "\n                The full name of the recipient of the mailed form.\n                "
+#: ../content/formMailerAdapter.py:73
+msgid "help_formmailer_recipient_fullname"
+msgstr "Nom complet del destinatari del formulari enviat."
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
+#: ../content/formMailerAdapter.py:150
+msgid "help_formmailer_replyto_extract"
+msgstr ""
+"Esculli un camp del formulari del qual vostè desitja extreure\n"
+"l'entrada per al encapçalament Respondre-A. NOTA: Vostè haurà d'activar la\n"
+"verificació d'adreça de correu electrònic per al camp designat."
+
+#. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
+#: ../content/formMailerAdapter.py:166
+msgid "help_formmailer_subject"
+msgstr ""
+"Línia de l'assumpte del missatge. Es fa servir si no s'especifica un camp\n"
+"d'assumpte o si el camp està buit."
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
+#: ../content/formMailerAdapter.py:185
+msgid "help_formmailer_subject_extract"
+msgstr "Escollir un camp del formulari del qual es vol extreure la línia de l'assumpte"
+
+#. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
+#: ../content/formMailerAdapter.py:102
+msgid "help_formmailer_to_extract"
+msgstr ""
+"Esculli un camp del formulari del qual desitja extreure el valor de la\n"
+"capçalera Per. Si escull qualsevol opció diferent de \"Cap\", aquesta\n"
+"sobreescriurà l'entrada en \"Adreça de correu electrònic del Destinatari\"\n"
+"més amunt.\n"
+"Només camps de selecció són vàlids per això ja que poden ser\n"
+"validats contra les opcions especificades per vostè."
+
+#. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
+#: ../content/fields.py:267
+msgid "help_fprequired_text"
+msgstr ""
+"NOTA: Per un camp decimal, si està seleccionat el flag requerit no\n"
+"permetrà l'entrada del valor '0'."
+
+#. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body.\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
+#: ../content/formMailerAdapter.py:353
+msgid "help_gpg_key_id"
+msgstr ""
+"Proporcioni la seva clau-id, adreça de correu electrònic o qualsevol cosa que serveixi\n"
+"per a trobar una clau pública de les claus actuals. S'usarà\n"
+"per a encriptar el cos del missatge. Contacti amb l'administrador del\n"
+"lloc si necessita instal·lar una clau pública nova. Noti que vostè\n"
+"probablement desitgi canviar el missatge del formulari a text pla si\n"
+"utilitza encriptació.\n"
+"PROVI AQUESTA FUNCIONALITAT ABANS DE FER PÚBLIC EL FORMULARI!"
+
+#. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
+#: ../content/form.py:261
+msgid "help_headerInjection_text"
+msgstr ""
+"Aquest camp de sobrescriptura li permet inserir contingut en\n"
+"l'encapçalament XHTML. L'ús típic és per accionar CSS o Javascript\n"
+"personalitzat. Especifiqui una expressió TALES que retorni una\n"
+"cadena. La cadena s'insertarà sense interpretació.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari"
+
+#. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
+#: ../content/thanksPage.py:67
+msgid "help_includeEmpties_text"
+msgstr ""
+"Seleccioni això per a mostrar els títols dels camps per aquells que\n"
+"no rebin cap entrada. Desmarqui per a deixar els camps sense\n"
+"entrada fora de la llista."
+
+#. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
+#: ../content/formMailerAdapter.py:267
+msgid "help_mailEmpties_text"
+msgstr ""
+"Activa per incloure els títols\n"
+"dels camps sense resposta. Desactiva\n"
+"per deixar els camps sense resposta fora del correu."
+
+#. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
+#: ../content/formMailerAdapter.py:239
+msgid "help_mailallfields_text"
+msgstr ""
+"Activa per incloure l'entrada de tots els camps\n"
+"(excepte etiquetes i camps de fitxers). Si ho activa\n"
+"les opcions de la caixa de selecció de sota\n"
+"s'ignoraran."
+
+#. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
+#: ../content/formMailerAdapter.py:254
+msgid "help_mailfields_text"
+msgstr ""
+"Seleccioni els camps que voldria incloure al \n"
+"correu."
+
+#. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "
+#: ../content/fields.py:185
+msgid "help_maxval_text"
+msgstr "El formulari no acceptarà valors majors que aquest valor."
+
+#. Default: "\n            The form will not accept values less than the number you enter here.\n                "
+#: ../content/fields.py:174
+msgid "help_minval_text"
+msgstr "El formulari no acceptarà valors menors que aquest valor."
+
+#. Default: "\n                The text to display if the browser reaches this\n                thanks page without submitting a form. Typically, this\n                would direct the reader to the form.\n                "
+#: ../content/thanksPage.py:122
+msgid "help_nosubmit_text"
+msgstr ""
+"Text que es mostrarà si el navegador arriba a aquesta pàgina d'agraïment\n"
+"sense enviar el formulari. Típicament, això adreçarà al\n"
+"lector cap al formulari."
+
+#. Default: "Not displayed on form."
+#: ../content/fields.py:1133
+msgid "help_notdisplayed_text"
+msgstr "No es mostrarà en el formulari"
+
+#. Default: "This text will be displayed above the form fields."
+#: ../content/form.py:137
+msgid "help_prologue_text"
+msgstr "Aquest text es veurà damunt dels camps del formulari."
+
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ../content/formMailerAdapter.py:420
+msgid "help_recipient_override_text"
+msgstr ""
+"Una expressió TALES que serà avaluada per a sobreescriure qualsevol\n"
+"valor donat per l'adreça de correu electrònic del receptor. Se li aconsella\n"
+"no usar per aquest propòsit dades de la sol.licitud [HTTP] sense\n"
+"validar. Deixi-la buida si no es necessita. La seva expressió s'hauria d'avaluar\n"
+"com una cadena.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#: ../content/fieldsBase.py:96
+msgid "help_rows_text"
+msgstr "Introduexi el nombre de files per a aquest camp. Aquest valor és aplicable únicament en el tipus 'àrea de text'"
+
+#. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
+#: ../content/saveDataAdapter.py:56
+msgid "help_savedataextra_text"
+msgstr "Seleccioni qualsevol de les dades addicional que voldrà guardar amb el formulari."
+
+#: ../content/saveDataAdapter.py:90
+msgid "help_savedatainput_text"
+msgstr "Entrada del formulari desada"
+
+#. Default: " Write your script here. "
+#: ../content/customScriptAdapter.py:108
+msgid "help_script_body"
+msgstr "Escriu l'script aquí."
+
+#. Default: " Role under which to run the script. "
+#: ../content/customScriptAdapter.py:94
+msgid "help_script_proxy"
+msgstr "Rol sota el qual s'executarà l'script. "
+
+#. Default: "\n                A TALES expression that will be evaluated to override the \"From\" header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ../content/formMailerAdapter.py:401
+msgid "help_sender_override_text"
+msgstr ""
+"Una expressió TALES que serà avaluada per a sobreescriure qualsevol\n"
+"valor donat per l'encapçalament \"De\".\n"
+"Deixi-la buida si no es necessita. La seva expressió s'hauria d'avaluar com una cadena.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
+#: ../content/thanksPage.py:41
+msgid "help_showallfields_text"
+msgstr ""
+"Seleccioni això per a mostrar l'entrada per a tots els camps (excepte\n"
+"etiquetes i camps d'arxius). Si selecciona això, les opcions de sota de la\n"
+"caixa d'elecció seran ignorades."
+
+#: ../content/form.py:71
+msgid "help_showcancel_text"
+msgstr "Mostra el botó Reinicia"
+
+#. Default: "\n                Pick the fields whose inputs you'd like to display on\n                the success page.\n                "
+#: ../content/thanksPage.py:55
+msgid "help_showfields_text"
+msgstr "Trii els camps les entrades dels quals a vostè li agradaria mostrar en la pàgina d'èxit"
+
+#: ../content/fields.py:1317
+#: ../content/fieldset.py:46
+msgid "help_showlegend_text"
+msgstr "Mostra el títol com llegenda"
+
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the e-mail subject header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ../content/formMailerAdapter.py:380
+msgid "help_subject_override_text"
+msgstr ""
+"Una expressió TALES que serà avaluada per a sobreescriure qualsevol\n"
+"valor que s'hagi donat per l'assumpte del missatge.\n"
+"Deixi-la buida si no es necessita. La seva expressió s'hauria d'avaluar com una cadena.\n"
+"NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
+"un error al mostrar el formulari."
+
+#: ../content/form.py:61
+msgid "help_submitlabel_text"
+msgstr "Nom que sortirà al botó que s'utilitzarà per enviar"
+
+#. Default: "The text will be displayed after the field inputs."
+#: ../content/thanksPage.py:103
+msgid "help_thanksepilogue_text"
+msgstr "El text que es mostrarà després de les entrades dels camps."
+
+#. Default: "\n                Pick a contained page you wish to show on a successful\n                form submit. (If none are available, add one.)\n                Choose none to simply display the form\n                field values.\n            "
+#: ../content/form.py:101
+msgid "help_thankspage_text"
+msgstr ""
+"Seleccioni la plana que vol que es mostri a l'enviar un formulari.\n"
+"Si no hi ha cap disponible es mostraran només els valors dels camps del formulari."
+
+#. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
+#: ../content/form.py:170
+msgid "help_thankspageoverride_text"
+msgstr ""
+"Faci servir aquest camp en comptes d'una plana d'agraïments per tal de\n"
+"determinar l'acció final després del seu adaptador d'acció\n"
+"(si en té algun). Normalment es fa servir per un formulari personalitzat\n"
+"o per un script. Deixar en blanc en cas innecessari.\n"
+"En cas contrari, especificar-ho com ho faria amb CMFFormController\n"
+"completi amb el tipus d'acció que cal executar (ex.:\n"
+"\"redirect_to\" o \"traverse_to\") i una expressió TALES. Per exemple:\n"
+"\"redirect_to:string:thanls-page\" redireccionarà cap a la plana\n"
+"'thanks-page'."
+
+#. Default: "This text will be displayed above the selected field inputs."
+#: ../content/thanksPage.py:86
+msgid "help_thanksprologue_text"
+msgstr "Aquest text es mostrarà dalt dels camps d'entrada seleccionats."
+
+#. Default: "Do you wish to have column names on the first line of downloaded input?"
+#: ../content/saveDataAdapter.py:77
+msgid "help_usecolumnnames_text"
+msgstr "Desitja tenir noms de columnes en la primera línia d'entrada descarregada?"
+
+#. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
+#: ../content/formMailerAdapter.py:319
+msgid "help_xinfo_headers_text"
+msgstr "Esculli els elements dels encapçalats HTTP a inserir com a capçaleres del missatge."
+
+#: ../browser/exportimport.py:48
+msgid "import"
+msgstr "Importa"
+
+#. Default: "After Validation Script"
+#: ../content/form.py:234
+msgid "label_AfterValidationOverride_text"
+msgstr "Guió Posterior a la Validació"
+
+#. Default: "Form Setup Script"
+#: ../content/form.py:210
+msgid "label_OnDisplayOverride_text"
+msgstr "Guió de preparació del formulari"
+
+#. Default: "Action Adapter"
+#: ../content/form.py:85
+msgid "label_actionadapter_text"
+msgstr "Accions del formulari"
+
+#. Default: "Apply Changes"
+#: ../skins/PloneFormGen/prefs_pfg_addressing.cpt:109
+#: ../skins/PloneFormGen/prefs_pfg_mtemplate.cpt:101
+#: ../skins/PloneFormGen/prefs_pfg_permits.cpt:104
+msgid "label_apply_changes"
+msgstr "Aplica els canvis"
+
+#. Default: "BCC Expression"
+#: ../content/formMailerAdapter.py:440
+msgid "label_bcc_override_text"
+msgstr "Expressió de CCO"
+
+#. Default: "Cancel"
+#: skins/PloneFormGen/fg_edit_macros.pt
+msgid "label_cancel"
+msgstr "Cancel·la"
+
+#. Default: "CSRF Protection"
+#: ../content/form.py:278
+msgid "label_csrf"
+msgstr "Protecció CSRF"
+
+#. Default: "Download Format"
+#: ../content/saveDataAdapter.py:69
+msgid "label_downloadformat_text"
+msgstr "Format de descàrrega"
+
+#. Default: "You are editing the default view of a container. If you wanted to edit the container itself, ${go_here}."
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:41
+msgid "label_edit_default_view_container"
+msgstr "Esteu editant la vista per defecte d'un contenidor. Si volíeu editar el propi contenidor, ${go_here}."
+
+#. Default: "go here"
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:41
+msgid "label_edit_default_view_container_go_here"
+msgstr "ves aquí"
+
+#. Default: "Form Epilogue"
+#: ../content/form.py:155
+msgid "label_epilogue_text"
+msgstr "Epíleg del formulari"
+
+#. Default: "Execution Condition"
+#: ../content/actionAdapter.py:39
+msgid "label_execcondition_text"
+msgstr "Condició d'execució"
+
+#. Default: "False Display String"
+#: ../content/fields.py:352
+msgid "label_fgbooleanfalsestring_text"
+msgstr "Cadena de presentació falsa"
+
+#. Default: "True Display String"
+#: ../content/fields.py:343
+msgid "label_fgbooleantruestring_text"
+msgstr "Cadena de presentació verdadera"
+
+#. Default: "Validator"
+#: ../content/fields.py:334
+msgid "label_fgbooleanvalidator_text"
+msgstr "Validador"
+
+#. Default: "Default"
+#: ../content/fields.py:327
+#: ../content/fieldsBase.py:275
+msgid "label_fgdefault_text"
+msgstr "Per defecte"
+
+#. Default: "Ending Year"
+#: ../content/fields.py:464
+msgid "label_fgendingyear_text"
+msgstr "Any final"
+
+#. Default: "Presentation Widget"
+#: ../content/fields.py:705
+msgid "label_fgformat_text"
+msgstr "Control de Presentació"
+
+#. Default: "Future Years To Display"
+#: ../content/fields.py:474
+msgid "label_fgfutureyears_text"
+msgstr "Propers anys a mostrar"
+
+#. Default: "Label body"
+#: ../content/fields.py:1105
+msgid "label_fglabelbody_text"
+msgstr "Cos de l'etiqueta"
+
+#. Default: "Answers"
+#: ../content/formLikertField.py:79
+msgid "label_fglikert_answers"
+msgstr "Respostes"
+
+#. Default: "Questions"
+#: ../content/formLikertField.py:69
+msgid "label_fglikert_questions"
+msgstr "Preguntes"
+
+#. Default: "Default"
+#: ../content/fieldsBase.py:293
+msgid "label_fglinesdefault_text"
+msgstr "Per omissió"
+
+#. Default: "Max Length"
+#: ../content/fieldsBase.py:104
+msgid "label_fgmaxlength_text"
+msgstr "Longitut màxima"
+
+#. Default: "Presentation Widget"
+#: ../content/fields.py:802
+msgid "label_fgmsformat_text"
+msgstr "Control de Presentació"
+
+#. Default: "Show Time Selection Options"
+#: ../content/fields.py:446
+msgid "label_fgshowhm_text"
+msgstr "Mostrar opcions de selecció d'hora"
+
+#. Default: "Size"
+#: ../content/fieldsBase.py:139
+msgid "label_fgsize_text"
+msgstr "Tamany"
+
+#. Default: "Starting Year"
+#: ../content/fields.py:455
+msgid "label_fgstartingyear_text"
+msgstr "Any inicial"
+
+#. Default: "Validator"
+#: ../content/fields.py:55
+msgid "label_fgstringvalidator_text"
+msgstr "Validador"
+
+#. Default: "Default Expression"
+#: ../content/fields.py:1119
+#: ../content/fieldsBase.py:216
+msgid "label_fgtdefault_text"
+msgstr "Expressió per defecte"
+
+#. Default: "Enabling Expression"
+#: ../content/fieldsBase.py:236
+msgid "label_fgtenable_text"
+msgstr "Expressió per defecte"
+
+#. Default: "Default"
+#: ../content/fieldsBase.py:332
+msgid "label_fgtextdefault_text"
+msgstr "Per defecte"
+
+#. Default: "Default Expression"
+#: ../content/fieldsBase.py:309
+msgid "label_fgtlinesdefault_text"
+msgstr "Expressió per defecte"
+
+#. Default: "Custom Validator"
+#: ../content/fieldsBase.py:76
+msgid "label_fgtvalidator_text"
+msgstr "Validador Personalizatzat"
+
+#. Default: "Options Vocabulary"
+#: ../content/fieldsBase.py:166
+msgid "label_fgtvocabulary_text"
+msgstr "Vocabulari d'opcions"
+
+#. Default: "Options"
+#: ../content/fieldsBase.py:148
+msgid "label_fgvocabulary_text"
+msgstr "Opcions"
+
+#. Default: "Field Help"
+#: ../content/fieldsBase.py:186
+msgid "label_fieldhelp_text"
+msgstr "Ajuda del Camp"
+
+#. Default: "Field Label"
+#: ../content/fieldsBase.py:184
+msgid "label_fieldlabel_text"
+msgstr "Etiqueta del Camp"
+
+#. Default: "Fieldset Help"
+#: ../content/fieldset.py:51
+msgid "label_fieldsethelp_text"
+msgstr "Ajuda Components"
+
+#. Default: "File type"
+#: ../skins/PloneFormGen/fg_savedata_view_p3.pt:65
+msgid "label_file_type"
+msgstr "Tipus de fitxer"
+
+#. Default: "Maximum Upload Size (Megabytes)"
+#: ../content/fields.py:1194
+msgid "label_filemaxmb_text"
+msgstr "Tamany màxim de pujada (Megabytes)"
+
+#. Default: "Force SSL connection"
+#: ../content/form.py:114
+msgid "label_force_ssl"
+msgstr "Forçar SSL"
+
+#. Default: "Custom Form Action"
+#: ../content/form.py:192
+msgid "label_formactionoverride_text"
+msgstr "Acció personalitzada del formulari"
+
+#. Default: "Additional Headers"
+#: ../content/formMailerAdapter.py:335
+msgid "label_formmailer_additional_headers"
+msgstr "Capçaleres addicionals"
+
+#. Default: "BCC Recipients"
+#: ../content/formMailerAdapter.py:134
+msgid "label_formmailer_bcc_recipients"
+msgstr "Destinataris ocults"
+
+#. Default: "Body (signature)"
+#: ../content/formMailerAdapter.py:228
+msgid "label_formmailer_body_footer"
+msgstr "Cos (firma)"
+
+#. Default: "Body (appended)"
+#: ../content/formMailerAdapter.py:214
+msgid "label_formmailer_body_post"
+msgstr "Cos (afegit)"
+
+#. Default: "Body (prepended)"
+#: ../content/formMailerAdapter.py:202
+msgid "label_formmailer_body_pre"
+msgstr "Cos (al principi)"
+
+#. Default: "Mail-Body Template"
+#: ../content/formMailerAdapter.py:284
+msgid "label_formmailer_body_pt"
+msgstr "Plantilla del cos del missatge"
+
+#. Default: "Mail-Body Type"
+#: ../content/formMailerAdapter.py:300
+msgid "label_formmailer_body_type"
+msgstr "Tipus de cos de missatge"
+
+#. Default: "CC Recipients"
+#: ../content/formMailerAdapter.py:120
+msgid "label_formmailer_cc_recipients"
+msgstr "Còpia de destinataris"
+
+#. Default: "Recipient's e-mail address"
+#: ../content/formMailerAdapter.py:86
+msgid "label_formmailer_recipient_email"
+msgstr "Adreça de correu del destinatari"
+
+#. Default: "Recipient's full name"
+#: ../content/formMailerAdapter.py:71
+msgid "label_formmailer_recipient_fullname"
+msgstr "Nom complet del destinatari"
+
+#. Default: "Extract Reply-To From"
+#: ../content/formMailerAdapter.py:148
+msgid "label_formmailer_replyto_extract"
+msgstr "Extreure el 'Respondre a' del missatge"
+
+#. Default: "Subject"
+#: ../content/formMailerAdapter.py:172
+msgid "label_formmailer_subject"
+msgstr "Assumpte"
+
+#. Default: "Extract Subject From"
+#: ../content/formMailerAdapter.py:183
+msgid "label_formmailer_subject_extract"
+msgstr "Extreure el camp 'Assumpte de'"
+
+#. Default: "Extract Recipient From"
+#: ../content/formMailerAdapter.py:101
+msgid "label_formmailer_to_extract"
+msgstr "Extreure els destinataris"
+
+#. Default: "Key-Id"
+#: ../content/formMailerAdapter.py:363
+msgid "label_gpg_key_id"
+msgstr "Clau GPG"
+
+#. Default: "Header Injection"
+#: ../content/form.py:259
+msgid "label_headerInjection_text"
+msgstr "Injecció d'encapçalat"
+
+#. Default: "Hidden"
+#: ../content/fieldsBase.py:206
+msgid "label_hidden_text"
+msgstr "Ocult"
+
+#. Default: "Include Empties"
+#: ../content/thanksPage.py:66
+msgid "label_includeEmpties_text"
+msgstr "Incloure Buits"
+
+#. Default: "Include Empties"
+#: ../content/formMailerAdapter.py:266
+msgid "label_mailEmpties_text"
+msgstr "Incloure buits"
+
+#. Default: "Include All Fields"
+#: ../content/formMailerAdapter.py:238
+msgid "label_mailallfields_text"
+msgstr "Incloure tots els camps"
+
+#. Default: "Show Responses"
+#: ../content/formMailerAdapter.py:253
+msgid "label_mailfields_text"
+msgstr "Mostrar respostes"
+
+#. Default: "Maximum Acceptable Value"
+#: ../content/fields.py:184
+msgid "label_maxval_text"
+msgstr "Valor màxim acceptat"
+
+#. Default: "Minimum Acceptable Value"
+#: ../content/fields.py:172
+msgid "label_minval_text"
+msgstr "Valor mínim acceptat"
+
+#. Default: "Next"
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:212
+msgid "label_next"
+msgstr "Següent"
+
+#. Default: "No Submit Message"
+#: ../content/thanksPage.py:121
+msgid "label_nosubmit_text"
+msgstr "Missatge de no enviat"
+
+#. Default: "Previous"
+#: ../skins/PloneFormGen/fg_edit_macros_p3.pt:205
+msgid "label_previous"
+msgstr "Anterior"
+
+#. Default: "Form Prologue"
+#: ../content/form.py:136
+msgid "label_prologue_text"
+msgstr "Pròleg del formulari"
+
+#. Default: "Recipient Expression"
+#: ../content/formMailerAdapter.py:419
+msgid "label_recipient_override_text"
+msgstr "Expressió per al Receptor"
+
+#. Default: "Required"
+#: ../content/fieldsBase.py:198
+msgid "label_required_text"
+msgstr "Requerit"
+
+#. Default: "Reset Button Label"
+#: ../content/form.py:79
+msgid "label_reset_button"
+msgstr "Nom que sortirà al botó que s'utilitzarà per Reiniciar"
+
+#. Default: "Rows"
+#: ../content/fieldsBase.py:95
+msgid "label_rows_text"
+msgstr "Files"
+
+#. Default: "Extra Data"
+#: ../content/saveDataAdapter.py:55
+msgid "label_savedataextra_text"
+msgstr "Dades addicionals"
+
+#. Default: "Saved Form Input"
+#: ../content/saveDataAdapter.py:89
+msgid "label_savedatainput_text"
+msgstr "Entrada del formulari desada"
+
+#. Default: "Script body"
+#: ../content/customScriptAdapter.py:105
+msgid "label_script_body"
+msgstr "Cos de l'script"
+
+#. Default: "Proxy role"
+#: ../content/customScriptAdapter.py:93
+msgid "label_script_proxy"
+msgstr "Rol proxy"
+
+#. Default: "Sender Expression"
+#: ../content/formMailerAdapter.py:399
+msgid "label_sender_override_text"
+msgstr "Expressió per al remitent"
+
+#. Default: "Server-Side Variable"
+#: ../content/fieldsBase.py:256
+msgid "label_server_side_text"
+msgstr "Variable del servidor"
+
+#. Default: "Show All Fields"
+#: ../content/thanksPage.py:40
+msgid "label_showallfields_text"
+msgstr "Mostrar Tots els Camps"
+
+#. Default: "Show Reset Button"
+#: ../content/form.py:69
+msgid "label_showcancel_text"
+msgstr "Mostrar o no el botó Cancel·lar"
+
+#. Default: "Show Responses"
+#: ../content/thanksPage.py:54
+msgid "label_showfields_text"
+msgstr "Mostrar Respostes"
+
+#. Default: "Show Title as Legend"
+#: ../content/fields.py:1316
+#: ../content/fieldset.py:45
+msgid "label_showlegend_text"
+msgstr "Mostra el títol com llegenda"
+
+#. Default: "Size"
+#: skins/PloneFormGen/fg_savedata_view.pt
+msgid "label_size"
+msgstr "Mida"
+
+#. Default: "Subject Expression"
+#: ../content/formMailerAdapter.py:379
+msgid "label_subject_override_text"
+msgstr "Expressió de l'assumpte"
+
+#. Default: "Submit Button Label"
+#: ../content/form.py:60
+msgid "label_submitlabel_text"
+msgstr "Nom que sortirà al botó que s'utilitzarà per Enviar"
+
+#. Default: "Thanks Epilogue"
+#: ../content/thanksPage.py:102
+msgid "label_thanksepilogue_text"
+msgstr "Epíleg d'Agraïment"
+
+#. Default: "Thanks Page"
+#: ../content/form.py:100
+msgid "label_thankspage_text"
+msgstr "Plana d'agraïments"
+
+#. Default: "Custom Success Action"
+#: ../content/form.py:168
+msgid "label_thankspageoverride_text"
+msgstr "Acció personalitzada d'èxit"
+
+#. Default: "Thanks Prologue"
+#: ../content/thanksPage.py:85
+msgid "label_thanksprologue_text"
+msgstr "Pròleg d'Agraïment"
+
+#. Default: "Title"
+#: ../content/fields.py:1132
+msgid "label_title"
+msgstr "Títol"
+
+#. Default: "Up to Site Setup"
+#: ../skins/PloneFormGen/prefs_pfg_addressing.cpt:55
+#: ../skins/PloneFormGen/prefs_pfg_mtemplate.cpt:55
+#: ../skins/PloneFormGen/prefs_pfg_permits.cpt:57
+msgid "label_up_to_plone_setup"
+msgstr "Ves a configuració del Plone"
+
+#. Default: "Include Column Names"
+#: ../content/saveDataAdapter.py:76
+msgid "label_usecolumnnames_text"
+msgstr "Incloure nom de les columnes"
+
+#. Default: "Reject Text with Links?"
+#: ../content/fields.py:936
+msgid "label_validate_link_spam_text"
+msgstr "Rebutjar text amb enllaços?"
+
+#. Default: "HTTP Headers"
+#: ../content/formMailerAdapter.py:318
+msgid "label_xinfo_headers_text"
+msgstr "Capçaleres HTTP"
+
+#. Default: "Less fields..."
+#: ../browser/jsvariables.py:22
+msgid "less_fields_msg"
+msgstr "Menys camps..."
 
 #. Default: "message"
 #: content/formMailerAdapter.py
 msgid "message"
-msgstr "missatge"
+msgstr "%d missatge"
+
+#. Default: "More fields..."
+#: ../browser/jsvariables.py:21
+msgid "more_fields_msg"
+msgstr "Més camps..."
+
+#. Default: "no-input"
+#: content/fields.py
+msgid "no-input"
+msgstr "Sense entrada"
+
+#. Default: "Captcha field hidden by form editor. Refresh to view it."
+#: ../browser/jsvariables.py:19
+msgid "no_captcha_msg"
+msgstr "Camp Captcha ocult per l'editor del formulari. Recarrega per veure'l."
+
+#. Default: "Order"
+#: ../browser/jsvariables.py:16
+msgid "order"
+msgstr "Ordre:"
+
+#. Default: "overrides"
+#: content/fields.py content/form.py
+msgid "overrides"
+msgstr "sobreescriu"
+
+#. Default: "An answer is required for each question."
+#: ../content/likertField.py:95
+msgid "pfg_allRequired"
+msgstr "Es obligatori respondre a totes les preguntes."
+
+#. Default: "Comments"
+#: ../content/form.py:888
+msgid "pfg_commentsfield_title"
+msgstr "Comentaris"
+
+#. Default: "Reset"
+#: ../content/form.py:817
+msgid "pfg_formfolder_reset"
+msgstr "Reinicia"
+
+#. Default: "Submit"
+#: ../content/form.py:816
+msgid "pfg_formfolder_submit"
+msgstr "Envia"
+
+#. Default: "Form Submission"
+#: ../content/formMailerAdapter.py:479
+msgid "pfg_formmaileradapter_msg_subject"
+msgstr "Enviament del formulari"
+
+#. Default: "This box must be checked."
+#: ../content/validationMessages.py:37
+msgid "pfg_isChecked"
+msgstr "Aquesta caixa ha d'estar seleccionada."
+
+#. Default: "This field requires a decimal value."
+#: ../content/validationMessages.py:26
+msgid "pfg_isDecimal"
+msgstr "Aquest camp requereix un valor decimal."
+
+#. Default: "This field requires an integer value."
+#: ../content/validationMessages.py:27
+msgid "pfg_isInt"
+msgstr "Aquest camp requereix un valor senser."
+
+#. Default: "This is not a valid mailto: url."
+#: ../content/validationMessages.py:35
+msgid "pfg_isMailto"
+msgstr "Això no és una URL 'mailto:' vàlida."
+
+#. Default: "This value contains unprintable characters."
+#: ../content/validationMessages.py:28
+msgid "pfg_isPrintable"
+msgstr "Aquest valor conté caràcters no imprimibles."
+
+#. Default: "This field is required."
+#: ../content/validationMessages.py:43
+msgid "pfg_isRequired"
+msgstr "Aquest camp és obligatori."
+
+#. Default: "This is not a well formed SSN."
+#: ../content/validationMessages.py:29
+msgid "pfg_isSSN"
+msgstr "Això no és un SSN bé format."
+
+#. Default: "This box must be unchecked."
+#: ../content/validationMessages.py:38
+msgid "pfg_isUnchecked"
+msgstr "Aquesta caixa no pot estar seleccionada."
+
+#. Default: "This name is not a valid identifier."
+#: ../content/validationMessages.py:36
+msgid "pfg_isUnixLikeName"
+msgstr "Aquest nom no és un identificador vàlid"
+
+#. Default: "The date entered was invalid."
+#: ../content/validationMessages.py:39
+msgid "pfg_isValidDate"
+msgstr "La data introduïda no es correcta."
+
+#. Default: "This text appears to contain links."
+#: ../content/validationMessages.py:40
+msgid "pfg_isnotlinkspam"
+msgstr "Aquest text sembla que té enllaços."
+
+#. Default: "E-Mails Form Input"
+#: ../content/form.py:836
+msgid "pfg_mailer_description"
+msgstr "Formulari d'entrada de correus electrònics"
+
+#. Default: "Mailer"
+#: ../content/form.py:832
+msgid "pfg_mailer_title"
+msgstr "Remitent"
+
+#. Default: "Please enter a number here."
+#: ../content/validationMessages.py:74
+msgid "pfg_not_number"
+msgstr "Introdueix un número."
+
+#. Default: "'${value}' is too large. Must be no greater than ${max}."
+#: ../content/validationMessages.py:84
+msgid "pfg_number_too_large"
+msgstr "El valor ${value}' és molt gran. Com a molt ha de ser ${max}."
+
+#. Default: "'${value}' is too small. Must be at least ${min}."
+#: ../content/validationMessages.py:78
+msgid "pfg_number_too_small"
+msgstr "El valor ${value}' és molt petit. Com a mínim ha de ser ${min}."
+
+#. Default: "Your E-Mail Address"
+#: ../content/form.py:853
+msgid "pfg_replytofield_title"
+msgstr "La seva adreça de correu electrònic"
+
+#. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
+#: ../content/thanksPage.py:191
+msgid "pfg_thankspage_nosubmitmessage"
+msgstr "<p>No s'ha rebut cap entrada. Si us plau <a title=\"Test Folder\" href=\".\">visita el formulari</a>.</p>"
+
+#. Default: "Thanks for your input."
+#: ../content/form.py:903
+msgid "pfg_thankyou_description"
+msgstr "Gràcies per la seva col·laboració"
+
+#. Default: "Thank You"
+#: ../content/form.py:901
+msgid "pfg_thankyou_title"
+msgstr "Gràcies"
+
+#. Default: "'Entry too long. It should be no more than ${max} characters."
+#: ../content/validationMessages.py:91
+msgid "pfg_too_long"
+msgstr "El text és massa llarg, com ha molt hauria de ser de ${max} caràcters."
+
+#. Default: "Subject"
+#: ../content/form.py:872
+msgid "pfg_topicfield_title"
+msgstr "Assumpte"
 
 #. Default: "template"
 #: content/formMailerAdapter.py
 msgid "template"
 msgstr "plantilla"
 
-#. Default: "headers"
-#: content/formMailerAdapter.py
-msgid "headers"
-msgstr "encapçalats"
+#. Default: "Required"
+#: ../skins/PloneFormGen/widget_fieldset_start.pt:38
+msgid "title_required"
+msgstr "Requerit"
 
-#. Default: "encryption"
-#: content/formMailerAdapter.py
-msgid "encryption"
-msgstr "encriptació"
+#. Default: "Checkbox list"
+#: ../content/fields.py:869
+msgid "vocabulary_checkbox_text"
+msgstr "Llista de caixes de selecció"
 
-#. String Field
-#. Default: "Field Help"
-#: content/fields.py
-msgid "label_fieldhelp_text"
-msgstr "Ajuda del Camp"
+#. Default: "Flexible (radio for short, select for longer)"
+#: ../content/fields.py:755
+msgid "vocabulary_flex_text"
+msgstr "Flexible (radi per a curts, select per a més llargs)"
 
-#. String Field
-#. Default: "Field Label"
-#: content/fields.py
-msgid "label_fieldlabel_text"
-msgstr "Etiqueta del Camp"
+#. Default: "Is checked"
+#: ../content/fields.py:410
+msgid "vocabulary_ischecked_text"
+msgstr "Està seleccionat"
 
-#. Default: "Fieldset Folder"
-#: content/fieldset.py
-#, fuzzy
-msgid "Fieldset Folder"
-msgstr "Carpeta de 'fieldset'"
+#. Default: "Is not checked"
+#: ../content/fields.py:413
+msgid "vocabulary_isnotchecked_text"
+msgstr "No està seleccionat"
 
-#. Default: "A folder which groups form fields as a fieldset."
-#: content/fieldset.py
-#, fuzzy
-msgid "A folder which groups form fields as a fieldset."
-msgstr "Una carpeta que agrupa camps de la plantilla com un 'fieldset'."
+#. Default: "Is Tidy HTML (fails on errors and warnings)"
+#: ../content/fields.py:1075
+msgid "vocabulary_istidyhtml_text"
+msgstr "Es Tidy HTML (falla al trobar error i advertències)"
 
-#. Default: "Custom Script Adapter"
-#: content/customScriptAdapter.py
-msgid "Custom Script Adapter"
-msgstr "Adaptador de guió personalitzat"
+#. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
+#: ../content/fields.py:1078
+msgid "vocabulary_istidyhtmlwithcleanup_text"
+msgstr "Tidy HTML amb neteja (falla al trobar errors, neteja la resta)"
 
-#. Default: "Executes a Python script for form data."
-#: content/customScriptAdapter.py
-msgid "Executes a Python script for form data."
-msgstr "Executa un guió Python per les dades de la plantilla."
+#. Default: "None"
+#: ../content/fields.py:407
+#: ../content/form.py:723
+msgid "vocabulary_none_text"
+msgstr "Cap"
 
-#. Default: "No proxy role"
-#: content/customScriptAdapter
-msgid "No proxy role"
-msgstr "Sense rol 'proxy'"
+#. Default: "Radio buttons"
+#: ../content/fields.py:761
+msgid "vocabulary_radio_text"
+msgstr "Botons de selecció"
 
-#. Default: "True Display String"
-msgid "label_fgbooleantruestring_text"
-msgstr "Cadena a mostrar per a 'Cert'"
+#. Default: "Selection list"
+#: ../content/fields.py:758
+msgid "vocabulary_selection_text"
+msgstr "Llista de selecció"
 
-#. Default: """String to use in thanks page and mail when the field's checkbox is checked."""
-msgid "help_fgbooleantruestring_text"
-msgstr "Cadena a usar en la pàgina d'agraïments quan la palomilla del camp està marcada."
-
-#. Default: "False Display String"
-msgid "label_fgbooleanfalsestring_text"
-msgstr "Cadena a mostrar per a 'Fals'"
-
-#. Default: """String to use in thanks page and mail when the field's checkbox is unchecked."""
-#, fuzzy
-msgid "help_fgbooleanfalsestring_text"
-msgstr "Cadena a usar en la pàgina d'agraïments quan la palomilla del camp no està marcada."
-
-#. Rich Label Field
-#. Default: 'Rich Label Field',
-#, fuzzy
-msgid "Rich Label Field"
-msgstr "Camp d'Etiqueta"
-
-#. Likert Field Name
-#, fuzzy
-msgid "Rating-Scale Field"
-msgstr "Camp de Selecció Múltiple"
-
-#. Likert Field Description
-#, fuzzy
-msgid "A rating-scale field using rows of radio buttons."
-msgstr "Una carpeta que agrupa camps de la plantilla com un 'fieldset'."
-
-#. Form
-#. Default 'CSRF Protection',
-#, fuzzy
-msgid "label_csrf"
-msgstr "Mida"
-
-#. Form
-#. Default     Check this to employ Cross-Site Request Forgery protection.
-#. Default     Note that only HTTP Post actions will be allowed.
-msgid "help_csrf"
-msgstr ""
+#~ msgid "Actions"
+#~ msgstr "Accions"
+#~ msgid "Delete"
+#~ msgstr "Suprimeix"
+#~ msgid "Edit"
+#~ msgstr "Edita"
+#~ msgid "Edit/Delete"
+#~ msgstr "Edita/Esborra"
+#~ msgid "Enabled"
+#~ msgstr "Habilitat"
+#~ msgid "Fields"
+#~ msgstr "Camps"
+#~ msgid "Order"
+#~ msgstr "Ordre:"
+#~ msgid "Toolbox"
+#~ msgstr ""
+#~ "Caixa d'eines <span> <img alt=\"Ajax Loader\" style=\"visibility:hidden\" "
+#~ "class=\"ajax-loader\" src=\"${DYNAMIC_CONTENT}\" /> </span> <span id="
+#~ "\"deactivate-widget\">Desactivar</span>"
 
