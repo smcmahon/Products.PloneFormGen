@@ -4,6 +4,9 @@ Change History
 1.7b7 unreleased
 ----------------
 
+- Updated Catalan (ca) and Spanish (es) translation
+  [arielvb]
+
 - Updated basque (eu) translation
   [erral]
 
