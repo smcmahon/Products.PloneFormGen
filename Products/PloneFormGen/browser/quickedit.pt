@@ -133,7 +133,7 @@
                     </tal:block>
                 </tal:typelist>
             </div>
-            <hr>
+
             <div id="fieldsetWidgets" tal:define="items view/addableFieldsets">
                 <h2 i18n:translate="Fieldsets" class="fieldset-header">Fieldsets</h2>
                 <tal:typelist repeat="item items">
@@ -149,7 +149,7 @@
                     </tal:block>
                 </tal:typelist>
             </div>
-            <hr>
+
             <div id="actionWidgets">
                 <h2 class="actions-header" i18n:translate="Actions">Actions</h2>
                 <tal:typelist repeat="item view/addableAdapters">
