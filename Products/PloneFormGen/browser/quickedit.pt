@@ -116,10 +116,28 @@
                     <span id="deactivate-widget">Deactivate</span>
                 </h3>
             </div>
+
             <div id="allWidgets">
-              <h2 i18n:translate="Fields" class="fields-header">Fields</h2>
+
+              <h2 i18n:translate="Fields" class="fields-header">Basic Fields</h2>
               <div id="fieldWidgets" class="widgetPane">
-                <tal:typelist repeat="item view/addablePrioritizedFields">
+                <tal:typelist repeat="item python:view.addablePrioritizedFields()[:8]">
+                    <tal:block tal:define="set item/id">
+                        <div class="widget w-field" tal:attributes="id item/id">
+                            <h4 class="widget-header" tal:content="item/title">Type title</h4>
+                            <div class="widget-inside">
+                            </div>
+                        </div>
+                        <div class="tooltip">
+                          <span tal:replace="item/description">Type description</span>
+                        </div>
+                    </tal:block>
+                </tal:typelist>
+              </div>
+
+              <h2 i18n:translate="Fields" class="fields-header">More Fields</h2>
+              <div id="fieldWidgets" class="widgetPane">
+                <tal:typelist repeat="item python:view.addablePrioritizedFields()[8:]">
                     <tal:block tal:define="set item/id">
                         <div class="widget w-field" tal:attributes="id item/id">
                             <h4 class="widget-header" tal:content="item/title">Type title</h4>
@@ -178,8 +196,8 @@
             <metal:block define-slot="widgets">
                 <div id="pfg-fieldwrapper">
                     <div class="theader">
-                        <div style="width: 8%;" i18n:translate="Order">Order</div>
-                        <div style="width: 50%;" i18n:translate="Field">Field</div>
+                        <div style="width: 5%;" i18n:translate="Order">Order</div>
+                        <div style="width: 53%;" i18n:translate="Field">Field</div>
                         <div style="width: 26%;" i18n:translate="Edit/Delete">Edit/Delete</div>
                     </div>
                     <div id="pfg-qetable" class="listing" summary="Field listing">
@@ -218,8 +236,8 @@
                    style="float: left"
                    tal:define="liveAdapters here/getActionAdapter">
                 <div class="theader">
-                    <div style="width: 8%;" i18n:translate="Order">Order</div>
-                    <div style="width: 50%;" i18n:translate="Action">Action</div>
+                    <div style="width: 5%;" i18n:translate="Order">Order</div>
+                    <div style="width: 53%;" i18n:translate="Action">Action</div>
                     <div style="width: 26%;" i18n:translate="Edit/Delete">Edit/Delete</div>
                 </div>
                 <div id="pfgActionEdit">
@@ -253,38 +271,38 @@
 
             <table tal:condition="canModify" 
                    id="pfgThanksEdit"
-                   class="listing"
                    summary="Field listing"
                    style="clear: none"
                    tal:define="liveThanks here/thanksPage">
                 <thead>
-                    <tr>
-                        <th i18n:translate="Thanks Pages">Thanks Pages</th><th i18n:translate="Enabled" class="editHook">Enabled</th><th class="editHook" i18n:translate="Delete">Delete</th><th i18n:translate="Edit" class="editHook">Edit</th>
+                    <tr class="theader">
+                        <th i18n:translate="Thanks Pages" style="width:68%">Thanks Pages</th>
+                        <th i18n:translate="Edit / Delete">Edit / Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
                     <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
-                        <td tal:content="python:row[1]" />
-                        <td class="editHook">
-                              <input type="radio" name="thanksRadio"
-                                  tal:attributes="value python:row[0];
-                                    checked python:row[0] == liveThanks and 'checked' or None" />                   
+                        
+                        <td>
+                            <input type="radio" name="thanksRadio"
+                                   tal:attributes="value python:row[0];
+                                   checked python:row[0] == liveThanks and 'checked' or None" />                   
+                           <span tal:content="python:row[1]" />
                         </td>
-                        <td class="editHook">
+                        <td>
+                           <a href="#" tal:condition="python:row[0]"
+                              tal:attributes="href python:'%s/edit' % row[0]"
+                              title="Edit Page"
+                              ><img src="edit.gif" alt="Edit" /></a>
+                          <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
+
                             <a href="#" tal:condition="python:row[0]"
                                tal:attributes="href python:'%s/delete_confirmation' % row[0]"
                                title="Delete Page"
                                ><img src="delete_icon.gif" alt="Delete" /></a>
                             <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
                         </td>
-                        <td class="editHook">
-                            <a href="#" tal:condition="python:row[0]"
-                               tal:attributes="href python:'%s/edit' % row[0]"
-                               title="Edit Page"
-                               ><img src="edit.gif" alt="Edit" /></a>
-                           <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-                        </td>                    
                     </tr>
                     </tal:block>
                 </tbody>

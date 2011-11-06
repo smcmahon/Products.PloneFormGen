@@ -119,6 +119,9 @@ div.theader {
 
 div.theader div {
     float: left;
+}
+div.theader div,
+tr.theader th {
     border: 0.1em #E7E7E7;
     border-style: solid none none;
     color: #666;
@@ -127,6 +130,7 @@ div.theader div {
     padding: 0.5em 1em;
     vertical-align: top;
     font-weight: bold;
+    background-color: #ccc;
 }
 
 .listing {
@@ -166,7 +170,7 @@ div.theader div {
     vertical-align: middle;
     cursor: ns-resize;
     padding: 0;
-    text-align: center;
+    text-align: left;
 }
 .draggingHook .dhcenter { /* workaround to center contents of dragging hook */
     display: inline-block; 
@@ -180,7 +184,6 @@ div.editHook * {
 }
 
 div.draggable {
-    background: #DDD !important;
     border-bottom: 1px solid white;
     padding: 0.4em 0.4em 0px 0.5em;
 }
@@ -247,4 +250,15 @@ td.draggable.draggingHook {
 }
 .fsend {
     border-top: none;
+}
+
+#pfgThanksEdit {
+    clear: none;
+    width: 96%;
+    border: none;
+}
+#pfgThanksEdit th,
+#pfgThanksEdit td {
+    border: none;
+    padding: 0.5em 1em;
 }

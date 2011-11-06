@@ -121,7 +121,7 @@ jQuery(function ($) {
 			/* Initializers for editing titles, toggling required attribute on fields and limiting number of widgets in Widgets Manager */
 			this.editTitles();
 			this.toggleRequired();
-			this.limitFields();
+            // this.limitFields();
 
 			/* set the tooltip for the widgets in Widget Manager */
 			$("div.widget").tooltip({
