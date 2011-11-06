@@ -116,10 +116,9 @@
                     <span id="deactivate-widget">Deactivate</span>
                 </h3>
             </div>
-
-            <div id="fieldWidgets">
-                <!-- List of Fields, followed by the list of Adapters -->
-                <h2 i18n:translate="Fields" class="fields-header">Fields</h2>
+            <div id="allWidgets">
+              <h2 i18n:translate="Fields" class="fields-header">Fields</h2>
+              <div id="fieldWidgets" class="widgetPane">
                 <tal:typelist repeat="item view/addablePrioritizedFields">
                     <tal:block tal:define="set item/id">
                         <div class="widget w-field" tal:attributes="id item/id">
@@ -132,10 +131,10 @@
                         </div>
                     </tal:block>
                 </tal:typelist>
-            </div>
+              </div>
 
-            <div id="fieldsetWidgets" tal:define="items view/addableFieldsets">
-                <h2 i18n:translate="Fieldsets" class="fieldset-header">Fieldsets</h2>
+              <h2 i18n:translate="Fieldsets" class="fieldset-header">Fieldsets</h2>
+              <div id="fieldsetWidgets" class="widgetPane" tal:define="items view/addableFieldsets">
                 <tal:typelist repeat="item items">
                     <tal:block tal:define="set item/id">
                         <div class="widget w-fieldset" tal:attributes="id item/id">
@@ -148,10 +147,10 @@
                         </div>
                     </tal:block>
                 </tal:typelist>
-            </div>
+              </div>
 
-            <div id="actionWidgets">
-                <h2 class="actions-header" i18n:translate="Actions">Actions</h2>
+              <h2 class="actions-header" i18n:translate="Actions">Actions</h2>
+              <div id="actionWidgets" class="widgetPane">
                 <tal:typelist repeat="item view/addableAdapters">
                 <tal:block tal:define="set item/id; desc item/description">
                     <div class="widget w-action" tal:attributes="id item/id">
@@ -165,6 +164,7 @@
                     </div>
                 </tal:block>
                 </tal:typelist>
+              </div>
             </div>
 
         </div>

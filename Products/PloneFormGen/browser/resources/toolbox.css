@@ -33,7 +33,6 @@ div.header h3 {
 #fieldsetWidgets,
 #actionWidgets {
     padding:5px 15px;
-    border-bottom: 1px inset #333;
 }
 #actionWidgets {
     border-bottom: none;
@@ -96,8 +95,9 @@ div.placeholder {
 #pfgWidgetWrapper .fields-header,
 #pfgWidgetWrapper .fieldset-header,
 #pfgWidgetWrapper .actions-header {
+    border-top: 1px ridge #333;
     font-size:18px;
-    margin: 3px;
+    margin: 0;
     text-align:center;
 }
 
@@ -210,9 +210,14 @@ div.draggable {
 
 span.required,
 span.not-required,
-div.qefield div.field span {
+div.qefield div.field span,
+#allWidgets h2 {
     cursor: pointer;
 }
+#allWidgets h2.current {
+    cursor: default;
+}
+
 span.not-required {
     border:1px solid red; 
     width:7px; height:7px; 

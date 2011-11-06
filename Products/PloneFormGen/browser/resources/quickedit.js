@@ -59,6 +59,8 @@ pfgQEdit.qedit = function (e) {
         jqt.parent().after(jqt.detach());
     });
 
+    $("#allWidgets").tabs(".widgetPane", {tabs:"h2",effect:'slide'});
+
 	pfgWidgets.init();
 };
 
@@ -642,4 +644,5 @@ jQuery(function ($) {
 			});
 		}
 	};
+
 }(jQuery));
