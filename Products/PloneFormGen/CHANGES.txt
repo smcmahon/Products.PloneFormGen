@@ -5,6 +5,7 @@ Change History
 ----------------
 
 - Eradicate rounded corners in quick edit toolbox.
+  General quick editor style cleanup.
   [smcmahon]
 
 - Updated basque (eu) translation
