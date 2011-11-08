@@ -389,7 +389,6 @@ msgstr "PloneFormGen datuak gordetzeko akzioen defektuzko balioak"
 #: ./content/form.py:236
 msgid "help_AfterValidationOverride_text"
 msgstr ""
-"\n"
 "Formularioa balidatu ostean, baina akzioak exekutatu\n"
 "aurretik edo eskertza orrialdea erakutsi aurretik\n"
 "exekutatuko den TALES espresioa.\n"
@@ -400,41 +399,38 @@ msgstr ""
 " bati deitzea da. Espresioak itzulitako edozein baliori ez zaio\n"
 "kasurik egingo. \n"
 "OHARRA: espresioa ebaluatzean sortzen diren erroreek\n"
-"formuilarioa erakustean errore bat emango dute.\n"
+"formuilarioa erakustean errore bat emango dute."
 
 #. Default: "\n                A TALES expression that will be called when the form is\n                displayed.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                that sets defaults for multiple fields by pre-populating\n                request.form.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression\n                will cause an error on form display.\n            "
 #: ./content/form.py:212
 msgid "help_OnDisplayOverride_text"
 msgstr ""
-"\n"
 "Formularioa erakustean exekutatuko den TALES espresioa.\n"
 "Utzi hutsik ez baduzu erabili behar.\n"
 "Eremu honen erabilpen ohikoena, request.form populatuz\n"
 "eremuen defektuzko balioak ezartzea da.\n"
 "Espresioak itzulitako edozein baliori ez zaio kasurik egingo. \n"
 "OHARRA: espresioa ebaluatzean sortzen diren erroreek\n"
-"formuilarioa erakustean errore bat emango dute.\n"
+"formuilarioa erakustean errore bat emango dute."
 
 #. Default: "\n                To make your form do something useful when submitted:\n                add one or more form action adapters to the form folder,\n                configure them, then return to this\n                form and select the active ones.\n                "
 #: ./content/form.py:86
 msgid "help_actionadapter_text"
 msgstr ""
-"\n"
 "Zure formularioa bidaltzen denean zerbait egiteko:\n"
 "gehitu akzio bat edo gehiago, konfiguratu eta ondoren\n"
-"itzuli hona aktibatzeko.\n"
+"itzuli hona aktibatzeko."
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:441
 msgid "help_bcc_override_text"
 msgstr ""
-"\n"
 "BCC zerrendako balioak gainidazteko TALES espresioa. Eskaeran\n"
 "datorren informazio balidatu gabe ez erabiltzea gomendatzen dizugu\n"
 "eremu honetarako. Utzi hutsik ez baduzu behar. Espresioan testu-kate\n"
 "zerrenda bat itzuli beharko luke.\n"
 "OHARRA: espresioa ebaluatzean sortzen diren erroreek\n"
-"formuilarioa erakustean errore bat emango dute.\n"
+"formuilarioa erakustean errore bat emango dute."
 
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
 #: ./content/fields.py:358
@@ -442,15 +438,14 @@ msgid "help_boolrequired_text"
 msgstr ""
 "OHARRA: checkbox erako eremu bat beharrezkoa dela esateak, 'derrigorrezkoa'\n"
 "testua agertaraztea beste eraginik ez du. Balio jakin bat izatea nahi baduzu \n"
-"Aukeratu balidatzaile bat.\n"
+"Aukeratu balidatzaile bat."
 
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
 #: ./content/form.py:279
 msgid "help_csrf"
 msgstr ""
-"\n"
 "Cross-Site Request Forgery balidazioa egitea aktibatu.\n"
-"Post erako HTTP eskaerak bakarrik onartuko dira.\n"
+"Post erako HTTP eskaerak bakarrik onartuko dira."
 
 #. Default: "Choose a default delimiter to be used when downloading content from a save-data adapter."
 #: ./skins/PloneFormGen/prefs_pfg_savedata.cpt:73
@@ -466,14 +461,13 @@ msgstr "Formularioko eremuen ostean erakutsiko den testua."
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr ""
-"\n"
 "Akzio hau exekutatu ala ez erabakiko duen TALES espersioa.\n"
 "Utzi hutsik ez baduzu erabili behar eta akzioa normalki exekutatu\n"
 "nahi baduzu\n"
 ".Espresioak balio boolearra itzuli behar du; itzuli True akzioa\n"
 "exekutatu nahi baduzu.\n"
 "OHARRA: espresioa ebaluatzean sortzen diren erroreek\n"
-"formuilarioa erakustean errore bat emango dute.\n"
+"formuilarioa erakustean errore bat emango dute."
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
 #: ./content/fields.py:353
@@ -516,9 +510,7 @@ msgstr ""
 #. Default: "\n                    The text to display in the form.\n                "
 #: ./content/fields.py:1106
 msgid "help_fglabelbody_text"
-msgstr ""
-"\n"
-"Formularian agertuko den testua.\n"
+msgstr "Formularian agertuko den testua."
 
 #. Default: "List of possible answers for each of the questions;\n                    these will be the columns of the table."
 #: ./content/formLikertField.py:80
@@ -534,17 +526,14 @@ msgstr "Galdera-zerrenda; taularen lerroak izango dira."
 #: ./content/fieldsBase.py:294
 msgid "help_fglinesdefault_text"
 msgstr ""
-"\n"
 "Formularioa erakusten denean agertuko diren balioak.\n"
 "Idatzi balio bat lerro bakoitzean.\n"
-"Dinamikoki gainidatzi daiteke.\n"
+"Dinamikoki gainidatzi daiteke."
 
 #. Default: "\n                The maximum number of characters the user will be able to input.\n                "
 #: ./content/fieldsBase.py:105
 msgid "help_fgmaxlength_text"
-msgstr ""
-"\n"
-"Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa."
+msgstr "Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa."
 
 #: ./content/fields.py:803
 msgid "help_fgmsformat_text"
@@ -589,7 +578,7 @@ msgstr ""
 msgid "help_fgtextdefault_text"
 msgstr ""
 "Formularioa kargatzen denean eremuak izango duen defektuzko balioa.\n"
-"Dinamikoki gainidatzi daiteke.\n"
+"Dinamikoki gainidatzi daiteke."
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:310
@@ -610,7 +599,6 @@ msgstr ""
 #: ./content/fieldsBase.py:150
 msgid "help_fgvocabulary_text"
 msgstr ""
-"\n"
 "Aukera bakoitza lerro baten idatzi.\n"
 "Dinamikoki gainidatzi daiteke.\n"
 "[\"value|label\" formatua erabili dezakezu nahi baduzu]"
@@ -693,20 +681,17 @@ msgstr "Mezuaren gaia. Ez baduzu gaiarentzat eremu bat sortzen edo eremua hutsik
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
 #: ./content/formMailerAdapter.py:185
 msgid "help_formmailer_subject_extract"
-msgstr ""
-"\n"
-"E-postaren gaia zein eremutatik hartuko den.\n"
+msgstr "E-postaren gaia zein eremutatik hartuko den."
 
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
 #: ./content/formMailerAdapter.py:102
 msgid "help_formmailer_to_extract"
 msgstr ""
-"\n"
 "E-posta mezua zein helbidetara bidali formularioko zein eremutik\n"
 "aterako den aukeratu. \"Bat ere ez\" ez den aukeretako bat aukeratzen\n"
 " baduzu, \"Jasotzailearen e-posta helbidea\" gainidatziko du honek\n"
 ".Kontuz ibili balidatu gabeko erabiltzailearen datuak erabiltzen badituzu\n"
-"helburu honetarako.\n"
+"helburu honetarako."
 
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
 #: ./content/fields.py:267
@@ -741,9 +726,7 @@ msgstr ""
 #. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
 #: ./content/formMailerAdapter.py:254
 msgid "help_mailfields_text"
-msgstr ""
-"\n"
-"E-posta mezuan zein eremu sartuko diren aukeratu.\n"
+msgstr "E-posta mezuan zein eremu sartuko diren aukeratu."
 
 #. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "
 #: ./content/fields.py:185
@@ -760,7 +743,7 @@ msgstr "Formularioak ez ditu hemen sartutako balio minimoa baino balio txikiagoa
 msgid "help_nosubmit_text"
 msgstr ""
 "Idatzi hemen zure nabigatzailea formularioa bete gabe orrialde honetara iristen bada\n"
-"agertuko den testua. Normalean formulariora itzultzeko lotura bat agertuko da.\n"
+"agertuko den testua. Normalean formulariora itzultzeko lotura bat agertuko da."
 
 #. Default: "Not displayed on form."
 #: ./content/fields.py:1133
@@ -853,7 +836,7 @@ msgstr ""
 "Aukeratu formularioa ondo bidaltzen denean zein eskertza-orri\n"
 "erakutsiko den. (Bat ere ez badago, gehitu ezazu.)\n"
 "Aukeratu \"Bat ere ez\", formularioan sartutako datuak\n"
-"soilik erakusteko.\n"
+"soilik erakusteko."
 
 #. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
 #: ./content/form.py:170
