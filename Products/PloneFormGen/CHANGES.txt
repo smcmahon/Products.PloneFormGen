@@ -4,6 +4,10 @@ Change History
 1.7b7 unreleased
 ----------------
 
+- Some validation messages were partially untranslatable. Github issue
+  "Validation error of isEmail validator is not translated," thanks markvl.
+  [smcmahon]
+
 - Eradicate rounded corners in quick edit toolbox.
   General quick editor style cleanup.
   [smcmahon]

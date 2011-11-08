@@ -96,8 +96,8 @@ class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
     
     def test_messageMassage(self):
     
-        s = "Validation failed(isUnixLikeName): something is not a valid identifier."
-        self.failUnlessEqual(validationMessages.cleanupMessage(s, self, self), u'pfg_isUnixLikeName')
+        # s = "Validation failed(isUnixLikeName): something is not a valid identifier."
+        # self.failUnlessEqual(validationMessages.cleanupMessage(s, self, self), u'pfg_isUnixLikeName')
 
         s = "Something is required, please correct."
         self.failUnlessEqual(validationMessages.cleanupMessage(s, self, self), u'pfg_isRequired')

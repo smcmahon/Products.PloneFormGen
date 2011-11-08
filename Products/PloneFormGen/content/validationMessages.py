@@ -11,7 +11,8 @@ from Products.CMFCore.utils import getToolByName
 import re
 from types import StringTypes
 
-verrorRE = re.compile("Validation failed\((.+)\):")
+verrorRE = re.compile(r".+fails tests of (.+?)\.")
+verror2RE = re.compile(r"Validation failed\((.+?)\):.+")
 enrMessageRE = re.compile( "Validation failed\(inExNumericRange\): could not convert '(.+)' to number" )
 enrSmallMessageRE = re.compile( "Validation failed\(inExNumericRange\): '(.+?)' is too small. Must be at least (.+)." )
 enrLargeMessageRE = re.compile( "Validation failed\(inExNumericRange\): '(.+?)' is too large. Must be no greater than (.+)." )
@@ -50,46 +51,49 @@ def cleanupMessage(original, context, instance):
     if type(original) in StringTypes:
         if original.find('is required, please correct.') > 0:
             return newRequiredMessage
-        else:
-            mo = verrorRE.match(original)
-            if mo:
-                term = mo.groups()[0]
 
-                if term.find('pfgv_') == 0:
-                    # this is one of the customizable pfg tool validators
-                    fgt = getToolByName(instance, 'formgen_tool')
-                    sv = fgt.stringValidators.get(term[5:])
-                    if sv:
-                        # this is already a messagestr
-                        return sv['errmsg']
+        mo = verrorRE.match(original)
+        if mo:
+            term = mo.groups()[0]
+            if term.find('pfgv_') == 0:
+                # this is one of the customizable pfg tool validators
+                fgt = getToolByName(instance, 'formgen_tool')
+                sv = fgt.stringValidators.get(term[5:])
+                if sv:
+                    # this is already a messagestr
+                    return sv['errmsg']
+            
+        mo = verror2RE.match(original)
+        if mo:
+            term = mo.groups()[0]
 
-                nm = newMessages.get(term)
-                if nm:
-                    # this is one of the simple messages for which we have a replacement
-                    return nm
+            nm = newMessages.get(term)
+            if nm:
+                # this is one of the simple messages for which we have a replacement
+                return nm
 
-                if term == 'inExNumericRange':
-                    mo = enrMessageRE.match(original)
-                    if mo:
-                        return _(u'pfg_not_number', u'Please enter a number here.')
-                    mo = enrSmallMessageRE.match(original)
-                    if mo:
-                        groups = mo.groups()
-                        return _(u'pfg_number_too_small',
-                                 u"'${value}' is too small. Must be at least ${min}.",
-                                 mapping={ 'value':groups[0], 'min':groups[1] })
-                    mo = enrLargeMessageRE.match(original)
-                    if mo:
-                        groups = mo.groups()
-                        return _(u'pfg_number_too_large',
-                                 u"'${value}' is too large. Must be no greater than ${max}.",
-                                 mapping={ 'value':groups[0], 'max':groups[1] })
-                elif term == 'isNotTooLong':
-                    mo = mlTooLongRE.match(original)
-                    if mo:
-                        groups = mo.groups()
-                        return _(u'pfg_too_long',
-                                 u"'Entry too long. It should be no more than ${max} characters.",
-                                 mapping={ 'max':groups[0] })
+            if term == 'inExNumericRange':
+                mo = enrMessageRE.match(original)
+                if mo:
+                    return _(u'pfg_not_number', u'Please enter a number here.')
+                mo = enrSmallMessageRE.match(original)
+                if mo:
+                    groups = mo.groups()
+                    return _(u'pfg_number_too_small',
+                             u"'${value}' is too small. Must be at least ${min}.",
+                             mapping={ 'value':groups[0], 'min':groups[1] })
+                mo = enrLargeMessageRE.match(original)
+                if mo:
+                    groups = mo.groups()
+                    return _(u'pfg_number_too_large',
+                             u"'${value}' is too large. Must be no greater than ${max}.",
+                             mapping={ 'value':groups[0], 'max':groups[1] })
+            elif term == 'isNotTooLong':
+                mo = mlTooLongRE.match(original)
+                if mo:
+                    groups = mo.groups()
+                    return _(u'pfg_too_long',
+                             u"'Entry too long. It should be no more than ${max} characters.",
+                             mapping={ 'max':groups[0] })
 
     return original
