@@ -8,6 +8,9 @@ Change History
   General quick editor style cleanup.
   [smcmahon]
 
+- Updated Catalan (ca) and Spanish (es) translation
+  [arielvb]
+
 - Updated basque (eu) translation
   [erral]
 
