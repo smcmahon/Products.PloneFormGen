@@ -11,6 +11,16 @@ Change History
 - Updated Catalan (ca) and Spanish (es) translation
   [arielvb]
 
+- Fixed a test that changed the working directory, but failed to change it
+  back to the original. This was resulting in zero test results when using
+  collective.xmltestreport. [pumazi]
+
+- Added dependencies Plone and Products.Archetypes.
+  [pumazi]
+
+- Created the test extra requirement to pull in collective.funkload for tests.
+  [pumazi]
+
 - Updated basque (eu) translation
   [erral]
 
