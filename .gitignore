@@ -2,3 +2,4 @@
 *.mo
 *.tar.gz
 *.egg-info
+dist
