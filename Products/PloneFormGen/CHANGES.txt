@@ -1,6 +1,17 @@
 Change History
 ==============
 
+1.7.0 2011-11-16
+----------------
+
+- No changes from 1.7rc1.
+
+1.7rc1 2011-11-08
+-----------------
+
+- Add accordion for widgets in quick edit mode.
+  [smcmahon]
+
 1.7b7 unreleased
 ----------------
 
