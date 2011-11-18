@@ -1,3 +1,5 @@
+from urllib import quote_plus
+
 from Acquisition import aq_inner
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
@@ -28,10 +30,13 @@ class QuickEditView(BrowserView):
     def _addableTypes(self):
         folder_factories = getMultiAdapter((self.context, self.request),
                                            name='folder_factories')
-        return [atype 
-                for atype in folder_factories.addable_types() 
-                if atype['id'] not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder')
-               ]
+        atypes = []
+        blacklist = ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder')
+        for atype in folder_factories.addable_types():
+            if atype['id'] not in blacklist:
+                atype['id'] = quote_plus(atype['id'])
+                atypes.append(atype)
+        return atypes
 
     def addablePrioritizedFields(self):
         """Return a prioritized list of the addable fields in context"""
