@@ -4,7 +4,8 @@ Change History
 1.7.0 2011-11-16
 ----------------
 
-- No changes from 1.7rc1.
+- Add archetypes viewlet manger in forms before & after fieldsets
+  [jfroche]
 
 1.7rc1 2011-11-08
 -----------------
