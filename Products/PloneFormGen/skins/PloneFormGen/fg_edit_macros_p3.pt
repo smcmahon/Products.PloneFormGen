@@ -89,7 +89,8 @@
 
           <metal:block define-slot="extra_top" />
 
-          <div tal:replace="structure provider:archetypes.edit.beforefieldsets" />
+          <div tal:replace="structure provider:archetypes.edit.beforefieldsets|nothing"
+               tal:on-error="nothing" />
 
           <metal:block define-slot="widgets">
             <div id="pfg-fieldwrapper">
@@ -114,7 +115,8 @@
             </div>
           </metal:block>
 
-          <div tal:replace="structure provider:archetypes.edit.afterfieldsets" />
+          <div tal:replace="structure provider:archetypes.edit.afterfieldsets"
+               tal:on-error="nothing" />
 
           <metal:block define-slot="extra_bottom" />
 
