@@ -335,10 +335,10 @@ class FormSaveDataAdapter(FormActionAdapter):
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnNames')
-    def getColumnNames(self):
+    def getColumnNames(self, excludeServerSide=True):
         """Returns a list of column names"""
         
-        names = [field.getName() for field in self.fgFields(displayOnly=True)]
+        names = [field.getName() for field in self.fgFields(displayOnly=True, excludeServerSide=excludeServerSide)]
         for f in self.ExtraData:
             names.append(f)
         
@@ -401,7 +401,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         if getattr(self, 'UseColumnNames', False):
             delimiter = self.csvDelimiter()
-            res = "%s\n" % delimiter.join( self.getColumnNames() )
+            res = "%s\n" % delimiter.join( self.getColumnNames(excludeServerSide=False) )
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
