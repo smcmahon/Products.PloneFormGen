@@ -4,7 +4,9 @@ Change History
 1.7.1 Unreleased
 ----------------
 
-
+- Fixed issue #18 (new, github tracker): "BadRequest after adding a new thanks
+  page if link integrity checking is enabled" by removing link from default
+  nosubmit message. Thanks, datakurre!
 
 1.7.0 2011-11-16
 ----------------

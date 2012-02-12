@@ -188,7 +188,7 @@ class FormThanksPage(ATCTContent):
 
         ATCTContent.initializeArchetype(self, **kwargs)
 
-        self.setNoSubmitMessage(zope.i18n.translate(_(u'pfg_thankspage_nosubmitmessage', u'<p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>'), context=self.REQUEST))
+        self.setNoSubmitMessage(zope.i18n.translate(_(u'pfg_thankspage_nosubmitmessage', u'<p>No input was received. Please visit the form.</p>'), context=self.REQUEST))
 
 
     security.declareProtected(View, 'fieldDisplayList')
