@@ -504,8 +504,8 @@ class FormFolder(ATFolder):
                   if not implementedOrProvidedBy(IField, fo)]
         for obj in fields:
             field = obj.fgField
-            
-            if obj.isLabel():
+
+            if obj.isLabel() and obj.meta_type != 'FormRichLabelField':
                 REQUEST.form[obj.__name__] = '1'
 
             if obj.getServerSide():

@@ -1,5 +1,5 @@
 <tal:block metal:define-macro="master"
-           define="errors options/state/getErrors | nothing;
+           define="errors options/state/getErrors | python:{};
                    schematas nothing;
                    allow_tabbing python:False;
                    fieldsets python:['default'];

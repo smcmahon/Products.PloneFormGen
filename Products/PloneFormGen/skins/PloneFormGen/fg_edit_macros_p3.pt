@@ -107,8 +107,8 @@
                 </tal:block>
                 <div tal:condition="python:field.widget.macro == 'widget_richlabel'"
                      tal:attributes="id string:archetypes-fieldname-${field/getName}"
-                   class="field PFG-RichLabel"
-                   tal:content="structure python:request.form.get(field.getName(), field.default)">
+                     class="field PFG-RichLabel"
+                     tal:content="structure python:request.form.get(field.getName(), field.default)">
                     Rich Label
                 </div>
             </tal:fields>
