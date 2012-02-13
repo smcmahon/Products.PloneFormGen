@@ -4,6 +4,9 @@ Change History
 1.7.1 Unreleased
 ----------------
 
+- Fix issue #20: "email validation text is wrong," which would also
+  affect several other error strings. Thanks, sunew!
+
 - Fix issue #22: "RichLabel Widget displays '1' instead of label text
   after submitting form whith not all required fields provided."
   Thanks, ksuess!
