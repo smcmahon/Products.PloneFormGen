@@ -11,6 +11,9 @@ McMahon: steve@dcn.org.
 1.7 Notes
 =========
 
+PFG 1.7 is intended for use with Plone 4+. If you're using Plone < 4, PFG 1.6
+will be a better choice.
+
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
 
