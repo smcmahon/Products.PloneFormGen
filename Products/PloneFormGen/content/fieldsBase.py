@@ -1,6 +1,6 @@
 """ Base declarations and classes for form fields """
 
-__author__  = 'Steve McMahon <steve@dcn.org>'
+__author__ = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
 import cgi
@@ -45,20 +45,20 @@ def finalizeFieldSchema(schema, folderish=True, moveDiscussion=False):
 
     finalizeATCTSchema(schema, folderish=True, moveDiscussion=False)
     # avoid showing unnecessary schema tabs
-    for afield in ('subject', 
-                   'relatedItems', 
-                   'location', 
-                   'language', 
-                   'effectiveDate', 
-                   'expirationDate', 
-                   'creation_date', 
-                   'modification_date', 
-                   'creators', 
-                   'contributors', 
-                   'rights', 
-                   'allowDiscussion', 
-                   'excludeFromNav', ):
-        schema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+    for afield in ('subject',
+                   'relatedItems',
+                   'location',
+                   'language',
+                   'effectiveDate',
+                   'expirationDate',
+                   'creation_date',
+                   'modification_date',
+                   'creators',
+                   'contributors',
+                   'rights',
+                   'allowDiscussion',
+                   'excludeFromNav',):
+        schema[afield].widget.visible = {'view': 'invisible', 'edit': 'invisible'}
         schema[afield].schemata = 'default'
 
 
@@ -239,7 +239,7 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                     to determine whether or not the field is enabled.
                     Your expression should evaluate as True if
                     the field should be included in the form, False if it should be omitted.
-                    Leave this expression field empty if unneeded: the field will be included. 
+                    Leave this expression field empty if unneeded: the field will be included.
                     PLEASE NOTE: errors in the evaluation of this expression will cause
                     an error on form display.
                 """),
@@ -256,7 +256,7 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                 label=_(u'label_server_side_text', default=u"Server-Side Variable"),
                 description=_(u'description_server_side_text', default=u"""
                     Mark this field as a value to be injected into the
-                    request form for use by action adapters and is not 
+                    request form for use by action adapters and is not
                     modifiable by or exposed to the client.
                 """),
                 ),
@@ -367,16 +367,16 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
         TextField('fgDefault',
             searchable=0,
             required=0,
-            validators = ('isTidyHtmlWithCleanup',),
-            default_content_type = 'text/html',
-            default_output_type = 'text/x-html-safe',
-            allowable_content_types = zconf.ATDocument.allowed_content_types,
+            validators=('isTidyHtmlWithCleanup',),
+            default_content_type='text/html',
+            default_output_type='text/x-html-safe',
+            allowable_content_types=zconf.ATDocument.allowed_content_types,
             widget=RichWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
                 description=_(u'help_fgtextdefault_text', default=u"""
                     The text the field should contain when the form is first displayed.
                     Note that this may be overridden dynamically.
                 """),
-                allow_file_upload = False,
+                allow_file_upload=False,
                 ),
             ),
         rowsField,
@@ -416,7 +416,7 @@ class StringVocabularyField(StringField):
     Overrides Vocabulary so that we can get the value from the instance
     """
 
-    security  = ClassSecurityInfo()
+    security = ClassSecurityInfo()
 
     security.declarePublic('Vocabulary')
     def Vocabulary(self, content_instance=None):
@@ -430,7 +430,7 @@ class StringVocabularyField(StringField):
 
         vl = fieldContainer.getFgTVocabulary()
         if vl is not None:
-            return DisplayList( data=vl )
+            return DisplayList(data=vl)
 
         res = DisplayList()
         for line in fieldContainer.fgVocabulary:
@@ -438,15 +438,15 @@ class StringVocabularyField(StringField):
             if len(lsplit) == 2:
                 key, val = lsplit
             else:
-                key, val = (lsplit[0],lsplit[0])
-            res.add( key, val )
+                key, val = (lsplit[0], lsplit[0])
+            res.add(key, val)
         return res
 
 
 class LinesVocabularyField(StringField):
     """ Same as StringVocabularyField, but based on a LinesField """
 
-    security  = ClassSecurityInfo()
+    security = ClassSecurityInfo()
 
     security.declarePublic('Vocabulary')
     def Vocabulary(self, content_instance=None):
@@ -460,7 +460,7 @@ class LinesVocabularyField(StringField):
 
         vl = fieldContainer.getFgTVocabulary()
         if vl is not None:
-            return DisplayList( data=vl )
+            return DisplayList(data=vl)
 
         res = DisplayList()
         for line in fieldContainer.fgVocabulary:
@@ -468,8 +468,8 @@ class LinesVocabularyField(StringField):
             if len(lsplit) == 2:
                 key, val = lsplit
             else:
-                key, val = (lsplit[0],lsplit[0])
-            res.add( key, val )
+                key, val = (lsplit[0], lsplit[0])
+            res.add(key, val)
         return res
 
 
@@ -480,7 +480,7 @@ class BaseFormField(ATCTContent):
     """
     implements(IPloneFormGenField)
 
-    security  = ClassSecurityInfo()
+    security = ClassSecurityInfo()
 
     schema = BaseFieldSchema
 
@@ -488,7 +488,7 @@ class BaseFormField(ATCTContent):
     portal_type = meta_type = 'BaseFormField'
     archetype_name = 'Base Form Field'
     content_icon = 'BasicField.gif'
-    typeDescription= 'A form field'
+    typeDescription = 'A form field'
 
     default_view = immediate_view = 'fg_base_view_p3'
     suppl_views = ()
@@ -722,7 +722,7 @@ class BaseFormField(ATCTContent):
         if request:
             self.fgPrimeDefaults(request)
 
-        return ( self.fgField, )
+        return (self.fgField,)
 
 
     security.declarePrivate('_specialValidator')
@@ -774,14 +774,14 @@ class BaseFormField(ATCTContent):
                 value = newvalue
                 # since strings are immutable, we have to manually store it back to the request
                 if safe_hasattr(REQUEST, 'form'):
-                    REQUEST.form[self.getFieldFormName()] = value                        
+                    REQUEST.form[self.getFieldFormName()] = value
 
         # Archetypes field validation
         res = field.validate(instance=self,
                             value=value,
                             errors=errors,
                             REQUEST=REQUEST)
-        
+
         if not res:
             # give the field itself an opportunity to validate.
             res = self.specialValidator(value, field, REQUEST, errors)
@@ -905,18 +905,3 @@ class BaseFormField(ATCTContent):
         id = self.getId()
         if self.fgField.__name__ != id:
             self.fgField.__name__ = id
-
-
-    # def processForm(self, data=1, metadata=0, REQUEST=None, values=None):
-    #     # override base so that we can selectively redirect back to the form
-    #     # rather than to the field view.
-    # 
-    #     # base processing
-    #     ATCTContent.processForm(self, data, metadata, REQUEST, values)
-    #     
-    #     # if the referer is the item itself, let nature take its course;
-    #     # if not, redirect to form after a commit.
-    #     referer = self.REQUEST.form.get('last_referer', None)
-    #     if referer is not None and referer.split('/')[-1] != self.getId():
-    #         transaction.commit()
-    #         raise zExceptions.Redirect, "%s#qedit" % self.formFolderObject().absolute_url()

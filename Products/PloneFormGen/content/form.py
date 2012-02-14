@@ -306,7 +306,7 @@ class FormFolder(ATFolder):
 
     security.declarePrivate('_getFieldObjects')
 
-    def _getFieldObjects(self, objTypes=None, includeFSMarkers=False):
+    def _getFieldObjects(self, objTypes=None, includeFSMarkers=False, checkEnabled=True):
         """ return list of enclosed fields """
 
         # This function currently checks to see if
@@ -330,7 +330,7 @@ class FormFolder(ATFolder):
             # several times in a request.
 
             # first, see if the field enable override is set
-            if shasattr(obj, 'fgTEnabled') and obj.getRawFgTEnabled():
+            if checkEnabled and shasattr(obj, 'fgTEnabled') and obj.getRawFgTEnabled():
                 # process the override enabled TALES expression
                 # create a context for expression evaluation
                 context = getExprContext(self, obj)
@@ -362,7 +362,7 @@ class FormFolder(ATFolder):
             with a field.
         """
 
-        for obj in self._getFieldObjects():
+        for obj in self._getFieldObjects(checkEnabled=False):
             if obj.__name__ == name:
                 return obj
         return None

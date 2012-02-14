@@ -4,6 +4,8 @@ Change History
 1.7.1 Unreleased
 ----------------
 
+- Fix override disabling of fields with vocabularies.
+
 - Fix issue #20: "email validation text is wrong," which would also
   affect several other error strings. Thanks, sunew!
 
