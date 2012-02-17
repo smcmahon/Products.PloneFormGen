@@ -3,11 +3,11 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Products.PloneFormGen\n"
 "POT-Creation-Date: 2012-02-17 16:30+0000\n"
-"PO-Revision-Date: 2011-10-24 11:58+0100\n"
+"PO-Revision-Date: 2012-02-17 17:43+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: eu <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ploneformgen\n"
+"X-Poedit-Language: Basque\n"
 
 #. Default: "A Likert form entry"
 #: ./profiles/default/types/FormLikertField.xml
@@ -106,7 +107,7 @@ msgstr "Komadun zenbaki-eremua"
 
 #: ./browser/quickedit.pt:280
 msgid "Edit / Delete"
-msgstr ""
+msgstr "Editatu / Ezabatu"
 
 #: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
@@ -195,7 +196,7 @@ msgstr "E-posta akzioa"
 
 #: ./browser/quickedit.pt:138
 msgid "More Fields"
-msgstr ""
+msgstr "Eremu gehiago"
 
 #. Default: "Multi-Select Field"
 #: ./profiles/default/types/FormMultiSelectionField.xml
@@ -349,7 +350,6 @@ msgstr "Datuak gordetzeko akzioen defektuzko balioak."
 
 #. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
 #: ./content/fieldsBase.py:258
-#, fuzzy
 msgid "description_server_side_text"
 msgstr ""
 "\"\n"
@@ -531,9 +531,10 @@ msgstr ""
 
 #. Default: "\n                    The maximum number of characters the user will be able to input.\n                    Use 0 for no limit.\n                    "
 #: ./content/fieldsBase.py:105
-#, fuzzy
 msgid "help_fgmaxlength_text"
-msgstr "Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa."
+msgstr ""
+"Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa.\n"
+"Erabili 0 mugarik ez jartzeko."
 
 #: ./content/fields.py:806
 msgid "help_fgmsformat_text"
@@ -1513,9 +1514,8 @@ msgstr "Zure e-posta helbidea"
 
 #. Default: "<p>No input was received. Please visit the form.</p>"
 #: ./content/thanksPage.py:191
-#, fuzzy
 msgid "pfg_thankspage_nosubmitmessage"
-msgstr "<p>Ez duzu formularioa bete. Mesedez <a title=\"Test Folder\" href=\".\">joan formulariorea eta saiatu berriro</a>.</p>"
+msgstr "<p>Ez duzu formularioa bete. Mesedez joan formulariorea eta saiatu berriro.</p>"
 
 #. Default: "Thanks for your input."
 #: ./content/form.py:903
