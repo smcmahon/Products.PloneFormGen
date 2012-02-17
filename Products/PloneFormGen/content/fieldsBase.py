@@ -103,8 +103,9 @@ maxlengthField = \
         widget=IntegerWidget(
             label=_(u'label_fgmaxlength_text', default=u'Max Length'),
             description=_(u'help_fgmaxlength_text', default=u"""
-                The maximum number of characters the user will be able to input.
-                """),
+                    The maximum number of characters the user will be able to input.
+                    Use 0 for no limit.
+                    """),
             ),
         )
 
