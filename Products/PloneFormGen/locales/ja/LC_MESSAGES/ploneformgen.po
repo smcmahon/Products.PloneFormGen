@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
-"POT-Creation-Date: 2011-07-07 16:37+0000\n"
+"POT-Creation-Date: 2012-02-17 16:30+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Shigeo Honda <shigeo.honda@gmail.com>\n"
 "Language-Team: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
@@ -61,11 +61,11 @@ msgstr ""
 msgid "A thank-you page that can display form input"
 msgstr ""
 
-#: ./browser/quickedit.pt:222
+#: ./browser/quickedit.pt:240
 msgid "Action"
 msgstr ""
 
-#: ./browser/quickedit.pt:154
+#: ./browser/quickedit.pt:170
 msgid "Actions"
 msgstr ""
 
@@ -104,20 +104,12 @@ msgstr ""
 msgid "Decimal Number Field"
 msgstr ""
 
-#: ./browser/quickedit.pt:262
-msgid "Delete"
+#: ./browser/quickedit.pt:280
+msgid "Edit / Delete"
 msgstr ""
 
-#: ./browser/quickedit.pt:262
-msgid "Edit"
-msgstr ""
-
-#: ./browser/quickedit.pt:183
+#: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
-msgstr ""
-
-#: ./browser/quickedit.pt:262
-msgid "Enabled"
 msgstr ""
 
 #. Default: "End a fieldset (no input component)"
@@ -130,10 +122,11 @@ msgstr ""
 msgid "Executes a Python script for form data"
 msgstr ""
 
-#: ./browser/quickedit.pt:182
+#: ./browser/quickedit.pt:200
 msgid "Field"
 msgstr ""
 
+#. Default: "Basic Fields"
 #: ./browser/quickedit.pt:122
 msgid "Fields"
 msgstr ""
@@ -147,7 +140,7 @@ msgstr ""
 msgid "Fieldset Folder"
 msgstr ""
 
-#: ./browser/quickedit.pt:138
+#: ./browser/quickedit.pt:154
 msgid "Fieldsets"
 msgstr ""
 
@@ -200,6 +193,10 @@ msgstr ""
 msgid "Mailer Adapter"
 msgstr ""
 
+#: ./browser/quickedit.pt:138
+msgid "More Fields"
+msgstr ""
+
 #. Default: "Multi-Select Field"
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multi-Select Field"
@@ -210,7 +207,7 @@ msgstr ""
 msgid "Multiple selection field (select with multiple or check boxes)"
 msgstr ""
 
-#: ./browser/quickedit.pt:181
+#: ./browser/quickedit.pt:199
 msgid "Order"
 msgstr ""
 
@@ -292,7 +289,7 @@ msgstr ""
 msgid "Thanks Page"
 msgstr ""
 
-#: ./browser/quickedit.pt:262
+#: ./browser/quickedit.pt:279
 msgid "Thanks Pages"
 msgstr ""
 
@@ -352,8 +349,8 @@ msgstr "特定のポータルセキュリティロールを調整することで
 msgid "description_ploneformgen_savedata"
 msgstr ""
 
-#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
-#: ./content/fieldsBase.py:257
+#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
+#: ./content/fieldsBase.py:258
 msgid "description_server_side_text"
 msgstr ""
 
@@ -433,7 +430,7 @@ msgstr ""
 
 #. Boolean Field
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
-#: ./content/fields.py:350
+#: ./content/fields.py:361
 #, fuzzy
 msgid "help_boolrequired_text"
 msgstr "【註記】チェックボックスフィールドでは、必須フラグはラベル横の必須のマークを付けること以外はしません。もし特定の値を指定したいときは、下部のバリデータを選択してください"
@@ -469,25 +466,25 @@ msgid "help_execcondition_text"
 msgstr "このアクションを実行するかどうかを決定するときに評価されるTALES式です。必要のないときは空欄します。真偽値として評価しアクションを実行するときは真が戻り値でなければなりません。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
-#: ./content/fields.py:345
+#: ./content/fields.py:356
 msgid "help_fgbooleanfalsestring_text"
 msgstr ""
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
-#: ./content/fields.py:336
+#: ./content/fields.py:347
 msgid "help_fgbooleantruestring_text"
 msgstr ""
 
 #. Boolean Field
 #. Default: "Choose a validator to require a particular response."
-#: ./content/fields.py:327
+#: ./content/fields.py:338
 msgid "help_fgbooleanvalidator_text"
 msgstr "特定のレスポンス得るにはバリデータの選択が必要"
 
 #. String Field
 #. Default: "\n                The value the field should contain when the form is first displayed.\n                Note that this may be overridden dynamically.\n            "
-#: ./content/fields.py:320
-#: ./content/fieldsBase.py:276
+#: ./content/fields.py:328
+#: ./content/fieldsBase.py:277
 #, fuzzy
 msgid "help_fgdefault_text"
 msgstr "フォームが最初に表示されるときにはフィールドに値が含まれていないとなりません。これは動的に上書きされます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
@@ -496,11 +493,11 @@ msgstr "フォームが最初に表示されるときにはフィールドに値
 #. DateTimeField
 #. Default "The last year to offer in the year drop-down. Leave this empty if you wish to instead use a number of future years."
 #. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
-#: ./content/fields.py:457
+#: ./content/fields.py:468
 msgid "help_fgendingyear_text"
 msgstr "ドロップダウンに表示する最後の年"
 
-#: ./content/fields.py:698
+#: ./content/fields.py:709
 msgid "help_fgformat_text"
 msgstr ""
 
@@ -508,14 +505,14 @@ msgstr ""
 #. DateTimeField
 #. Default "The number of future years to offer in the year drop-down. (This is only applicable if you have not specified an ending year.)"
 #. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
-#: ./content/fields.py:467
+#: ./content/fields.py:478
 msgid "help_fgfutureyears_text"
 msgstr "将来の年数はドロップダウンに表示されます。自分で終了年を指定しないときにのみ誘導です"
 
 #. Rich Label Field
 #. Default "The text to display in the form."
 #. Default: "\n                    The text to display in the form.\n                "
-#: ./content/fields.py:1098
+#: ./content/fields.py:1109
 msgid "help_fglabelbody_text"
 msgstr "フォームに表示するテキスト"
 
@@ -535,7 +532,7 @@ msgstr "質問リスト"
 
 #. Lines Field
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:294
+#: ./content/fieldsBase.py:295
 #, fuzzy
 msgid "help_fglinesdefault_text"
 msgstr "フォームが最初に表示されるときにフォールド内に既定表示される値です。一行ごとに一つの値を使います。これは動的に置き換えられます"
@@ -544,70 +541,72 @@ msgstr "フォームが最初に表示されるときにフォールド内に既
 #. Default:
 #. The maximum number of characters the user will be able to input.
 #. Use 0 for no limit.
-#. Default: "\n                The maximum number of characters the user will be able to input.\n                "
+#. Default: "\n                    The maximum number of characters the user will be able to input.\n                    Use 0 for no limit.\n                    "
 #: ./content/fieldsBase.py:105
+#, fuzzy
 msgid "help_fgmaxlength_text"
 msgstr "ユーザが入力できる最大文字数"
 
-#: ./content/fields.py:795
+#: ./content/fields.py:806
 msgid "help_fgmsformat_text"
 msgstr ""
 
 # Rich Text Field
 # description="""Input tests using HTMLTidy (if installed)."""
 #. Default: "Input tests using HTMLTidy (if installed)."
-#: ./content/fields.py:1018
+#: ./content/fields.py:1029
 msgid "help_fgrtvalidator_text"
 msgstr "HTMLTidyを使って入力のテスト（インストールが必要）"
 
-#: ./content/fields.py:439
+#: ./content/fields.py:450
 msgid "help_fgshowhm_text"
 msgstr ""
 
 #. String Field
 #. Default: "The size of the text-entry box, in characters."
-#: ./content/fieldsBase.py:140
+#: ./content/fieldsBase.py:141
 msgid "help_fgsize_text"
 msgstr "テキスト入力ボックスのサイズ（文字数）"
 
 #. PloneFormGen\contents\fields.py
 #. DateTimeField
 #. Default "The first year to offer in the year drop-down."
-#: ./content/fields.py:448
+#: ./content/fields.py:459
 msgid "help_fgstartingyear_text"
 msgstr "ドロップダウンに表示する最初の年"
 
 #. String Field
 #. Default: "Tests input against simple string patterns."
-#: ./content/fields.py:49
+#: ./content/fields.py:57
 msgid "help_fgstringvalidator_text"
 msgstr "単純な文字列パターンのテスト"
 
 #. String Field
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fields.py:1112
-#: ./content/fieldsBase.py:218
+#: ./content/fields.py:1123
+#: ./content/fieldsBase.py:219
 #, fuzzy
 msgid "help_fgtdefault_text"
 msgstr "フィールドの初期値を取得してフォームが表示されるときに評価されるTALES式なります。必要のないときは空欄にします。文字列として評価されます。"
 
 #. PloneFormGen\contents\fieldsBase.py
 #. Default "A TALES expression that will be evaluated when the form is displayed. to determine whether or not the field is enabled. Your expression should evaluate as True if the field should be included in the form, False if it should be omitted. Leave this expression field empty if unneeded: the field will be included. PLEASE NOTE: errors in the evaluation of this expression will cause an error on form display."
-#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:237
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ./content/fieldsBase.py:238
+#, fuzzy
 msgid "help_fgtenable_text"
 msgstr "フォームが表示されるときに評価されるTALES式です。どのフィールドが有効かを判断します。フォームにそのフィールドが含まれていれば真を、ないときは偽を返します。必要ないときは空欄にします。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます。"
 
 #. Text Field
 #. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:333
+#: ./content/fieldsBase.py:334
 #, fuzzy
 msgid "help_fgtextdefault_text"
 msgstr "フォームが最初に表示されたときに既定文字列が入るフィールドです。これは動的に上書きされます"
 
 #. Lines Field
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:310
+#: ./content/fieldsBase.py:311
 #, fuzzy
 msgid "help_fgtlinesdefault_text"
 msgstr "初期値を取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。リストまたはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
@@ -621,21 +620,21 @@ msgstr "フォームがバリデートされたときに評価されるTALES式�
 
 #. Selection Field
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/fieldsBase.py:168
+#: ./content/fieldsBase.py:169
 #, fuzzy
 msgid "help_fgtvocabulary_text"
 msgstr "フィールドオプションを取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。TALES式はリスト（キー、値）またはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. Selection Field
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
-#: ./content/fieldsBase.py:150
+#: ./content/fieldsBase.py:151
 #, fuzzy
 msgid "help_fgvocabulary_text"
 msgstr "一行に一つのオプションを使います。これは動的に置き換えられます「値|ラベル」のとしてオプションで使えます"
 
 #. File Field
 #. Default: "Set to 0 for no limit."
-#: ./content/fields.py:1187
+#: ./content/fields.py:1198
 msgid "help_filemaxmb_text"
 msgstr "無制限は０を入力"
 
@@ -749,7 +748,7 @@ msgstr ""
 
 #. Default "NOTE: For a fixed-point field, the required flag will not allow entry of a '0' value."
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
-#: ./content/fields.py:259
+#: ./content/fields.py:267
 msgid "help_fprequired_text"
 msgstr "【註記】固定小数点フォールドは０を入力することが許可されません"
 
@@ -817,14 +816,14 @@ msgstr "メールに含む入力フィールドを選びますl"
 
 #. Integer Field
 #. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "
-#: ./content/fields.py:177
+#: ./content/fields.py:185
 #, fuzzy
 msgid "help_maxval_text"
 msgstr "フォームはここに入力した数値以上を受け付けません"
 
 #. Integer Field
 #. Default: "\n            The form will not accept values less than the number you enter here.\n                "
-#: ./content/fields.py:166
+#: ./content/fields.py:174
 #, fuzzy
 msgid "help_minval_text"
 msgstr "フォームはここに入力された数値以下を受け付けません"
@@ -841,7 +840,7 @@ msgid "help_nosubmit_text"
 msgstr "フォームを送信することなくブラウザが完了ページになったときに表示するテキストです。これは利用者をフォームに誘導する天典型的な方法です"
 
 #. Default: "Not displayed on form."
-#: ./content/fields.py:1125
+#: ./content/fields.py:1136
 msgid "help_notdisplayed_text"
 msgstr ""
 
@@ -921,7 +920,7 @@ msgstr ""
 msgid "help_showfields_text"
 msgstr "完了後のページに表示するフィールドを選んでください"
 
-#: ./content/fields.py:1309
+#: ./content/fields.py:1320
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr ""
@@ -971,6 +970,11 @@ msgstr "このテキストは、選択されたフィールドの入力に前に
 #: ./content/saveDataAdapter.py:77
 msgid "help_usecolumnnames_text"
 msgstr "ダウンロードデータの最小の行に列名を含むことを希望しますか？"
+
+#. Default: "Useful for stopping spam"
+#: ./content/fields.py:940
+msgid "help_validate_link_spam_text"
+msgstr ""
 
 #. Mailer Adapter
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
@@ -1043,25 +1047,25 @@ msgid "label_execcondition_text"
 msgstr "例外条件"
 
 #. Default: "False Display String"
-#: ./content/fields.py:344
+#: ./content/fields.py:355
 msgid "label_fgbooleanfalsestring_text"
 msgstr ""
 
 #. Default: "True Display String"
-#: ./content/fields.py:335
+#: ./content/fields.py:346
 msgid "label_fgbooleantruestring_text"
 msgstr ""
 
 #. Boolean Field
 #. Default: "Validator"
-#: ./content/fields.py:326
+#: ./content/fields.py:337
 msgid "label_fgbooleanvalidator_text"
 msgstr "バリデータ"
 
 #. String Field
 #. Default: "Default"
-#: ./content/fields.py:319
-#: ./content/fieldsBase.py:275
+#: ./content/fields.py:327
+#: ./content/fieldsBase.py:276
 msgid "label_fgdefault_text"
 msgstr "初期値"
 
@@ -1069,13 +1073,13 @@ msgstr "初期値"
 #. DateTimeField
 #. Default "Ending Year"
 #. Default: "Ending Year"
-#: ./content/fields.py:456
+#: ./content/fields.py:467
 msgid "label_fgendingyear_text"
 msgstr "終了年"
 
 #. Selection Field
 #. Default: "Presentation Widget"
-#: ./content/fields.py:697
+#: ./content/fields.py:708
 msgid "label_fgformat_text"
 msgstr "ウィジェット"
 
@@ -1083,13 +1087,13 @@ msgstr "ウィジェット"
 #. DateTimeField
 #. Default "Future Years To Display"
 #. Default: "Future Years To Display"
-#: ./content/fields.py:466
+#: ./content/fields.py:477
 msgid "label_fgfutureyears_text"
 msgstr "将来表示する年数"
 
 #. Rich Label Field
 #. Default: "Label body"
-#: ./content/fields.py:1097
+#: ./content/fields.py:1108
 #, fuzzy
 msgid "label_fglabelbody_text"
 msgstr "ラベル"
@@ -1110,7 +1114,7 @@ msgstr "質問"
 
 #. Lines Field
 #. Default: "Default"
-#: ./content/fieldsBase.py:293
+#: ./content/fieldsBase.py:294
 msgid "label_fglinesdefault_text"
 msgstr "初期値"
 
@@ -1122,19 +1126,19 @@ msgstr "最大値"
 
 #. Multi-Select Field
 #. Default: "Presentation Widget"
-#: ./content/fields.py:794
+#: ./content/fields.py:805
 msgid "label_fgmsformat_text"
 msgstr "ウィジェット"
 
 #. Date/Time Field
 #. Default: "Show Time Selection Options"
-#: ./content/fields.py:438
+#: ./content/fields.py:449
 msgid "label_fgshowhm_text"
 msgstr "時間の選択オプションを表示"
 
 #. String Field
 #. Default: "Size"
-#: ./content/fieldsBase.py:139
+#: ./content/fieldsBase.py:140
 msgid "label_fgsize_text"
 msgstr "サイズ"
 
@@ -1142,39 +1146,39 @@ msgstr "サイズ"
 #. DateTimeField
 #. Default "Starting Year"
 #. Default: "Starting Year"
-#: ./content/fields.py:447
+#: ./content/fields.py:458
 msgid "label_fgstartingyear_text"
 msgstr "開始年"
 
 #. String Field
 #. Default: "Validator"
-#: ./content/fields.py:47
+#: ./content/fields.py:55
 msgid "label_fgstringvalidator_text"
 msgstr "入力内容のバリデート"
 
 #. String Field
 #. Default: "Default Expression"
-#: ./content/fields.py:1111
-#: ./content/fieldsBase.py:216
+#: ./content/fields.py:1122
+#: ./content/fieldsBase.py:217
 msgid "label_fgtdefault_text"
 msgstr "表示初期値"
 
 #. PloneFormGen\contents\fieldsBase.py
 #. Default "Enabling Expression"
 #. Default: "Enabling Expression"
-#: ./content/fieldsBase.py:236
+#: ./content/fieldsBase.py:237
 msgid "label_fgtenable_text"
 msgstr "表現を有効にする"
 
 #. Text Field
 #. Default: "Default"
-#: ./content/fieldsBase.py:332
+#: ./content/fieldsBase.py:333
 msgid "label_fgtextdefault_text"
 msgstr "初期値"
 
 #. Lines Field
 #. Default: "Default Expression"
-#: ./content/fieldsBase.py:309
+#: ./content/fieldsBase.py:310
 msgid "label_fgtlinesdefault_text"
 msgstr "表示初期値"
 
@@ -1186,25 +1190,25 @@ msgstr "独自バリデータ"
 
 #. Selection Field
 #. Default: "Options Vocabulary"
-#: ./content/fieldsBase.py:166
+#: ./content/fieldsBase.py:167
 msgid "label_fgtvocabulary_text"
 msgstr "オプションの辞書"
 
 #. Selection Field
 #. Default: "Options"
-#: ./content/fieldsBase.py:148
+#: ./content/fieldsBase.py:149
 msgid "label_fgvocabulary_text"
 msgstr "オプション"
 
 #. String Field
 #. Default: "Field Help"
-#: ./content/fieldsBase.py:186
+#: ./content/fieldsBase.py:187
 msgid "label_fieldhelp_text"
 msgstr "ヘルプフィールド"
 
 #. String Field
 #. Default: "Field Label"
-#: ./content/fieldsBase.py:184
+#: ./content/fieldsBase.py:185
 msgid "label_fieldlabel_text"
 msgstr "ラベルフィールド"
 
@@ -1215,7 +1219,7 @@ msgstr ""
 
 #. File Field
 #. Default: "Maximum Upload Size (Megabytes)"
-#: ./content/fields.py:1186
+#: ./content/fields.py:1197
 msgid "label_filemaxmb_text"
 msgstr "アップロードの最大値（MB）"
 
@@ -1331,7 +1335,7 @@ msgstr "ヘッダー追加"
 
 #. String Field
 #. Default: "Hidden"
-#: ./content/fieldsBase.py:206
+#: ./content/fieldsBase.py:207
 msgid "label_hidden_text"
 msgstr "隠す"
 
@@ -1364,13 +1368,13 @@ msgstr "レスポンスを表示"
 
 #. Integer Field
 #. Default: "Maximum Acceptable Value"
-#: ./content/fields.py:176
+#: ./content/fields.py:184
 msgid "label_maxval_text"
 msgstr "最大値"
 
 #. Integer Field
 #. Default: "Minimum Acceptable Value"
-#: ./content/fields.py:164
+#: ./content/fields.py:172
 msgid "label_minval_text"
 msgstr "最小値"
 
@@ -1459,7 +1463,7 @@ msgstr "受信者の表示方法"
 
 #. String Field
 #. Default: "Required"
-#: ./content/fieldsBase.py:198
+#: ./content/fieldsBase.py:199
 msgid "label_required_text"
 msgstr "必須項目"
 
@@ -1509,7 +1513,7 @@ msgid "label_sender_override_text"
 msgstr "送信者の表示方法"
 
 #. Default: "Server-Side Variable"
-#: ./content/fieldsBase.py:256
+#: ./content/fieldsBase.py:257
 msgid "label_server_side_text"
 msgstr ""
 
@@ -1532,7 +1536,7 @@ msgid "label_showfields_text"
 msgstr "レスポンスを表示"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1308
+#: ./content/fields.py:1319
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr ""
@@ -1576,7 +1580,7 @@ msgid "label_thanksprologue_text"
 msgstr "完了ページ前書き"
 
 #. Default: "Title"
-#: ./content/fields.py:1124
+#: ./content/fields.py:1135
 msgid "label_title"
 msgstr ""
 
@@ -1587,7 +1591,7 @@ msgid "label_usecolumnnames_text"
 msgstr "列名を含む"
 
 #. Default: "Reject Text with Links?"
-#: ./content/fields.py:928
+#: ./content/fields.py:939
 msgid "label_validate_link_spam_text"
 msgstr ""
 
@@ -1649,50 +1653,50 @@ msgid "pfg_formmaileradapter_msg_subject"
 msgstr ""
 
 #. Default: "This box must be checked."
-#: ./content/validationMessages.py:37
+#: ./content/validationMessages.py:38
 msgid "pfg_isChecked"
 msgstr "このボックスはチェックされなくてはなりません"
 
 ##########
 # validationMessages hack to clean up Archetypes validation messages
 #. Default: "This field requires a decimal value."
-#: ./content/validationMessages.py:26
+#: ./content/validationMessages.py:27
 msgid "pfg_isDecimal"
 msgstr "このフィールドは、小数点を含む値が必要です"
 
 #. Default: "This field requires an integer value."
-#: ./content/validationMessages.py:27
+#: ./content/validationMessages.py:28
 msgid "pfg_isInt"
 msgstr "このフィールドは、整数値が必要です"
 
 #. Default: "This is not a valid mailto: url."
-#: ./content/validationMessages.py:35
+#: ./content/validationMessages.py:36
 msgid "pfg_isMailto"
 msgstr "これは正しいmailto:の書式ではありません"
 
 #. Default: "This value contains unprintable characters."
-#: ./content/validationMessages.py:28
+#: ./content/validationMessages.py:29
 #, fuzzy
 msgid "pfg_isPrintable"
 msgstr "この値の中には表示できない文字が含まれています"
 
 #. Default: "This field is required."
-#: ./content/validationMessages.py:43
+#: ./content/validationMessages.py:44
 msgid "pfg_isRequired"
 msgstr "このフィールドは必須です"
 
 #. Default: "This is not a well formed SSN."
-#: ./content/validationMessages.py:29
+#: ./content/validationMessages.py:30
 msgid "pfg_isSSN"
 msgstr "これは、適切なSSNではありません"
 
 #. Default: "This box must be unchecked."
-#: ./content/validationMessages.py:38
+#: ./content/validationMessages.py:39
 msgid "pfg_isUnchecked"
 msgstr "このボックスのチェックは外されなくてはなりません"
 
 #. Default: "This name is not a valid identifier."
-#: ./content/validationMessages.py:36
+#: ./content/validationMessages.py:37
 #, fuzzy
 msgid "pfg_isUnixLikeName"
 msgstr "これは有効なidentifierではありません"
@@ -1701,12 +1705,12 @@ msgstr "これは有効なidentifierではありません"
 #. DateTimeField
 #. Default "The date entered was invalid."
 #. Default: "The date entered was invalid."
-#: ./content/validationMessages.py:39
+#: ./content/validationMessages.py:40
 msgid "pfg_isValidDate"
 msgstr "日付の入力は無効です"
 
 #. Default: "This text appears to contain links."
-#: ./content/validationMessages.py:40
+#: ./content/validationMessages.py:41
 msgid "pfg_isnotlinkspam"
 msgstr "このテキストにはリンクが含まれています"
 
@@ -1722,19 +1726,19 @@ msgstr ""
 
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "Please enter a number here."
-#: ./content/validationMessages.py:74
+#: ./content/validationMessages.py:79
 msgid "pfg_not_number"
 msgstr "数字を入力してください"
 
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "'${value}' is too large. Must be no greater than ${max}."
-#: ./content/validationMessages.py:84
+#: ./content/validationMessages.py:89
 msgid "pfg_number_too_large"
 msgstr "${value}が大きすぎます、${max}以下が必要です"
 
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "'${value}' is too small. Must be at least ${min}."
-#: ./content/validationMessages.py:78
+#: ./content/validationMessages.py:83
 msgid "pfg_number_too_small"
 msgstr "${value}は小さすぎます、${min}以上が必要です"
 
@@ -1743,7 +1747,7 @@ msgstr "${value}は小さすぎます、${min}以上が必要です"
 msgid "pfg_replytofield_title"
 msgstr ""
 
-#. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
+#. Default: "<p>No input was received. Please visit the form.</p>"
 #: ./content/thanksPage.py:191
 msgid "pfg_thankspage_nosubmitmessage"
 msgstr ""
@@ -1760,7 +1764,7 @@ msgstr ""
 
 #. PloneFormGen\contents\validationMessages.py
 #. Default: "'Entry too long. It should be no more than ${max} characters."
-#: ./content/validationMessages.py:91
+#: ./content/validationMessages.py:96
 msgid "pfg_too_long"
 msgstr "入力が長過ぎます ${max}文字以下である必要があります"
 
@@ -1775,51 +1779,51 @@ msgid "plain_text"
 msgstr ""
 
 #. Default: "Checkbox list"
-#: ./content/fields.py:861
+#: ./content/fields.py:872
 msgid "vocabulary_checkbox_text"
 msgstr "チェクボックスリスト"
 
 #. Default: "Flexible (radio for short, select for longer)"
-#: ./content/fields.py:747
+#: ./content/fields.py:758
 msgid "vocabulary_flex_text"
 msgstr "可変（ラジオボタンは短く、選択肢は長く）"
 
 #. Default: "Is checked"
-#: ./content/fields.py:402
+#: ./content/fields.py:413
 msgid "vocabulary_ischecked_text"
 msgstr "チェック済み"
 
 #. Default: "Is not checked"
-#: ./content/fields.py:405
+#: ./content/fields.py:416
 msgid "vocabulary_isnotchecked_text"
 msgstr "未チェック"
 
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
-#: ./content/fields.py:1067
+#: ./content/fields.py:1078
 #, fuzzy
 msgid "vocabulary_istidyhtml_text"
 msgstr "Tidy HTML（エラーや警告に失敗）"
 
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
-#: ./content/fields.py:1070
+#: ./content/fields.py:1081
 #, fuzzy
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "消去されたTidy HTML（エラーに失敗、残りを削除）"
 
 # *** Vocabularies
 #. Default: "None"
-#: ./content/fields.py:399
+#: ./content/fields.py:410
 #: ./content/form.py:723
 msgid "vocabulary_none_text"
 msgstr "該当しない"
 
 #. Default: "Radio buttons"
-#: ./content/fields.py:753
+#: ./content/fields.py:764
 msgid "vocabulary_radio_text"
 msgstr "ラジオボタン"
 
 #. Default: "Selection list"
-#: ./content/fields.py:750
+#: ./content/fields.py:761
 msgid "vocabulary_selection_text"
 msgstr "選択リスト"
 

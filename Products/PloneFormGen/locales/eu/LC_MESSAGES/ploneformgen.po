@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-10-24 07:32+0000\n"
+"POT-Creation-Date: 2012-02-17 16:30+0000\n"
 "PO-Revision-Date: 2011-10-24 11:58+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,11 +61,11 @@ msgstr "Hitz bat edo batzuk idazteko eremua"
 msgid "A thank-you page that can display form input"
 msgstr "Formularioaren datuak erakutsiko dituen eskertza-orria"
 
-#: ./browser/quickedit.pt:222
+#: ./browser/quickedit.pt:240
 msgid "Action"
 msgstr "Akzioa"
 
-#: ./browser/quickedit.pt:154
+#: ./browser/quickedit.pt:170
 msgid "Actions"
 msgstr "Akzioak"
 
@@ -104,21 +104,13 @@ msgstr "Data/Ordua idazteko eremua"
 msgid "Decimal Number Field"
 msgstr "Komadun zenbaki-eremua"
 
-#: ./browser/quickedit.pt:262
-msgid "Delete"
-msgstr "Ezabatu"
+#: ./browser/quickedit.pt:280
+msgid "Edit / Delete"
+msgstr ""
 
-#: ./browser/quickedit.pt:262
-msgid "Edit"
-msgstr "Editatu"
-
-#: ./browser/quickedit.pt:183
+#: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
 msgstr "Editatu/Ezabatu"
-
-#: ./browser/quickedit.pt:262
-msgid "Enabled"
-msgstr "Aktibatuta"
 
 #. Default: "End a fieldset (no input component)"
 #: ./profiles/default/types/FieldsetEnd.xml
@@ -130,10 +122,11 @@ msgstr "Eremu multzoa bukatu"
 msgid "Executes a Python script for form data"
 msgstr "Formularioko datuentzat python script bat exekutatu"
 
-#: ./browser/quickedit.pt:182
+#: ./browser/quickedit.pt:200
 msgid "Field"
 msgstr "Eremua"
 
+#. Default: "Basic Fields"
 #: ./browser/quickedit.pt:122
 msgid "Fields"
 msgstr "Eremuak"
@@ -147,7 +140,7 @@ msgstr "Eremu-multzoa bukatu"
 msgid "Fieldset Folder"
 msgstr "Eremu-multzo karpeta"
 
-#: ./browser/quickedit.pt:138
+#: ./browser/quickedit.pt:154
 msgid "Fieldsets"
 msgstr "Eremu-multzoak"
 
@@ -200,6 +193,10 @@ msgstr "Lerroen eremua"
 msgid "Mailer Adapter"
 msgstr "E-posta akzioa"
 
+#: ./browser/quickedit.pt:138
+msgid "More Fields"
+msgstr ""
+
 #. Default: "Multi-Select Field"
 #: ./profiles/default/types/FormMultiSelectionField.xml
 msgid "Multi-Select Field"
@@ -210,7 +207,7 @@ msgstr "Aukera anitzeko eremua"
 msgid "Multiple selection field (select with multiple or check boxes)"
 msgstr "Aukera anitzeko eremua (aukeraketa kutxa edo checkbox-ekin)"
 
-#: ./browser/quickedit.pt:181
+#: ./browser/quickedit.pt:199
 msgid "Order"
 msgstr "Ordena"
 
@@ -292,7 +289,7 @@ msgstr "Testu luzeko eremua"
 msgid "Thanks Page"
 msgstr "Eskertza-orria"
 
-#: ./browser/quickedit.pt:262
+#: ./browser/quickedit.pt:279
 msgid "Thanks Pages"
 msgstr "Eskertza-orriak"
 
@@ -350,8 +347,9 @@ msgstr "PloneFormGenen funtzionalitateak erabiltzeko baimenak aldatu edo konfigu
 msgid "description_ploneformgen_savedata"
 msgstr "Datuak gordetzeko akzioen defektuzko balioak."
 
-#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
-#: ./content/fieldsBase.py:257
+#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
+#: ./content/fieldsBase.py:258
+#, fuzzy
 msgid "description_server_side_text"
 msgstr ""
 "\"\n"
@@ -433,7 +431,7 @@ msgstr ""
 "formuilarioa erakustean errore bat emango dute."
 
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
-#: ./content/fields.py:358
+#: ./content/fields.py:361
 msgid "help_boolrequired_text"
 msgstr ""
 "OHARRA: checkbox erako eremu bat beharrezkoa dela esateak, 'derrigorrezkoa'\n"
@@ -470,45 +468,46 @@ msgstr ""
 "formuilarioa erakustean errore bat emango dute."
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
-#: ./content/fields.py:353
+#: ./content/fields.py:356
 msgid "help_fgbooleanfalsestring_text"
 msgstr "Checkbox eremua aukeratu gabe uzten duzunean eskertza-orrian agertuko den balioa"
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
-#: ./content/fields.py:344
+#: ./content/fields.py:347
 msgid "help_fgbooleantruestring_text"
 msgstr "Checkbox eremua aukeratzen duzunean eskertza-orrian agertuko den balioa"
 
 #. Default: "Choose a validator to require a particular response."
-#: ./content/fields.py:335
+#: ./content/fields.py:338
 msgid "help_fgbooleanvalidator_text"
 msgstr "Erantzun jakin bat egiaztatzeko balidadorea aukeratu"
 
+#. Default: "\n                The value the field should contain when the form is first displayed.\n                Note that this may be overridden dynamically.\n            "
 #: ./content/fields.py:328
-#: ./content/fieldsBase.py:276
+#: ./content/fieldsBase.py:277
 msgid "help_fgdefault_text"
 msgstr ""
 
 #. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
-#: ./content/fields.py:465
+#: ./content/fields.py:468
 msgid "help_fgendingyear_text"
 msgstr ""
 "Urtea aukeratzeko eremuan agertuko den azken urtea.\n"
 "Utzi hutsik etorkizuneko hainbat urte agertzeko."
 
-#: ./content/fields.py:706
+#: ./content/fields.py:709
 msgid "help_fgformat_text"
 msgstr ""
 
 #. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
-#: ./content/fields.py:475
+#: ./content/fields.py:478
 msgid "help_fgfutureyears_text"
 msgstr ""
 "Etorkizuneko zenbat urte agertuko diren urtea aukeratzeko eremuan.\n"
 "(bukaera-urtea aukeratu ez baduzu bakarrik balio du.)"
 
 #. Default: "\n                    The text to display in the form.\n                "
-#: ./content/fields.py:1106
+#: ./content/fields.py:1109
 msgid "help_fglabelbody_text"
 msgstr "Formularian agertuko den testua."
 
@@ -523,37 +522,38 @@ msgid "help_fglikert_questions"
 msgstr "Galdera-zerrenda; taularen lerroak izango dira."
 
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:294
+#: ./content/fieldsBase.py:295
 msgid "help_fglinesdefault_text"
 msgstr ""
 "Formularioa erakusten denean agertuko diren balioak.\n"
 "Idatzi balio bat lerro bakoitzean.\n"
 "Dinamikoki gainidatzi daiteke."
 
-#. Default: "\n                The maximum number of characters the user will be able to input.\n                "
+#. Default: "\n                    The maximum number of characters the user will be able to input.\n                    Use 0 for no limit.\n                    "
 #: ./content/fieldsBase.py:105
+#, fuzzy
 msgid "help_fgmaxlength_text"
 msgstr "Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa."
 
-#: ./content/fields.py:803
+#: ./content/fields.py:806
 msgid "help_fgmsformat_text"
 msgstr ""
 
 #. Default: "Input tests using HTMLTidy (if installed)."
-#: ./content/fields.py:1026
+#: ./content/fields.py:1029
 msgid "help_fgrtvalidator_text"
 msgstr "Testua egiaztatu HTMLTidy erabiliz (instalatuta badago)."
 
-#: ./content/fields.py:447
+#: ./content/fields.py:450
 msgid "help_fgshowhm_text"
 msgstr ""
 
 #. Default: "The size of the text-entry box, in characters."
-#: ./content/fieldsBase.py:140
+#: ./content/fieldsBase.py:141
 msgid "help_fgsize_text"
 msgstr "Testua idazteko kutxaren tamaina, karakteretan."
 
-#: ./content/fields.py:456
+#: ./content/fields.py:459
 msgid "help_fgstartingyear_text"
 msgstr ""
 
@@ -563,25 +563,25 @@ msgid "help_fgstringvalidator_text"
 msgstr "Testu patroien arabera egiaztatu."
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fields.py:1120
-#: ./content/fieldsBase.py:218
+#: ./content/fields.py:1123
+#: ./content/fieldsBase.py:219
 msgid "help_fgtdefault_text"
 msgstr ""
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:237
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#: ./content/fieldsBase.py:238
 msgid "help_fgtenable_text"
 msgstr ""
 
 #. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:333
+#: ./content/fieldsBase.py:334
 msgid "help_fgtextdefault_text"
 msgstr ""
 "Formularioa kargatzen denean eremuak izango duen defektuzko balioa.\n"
 "Dinamikoki gainidatzi daiteke."
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:310
+#: ./content/fieldsBase.py:311
 msgid "help_fgtlinesdefault_text"
 msgstr ""
 
@@ -591,12 +591,12 @@ msgid "help_fgtvalidator_text"
 msgstr ""
 
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/fieldsBase.py:168
+#: ./content/fieldsBase.py:169
 msgid "help_fgtvocabulary_text"
 msgstr ""
 
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
-#: ./content/fieldsBase.py:150
+#: ./content/fieldsBase.py:151
 msgid "help_fgvocabulary_text"
 msgstr ""
 "Aukera bakoitza lerro baten idatzi.\n"
@@ -604,7 +604,7 @@ msgstr ""
 "[\"value|label\" formatua erabili dezakezu nahi baduzu]"
 
 #. Default: "Set to 0 for no limit."
-#: ./content/fields.py:1195
+#: ./content/fields.py:1198
 msgid "help_filemaxmb_text"
 msgstr ""
 
@@ -746,7 +746,7 @@ msgstr ""
 "agertuko den testua. Normalean formulariora itzultzeko lotura bat agertuko da."
 
 #. Default: "Not displayed on form."
-#: ./content/fields.py:1133
+#: ./content/fields.py:1136
 msgid "help_notdisplayed_text"
 msgstr "Formularioan ez da erakutsiko"
 
@@ -810,7 +810,7 @@ msgstr ""
 msgid "help_showfields_text"
 msgstr "Aukeratu zein eremu agertuko diren eskertza-orrian."
 
-#: ./content/fields.py:1317
+#: ./content/fields.py:1320
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr ""
@@ -852,6 +852,11 @@ msgstr "Aukeratutako eremuen aurretik agertuko den testua."
 #: ./content/saveDataAdapter.py:77
 msgid "help_usecolumnnames_text"
 msgstr "Deskargatzen duzun fitxategiaren lehenengo lerroan zutabeen izenak agertzea nahi duzu?"
+
+#. Default: "Useful for stopping spam"
+#: ./content/fields.py:940
+msgid "help_validate_link_spam_text"
+msgstr ""
 
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
 #: ./content/formMailerAdapter.py:319
@@ -913,43 +918,43 @@ msgid "label_execcondition_text"
 msgstr "Exekutatzeko baldintza"
 
 #. Default: "False Display String"
-#: ./content/fields.py:352
+#: ./content/fields.py:355
 msgid "label_fgbooleanfalsestring_text"
 msgstr "False balioaren testua"
 
 #. Default: "True Display String"
-#: ./content/fields.py:343
+#: ./content/fields.py:346
 msgid "label_fgbooleantruestring_text"
 msgstr "True balioaren testua"
 
 #. Default: "Validator"
-#: ./content/fields.py:334
+#: ./content/fields.py:337
 msgid "label_fgbooleanvalidator_text"
 msgstr "Balidatzailea"
 
 #. Default: "Default"
 #: ./content/fields.py:327
-#: ./content/fieldsBase.py:275
+#: ./content/fieldsBase.py:276
 msgid "label_fgdefault_text"
 msgstr "Defektuzkoa"
 
 #. Default: "Ending Year"
-#: ./content/fields.py:464
+#: ./content/fields.py:467
 msgid "label_fgendingyear_text"
 msgstr "Bukaera-urtea"
 
 #. Default: "Presentation Widget"
-#: ./content/fields.py:705
+#: ./content/fields.py:708
 msgid "label_fgformat_text"
 msgstr "Aurkezpen widgeta"
 
 #. Default: "Future Years To Display"
-#: ./content/fields.py:474
+#: ./content/fields.py:477
 msgid "label_fgfutureyears_text"
 msgstr "Etorkizuneko urte kopurua"
 
 #. Default: "Label body"
-#: ./content/fields.py:1105
+#: ./content/fields.py:1108
 msgid "label_fglabelbody_text"
 msgstr "Testuaren etiketa"
 
@@ -964,7 +969,7 @@ msgid "label_fglikert_questions"
 msgstr "Galderak"
 
 #. Default: "Default"
-#: ./content/fieldsBase.py:293
+#: ./content/fieldsBase.py:294
 msgid "label_fglinesdefault_text"
 msgstr "Defektuzkoa"
 
@@ -974,22 +979,22 @@ msgid "label_fgmaxlength_text"
 msgstr "Luzera maximoa"
 
 #. Default: "Presentation Widget"
-#: ./content/fields.py:802
+#: ./content/fields.py:805
 msgid "label_fgmsformat_text"
 msgstr "Aurkezpen widgeta"
 
 #. Default: "Show Time Selection Options"
-#: ./content/fields.py:446
+#: ./content/fields.py:449
 msgid "label_fgshowhm_text"
 msgstr "Ordua erakusteko aukerak"
 
 #. Default: "Size"
-#: ./content/fieldsBase.py:139
+#: ./content/fieldsBase.py:140
 msgid "label_fgsize_text"
 msgstr "Tamaina"
 
 #. Default: "Starting Year"
-#: ./content/fields.py:455
+#: ./content/fields.py:458
 msgid "label_fgstartingyear_text"
 msgstr "Hasiera-urtea"
 
@@ -999,23 +1004,23 @@ msgid "label_fgstringvalidator_text"
 msgstr "Balidatzailea"
 
 #. Default: "Default Expression"
-#: ./content/fields.py:1119
-#: ./content/fieldsBase.py:216
+#: ./content/fields.py:1122
+#: ./content/fieldsBase.py:217
 msgid "label_fgtdefault_text"
 msgstr "Defektuzko espresioa"
 
 #. Default: "Enabling Expression"
-#: ./content/fieldsBase.py:236
+#: ./content/fieldsBase.py:237
 msgid "label_fgtenable_text"
 msgstr "Aktibatzeko espresioa"
 
 #. Default: "Default"
-#: ./content/fieldsBase.py:332
+#: ./content/fieldsBase.py:333
 msgid "label_fgtextdefault_text"
 msgstr "Defektuzkoa"
 
 #. Default: "Default Expression"
-#: ./content/fieldsBase.py:309
+#: ./content/fieldsBase.py:310
 msgid "label_fgtlinesdefault_text"
 msgstr "Defektuzko espresioa"
 
@@ -1025,22 +1030,22 @@ msgid "label_fgtvalidator_text"
 msgstr "Zuk nahi duzun erako balidatzailea"
 
 #. Default: "Options Vocabulary"
-#: ./content/fieldsBase.py:166
+#: ./content/fieldsBase.py:167
 msgid "label_fgtvocabulary_text"
 msgstr "Hiztegien aukerak"
 
 #. Default: "Options"
-#: ./content/fieldsBase.py:148
+#: ./content/fieldsBase.py:149
 msgid "label_fgvocabulary_text"
 msgstr "Aukerak"
 
 #. Default: "Field Help"
-#: ./content/fieldsBase.py:186
+#: ./content/fieldsBase.py:187
 msgid "label_fieldhelp_text"
 msgstr "Eremuaren laguntza"
 
 #. Default: "Field Label"
-#: ./content/fieldsBase.py:184
+#: ./content/fieldsBase.py:185
 msgid "label_fieldlabel_text"
 msgstr "Eremuaren etiketa"
 
@@ -1050,7 +1055,7 @@ msgid "label_fieldsethelp_text"
 msgstr "Eremu-taldearen laguntza"
 
 #. Default: "Maximum Upload Size (Megabytes)"
-#: ./content/fields.py:1194
+#: ./content/fields.py:1197
 msgid "label_filemaxmb_text"
 msgstr "Fitxategiaren tamaina maximoa (Megabytetan)"
 
@@ -1146,7 +1151,7 @@ msgid "label_headerInjection_text"
 msgstr "Goiburuak txertatzea"
 
 #. Default: "Hidden"
-#: ./content/fieldsBase.py:206
+#: ./content/fieldsBase.py:207
 msgid "label_hidden_text"
 msgstr "Ezkutuan"
 
@@ -1261,7 +1266,7 @@ msgid "label_recipient_override_text"
 msgstr "Jasotzaileen espresioa"
 
 #. Default: "Required"
-#: ./content/fieldsBase.py:198
+#: ./content/fieldsBase.py:199
 msgid "label_required_text"
 msgstr "Beharrezkoa"
 
@@ -1301,7 +1306,7 @@ msgid "label_sender_override_text"
 msgstr "Bidaltzailearen espresioa"
 
 #. Default: "Server-Side Variable"
-#: ./content/fieldsBase.py:256
+#: ./content/fieldsBase.py:257
 msgid "label_server_side_text"
 msgstr "Zerbitzariko aldagaia"
 
@@ -1321,7 +1326,7 @@ msgid "label_showfields_text"
 msgstr "Erantzunak erakutsi"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1316
+#: ./content/fields.py:1319
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr "Erakutsi izenburua 'legend' gisa"
@@ -1357,7 +1362,7 @@ msgid "label_thanksprologue_text"
 msgstr "Eskertza-orriaren sarrera"
 
 #. Default: "Title"
-#: ./content/fields.py:1132
+#: ./content/fields.py:1135
 msgid "label_title"
 msgstr "Izenburua"
 
@@ -1367,7 +1372,7 @@ msgid "label_usecolumnnames_text"
 msgstr "Zutabeen izenak gehitu"
 
 #. Default: "Reject Text with Links?"
-#: ./content/fields.py:936
+#: ./content/fields.py:939
 msgid "label_validate_link_spam_text"
 msgstr "Loturak dituen testua baztertua?"
 
@@ -1422,57 +1427,57 @@ msgid "pfg_formmaileradapter_msg_subject"
 msgstr "Formulario-bidalketa"
 
 #. Default: "This box must be checked."
-#: ./content/validationMessages.py:37
+#: ./content/validationMessages.py:38
 msgid "pfg_isChecked"
 msgstr "Kutxa hau aukeratuta egon behar da"
 
 #. Default: "This field requires a decimal value."
-#: ./content/validationMessages.py:26
+#: ./content/validationMessages.py:27
 msgid "pfg_isDecimal"
 msgstr "Eremu honek balio dezimal bat izan behar du"
 
 #. Default: "This field requires an integer value."
-#: ./content/validationMessages.py:27
+#: ./content/validationMessages.py:28
 msgid "pfg_isInt"
 msgstr "Eremu honek zenbaki oso bat izan behar du"
 
 #. Default: "This is not a valid mailto: url."
-#: ./content/validationMessages.py:35
+#: ./content/validationMessages.py:36
 msgid "pfg_isMailto"
 msgstr "Ez da mailto helbide zuzena."
 
 #. Default: "This value contains unprintable characters."
-#: ./content/validationMessages.py:28
+#: ./content/validationMessages.py:29
 msgid "pfg_isPrintable"
 msgstr "Balio honek inprimatu ezin diren karaktereak ditu."
 
 #. Default: "This field is required."
-#: ./content/validationMessages.py:43
+#: ./content/validationMessages.py:44
 msgid "pfg_isRequired"
 msgstr "Eremu hau betetzea derrigorrezkoa da."
 
 #. Default: "This is not a well formed SSN."
-#: ./content/validationMessages.py:29
+#: ./content/validationMessages.py:30
 msgid "pfg_isSSN"
 msgstr "Ez da SSN zenbaki egokia."
 
 #. Default: "This box must be unchecked."
-#: ./content/validationMessages.py:38
+#: ./content/validationMessages.py:39
 msgid "pfg_isUnchecked"
 msgstr "Eremu hau ezin da aukeratuta egon."
 
 #. Default: "This name is not a valid identifier."
-#: ./content/validationMessages.py:36
+#: ./content/validationMessages.py:37
 msgid "pfg_isUnixLikeName"
 msgstr "Izen honek ez du identifikadore gisa balio"
 
 #. Default: "The date entered was invalid."
-#: ./content/validationMessages.py:39
+#: ./content/validationMessages.py:40
 msgid "pfg_isValidDate"
 msgstr "Data hau ez da zuzena-"
 
 #. Default: "This text appears to contain links."
-#: ./content/validationMessages.py:40
+#: ./content/validationMessages.py:41
 msgid "pfg_isnotlinkspam"
 msgstr "Testu honek loturak ditu."
 
@@ -1487,17 +1492,17 @@ msgid "pfg_mailer_title"
 msgstr "E-posta bidaltzailea"
 
 #. Default: "Please enter a number here."
-#: ./content/validationMessages.py:74
+#: ./content/validationMessages.py:79
 msgid "pfg_not_number"
 msgstr "Idatzi zenbaki bat."
 
 #. Default: "'${value}' is too large. Must be no greater than ${max}."
-#: ./content/validationMessages.py:84
+#: ./content/validationMessages.py:89
 msgid "pfg_number_too_large"
 msgstr "'${value}' handiegia da. Ezin da ${max} baino handiagoa izan."
 
 #. Default: "'${value}' is too small. Must be at least ${min}."
-#: ./content/validationMessages.py:78
+#: ./content/validationMessages.py:83
 msgid "pfg_number_too_small"
 msgstr "'${value}' txikiegia da. Ezin da ${min} baino txikiagoa izan."
 
@@ -1506,8 +1511,9 @@ msgstr "'${value}' txikiegia da. Ezin da ${min} baino txikiagoa izan."
 msgid "pfg_replytofield_title"
 msgstr "Zure e-posta helbidea"
 
-#. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
+#. Default: "<p>No input was received. Please visit the form.</p>"
 #: ./content/thanksPage.py:191
+#, fuzzy
 msgid "pfg_thankspage_nosubmitmessage"
 msgstr "<p>Ez duzu formularioa bete. Mesedez <a title=\"Test Folder\" href=\".\">joan formulariorea eta saiatu berriro</a>.</p>"
 
@@ -1522,7 +1528,7 @@ msgid "pfg_thankyou_title"
 msgstr "Eskerrik asko"
 
 #. Default: "'Entry too long. It should be no more than ${max} characters."
-#: ./content/validationMessages.py:91
+#: ./content/validationMessages.py:96
 msgid "pfg_too_long"
 msgstr "Sarrera luzeegia. Gehienez ${max} karaktere eduki ditzake."
 
@@ -1537,48 +1543,48 @@ msgid "plain_text"
 msgstr "Testu arrunta"
 
 #. Default: "Checkbox list"
-#: ./content/fields.py:869
+#: ./content/fields.py:872
 msgid "vocabulary_checkbox_text"
 msgstr "Checkbox zerrenda"
 
 #. Default: "Flexible (radio for short, select for longer)"
-#: ./content/fields.py:755
+#: ./content/fields.py:758
 msgid "vocabulary_flex_text"
 msgstr "Malgua (gutxi direnean irrati-botoiak, asko badira aukeraketa kutxa)"
 
 #. Default: "Is checked"
-#: ./content/fields.py:410
+#: ./content/fields.py:413
 msgid "vocabulary_ischecked_text"
 msgstr "Aukeratuta dago"
 
 #. Default: "Is not checked"
-#: ./content/fields.py:413
+#: ./content/fields.py:416
 msgid "vocabulary_isnotchecked_text"
 msgstr "Ez dago aukeratuta"
 
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
-#: ./content/fields.py:1075
+#: ./content/fields.py:1078
 msgid "vocabulary_istidyhtml_text"
 msgstr "Tidy HTML da (huts egiten du erroreak eta oharrak daudenean)"
 
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
-#: ./content/fields.py:1078
+#: ./content/fields.py:1081
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "Tidy HTML garbiketarekin (huts egiten du erroreak daudenean, gainontzekoak garbitu egiten ditu)"
 
 #. Default: "None"
-#: ./content/fields.py:407
+#: ./content/fields.py:410
 #: ./content/form.py:723
 msgid "vocabulary_none_text"
 msgstr "Bat ere ez"
 
 #. Default: "Radio buttons"
-#: ./content/fields.py:761
+#: ./content/fields.py:764
 msgid "vocabulary_radio_text"
 msgstr "Irrati-botoiak"
 
 #. Default: "Selection list"
-#: ./content/fields.py:758
+#: ./content/fields.py:761
 msgid "vocabulary_selection_text"
 msgstr "Aukeraketa-zerrenda"
 
