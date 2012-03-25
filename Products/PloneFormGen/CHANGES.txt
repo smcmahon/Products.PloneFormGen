@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.6.6 unreleased
+----------------
+
+- Provide compatibility with DateTime 3.
+  [hannosch]
+
 1.6.5 2011-07-12
 ----------------
 
