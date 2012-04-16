@@ -74,15 +74,14 @@ validatorOverrideField = \
             default="python:False",
             write_permission=EDIT_TALES_PERMISSION,
             widget=StringWidget(label=_(u'label_fgtvalidator_text', default=u"Custom Validator"),
-                description=_(u'help_fgtvalidator_text', default=u"""
-                    A TALES expression that will be evaluated when the form is validated.
-                    Validate against 'value', which will contain the field input.
-                    Return False if valid; if not valid return a string error message.
-                    E.G., "python: test(value=='eggs', False, 'input must be eggs')" will
-                    require "eggs" for input.
-                    PLEASE NOTE: errors in the evaluation of this expression will cause
-                    an error on form display.
-                """),
+                description=_(u'help_fgtvalidator_text', default=\
+                    u"A TALES expression that will be evaluated when the form is validated."
+                    "Validate against 'value', which will contain the field input."
+                    "Return False if valid; if not valid return a string error message."
+                    "E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will"
+                    "require "eggs" for input."
+                    "PLEASE NOTE: errors in the evaluation of this expression will cause"
+                    "an error on form display."),
                 size=70,
                 ),
             )
@@ -102,9 +101,9 @@ maxlengthField = \
         default=255,
         widget=IntegerWidget(
             label=_(u'label_fgmaxlength_text', default=u'Max Length'),
-            description=_(u'help_fgmaxlength_text', default=u"""
-                The maximum number of characters the user will be able to input.
-                """),
+            description=_(u'help_fgmaxlength_text', default=u"The maximum "
+                "number of characters the user will be able to input."
+                "Use 0 for no limit."),
             ),
         )
 
@@ -113,10 +112,9 @@ maxlengthField0 = \
             default=0,
             widget=IntegerWidget(
                 label=_(u'label_fgmaxlength_text', default=u'Max Length'),
-                description=_(u'help_fgmaxlength_text', default=u"""
-                    The maximum number of characters the user will be able to input.
-                    Use 0 for no limit.
-                    """),
+                description=_(u'help_fgmaxlength_text', default=u"The maximum "
+                    "number of characters the user will be able to input."
+                    "Use 0 for no limit."),
                 ),
             )
 
@@ -125,10 +123,9 @@ maxlengthField4k = \
             default='4096',
             widget=IntegerWidget(
                 label=_(u'label_fgmaxlength_text', default=u'Max Length'),
-                description=_(u'help_fgmaxlength_text', default=u"""
-                    The maximum number of characters the user will be able to input.
-                    Use 0 for no limit.
-                    """),
+                description=_(u'help_fgmaxlength_text', default=u"The maximum "
+                    "number of characters the user will be able to input."
+                    "Use 0 for no limit."),
                 ),
             )
 
@@ -234,15 +231,14 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             write_permission=EDIT_TALES_PERMISSION,
             default='',
             widget=StringWidget(label=_(u'label_fgtenable_text', default=u"Enabling Expression"),
-                description=_(u'help_fgtenable_text', default=u"""
-                    A TALES expression that will be evaluated when the form is displayed
-                    to determine whether or not the field is enabled.
-                    Your expression should evaluate as True if
-                    the field should be included in the form, False if it should be omitted.
-                    Leave this expression field empty if unneeded: the field will be included.
-                    PLEASE NOTE: errors in the evaluation of this expression will cause
-                    an error on form display.
-                """),
+                description=_(u'help_fgtenable_text', default=\
+                    u"A TALES expression that will be evaluated when the form is displayed"
+                    "to determine whether or not the field is enabled."
+                    "Your expression should evaluate as True if"
+                    "the field should be included in the form, False if it should be omitted."
+                    "Leave this expression field empty if unneeded: the field will be included."
+                    "PLEASE NOTE: errors in the evaluation of this expression will cause"
+                    "an error on form display."),
                 size=70,
                 ),
             ),
@@ -254,11 +250,10 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
             default='',
             widget=BooleanWidget(
                 label=_(u'label_server_side_text', default=u"Server-Side Variable"),
-                description=_(u'description_server_side_text', default=u"""
-                    Mark this field as a value to be injected into the
-                    request form for use by action adapters and is not
-                    modifiable by or exposed to the client.
-                """),
+                description=_(u'description_server_side_text', default=\
+                    u"Mark this field as a value to be injected into the"
+                    "request form for use by action adapters and is not"
+                    "modifiable by or exposed to the client."),
                 ),
             ),
     ))
@@ -273,10 +268,9 @@ BaseFieldSchemaStringDefault = BaseFieldSchema.copy() + Schema((
             searchable=0,
             required=0,
             widget=StringWidget(label=_(u'label_fgdefault_text', default=u'Default'),
-            description=_(u'help_fgdefault_text', default=u"""
-                The value the field should contain when the form is first displayed.
-                Note that this may be overridden dynamically.
-            """),
+            description=_(u'help_fgdefault_text', default=u"The value the field "
+                "should contain when the form is first displayed."
+                "Note that this may be overridden dynamically."),
             ),
         ),
     ))

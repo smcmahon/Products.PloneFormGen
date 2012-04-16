@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.7b5\n"
-"POT-Creation-Date: 2012-04-16 13:31+0000\n"
+"POT-Creation-Date: 2012-04-16 14:22+0000\n"
 "PO-Revision-Date: 2011-10-20 12:25+0100\n"
 "Last-Translator: Ariel von Barnekow <ariel.von.barnekow@upcnet.es>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -73,6 +73,10 @@ msgstr "Acció"
 msgid "Actions"
 msgstr "Accions"
 
+#: ./browser/quickedit.py:66
+msgid "Begin a fieldset"
+msgstr ""
+
 #. Default: "Boolean (checkbox) field"
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
@@ -108,13 +112,21 @@ msgstr "Camp de Data/Hora"
 msgid "Decimal Number Field"
 msgstr "Camp de número decimal"
 
-#: ./browser/quickedit.pt:280
-msgid "Edit / Delete"
+#: ./browser/quickedit.pt:262
+msgid "Delete Action"
+msgstr ""
+
+#: ./browser/quickedit.pt:258
+msgid "Edit Field"
 msgstr ""
 
 #: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
 msgstr "Edita/Suprimeix"
+
+#: ./browser/quickedit.py:67
+msgid "End a fieldset"
+msgstr ""
 
 #. Default: "End a fieldset (no input component)"
 #: ./profiles/default/types/FieldsetEnd.xml
@@ -136,6 +148,7 @@ msgid "Fields"
 msgstr "Camps"
 
 #. Default: "Fieldset End"
+#: ./browser/quickedit.py:67
 #: ./profiles/default/types/FieldsetEnd.xml
 msgid "Fieldset End"
 msgstr "Final del conjunt de camps"
@@ -143,6 +156,10 @@ msgstr "Final del conjunt de camps"
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
 msgstr "Carpeta de conjunt de camps"
+
+#: ./browser/quickedit.py:66
+msgid "Fieldset Start"
+msgstr ""
 
 #: ./browser/quickedit.pt:154
 msgid "Fieldsets"
@@ -347,8 +364,8 @@ msgstr "Hauria d'ocultar o mostrar les funcionalitats de PloneFormGen a grups d'
 msgid "description_ploneformgen_savedata"
 msgstr "Configura els valors per defecte pels adaptadors de dades."
 
-#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
-#: ./content/fieldsBase.py:257
+#. Default: "Mark this field as a value to be injected into therequest form for use by action adapters and is notmodifiable by or exposed to the client."
+#: ./content/fieldsBase.py:253
 #, fuzzy
 msgid "description_server_side_text"
 msgstr ""
@@ -381,7 +398,7 @@ msgstr "Permisos de PloneFormGen"
 msgid "heading_ploneformgen_savedata"
 msgstr "Adaptador de Desar Dades de PloneFormGen per defecte"
 
-#. Default: "\n                A TALES expression that will be called after the form is\n                successfully validated, but before calling an action adapter\n                (if any) or displaying a thanks page.\n                Form input will be in the request.form dictionary.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                to clean up form input or to script an alternative action.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
+#. Default: "A TALES expression that will be called after the form issuccessfully validated, but before calling an action adapter(if any) or displaying a thanks page.Form input will be in the request.form dictionary.Leave empty if unneeded.The most common use of this field is to call a python scriptto clean up form input or to script an alternative action.Any value returned by the expression is ignored.PLEASE NOTE: errors in the evaluation of this expression willcause an error on form display."
 #: ./content/form.py:236
 msgid "help_AfterValidationOverride_text"
 msgstr ""
@@ -430,7 +447,7 @@ msgstr ""
 "un error al mostrar el formulari."
 
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
-#: ./content/fields.py:358
+#: ./content/fields.py:362
 msgid "help_boolrequired_text"
 msgstr ""
 "NOTA: Per un camp marcat, la bandera 'requerit' no fa\n"
@@ -439,7 +456,7 @@ msgstr ""
 "un validador sota."
 
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
-#: ./content/form.py:279
+#: ./content/form.py:278
 msgid "help_csrf"
 msgstr "Activa això per protegir la sol·licitud de falsificació entre llocs. Tingueu en compte que només són admeses les accions HTTP."
 
@@ -466,45 +483,47 @@ msgstr ""
 "error al mostrar el formulari."
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
-#: ./content/fields.py:353
+#: ./content/fields.py:357
 msgid "help_fgbooleanfalsestring_text"
 msgstr "Frase a utilitzar a la pàgina d'agraïment i al correu electrònic quan la casella de selecció està desactivada."
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
-#: ./content/fields.py:344
+#: ./content/fields.py:346
+#, fuzzy
 msgid "help_fgbooleantruestring_text"
 msgstr "Frase a utilitzar a la pàgina d'agraïment i al correu electrònic quan la casella de selecció està activada."
 
 #. Default: "Choose a validator to require a particular response."
-#: ./content/fields.py:335
+#: ./content/fields.py:337
 msgid "help_fgbooleanvalidator_text"
 msgstr "Esculli un validador per tal de requerir una resposta en concret."
 
+#. Default: "The value the field should contain when the form is first displayed.Note that this may be overridden dynamically."
 #: ./content/fields.py:328
-#: ./content/fieldsBase.py:276
+#: ./content/fieldsBase.py:271
 msgid "help_fgdefault_text"
 msgstr ""
 "El valor que ha de contenir el camp la primera vegada que es mostri el formulari.\n"
 "Noti que aquest valor pot ser sobreescrit automàticament."
 
 #. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
-#: ./content/fields.py:465
+#: ./content/fields.py:469
 msgid "help_fgendingyear_text"
 msgstr "L'ultim any que apareixerà en el desplegable. Deixi'l buit si vol utilitzar el número d'anys indicat en el camp següent."
 
-#: ./content/fields.py:706
+#: ./content/fields.py:710
 msgid "help_fgformat_text"
 msgstr "Control de Presentació"
 
 #. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
-#: ./content/fields.py:475
+#: ./content/fields.py:479
 msgid "help_fgfutureyears_text"
 msgstr ""
 "El nombre de anys propers que apareixerà en el desplegable.\n"
 "(Això només és aplicable si no s'ha especificat l'últim any que ha d'aparèixer.)"
 
 #. Default: "\n                    The text to display in the form.\n                "
-#: ./content/fields.py:1106
+#: ./content/fields.py:1110
 msgid "help_fglabelbody_text"
 msgstr "El text a mostrar en el formulari."
 
@@ -521,7 +540,7 @@ msgid "help_fglikert_questions"
 msgstr "Llista de preguntes, aquestes seran les files de la taula."
 
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:294
+#: ./content/fieldsBase.py:288
 msgid "help_fglinesdefault_text"
 msgstr ""
 "Els valors que el camp haurà de contenir quan el formulari es\n"
@@ -529,30 +548,32 @@ msgstr ""
 "Utilitzi un valor per línia.\n"
 "Observi que això es pot sobreescriure dinàmicament."
 
-#. Default: "\n                The maximum number of characters the user will be able to input.\n                "
-#: ./content/fieldsBase.py:105
+#. Default: "The maximum number of characters the user will be able to input.Use 0 for no limit."
+#: ./content/fieldsBase.py:104
+#, fuzzy
 msgid "help_fgmaxlength_text"
 msgstr "El nombre màxim de caràcters que l'usuari podrà introduir."
 
-#: ./content/fields.py:803
+#. Default: "Useful for stopping spam"
+#: ./content/fields.py:807
 msgid "help_fgmsformat_text"
 msgstr "Control de Presentació"
 
 #. Default: "Input tests using HTMLTidy (if installed)."
-#: ./content/fields.py:1026
+#: ./content/fields.py:1030
 msgid "help_fgrtvalidator_text"
 msgstr "Prova l'entrada amb HTMLTidy (en cas d'estar instal·lat)."
 
-#: ./content/fields.py:447
+#: ./content/fields.py:451
 msgid "help_fgshowhm_text"
 msgstr "Mostrar opcions de selecció d'hora"
 
 #. Default: "The size of the text-entry box, in characters."
-#: ./content/fieldsBase.py:140
+#: ./content/fieldsBase.py:137
 msgid "help_fgsize_text"
 msgstr "La mida en caràcters de la caixa d'entrada de text."
 
-#: ./content/fields.py:456
+#: ./content/fields.py:460
 msgid "help_fgstartingyear_text"
 msgstr "El primer any que apareixerà en el desplegable."
 
@@ -562,8 +583,8 @@ msgid "help_fgstringvalidator_text"
 msgstr "Prova l'entrada amb patrons de cadenes simples."
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fields.py:1120
-#: ./content/fieldsBase.py:218
+#: ./content/fields.py:1124
+#: ./content/fieldsBase.py:215
 msgid "help_fgtdefault_text"
 msgstr ""
 "Una expressió TALES que serà avaluada quant el formulari es mostri\n"
@@ -573,8 +594,8 @@ msgstr ""
 "NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
 "un error al mostrar el formulari."
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:237
+#. Default: "A TALES expression that will be evaluated when the form is displayedto determine whether or not the field is enabled.Your expression should evaluate as True ifthe field should be included in the form, False if it should be omitted.Leave this expression field empty if unneeded: the field will be included.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#: ./content/fieldsBase.py:234
 #, fuzzy
 msgid "help_fgtenable_text"
 msgstr ""
@@ -586,7 +607,7 @@ msgstr ""
 "un error al mostrar el formulari."
 
 #. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:333
+#: ./content/fieldsBase.py:327
 msgid "help_fgtextdefault_text"
 msgstr ""
 "El text que el camp haurà de contenir quan el formulari es mostri\n"
@@ -594,7 +615,7 @@ msgstr ""
 "Observi que es pot sobreescriure dinàmicament."
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:310
+#: ./content/fieldsBase.py:304
 msgid "help_fgtlinesdefault_text"
 msgstr ""
 "Una expressió TALES que serà avaluada quant el formulari es mostri\n"
@@ -604,7 +625,7 @@ msgstr ""
 "NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
 "un error al mostrar el formulari."
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is validated.\n                    Validate against 'value', which will contain the field input.\n                    Return False if valid; if not valid return a string error message.\n                    E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will\n                    require \"eggs\" for input.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr ""
@@ -617,7 +638,7 @@ msgstr ""
 "causar un error al mostrar el formulari."
 
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/fieldsBase.py:168
+#: ./content/fieldsBase.py:165
 msgid "help_fgtvocabulary_text"
 msgstr ""
 "Una expressió TALES que serà avaluada quant el formulari es mostri\n"
@@ -629,7 +650,7 @@ msgstr ""
 "un error al mostrar el formulari."
 
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
-#: ./content/fieldsBase.py:150
+#: ./content/fieldsBase.py:147
 msgid "help_fgvocabulary_text"
 msgstr ""
 "Utilitzi una línia per opció.\n"
@@ -637,7 +658,7 @@ msgstr ""
 "[Nota: vostè pot opcionalment utilitzar un format \"valor|etiqueta\".]"
 
 #. Default: "Set to 0 for no limit."
-#: ./content/fields.py:1195
+#: ./content/fields.py:1199
 msgid "help_filemaxmb_text"
 msgstr "Introdueixi 0 per no tenir límit."
 
@@ -764,7 +785,7 @@ msgstr ""
 "PROVI AQUESTA FUNCIONALITAT ABANS DE FER PÚBLIC EL FORMULARI!"
 
 #. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
-#: ./content/form.py:261
+#: ./content/form.py:260
 msgid "help_headerInjection_text"
 msgstr ""
 "Aquest camp de sobrescriptura li permet inserir contingut en\n"
@@ -825,7 +846,7 @@ msgstr ""
 "lector cap al formulari."
 
 #. Default: "Not displayed on form."
-#: ./content/fields.py:1133
+#: ./content/fields.py:1137
 msgid "help_notdisplayed_text"
 msgstr "No es mostrarà en el formulari"
 
@@ -851,7 +872,7 @@ msgstr ""
 "NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
 "un error al mostrar el formulari."
 
-#: ./content/fieldsBase.py:96
+#: ./content/fieldsBase.py:95
 msgid "help_rows_text"
 msgstr "Introdueixi el nombre de files per a aquest camp. Aquest valor és aplicable únicament en el tipus 'àrea de text'"
 
@@ -901,7 +922,7 @@ msgstr "Mostra el botó Reinicia"
 msgid "help_showfields_text"
 msgstr "Trii els camps les entrades dels quals a vostè li agradaria mostrar en la pàgina d'èxit."
 
-#: ./content/fields.py:1317
+#: ./content/fields.py:1321
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr "Mostra el títol com llegenda"
@@ -996,7 +1017,7 @@ msgid "label_click_to_get_input"
 msgstr "Cliqueu aquí per obtenir l'entrada guardada"
 
 #. Default: "CSRF Protection"
-#: ./content/form.py:278
+#: ./content/form.py:277
 msgid "label_csrf"
 msgstr "Protecció CSRF"
 
@@ -1016,43 +1037,43 @@ msgid "label_execcondition_text"
 msgstr "Condició d'execució"
 
 #. Default: "False Display String"
-#: ./content/fields.py:352
+#: ./content/fields.py:356
 msgid "label_fgbooleanfalsestring_text"
 msgstr "Frase a mostrar si està desactiva"
 
 #. Default: "True Display String"
-#: ./content/fields.py:343
+#: ./content/fields.py:345
 msgid "label_fgbooleantruestring_text"
 msgstr "Frase a mostrar si està activada"
 
 #. Default: "Validator"
-#: ./content/fields.py:334
+#: ./content/fields.py:336
 msgid "label_fgbooleanvalidator_text"
 msgstr "Validador"
 
 #. Default: "Default"
 #: ./content/fields.py:327
-#: ./content/fieldsBase.py:275
+#: ./content/fieldsBase.py:270
 msgid "label_fgdefault_text"
 msgstr "Per defecte"
 
 #. Default: "Ending Year"
-#: ./content/fields.py:464
+#: ./content/fields.py:468
 msgid "label_fgendingyear_text"
 msgstr "Any final"
 
 #. Default: "Presentation Widget"
-#: ./content/fields.py:705
+#: ./content/fields.py:709
 msgid "label_fgformat_text"
 msgstr "Control de Presentació"
 
 #. Default: "Future Years To Display"
-#: ./content/fields.py:474
+#: ./content/fields.py:478
 msgid "label_fgfutureyears_text"
 msgstr "Propers anys a mostrar"
 
 #. Default: "Label body"
-#: ./content/fields.py:1105
+#: ./content/fields.py:1109
 msgid "label_fglabelbody_text"
 msgstr "Cos de l'etiqueta"
 
@@ -1067,32 +1088,32 @@ msgid "label_fglikert_questions"
 msgstr "Preguntes"
 
 #. Default: "Default"
-#: ./content/fieldsBase.py:293
+#: ./content/fieldsBase.py:287
 msgid "label_fglinesdefault_text"
 msgstr "Per omissió"
 
 #. Default: "Max Length"
-#: ./content/fieldsBase.py:104
+#: ./content/fieldsBase.py:103
 msgid "label_fgmaxlength_text"
 msgstr "Longitut màxima"
 
 #. Default: "Presentation Widget"
-#: ./content/fields.py:802
+#: ./content/fields.py:806
 msgid "label_fgmsformat_text"
 msgstr "Control de Presentació"
 
 #. Default: "Show Time Selection Options"
-#: ./content/fields.py:446
+#: ./content/fields.py:450
 msgid "label_fgshowhm_text"
 msgstr "Mostrar opcions de selecció d'hora"
 
 #. Default: "Size"
-#: ./content/fieldsBase.py:139
+#: ./content/fieldsBase.py:136
 msgid "label_fgsize_text"
 msgstr "Mida"
 
 #. Default: "Starting Year"
-#: ./content/fields.py:455
+#: ./content/fields.py:459
 msgid "label_fgstartingyear_text"
 msgstr "Any inicial"
 
@@ -1102,23 +1123,23 @@ msgid "label_fgstringvalidator_text"
 msgstr "Validador"
 
 #. Default: "Default Expression"
-#: ./content/fields.py:1119
-#: ./content/fieldsBase.py:216
+#: ./content/fields.py:1123
+#: ./content/fieldsBase.py:213
 msgid "label_fgtdefault_text"
 msgstr "Expressió per defecte"
 
 #. Default: "Enabling Expression"
-#: ./content/fieldsBase.py:236
+#: ./content/fieldsBase.py:233
 msgid "label_fgtenable_text"
 msgstr "Activar expressió"
 
 #. Default: "Default"
-#: ./content/fieldsBase.py:332
+#: ./content/fieldsBase.py:326
 msgid "label_fgtextdefault_text"
 msgstr "Per defecte"
 
 #. Default: "Default Expression"
-#: ./content/fieldsBase.py:309
+#: ./content/fieldsBase.py:303
 msgid "label_fgtlinesdefault_text"
 msgstr "Expressió per defecte"
 
@@ -1128,22 +1149,22 @@ msgid "label_fgtvalidator_text"
 msgstr "Validador Personalitzat"
 
 #. Default: "Options Vocabulary"
-#: ./content/fieldsBase.py:166
+#: ./content/fieldsBase.py:163
 msgid "label_fgtvocabulary_text"
 msgstr "Vocabulari d'opcions"
 
 #. Default: "Options"
-#: ./content/fieldsBase.py:148
+#: ./content/fieldsBase.py:145
 msgid "label_fgvocabulary_text"
 msgstr "Opcions"
 
 #. Default: "Field Help"
-#: ./content/fieldsBase.py:186
+#: ./content/fieldsBase.py:183
 msgid "label_fieldhelp_text"
 msgstr "Ajuda del Camp"
 
 #. Default: "Field Label"
-#: ./content/fieldsBase.py:184
+#: ./content/fieldsBase.py:181
 msgid "label_fieldlabel_text"
 msgstr "Etiqueta del Camp"
 
@@ -1153,7 +1174,7 @@ msgid "label_fieldsethelp_text"
 msgstr "Ajuda del conjunt de camps"
 
 #. Default: "Maximum Upload Size (Megabytes)"
-#: ./content/fields.py:1194
+#: ./content/fields.py:1198
 msgid "label_filemaxmb_text"
 msgstr "Mida màxima de pujada (Megabytes)"
 
@@ -1244,12 +1265,12 @@ msgid "label_gpg_key_id"
 msgstr "Clau GPG"
 
 #. Default: "Header Injection"
-#: ./content/form.py:259
+#: ./content/form.py:258
 msgid "label_headerInjection_text"
 msgstr "Injecció d'encapçalat"
 
 #. Default: "Hidden"
-#: ./content/fieldsBase.py:206
+#: ./content/fieldsBase.py:203
 msgid "label_hidden_text"
 msgstr "Ocult"
 
@@ -1364,7 +1385,7 @@ msgid "label_recipient_override_text"
 msgstr "Expressió per al Receptor"
 
 #. Default: "Required"
-#: ./content/fieldsBase.py:198
+#: ./content/fieldsBase.py:195
 msgid "label_required_text"
 msgstr "Requerit"
 
@@ -1374,7 +1395,7 @@ msgid "label_reset_button"
 msgstr "Nom que sortirà al botó que s'utilitzarà per reiniciar"
 
 #. Default: "Rows"
-#: ./content/fieldsBase.py:95
+#: ./content/fieldsBase.py:94
 msgid "label_rows_text"
 msgstr "Files"
 
@@ -1404,7 +1425,7 @@ msgid "label_sender_override_text"
 msgstr "Expressió per al remitent"
 
 #. Default: "Server-Side Variable"
-#: ./content/fieldsBase.py:256
+#: ./content/fieldsBase.py:252
 msgid "label_server_side_text"
 msgstr "Variable del servidor"
 
@@ -1424,7 +1445,7 @@ msgid "label_showfields_text"
 msgstr "Mostrar Respostes"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1316
+#: ./content/fields.py:1320
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr "Mostra el títol com llegenda"
@@ -1460,7 +1481,7 @@ msgid "label_thanksprologue_text"
 msgstr "Pròleg d'Agraïment"
 
 #. Default: "Title"
-#: ./content/fields.py:1132
+#: ./content/fields.py:1136
 msgid "label_title"
 msgstr "Títol"
 
@@ -1470,7 +1491,7 @@ msgid "label_usecolumnnames_text"
 msgstr "Incloure nom de les columnes"
 
 #. Default: "Reject Text with Links?"
-#: ./content/fields.py:936
+#: ./content/fields.py:940
 msgid "label_validate_link_spam_text"
 msgstr "Rebutjar text amb enllaços?"
 
@@ -1505,17 +1526,17 @@ msgid "pfg_allRequired"
 msgstr "Es obligatori respondre a totes les preguntes."
 
 #. Default: "Comments"
-#: ./content/form.py:888
+#: ./content/form.py:887
 msgid "pfg_commentsfield_title"
 msgstr "Comentaris"
 
 #. Default: "Reset"
-#: ./content/form.py:817
+#: ./content/form.py:816
 msgid "pfg_formfolder_reset"
 msgstr "Reinicia"
 
 #. Default: "Submit"
-#: ./content/form.py:816
+#: ./content/form.py:815
 msgid "pfg_formfolder_submit"
 msgstr "Envia"
 
@@ -1580,12 +1601,12 @@ msgid "pfg_isnotlinkspam"
 msgstr "Aquest text sembla que té enllaços."
 
 #. Default: "E-Mails Form Input"
-#: ./content/form.py:836
+#: ./content/form.py:835
 msgid "pfg_mailer_description"
 msgstr "Formulari d'entrada de correus electrònics"
 
 #. Default: "Mailer"
-#: ./content/form.py:832
+#: ./content/form.py:831
 msgid "pfg_mailer_title"
 msgstr "Remitent"
 
@@ -1605,7 +1626,7 @@ msgid "pfg_number_too_small"
 msgstr "El valor ${value}' és molt petit. Com a mínim ha de ser ${min}."
 
 #. Default: "Your E-Mail Address"
-#: ./content/form.py:853
+#: ./content/form.py:852
 msgid "pfg_replytofield_title"
 msgstr "La seva adreça de correu electrònic"
 
@@ -1616,12 +1637,12 @@ msgid "pfg_thankspage_nosubmitmessage"
 msgstr "<p>No s'ha rebut cap entrada. Si us plau <a title=\"Test Folder\" href=\".\">visita el formulari</a>.</p>"
 
 #. Default: "Thanks for your input."
-#: ./content/form.py:903
+#: ./content/form.py:902
 msgid "pfg_thankyou_description"
 msgstr "Gràcies per la seva col·laboració."
 
 #. Default: "Thank You"
-#: ./content/form.py:901
+#: ./content/form.py:900
 msgid "pfg_thankyou_title"
 msgstr "Gràcies"
 
@@ -1631,7 +1652,7 @@ msgid "pfg_too_long"
 msgstr "El text és massa llarg, com ha molt hauria de ser de ${max} caràcters."
 
 #. Default: "Subject"
-#: ./content/form.py:872
+#: ./content/form.py:871
 msgid "pfg_topicfield_title"
 msgstr "Assumpte"
 
@@ -1641,48 +1662,48 @@ msgid "plain_text"
 msgstr "Text simple"
 
 #. Default: "Checkbox list"
-#: ./content/fields.py:869
+#: ./content/fields.py:873
 msgid "vocabulary_checkbox_text"
 msgstr "Llista de caixes de selecció"
 
 #. Default: "Flexible (radio for short, select for longer)"
-#: ./content/fields.py:755
+#: ./content/fields.py:759
 msgid "vocabulary_flex_text"
 msgstr "Flexible (botons d'opció per a poques opcions, desplegable per a moltes)"
 
 #. Default: "Is checked"
-#: ./content/fields.py:410
+#: ./content/fields.py:414
 msgid "vocabulary_ischecked_text"
 msgstr "Està seleccionat"
 
 #. Default: "Is not checked"
-#: ./content/fields.py:413
+#: ./content/fields.py:417
 msgid "vocabulary_isnotchecked_text"
 msgstr "No està seleccionat"
 
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
-#: ./content/fields.py:1075
+#: ./content/fields.py:1079
 msgid "vocabulary_istidyhtml_text"
 msgstr "Es Tidy HTML (falla al trobar error i advertències)"
 
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
-#: ./content/fields.py:1078
+#: ./content/fields.py:1082
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "Tidy HTML amb neteja (falla al trobar errors, neteja la resta)"
 
 #. Default: "None"
-#: ./content/fields.py:407
-#: ./content/form.py:723
+#: ./content/fields.py:411
+#: ./content/form.py:722
 msgid "vocabulary_none_text"
 msgstr "Cap"
 
 #. Default: "Radio buttons"
-#: ./content/fields.py:761
+#: ./content/fields.py:765
 msgid "vocabulary_radio_text"
 msgstr "Botons d'opció"
 
 #. Default: "Selection list"
-#: ./content/fields.py:758
+#: ./content/fields.py:762
 msgid "vocabulary_selection_text"
 msgstr "Llista de selecció"
 
