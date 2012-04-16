@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.7.2 unreleased
+----------------
+
+- I18n support updated, added some missing strings, Italian translation updated
+  [giacomos]
+
 1.7.1 2012-02-13
 ----------------
 

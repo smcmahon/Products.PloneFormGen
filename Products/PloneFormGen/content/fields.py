@@ -325,7 +325,9 @@ class FGBooleanField(BaseFormField):
             required=0,
             widget=BooleanWidget(
                 label=_(u'label_fgdefault_text', default=u'Default'),
-                description=_(u'help_fgdefault_text', default=u''),
+                description=_(u'help_fgdefault_text', default=u"The value the "
+                    "field should contain when the form is first displayed."
+                    "Note that this may be overridden dynamically."),
                 ),
         ),
         StringField('fgBooleanValidator',
@@ -341,7 +343,9 @@ class FGBooleanField(BaseFormField):
             default='1',
             widget=StringWidget(
                 label=_(u'label_fgbooleantruestring_text', default=u"True Display String"),
-                description=_(u'help_fgbooleantruestring_text', default=u"""String to use in thanks page and mail when the field's checkbox is checked."""),
+                description=_(u'help_fgbooleantruestring_text', default=\
+                    u"String to use in thanks page and mail when the field's "
+                    "checkbox is checked."),
                 ),
             ),
         StringField('fgBoolFalseString',
@@ -800,7 +804,7 @@ class FGMultiSelectField(BaseFormField):
             vocabulary='formatVocabDL',
             widget=SelectionWidget(
                 label=_(u'label_fgmsformat_text', default=u'Presentation Widget'),
-                description=_(u'help_fgmsformat_text', default=u''),
+                description=_(u'help_fgmsformat_text', default=u"""Useful for stopping spam"""),
                 ),
         ),
     ))
