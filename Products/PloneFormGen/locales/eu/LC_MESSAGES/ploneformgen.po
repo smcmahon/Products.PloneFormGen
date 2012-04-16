@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-10-24 07:32+0000\n"
+"POT-Creation-Date: 2012-04-16 13:31+0000\n"
 "PO-Revision-Date: 2011-10-24 11:58+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,11 +61,11 @@ msgstr "Hitz bat edo batzuk idazteko eremua"
 msgid "A thank-you page that can display form input"
 msgstr "Formularioaren datuak erakutsiko dituen eskertza-orria"
 
-#: ./browser/quickedit.pt:222
+#: ./browser/quickedit.pt:240
 msgid "Action"
 msgstr "Akzioa"
 
-#: ./browser/quickedit.pt:154
+#: ./browser/quickedit.pt:170
 msgid "Actions"
 msgstr "Akzioak"
 
@@ -104,21 +104,13 @@ msgstr "Data/Ordua idazteko eremua"
 msgid "Decimal Number Field"
 msgstr "Komadun zenbaki-eremua"
 
-#: ./browser/quickedit.pt:262
-msgid "Delete"
-msgstr "Ezabatu"
+#: ./browser/quickedit.pt:280
+msgid "Edit / Delete"
+msgstr ""
 
-#: ./browser/quickedit.pt:262
-msgid "Edit"
-msgstr "Editatu"
-
-#: ./browser/quickedit.pt:183
+#: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
 msgstr "Editatu/Ezabatu"
-
-#: ./browser/quickedit.pt:262
-msgid "Enabled"
-msgstr "Aktibatuta"
 
 #. Default: "End a fieldset (no input component)"
 #: ./profiles/default/types/FieldsetEnd.xml
@@ -130,10 +122,11 @@ msgstr "Eremu multzoa bukatu"
 msgid "Executes a Python script for form data"
 msgstr "Formularioko datuentzat python script bat exekutatu"
 
-#: ./browser/quickedit.pt:182
+#: ./browser/quickedit.pt:200
 msgid "Field"
 msgstr "Eremua"
 
+#. Default: "Basic Fields"
 #: ./browser/quickedit.pt:122
 msgid "Fields"
 msgstr "Eremuak"
@@ -147,7 +140,7 @@ msgstr "Eremu-multzoa bukatu"
 msgid "Fieldset Folder"
 msgstr "Eremu-multzo karpeta"
 
-#: ./browser/quickedit.pt:138
+#: ./browser/quickedit.pt:154
 msgid "Fieldsets"
 msgstr "Eremu-multzoak"
 
@@ -210,7 +203,7 @@ msgstr "Aukera anitzeko eremua"
 msgid "Multiple selection field (select with multiple or check boxes)"
 msgstr "Aukera anitzeko eremua (aukeraketa kutxa edo checkbox-ekin)"
 
-#: ./browser/quickedit.pt:181
+#: ./browser/quickedit.pt:199
 msgid "Order"
 msgstr "Ordena"
 
@@ -292,7 +285,7 @@ msgstr "Testu luzeko eremua"
 msgid "Thanks Page"
 msgstr "Eskertza-orria"
 
-#: ./browser/quickedit.pt:262
+#: ./browser/quickedit.pt:279
 msgid "Thanks Pages"
 msgstr "Eskertza-orriak"
 
@@ -350,8 +343,9 @@ msgstr "PloneFormGenen funtzionalitateak erabiltzeko baimenak aldatu edo konfigu
 msgid "description_ploneformgen_savedata"
 msgstr "Datuak gordetzeko akzioen defektuzko balioak."
 
-#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
+#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
 #: ./content/fieldsBase.py:257
+#, fuzzy
 msgid "description_server_side_text"
 msgstr ""
 "\"\n"
@@ -568,7 +562,7 @@ msgstr "Testu patroien arabera egiaztatu."
 msgid "help_fgtdefault_text"
 msgstr ""
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:237
 msgid "help_fgtenable_text"
 msgstr ""
@@ -1422,57 +1416,57 @@ msgid "pfg_formmaileradapter_msg_subject"
 msgstr "Formulario-bidalketa"
 
 #. Default: "This box must be checked."
-#: ./content/validationMessages.py:37
+#: ./content/validationMessages.py:38
 msgid "pfg_isChecked"
 msgstr "Kutxa hau aukeratuta egon behar da"
 
 #. Default: "This field requires a decimal value."
-#: ./content/validationMessages.py:26
+#: ./content/validationMessages.py:27
 msgid "pfg_isDecimal"
 msgstr "Eremu honek balio dezimal bat izan behar du"
 
 #. Default: "This field requires an integer value."
-#: ./content/validationMessages.py:27
+#: ./content/validationMessages.py:28
 msgid "pfg_isInt"
 msgstr "Eremu honek zenbaki oso bat izan behar du"
 
 #. Default: "This is not a valid mailto: url."
-#: ./content/validationMessages.py:35
+#: ./content/validationMessages.py:36
 msgid "pfg_isMailto"
 msgstr "Ez da mailto helbide zuzena."
 
 #. Default: "This value contains unprintable characters."
-#: ./content/validationMessages.py:28
+#: ./content/validationMessages.py:29
 msgid "pfg_isPrintable"
 msgstr "Balio honek inprimatu ezin diren karaktereak ditu."
 
 #. Default: "This field is required."
-#: ./content/validationMessages.py:43
+#: ./content/validationMessages.py:44
 msgid "pfg_isRequired"
 msgstr "Eremu hau betetzea derrigorrezkoa da."
 
 #. Default: "This is not a well formed SSN."
-#: ./content/validationMessages.py:29
+#: ./content/validationMessages.py:30
 msgid "pfg_isSSN"
 msgstr "Ez da SSN zenbaki egokia."
 
 #. Default: "This box must be unchecked."
-#: ./content/validationMessages.py:38
+#: ./content/validationMessages.py:39
 msgid "pfg_isUnchecked"
 msgstr "Eremu hau ezin da aukeratuta egon."
 
 #. Default: "This name is not a valid identifier."
-#: ./content/validationMessages.py:36
+#: ./content/validationMessages.py:37
 msgid "pfg_isUnixLikeName"
 msgstr "Izen honek ez du identifikadore gisa balio"
 
 #. Default: "The date entered was invalid."
-#: ./content/validationMessages.py:39
+#: ./content/validationMessages.py:40
 msgid "pfg_isValidDate"
 msgstr "Data hau ez da zuzena-"
 
 #. Default: "This text appears to contain links."
-#: ./content/validationMessages.py:40
+#: ./content/validationMessages.py:41
 msgid "pfg_isnotlinkspam"
 msgstr "Testu honek loturak ditu."
 
@@ -1487,17 +1481,17 @@ msgid "pfg_mailer_title"
 msgstr "E-posta bidaltzailea"
 
 #. Default: "Please enter a number here."
-#: ./content/validationMessages.py:74
+#: ./content/validationMessages.py:79
 msgid "pfg_not_number"
 msgstr "Idatzi zenbaki bat."
 
 #. Default: "'${value}' is too large. Must be no greater than ${max}."
-#: ./content/validationMessages.py:84
+#: ./content/validationMessages.py:89
 msgid "pfg_number_too_large"
 msgstr "'${value}' handiegia da. Ezin da ${max} baino handiagoa izan."
 
 #. Default: "'${value}' is too small. Must be at least ${min}."
-#: ./content/validationMessages.py:78
+#: ./content/validationMessages.py:83
 msgid "pfg_number_too_small"
 msgstr "'${value}' txikiegia da. Ezin da ${min} baino txikiagoa izan."
 
@@ -1506,8 +1500,9 @@ msgstr "'${value}' txikiegia da. Ezin da ${min} baino txikiagoa izan."
 msgid "pfg_replytofield_title"
 msgstr "Zure e-posta helbidea"
 
-#. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
+#. Default: "<p>No input was received. Please visit the form.</p>"
 #: ./content/thanksPage.py:191
+#, fuzzy
 msgid "pfg_thankspage_nosubmitmessage"
 msgstr "<p>Ez duzu formularioa bete. Mesedez <a title=\"Test Folder\" href=\".\">joan formulariorea eta saiatu berriro</a>.</p>"
 
@@ -1522,7 +1517,7 @@ msgid "pfg_thankyou_title"
 msgstr "Eskerrik asko"
 
 #. Default: "'Entry too long. It should be no more than ${max} characters."
-#: ./content/validationMessages.py:91
+#: ./content/validationMessages.py:96
 msgid "pfg_too_long"
 msgstr "Sarrera luzeegia. Gehienez ${max} karaktere eduki ditzake."
 

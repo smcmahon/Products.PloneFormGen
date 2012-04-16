@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2011-07-07 16:37+0000\n"
+"POT-Creation-Date: 2012-04-16 13:31+0000\n"
 "PO-Revision-Date: 2010-09-28 10:05+0100\n"
 "Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
 "Language-Team: <info@dms4u.cz>\n"
@@ -60,11 +60,11 @@ msgstr "Pole s jednoduchým textem."
 msgid "A thank-you page that can display form input"
 msgstr "Stránka s poděkováním za vyplnění formuláře."
 
-#: ./browser/quickedit.pt:222
+#: ./browser/quickedit.pt:240
 msgid "Action"
 msgstr ""
 
-#: ./browser/quickedit.pt:154
+#: ./browser/quickedit.pt:170
 msgid "Actions"
 msgstr ""
 
@@ -103,20 +103,12 @@ msgstr "Pole pro zadání data a času."
 msgid "Decimal Number Field"
 msgstr "Pole Celé číslo"
 
-#: ./browser/quickedit.pt:262
-msgid "Delete"
+#: ./browser/quickedit.pt:280
+msgid "Edit / Delete"
 msgstr ""
 
-#: ./browser/quickedit.pt:262
-msgid "Edit"
-msgstr ""
-
-#: ./browser/quickedit.pt:183
+#: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
-msgstr ""
-
-#: ./browser/quickedit.pt:262
-msgid "Enabled"
 msgstr ""
 
 #. Default: "End a fieldset (no input component)"
@@ -129,10 +121,11 @@ msgstr ""
 msgid "Executes a Python script for form data"
 msgstr "Spustí Python skript pro vyplněný formulář"
 
-#: ./browser/quickedit.pt:182
+#: ./browser/quickedit.pt:200
 msgid "Field"
 msgstr ""
 
+#. Default: "Basic Fields"
 #: ./browser/quickedit.pt:122
 msgid "Fields"
 msgstr ""
@@ -146,7 +139,7 @@ msgstr ""
 msgid "Fieldset Folder"
 msgstr "Složka pro skupinu polí"
 
-#: ./browser/quickedit.pt:138
+#: ./browser/quickedit.pt:154
 msgid "Fieldsets"
 msgstr ""
 
@@ -209,7 +202,7 @@ msgstr "Pole vícenásobného výběru"
 msgid "Multiple selection field (select with multiple or check boxes)"
 msgstr "Pole pro výbět více hodnot z předdefinovaného seznamu"
 
-#: ./browser/quickedit.pt:181
+#: ./browser/quickedit.pt:199
 msgid "Order"
 msgstr ""
 
@@ -291,7 +284,7 @@ msgstr "Pole Text"
 msgid "Thanks Page"
 msgstr "Stránka s poděkováním"
 
-#: ./browser/quickedit.pt:262
+#: ./browser/quickedit.pt:279
 msgid "Thanks Pages"
 msgstr ""
 
@@ -351,8 +344,9 @@ msgstr "Nastavením oprávnění můžete zpřístupnit nebo naopak znepřístup
 msgid "description_ploneformgen_savedata"
 msgstr "Nastavení výchozích hodnot pro akce formuláře."
 
-#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not \n                    modifiable by or exposed to the client.\n                "
+#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
 #: ./content/fieldsBase.py:257
+#, fuzzy
 msgid "description_server_side_text"
 msgstr "Označí toto pole jako interní pro použití akcemi formuláře. Toto pole nebude zobrazené uživatelům."
 
@@ -427,7 +421,7 @@ msgstr ""
 
 #. Boolean Field
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
-#: ./content/fields.py:350
+#: ./content/fields.py:358
 msgid "help_boolrequired_text"
 msgstr "POZOR: Pro zaškrtávací pole nedělá příznak \"Vyžadováno\" nic jiného než zobrazení textu \"Vyžadováno\" u nadpisu pole. Pokud potřebujete, aby uživatel zadal nějakou hodnotu, použijte prosím validátor."
 
@@ -453,44 +447,44 @@ msgid "help_execcondition_text"
 msgstr ""
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
-#: ./content/fields.py:345
+#: ./content/fields.py:353
 msgid "help_fgbooleanfalsestring_text"
 msgstr ""
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
-#: ./content/fields.py:336
+#: ./content/fields.py:344
 msgid "help_fgbooleantruestring_text"
 msgstr ""
 
 #. Boolean Field
 #. Default: "Choose a validator to require a particular response."
-#: ./content/fields.py:327
+#: ./content/fields.py:335
 msgid "help_fgbooleanvalidator_text"
 msgstr "Vyberte validátor podle požadovaného zadání od uživatele."
 
 #. String Field
 #. Default: "\n                The value the field should contain when the form is first displayed.\n                Note that this may be overridden dynamically.\n            "
-#: ./content/fields.py:320
+#: ./content/fields.py:328
 #: ./content/fieldsBase.py:276
 msgid "help_fgdefault_text"
 msgstr "Výchozí hodnota, kterou má pole obsahovat v okamžiku zobrazení formuláře. Tato hodnota může být změněna dynamicky skriptem."
 
 #. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
-#: ./content/fields.py:457
+#: ./content/fields.py:465
 msgid "help_fgendingyear_text"
 msgstr ""
 
-#: ./content/fields.py:698
+#: ./content/fields.py:706
 msgid "help_fgformat_text"
 msgstr ""
 
 #. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
-#: ./content/fields.py:467
+#: ./content/fields.py:475
 msgid "help_fgfutureyears_text"
 msgstr ""
 
 #. Default: "\n                    The text to display in the form.\n                "
-#: ./content/fields.py:1098
+#: ./content/fields.py:1106
 msgid "help_fglabelbody_text"
 msgstr ""
 
@@ -516,18 +510,18 @@ msgstr "Hodnoty, které bude pole obsahovat v okamžiku zobrazení formuláře. 
 msgid "help_fgmaxlength_text"
 msgstr "Maximální počet znaků, který může uživatel vložit do tohoto pole."
 
-#: ./content/fields.py:795
+#: ./content/fields.py:803
 msgid "help_fgmsformat_text"
 msgstr ""
 
 # Rich Text Field
 # description="""Input tests using HTMLTidy (if installed).""",
 #. Default: "Input tests using HTMLTidy (if installed)."
-#: ./content/fields.py:1018
+#: ./content/fields.py:1026
 msgid "help_fgrtvalidator_text"
 msgstr "Zkontrolovat zadanou hodnotu pomocí HTMLTidy (je li instalováno)"
 
-#: ./content/fields.py:439
+#: ./content/fields.py:447
 msgid "help_fgshowhm_text"
 msgstr ""
 
@@ -537,24 +531,24 @@ msgstr ""
 msgid "help_fgsize_text"
 msgstr "Velikost vstupního pole (počet znaků)"
 
-#: ./content/fields.py:448
+#: ./content/fields.py:456
 msgid "help_fgstartingyear_text"
 msgstr ""
 
 #. String Field
 #. Default: "Tests input against simple string patterns."
-#: ./content/fields.py:49
+#: ./content/fields.py:57
 msgid "help_fgstringvalidator_text"
 msgstr "Zkontroluje pole oproti jednoduchému řetězcovému vzoru"
 
 #. String Field
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fields.py:1112
+#: ./content/fields.py:1120
 #: ./content/fieldsBase.py:218
 msgid "help_fgtdefault_text"
 msgstr "TALES výraz, který bude vykonán v okamžiku zobrazení formuláře. Slouží k naplnění pole výchozí hodnotou. Pokud tuto funkci nepožadujete, ponechte pole prázdné.  Skript by měl vrátit řetězec. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included. \n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:237
 msgid "help_fgtenable_text"
 msgstr ""
@@ -591,7 +585,7 @@ msgstr "Zadejte jednu hodnotu na každý řádek. Tato hodnota může být dynam
 
 #. File Field
 #. Default: "Set to 0 for no limit."
-#: ./content/fields.py:1187
+#: ./content/fields.py:1195
 msgid "help_filemaxmb_text"
 msgstr "Zadejte 0, pokud nemá být velikost omezena."
 
@@ -696,7 +690,7 @@ msgid "help_formmailer_to_extract"
 msgstr ""
 
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
-#: ./content/fields.py:259
+#: ./content/fields.py:267
 msgid "help_fprequired_text"
 msgstr ""
 
@@ -751,13 +745,13 @@ msgstr ""
 
 #. Integer Field
 #. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "
-#: ./content/fields.py:177
+#: ./content/fields.py:185
 msgid "help_maxval_text"
 msgstr "Formulář neakceptuje hodnotu větší než je tato hodnota."
 
 #. Integer Field
 #. Default: "\n            The form will not accept values less than the number you enter here.\n                "
-#: ./content/fields.py:166
+#: ./content/fields.py:174
 msgid "help_minval_text"
 msgstr "Formulář neakceptuje hodnotu nižší než je tato hodnota."
 
@@ -773,7 +767,7 @@ msgid "help_nosubmit_text"
 msgstr "Tento text bude zobrazen pokud někdo zobrazí stránku s poděkováním bez toho, aby vyplnil formulář. To se může stát pokud například zadá do adresy přímo adresu této stránky."
 
 #. Default: "Not displayed on form."
-#: ./content/fields.py:1125
+#: ./content/fields.py:1133
 msgid "help_notdisplayed_text"
 msgstr ""
 
@@ -838,7 +832,7 @@ msgstr ""
 msgid "help_showfields_text"
 msgstr "Vyberte pole, která se mají zobrazit na stránce po úspěšném vyplnění formuláře."
 
-#: ./content/fields.py:1309
+#: ./content/fields.py:1317
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr ""
@@ -949,46 +943,46 @@ msgid "label_execcondition_text"
 msgstr ""
 
 #. Default: "False Display String"
-#: ./content/fields.py:344
+#: ./content/fields.py:352
 msgid "label_fgbooleanfalsestring_text"
 msgstr ""
 
 #. Default: "True Display String"
-#: ./content/fields.py:335
+#: ./content/fields.py:343
 msgid "label_fgbooleantruestring_text"
 msgstr ""
 
 #. Boolean Field
 #. Default: "Validator"
-#: ./content/fields.py:326
+#: ./content/fields.py:334
 msgid "label_fgbooleanvalidator_text"
 msgstr "Validátor"
 
 #. String Field
 #. Default: "Default"
-#: ./content/fields.py:319
+#: ./content/fields.py:327
 #: ./content/fieldsBase.py:275
 msgid "label_fgdefault_text"
 msgstr "Výchozí hodnota"
 
 #. Default: "Ending Year"
-#: ./content/fields.py:456
+#: ./content/fields.py:464
 msgid "label_fgendingyear_text"
 msgstr ""
 
 #. Selection Field
 #. Default: "Presentation Widget"
-#: ./content/fields.py:697
+#: ./content/fields.py:705
 msgid "label_fgformat_text"
 msgstr "Vzhled pole"
 
 #. Default: "Future Years To Display"
-#: ./content/fields.py:466
+#: ./content/fields.py:474
 msgid "label_fgfutureyears_text"
 msgstr ""
 
 #. Default: "Label body"
-#: ./content/fields.py:1097
+#: ./content/fields.py:1105
 msgid "label_fglabelbody_text"
 msgstr ""
 
@@ -1016,13 +1010,13 @@ msgstr "Maximální délka"
 
 #. Multi-Select Field
 #. Default: "Presentation Widget"
-#: ./content/fields.py:794
+#: ./content/fields.py:802
 msgid "label_fgmsformat_text"
 msgstr "Vzhled pole"
 
 #. Date/Time Field
 #. Default: "Show Time Selection Options"
-#: ./content/fields.py:438
+#: ./content/fields.py:446
 msgid "label_fgshowhm_text"
 msgstr "Zobrazit možnost zadání času"
 
@@ -1033,19 +1027,19 @@ msgid "label_fgsize_text"
 msgstr "Velikost"
 
 #. Default: "Starting Year"
-#: ./content/fields.py:447
+#: ./content/fields.py:455
 msgid "label_fgstartingyear_text"
 msgstr ""
 
 #. String Field
 #. Default: "Validator"
-#: ./content/fields.py:47
+#: ./content/fields.py:55
 msgid "label_fgstringvalidator_text"
 msgstr "Validátor"
 
 #. String Field
 #. Default: "Default Expression"
-#: ./content/fields.py:1111
+#: ./content/fields.py:1119
 #: ./content/fieldsBase.py:216
 msgid "label_fgtdefault_text"
 msgstr "Předvyplnění formuláře"
@@ -1104,7 +1098,7 @@ msgstr ""
 
 #. File Field
 #. Default: "Maximum Upload Size (Megabytes)"
-#: ./content/fields.py:1186
+#: ./content/fields.py:1194
 msgid "label_filemaxmb_text"
 msgstr "Maximální velikost suboru (Megabyte)"
 
@@ -1246,13 +1240,13 @@ msgstr ""
 
 #. Integer Field
 #. Default: "Maximum Acceptable Value"
-#: ./content/fields.py:176
+#: ./content/fields.py:184
 msgid "label_maxval_text"
 msgstr "Nejvyšší povolená hodnota"
 
 #. Integer Field
 #. Default: "Minimum Acceptable Value"
-#: ./content/fields.py:164
+#: ./content/fields.py:172
 msgid "label_minval_text"
 msgstr "Nejnižší povolená hodnota"
 
@@ -1406,7 +1400,7 @@ msgid "label_showfields_text"
 msgstr "Zobrazit odpovědi"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1308
+#: ./content/fields.py:1316
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr ""
@@ -1446,7 +1440,7 @@ msgid "label_thanksprologue_text"
 msgstr "Poděkování (nad)"
 
 #. Default: "Title"
-#: ./content/fields.py:1124
+#: ./content/fields.py:1132
 msgid "label_title"
 msgstr ""
 
@@ -1456,7 +1450,7 @@ msgid "label_usecolumnnames_text"
 msgstr ""
 
 #. Default: "Reject Text with Links?"
-#: ./content/fields.py:928
+#: ./content/fields.py:936
 msgid "label_validate_link_spam_text"
 msgstr ""
 
@@ -1512,57 +1506,57 @@ msgid "pfg_formmaileradapter_msg_subject"
 msgstr ""
 
 #. Default: "This box must be checked."
-#: ./content/validationMessages.py:37
+#: ./content/validationMessages.py:38
 msgid "pfg_isChecked"
 msgstr ""
 
 #. Default: "This field requires a decimal value."
-#: ./content/validationMessages.py:26
+#: ./content/validationMessages.py:27
 msgid "pfg_isDecimal"
 msgstr ""
 
 #. Default: "This field requires an integer value."
-#: ./content/validationMessages.py:27
+#: ./content/validationMessages.py:28
 msgid "pfg_isInt"
 msgstr ""
 
 #. Default: "This is not a valid mailto: url."
-#: ./content/validationMessages.py:35
+#: ./content/validationMessages.py:36
 msgid "pfg_isMailto"
 msgstr ""
 
 #. Default: "This value contains unprintable characters."
-#: ./content/validationMessages.py:28
+#: ./content/validationMessages.py:29
 msgid "pfg_isPrintable"
 msgstr ""
 
 #. Default: "This field is required."
-#: ./content/validationMessages.py:43
+#: ./content/validationMessages.py:44
 msgid "pfg_isRequired"
 msgstr ""
 
 #. Default: "This is not a well formed SSN."
-#: ./content/validationMessages.py:29
+#: ./content/validationMessages.py:30
 msgid "pfg_isSSN"
 msgstr ""
 
 #. Default: "This box must be unchecked."
-#: ./content/validationMessages.py:38
+#: ./content/validationMessages.py:39
 msgid "pfg_isUnchecked"
 msgstr ""
 
 #. Default: "This name is not a valid identifier."
-#: ./content/validationMessages.py:36
+#: ./content/validationMessages.py:37
 msgid "pfg_isUnixLikeName"
 msgstr ""
 
 #. Default: "The date entered was invalid."
-#: ./content/validationMessages.py:39
+#: ./content/validationMessages.py:40
 msgid "pfg_isValidDate"
 msgstr ""
 
 #. Default: "This text appears to contain links."
-#: ./content/validationMessages.py:40
+#: ./content/validationMessages.py:41
 msgid "pfg_isnotlinkspam"
 msgstr ""
 
@@ -1577,17 +1571,17 @@ msgid "pfg_mailer_title"
 msgstr ""
 
 #. Default: "Please enter a number here."
-#: ./content/validationMessages.py:74
+#: ./content/validationMessages.py:79
 msgid "pfg_not_number"
 msgstr ""
 
 #. Default: "'${value}' is too large. Must be no greater than ${max}."
-#: ./content/validationMessages.py:84
+#: ./content/validationMessages.py:89
 msgid "pfg_number_too_large"
 msgstr ""
 
 #. Default: "'${value}' is too small. Must be at least ${min}."
-#: ./content/validationMessages.py:78
+#: ./content/validationMessages.py:83
 msgid "pfg_number_too_small"
 msgstr ""
 
@@ -1596,7 +1590,7 @@ msgstr ""
 msgid "pfg_replytofield_title"
 msgstr ""
 
-#. Default: "<p>No input was received. Please <a title=\"Test Folder\" href=\".\">visit the form</a>.</p>"
+#. Default: "<p>No input was received. Please visit the form.</p>"
 #: ./content/thanksPage.py:191
 msgid "pfg_thankspage_nosubmitmessage"
 msgstr ""
@@ -1612,7 +1606,7 @@ msgid "pfg_thankyou_title"
 msgstr ""
 
 #. Default: "'Entry too long. It should be no more than ${max} characters."
-#: ./content/validationMessages.py:91
+#: ./content/validationMessages.py:96
 msgid "pfg_too_long"
 msgstr ""
 
@@ -1628,57 +1622,57 @@ msgstr ""
 
 # default="Checkbox list"
 #. Default: "Checkbox list"
-#: ./content/fields.py:861
+#: ./content/fields.py:869
 msgid "vocabulary_checkbox_text"
 msgstr "Zaškrtávací pole"
 
 # default="Flexible (radio for short, select for longer)"
 #. Default: "Flexible (radio for short, select for longer)"
-#: ./content/fields.py:747
+#: ./content/fields.py:755
 msgid "vocabulary_flex_text"
 msgstr "Proměnný (radio \"1 z n\" pole pro malý počet položek, výběr z položek pro velký počet položek)"
 
 # default="Is checked"
 #. Default: "Is checked"
-#: ./content/fields.py:402
+#: ./content/fields.py:410
 msgid "vocabulary_ischecked_text"
 msgstr "Je zaškrtnuto"
 
 # default="Is not checked"
 #. Default: "Is not checked"
-#: ./content/fields.py:405
+#: ./content/fields.py:413
 msgid "vocabulary_isnotchecked_text"
 msgstr "Není zaškrtnuto"
 
 # default='Is Tidy HTML (fails on errors and warnings)')
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
-#: ./content/fields.py:1067
+#: ./content/fields.py:1075
 msgid "vocabulary_istidyhtml_text"
 msgstr "Obsahuje jen čisté HTML (musí být zadáno čísté HTML)"
 
 # default='Tidy HTML With Cleanup (fails on errors, cleans up rest)')
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
-#: ./content/fields.py:1070
+#: ./content/fields.py:1078
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "Obsahuje čisté HTML po automatickém pročištění"
 
 # *** Vocabularies
 # default="None"
 #. Default: "None"
-#: ./content/fields.py:399
+#: ./content/fields.py:407
 #: ./content/form.py:723
 msgid "vocabulary_none_text"
 msgstr "Není"
 
 # default="Radio buttons"
 #. Default: "Radio buttons"
-#: ./content/fields.py:753
+#: ./content/fields.py:761
 msgid "vocabulary_radio_text"
 msgstr "Výběr 1 z n (radio)"
 
 # default="Selection list"
 #. Default: "Selection list"
-#: ./content/fields.py:750
+#: ./content/fields.py:758
 msgid "vocabulary_selection_text"
 msgstr "Výběr z položek"
 
