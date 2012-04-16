@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2012-04-16 14:27+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2011-09-21 12:05-0300\n"
 "Last-Translator: Andre Nogueira <andre@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <contato@simplesconsultoria.com.br>\n"
@@ -582,7 +582,7 @@ msgstr "O texto que o campo deverá conter quando o formulário for exibido pela
 msgid "help_fgtlinesdefault_text"
 msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar um valor padrão. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma lista ou tupla. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
 
-#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr "Uma expressão TALES que será avaliada quando o formulário for validado. Valida contra 'value', que conterá a entrada de dados realizada. Retorna False se válido; caso contrário retorna uma string com a mensagem de erro. Exemplo: \"python: test(value=='eggs', False, 'input must be eggs') irá solicitar \"eggs\" para entrada de dados. Sua expressão deverá validar como uma string. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."

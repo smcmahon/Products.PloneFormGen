@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2012-04-16 14:27+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2011-07-07 19:20+0100\n"
 "Last-Translator: JeanMichel FRANCOIS <toutpt@gmail.com>\n"
 "Language-Team: French Translation Team <plone-i18n@lists.sourceforge.net>\n"
@@ -572,7 +572,7 @@ msgid "help_fgtlinesdefault_text"
 msgstr "Une expression TALES qui sera évaluée quand le formulaire sera affichée pour définir la valeur par défaut du champ. Laissez vide si cela n'est pas nécessaire. Votre expression doit nécesairement s'évaluer comme une liste ou un tuple. Note : des erreurs dans l'évalution de cette expression provoquera une erreur dans l'affichage du formulaire."
 
 #. String Field
-#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr "Une expression TALES qui sera évaluée quand le formulaire sera validée. La validation vérifie request.form['ID_du_champ']. Retourne False si c'est valide, sinon ile renvoie message d'erreur sous forme de chaine de caractères.  Note : des erreurs dans l'évalution de cette expression provoquera une erreur dans l'affichage du formulaire.Ex : \"python:test(value=='eggs', False, 'input must be eggs') demandera obligatoirement l'entrée \"eggs\"."

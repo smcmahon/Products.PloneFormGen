@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
-"POT-Creation-Date: 2012-04-16 14:27+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Steve McMahon <steve@dcn.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -544,7 +544,7 @@ msgstr ""
 msgid "help_fgtlinesdefault_text"
 msgstr ""
 
-#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr ""

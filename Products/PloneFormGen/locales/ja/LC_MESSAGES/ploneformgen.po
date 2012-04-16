@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
-"POT-Creation-Date: 2012-04-16 14:27+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Shigeo Honda <shigeo.honda@gmail.com>\n"
 "Language-Team: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
@@ -625,7 +625,7 @@ msgid "help_fgtlinesdefault_text"
 msgstr "初期値を取得するためにフォームを表示するときに評価されるTALES式です。必要のないときは空欄します。リストまたはタプルとして評価されます。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"
 
 #. String Field
-#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr "フォームがバリデートされたときに評価されるTALES式です。入力フィールドが含む「値」に対してバリデートを行います。有効な場合は「False」が返ります。有効でなかったときはテキストのエラーメッセージを返します。例：「python: test(value=='eggs', False, 'input must be eggs') はeggsが必要です」。【註記】この式の値にあるエラーはフォーム表示のエラーとして表示されます"

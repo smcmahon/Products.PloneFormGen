@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2012-04-16 14:27+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2010-08-06 10:24+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: \n"
@@ -609,7 +609,7 @@ msgid "help_fgtlinesdefault_text"
 msgstr "Een TALES-expressie die geëvalueerd zal worden als het formulier wordt getoond om de standaardwaarde van het veld te verkrijgen. Laat leeg indien dit niet nodig is. De expressie moet een 'list' of 'tuple' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
 #. String Field
-#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr "Een TALES-expressie die wordt geëvalueerd als het formulier wordt gevalideerd. Validatie is tegen 'value' welke de formulierinvoer zal bevatten. Geeft 'False' terug indien valide; indien niet valide wordt een 'string' met foutmelding teruggegeven. Voorbeeld: \"python: test(value=='eieren', False, 'invoer moet eieren zijn')\" stelt \"eieren\" als verplichte invoer. . MERK OP: fouten in deze expressie zullen resulteren in een fout bij het weergeven van het formulier."

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2012-04-16 14:27+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2010-09-28 10:05+0100\n"
 "Last-Translator: Radim Novotny <novotny.radim@gmail.com>\n"
 "Language-Team: <info@dms4u.cz>\n"
@@ -585,7 +585,7 @@ msgid "help_fgtlinesdefault_text"
 msgstr "TALES výraz, který bude vyhodnocen v okamžiku zobrazení formuláře. Pokud toto chování nepotřebujete, ponechte pole prázdné.  Výsledkem výrazu by měl být python seznam (list) nebo tuple. POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."
 
 #. String Field
-#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire  for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr "TALES výraz, který bude vyhodnocen v okamžiku kontroly (validace) formuláře. Validuje se oproti proměnné 'value', která obsahuje hodnotu v daném poli. Skript má vrátit False, pokud je hodnota v pořádku; pokud není má vrátit text chyby. Příklad:  \"python: test(value=='eggs', False, 'musíte zadat text eggs')\" bude vyžadovat od uživatele zadáná textu \"eggs\".  POZOR: jakákoli chyba ve vyhodnocení tohoto výrazu způsobí chybu při zobrazení formuláře."

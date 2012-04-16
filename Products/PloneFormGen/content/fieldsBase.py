@@ -79,7 +79,7 @@ validatorOverrideField = \
                     "Validate against 'value', which will contain the field input."
                     "Return False if valid; if not valid return a string error message."
                     "E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will"
-                    "require "eggs" for input."
+                    "require \"eggs\" for input."
                     "PLEASE NOTE: errors in the evaluation of this expression will cause"
                     "an error on form display."),
                 size=70,
