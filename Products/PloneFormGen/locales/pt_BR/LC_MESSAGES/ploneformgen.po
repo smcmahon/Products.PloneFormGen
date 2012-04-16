@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2012-04-16 14:22+0000\n"
+"POT-Creation-Date: 2012-04-16 14:27+0000\n"
 "PO-Revision-Date: 2011-09-21 12:05-0300\n"
 "Last-Translator: Andre Nogueira <andre@simplesconsultoria.com.br>\n"
 "Language-Team: Simples Consultoria <contato@simplesconsultoria.com.br>\n"
@@ -1413,6 +1413,11 @@ msgstr "Cabeçalhos HTTP"
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
 msgstr "Menos campos..."
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
+msgstr ""
 
 #. Default: "More fields..."
 #: ./browser/jsvariables.py:21

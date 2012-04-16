@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 0.2\n"
-"POT-Creation-Date: 2012-04-16 14:22+0000\n"
+"POT-Creation-Date: 2012-04-16 14:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Steve McMahon <steve@dcn.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1321,6 +1321,11 @@ msgstr ""
 #. Default: "Less fields..."
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
+msgstr ""
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
 msgstr ""
 
 #. Default: "More fields..."

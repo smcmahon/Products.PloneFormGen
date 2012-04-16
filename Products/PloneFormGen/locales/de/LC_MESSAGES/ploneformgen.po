@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2012-04-16 14:22+0000\n"
+"POT-Creation-Date: 2012-04-16 14:27+0000\n"
 "PO-Revision-Date: 2011-06-09 11:10+0200\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -1566,6 +1566,11 @@ msgstr "HTTP-Header"
 #. Default: "Less fields..."
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
+msgstr ""
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
 msgstr ""
 
 #. Default: "More fields..."

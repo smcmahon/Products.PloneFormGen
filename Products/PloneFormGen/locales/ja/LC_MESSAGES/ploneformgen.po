@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
-"POT-Creation-Date: 2012-04-16 14:22+0000\n"
+"POT-Creation-Date: 2012-04-16 14:27+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Shigeo Honda <shigeo.honda@gmail.com>\n"
 "Language-Team: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
@@ -1611,6 +1611,11 @@ msgstr "HTTPヘッダ"
 #. Default: "Less fields..."
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
+msgstr ""
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
 msgstr ""
 
 #. Default: "More fields..."

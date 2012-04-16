@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-04-16 14:22+0000\n"
+"POT-Creation-Date: 2012-04-16 14:27+0000\n"
 "PO-Revision-Date: 2011-10-24 11:58+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1395,6 +1395,11 @@ msgstr "HTTP goiburukoak"
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
 msgstr "Eremu gutxiago..."
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
+msgstr ""
 
 #. Default: "More fields..."
 #: ./browser/jsvariables.py:21

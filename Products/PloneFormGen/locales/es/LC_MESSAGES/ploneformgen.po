@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2012-04-16 14:22+0000\n"
+"POT-Creation-Date: 2012-04-16 14:27+0000\n"
 "PO-Revision-Date: 2011-10-26 17:09+0100\n"
 "Last-Translator: Corina Riba Santos <corina.riba@upcnet.es>\n"
 "Language-Team: Plone i18n <plone-i18n@lista.plone.org>\n"
@@ -1594,6 +1594,11 @@ msgstr "Cabeceras HTTP"
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
 msgstr "Menos campos..."
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
+msgstr ""
 
 #. Default: "More fields..."
 #: ./browser/jsvariables.py:21
