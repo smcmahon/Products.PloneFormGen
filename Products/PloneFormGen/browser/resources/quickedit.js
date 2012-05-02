@@ -48,7 +48,7 @@ pfgQEdit.qedit = function (e) {
 			noform: function () {
 				location.reload();
 			},
-			closeselector: '[name=form.button.Cancel]'
+			closeselector: "[name='form.button.Cancel']"
 		});
 	}
 
@@ -81,7 +81,7 @@ jQuery(function ($) {
 			filter: "#content",
 			formselector: 'form[name=edit_form]:not(.fgBaseEditForm)',
 			noform: 'reload',
-			closeselector: '[name=form.button.cancel]'
+			closeselector: "[name='form.button.cancel']"
 		});
 		$('.editHook a[href$=delete_confirmation]').prepOverlay({
 			subtype: 'ajax',
@@ -98,7 +98,7 @@ jQuery(function ($) {
 				}
 				return 'close';
 			},
-			closeselector: '[name=form.button.Cancel]'
+			closeselector: "[name='form.button.Cancel']"
 		});
 	}
 	
