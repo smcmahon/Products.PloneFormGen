@@ -48,7 +48,7 @@ pfgQEdit.qedit = function (e) {
 			noform: function () {
 				location.reload();
 			},
-			closeselector: '[name=form.button.Cancel]'
+			closeselector: '[name="form.button.Cancel"]'
 		});
 	}
 
@@ -81,7 +81,7 @@ jQuery(function ($) {
 			filter: "#content",
 			formselector: 'form[name=edit_form]:not(.fgBaseEditForm)',
 			noform: 'reload',
-			closeselector: '[name=form.button.cancel]'
+			closeselector: '[name="form.button.cancel"]'
 		});
 		$('.editHook a[href$=delete_confirmation]').prepOverlay({
 			subtype: 'ajax',
@@ -98,7 +98,7 @@ jQuery(function ($) {
 				}
 				return 'close';
 			},
-			closeselector: '[name=form.button.Cancel]'
+			closeselector: '[name="form.button.Cancel"]'
 		});
 	}
 	
@@ -482,7 +482,7 @@ jQuery(function ($) {
 						// current position in the table
 						currpos = $(".item_" + i).parent().index();
 
-						$("#pfg-qetable [name=form.button.save], #pfgActionEdit [name=form.button.save]").live('click', function (e) {
+						$("#pfg-qetable [name='form.button.save'], #pfgActionEdit [name='form.button.save']").live('click', function (e) {
 							var button = $(this);
 							var formParent = $(this).closest('form');
 							var formAction = formParent.attr('action');
@@ -530,7 +530,7 @@ jQuery(function ($) {
 							return false;
 						});
 
-						$("#pfg-qetable [name=form.button.cancel], #pfgActionEdit [name=form.button.cancel]").live('click', function (e) {
+						$("#pfg-qetable [name='form.button.cancel'], #pfgActionEdit [name='form.button.cancel']").live('click', function (e) {
 							var widgetParent;
 
 							e.preventDefault();

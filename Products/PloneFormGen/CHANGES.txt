@@ -1,6 +1,13 @@
 Change History
 ==============
 
+1.7.2dev unreleased
+-------------------
+
+- Fix selectors to work with latest jquery
+  [vangheem]
+
+
 1.7.1 2012-02-13
 ----------------
 
