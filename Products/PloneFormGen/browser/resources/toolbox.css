@@ -45,10 +45,11 @@ h4.widget-header:before {
     content: "⣿ ";
 }
 
-h4.widget-header, h4.widget-header-helper {
+h4.widget-header, h4.widget-header-helper,
+.draggable .dragginghook {
     background-color: LightBlue;
     padding: 5px;
-    cursor: move;   
+    cursor: move;
     font-size: 13px;
     font-weight: bold;
     margin-bottom: 4px;
@@ -173,8 +174,8 @@ tr.theader th {
     text-align: left;
 }
 .draggingHook .dhcenter { /* workaround to center contents of dragging hook */
-    display: inline-block; 
-    vertical-align: middle; 
+    display: inline-block;
+    vertical-align: middle;
     height: 90%;
     margin: 0;
 }
@@ -195,7 +196,7 @@ div.draggable {
     -webkit-border-bottom-left-radius: 0px;
     -webkit-border-bottom-right-radius: 0px;
     -webkit-border-top-left-radius: 6px;
-    -webkit-border-top-right-radius: 6px;   
+    -webkit-border-top-right-radius: 6px;
 }
 
 .qefield div.widget {
@@ -222,8 +223,8 @@ div.qefield div.field span,
 }
 
 span.not-required {
-    border:1px solid red; 
-    width:7px; height:7px; 
+    border:1px solid red;
+    width:7px; height:7px;
     display:none;
 }
 

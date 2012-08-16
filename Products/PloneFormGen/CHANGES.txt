@@ -4,6 +4,15 @@ Change History
 1.7.2dev unreleased
 -------------------
 
+- Make the dragging hook in the quickeditor order column show
+  a move cursor.
+  [smcmahon]
+
+- quickedit.js had a case where "$" was used as an unguarded
+  alias for jQuery. This interacted with a kss.core bug to kill
+  all quickedit js functionality on IE 8. Fixed.
+  [smcmahon]
+
 - Fix selectors to work with latest jquery
   [vangheem]
 
@@ -71,7 +80,7 @@ Change History
 1.7b6 2011-10-17
 ----------------
 
-- Declare dependency on CMFCore's configuration to make sure that its 
+- Declare dependency on CMFCore's configuration to make sure that its
   permissions are loaded early enough in Plone 4.1.
   [davisagli]
 

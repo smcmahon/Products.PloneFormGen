@@ -18,8 +18,8 @@ pfgQEdit.qedit = function (e) {
 	if (tool) {
 		tool.savedForms = tool.forms;
 		tool.forms = [];
-	}	 
-	
+	}
+
 	jQuery("#pfgqedit").hide();
 	// hide the error messages
 	jQuery(".error").hide();
@@ -27,10 +27,10 @@ pfgQEdit.qedit = function (e) {
 	jQuery("#pfgWidgetWrapper").fadeIn();
 
 	jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
-	
+
     // var chillen = jQuery('.PFGFieldsetWidget').children();
     //     chillen.unwrap();
-	
+
 	// disable and dim input elements
 	blurrable = jQuery("#pfg-fieldwrapper .field :input");
 	blurrable.each(function () {
@@ -55,11 +55,11 @@ pfgQEdit.qedit = function (e) {
     // We need the required markers outside the label
     jQuery("div.field label span.required").each(function () {
         var jqt = jQuery(this);
-        
+
         jqt.parent().after(jqt.detach());
     });
 
-    $("#allWidgets").tabs(".widgetPane", {tabs:"h2",effect:'slide'});
+    jQuery("#allWidgets").tabs(".widgetPane", {tabs:"h2",effect:'slide'});
 
 	pfgWidgets.init();
 };
@@ -73,7 +73,7 @@ jQuery(function ($) {
 	jQuery("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
 		$.post('setThanksPage', {value: this.value});
 	});
-	
+
 	// set up edit and delete popups
 	if ($.fn.prepOverlay) {
 		$('.editHook a[href$=edit]').prepOverlay({
@@ -89,7 +89,7 @@ jQuery(function ($) {
 			formselector: 'form:has(input[value=Delete])',
 			noform: function (athis) {
 				var match;
-	
+
 				// remove the deleted field/action's node
 				match = athis.url.match(/.+\/(.+?)\/delete_confirmation/);
 				if (match) {
@@ -101,7 +101,7 @@ jQuery(function ($) {
 			closeselector: '[name="form.button.Cancel"]'
 		});
 	}
-	
+
 	pfgQEdit.qedit();
 });
 
@@ -114,7 +114,7 @@ jQuery(function ($) {
 				jqt.height(jqt.height()); // workaround for children's height not being able to set using %s
 				jqt.width(jqt.width());	 // the same for width, for the new ui-sortable-helper
 			});
-			
+
 			this.setupSortable("#pfg-qetable");
 			this.setupSortable("#pfgActionEdit");
 
@@ -250,7 +250,7 @@ jQuery(function ($) {
 			// then we attach a new event to label fields
 			$("#pfg-qetable .qefield label.formQuestion").live('dblclick', function (e) {
 				var content, tmpfor, jqt;
-			
+
 				jqt = $(this);
 
 				content = jqt.text();
@@ -264,7 +264,7 @@ jQuery(function ($) {
 
 				$(node).blur(function (e) {
 					var jqt, args;
-				
+
 					jqt = $(this);
 
 					jqt.wrap("<label class='formQuestion' for='" + tmpfor + "'></label>");
@@ -286,13 +286,13 @@ jQuery(function ($) {
 
 		toggleRequired: function () {
 			var target, jqt;
-		
+
 			jqt = $(this);
 			target = $("div.field label").next();
 
 			target.each(function () {
 				var jqt;
-				
+
 				jqt = $(this);
 				if (!jqt.is("span")) {
 					$("<span class='not-required' style='display:inline-block' title='Make it required?'></span>").insertBefore(this);
@@ -303,7 +303,7 @@ jQuery(function ($) {
 
 			$("span.not-required").live("click", function (event) {
 				var item, jqt;
-			
+
 				jqt = $(this);
 				item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
 				$("img.ajax-loader").css('visibility', 'visible');
@@ -406,10 +406,10 @@ jQuery(function ($) {
 						item.before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
 						$("img.ajax-loader").css('visibility', 'visible');
 						item.width($(item).width());
-    					//	$(item).height($(item).height());
+						//	$(item).height($(item).height());
 						// AJAX stuff
 						item.children("div.widget-inside")
-						    .load("createObject?type_name=" + 
+						    .load("createObject?type_name=" +
 						          ui.item.context.id + " #content > div:last",
 						           function (response, status, xhr) {
 							var inputElem, formElem, msg, jqt;
@@ -483,10 +483,10 @@ jQuery(function ($) {
 						currpos = $(".item_" + i).parent().index();
 
 						$("#pfg-qetable [name='form.button.save'], #pfgActionEdit [name='form.button.save']").live('click', function (e) {
-							var button = $(this);
-							var formParent = $(this).closest('form');
-							var formAction = formParent.attr('action');
-							var values = {};
+							var button = $(this),
+                                formParent = $(this).closest('form'),
+                                formAction = formParent.attr('action'),
+                                values = {};
 							// json like structure, storing names and values of the form fields
 							$.each($(formParent).serializeArray(), function (i, field) {
 								values[field.name] = field.value;
@@ -494,22 +494,24 @@ jQuery(function ($) {
 							$.ajax({
 								type: "POST",
 								url: formAction,
-								data: values,  
+								data: values,
 								async: false,
 								success: function () {
 									//we have to calculate the position where the field
-									//was dropped 
-									var itemPos = pfgWidgets.getPos($('.new-widget'));
-									var formFields = $('#pfg-qetable .qefield:not(.new-widget) .field, #pfg-qetable .PFGFieldsetWidget');
+									//was dropped
+									var itemPos = pfgWidgets.getPos($('.new-widget')),
+                                        formFields = $('#pfg-qetable .qefield:not(.new-widget) .field, #pfg-qetable .PFGFieldsetWidget'),
+                                        targetElement,
+                                        targetId,
+                                        itemId,
+                                        widgetParent;
 									if (formFields.length !== itemPos) {
-										var targetElement = formFields[itemPos];
-										var targetId;
+										targetElement = formFields[itemPos];
 										if ($(targetElement).hasClass('PFGFieldsetWidget') === true) {
 											targetId = $(targetElement).attr('id').substr('pfg-fieldsetname-'.length);
 										} else {
 											targetId = $(targetElement).attr('id').substr('archetypes-fieldname-'.length);
 										}
-										var itemId;
 										$.ajax({
 											url: 'lastFieldIdFromForm',
 											async: false,
@@ -520,12 +522,12 @@ jQuery(function ($) {
 										});
 									}
 
-									var widgetParent = button.parents("div.qefield");
+									widgetParent = button.parents("div.qefield");
 									widgetParent.find("div.widget-inside").slideUp('fast', function () {
 										location.reload();
-									});								   
+									});
 								}
-							});	 
+							});
 							e.preventDefault();
 							return false;
 						});
@@ -597,7 +599,6 @@ jQuery(function ($) {
 						*/
 						return;
 					}
-					return;
 				},
 				over: function (e, ui) {
 					if (ui.helper.hasClass("widget") && (!ui.helper.hasClass("w-field") && !ui.helper.hasClass("w-action"))) {
