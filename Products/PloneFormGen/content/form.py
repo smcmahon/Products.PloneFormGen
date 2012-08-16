@@ -1028,7 +1028,7 @@ class FormFolder(ATFolder):
 
 
     security.declareProtected(ModifyPortalContent, 'reorderField')
-   
+
     def reorderField(self, item_id, target_id, **kw):
         """ move item to target"""
 
@@ -1045,26 +1045,26 @@ class FormFolder(ATFolder):
     def updateFieldTitle(self, item_id, title, **kw):
         """ update item's title"""
         self[item_id].setTitle(title)
-        
+
         return "<done />"
 
     security.declareProtected(ModifyPortalContent, 'toggleRequired')
 
     def toggleRequired(self, item_id, **kw):
       """ toggle required Field attribute """
-      
+
       field = self[item_id].fgField
       field.required = not field.required
-        
+
       return "<done />"
 
     security.declareProtected(ModifyPortalContent, 'toggleRequired')
 
     def removeFieldFromForm(self, item_id, **kw):
       """ remove field on the fly from the form"""
-      
+
       self.manage_delObjects([item_id])
-    
+
       return "<done />"
 
     security.declareProtected(ModifyPortalContent, 'lastFieldIdFromForm')
@@ -1072,14 +1072,14 @@ class FormFolder(ATFolder):
         """ Retrieve the last field id in the current form"""
 
         lastField = ''
-        myFields = []        
+        myFields = []
         for field in self.objectValues():
             if shasattr(field, 'fgField') or shasattr(field, 'fieldsetFields'):
                 myFields.append(field)
 
         if myFields:
             lastField = myFields[-1].id
-        return lastField      
-    
-        
+        return lastField
+
+
 registerATCT(FormFolder, PROJECTNAME)
