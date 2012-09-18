@@ -135,7 +135,7 @@
                 </tal:typelist>
               </div>
 
-              <h2 i18n:translate="Fields" class="fields-header">More Fields</h2>
+              <h2 i18n:translate="More Fields" class="fields-header">More Fields</h2>
               <div id="fieldWidgets" class="widgetPane">
                 <tal:typelist repeat="item python:view.addablePrioritizedFields()[8:]">
                     <tal:block tal:define="set item/id">

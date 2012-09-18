@@ -325,7 +325,10 @@ class FGBooleanField(BaseFormField):
             required=0,
             widget=BooleanWidget(
                 label=_(u'label_fgdefault_text', default=u'Default'),
-                description=_(u'help_fgdefault_text', default=u''),
+                description=_(u'help_fgdefault_text', default=u"""
+                The value the field should contain when the form is first displayed.
+                Note that this may be overridden dynamically.
+            """),
                 ),
         ),
         StringField('fgBooleanValidator',
@@ -934,7 +937,7 @@ class FGTextField(BaseFormField):
             default=False,
             widget=BooleanWidget(
                 label=_(u'label_validate_link_spam_text', default=u"Reject Text with Links?"),
-                description=_(u'help_fgmsformat_text', default=u"""Useful for stopping spam"""),
+                description=_(u'help_validate_link_spam_text', default=u"""Useful for stopping spam"""),
                 ),
             ),
         ))
