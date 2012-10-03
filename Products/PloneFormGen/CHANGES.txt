@@ -4,7 +4,9 @@ Change History
 1.6.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Do not explicitly set the MIME-Version as this would lead to a
+  duplicate header, which can give problems with some mail servers.
+  [maurits]
 
 
 1.6.7 (2013-05-29)
