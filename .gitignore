@@ -4,9 +4,9 @@
 *.tar.gz
 .installed.cfg
 .mr.developer.cfg
+bin
 build
 develop-eggs
-dist
 dist
 downloads
 eggs
