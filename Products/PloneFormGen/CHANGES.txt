@@ -4,6 +4,9 @@ Change History
 1.7.3 Unreleased
 ----------------
 
+- Get encryption working with Python 2.6.
+  [smcmahon]
+
 - Do not explicitly set the MIME-Version as this would lead to a
   duplicate header, which can give problems with some mail servers.
   [maurits]
