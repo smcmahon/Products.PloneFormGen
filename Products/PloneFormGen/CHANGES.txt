@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.7.4 Unreleased
+----------------
+
+- Clean up encryption error handling.
+  [smcmahon]
+
 1.7.3 2012-10-23
 ----------------
 
