@@ -87,8 +87,6 @@ class gpg_subprocess:
         # the file objects for communicating with it.
         # cmd = self.gpg_binary + ' --yes --status-fd 2 ' + string.join(args)
         cmd = str(self.gpg_binary + ' --batch --yes --trust-model always --no-secmem-warning ' + " ".join(args))
-        #migrate from popen2 to subprocess following
-        #http://docs.python.org/library/subprocess.html#replacing-functions-from-the-popen2-module
         PIPE = subprocess.PIPE
         p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
         child_stdout, child_stdin, child_stderr = (p.stdout, p.stdin, p.stderr)
@@ -97,22 +95,19 @@ class gpg_subprocess:
     def encrypt(self, data, recipient_key_id):
         "Encrypt the message contained in the string 'data'"
 
-        # get communication objects
-        child_stdout, child_stdin, child_stderr = \
-            self._open_subprocess('--encrypt',
-                '-a',
-                '-r ' + recipient_key_id)
+        PIPE = subprocess.PIPE
+        cmd = '%s --batch --yes --trust-model always --no-secmem-warning --encrypt -a -r %s' % (self.gpg_binary, recipient_key_id)
+        p = subprocess.Popen(str(cmd), stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
 
         # feed data
-        child_stdin.write(data)
-        child_stdin.close()
+        p.stdin.write(data)
+        p.stdin.close()
 
-        error = child_stderr.read()
-        if error:
-            raise GPGError, error.replace('\n', '; ')
+        if p.returncode:
+            raise GPGError, p.stderr.read().replace('\n', '; ')
 
         # get response
-        datagpg = child_stdout.read()
+        datagpg = p.stdout.read()
 
         return datagpg
 
@@ -125,7 +120,7 @@ except IOError:
 
 if __name__ == '__main__':
     if gpg:
-        data = gpg.encrypt('BLABLA', 'steve')
+        data = gpg.encrypt('BLABLA', 'steve@...')
         print data
     else:
         print "gpg not available"
