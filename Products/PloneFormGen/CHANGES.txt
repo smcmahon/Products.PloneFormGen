@@ -4,6 +4,10 @@ Change History
 1.7.4 Unreleased
 ----------------
 
+- Add a browser view for encryption so that it may be used a bit
+  more generally.
+  [smcmahon]
+
 - Clean up encryption error handling.
   [smcmahon]
 
