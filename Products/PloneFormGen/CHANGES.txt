@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.4 Unreleased
+1.7.4 2012-11-04
 ----------------
 
 - Add a browser view for encryption so that it may be used a bit
