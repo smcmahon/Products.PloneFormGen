@@ -2,7 +2,10 @@ import logging
 
 from Acquisition import aq_parent, aq_inner
 from zope.component import adapter
-from zope.app.container.interfaces import IObjectAddedEvent
+try:
+    from zope.lifecycleevent.interfaces import IObjectAddedEvent
+except ImportError:  # bbb
+    from zope.app.container.interfaces import IObjectAddedEvent
 
 from Products.CMFPlone.interfaces import IFactoryTool
 
