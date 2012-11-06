@@ -51,14 +51,14 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     schema = FormAdapterSchema.copy() + Schema((
         LinesField('ShowFields',
-            required=1,
+            required=0,
             searchable=0,
             vocabulary='allFieldDisplayList',
             widget=PicklistWidget(
                 label=_(u'label_savefields_text', default=u"Saved Fields"),
                 description=_(u'help_savefields_text', default=u"""
                     Pick the fields whose inputs you'd like to include in
-                    the saved data.
+                    the saved data. If empty, all fields will be saved.
                     """),
                 ),
             ),
@@ -312,7 +312,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         data = []
         for f in fields:
-            if f.id not in self.ShowFields:
+            if self.ShowFields and f.id not in self.ShowFields:
                 continue
             if f.isFileField():
                 file = REQUEST.form.get('%s_file' % f.fgField.getName())
@@ -359,7 +359,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         """Returns a list of column names"""
         
         names = [field.getName() for field in self.fgFields(displayOnly=True)
-                 if field.getName() in self.ShowFields]
+                 if not self.ShowFields or field.getName() in self.ShowFields]
         for f in self.ExtraData:
             names.append(f)
         
