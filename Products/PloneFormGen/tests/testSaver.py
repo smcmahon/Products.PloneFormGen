@@ -296,6 +296,14 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( cn[0] == 'replyto')
         self.failUnless( cn[1] == 'topic')
         self.failUnless( cn[2] == 'comments')
+
+        # Use selective field saving
+        saver.setShowFields(('topic', 'comments'))
+        cn = saver.getColumnNames()
+        self.failUnless( len(cn) == 2 )
+        self.failUnless( cn[0] == 'topic')
+        self.failUnless( cn[1] == 'comments')
+        saver.setShowFields(())
         
         # Add an extra column
         saver.ExtraData = ('dt',)
@@ -338,6 +346,28 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( len(cn) == 4 )
         self.failUnless( cn[3] == 'Posting Date/Time' )
 
+
+    def testSaverSelectiveFieldSaving(self):
+        """ Test selective inclusion of fields in the data"""
+
+        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
+
+        self.failUnless('saver' in self.ff1.objectIds())
+        saver = self.ff1.saver
+        saver.setShowFields(('topic', 'comments'))
+        
+        self.ff1.setActionAdapter( ('saver',) )
+
+        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        errors = self.ff1.fgvalidate(REQUEST=request)
+        self.assertEqual( errors, {} )
+        
+        self.assertEqual(saver.itemsSaved(), 1)
+        row = iter(saver.getSavedFormInput()).next()
+        self.assertEqual(len(row), 2)
+        self.assertEqual(row[0], 'test subject')
+        self.assertEqual(row[1], 'test comments')
+        
 
     def testCSRF(self):
         """ test CSRF check on data clear """
