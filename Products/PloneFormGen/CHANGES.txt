@@ -4,6 +4,10 @@ Change History
 1.7.4 Unreleased
 ----------------
 
+- Add field selection to save data adapter so that some fields can
+  be ommitted if desired, like in the email adapter.
+  [cguardia]
+
 - Clean up encryption error handling.
   [smcmahon]
 
