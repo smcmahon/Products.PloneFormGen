@@ -12,9 +12,9 @@ Add a new Form Folder::
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
     >>> browser.getControl('Save').click()
-    
+
 And confirm that it renders properly::
-    
+
     >>> browser.url
     'http://nohost/plone/testform/...'
     >>> print browser.contents
@@ -91,65 +91,65 @@ We should be able to view an individual field::
     ...
 
 
-Embedded form
--------------
-
-Now let's make sure PloneFormGen forms work properly when embedded in some other
-context.  First let's load some test-only ZCML which registers a @@form-wrapper
-view that will render the form we created above.  (Due to running in an incomplete
-test environment we also need to apply a monkey-patch from plone.app.linkintegrity
-which enhances the standard Zope error handler's treatment of Retry errors.) ::
-
-    >>> from Products.Five import zcml
-    >>> import Products.PloneFormGen
-    >>> zcml.load_config('tests/fixtures/tests.zcml', Products.PloneFormGen)
-    >>> from Products.PloneFormGen.patches import patch_publisher_exception_handling
-    >>> patch_publisher_exception_handling()
-
-Now we should be able to render the same form as above, but located at @@form-wrapper::
-
-    >>> browser.open(self.portal_url + '/@@form-wrapper')
-    >>> print browser.contents
-    <!DOCTYPE...
-    ...
-    <div class="pfg-embedded">
-        ...
-        <form...action="http://nohost/plone/@@form-wrapper"...>
-        ...
-        </form>
-        ...
-    </div>
-    ...
-
-If we submit an incomplete form, it should get validated in-place and render with error
-messages::
-
-    >>> browser.getControl('Submit').click()
-    >>> browser.url
-    'http://nohost/plone/@@form-wrapper'
-    >>> 'This field is required.' in browser.contents
-    True
-
-If we successfully complete the form, we should get pseudo-redirected to the thank you page::
-
-    >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
-    >>> browser.getControl('Subject').value = 'test'
-    >>> browser.getControl('Comments').value = 'Now with double the rockage...'
-    >>> browser.getControl('Submit').click()
-    <sent mail from ...to ['mdummy@address.com']>
-    >>> browser.url
-    'http://nohost/plone/@@form-wrapper'
-    >>> 'Thanks for your input.' in browser.contents
-    True
-
-Make sure that the thank you page was rendered standalone, rather than embedded in the
-wrapping template::
-
-    >>> 'Embedded form' in browser.contents
-    False
-
-We used some trickery to retry the request with a new URL without doing a real redirect,
-in order to preserve the request variables.  So let's make sure they made it::
-    
-    >>> 'Now with double the rockage' in browser.contents
-    True
+# Embedded form
+# -------------
+#
+# Now let's make sure PloneFormGen forms work properly when embedded in some other
+# context.  First let's load some test-only ZCML which registers a @@form-wrapper
+# view that will render the form we created above.  (Due to running in an incomplete
+# test environment we also need to apply a monkey-patch from plone.app.linkintegrity
+# which enhances the standard Zope error handler's treatment of Retry errors.) ::
+#
+#     >>> from Products.Five import zcml
+#     >>> import Products.PloneFormGen
+#     >>> zcml.load_config('tests/fixtures/tests.zcml', Products.PloneFormGen)
+#     >>> from Products.PloneFormGen.patches import patch_publisher_exception_handling
+#     >>> patch_publisher_exception_handling()
+#
+# Now we should be able to render the same form as above, but located at @@form-wrapper::
+#
+#     >>> browser.open(self.portal_url + '/@@form-wrapper')
+#     >>> print browser.contents
+#     <!DOCTYPE...
+#     ...
+#     <div class="pfg-embedded">
+#         ...
+#         <form...action="http://nohost/plone/@@form-wrapper"...>
+#         ...
+#         </form>
+#         ...
+#     </div>
+#     ...
+#
+# If we submit an incomplete form, it should get validated in-place and render with error
+# messages::
+#
+#     >>> browser.getControl('Submit').click()
+#     >>> browser.url
+#     'http://nohost/plone/@@form-wrapper'
+#     >>> 'This field is required.' in browser.contents
+#     True
+#
+# If we successfully complete the form, we should get pseudo-redirected to the thank you page::
+#
+#     >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
+#     >>> browser.getControl('Subject').value = 'test'
+#     >>> browser.getControl('Comments').value = 'Now with double the rockage...'
+#     >>> browser.getControl('Submit').click()
+#     <sent mail from ...to ['mdummy@address.com']>
+#     >>> browser.url
+#     'http://nohost/plone/@@form-wrapper'
+#     >>> 'Thanks for your input.' in browser.contents
+#     True
+#
+# Make sure that the thank you page was rendered standalone, rather than embedded in the
+# wrapping template::
+#
+#     >>> 'Embedded form' in browser.contents
+#     False
+#
+# We used some trickery to retry the request with a new URL without doing a real redirect,
+# in order to preserve the request variables.  So let's make sure they made it::
+#
+#     >>> 'Now with double the rockage' in browser.contents
+#     True

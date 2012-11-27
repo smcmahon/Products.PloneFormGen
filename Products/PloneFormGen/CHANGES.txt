@@ -1,6 +1,27 @@
 Change History
 ==============
 
+1.7.4 2012-11-04
+----------------
+
+- Add a browser view for encryption so that it may be used a bit
+  more generally.
+  [smcmahon]
+
+- Clean up encryption error handling.
+  [smcmahon]
+
+1.7.3 2012-10-23
+----------------
+
+- Get encryption working with Python 2.6.
+  [smcmahon]
+
+- Do not explicitly set the MIME-Version as this would lead to a
+  duplicate header, which can give problems with some mail servers.
+  [maurits]
+
+
 1.7.2 2012-08-16
 ----------------
 

@@ -75,10 +75,9 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.failUnless('PloneFormGen' in self.skins.objectIds())
 
     def testSkinLayersInSkinPath(self):
-        pfg_layers = self.skins['selections']
-
-        for skin_name, path in pfg_layers.items():
-            self.failUnless('PloneFormGen' in path.split(','))
+        pfg_layers = self.skins['PloneFormGen']
+        for skin_name, obj in pfg_layers.items():
+            self.failUnless('PloneFormGen' in obj.getPhysicalPath())
 
     def testKssRegsitry(self):
         if 'portal_kss' in self.portal.objectIds():
