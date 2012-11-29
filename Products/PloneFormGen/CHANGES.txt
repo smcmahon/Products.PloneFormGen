@@ -1,6 +1,11 @@
 Change History
 ==============
 
+unreleased
+
+- Fix FileField compatibility with latest Archetypes [do3cc]
+
+
 1.7.4 2012-11-04
 ----------------
 
