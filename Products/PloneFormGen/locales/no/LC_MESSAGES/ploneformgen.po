@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 1.6\n"
-"POT-Creation-Date: 2012-11-08 09:52+0000\n"
+"POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2011-02-03 08:56+0100\n"
 "Last-Translator: Tormod Mansaker <tormod@jarn.com>\n"
 "Language-Team: Jarn\n"
@@ -70,6 +70,10 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
+#: ./browser/quickedit.py:66
+msgid "Begin a fieldset"
+msgstr ""
+
 #. Default: "Boolean (checkbox) field"
 #: ./profiles/default/types/FormBooleanField.xml
 msgid "Boolean (checkbox) field"
@@ -105,12 +109,20 @@ msgstr "Dato/Tid registrering"
 msgid "Decimal Number Field"
 msgstr "Desimal felt"
 
-#: ./browser/quickedit.pt:280
-msgid "Edit / Delete"
+#: ./browser/quickedit.pt:262
+msgid "Delete Action"
+msgstr ""
+
+#: ./browser/quickedit.pt:258
+msgid "Edit Field"
 msgstr ""
 
 #: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
+msgstr ""
+
+#: ./browser/quickedit.py:67
+msgid "End a fieldset"
 msgstr ""
 
 #. Default: "End a fieldset (no input component)"
@@ -133,6 +145,7 @@ msgid "Fields"
 msgstr ""
 
 #. Default: "Fieldset End"
+#: ./browser/quickedit.py:67
 #: ./profiles/default/types/FieldsetEnd.xml
 msgid "Fieldset End"
 msgstr ""
@@ -140,6 +153,10 @@ msgstr ""
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
 msgstr "Skjemasamling"
+
+#: ./browser/quickedit.py:66
+msgid "Fieldset Start"
+msgstr ""
 
 #: ./browser/quickedit.pt:154
 msgid "Fieldsets"
@@ -348,8 +365,8 @@ msgstr ""
 msgid "description_ploneformgen_savedata"
 msgstr "Sett standardverdier for data adapter"
 
-#. Default: "\n                    Mark this field as a value to be injected into the\n                    request form for use by action adapters and is not\n                    modifiable by or exposed to the client.\n                "
-#: ./content/fieldsBase.py:258
+#. Default: "Mark this field as a value to be injected into therequest form for use by action adapters and is notmodifiable by or exposed to the client."
+#: ./content/fieldsBase.py:253
 msgid "description_server_side_text"
 msgstr ""
 
@@ -378,7 +395,7 @@ msgstr "PloneFormGen tilganger"
 msgid "heading_ploneformgen_savedata"
 msgstr "PloneFormGen lagre data adapter standardverdier"
 
-#. Default: "\n                A TALES expression that will be called after the form is\n                successfully validated, but before calling an action adapter\n                (if any) or displaying a thanks page.\n                Form input will be in the request.form dictionary.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                to clean up form input or to script an alternative action.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
+#. Default: "A TALES expression that will be called after the form issuccessfully validated, but before calling an action adapter(if any) or displaying a thanks page.Form input will be in the request.form dictionary.Leave empty if unneeded.The most common use of this field is to call a python scriptto clean up form input or to script an alternative action.Any value returned by the expression is ignored.PLEASE NOTE: errors in the evaluation of this expression willcause an error on form display."
 #: ./content/form.py:236
 msgid "help_AfterValidationOverride_text"
 msgstr ""
@@ -399,12 +416,12 @@ msgid "help_bcc_override_text"
 msgstr ""
 
 #. Default: "NOTE: For a checkbox field, the required flag doesn't do anything beyond\n           putting a 'required' marker next to the label. If you wish to require a\n           particular input, choose a validator below.\n        "
-#: ./content/fields.py:361
+#: ./content/fields.py:362
 msgid "help_boolrequired_text"
 msgstr ""
 
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
-#: ./content/form.py:279
+#: ./content/form.py:278
 msgid "help_csrf"
 msgstr ""
 
@@ -424,44 +441,44 @@ msgid "help_execcondition_text"
 msgstr ""
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is unchecked."
-#: ./content/fields.py:356
+#: ./content/fields.py:357
 msgid "help_fgbooleanfalsestring_text"
 msgstr ""
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
-#: ./content/fields.py:347
+#: ./content/fields.py:346
 msgid "help_fgbooleantruestring_text"
 msgstr ""
 
 #. Default: "Choose a validator to require a particular response."
-#: ./content/fields.py:338
+#: ./content/fields.py:337
 msgid "help_fgbooleanvalidator_text"
 msgstr "Velg en validator for å angi registreringsvalg"
 
-#. Default: "\n                The value the field should contain when the form is first displayed.\n                Note that this may be overridden dynamically.\n            "
+#. Default: "The value the field should contain when the form is first displayed.Note that this may be overridden dynamically."
 #: ./content/fields.py:328
-#: ./content/fieldsBase.py:277
+#: ./content/fieldsBase.py:271
 msgid "help_fgdefault_text"
 msgstr ""
 
 #. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
-#: ./content/fields.py:468
+#: ./content/fields.py:469
 msgid "help_fgendingyear_text"
 msgstr ""
 "Siste år å vise i nedtrekksmenyen.\n"
 "                 La stå tom dersom du istedenfor ønsker å angi antall fremtidige år som skal vises."
 
-#: ./content/fields.py:709
+#: ./content/fields.py:710
 msgid "help_fgformat_text"
 msgstr ""
 
 #. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
-#: ./content/fields.py:478
+#: ./content/fields.py:479
 msgid "help_fgfutureyears_text"
 msgstr ""
 
 #. Default: "\n                    The text to display in the form.\n                "
-#: ./content/fields.py:1109
+#: ./content/fields.py:1110
 msgid "help_fglabelbody_text"
 msgstr ""
 
@@ -478,34 +495,35 @@ msgid "help_fglikert_questions"
 msgstr "Liste av spørsmål; som vil være radene i tabellen."
 
 #. Default: "\n                    The values the field should contain when the form is first displayed.\n                    Use one value per line.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:295
+#: ./content/fieldsBase.py:288
 msgid "help_fglinesdefault_text"
 msgstr ""
 
-#. Default: "\n                    The maximum number of characters the user will be able to input.\n                    Use 0 for no limit.\n                    "
-#: ./content/fieldsBase.py:105
+#. Default: "The maximum number of characters the user will be able to input.Use 0 for no limit."
+#: ./content/fieldsBase.py:104
 msgid "help_fgmaxlength_text"
 msgstr ""
 
-#: ./content/fields.py:806
+#. Default: "Useful for stopping spam"
+#: ./content/fields.py:807
 msgid "help_fgmsformat_text"
 msgstr ""
 
 #. Default: "Input tests using HTMLTidy (if installed)."
-#: ./content/fields.py:1029
+#: ./content/fields.py:1030
 msgid "help_fgrtvalidator_text"
 msgstr ""
 
-#: ./content/fields.py:450
+#: ./content/fields.py:451
 msgid "help_fgshowhm_text"
 msgstr ""
 
 #. Default: "The size of the text-entry box, in characters."
-#: ./content/fieldsBase.py:141
+#: ./content/fieldsBase.py:137
 msgid "help_fgsize_text"
 msgstr ""
 
-#: ./content/fields.py:459
+#: ./content/fields.py:460
 msgid "help_fgstartingyear_text"
 msgstr ""
 
@@ -515,45 +533,45 @@ msgid "help_fgstringvalidator_text"
 msgstr "Sjekker registrerte data mot tekstlinje mønster"
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fields.py:1123
-#: ./content/fieldsBase.py:219
+#: ./content/fields.py:1124
+#: ./content/fieldsBase.py:215
 msgid "help_fgtdefault_text"
 msgstr ""
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to determine whether or not the field is enabled.\n                    Your expression should evaluate as True if\n                    the field should be included in the form, False if it should be omitted.\n                    Leave this expression field empty if unneeded: the field will be included.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:238
+#. Default: "A TALES expression that will be evaluated when the form is displayedto determine whether or not the field is enabled.Your expression should evaluate as True ifthe field should be included in the form, False if it should be omitted.Leave this expression field empty if unneeded: the field will be included.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
+#: ./content/fieldsBase.py:234
 msgid "help_fgtenable_text"
 msgstr ""
 
 #. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
-#: ./content/fieldsBase.py:334
+#: ./content/fieldsBase.py:327
 msgid "help_fgtextdefault_text"
 msgstr ""
 
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fieldsBase.py:311
+#: ./content/fieldsBase.py:304
 msgid "help_fgtlinesdefault_text"
 msgstr ""
 
-#. Default: "\n                    A TALES expression that will be evaluated when the form is validated.\n                    Validate against 'value', which will contain the field input.\n                    Return False if valid; if not valid return a string error message.\n                    E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" will\n                    require \"eggs\" for input.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
+#. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
 msgstr ""
 
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/fieldsBase.py:169
+#: ./content/fieldsBase.py:165
 msgid "help_fgtvocabulary_text"
 msgstr ""
 
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
-#: ./content/fieldsBase.py:151
+#: ./content/fieldsBase.py:147
 msgid "help_fgvocabulary_text"
 msgstr ""
 "Bruk en linje per valgmulighet.\n"
 " Merk at dette kan bli overstyrt dynamisk"
 
 #. Default: "Set to 0 for no limit."
-#: ./content/fields.py:1198
+#: ./content/fields.py:1199
 msgid "help_filemaxmb_text"
 msgstr "Velg 0 for ingen begrensning."
 
@@ -648,7 +666,7 @@ msgid "help_gpg_key_id"
 msgstr ""
 
 #. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
-#: ./content/form.py:261
+#: ./content/form.py:260
 msgid "help_headerInjection_text"
 msgstr ""
 
@@ -688,7 +706,7 @@ msgid "help_nosubmit_text"
 msgstr ""
 
 #. Default: "Not displayed on form."
-#: ./content/fields.py:1136
+#: ./content/fields.py:1137
 msgid "help_notdisplayed_text"
 msgstr "Tekst som ikke vises på skjema"
 
@@ -707,7 +725,7 @@ msgstr "Denne teksten vil bli vist over skjema feltene"
 msgid "help_recipient_override_text"
 msgstr ""
 
-#: ./content/fieldsBase.py:96
+#: ./content/fieldsBase.py:95
 msgid "help_rows_text"
 msgstr ""
 
@@ -749,7 +767,7 @@ msgstr ""
 msgid "help_showfields_text"
 msgstr "Velg feltene der data skal vises"
 
-#: ./content/fields.py:1320
+#: ./content/fields.py:1321
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr ""
@@ -833,7 +851,7 @@ msgid "label_click_to_get_input"
 msgstr "Klikk her for å hente lagret data"
 
 #. Default: "CSRF Protection"
-#: ./content/form.py:278
+#: ./content/form.py:277
 msgid "label_csrf"
 msgstr "CSFR beskyttelse"
 
@@ -853,43 +871,43 @@ msgid "label_execcondition_text"
 msgstr ""
 
 #. Default: "False Display String"
-#: ./content/fields.py:355
+#: ./content/fields.py:356
 msgid "label_fgbooleanfalsestring_text"
 msgstr "False tekstlinje"
 
 #. Default: "True Display String"
-#: ./content/fields.py:346
+#: ./content/fields.py:345
 msgid "label_fgbooleantruestring_text"
 msgstr "True tekstlinje"
 
 #. Default: "Validator"
-#: ./content/fields.py:337
+#: ./content/fields.py:336
 msgid "label_fgbooleanvalidator_text"
 msgstr "Validator"
 
 #. Default: "Default"
 #: ./content/fields.py:327
-#: ./content/fieldsBase.py:276
+#: ./content/fieldsBase.py:270
 msgid "label_fgdefault_text"
 msgstr "Standard"
 
 #. Default: "Ending Year"
-#: ./content/fields.py:467
+#: ./content/fields.py:468
 msgid "label_fgendingyear_text"
 msgstr "Slutt år"
 
 #. Default: "Presentation Widget"
-#: ./content/fields.py:708
+#: ./content/fields.py:709
 msgid "label_fgformat_text"
 msgstr ""
 
 #. Default: "Future Years To Display"
-#: ./content/fields.py:477
+#: ./content/fields.py:478
 msgid "label_fgfutureyears_text"
 msgstr "Fremtidige år å vise"
 
 #. Default: "Label body"
-#: ./content/fields.py:1108
+#: ./content/fields.py:1109
 msgid "label_fglabelbody_text"
 msgstr "Tittel tekst"
 
@@ -904,32 +922,32 @@ msgid "label_fglikert_questions"
 msgstr "Spørsmål"
 
 #. Default: "Default"
-#: ./content/fieldsBase.py:294
+#: ./content/fieldsBase.py:287
 msgid "label_fglinesdefault_text"
 msgstr ""
 
 #. Default: "Max Length"
-#: ./content/fieldsBase.py:104
+#: ./content/fieldsBase.py:103
 msgid "label_fgmaxlength_text"
 msgstr ""
 
 #. Default: "Presentation Widget"
-#: ./content/fields.py:805
+#: ./content/fields.py:806
 msgid "label_fgmsformat_text"
 msgstr ""
 
 #. Default: "Show Time Selection Options"
-#: ./content/fields.py:449
+#: ./content/fields.py:450
 msgid "label_fgshowhm_text"
 msgstr "Vis tid"
 
 #. Default: "Size"
-#: ./content/fieldsBase.py:140
+#: ./content/fieldsBase.py:136
 msgid "label_fgsize_text"
 msgstr "Størrelse"
 
 #. Default: "Starting Year"
-#: ./content/fields.py:458
+#: ./content/fields.py:459
 msgid "label_fgstartingyear_text"
 msgstr "Start år"
 
@@ -939,23 +957,23 @@ msgid "label_fgstringvalidator_text"
 msgstr "Validator"
 
 #. Default: "Default Expression"
-#: ./content/fields.py:1122
-#: ./content/fieldsBase.py:217
+#: ./content/fields.py:1123
+#: ./content/fieldsBase.py:213
 msgid "label_fgtdefault_text"
 msgstr ""
 
 #. Default: "Enabling Expression"
-#: ./content/fieldsBase.py:237
+#: ./content/fieldsBase.py:233
 msgid "label_fgtenable_text"
 msgstr ""
 
 #. Default: "Default"
-#: ./content/fieldsBase.py:333
+#: ./content/fieldsBase.py:326
 msgid "label_fgtextdefault_text"
 msgstr ""
 
 #. Default: "Default Expression"
-#: ./content/fieldsBase.py:310
+#: ./content/fieldsBase.py:303
 msgid "label_fgtlinesdefault_text"
 msgstr "Standard formel"
 
@@ -965,22 +983,22 @@ msgid "label_fgtvalidator_text"
 msgstr ""
 
 #. Default: "Options Vocabulary"
-#: ./content/fieldsBase.py:167
+#: ./content/fieldsBase.py:163
 msgid "label_fgtvocabulary_text"
 msgstr ""
 
 #. Default: "Options"
-#: ./content/fieldsBase.py:149
+#: ./content/fieldsBase.py:145
 msgid "label_fgvocabulary_text"
 msgstr "Valg"
 
 #. Default: "Field Help"
-#: ./content/fieldsBase.py:187
+#: ./content/fieldsBase.py:183
 msgid "label_fieldhelp_text"
 msgstr "Felt hjelp"
 
 #. Default: "Field Label"
-#: ./content/fieldsBase.py:185
+#: ./content/fieldsBase.py:181
 msgid "label_fieldlabel_text"
 msgstr "Felt tittel"
 
@@ -990,7 +1008,7 @@ msgid "label_fieldsethelp_text"
 msgstr ""
 
 #. Default: "Maximum Upload Size (Megabytes)"
-#: ./content/fields.py:1197
+#: ./content/fields.py:1198
 msgid "label_filemaxmb_text"
 msgstr ""
 
@@ -1081,12 +1099,12 @@ msgid "label_gpg_key_id"
 msgstr ""
 
 #. Default: "Header Injection"
-#: ./content/form.py:259
+#: ./content/form.py:258
 msgid "label_headerInjection_text"
 msgstr ""
 
 #. Default: "Hidden"
-#: ./content/fieldsBase.py:207
+#: ./content/fieldsBase.py:203
 msgid "label_hidden_text"
 msgstr "Skjult"
 
@@ -1201,7 +1219,7 @@ msgid "label_recipient_override_text"
 msgstr ""
 
 #. Default: "Required"
-#: ./content/fieldsBase.py:199
+#: ./content/fieldsBase.py:195
 msgid "label_required_text"
 msgstr "Påkrevd"
 
@@ -1211,7 +1229,7 @@ msgid "label_reset_button"
 msgstr "Nullstill knapp tittel"
 
 #. Default: "Rows"
-#: ./content/fieldsBase.py:95
+#: ./content/fieldsBase.py:94
 msgid "label_rows_text"
 msgstr "Rader"
 
@@ -1241,7 +1259,7 @@ msgid "label_sender_override_text"
 msgstr ""
 
 #. Default: "Server-Side Variable"
-#: ./content/fieldsBase.py:257
+#: ./content/fieldsBase.py:252
 msgid "label_server_side_text"
 msgstr ""
 
@@ -1261,7 +1279,7 @@ msgid "label_showfields_text"
 msgstr "Vis respons"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1319
+#: ./content/fields.py:1320
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr "Vis tittel som overskrift"
@@ -1297,7 +1315,7 @@ msgid "label_thanksprologue_text"
 msgstr "Tusen takk prolog"
 
 #. Default: "Title"
-#: ./content/fields.py:1135
+#: ./content/fields.py:1136
 msgid "label_title"
 msgstr "Tittel"
 
@@ -1307,7 +1325,7 @@ msgid "label_usecolumnnames_text"
 msgstr "Inkludere kolonne navn"
 
 #. Default: "Reject Text with Links?"
-#: ./content/fields.py:939
+#: ./content/fields.py:940
 msgid "label_validate_link_spam_text"
 msgstr "Avvis tekst med lenker?"
 
@@ -1319,6 +1337,11 @@ msgstr "HTTP overskrift"
 #. Default: "Less fields..."
 #: ./browser/jsvariables.py:22
 msgid "less_fields_msg"
+msgstr ""
+
+#. Default: "More Fields"
+#: ./browser/quickedit.pt:138
+msgid "more-fields"
 msgstr ""
 
 #. Default: "More fields..."
@@ -1342,17 +1365,17 @@ msgid "pfg_allRequired"
 msgstr "Alle spørsmålene må besvares."
 
 #. Default: "Comments"
-#: ./content/form.py:888
+#: ./content/form.py:887
 msgid "pfg_commentsfield_title"
 msgstr "Kommentarer"
 
 #. Default: "Reset"
-#: ./content/form.py:817
+#: ./content/form.py:816
 msgid "pfg_formfolder_reset"
 msgstr "Nullstill"
 
 #. Default: "Submit"
-#: ./content/form.py:816
+#: ./content/form.py:815
 msgid "pfg_formfolder_submit"
 msgstr "Send"
 
@@ -1417,12 +1440,12 @@ msgid "pfg_isnotlinkspam"
 msgstr "Denne teksten ser ut til å inneholde lenker"
 
 #. Default: "E-Mails Form Input"
-#: ./content/form.py:836
+#: ./content/form.py:835
 msgid "pfg_mailer_description"
 msgstr "E-mails skjema"
 
 #. Default: "Mailer"
-#: ./content/form.py:832
+#: ./content/form.py:831
 msgid "pfg_mailer_title"
 msgstr ""
 
@@ -1442,7 +1465,7 @@ msgid "pfg_number_too_small"
 msgstr "'${value}' er for kort. Må være minst ${min}."
 
 #. Default: "Your E-Mail Address"
-#: ./content/form.py:853
+#: ./content/form.py:852
 msgid "pfg_replytofield_title"
 msgstr "Din e-mail adresse"
 
@@ -1452,12 +1475,12 @@ msgid "pfg_thankspage_nosubmitmessage"
 msgstr ""
 
 #. Default: "Thanks for your input."
-#: ./content/form.py:903
+#: ./content/form.py:902
 msgid "pfg_thankyou_description"
 msgstr "Takk for din registrering"
 
 #. Default: "Thank You"
-#: ./content/form.py:901
+#: ./content/form.py:900
 msgid "pfg_thankyou_title"
 msgstr "Tusen takk"
 
@@ -1467,7 +1490,7 @@ msgid "pfg_too_long"
 msgstr "Registrering er for lang. Kan ikke være mer enn ${max} karakterer."
 
 #. Default: "Subject"
-#: ./content/form.py:872
+#: ./content/form.py:871
 msgid "pfg_topicfield_title"
 msgstr "Subjekt"
 
@@ -1477,48 +1500,48 @@ msgid "plain_text"
 msgstr "Vanlig tekst"
 
 #. Default: "Checkbox list"
-#: ./content/fields.py:872
+#: ./content/fields.py:873
 msgid "vocabulary_checkbox_text"
 msgstr "Sjekkboks"
 
 #. Default: "Flexible (radio for short, select for longer)"
-#: ./content/fields.py:758
+#: ./content/fields.py:759
 msgid "vocabulary_flex_text"
 msgstr "Fleksible (radio for korte, valg for lengre)"
 
 #. Default: "Is checked"
-#: ./content/fields.py:413
+#: ./content/fields.py:414
 msgid "vocabulary_ischecked_text"
 msgstr "Avkrysset"
 
 #. Default: "Is not checked"
-#: ./content/fields.py:416
+#: ./content/fields.py:417
 msgid "vocabulary_isnotchecked_text"
 msgstr "Er ikke avkrysset"
 
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
-#: ./content/fields.py:1078
+#: ./content/fields.py:1079
 msgid "vocabulary_istidyhtml_text"
 msgstr ""
 
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
-#: ./content/fields.py:1081
+#: ./content/fields.py:1082
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr ""
 
 #. Default: "None"
-#: ./content/fields.py:410
-#: ./content/form.py:723
+#: ./content/fields.py:411
+#: ./content/form.py:722
 msgid "vocabulary_none_text"
 msgstr "Ingen"
 
 #. Default: "Radio buttons"
-#: ./content/fields.py:764
+#: ./content/fields.py:765
 msgid "vocabulary_radio_text"
 msgstr "Radio knapper"
 
 #. Default: "Selection list"
-#: ./content/fields.py:761
+#: ./content/fields.py:762
 msgid "vocabulary_selection_text"
 msgstr "Valg liste"
 

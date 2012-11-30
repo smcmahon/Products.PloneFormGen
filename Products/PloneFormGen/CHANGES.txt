@@ -1,7 +1,11 @@
 Change History
 ==============
 
-unreleased
+1.7.5 (unreleased)
+------------------
+
+- I18n support updated, added some missing strings, Italian translation updated
+  [giacomos]
 
 - Change some i18n strings not to have duplicates, regenerated po files and
   basque translation. [erral]
