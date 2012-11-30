@@ -3,6 +3,11 @@ Change History
 
 unreleased
 
+- Change some i18n strings not to have duplicates, regenerated po files and
+  basque translation. [erral]
+
+- 4.3 import compatability fix. [tomgross]
+
 - Fix FileField compatibility with latest Archetypes [do3cc]
 
 
