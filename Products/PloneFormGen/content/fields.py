@@ -1258,6 +1258,18 @@ class FGFileField(BaseFormField):
 
         return self.fgField.getName() + '_file'
 
+    # some File methods to make the FGFileField behave like a file object
+    # this solves an issue with Archetype trying to read the file and 
+    # determine the mime type
+
+    def seek(self, offset, whence=None):
+        return
+
+    def read(self, size=None):
+        return ''
+
+    def tell(self):
+        return 0
 
 registerATCT(FGFileField, PROJECTNAME)
 
