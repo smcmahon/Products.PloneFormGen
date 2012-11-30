@@ -1,4 +1,8 @@
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+try:
+    from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
+except ImportError:  # BBB
+    from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+
 from collective.googleanalytics.tracking import AnalyticsBaseTrackingPlugin
 from Products.PloneFormGen.interfaces import IPloneFormGenForm, \
     IPloneFormGenThanksPage
