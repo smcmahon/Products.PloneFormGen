@@ -291,7 +291,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
             default=u"""Set the mime-type of the mail-body.
             Change this setting only if you know exactly what you are doing.
             Leave it blank for default behaviour."""),
-            label=_(u'label_formmailer_body_type', default=u'Mail-Body Type'),
+            label = _(u'label_formmailer_body_type', default=u'Mail Format'),
             ),
         ),
     LinesField('xinfo_headers',
