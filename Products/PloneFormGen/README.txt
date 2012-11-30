@@ -1,7 +1,6 @@
 Product home is http://plone.org/products/ploneformgen .
-A documentation area http://plone.org/products/ploneformgen/documentation
-and issue tracker http://plone.org/products/ploneformgen/issues are available
-at this location.
+A documentation area is at http://developer.plone.org/reference_manuals/active/ploneformgen/
+and an issue tracker at https://github.com/smcmahon/Products.PloneFormGen/issues
 
 Please use the Plone users' mailing list or the #plone irc channel for
 support requests. If you are unable to get your questions answered
@@ -11,22 +10,12 @@ McMahon: steve@dcn.org.
 1.7 Notes
 =========
 
-PFG 1.7 is intended for use with Plone 4+. If you're using Plone < 4, PFG 1.6
+PFG 1.7 is intended for use with Plone 4.1+. If you're using Plone < 4.1, PFG 1.6
 will be a better choice.
 
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
 
-PFG 1.7 needs plone.app.jquerytools >= 1.2dev in order to get the jquerytools
-validation suite. (Very nice! Uses HTML5 semantics.)
-
-If you are using Plone 4.0.x, you will need to pin plone.app.jquerytools to use
-a later version than the one specified in the Plone 4.0.x version configuration.
-This is usually done in a versions section at the end of your buildout config
-file. For example::
-
-    [versions]
-    plone.app.jquerytools=1.2b4
 
 Overview
 ========
@@ -52,10 +41,10 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
-Plone: Plone 3.3+
+Plone: Plone 4.1+
 
 Requires PythonField, TALESField and TemplateFields from Jens W.
-Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
+Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/
 (automatically loaded if you install via Python package).
 
 Encryption of e-mail requires the Gnu Privacy Guard, GnuPG, also known
@@ -107,7 +96,7 @@ same powers as scripting or skin editing.
 Javascript/CSS Support for Some Fields
 ======================================
 
-Some fields, like the rich text editor and the calendar widget on the 
+Some fields, like the rich text editor and the calendar widget on the
 date/time field require JS or CSS support that often is not loaded
 for anonymous users. If you wish this support for anon users, you'll
 need to remove the "not: portal/portal_membership/isAnonymousUser"
@@ -160,7 +149,7 @@ Titus Anderson provided the base code for the Ratings-Scale Field.
 Andreas Jung contributed the record-editing feature for the Save Data
 adapter.
 
-Fulvio Casali, Alex Tokar, David Glick, Steve McMahon, Jesse Snyder, 
+Fulvio Casali, Alex Tokar, David Glick, Steve McMahon, Jesse Snyder,
 Michael Dunlap, Paul Bugni, Jon Baldivieso and Andrew Burkhalter all
 did amazing things at the December 2008 PFG sprint sponsored by OneNW.
 Special thanks to David, for the CAPTCHA work, and Andrew for export/

@@ -1,10 +1,10 @@
 Change History
 ==============
 
-1.7.5 (unreleased)
-------------------
+1.7.5 2012-11-30
+----------------
 
-- I18n support updated, added some missing strings, Italian translation updated
+- i18n support updated, added some missing strings, Italian translation updated
   [giacomos]
 
 - Change some i18n strings not to have duplicates, regenerated po files and
