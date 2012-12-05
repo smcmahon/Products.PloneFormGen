@@ -68,7 +68,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         languageIndependent=1,
         widget=BooleanWidget(label=_(u'label_showcancel_text',
                                      default=u'Show Reset Button'),
-            description=_(u'help_showcancel_text'),
+            description=_(u'help_showcancel_text', default=u""),
             ),
         ),
     StringField('resetLabel',
@@ -233,18 +233,17 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         languageIndependent=1,
         widget=StringWidget(label=_(u'label_AfterValidationOverride_text',
                                     default=u"After Validation Script"),
-            description=_(u'help_AfterValidationOverride_text', default=u"""
-                A TALES expression that will be called after the form is
-                successfully validated, but before calling an action adapter
-                (if any) or displaying a thanks page.
-                Form input will be in the request.form dictionary.
-                Leave empty if unneeded.
-                The most common use of this field is to call a python script
-                to clean up form input or to script an alternative action.
-                Any value returned by the expression is ignored.
-                PLEASE NOTE: errors in the evaluation of this expression will
-                cause an error on form display.
-            """),
+            description=_(u'help_AfterValidationOverride_text', default=\
+                u"A TALES expression that will be called after the form is"
+                "successfully validated, but before calling an action adapter"
+                "(if any) or displaying a thanks page."
+                "Form input will be in the request.form dictionary."
+                "Leave empty if unneeded."
+                "The most common use of this field is to call a python script"
+                "to clean up form input or to script an alternative action."
+                "Any value returned by the expression is ignored."
+                "PLEASE NOTE: errors in the evaluation of this expression will"
+                "cause an error on form display."),
             size=70,
             ),
         ),

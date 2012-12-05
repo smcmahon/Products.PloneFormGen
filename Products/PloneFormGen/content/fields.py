@@ -311,7 +311,7 @@ class NRBooleanField(BooleanField):
     """ A boolean field that doesn't enforce required """
 
     def validate_required(self, instance, value, errors):
-        return None  
+        return None
 
 
 class FGBooleanField(BaseFormField):
@@ -325,7 +325,9 @@ class FGBooleanField(BaseFormField):
             required=0,
             widget=BooleanWidget(
                 label=_(u'label_fgdefault_text', default=u'Default'),
-                description=_(u'help_fgdefault_text', default=u''),
+                description=_(u'help_fgdefault_text', default=u"The value the "
+                    "field should contain when the form is first displayed."
+                    "Note that this may be overridden dynamically."),
                 ),
         ),
         StringField('fgBooleanValidator',
@@ -341,7 +343,9 @@ class FGBooleanField(BaseFormField):
             default='1',
             widget=StringWidget(
                 label=_(u'label_fgbooleantruestring_text', default=u"True Display String"),
-                description=_(u'help_fgbooleantruestring_text', default=u"""String to use in thanks page and mail when the field's checkbox is checked."""),
+                description=_(u'help_fgbooleantruestring_text', default=\
+                    u"String to use in thanks page and mail when the field's "
+                    "checkbox is checked."),
                 ),
             ),
         StringField('fgBoolFalseString',
@@ -530,8 +534,8 @@ class FGDateField(BaseFormField):
                 pass
         else:
             self.fgField.widget.starting_year = None
-            self.fgStartingYear = value            
-            
+            self.fgStartingYear = value
+
 
     security.declareProtected(ModifyPortalContent, 'setFgEndingYear')
     def setFgEndingYear(self, value, **kw):
@@ -560,7 +564,7 @@ class FGDateField(BaseFormField):
                 pass
         else:
             self.fgField.widget.future_years = None
-            self.fgFutureYears = value            
+            self.fgFutureYears = value
 
 
     def _toLocalizedTime(self, time, long_format=None):
@@ -601,11 +605,11 @@ class FGDateField(BaseFormField):
         fname = field.getName()
         month = REQUEST.form.get('%s_month'%fname, '01')
         day = REQUEST.form.get('%s_month'%fname, '01')
-        
+
         if (month == '00') and (day == '00'):
             value = ''
             REQUEST.form[fname] = ''
-        
+
         if value and not field.required:
             try:
                 dt = DateTime(value)
@@ -800,7 +804,7 @@ class FGMultiSelectField(BaseFormField):
             vocabulary='formatVocabDL',
             widget=SelectionWidget(
                 label=_(u'label_fgmsformat_text', default=u'Presentation Widget'),
-                description=_(u'help_fgmsformat_text', default=u''),
+                description=_(u'help_fgmsformat_text', default=u"""Useful for stopping spam"""),
                 ),
         ),
     ))
@@ -903,7 +907,7 @@ class PlainTextField(TextField):
     A text field forced text/plain.
     Without this hack, the textarea widget will (by acquisition) call
     the form folder's getContentType method.
-    
+
     Also, the getAllowedContentTypes method override solves a problem
     in Plone 3 where old instances of a text field with None set for
     allowed_content_types were badly handled by the new getAllowedContentTypes
@@ -918,7 +922,7 @@ class PlainTextField(TextField):
 
     security.declarePublic('getAllowedContentTypes')
     def getAllowedContentTypes(self, instance):
-        return 'text/plain'        
+        return 'text/plain'
 
 
 class FGTextField(BaseFormField):
@@ -934,7 +938,7 @@ class FGTextField(BaseFormField):
             default=False,
             widget=BooleanWidget(
                 label=_(u'label_validate_link_spam_text', default=u"Reject Text with Links?"),
-                description=_(u'help_fgmsformat_text', default=u"""Useful for stopping spam"""),
+                description=_(u'help_validate_link_spam_text', default=u"""Useful for stopping spam"""),
                 ),
             ),
         ))
@@ -971,14 +975,14 @@ class FGTextField(BaseFormField):
     security.declareProtected(View, 'getContentType')
     def getContentType(self, key=None):
         return 'text/plain'
-    
+
     def setValidateNoLinkSpam(self, value):
         """
         for BBB, to make sure the validator gets enabled on legacy text fields
         """
         self.fgField.validators = ('isNotTooLong', 'isNotLinkSpam')
         self.fgField._validationLayer()
-        
+
         self.fgField.validate_no_link_spam = value
 
     def getValidateNoLinkSpam(self):
@@ -1258,6 +1262,18 @@ class FGFileField(BaseFormField):
 
         return self.fgField.getName() + '_file'
 
+    # some File methods to make the FGFileField behave like a file object
+    # this solves an issue with Archetype trying to read the file and
+    # determine the mime type
+
+    def seek(self, offset, whence=None):
+        return
+
+    def read(self, size=None):
+        return ''
+
+    def tell(self):
+        return 0
 
 registerATCT(FGFileField, PROJECTNAME)
 
@@ -1266,9 +1282,9 @@ class FGCaptchaField(FGStringField):
 
     meta_type = 'FormCaptchaField'
     content_icon = 'CaptchaField.gif'
-    
+
     schema = BaseFieldSchemaStringDefault.copy()
-    
+
     # some attributes that don't make sense for a CAPTCHA field
     del schema['required']
     del schema['hidden']
@@ -1276,8 +1292,8 @@ class FGCaptchaField(FGStringField):
     schema['fgDefault'].widget.visible = noview
     schema['fgTDefault'].widget.visible = noview
     schema['fgTValidator'].widget.visible = noview
-    schema['serverSide'].widget.visible = noview    
-    
+    schema['serverSide'].widget.visible = noview
+
 
     def __init__(self, oid, **kwargs):
         """ initialize class """
@@ -1292,7 +1308,7 @@ class FGCaptchaField(FGStringField):
             validators = ('isCorrectCaptcha',),
             widget = CaptchaWidget(),
             )
-            
+
 registerATCT(FGCaptchaField, PROJECTNAME)
 
 
@@ -1311,7 +1327,7 @@ class FGFieldsetStart(BaseFormField):
     schema['fgTDefault'].widget.visible = noview
     schema['fgTValidator'].widget.visible = noview
     schema['serverSide'].widget.visible = noview
-    
+
     schema['required'].default = True
     schema['required'].widget.label = _(u'label_showlegend_text', default=u'Show Title as Legend')
     schema['required'].widget.description=_(u'help_showlegend_text', default=u'')

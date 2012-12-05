@@ -1,12 +1,34 @@
 Change History
 ==============
 
-1.7.4 Unreleased
+1.7.6 unreleased
 ----------------
 
 - Add field selection to save data adapter so that some fields can
   be ommitted if desired, like in the email adapter.
   [cguardia]
+
+
+1.7.5 2012-11-30
+----------------
+
+- i18n support updated, added some missing strings, Italian translation updated
+  [giacomos]
+
+- Change some i18n strings not to have duplicates, regenerated po files and
+  basque translation. [erral]
+
+- 4.3 import compatability fix. [tomgross]
+
+- Fix FileField compatibility with latest Archetypes [do3cc]
+
+
+1.7.4 2012-11-04
+----------------
+
+- Add a browser view for encryption so that it may be used a bit
+  more generally.
+  [smcmahon]
 
 - Clean up encryption error handling.
   [smcmahon]
