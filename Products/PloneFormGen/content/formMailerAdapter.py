@@ -849,8 +849,6 @@ class FormMailerAdapter(FormActionAdapter):
         msgSubject = str(Header(msgSubject, email_charset))
         headerinfo['Subject'] = msgSubject
 
-        headerinfo['MIME-Version'] = '1.0'
-
         # CC
         cc_recips = filter(None, self.cc_recipients)
         if cc_recips:
