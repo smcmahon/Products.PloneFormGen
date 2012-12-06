@@ -50,7 +50,7 @@ class FormSaveDataAdapter(FormActionAdapter):
        return it in csv- or tab-delimited format."""
 
     schema = FormAdapterSchema.copy() + Schema((
-        LinesField('ShowFields',
+        LinesField('showFields',
             required=0,
             searchable=0,
             vocabulary='allFieldDisplayList',
@@ -312,7 +312,8 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         data = []
         for f in fields:
-            if self.ShowFields and f.id not in self.ShowFields:
+            showFields = getattr(self, 'showFields', [])
+            if showFields and f.id not in showFields:
                 continue
             if f.isFileField():
                 file = REQUEST.form.get('%s_file' % f.fgField.getName())
@@ -348,7 +349,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._addDataRow( data )
 
 
-    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'allFieldDisplayList')
+    security.declareProtected(ModifyPortalContent, 'allFieldDisplayList')
     def allFieldDisplayList(self):
         """ returns a DisplayList of all fields """
         return self.fgFieldsDisplayList()
@@ -358,8 +359,9 @@ class FormSaveDataAdapter(FormActionAdapter):
     def getColumnNames(self):
         """Returns a list of column names"""
         
+        showFields = getattr(self, 'showFields', [])
         names = [field.getName() for field in self.fgFields(displayOnly=True)
-                 if not self.ShowFields or field.getName() in self.ShowFields]
+                 if not showFields or field.getName() in showFields]
         for f in self.ExtraData:
             names.append(f)
         
