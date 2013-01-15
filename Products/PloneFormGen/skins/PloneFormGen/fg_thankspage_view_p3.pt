@@ -8,9 +8,8 @@
       i18n:domain="plone">
 
   <body>
-
-    <metal:main fill-slot="main" tal:define="view context/@@plone_context_state">
-      <metal:main_macro>
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core">
 
         <div tal:condition="exists:request/form/fieldset" tal:omit-tag="">
       
@@ -51,7 +50,7 @@
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
-      </metal:main_macro>
-    </metal:main>
-</body>
+      </metal:block>
+    </metal:content-core>
+  </body>
 </html> 

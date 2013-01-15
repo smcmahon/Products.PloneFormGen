@@ -71,25 +71,9 @@
 
 
   <body>
-
-    <metal:fill fill-slot="main">
-      <metal:main define-macro="main">
-
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-        <h1 tal:content="context/Title" class="documentFirstHeading">
-          Title or id
-        </h1>
-
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-            
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core">
+           
             <tal:if tal:condition="here/getFormPrologue | nothing">
               <metal:field use-macro="python:context.widget('formPrologue', mode='view')">
                   Body text
@@ -103,11 +87,9 @@
                   Body text
               </metal:field>
             </tal:if>
-            
 
-      </metal:main>
-    </metal:fill>
-
+      </metal:block>
+    </metal:content-core>
   </body>
 
 </html>

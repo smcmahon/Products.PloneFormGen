@@ -77,9 +77,8 @@
 
 
   <body>
-
-    <metal:fill fill-slot="main">
-      <metal:main define-macro="main"
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core"
                   tal:define="isLocked python:False;
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
@@ -313,11 +312,8 @@
 
         <p tal:replace="structure here/formEpilogue | nothing" />
 
-      </metal:main>
-    </metal:fill>
-
+      </metal:block>
+    </metal:content-core>
   </body>
-
 </html>
-
 </tal:block>
