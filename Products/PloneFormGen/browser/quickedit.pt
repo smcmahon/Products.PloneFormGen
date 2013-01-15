@@ -83,20 +83,6 @@
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-        <h1 tal:content="context/Title" class="documentFirstHeading">
-          Title or id
-        </h1>
-
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-
         <p tal:replace="structure here/formPrologue | nothing" />
 
         <tal:block tal:condition="canModify">
@@ -307,8 +293,6 @@
                 </tbody>
             </table>
         </div>
-
-        <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
 
         <p tal:replace="structure here/formEpilogue | nothing" />
 

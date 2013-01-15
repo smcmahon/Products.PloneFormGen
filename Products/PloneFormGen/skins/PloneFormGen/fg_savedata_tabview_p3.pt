@@ -13,22 +13,6 @@
                        b_start python:0;
                        b_start request/b_start | b_start;">
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-        
-        <h1 tal:content="context/@@plone_context_state/object_title" class="documentFirstHeading">
-            Title or id
-        </h1>
-        
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-        
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-        
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-        
         <tal:block tal:condition="results" tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
         
             <tal:block tal:condition="batch/prevlist">
@@ -65,8 +49,6 @@
             </tal:block>
       
         </tal:block>
-
-        <div tal:replace="structure provider:plone.belowcontentbody" />
 
     </metal:block>
   </metal:content-core>

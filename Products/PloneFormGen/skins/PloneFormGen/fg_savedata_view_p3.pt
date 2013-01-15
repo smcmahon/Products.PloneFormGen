@@ -24,22 +24,6 @@
           <span tal:define="dummy here/clearSavedFormInput" />
         </tal:block>
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-        
-        <h1 tal:content="view/object_title" class="documentFirstHeading">
-            Title or id
-        </h1>
-        
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-        
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-        
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-        
         <div tal:condition="here/itemsSaved">
 
           <p>
@@ -91,8 +75,6 @@
           </form>
 
         </div>
-
-        <div tal:replace="structure provider:plone.belowcontentbody" />
 
     </metal:block>
   </metal:content-core>
