@@ -1,23 +1,8 @@
-<tal:block metal:define-macro="master"
-           define="errors options/state/getErrors | python:{};
-                   schematas nothing;
-                   allow_tabbing python:False;
-                   fieldsets python:['default'];
-                   default_fieldset string:default;
-                   fieldset default_fieldset;
-                   fields python:here.fgFields(request);
-                   portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
-                   type_name here/getPortalTypeName|here/archetype_name;
-                   base_macros here/fg_edit_macros_p3/macros;
-                   edit_template python:'%s_edit' % portal_type;
-                   edit_macros python:path('here/%s/macros | nothing' % edit_template);
-                   header_macro edit_macros/header | header_macro | base_macros/header;
-                   typedescription_macro edit_macros/typedescription | typedescription_macro | base_macros/typedescription;
-                   body_macro edit_macros/body | body_macro | base_macros/body;
-                   footer_macro edit_macros/footer | footer_macro | base_macros/footer;
-                   css python:here.getUniqueWidgetAttr(fields, 'helper_css');
-                   js python:here.getUniqueWidgetAttr(fields, 'helper_js');
-                   portal portal | context/@@plone_portal_state/portal">
+<tal:def define="portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
+                 fields python:here.fgFields(request);
+                 css python:here.getUniqueWidgetAttr(fields, 'helper_css');
+                 js python:here.getUniqueWidgetAttr(fields, 'helper_js');
+                 portal portal | context/@@plone_portal_state/portal">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -29,7 +14,9 @@
       i18n:domain="plone">
 
   <metal:head fill-slot="top_slot">
-    <tal:block define="macro edit_macros/topslot | nothing"
+    <tal:block define="edit_template python:'%s_edit' % portal_type;
+                       edit_macros python:path('here/%s/macros | nothing' % edit_template);
+                       macro edit_macros/topslot | nothing"
                     condition="macro">
       <metal:block use-macro="macro" />
     </tal:block>
@@ -69,10 +56,25 @@
     </tal:css>
   </metal:css>
 
-
   <body>
     <metal:content-core fill-slot="content-core">
       <metal:block define-macro="content-core">
+        <tal:def_macro define="errors options/state/getErrors | python:{};
+                         schematas nothing;
+                         allow_tabbing python:False;
+                         fieldsets python:['default'];
+                         default_fieldset string:default;
+                         fieldset default_fieldset;
+                         fields python:here.fgFields(request);
+                         portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
+                         type_name here/getPortalTypeName|here/archetype_name;
+                         base_macros here/fg_edit_macros_p3/macros;
+                         edit_template python:'%s_edit' % portal_type;
+                         edit_macros python:path('here/%s/macros | nothing' % edit_template);
+                         header_macro edit_macros/header | header_macro | base_macros/header;
+                         typedescription_macro edit_macros/typedescription | typedescription_macro | base_macros/typedescription;
+                         body_macro edit_macros/body | body_macro | base_macros/body;
+                         footer_macro edit_macros/footer | footer_macro | base_macros/footer;">
            
             <tal:if tal:condition="here/getFormPrologue | nothing">
               <metal:field use-macro="python:context.widget('formPrologue', mode='view')">
@@ -88,10 +90,9 @@
               </metal:field>
             </tal:if>
 
+        </tal:def_macro>
       </metal:block>
     </metal:content-core>
   </body>
-
 </html>
-
-</tal:block>
+</tal:def>
