@@ -8,8 +8,8 @@
       i18n:domain="plone">
 
   <body>
-
-      <metal:fill fill-slot="main">
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core">
 
           <h1>
               <span i18n:translate="Edit record">Edit record</span>
@@ -44,8 +44,9 @@
               <input class="context" type="submit" name="manage_saveData:action" value="Save data" />
               <input class="context" type="submit" name="manage_deleteData:action" value="Delete record" />
         </form>
-    </metal:fill>
 
+      </metal:block>
+    </metal:content-core>
   </body>
 
 </html>

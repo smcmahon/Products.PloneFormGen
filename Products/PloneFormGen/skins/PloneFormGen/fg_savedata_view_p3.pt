@@ -14,32 +14,16 @@
 </metal:javascript_head>
 
 <body>
-
-<div metal:fill-slot="main" tal:define="view context/@@plone_context_state">
-    <tal:main-macro metal:define-macro="main"
+  <metal:content-core fill-slot="content-core" tal:define="view context/@@plone_context_state">
+    <metal:block define-macro="content-core"
            tal:define="content_type here/get_content_type|here/Format;
                        canEdit python:checkPermission('Modify portal content', here);
                       ">
+
         <tal:block condition="exists: request/clearSavedFormInput">
           <span tal:define="dummy here/clearSavedFormInput" />
         </tal:block>
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-        
-        <h1 tal:content="view/object_title" class="documentFirstHeading">
-            Title or id
-        </h1>
-        
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
-        
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-        
-        <div tal:replace="structure provider:plone.abovecontentbody" />
-        
         <div tal:condition="here/itemsSaved">
 
           <p>
@@ -92,11 +76,7 @@
 
         </div>
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-
-    </tal:main-macro>
-</div>
-
+    </metal:block>
+  </metal:content-core>
 </body>
-
 </html>

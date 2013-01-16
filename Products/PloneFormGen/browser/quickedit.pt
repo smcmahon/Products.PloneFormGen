@@ -77,26 +77,11 @@
 
 
   <body>
-
-    <metal:fill fill-slot="main">
-      <metal:main define-macro="main"
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core"
                   tal:define="isLocked python:False;
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
-
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
-
-        <h1 tal:content="context/Title" class="documentFirstHeading">
-          Title or id
-        </h1>
-
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-
-        <div tal:replace="structure provider:plone.abovecontentbody" />
 
         <p tal:replace="structure here/formPrologue | nothing" />
 
@@ -309,15 +294,10 @@
             </table>
         </div>
 
-        <div tal:replace="structure provider:plone.belowcontentbody" tal:condition="canModify" />
-
         <p tal:replace="structure here/formEpilogue | nothing" />
 
-      </metal:main>
-    </metal:fill>
-
+      </metal:block>
+    </metal:content-core>
   </body>
-
 </html>
-
 </tal:block>

@@ -8,28 +8,11 @@
       i18n:domain="plone">
 
   <body>
-
-    <metal:main fill-slot="main" tal:define="view context/@@plone_context_state">
-      <metal:main_macro>
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core">
 
         <div tal:condition="exists:request/form/fieldset" tal:omit-tag="">
       
-            <div tal:replace="structure provider:plone.abovecontenttitle" />
-            
-            <h1 tal:content="view/object_title" class="documentFirstHeading">
-                Title or id
-            </h1>
-            
-            <div tal:replace="structure provider:plone.belowcontenttitle" />
-            
-            <p class="documentDescription"
-               tal:content="here/Description"
-               tal:condition="here/Description">
-                Description
-            </p>
-            
-            <div tal:replace="structure provider:plone.abovecontentbody" />
-            
             <p tal:replace="structure here/getThanksPrologue | nothing" />
             
             <blockquote>
@@ -49,9 +32,7 @@
           No input was received.
         </div>
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
-
-      </metal:main_macro>
-    </metal:main>
-</body>
+      </metal:block>
+    </metal:content-core>
+  </body>
 </html> 

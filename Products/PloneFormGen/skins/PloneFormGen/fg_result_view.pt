@@ -10,8 +10,8 @@
   <head><title></title></head>
 
   <body>
-    <metal:fill fill-slot="main">
-      <metal:main_macro>
+    <metal:content-core fill-slot="content-core">
+      <metal:block define-macro="content-core">
 
         <dl>
           <tal:block repeat="field here/fgFields">
@@ -21,8 +21,8 @@
             </tal:block>
           </tal:block>
         </dl>
-      
-      </metal:main_macro>
-    </metal:fill>
+
+      </metal:block>
+    </metal:content-core>
   </body>
 </html>

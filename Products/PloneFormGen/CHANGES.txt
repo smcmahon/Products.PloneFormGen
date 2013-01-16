@@ -1,6 +1,16 @@
 Change History
 ==============
 
+1.7.7 unreleased
+----------------
+
+- Use content-core instead of main macro for templates using the
+  main_template's master macro. Among fitting better in the standard plone
+  environment and prepares for displaying in a full view (some modifications
+  needed).
+  [thet]
+
+
 1.7.6 2012-12-06
 ----------------
 
