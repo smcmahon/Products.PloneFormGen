@@ -1,19 +1,16 @@
-from zope.interface import implements, Interface
+from zope.interface import implements
 from Products.validation.interfaces.IValidator import IValidator
 from Products.validation import validation
 
 from types import BooleanType, StringTypes
+
 
 class IsCheckedValidator:
     """ Validates a Boolean field, which should have a "1" (checked)
         or "0" unchecked, to be checked.
     """
 
-    if issubclass(IValidator, Interface):
-        implements(IValidator)
-    else:
-        #BBB
-        __implements__ = (IValidator, )
+    implements(IValidator)
 
     name = 'IsCheckedValidator'
 
@@ -38,11 +35,7 @@ class IsUncheckedValidator:
         or "0" unchecked, to be unchecked.
     """
 
-    if issubclass(IValidator, Interface):
-        implements(IValidator)
-    else:
-        #BBB
-        __implements__ = (IValidator, )
+    implements(IValidator)
 
     name = 'IsUncheckedValidator'
 
