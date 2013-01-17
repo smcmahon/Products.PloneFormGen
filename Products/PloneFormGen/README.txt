@@ -32,7 +32,8 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
-Plone: Plone 3.3.5+
+Plone: Plone 3.3.5+.  For Plone 4.1+ you may want to use
+Products.PloneFormGen 1.7+.
 
 Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/ 
