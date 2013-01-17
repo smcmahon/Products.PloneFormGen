@@ -92,14 +92,8 @@ def initialize(context):
 
 # Import "PloneFormGenMessageFactory as _" to create message ids
 # in the ploneformgen domain
-# Zope 3.1-style messagefactory module
-# BBB: Zope 2.8 / Zope X3.0
-try:
-    from zope.i18nmessageid import MessageFactory
-except ImportError:
-    from messagefactory_ import PloneFormGenMessageFactory
-else:
-    PloneFormGenMessageFactory = MessageFactory('ploneformgen')
+from zope.i18nmessageid import MessageFactory
+PloneFormGenMessageFactory = MessageFactory('ploneformgen')
 
 
 # # BBB for Z2 vs Z3 interfaces checks
