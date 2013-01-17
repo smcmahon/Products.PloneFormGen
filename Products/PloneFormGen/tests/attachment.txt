@@ -19,6 +19,10 @@ Add a File field::
     >>> browser.getControl('Field Label').value = 'attachment'
     >>> browser.getControl('Save').click()
 
+Note: the above click unfortunately gives a 404 because a redirect is
+somehow done (with kss it seems) to form-url%23qedit instead of
+form-url#qedit.  The save does work.
+
 And confirm that it renders properly::
     
     >>> browser.url
