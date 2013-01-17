@@ -725,7 +725,7 @@ class BaseFormField(ATCTContent):
         """ generate fields on the fly; also primes request with defaults """
 
         if request:
-            self.fgPrimeDefaults(request)
+            self.fgPrimeDefaults(request, contextObject=self.aq_parent)
 
         return ( self.fgField, )
 
