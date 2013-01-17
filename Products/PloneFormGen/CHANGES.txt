@@ -1,12 +1,18 @@
 Change History
 ==============
 
+1.7.7 unreleased
+----------------
+
+- If an active action adapter is renamed, keep it active.
+  [maurits]
+
+
 1.7.6 2012-12-06
 ----------------
 
 - 1.7.5 Accidentally reverted the "Do not explicitly set the MIME-Version" change
   from 1.7.3. Fixed. [smcmahon]
-
 
 - Add field selection to save data adapter so that some fields can
   be ommitted if desired, like in the email adapter.
