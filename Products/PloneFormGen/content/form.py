@@ -42,7 +42,6 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import implementedOrProvidedBy
 from Products.PloneFormGen import HAS_PLONE40
 
 from types import StringTypes
@@ -460,7 +459,7 @@ class FormFolder(ATFolder):
 
         myFields = []
         for obj in self._getFieldObjects(includeFSMarkers=not displayOnly):
-            if implementedOrProvidedBy(IField, obj):
+            if IField.providedBy(obj):
                 # this is a field -- not a form field -- and may be
                 # added directly to the field list.
                 if not displayOnly:
@@ -500,7 +499,7 @@ class FormFolder(ATFolder):
 
         # Get all the form fields. Exclude actual IField fields.
         fields = [fo for fo in self._getFieldObjects()
-                  if not implementedOrProvidedBy(IField, fo)]
+                  if not IField.providedBy(fo)]
         for obj in fields:
             field = obj.fgField
 
@@ -577,7 +576,7 @@ class FormFolder(ATFolder):
     def fgProcessActionAdapters(self, errors, fields=None, REQUEST=None):
         if fields is None:
             fields = [fo for fo in self._getFieldObjects()
-                      if not implementedOrProvidedBy(IField, fo)]
+                      if not IField.providedBy(fo)]
 
         if not errors:
             if self.getRawAfterValidationOverride():
@@ -693,7 +692,7 @@ class FormFolder(ATFolder):
 
         # an adapter provides IPloneFormGenActionAdapter
         allAdapters = [(obj.getId(), obj.title) for obj in self.objectValues()
-          if implementedOrProvidedBy(IPloneFormGenActionAdapter, obj)]
+          if IPloneFormGenActionAdapter.providedBy(obj)]
 
         if allAdapters:
             return DisplayList(allAdapters)
@@ -745,7 +744,7 @@ class FormFolder(ATFolder):
         tpages = [('', _(u'vocabulary_none_text', u'None')), ]
 
         for obj in self.objectValues():
-            if implementedOrProvidedBy(IPloneFormGenThanksPage, obj) or \
+            if IPloneFormGenThanksPage.providedBy(obj) or \
               getattr(obj.aq_explicit, 'portal_type', 'none') in defaultPageTypes:
                 tpages.append((obj.getId(), obj.title))
 

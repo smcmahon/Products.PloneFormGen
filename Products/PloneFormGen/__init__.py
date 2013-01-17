@@ -96,14 +96,6 @@ from zope.i18nmessageid import MessageFactory
 PloneFormGenMessageFactory = MessageFactory('ploneformgen')
 
 
-# # BBB for Z2 vs Z3 interfaces checks
-def implementedOrProvidedBy(anInterface, anObject):
-    try:
-        return anInterface.providedBy(anObject)
-    except AttributeError:
-        return anInterface.isImplementedBy(anObject)
-
-
 # alias for legacy instances of PFGCaptchaField from when it was
 # a separate product
 try:
