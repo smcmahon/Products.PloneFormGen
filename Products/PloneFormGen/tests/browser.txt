@@ -123,7 +123,10 @@ Now we should be able to render the same form as above, but located at @@form-wr
     ...
 
 If we submit an incomplete form, it should get validated in-place and render with error
-messages::
+messages.  Note that the click raises a Retry exception in Plone 4.0,
+which we could try/except, but the same thing happens with the click a
+few lines further and there the try/except does not work, so we will
+leave it be.  This gives a test failure::
 
     >>> browser.getControl('Submit').click()
     >>> browser.url
