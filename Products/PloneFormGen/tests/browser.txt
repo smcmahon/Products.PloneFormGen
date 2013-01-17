@@ -42,6 +42,15 @@ And confirm that it renders properly::
     </div>
     ...
 
+Viewing a field with an override (for example by navigating to the
+folder contents and then clicking it) gave a problem for a while, so
+we test this by viewing the e-mail field::
+
+    >>> browser.open('http://nohost/plone/testform/replyto')
+    >>> 'Your E-Mail Address' in browser.contents
+    True
+    >>> browser.open('http://nohost/plone/testform')
+
 Submit the form.  An incomplete submission should give validation errors::
 
     >>> self.portal.testform.mailer.setRecipient_email('mdummy@address.com')
