@@ -1,12 +1,7 @@
 from Acquisition import aq_parent, aq_inner
 from zope.component import adapter
-try:
-    from zope.lifecycleevent.interfaces import IObjectAddedEvent
-    from zope.lifecycleevent.interfaces import IObjectMovedEvent
-except ImportError:  # bbb
-    from zope.app.container.interfaces import IObjectAddedEvent
-    from zope.app.container.interfaces import IObjectMovedEvent
-
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
+from zope.lifecycleevent.interfaces import IObjectMovedEvent
 from Products.CMFPlone.interfaces import IFactoryTool
 
 from Products.PloneFormGen import interfaces, implementedOrProvidedBy
