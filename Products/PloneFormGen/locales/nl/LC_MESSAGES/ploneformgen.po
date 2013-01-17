@@ -7,10 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2012-04-16 14:57+0000\n"
+"POT-Creation-Date: 2013-01-17 15:20+0000\n"
 "PO-Revision-Date: 2010-08-06 10:24+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
-"Language-Team:\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -216,10 +216,6 @@ msgstr "Lijst veld"
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "Mailer Adapter"
 msgstr "E-mailactie"
-
-#: ./browser/quickedit.pt:138
-msgid "More Fields"
-msgstr ""
 
 #. Default: "Multi-Select Field"
 #: ./profiles/default/types/FormMultiSelectionField.xml
@@ -428,7 +424,7 @@ msgid "help_actionadapter_text"
 msgstr "Om uw formulier iets nuttigs te laten doen als deze wordt opgestuurd: voeg een of meer geschikte formulieracties toe aan het formulier, configureer deze, ga dan terug naar dit formulier en selecteer welke actief moeten zijn."
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:441
+#: ./content/formMailerAdapter.py:435
 #, fuzzy
 msgid "help_bcc_override_text"
 msgstr "Een TALES expressie die gebruikt wordt om de waarde van de BCC adreslijst (blinde kopie) te overschrijven. We raden sterk af om niet gevalideerde data uit het request hiervoor te gebruiken. Laat leeg indien dit niet nodig is. De expressie moet een 'string' terug geven. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
@@ -648,84 +644,84 @@ msgstr "Gebruikt dit veld om het actie attribuut van het formulier te overschrij
 
 #. Mailer Adapter
 #. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
-#: ./content/formMailerAdapter.py:336
+#: ./content/formMailerAdapter.py:330
 msgid "help_formmailer_additional_headers"
 msgstr "Additionele e-mail headers. Gebruik alleen RFC822-compatible headers."
 
 #. Default: "E-mail addresses which receive a blind carbon copy."
 #. Mailer Adapter
-#: ./content/formMailerAdapter.py:136
+#: ./content/formMailerAdapter.py:130
 msgid "help_formmailer_bcc_recipients"
 msgstr "E-mailadressen die een BCC zullen ontvangen."
 
 #. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
 #. Mailer Adapter
-#: ./content/formMailerAdapter.py:225
+#: ./content/formMailerAdapter.py:219
 msgid "help_formmailer_body_footer"
 msgstr "Tekst die als voetnoot gebruikt zal worden, gescheiden van de hoofdtekst met een gestreepte lijn."
 
 #. Mailer Adapter
 #. Default: "Text appended to fields listed in mail-body"
-#: ./content/formMailerAdapter.py:212
+#: ./content/formMailerAdapter.py:206
 msgid "help_formmailer_body_post"
 msgstr "Tekst die achter de velden in de tekst van de e-mail wordt geplakt."
 
 #. Default: "Text prepended to fields listed in mail-body"
 #. Mailer Adapter
-#: ./content/formMailerAdapter.py:200
+#: ./content/formMailerAdapter.py:194
 msgid "help_formmailer_body_pre"
 msgstr "Tekst die voor de genoemde velden in het E-mailhoofdtekst wordt geplakt."
 
 #. Mailer Adapter
 #. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
-#: ./content/formMailerAdapter.py:279
+#: ./content/formMailerAdapter.py:273
 msgid "help_formmailer_body_pt"
 msgstr "Dit is een Zope Page Template die gebruikt wordt voor de weergave van de tekst van de e-mail. Het is niet nodig dit aan te passen, maar als u TAL kent (de Template Attribute Language van Zope) heeft u de volledige controle over de lay-out van de uitgaande e-mails."
 
 #. Mailer Adapter
 #. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
-#: ./content/formMailerAdapter.py:296
+#: ./content/formMailerAdapter.py:290
 msgid "help_formmailer_body_type"
 msgstr "Stel het MIME-type in van de e-mailtekst. Verander deze instelling alleen als u exact weet wat u aan het doen bent. Leeg laten voor standaard gedrag."
 
 #. Default: "E-mail addresses which receive a carbon copy."
 #. Mailer Adapter
-#: ./content/formMailerAdapter.py:122
+#: ./content/formMailerAdapter.py:116
 msgid "help_formmailer_cc_recipients"
 msgstr "E-mailadressen van de CC-ontvangers."
 
 #. Default: "The recipients e-mail address."
 #. Mailer Adapter
-#: ./content/formMailerAdapter.py:88
+#: ./content/formMailerAdapter.py:82
 msgid "help_formmailer_recipient_email"
 msgstr "Het e-mailadres van de geadresseerde."
 
 #. Mailer Adapter
 #. Default: "\n                The full name of the recipient of the mailed form.\n                "
-#: ./content/formMailerAdapter.py:73
+#: ./content/formMailerAdapter.py:67
 msgid "help_formmailer_recipient_fullname"
 msgstr "De volledige naam van de ontvanger van het verstuurde formulier."
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
-#: ./content/formMailerAdapter.py:150
+#: ./content/formMailerAdapter.py:144
 msgid "help_formmailer_replyto_extract"
 msgstr "Kies een formulierveld waarvan u de invoer wilt extraheren voor de 'Reply-To' header. MERK OP: U moet e-mailadresverificatie activeren voor het desbetreffende veld."
 
 #. Mailer Adapter
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
-#: ./content/formMailerAdapter.py:166
+#: ./content/formMailerAdapter.py:160
 msgid "help_formmailer_subject"
 msgstr "Onderwerpregel van het bericht. Dit wordt gebruikt als u niet een onderwerpveld aangeeft of als het veld leeg is."
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
-#: ./content/formMailerAdapter.py:185
+#: ./content/formMailerAdapter.py:179
 msgid "help_formmailer_subject_extract"
 msgstr "Kies een formulierveld vanwaar u de invoer wilt extraheren voor de onderwerpregel van de e-mail."
 
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
-#: ./content/formMailerAdapter.py:102
+#: ./content/formMailerAdapter.py:96
 msgid "help_formmailer_to_extract"
 msgstr "Kies een formulierveld vanwaar u invoer wilt extraheren voor de \"Aan\" header. Als u iets anders kiest dan \"None\" zal deze het \"Ontvanger e-mailadres\" instelling van hierboven overschrijven. Wees erg voorzichtig met het toestaan van niet gecontroleerde input van gebruikers voor dit doel (om spam tegen te gaan)."
 
@@ -746,8 +742,9 @@ msgstr "MERK OP: Voor een decimaal veld, zorgt de 'verplicht' markering ervoor d
 #. Default Note that you will probably wish to change your message
 #. Default template to plain text if you're using encryption.
 #. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
-#. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body.\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
-#: ./content/formMailerAdapter.py:353
+#. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body (not attachments).\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
+#: ./content/formMailerAdapter.py:347
+#, fuzzy
 msgid "help_gpg_key_id"
 msgstr "Voer uw sleutel-id, E-mailadres of wat dan ook in, die op een publieke sleutel van de huidige sleutelbos past. Deze zal worden gebruikt om de hoofdtekst van het bericht te versleutelen. Neem contact op met de beheerder van de site als u een nieuwe publieke sleutel wilt installeren. Merk op dat u waarschijnlijk uw berichtsjabloon wilt veranderen naar platte tekst als u versleuteling gaat gebruiken. TEST DEZE OPTIE VOORDAT DIE PUBLIEK WORDT GEBRUIKT!"
 
@@ -763,17 +760,17 @@ msgid "help_includeEmpties_text"
 msgstr "Schakel deze optie in om titels van lege velden te tonen. Indien uitgeschakeld zullen lege velden niet getoond worden."
 
 #. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
-#: ./content/formMailerAdapter.py:267
+#: ./content/formMailerAdapter.py:261
 msgid "help_mailEmpties_text"
 msgstr "Schakel deze optie in om titels van lege velden te tonen. Indien uitgeschakeld zullen lege velden niet getoond worden."
 
 #. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
-#: ./content/formMailerAdapter.py:239
+#: ./content/formMailerAdapter.py:233
 msgid "help_mailallfields_text"
 msgstr ""
 
 #. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
-#: ./content/formMailerAdapter.py:254
+#: ./content/formMailerAdapter.py:248
 msgid "help_mailfields_text"
 msgstr ""
 
@@ -812,7 +809,7 @@ msgid "help_prologue_text"
 msgstr "Deze tekst zal worden getoond boven de velden van het formulier."
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:420
+#: ./content/formMailerAdapter.py:414
 msgid "help_recipient_override_text"
 msgstr "Een TALES expressie die gebruikt wordt om de waarde van het e-mailadres van de afzender te overschrijven. We raden sterk af om niet gevalideerde data uit het request hiervoor te gebruiken. Laat leeg indien dit niet nodig is. De expressie moet een 'string' terug geven. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier."
 
@@ -822,12 +819,17 @@ msgstr ""
 
 #. Save Data Adapter
 #. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
-#: ./content/saveDataAdapter.py:56
+#: ./content/saveDataAdapter.py:68
 msgid "help_savedataextra_text"
 msgstr "Selecteer welke extra gegevens u wilt opslaan bij het formulier."
 
-#: ./content/saveDataAdapter.py:90
+#: ./content/saveDataAdapter.py:102
 msgid "help_savedatainput_text"
+msgstr ""
+
+#. Default: "\n                    Pick the fields whose inputs you'd like to include in\n                    the saved data. If empty, all fields will be saved.\n                    "
+#: ./content/saveDataAdapter.py:59
+msgid "help_savefields_text"
 msgstr ""
 
 #. Default: " Write your script here. "
@@ -841,7 +843,7 @@ msgid "help_script_proxy"
 msgstr "Rol waarmee dit script wordt uitgevoerd."
 
 #. Default: "\n                A TALES expression that will be evaluated to override the \"From\" header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:401
+#: ./content/formMailerAdapter.py:395
 msgid "help_sender_override_text"
 msgstr "Een TALES-expressie die geëvalueerd zal worden om het \"Van\" veld te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet een 'string' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\""
 
@@ -861,13 +863,13 @@ msgstr ""
 msgid "help_showfields_text"
 msgstr "Selecteer de velden waarvan u de gegevens wilt tonen op de succespagina."
 
-#: ./content/fields.py:1321
+#: ./content/fields.py:1333
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr ""
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the e-mail subject header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:380
+#: ./content/formMailerAdapter.py:374
 msgid "help_subject_override_text"
 msgstr "Een TALES-expressie die geëvalueerd zal worden om elke andere waarde van de onderwerp header te overschrijven. Laat leeg indien dit niet nodig is. De expressie moet een 'string' opleveren. MERK OP: fouten in de evaluatie van deze expressie zullen leiden tot fouten in het tonen van het formulier.\""
 
@@ -900,18 +902,18 @@ msgid "help_thanksprologue_text"
 msgstr "Deze tekst zal boven de ingevulde gegevens worden getoond."
 
 #. Default: "Do you wish to have column names on the first line of downloaded input?"
-#: ./content/saveDataAdapter.py:77
+#: ./content/saveDataAdapter.py:89
 msgid "help_usecolumnnames_text"
 msgstr "Wilt u de kolomnamen weergeven op de eerste regel van de te downloaden gegevens?"
 
 #. Default: "Useful for stopping spam"
-#: ./content/fields.py:940
+#: ./content/fields.py:941
 msgid "help_validate_link_spam_text"
 msgstr ""
 
 #. Mailer Adapter
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
-#: ./content/formMailerAdapter.py:319
+#: ./content/formMailerAdapter.py:313
 msgid "help_xinfo_headers_text"
 msgstr "Selecteer welke HTTP Headers u als eXtra headers wilt invoegen in het bericht."
 
@@ -944,7 +946,7 @@ msgid "label_actionadapter_text"
 msgstr "Actie"
 
 #. Default: "BCC Expression"
-#: ./content/formMailerAdapter.py:440
+#: ./content/formMailerAdapter.py:434
 msgid "label_bcc_override_text"
 msgstr ""
 
@@ -962,7 +964,7 @@ msgstr "CSRF beveiliging."
 
 #. Save Data Adapter
 #. Default: "Download Format"
-#: ./content/saveDataAdapter.py:69
+#: ./content/saveDataAdapter.py:81
 msgid "label_downloadformat_text"
 msgstr "Download formaat"
 
@@ -1166,92 +1168,92 @@ msgstr "Maatwerkformulieractie"
 
 #. Mailer Adapter
 #. Default: "Additional Headers"
-#: ./content/formMailerAdapter.py:335
+#: ./content/formMailerAdapter.py:329
 msgid "label_formmailer_additional_headers"
 msgstr "Additionele Headers"
 
 #. Mailer Adapter
 #. Default: "BCC Recipients"
-#: ./content/formMailerAdapter.py:134
+#: ./content/formMailerAdapter.py:128
 msgid "label_formmailer_bcc_recipients"
 msgstr "BCC-ontvangers"
 
 #. Mailer Adapter
 #. Default: "Body (signature)"
-#: ./content/formMailerAdapter.py:228
+#: ./content/formMailerAdapter.py:222
 msgid "label_formmailer_body_footer"
 msgstr "Hoofdtekst (ondertekening)"
 
 #. Mailer Adapter
 #. Default: "Body (appended)"
-#: ./content/formMailerAdapter.py:214
+#: ./content/formMailerAdapter.py:208
 msgid "label_formmailer_body_post"
 msgstr "Hoofdtekst (achteraan geplakt)"
 
 #. Mailer Adapter
 #. Default: "Body (prepended)"
-#: ./content/formMailerAdapter.py:202
+#: ./content/formMailerAdapter.py:196
 msgid "label_formmailer_body_pre"
 msgstr "Hoofdtekst (Proloog)"
 
 #. Mailer Adapter
 #. Default: "Mail-Body Template"
-#: ./content/formMailerAdapter.py:284
+#: ./content/formMailerAdapter.py:278
 msgid "label_formmailer_body_pt"
 msgstr "E-mailhoofdtekst sjabloon"
 
 #. Mailer Adapter
 #. Default: "Mail Format"
-#: ./content/formMailerAdapter.py:300
+#: ./content/formMailerAdapter.py:294
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:87
 msgid "label_formmailer_body_type"
 msgstr "E-mail hoofdtekst type"
 
 #. Mailer Adapter
 #. Default: "CC Recipients"
-#: ./content/formMailerAdapter.py:120
+#: ./content/formMailerAdapter.py:114
 msgid "label_formmailer_cc_recipients"
 msgstr "CC geadresseerden"
 
 #. Mailer Adapter
 #. Default: "Recipient's e-mail address"
-#: ./content/formMailerAdapter.py:86
+#: ./content/formMailerAdapter.py:80
 msgid "label_formmailer_recipient_email"
 msgstr "E-mailadres van geadresseerde"
 
 #. Mailer Adapter
 #. Default: "Recipient's full name"
-#: ./content/formMailerAdapter.py:71
+#: ./content/formMailerAdapter.py:65
 msgid "label_formmailer_recipient_fullname"
 msgstr "Naam van geadresseerde"
 
 #. Mailer Adapter
 #. Default: "Extract Reply-To From"
-#: ./content/formMailerAdapter.py:148
+#: ./content/formMailerAdapter.py:142
 msgid "label_formmailer_replyto_extract"
 msgstr "Gebruik Reply-To van"
 
 #. Mailer Adapter
 #. Default: "Subject"
-#: ./content/formMailerAdapter.py:172
+#: ./content/formMailerAdapter.py:166
 msgid "label_formmailer_subject"
 msgstr "Onderwerp"
 
 #. Mailer Adapter
 #. Default: "Extract Subject From"
-#: ./content/formMailerAdapter.py:183
+#: ./content/formMailerAdapter.py:177
 msgid "label_formmailer_subject_extract"
 msgstr "Gebruik onderwerp van"
 
 #. Default: "Extract Recipient From"
-#: ./content/formMailerAdapter.py:101
+#: ./content/formMailerAdapter.py:95
 msgid "label_formmailer_to_extract"
 msgstr ""
 
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
-#: ./content/formMailerAdapter.py:363
+#: ./content/formMailerAdapter.py:357
 msgid "label_gpg_key_id"
 msgstr "Key-Id"
 
@@ -1274,17 +1276,17 @@ msgid "label_includeEmpties_text"
 msgstr "Bevat lege waarden"
 
 #. Default: "Include Empties"
-#: ./content/formMailerAdapter.py:266
+#: ./content/formMailerAdapter.py:260
 msgid "label_mailEmpties_text"
 msgstr ""
 
 #. Default: "Include All Fields"
-#: ./content/formMailerAdapter.py:238
+#: ./content/formMailerAdapter.py:232
 msgid "label_mailallfields_text"
 msgstr ""
 
 #. Default: "Show Responses"
-#: ./content/formMailerAdapter.py:253
+#: ./content/formMailerAdapter.py:247
 msgid "label_mailfields_text"
 msgstr ""
 
@@ -1379,7 +1381,7 @@ msgstr "Formulier voorwoord"
 
 # "Recipient Expression"
 #. Default: "Recipient Expression"
-#: ./content/formMailerAdapter.py:419
+#: ./content/formMailerAdapter.py:413
 msgid "label_recipient_override_text"
 msgstr "Geadresseerde expressie"
 
@@ -1402,15 +1404,20 @@ msgstr "Rijen"
 
 #. Save Data Adapter
 #. Default: "Extra Data"
-#: ./content/saveDataAdapter.py:55
+#: ./content/saveDataAdapter.py:67
 msgid "label_savedataextra_text"
 msgstr "Extra gegevens"
 
 #. Save Data Adapter
 #. Default: "Saved Form Input"
-#: ./content/saveDataAdapter.py:89
+#: ./content/saveDataAdapter.py:101
 msgid "label_savedatainput_text"
 msgstr "Opgeslagen formuliergegevens"
+
+#. Default: "Saved Fields"
+#: ./content/saveDataAdapter.py:58
+msgid "label_savefields_text"
+msgstr ""
 
 # 'Script body'
 #. Default: "Script body"
@@ -1428,7 +1435,7 @@ msgstr "Proxy rol"
 
 # "Sender Expression"
 #. Default: "Sender Expression"
-#: ./content/formMailerAdapter.py:399
+#: ./content/formMailerAdapter.py:393
 msgid "label_sender_override_text"
 msgstr "Afzender expressie"
 
@@ -1456,7 +1463,7 @@ msgid "label_showfields_text"
 msgstr "Toon ingevulde gegevens"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1320
+#: ./content/fields.py:1332
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr ""
@@ -1465,7 +1472,7 @@ msgstr ""
 # Mailer adapter overrides schema
 # "Subject Expression"
 #. Default: "Subject Expression"
-#: ./content/formMailerAdapter.py:379
+#: ./content/formMailerAdapter.py:373
 msgid "label_subject_override_text"
 msgstr "Onderwerp expressie"
 
@@ -1505,7 +1512,7 @@ msgid "label_title"
 msgstr ""
 
 #. Default: "Include Column Names"
-#: ./content/saveDataAdapter.py:76
+#: ./content/saveDataAdapter.py:88
 msgid "label_usecolumnnames_text"
 msgstr "Kolomnamen tonen"
 
@@ -1516,7 +1523,7 @@ msgstr ""
 
 #. Mailer Adapter
 #. Default: "HTTP Headers"
-#: ./content/formMailerAdapter.py:318
+#: ./content/formMailerAdapter.py:312
 msgid "label_xinfo_headers_text"
 msgstr "HTTP Headers"
 
@@ -1568,7 +1575,7 @@ msgid "pfg_formfolder_submit"
 msgstr ""
 
 #. Default: "Form Submission"
-#: ./content/formMailerAdapter.py:479
+#: ./content/formMailerAdapter.py:472
 msgid "pfg_formmaileradapter_msg_subject"
 msgstr ""
 

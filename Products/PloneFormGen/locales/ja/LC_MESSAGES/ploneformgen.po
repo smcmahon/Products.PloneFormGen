@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FormGen\n"
-"POT-Creation-Date: 2012-04-16 14:57+0000\n"
-"PO-Revision-Date:\n"
+"POT-Creation-Date: 2013-01-17 15:20+0000\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Shigeo Honda <shigeo.honda@gmail.com>\n"
 "Language-Team: Naotaka Jay Hotta <naotaka@we.care.jp>\n"
 "MIME-Version: 1.0\n"
@@ -208,10 +208,6 @@ msgstr ""
 #. Default: "Mailer Adapter"
 #: ./profiles/default/types/FormMailerAdapter.xml
 msgid "Mailer Adapter"
-msgstr ""
-
-#: ./browser/quickedit.pt:138
-msgid "More Fields"
 msgstr ""
 
 #. Default: "Multi-Select Field"
@@ -441,7 +437,7 @@ msgid "help_actionadapter_text"
 msgstr "フォームから入力内容が提出されたときの処理方法を指定: 一つ以上のアクションアダプタをフォームフォルダに追加して設定し、選択されたアクションを使用して結果が処理されます"
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:441
+#: ./content/formMailerAdapter.py:435
 msgid "help_bcc_override_text"
 msgstr ""
 
@@ -673,92 +669,92 @@ msgstr "このフィールドはフォームのアクション属性をフォー
 
 #. Mailer Adapter
 #. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
-#: ./content/formMailerAdapter.py:336
+#: ./content/formMailerAdapter.py:330
 #, fuzzy
 msgid "help_formmailer_additional_headers"
 msgstr "追加の電子メールヘッダ情報。RFC822に準拠したもののみを使用してください。"
 
 #. Mailer Adapter
 #. Default: "E-mail addresses which receive a blind carbon copy."
-#: ./content/formMailerAdapter.py:136
+#: ./content/formMailerAdapter.py:130
 msgid "help_formmailer_bcc_recipients"
 msgstr "BCC受信者のメールアドレス"
 
 #. Mailer Adapter
 #. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
-#: ./content/formMailerAdapter.py:225
+#: ./content/formMailerAdapter.py:219
 msgid "help_formmailer_body_footer"
 msgstr "フッターに使うテキスト"
 
 #. Mailer Adapter
 #. Default: "Text appended to fields listed in mail-body"
-#: ./content/formMailerAdapter.py:212
+#: ./content/formMailerAdapter.py:206
 #, fuzzy
 msgid "help_formmailer_body_post"
 msgstr "テキストはリスト表示されたフィールドに添付されます"
 
 #. Mailer Adapter
 #. Default: "Text prepended to fields listed in mail-body"
-#: ./content/formMailerAdapter.py:200
+#: ./content/formMailerAdapter.py:194
 msgid "help_formmailer_body_pre"
 msgstr "このフィールドに入力した内容はメールの本文に入ります"
 
 #. Mailer Adapter
 #. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
-#: ./content/formMailerAdapter.py:279
+#: ./content/formMailerAdapter.py:273
 #, fuzzy
 msgid "help_formmailer_body_pt"
 msgstr "これはメール本文をレンダリングするZopeページテンプレートです。これを変更する必要はありません。しかしTAL(Zope's Template Attribute Language) の知識があればメール出力をすべてカスタマイズすることができます"
 
 #. Mailer Adapter
 #. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
-#: ./content/formMailerAdapter.py:296
+#: ./content/formMailerAdapter.py:290
 #, fuzzy
 msgid "help_formmailer_body_type"
 msgstr "メール本文のMIMEタイプを決めます。自分が何をしようとしてるか十分理解しているときのみ設定を変更してください。初期動作でよい場合は何もしません"
 
 #. Mailer Adapter
 #. Default: "E-mail addresses which receive a carbon copy."
-#: ./content/formMailerAdapter.py:122
+#: ./content/formMailerAdapter.py:116
 msgid "help_formmailer_cc_recipients"
 msgstr "CC受信者のメールアドレス"
 
 #. Mailer Adapter
 #. Default: "The recipients e-mail address."
-#: ./content/formMailerAdapter.py:88
+#: ./content/formMailerAdapter.py:82
 msgid "help_formmailer_recipient_email"
 msgstr "受信者のメールアドレス"
 
 #. Mailer Adapter
 #. Default: "\n                The full name of the recipient of the mailed form.\n                "
-#: ./content/formMailerAdapter.py:73
+#: ./content/formMailerAdapter.py:67
 #, fuzzy
 msgid "help_formmailer_recipient_fullname"
 msgstr "送信されたフォームの受信者のフルネーム"
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
-#: ./content/formMailerAdapter.py:150
+#: ./content/formMailerAdapter.py:144
 #, fuzzy
 msgid "help_formmailer_replyto_extract"
 msgstr "メールヘッダのReply-Toに該当するフォームフィールドを選択ください。【註記】指定したフィールドのメールアドレス確認を有効にしてください"
 
 #. Mailer Adapter
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
-#: ./content/formMailerAdapter.py:166
+#: ./content/formMailerAdapter.py:160
 #, fuzzy
 msgid "help_formmailer_subject"
 msgstr "メッセージのタイトル（Subject）行。タイトルのフィールドが指定されていない、またはフィールドが空のときに使用されます"
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
-#: ./content/formMailerAdapter.py:185
+#: ./content/formMailerAdapter.py:179
 #, fuzzy
 msgid "help_formmailer_subject_extract"
 msgstr "メールタイトル行に抜き出すフィールドを選択してください"
 
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
-#: ./content/formMailerAdapter.py:102
+#: ./content/formMailerAdapter.py:96
 msgid "help_formmailer_to_extract"
 msgstr ""
 
@@ -778,8 +774,9 @@ msgstr "【註記】固定小数点フォールドは０を入力することが
 #. Default Note that you will probably wish to change your message
 #. Default template to plain text if you're using encryption.
 #. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
-#. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body.\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
-#: ./content/formMailerAdapter.py:353
+#. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body (not attachments).\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
+#: ./content/formMailerAdapter.py:347
+#, fuzzy
 msgid "help_gpg_key_id"
 msgstr "現在のキーリングから合致する公開鍵、メールアドレス、キーIDを与えます。これはメッセージ本文を暗号化するために使われます。新しい公開鍵が必要なときはシステム管理者に問い合わせてください。【註記】暗号化を利用するにはメッセージテンプレートをテキストのみに変更することになるでしょう。この機能はテストする前に本番で使用してはいけません。"
 
@@ -808,7 +805,7 @@ msgstr "これをチェックすると入力がなかったフィールドを表
 #. Default for fields that received no input. Uncheck
 #. Default to leave fields with no input out of the e-mail.
 #. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
-#: ./content/formMailerAdapter.py:267
+#: ./content/formMailerAdapter.py:261
 msgid "help_mailEmpties_text"
 msgstr "これをチェックすると入力のないフィールドのタイトルを含みます。チェックを外すと入力のないものはメールに含みません"
 
@@ -818,7 +815,7 @@ msgstr "これをチェックすると入力のないフィールドのタイト
 #. Default this, the choices in the pick box below
 #. Default will be ignored.
 #. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
-#: ./content/formMailerAdapter.py:239
+#: ./content/formMailerAdapter.py:233
 msgid "help_mailallfields_text"
 msgstr "これをチェックするとラベルとファイルフィールドを除くすべてのフィールドが含まれます。これをチェックすると下記で選択したものは無視されます"
 
@@ -826,7 +823,7 @@ msgstr "これをチェックするとラベルとファイルフィールドを
 #. Default Pick the fields whose inputs you'd like to include in
 #. Default the e-mail.
 #. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
-#: ./content/formMailerAdapter.py:254
+#: ./content/formMailerAdapter.py:248
 msgid "help_mailfields_text"
 msgstr "メールに含む入力フィールドを選びますl"
 
@@ -878,7 +875,7 @@ msgstr "このテキストはフォームフィールドの上に表示されま
 # PLEASE NOTE: errors in the evaluation of this expression will cause
 # an error on form display.
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:420
+#: ./content/formMailerAdapter.py:414
 msgid "help_recipient_override_text"
 msgstr "メールのメール受取人欄に入力された値で置き換えるために評価されるTALES式です。この目的でバリデートされていないデータを要求することは強く警告されます。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
@@ -888,13 +885,18 @@ msgstr ""
 
 #. Save Data Adapter
 #. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
-#: ./content/saveDataAdapter.py:56
+#: ./content/saveDataAdapter.py:68
 #, fuzzy
 msgid "help_savedataextra_text"
 msgstr "入力から追加で保存する項目を選択"
 
-#: ./content/saveDataAdapter.py:90
+#: ./content/saveDataAdapter.py:102
 msgid "help_savedatainput_text"
+msgstr ""
+
+#. Default: "\n                    Pick the fields whose inputs you'd like to include in\n                    the saved data. If empty, all fields will be saved.\n                    "
+#: ./content/saveDataAdapter.py:59
+msgid "help_savefields_text"
 msgstr ""
 
 # """ Write your script here. """
@@ -914,7 +916,7 @@ msgstr "スクリプトの実行権"
 # PLEASE NOTE: errors in the evaluation of this expression will cause
 # an error on form display.
 #. Default: "\n                A TALES expression that will be evaluated to override the \"From\" header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:401
+#: ./content/formMailerAdapter.py:395
 msgid "help_sender_override_text"
 msgstr "From欄を置き換えるために評価されるTALES式です。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
@@ -936,7 +938,7 @@ msgstr ""
 msgid "help_showfields_text"
 msgstr "完了後のページに表示するフィールドを選んでください"
 
-#: ./content/fields.py:1321
+#: ./content/fields.py:1333
 #: ./content/fieldset.py:46
 msgid "help_showlegend_text"
 msgstr ""
@@ -947,7 +949,7 @@ msgstr ""
 # PLEASE NOTE: errors in the evaluation of this expression will cause
 # an error on form display.
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the e-mail subject header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:380
+#: ./content/formMailerAdapter.py:374
 msgid "help_subject_override_text"
 msgstr "メールのタイトル欄に入力された値で置き換えるために評価されるTALES式です。必要のないときは空欄します。文字列として評価されます。【註記】この式のエラーはフォーム表示のエラーとして表示されます"
 
@@ -983,18 +985,18 @@ msgstr "このテキストは、選択されたフィールドの入力に前に
 
 # "Do you wish to have column names on the first line of downloaded input?"
 #. Default: "Do you wish to have column names on the first line of downloaded input?"
-#: ./content/saveDataAdapter.py:77
+#: ./content/saveDataAdapter.py:89
 msgid "help_usecolumnnames_text"
 msgstr "ダウンロードデータの最小の行に列名を含むことを希望しますか？"
 
 #. Default: "Useful for stopping spam"
-#: ./content/fields.py:940
+#: ./content/fields.py:941
 msgid "help_validate_link_spam_text"
 msgstr ""
 
 #. Mailer Adapter
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
-#: ./content/formMailerAdapter.py:319
+#: ./content/formMailerAdapter.py:313
 #, fuzzy
 msgid "help_xinfo_headers_text"
 msgstr "HTTPヘッダからどんな情報でも取り出します。メッセージにXヘッダを挿入できます。"
@@ -1029,7 +1031,7 @@ msgid "label_actionadapter_text"
 msgstr "アクションアダプタ"
 
 #. Default: "BCC Expression"
-#: ./content/formMailerAdapter.py:440
+#: ./content/formMailerAdapter.py:434
 msgid "label_bcc_override_text"
 msgstr ""
 
@@ -1045,7 +1047,7 @@ msgstr ""
 
 #. Save Data Adapter
 #. Default: "Download Format"
-#: ./content/saveDataAdapter.py:69
+#: ./content/saveDataAdapter.py:81
 msgid "label_downloadformat_text"
 msgstr "ダウンロードフォーマット"
 
@@ -1253,43 +1255,43 @@ msgstr "カスタム・フォームアクション"
 
 #. Mailer Adapter
 #. Default: "Additional Headers"
-#: ./content/formMailerAdapter.py:335
+#: ./content/formMailerAdapter.py:329
 msgid "label_formmailer_additional_headers"
 msgstr "追加のヘッダ"
 
 #. Mailer Adapter
 #. Default: "BCC Recipients"
-#: ./content/formMailerAdapter.py:134
+#: ./content/formMailerAdapter.py:128
 msgid "label_formmailer_bcc_recipients"
 msgstr "BCC受信者"
 
 #. Mailer Adapter
 #. Default: "Body (signature)"
-#: ./content/formMailerAdapter.py:228
+#: ./content/formMailerAdapter.py:222
 msgid "label_formmailer_body_footer"
 msgstr "本文（シグニチャ）"
 
 #. Mailer Adapter
 #. Default: "Body (appended)"
-#: ./content/formMailerAdapter.py:214
+#: ./content/formMailerAdapter.py:208
 msgid "label_formmailer_body_post"
 msgstr "本文（添付）"
 
 #. Mailer Adapter
 #. Default: "Body (prepended)"
-#: ./content/formMailerAdapter.py:202
+#: ./content/formMailerAdapter.py:196
 msgid "label_formmailer_body_pre"
 msgstr "本文（先頭に追加）"
 
 #. Mailer Adapter
 #. Default: "Mail-Body Template"
-#: ./content/formMailerAdapter.py:284
+#: ./content/formMailerAdapter.py:278
 msgid "label_formmailer_body_pt"
 msgstr "メール本文のテンプレート"
 
 #. Mailer Adapter
 #. Default: "Mail Format"
-#: ./content/formMailerAdapter.py:300
+#: ./content/formMailerAdapter.py:294
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:87
 #, fuzzy
 msgid "label_formmailer_body_type"
@@ -1297,49 +1299,49 @@ msgstr "メール本文のタイプ"
 
 #. Mailer Adapter
 #. Default: "CC Recipients"
-#: ./content/formMailerAdapter.py:120
+#: ./content/formMailerAdapter.py:114
 msgid "label_formmailer_cc_recipients"
 msgstr "CC 受信者"
 
 #. Mailer Adapter
 #. Default: "Recipient's e-mail address"
-#: ./content/formMailerAdapter.py:86
+#: ./content/formMailerAdapter.py:80
 msgid "label_formmailer_recipient_email"
 msgstr "受信者のメールアドレス"
 
 #. Mailer Adapter
 #. Default: "Recipient's full name"
-#: ./content/formMailerAdapter.py:71
+#: ./content/formMailerAdapter.py:65
 msgid "label_formmailer_recipient_fullname"
 msgstr "受信者のフルネーム"
 
 #. Mailer Adapter
 #. Default: "Extract Reply-To From"
-#: ./content/formMailerAdapter.py:148
+#: ./content/formMailerAdapter.py:142
 msgid "label_formmailer_replyto_extract"
 msgstr "Reply-To From抽出"
 
 #. Mailer Adapter
 #. Default: "Subject"
-#: ./content/formMailerAdapter.py:172
+#: ./content/formMailerAdapter.py:166
 msgid "label_formmailer_subject"
 msgstr "メールタイトル（Subject）"
 
 #. Mailer Adapter
 #. Default: "Extract Subject From"
-#: ./content/formMailerAdapter.py:183
+#: ./content/formMailerAdapter.py:177
 msgid "label_formmailer_subject_extract"
 msgstr "タイトルのFrom欄を抽出"
 
 #. Default: "Extract Recipient From"
-#: ./content/formMailerAdapter.py:101
+#: ./content/formMailerAdapter.py:95
 msgid "label_formmailer_to_extract"
 msgstr ""
 
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
-#: ./content/formMailerAdapter.py:363
+#: ./content/formMailerAdapter.py:357
 msgid "label_gpg_key_id"
 msgstr "キー ID"
 
@@ -1364,21 +1366,21 @@ msgstr "空を含む"
 #. Mailer
 #. Default "Include Empties"
 #. Default: "Include Empties"
-#: ./content/formMailerAdapter.py:266
+#: ./content/formMailerAdapter.py:260
 msgid "label_mailEmpties_text"
 msgstr "空白を含みます"
 
 #. Mailer
 #. Default "Include All Fields"
 #. Default: "Include All Fields"
-#: ./content/formMailerAdapter.py:238
+#: ./content/formMailerAdapter.py:232
 msgid "label_mailallfields_text"
 msgstr "すべてのフィールドを含む"
 
 #. Mailer
 #. Default "Show Responses"
 #. Default: "Show Responses"
-#: ./content/formMailerAdapter.py:253
+#: ./content/formMailerAdapter.py:247
 msgid "label_mailfields_text"
 msgstr "レスポンスを表示"
 
@@ -1473,7 +1475,7 @@ msgstr "フォームの前書き部分のテキスト"
 
 # "Recipient Expression"
 #. Default: "Recipient Expression"
-#: ./content/formMailerAdapter.py:419
+#: ./content/formMailerAdapter.py:413
 msgid "label_recipient_override_text"
 msgstr "受信者の表示方法"
 
@@ -1497,16 +1499,21 @@ msgstr "行"
 
 #. Save Data Adapter
 #. Default: "Extra Data"
-#: ./content/saveDataAdapter.py:55
+#: ./content/saveDataAdapter.py:67
 msgid "label_savedataextra_text"
 msgstr "追加データ"
 
 ##########
 #. Save Data Adapter
 #. Default: "Saved Form Input"
-#: ./content/saveDataAdapter.py:89
+#: ./content/saveDataAdapter.py:101
 msgid "label_savedatainput_text"
 msgstr "フォームの入力内容を保存"
+
+#. Default: "Saved Fields"
+#: ./content/saveDataAdapter.py:58
+msgid "label_savefields_text"
+msgstr ""
 
 # 'Script body'
 #. Default: "Script body"
@@ -1524,7 +1531,7 @@ msgstr "プロキシロール"
 
 # "Sender Expression"
 #. Default: "Sender Expression"
-#: ./content/formMailerAdapter.py:399
+#: ./content/formMailerAdapter.py:393
 msgid "label_sender_override_text"
 msgstr "送信者の表示方法"
 
@@ -1552,7 +1559,7 @@ msgid "label_showfields_text"
 msgstr "レスポンスを表示"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1320
+#: ./content/fields.py:1332
 #: ./content/fieldset.py:45
 msgid "label_showlegend_text"
 msgstr ""
@@ -1561,7 +1568,7 @@ msgstr ""
 # Mailer adapter overrides schema
 # "Subject Expression"
 #. Default: "Subject Expression"
-#: ./content/formMailerAdapter.py:379
+#: ./content/formMailerAdapter.py:373
 msgid "label_subject_override_text"
 msgstr "タイトル（Subject）の表示方法"
 
@@ -1602,7 +1609,7 @@ msgstr ""
 
 # "Include Column Names"
 #. Default: "Include Column Names"
-#: ./content/saveDataAdapter.py:76
+#: ./content/saveDataAdapter.py:88
 msgid "label_usecolumnnames_text"
 msgstr "列名を含む"
 
@@ -1613,7 +1620,7 @@ msgstr ""
 
 #. Mailer Adapter
 #. Default: "HTTP Headers"
-#: ./content/formMailerAdapter.py:318
+#: ./content/formMailerAdapter.py:312
 msgid "label_xinfo_headers_text"
 msgstr "HTTPヘッダ"
 
@@ -1669,7 +1676,7 @@ msgid "pfg_formfolder_submit"
 msgstr "提出"
 
 #. Default: "Form Submission"
-#: ./content/formMailerAdapter.py:479
+#: ./content/formMailerAdapter.py:472
 msgid "pfg_formmaileradapter_msg_subject"
 msgstr ""
 
