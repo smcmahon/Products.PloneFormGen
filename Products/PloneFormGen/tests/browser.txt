@@ -96,15 +96,11 @@ We should be able to view an individual field::
 #
 # Now let's make sure PloneFormGen forms work properly when embedded in some other
 # context.  First let's load some test-only ZCML which registers a @@form-wrapper
-# view that will render the form we created above.  (Due to running in an incomplete
-# test environment we also need to apply a monkey-patch from plone.app.linkintegrity
-# which enhances the standard Zope error handler's treatment of Retry errors.) ::
+# view that will render the form we created above::
 #
 #     >>> from Products.Five import zcml
 #     >>> import Products.PloneFormGen
 #     >>> zcml.load_config('tests/fixtures/tests.zcml', Products.PloneFormGen)
-#     >>> from Products.PloneFormGen.patches import patch_publisher_exception_handling
-#     >>> patch_publisher_exception_handling()
 #
 # Now we should be able to render the same form as above, but located at @@form-wrapper::
 #

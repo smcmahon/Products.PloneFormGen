@@ -1,9 +1,0 @@
-TODO.txt
-
-Plone 2.5 compatibility leftovers?
-    - Do we still need to patch the ZPublisher? See method
-      patch_publisher_exception_handling in patches.py
-      
-      After clearing out the last of the "not HAS_PLONE3" code,
-      it looks like it only runs in browser.txt, but is needed
-      there to keep the tests working.
