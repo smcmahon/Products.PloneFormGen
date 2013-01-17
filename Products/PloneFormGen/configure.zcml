@@ -138,6 +138,7 @@
     zcml:condition="installed collective.googleanalytics.tracking"
     package=".analytics"/>
 
-  <subscriber handler=".events.form_adapter_pasted" />  
+  <subscriber handler=".events.form_adapter_pasted" />
+  <subscriber handler=".events.form_adapter_moved" />
 
 </configure>

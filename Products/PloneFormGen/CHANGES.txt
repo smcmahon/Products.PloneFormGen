@@ -4,6 +4,9 @@ Change History
 1.6.6 unreleased
 ----------------
 
+- If an active action adapter is renamed, keep it active.
+  [maurits]
+
 - Provide compatibility with DateTime 3.
   [hannosch]
 
