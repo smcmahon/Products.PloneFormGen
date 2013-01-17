@@ -26,7 +26,7 @@ class ExRangeValidator:
     def __call__(self, value, *args, **kwargs):
 
         # import pdb; pdb.set_trace()
-            
+
         field    = kwargs.get('field', None)
 
         # get maxval
@@ -56,7 +56,7 @@ class ExRangeValidator:
         except ValueError:
             return ("Validation failed(%(name)s): could not convert '%(value)s' to number" %
                     { 'name' : self.name, 'value': value})
-                    
+
         if minval <= nval <= maxval:
             return 1
 

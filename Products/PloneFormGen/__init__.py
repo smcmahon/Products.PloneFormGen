@@ -44,15 +44,15 @@ registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 def initialize(context):
 
     import content, validators, tools, widgets
-    
+
     # side-effect import
     import patches
 
     # Add our tools
     utils.ToolInit('PloneFormGen Tool',
-        tools=( tools.formGenTool.FormGenTool, ), 
+        tools=( tools.formGenTool.FormGenTool, ),
         icon='Form.gif',
-        ).initialize(context) 
+        ).initialize(context)
 
 
     ##########

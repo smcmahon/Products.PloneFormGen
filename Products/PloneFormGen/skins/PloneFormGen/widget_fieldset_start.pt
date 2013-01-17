@@ -11,7 +11,7 @@
     <metal:view_macro define-macro="view">
           <span tal:replace="structure string:<fieldset>" />
     </metal:view_macro>
- 
+
     <metal:define define-macro="edit"
       tal:define="fid python:'pfg-fieldsetname-%s' % field.getName();
                   quickEdit quickEdit | nothing">
@@ -33,7 +33,7 @@
         <div tal:condition="quickEdit" class="field fsbegin" tal:attributes="id string:archetypes-fieldname-${field/getName}">
           <label class="formQuestion"
                  tal:attributes="for python:fieldName">
-              <span tal:replace="python:widget.Label(here)" 
+              <span tal:replace="python:widget.Label(here)"
                     i18n:translate="" />
               <span class="required"
                     tal:condition="field/required"

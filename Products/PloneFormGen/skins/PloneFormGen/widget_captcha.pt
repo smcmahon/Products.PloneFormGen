@@ -19,7 +19,7 @@
         document.getElementById("captcha-audio-embed").innerHTML=
         "<embed src='"+url+"' hidden=true autostart=true loop=false>";
         }
-        </script>        
+        </script>
         <div class="captchaImage">
             <div tal:replace="structure context/@@captcha/image_tag" />&nbsp;
             <tal:block tal:define="audio_url context/@@captcha/audio_url"
@@ -30,7 +30,7 @@
                 <span id="captcha-audio-embed"></span>
             </tal:block>
         </div>
-        
+
         <tal:block tal:define="is_external context/@@captcha/external|python:False">
             <input tal:define="is_external context/@@captcha/external|python:False"
                    tal:condition="not:is_external"

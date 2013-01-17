@@ -21,16 +21,16 @@ class QuickEditView(BrowserView):
 
         self.context = context
         self.request = request
-        
+
         # some of the Archetypes macros want controller_state
         request.controller_state = {'kwargs':{}}
-    
+
     @memoize
     def _addableTypes(self):
         folder_factories = getMultiAdapter((self.context, self.request),
                                            name='folder_factories')
-        return [atype 
-                for atype in folder_factories.addable_types() 
+        return [atype
+                for atype in folder_factories.addable_types()
                 if atype['id'] not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder')
                ]
 

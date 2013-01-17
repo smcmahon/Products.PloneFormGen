@@ -17,11 +17,11 @@ try:
     HAS_PLONE4 = True
 except ImportError:
     HAS_PLONE4 = False
-    
+
 
 class TestFunctions(pfgtc.PloneFormGenTestCase):
     """ test ya_gpg.py """
-    
+
     def dummy_send( self, mfrom, mto, messageText, immediate=False ):
         self.mfrom = mfrom
         self.mto = mto
@@ -42,10 +42,10 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1 = getattr(self.folder, 'ff1')
         self.ff1.checkAuthenticator = False # no csrf protection
         self.mailhost = self.folder.MailHost
-        self.mailhost._send = self.dummy_send        
+        self.mailhost._send = self.dummy_send
         self.ff1.mailer.setRecipient_email('mdummy@address.com')
 
-    
+
     def LoadRequestForm(self, **kwargs):
         form = self.app.REQUEST.form
         form.clear()
@@ -68,15 +68,15 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
     def test_Mailer(self):
         """ Test mailer with dummy_send """
-    
+
         mailer = self.ff1.mailer
-        
+
         fields = self.ff1._getFieldObjects()
-        
+
         request = self.LoadRequestForm(topic = 'test subject', comments='test comments')
-        
+
         mailer.onSuccess(fields, request)
-        
+
         self.failUnless( self.messageText.find('To: <mdummy@address.com>') > 0 )
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_subject?=') > 0 )
         msg = email.message_from_string(self.messageText)
@@ -87,28 +87,28 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ Test mailer with subject line > 76 chars (Tracker #84) """
 
         long_subject = "Now is the time for all good persons to come to the aid of the quick brown fox."
-    
+
         mailer = self.ff1.mailer
         fields = self.ff1._getFieldObjects()
         request = self.LoadRequestForm(topic = long_subject)
         mailer.onSuccess(fields, request)
-        
+
         msg = email.message_from_string(self.messageText)
         encoded_subject_header = msg['subject']
         decoded_header = email.Header.decode_header(encoded_subject_header)[0][0]
-        
+
         self.assertEqual( decoded_header, long_subject )
 
 
     def test_SubjectDollarReplacement(self):
-        """ 
+        """
         Simple subject lines should do ${identifier} replacement from request.form --
         but only for a basic override.
         """
-        
+
         mailer = self.ff1.mailer
-        mailer.msg_subject = 'This is my ${topic} now'        
-        
+        mailer.msg_subject = 'This is my ${topic} now'
+
         # baseline unchanged
         request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
         self.messageText = ''
@@ -131,9 +131,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_test_subject_now?=') > 0 )
-        
+
         # we should get substitution in a basic override
-        mailer.msg_subject = 'This is my ${untopic} now'        
+        mailer.msg_subject = 'This is my ${untopic} now'
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?This_is_my_=3F=3F=3F_now?=') > 0 )
@@ -146,16 +146,16 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
 
     def test_TemplateReplacement(self):
-        """ 
+        """
         Mail template prologues, epilogues and footers should do ${identifier}
-        replacement from request.form -- this is simpler because there are no 
+        replacement from request.form -- this is simpler because there are no
         overrides.
         """
 
         mailer = self.ff1.mailer
-        mailer.body_pre = 'Hello ${topic},'        
-        mailer.body_post = 'Thanks, ${topic}!'        
-        mailer.body_footer = 'Eat my footer, ${topic}.'        
+        mailer.body_pre = 'Hello ${topic},'
+        mailer.body_post = 'Thanks, ${topic}!'
+        mailer.body_footer = 'Eat my footer, ${topic}.'
 
         # we should get substitution
         request = self.LoadRequestForm(topic = 'test subject', replyto='test@test.org', comments='test comments')
@@ -171,9 +171,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         utf8_subject = 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'
 
-        mailer = self.ff1.mailer        
-        fields = self.ff1._getFieldObjects()        
-        request = self.LoadRequestForm(topic = utf8_subject)        
+        mailer = self.ff1.mailer
+        fields = self.ff1._getFieldObjects()
+        request = self.LoadRequestForm(topic = utf8_subject)
         mailer.onSuccess(fields, request)
 
         msg = email.message_from_string(self.messageText)
@@ -189,9 +189,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         utf8_subject = 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'
         unicode_subject= utf8_subject.decode('UTF-8')
 
-        mailer = self.ff1.mailer        
-        fields = self.ff1._getFieldObjects()        
-        request = self.LoadRequestForm(topic = unicode_subject)        
+        mailer = self.ff1.mailer
+        fields = self.ff1._getFieldObjects()
+        request = self.LoadRequestForm(topic = unicode_subject)
         mailer.onSuccess(fields, request)
 
         msg = email.message_from_string(self.messageText)
@@ -203,18 +203,18 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
     def test_MailerOverrides(self):
         """ Test mailer override functions """
-    
+
         mailer = self.ff1.mailer
         mailer.setSubjectOverride("python: '%s and %s' % ('eggs', 'spam')")
         mailer.setSenderOverride("string: spam@eggs.com")
         mailer.setRecipientOverride("string: eggs@spam.com")
-        
+
         fields = self.ff1._getFieldObjects()
-        
+
         request = self.LoadRequestForm(topic = 'test subject')
-        
+
         mailer.onSuccess(fields, request)
-        
+
         # print "|%s" % self.messageText
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?eggs_and_spam?=') > 0 )
         self.failUnless( self.messageText.find('From: spam@eggs.com') > 0 )
@@ -223,59 +223,59 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
     def testMultiRecipientOverrideByString(self):
         """ try multiple recipients in recipient override """
-        
+
         mailer = self.ff1.mailer
         mailer.setRecipientOverride("string: eggs@spam.com, spam@spam.com")
-        
+
         fields = self.ff1._getFieldObjects()
-        
+
         request = self.LoadRequestForm(topic = 'test subject')
-        
+
         mailer.onSuccess(fields, request)
-        
+
         self.failUnless( self.messageText.find('To: <eggs@spam.com>, <spam@spam.com>') > 0 )
-        
+
 
 
     def testMultiRecipientOverrideByTuple(self):
         """ try multiple recipients in recipient override """
-        
+
         mailer = self.ff1.mailer
         mailer.setRecipientOverride("python: ('eggs@spam.com', 'spam.spam.com')")
-        
+
         fields = self.ff1._getFieldObjects()
-        
+
         request = self.LoadRequestForm(topic = 'test subject')
-        
+
         mailer.onSuccess(fields, request)
-        
+
         # print "|%s" % self.messageText
         self.failUnless( self.messageText.find('To: <eggs@spam.com>, <spam.spam.com>') > 0 )
-        
+
 
 
     def testRecipientFromRequest(self):
         """ try recipient from designated field  """
-        
+
         mailer = self.ff1.mailer
         mailer.setTo_field("selField")
-        
+
         fields = self.ff1._getFieldObjects()
-        
+
         request = self.LoadRequestForm(topic = 'test subject', selField = 'eggs@spamandeggs.com')
-        
+
         mailer.onSuccess(fields, request)
-        
+
         # print "|%s" % self.messageText
         self.failUnless( self.messageText.find('To: <eggs@spamandeggs.com>') > 0 )
 
         request = self.LoadRequestForm(topic = 'test subject', selField = ['eggs@spam.com', 'spam@spam.com'])
-        
+
         mailer.onSuccess(fields, request)
-        
+
         # print "|%s" % self.messageText
         self.failUnless( self.messageText.find('To: <eggs@spam.com>, <spam@spam.com>') > 0 )
-        
+
 
 
 
@@ -292,7 +292,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         mailer.setExecCondition('python: False')
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
         self.failUnless( len(self.messageText) == 0 )
-        
+
         self.messageText = ''
         mailer.setExecCondition('python: True')
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
@@ -322,9 +322,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless(
             self.messageBody.find('test subject') > 0 and
             self.messageBody.find('test@test.org') > 0 and
-            self.messageBody.find('test comments') > 0          
+            self.messageBody.find('test comments') > 0
           )
-        
+
         # setting some show fields shouldn't change that
         mailer.setShowFields( ('topic', 'comments',) )
         self.messageText = ''
@@ -332,7 +332,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless(
             self.messageBody.find('test subject') > 0 and
             self.messageBody.find('test@test.org') > 0 and
-            self.messageBody.find('test comments') > 0          
+            self.messageBody.find('test comments') > 0
           )
 
         # until we turn off the showAll flag
@@ -342,12 +342,12 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless(
             self.messageBody.find('test subject') > 0 and
             self.messageBody.find('test@test.org') < 0 and
-            self.messageBody.find('test comments') > 0          
+            self.messageBody.find('test comments') > 0
           )
-        
+
         # check includeEmpties
         mailer.includeEmpties = False
-        
+
         # first see if everything's still included
         mailer.showAll = True
         self.messageText = ''
@@ -356,7 +356,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless(
             self.messageBody.find('Subject') > 0 and
             self.messageBody.find('Your E-Mail Address') > 0 and
-            self.messageBody.find('Comments') > 0          
+            self.messageBody.find('Comments') > 0
           )
 
         # now, turn off required for a field and leave it empty
@@ -367,7 +367,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless(
             self.messageBody.find('Subject') > 0 and
             self.messageBody.find('Your E-Mail Address') > 0 and
-            self.messageBody.find('Comments') < 0          
+            self.messageBody.find('Comments') < 0
           )
 
 
@@ -384,7 +384,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless(
             'test@testme.com' in self.mto
         )
-        
+
         # list override
         mailer.setBccOverride( "python:['test@testme.com', 'test1@testme.com']" )
         self.messageText = ''

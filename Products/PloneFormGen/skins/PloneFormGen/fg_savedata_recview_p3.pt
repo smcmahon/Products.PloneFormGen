@@ -15,25 +15,25 @@
                        b_start request/b_start | b_start;">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        
+
         <h1 tal:content="context/@@plone_context_state/object_title" class="documentFirstHeading">
             Title or id
         </h1>
-        
+
         <div tal:replace="structure provider:plone.belowcontenttitle" />
-        
+
         <p class="documentDescription"
            tal:content="here/Description"
            tal:condition="here/Description">
             Description
         </p>
-        
+
         <div tal:replace="structure provider:plone.abovecontentbody" />
-        
+
         <div
-         tal:condition="results" 
+         tal:condition="results"
          tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
-        
+
             <tal:block tal:condition="batch/prevlist">
                 <div metal:use-macro="here/batch_macros/macros/navigation" />
             </tal:block>
@@ -42,10 +42,10 @@
                 <tal:block
                  tal:repeat="cname colnames"
                  tal:define="rowdict python:here.rowAsColDict(row, colnames)">
-                 
+
                     <dt tal:content="cname">column name</dt>
                     <dd tal:content="python: rowdict.get(cname, '')">data</dd>
-                    
+
                 </tal:block>
             </dl>
 
@@ -53,7 +53,7 @@
                 <div metal:use-macro="here/batch_macros/macros/navigation" />
             </tal:block>
         </div>
-        
+
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
     </tal:main-macro>

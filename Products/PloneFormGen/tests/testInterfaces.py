@@ -21,26 +21,26 @@ class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
     """
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
-        
+
         # add form folder for use in tests
         self.folder.invokeFactory('FormFolder', 'ff1')
-    
+
     def testBrowserViewClassInterfaces(self):
         """Some basic boiler plate testing of interfaces and classes"""
         # verify IFormFolderExportView
         self.failUnless(interfaces.IFormFolderExportView.implementedBy(exportimport.FormFolderExportView))
         self.failUnless(verifyClass(interfaces.IFormFolderExportView, exportimport.FormFolderExportView))
-    
+
     def testBrowserViewObjectsVerify(self):
         # verify views are objects of the expected class, verified implementation
         form_folder_export = getMultiAdapter((self.folder.ff1, self.app.REQUEST), name='export-form-folder')
         self.failUnless(isinstance(form_folder_export, exportimport.FormFolderExportView))
         self.failUnless(verifyObject(interfaces.IFormFolderExportView, form_folder_export))
-    
+
     def testContentClassInterfaces(self):
         self.failUnless(interfaces.IPloneFormGenFieldset.implementedBy(content.fieldset.FieldsetFolder))
         self.failUnless(verifyClass(interfaces.IPloneFormGenFieldset, content.fieldset.FieldsetFolder))
-    
+
 
 if  __name__ == '__main__':
     framework()

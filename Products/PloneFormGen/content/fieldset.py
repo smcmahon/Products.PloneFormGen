@@ -56,7 +56,7 @@ FieldsetFolderSchema.moveField('description', after='useLegend')
 class FieldsetFolder(ATFolder):
     """A folder which groups form fields as a fieldset."""
     implements(IPloneFormGenFieldset)
-    
+
     schema         =  FieldsetFolderSchema
 
     content_icon   = 'Fieldset.gif'
@@ -67,7 +67,7 @@ class FieldsetFolder(ATFolder):
 
     typeDescription= 'A folder which groups form fields as a fieldset.'
 
-    global_allow = 0    
+    global_allow = 0
 
     # XXX We should do this with a tool so that others may add fields
     allowed_content_types = fieldTypes
@@ -79,14 +79,14 @@ class FieldsetFolder(ATFolder):
         """ initialize class """
 
         ATFolder.__init__(self, oid, **kwargs)
-        
+
         self.fsStartField = StringField('FieldSetStart',
             searchable=0,
             required=0,
             write_permission = View,
             widget=FieldsetStartWidget(),
             )
-        
+
 
         self.fsEndField = StringField('FieldSetEnd',
             searchable=0,
@@ -94,7 +94,7 @@ class FieldsetFolder(ATFolder):
             write_permission = View,
             widget=FieldsetEndWidget(),
             )
-        
+
 
     security.declareProtected(ModifyPortalContent, 'setTitle')
     def setTitle(self, value, **kw):
@@ -125,7 +125,7 @@ class FieldsetFolder(ATFolder):
 
     security.declarePrivate('fieldsetFields')
     def fieldsetFields(self, objTypes=None, includeFSMarkers=False):
-        """ 
+        """
         return list of enclosed fields;
         if includeFSMarkers, include markers for fieldset start/end
         """
@@ -172,7 +172,7 @@ class FieldsetFolder(ATFolder):
 
         ATFolder.manage_afterAdd(self, item, container)
 
-        id = self.getId()        
+        id = self.getId()
         if self.fsStartField.__name__ != id:
             self.fsStartField.__name__ = id
 
@@ -180,7 +180,7 @@ class FieldsetFolder(ATFolder):
     # security is inherited
     def checkIdAvailable(self, id):
         """ Checks for good id by asking form folder """
-        
+
         return self.formFolderObject().checkIdAvailable(id)
 
 

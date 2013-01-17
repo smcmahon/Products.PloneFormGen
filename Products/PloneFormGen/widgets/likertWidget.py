@@ -58,7 +58,7 @@ class LikertWidget(TypesWidget):
             answers.append(value)
 
         return answers, {}
-        
+
 registerWidget(LikertWidget,
                title='Likert Widget',
                description='Renders a Likert question and answer box',

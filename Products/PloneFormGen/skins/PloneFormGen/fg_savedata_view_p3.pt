@@ -25,21 +25,21 @@
         </tal:block>
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        
+
         <h1 tal:content="view/object_title" class="documentFirstHeading">
             Title or id
         </h1>
-        
+
         <div tal:replace="structure provider:plone.belowcontenttitle" />
-        
+
         <p class="documentDescription"
            tal:content="here/Description"
            tal:condition="here/Description">
             Description
         </p>
-        
+
         <div tal:replace="structure provider:plone.abovecontentbody" />
-        
+
         <div tal:condition="here/itemsSaved">
 
           <p>
@@ -75,16 +75,16 @@
            tal:attributes="action here/absolute_url"
            style="padding-top:2em">
             <input tal:replace="structure context/@@authenticator/authenticator">
-            <input type="submit" 
+            <input type="submit"
                id="clearSavedFormInput"
-               name="clearSavedFormInput" 
+               name="clearSavedFormInput"
                value="Clear Saved Input"
                class="standalone"
                i18n:attributes="value clear-save-input" i18n:domain="ploneformgen"
               />
-              <div id="clear-saved-input-confirm" 
-                   style="display:none" 
-                   i18n:translate="clear-saved-input-confirm" 
+              <div id="clear-saved-input-confirm"
+                   style="display:none"
+                   i18n:translate="clear-saved-input-confirm"
                    i18n:domain="ploneformgen">
                   Clear all saved input?
               </div>

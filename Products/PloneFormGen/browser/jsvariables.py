@@ -9,7 +9,7 @@ from Products.PloneFormGen import PloneFormGenMessageFactory as _
 # FIELD_MSG: 'Field',
 # ACTIONS_MSG: 'Actions',
 # ORDER_MSG: 'Order'}
-# 
+#
 # To add a message, just put it in the messages dict
 
 messages = {
@@ -20,7 +20,7 @@ messages = {
     'AJAX_FAILED_MSG' : _(u'ajax_failed_msg', u'Unable to load resource: '),
     'MORE_FIELDS_MSG' : _(u'more_fields_msg', u'More fields...'),
     'LESS_FIELDS_MSG' : _(u'less_fields_msg', u"Less fields..."),
-    
+
 }
 
 messageTemplate = "pfgQEdit.messages = {\n%s}\n"
@@ -33,7 +33,7 @@ class JSVariables(BrowserView):
         response.setHeader('content-type','text/javascript;;charset=utf-8')
 
         template = ''
-        
+
         for key in messages:
             msg = translate(messages[key], context=self.request).replace("'", "\\'")
             template = "%s%s: '%s',\n" % (template, key, msg)

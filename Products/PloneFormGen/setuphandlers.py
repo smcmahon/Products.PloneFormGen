@@ -17,7 +17,7 @@ from Products.PloneFormGen.interfaces.thanksPage import \
 
 class HiddenProfiles(object):
     implements(INonInstallable)
-    
+
     def getNonInstallableProfiles(self):
         return [u'Products.PloneFormGen:loadtest',]
 
@@ -32,7 +32,7 @@ def update_kupu_resources(out, site):
     kupuTool = getToolByName(site, 'kupu_library_tool', None)
     if kupuTool is not None:
         linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
-        
+
         if 'FormFolder' not in linkable:
             # kupu's resource list can accumulate old, no longer valid types;
             # it will throw an exception if we try to resave them.
@@ -47,25 +47,25 @@ def update_kupu_resources(out, site):
 
 def safe_add_purgeable_properties(out, site):
     """ In order to avoid a possible "feature" regression and
-        to keep test case testModificationsToPropSheetNotOverwritten in 
+        to keep test case testModificationsToPropSheetNotOverwritten in
         a passing state, we need to do a check before property add
-        of all non-lines properties. This per my reading of GS' PropertiesXMLAdapter's 
+        of all non-lines properties. This per my reading of GS' PropertiesXMLAdapter's
         _initProperties implementation, which appears to only merge properties of
         type tuple or list.
     """
     ppTool = getToolByName(site, 'portal_properties')
     propSheet = getattr(ppTool, PROPERTY_SHEET_NAME)
     if not propSheet.hasProperty('mail_template'):
-        propSheet.manage_addProperty('mail_template', DEFAULT_MAILTEMPLATE_BODY, 'text')    
+        propSheet.manage_addProperty('mail_template', DEFAULT_MAILTEMPLATE_BODY, 'text')
     if not propSheet.hasProperty('mail_body_type'):
-        propSheet.manage_addProperty('mail_body_type', 'html', 'string')    
+        propSheet.manage_addProperty('mail_body_type', 'html', 'string')
     if not propSheet.hasProperty('mail_recipient_email'):
-        propSheet.manage_addProperty('mail_recipient_email', '', 'string')    
+        propSheet.manage_addProperty('mail_recipient_email', '', 'string')
     if not propSheet.hasProperty('mail_recipient_name'):
         propSheet.manage_addProperty('mail_recipient_name', '', 'string')
     if not propSheet.hasProperty('csv_delimiter'):
-        propSheet.manage_addProperty('csv_delimiter', ',', 'string')        
-    
+        propSheet.manage_addProperty('csv_delimiter', ',', 'string')
+
 
 def importVarious(context):
     """

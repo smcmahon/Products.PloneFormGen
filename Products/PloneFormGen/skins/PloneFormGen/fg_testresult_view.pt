@@ -23,7 +23,7 @@
             </tal:block>
           </tal:block>
         </dl>
-      
+
       </metal:main_macro>
     </metal:fill>
   </body>

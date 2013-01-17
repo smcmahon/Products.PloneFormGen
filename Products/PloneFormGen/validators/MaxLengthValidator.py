@@ -27,7 +27,7 @@ class MaxLengthValidator:
     def __call__(self, value, *args, **kwargs):
 
         #import pdb; pdb.set_trace()
-            
+
         field = kwargs.get('field', None)
         widget = getattr(field, 'widget', None)
 
@@ -44,7 +44,7 @@ class MaxLengthValidator:
             return 1
 
         nval = len(value)
-                    
+
         if nval <= maxlength:
             return 1
         else:

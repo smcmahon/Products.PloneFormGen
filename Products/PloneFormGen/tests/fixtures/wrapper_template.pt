@@ -16,7 +16,7 @@
         <h1 class="documentFirstHeading">
           Embedded form
         </h1>
-    
+
         <tal:form tal:define="formview nocall:context/testform/@@embedded;
                               dummy python:formview.setPrefix('testform')"
                   tal:replace="structure formview"/>

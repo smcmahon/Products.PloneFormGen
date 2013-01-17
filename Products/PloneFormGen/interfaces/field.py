@@ -11,7 +11,7 @@ class IPloneFormGenField(Interface):
     """
     Must match GS type declaration.
     """
-    
+
     def fgPrimeDefaults(request, useTALES=True):
         """ primes request with default """
 
@@ -30,7 +30,7 @@ class IPloneFormGenField(Interface):
     def isFileField():
         """Returns True if the embedded field acts like a file field
         """
-        
+
     def thanksValue(REQUEST):
         """ return from REQUEST, this field's value, rendered for display
             on a thanks page.

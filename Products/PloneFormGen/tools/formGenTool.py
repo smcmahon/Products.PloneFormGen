@@ -1,4 +1,4 @@
-""" FormGenTool manages site-wide PloneFormGen settings """ 
+""" FormGenTool manages site-wide PloneFormGen settings """
 
 __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
@@ -29,20 +29,20 @@ from Products.PloneFormGen import config
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
 
-class FormGenTool(UniqueObject, SimpleItem): 
-    """ FormGenTool manages site-wide PloneFormGen settings """ 
+class FormGenTool(UniqueObject, SimpleItem):
+    """ FormGenTool manages site-wide PloneFormGen settings """
 
     id = 'formgen_tool'
-    meta_type= 'PloneFormGen Tool' 
+    meta_type= 'PloneFormGen Tool'
     title = 'PloneFormGen Settings'
     plone_tool = True
     security = ClassSecurityInfo()
-    
+
 
     def __init__(self):
         self._initStringValidators()
 
-    
+
     security.declarePrivate('_initStringValidators')
     def _initStringValidators(self):
         """ Initialize string validators from config
@@ -53,7 +53,7 @@ class FormGenTool(UniqueObject, SimpleItem):
         self.stringValidatorsDL.add('vocabulary_none_text', u'None')
 
         for kwa in config.stringValidators:
-            id = kwa['id']    
+            id = kwa['id']
 
             title = kwa.get('title', id)
             i18nid = kwa.get('i18nid', title)
@@ -71,7 +71,7 @@ class FormGenTool(UniqueObject, SimpleItem):
                 # 'revalid': revalid,
                 'id'     : validatorId,
                 }
-            
+
             self.stringValidatorsDL.add( id, title, msgid=i18nid )
 
 
@@ -92,9 +92,9 @@ class FormGenTool(UniqueObject, SimpleItem):
     def getFromPropSheet(self, propid, default):
         """ find a property value in the property sheet
             with a fallback """
-    
+
         res = default
-        ppTool = getToolByName(self, 'portal_properties')       
+        ppTool = getToolByName(self, 'portal_properties')
         psheet = getattr(ppTool, config.PROPERTY_SHEET_NAME, None)
         if psheet is not None:
             res = psheet.getProperty(propid, res)
@@ -104,12 +104,12 @@ class FormGenTool(UniqueObject, SimpleItem):
     security.declareProtected(ManagePortal, 'setDefault')
     def setDefault(self, propid, default):
         """ change a property in the portal_properties sheet """
-        
-        ppTool = getToolByName(self, 'portal_properties')       
-        psheet = getattr(ppTool, config.PROPERTY_SHEET_NAME)
-        psheet.manage_changeProperties( **{propid : default} )        
 
-        
+        ppTool = getToolByName(self, 'portal_properties')
+        psheet = getattr(ppTool, config.PROPERTY_SHEET_NAME)
+        psheet.manage_changeProperties( **{propid : default} )
+
+
     security.declareProtected(ManagePortal, 'getPfgPermissions')
     def getPfgPermissions(self):
         """ get permissions in use by PFG """
@@ -120,63 +120,63 @@ class FormGenTool(UniqueObject, SimpleItem):
     security.declareProtected(ModifyPortalContent, 'getDefaultMailTemplateBody')
     def getDefaultMailTemplateBody(self):
         """ get the site's default mail adapter mail body template """
-        
+
         return self.getFromPropSheet('mail_template', config.DEFAULT_MAILTEMPLATE_BODY)
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailRecipient')
     def getDefaultMailRecipient(self):
         """ get the site's default mail adapter recipient """
-        
+
         return self.getFromPropSheet('mail_recipient_email', '')
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailCC')
     def getDefaultMailCC(self):
         """ get the site's default mail cc """
-        
+
         return self.getFromPropSheet('mail_cc_recipients', [])
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailBCC')
     def getDefaultMailBCC(self):
         """ get the site's default mail cc """
-        
+
         return self.getFromPropSheet('mail_bcc_recipients', [])
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailRecipientName')
     def getDefaultMailRecipientName(self):
         """ get the site's default mail adapter recipient name """
-        
+
         return self.getFromPropSheet('mail_recipient_name', '')
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailBodyType')
     def getDefaultMailBodyType(self):
         """ get the site's default mail adapter mail body template """
-        
+
         return self.getFromPropSheet('mail_body_type', 'html')
 
 
     security.declareProtected(ModifyPortalContent, 'getCSVDelimiter')
     def getCSVDelimiter(self):
         """ get the site's default csv delimiter for data export """
-        
+
         return self.getFromPropSheet('csv_delimiter', ',')
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailXInfo')
     def getDefaultMailXInfo(self):
         """ get the site's default mail adapter xinfo headers """
-        
+
         return self.getFromPropSheet('mail_xinfo_headers', config.XINFO_DEFAULT)
 
 
     security.declareProtected(ModifyPortalContent, 'getDefaultMailAddHdrs')
     def getDefaultMailAddHdrs(self):
         """ get the site's default mail adapter additional headers """
-        
+
         return self.getFromPropSheet('mail_add_headers', [])
 
 
@@ -213,7 +213,7 @@ class FormGenTool(UniqueObject, SimpleItem):
         Set role/permissions on portal based on REQUEST.form.
         For use in configlet.
         """
-        
+
         portal=getToolByName(self, 'portal_url').getPortalObject()
         permits = list(self.getPfgPermissions())
 
@@ -232,9 +232,9 @@ class FormGenTool(UniqueObject, SimpleItem):
                     if REQUEST.form.get(id, '0') == '1':
                         roles.append(allRoles[rpos]['name'])
                 # set role permissions
-                portal.manage_permission(permit, roles)            
-    
-        
+                portal.manage_permission(permit, roles)
+
+
 InitializeClass(FormGenTool)
 
 # since we're in a singleton's module anyway,
@@ -244,7 +244,7 @@ InitializeClass(FormGenTool)
 def _registerStringValidators():
 
     for kwa in config.stringValidators:
-        id = kwa['id']    
+        id = kwa['id']
 
         errmsg = kwa.get('errmsg', 'Validation failed: %s' % id)
         errid = kwa.get('errid', errmsg)

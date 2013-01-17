@@ -25,7 +25,7 @@
                             tal:attributes="class python:test(repeat['question'].even(),'even','odd')">
               <td tal:content="question" />
               <td tal:repeat="answer answers">
-                <input type="radio" tal:define="col repeat/answer/number" 
+                <input type="radio" tal:define="col repeat/answer/number"
                        tal:attributes="id string:${fid}_${row}_${col};
                                        name string:${fid}.${row}:record;
                                        value answer;

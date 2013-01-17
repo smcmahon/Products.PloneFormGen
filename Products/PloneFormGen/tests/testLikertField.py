@@ -44,7 +44,7 @@ class TestLikertField(pfgtc.PloneFormGenTestCase):
         self.assertEqual(len(lf.likertAnswers), 5)
         self.assertEqual(len(lf.fgField.questionSet), 2)
         self.assertEqual(len(lf.fgField.answerSet), 5)
-            
+
 
     def test_Validate(self):
         """ Test required field validation """
@@ -62,23 +62,23 @@ class TestLikertField(pfgtc.PloneFormGenTestCase):
         self.assertEqual( errors, {'lf': u'pfg_allRequired'} )
 
         # try it with input, required
-        request = FakeRequest(topic = 'test subject', 
-                              replyto='test@test.org', 
+        request = FakeRequest(topic = 'test subject',
+                              replyto='test@test.org',
                               comments='test comments',
                               lf={'1':'2','2':'3'})
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
         self.assertEqual(self.saver.itemsSaved(), 2)
         self.assertEqual(self.saver.getSavedFormInput()[1][3], "{'1': '2', '2': '3'}")
-    
+
     def test_likert_html_output(self):
         """Failing test for #225, AttributeError: __len__" in Plone 2.5.5"""
         rating_req_val = record()
         rating_req_val.__dict__ = {'1':'2','2':'3'}
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', 
+        request = FakeRequest(topic = 'test subject', replyto='test@test.org',
                               comments='test comments', lf=rating_req_val)
         self.failUnless("1: 2, 2: 3" in self.ff1.lf.htmlValue(request))
-    
+
 
 
 if  __name__ == '__main__':

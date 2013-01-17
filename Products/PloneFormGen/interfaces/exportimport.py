@@ -18,12 +18,12 @@ class IImportSchema(Interface):
     upload = Bytes(
         title=_(u'Upload'),
         required=True)
-    
+
     purge = Bool(
         title=_(u'Remove Existing Form Items?'),
         default=False,
         required=False)
-    
+
 
 class IFormFolderImportView(Interface):
     """Interface for import form

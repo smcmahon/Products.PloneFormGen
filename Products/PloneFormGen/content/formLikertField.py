@@ -133,11 +133,11 @@ class FGLikertField(fieldsBase.BaseFormField):
         """
 
         value = REQUEST.form.get(self.__name__, 'No Input')
-        if not (safe_hasattr(value, 'get') and 
-                safe_hasattr(value, 'len') and 
+        if not (safe_hasattr(value, 'get') and
+                safe_hasattr(value, 'len') and
                 len(value)):
             return fieldsBase.BaseFormField.htmlValue(self, REQUEST)
-        
+
         res = "<dl>\n"
         for i in range(len(value)):
             label = self.fgField.questionSet[i]

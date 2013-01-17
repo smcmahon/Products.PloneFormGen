@@ -14,7 +14,7 @@ import re
 dollarRE = re.compile(r"\$\{(.+?)\}")
 
 class DollarVarReplacer(object):
-    """ 
+    """
     Initialize with a dictionary, then self.sub returns a string
     with all ${key} substrings replaced with values looked
     up from the dictionary.
@@ -55,7 +55,7 @@ class DollarVarReplacer(object):
                 return self.adict[mo.group(1)]
             except KeyError:
                 pass
-        return '???'            
+        return '???'
 
 if __name__ == '__main__':
     import doctest

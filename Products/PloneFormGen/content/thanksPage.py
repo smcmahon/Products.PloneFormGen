@@ -142,18 +142,18 @@ ThanksPageSchema['includeEmpties'].schemata = 'fields'
 ThanksPageSchema['showAll'].schemata = 'fields'
 ThanksPageSchema['showFields'].schemata = 'fields'
 # simplify schema
-for afield in ('subject', 
-               'relatedItems', 
-               'location', 
-               'language', 
-               'effectiveDate', 
-               'expirationDate', 
-               'creation_date', 
-               'modification_date', 
-               'creators', 
-               'contributors', 
-               'rights', 
-               'allowDiscussion', 
+for afield in ('subject',
+               'relatedItems',
+               'location',
+               'language',
+               'effectiveDate',
+               'expirationDate',
+               'creation_date',
+               'modification_date',
+               'creators',
+               'contributors',
+               'rights',
+               'allowDiscussion',
                'excludeFromNav', ):
     ThanksPageSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
     ThanksPageSchema[afield].schemata = 'default'
@@ -177,7 +177,7 @@ class FormThanksPage(ATCTContent):
 
     typeDescription= 'A thank-you page that can display form input.'
 
-    global_allow = 0    
+    global_allow = 0
 
     security       = ClassSecurityInfo()
 
@@ -194,10 +194,10 @@ class FormThanksPage(ATCTContent):
     security.declareProtected(View, 'fieldDisplayList')
     def fieldDisplayList(self):
         """ returns a DisplayList of all fields """
-        
+
         return self.fgFieldsDisplayList()
-        
-    
+
+
     security.declareProtected(View, 'displayFields')
     def displayFields(self):
         """ Returns a list of fields that should be
@@ -206,7 +206,7 @@ class FormThanksPage(ATCTContent):
         if self.showAll:
             # acquire field list from parent
             return self.fgFields(displayOnly=True)
-        
+
         # acquire field list from parent
         fields = self.fgFields()
         res = []
@@ -217,7 +217,7 @@ class FormThanksPage(ATCTContent):
                     res.append(f)
                     break
         return res
-        
+
 
     security.declareProtected(View, 'displayInputs')
     def displayInputs(self, request):
@@ -229,7 +229,7 @@ class FormThanksPage(ATCTContent):
             if not (implementedOrProvidedBy(IField, obj) or obj.isLabel()):
                 # if field list hasn't been specified explicitly, exclude server side fields
                 if self.showAll and obj.getServerSide():
-                    continue 
+                    continue
                 myFields.append(obj)
 
         # Now, determine which fields we show
@@ -253,24 +253,24 @@ class FormThanksPage(ATCTContent):
             if self.includeEmpties or (value and (value != 'No Input')):
                 res.append( {
                     'label' : obj.fgField.widget.label,
-                    'value' : value, 
+                    'value' : value,
                     } )
-            
+
         return res
-        
+
 
     security.declareProtected(ModifyPortalContent, 'setShowFields')
     def setShowFields(self, value, **kw):
         """ Reorder form input to match field order """
         # This wouldn't be desirable if the PickWidget
         # retained order.
-        
+
         self.showFields = []
         for field in self.fgFields(excludeServerSide=False):
             id = field.getName()
             if id in value:
                 self.showFields.append(id)
-        
+
 
     security.declarePrivate('_dreplace')
     def _dreplace(self, s):

@@ -83,7 +83,7 @@
     provides="Products.GenericSetup.interfaces.IFilesystemExporter"
     for="Products.PloneFormGen.interfaces.IPloneFormGenForm"
     />
-    
+
   <adapter
     factory=".exportimport.FormFolderWalkingAdapter"
     provides="Products.GenericSetup.interfaces.IFilesystemExporter"
@@ -94,7 +94,7 @@
   <class class=".content.fieldsBase.BaseFormField">
      <implements interface="Products.GenericSetup.interfaces.IDAVAware" />
   </class>
-     
+
   <class class=".content.actionAdapter.FormActionAdapter">
     <implements interface="Products.GenericSetup.interfaces.IDAVAware" />
   </class>
@@ -118,19 +118,19 @@
       description="PloneFormGen load test fixtures"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
+
   <utility factory=".setuphandlers.HiddenProfiles"
            name="Products.PloneFormGen"/>
 
   <include package=".browser"/>
-  <include 
+  <include
     zcml:condition="installed Products.GenericSetup.upgrade"
     file="upgrades.zcml"/>
-  <include 
+  <include
     zcml:condition="installed collective.googleanalytics.tracking"
     package=".analytics"/>
   <include package=".portlet"/>
 
-  <subscriber handler=".events.form_adapter_pasted" />  
+  <subscriber handler=".events.form_adapter_pasted" />
 
 </configure>

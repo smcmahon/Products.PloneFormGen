@@ -14,7 +14,7 @@ try:
     haveRecaptcha = True
 except ImportError:
     haveRecaptcha = False
-    print "collective.recaptcha is unavailable: captcha tests will be skipped."    
+    print "collective.recaptcha is unavailable: captcha tests will be skipped."
 
 from Products.Five.testbrowser import Browser
 
@@ -49,7 +49,7 @@ class PloneFormGenTestCase(PloneTestCase.PloneTestCase):
     def _setup(self):
         # make sure we test in Plone 2.5 with the exception hook monkeypatch applied
         Products.PloneFormGen.config.PLONE_25_PUBLISHER_MONKEYPATCH = True
-        
+
         PloneTestCase.PloneTestCase._setup(self)
         self.app.REQUEST['SESSION'] = Session()
 
@@ -62,7 +62,7 @@ class PloneFormGenFunctionalTestCase(PloneTestCase.FunctionalTestCase):
         self.app.acl_users.userFolderAddUser('root', 'secret', ['Manager'], [])
         self.browser.addHeader('Authorization', 'Basic root:secret')
         self.portal_url = 'http://nohost/plone'
-        
+
     def afterSetUp(self):
         super(PloneTestCase.FunctionalTestCase, self).afterSetUp()
         self.portal.MailHost = MailHostMock()

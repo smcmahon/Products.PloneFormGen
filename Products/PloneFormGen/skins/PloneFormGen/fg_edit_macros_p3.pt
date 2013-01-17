@@ -200,7 +200,7 @@
                    tal:attributes="value python:(last_referer and '%s/%s' % (here.absolute_url(), template.id) not in last_referer) and last_referer or (here.getParentNode() and here.getParentNode().absolute_url())"
                    />
 
- 
+
             <input tal:replace="structure context/@@authenticator/authenticator">
 
 
@@ -247,7 +247,7 @@
 
     <metal:footer_macro define-macro="footer">
     </metal:footer_macro>
-        
+
   </body>
 
 </html>

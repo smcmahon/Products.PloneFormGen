@@ -29,7 +29,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.mfrom = mfrom
         self.mto = mto
         self.messageText = messageText
-        
+
     def LoadRequestForm(self, **kwargs):
         form = self.app.REQUEST.form
         form.clear()
@@ -49,16 +49,16 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
     def test_embedded_form_renders(self):
         view = self.ff1.restrictedTraverse('@@embedded')
         res = view()
-        
+
         # form renders
         self.failUnless('Your E-Mail Address' in res)
-        
+
         # form action equals request URL
         self.failUnless('action="%s"' % self.app.REQUEST['URL'] in res)
-        
+
         # no form prefix
         self.failUnless('name="form.submitted"' in res)
-        
+
         # we can specify a form prefix
         view.setPrefix('mypfg')
         res = view()
@@ -95,13 +95,13 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
 
         # should be no validation errors
         self.failIf('This field is required.' in res)
-        
+
         # (and request should still have the 'form.submitted' key)
         self.failUnless('form.submitted' in self.app.REQUEST.form)
-        
+
         # (and the controller state should be untouched)
         self.assertEqual(self.app.REQUEST.get('controller_state'), 'foobar')
-        
+
         # but if we remove the form prefix then it should process the form
         view.setPrefix('')
         res = view()
@@ -126,10 +126,10 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.app.REQUEST._orig_env['PATH_TRANSLATED'] = '/plone'
         view = self.ff1.restrictedTraverse('@@embedded')
         self.assertRaises(Retry, view)
-        
+
         self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
             '/plone/Members/test_user_1_/ff1/thank-you')
-        
+
         # make sure the transaction was committed
         self.failUnless(committed)
 

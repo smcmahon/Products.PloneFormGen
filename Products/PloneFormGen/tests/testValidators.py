@@ -11,7 +11,7 @@ from Products.PloneFormGen.tests import pfgtc
 from Products.PloneFormGen.content import validationMessages
 from Products.validation import validation
 
-        
+
 class TestCustomValidators(pfgtc.PloneFormGenTestCase):
     """ test our validators """
 
@@ -75,7 +75,7 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         field = Mock()
         field.widget = Mock()
         field.widget.maxlength = ''
-        
+
         self.failUnlessEqual(v('abc', field=field), 1)
 
     def test_isEmail(self):
@@ -93,9 +93,9 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
 
 class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
     """ Test friendlier validation framework """
-    
+
     def test_messageMassage(self):
-    
+
         # s = "Validation failed(isUnixLikeName): something is not a valid identifier."
         # self.failUnlessEqual(validationMessages.cleanupMessage(s, self, self), u'pfg_isUnixLikeName')
 
@@ -113,9 +113,9 @@ class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
 
         from Products.validation.exceptions import UnknowValidatorError
         from Products.validation import validation as v
-        
+
         self.assertRaises(UnknowValidatorError, v.validate, 'noValidator', 'test')
-            
+
         self.failIfEqual( v.validate('pfgv_isEmail', 'test'), 1 )
 
         self.failUnlessEqual( v.validate('pfgv_isEmail', 'test@test.com'), 1 )

@@ -23,7 +23,7 @@ class CaptchaValidator:
         self.description = description
 
     def __call__(self, value, *args, **kwargs):
-        
+
         context = kwargs.get('instance')
         request = kwargs.get('REQUEST')
         captcha = getMultiAdapter((context, request), name='captcha')

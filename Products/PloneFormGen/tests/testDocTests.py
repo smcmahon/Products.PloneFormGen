@@ -19,7 +19,7 @@ def test_suite():
             f, package='Products.PloneFormGen.tests',
             test_class=PloneFormGenFunctionalTestCase,
             optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
-        
+
             for f in testfiles
         ])
 

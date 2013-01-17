@@ -40,7 +40,7 @@ FormAdapterSchema = ATContentTypeSchema.copy() + Schema((
             description=_(u'help_execcondition_text', default=u"""
                 A TALES expression that will be evaluated to determine whether or not
                 to execute this action.
-                Leave empty if unneeded, and the action will be executed. 
+                Leave empty if unneeded, and the action will be executed.
                 Your expression should evaluate as a boolean; return True if you wish
                 the action to execute.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
@@ -55,18 +55,18 @@ finalizeATCTSchema(FormAdapterSchema, folderish=True, moveDiscussion=False)
 
 # avoid showing unnecessary schema tabs
 for afield in ('description',
-               'subject', 
-               'relatedItems', 
-               'location', 
-               'language', 
-               'effectiveDate', 
-               'expirationDate', 
-               'creation_date', 
-               'modification_date', 
-               'creators', 
-               'contributors', 
-               'rights', 
-               'allowDiscussion', 
+               'subject',
+               'relatedItems',
+               'location',
+               'language',
+               'effectiveDate',
+               'expirationDate',
+               'creation_date',
+               'modification_date',
+               'creators',
+               'contributors',
+               'rights',
+               'allowDiscussion',
                'excludeFromNav', ):
     FormAdapterSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
     FormAdapterSchema[afield].schemata = 'default'
@@ -90,7 +90,7 @@ class FormActionAdapter(ATCTContent):
 
     typeDescription= 'An adapter that supplies a form action.'
 
-    global_allow = 0    
+    global_allow = 0
 
     security       = ClassSecurityInfo()
 
@@ -99,7 +99,7 @@ class FormActionAdapter(ATCTContent):
         """ Called by form to invoke custom success processing.
             return None (or don't use "return" at all) if processing is
             error-free.
-            
+
             Return a dictionary like {'field_id':'Error Message'}
             and PFG will stop processing action adapters and
             return back to the form to display your error messages
@@ -118,20 +118,20 @@ class FormActionAdapter(ATCTContent):
 
             {FORM_ERROR_MARKER:'Yuck! You will need to submit again.',
              'field_id':'Error Message for field.'}
-            
-            Messages may be string types or zope.i18nmessageid objects.                
+
+            Messages may be string types or zope.i18nmessageid objects.
         """
-        
+
         # fields will be a sequence of objects with an IPloneFormGenField interface
-        
+
         pass
 
 
     def at_post_create_script(self):
         """ activate action adapter in parent folder """
-        
+
         # XXX TODO - change to use events when we give up on Plone 2.1.x
-        
+
         ATCTContent.at_post_create_script(self)
 
         self.aq_parent.addActionAdapter(self.id)

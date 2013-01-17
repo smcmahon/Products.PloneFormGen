@@ -7,7 +7,7 @@ def patch_portlet_error_handling():
     """
     logger = logging.getLogger('PloneFormGen')
     logger.info('Patching plone.app.portlets ColumnPortletManagerRenderer to not catch Retry exceptions')
-    
+
     import sys
     from Acquisition import aq_acquire
     from ZODB.POSException import ConflictError

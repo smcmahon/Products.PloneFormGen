@@ -13,25 +13,25 @@
       <metal:main_macro>
 
         <div tal:condition="exists:request/form/fieldset" tal:omit-tag="">
-      
+
             <div tal:replace="structure provider:plone.abovecontenttitle" />
-            
+
             <h1 tal:content="view/object_title" class="documentFirstHeading">
                 Title or id
             </h1>
-            
+
             <div tal:replace="structure provider:plone.belowcontenttitle" />
-            
+
             <p class="documentDescription"
                tal:content="here/Description"
                tal:condition="here/Description">
                 Description
             </p>
-            
+
             <div tal:replace="structure provider:plone.abovecontentbody" />
-            
+
             <p tal:replace="structure here/getThanksPrologue | nothing" />
-            
+
             <blockquote>
                 <dl>
                     <tal:block repeat="field python:here.displayInputs(request)">
@@ -40,7 +40,7 @@
                     </tal:block>
                 </dl>
             </blockquote>
-            
+
             <p tal:replace="structure here/getThanksEpilogue | nothing" />
 
         </div>
@@ -54,4 +54,4 @@
       </metal:main_macro>
     </metal:main>
 </body>
-</html> 
+</html>

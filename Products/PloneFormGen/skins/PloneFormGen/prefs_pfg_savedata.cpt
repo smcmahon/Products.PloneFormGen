@@ -35,7 +35,7 @@
             <li class="selected">
             <a href="prefs_pfg_savedata"
                 i18n:translate="label_ploneformgen_savedata">Saved Data</a>
-            </li>                   
+            </li>
         </ul>
         <div class="contentActions">
             &nbsp;
@@ -61,13 +61,13 @@
             </a>
 
             <p class="documentDescription" i18n:translate="description_ploneformgen_savedata">
-                Set defaults for data adapters. 
+                Set defaults for data adapters.
             </p>
-    
+
             <form action="" method="post" tal:attributes="action template/getId">
 
                 <input type="hidden" name="form.submitted" value="1" />
-                
+
                 <div class="field">
 	                <label for="csv_delimiter" i18n:translate="label_ploneformgen_csv_delimiter">CSV Delimiter</label>
 	                <div class="formHelp" i18n:translate="help_csv_delimiter">

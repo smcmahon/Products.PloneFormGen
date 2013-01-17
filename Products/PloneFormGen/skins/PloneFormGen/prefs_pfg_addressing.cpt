@@ -35,7 +35,7 @@
                  <li>
                  <a href="prefs_pfg_savedata"
                      i18n:translate="label_ploneformgen_savedata">Saved Data</a>
-                 </li>                   
+                 </li>
              </ul>
              <div class="contentActions">
                  &nbsp;
@@ -65,11 +65,11 @@
                 Please note that your input here is not verified.
                 So, make sure you use valid addresses.
             </p>
-    
+
             <form action="" method="post" tal:attributes="action template/getId">
 
                 <input type="hidden" name="form.submitted" value="1" />
-                
+
                 <div class="field">
 	                <label for="recipient_email" i18n:translate="label_ploneformgen_recipient_email">Recipient Address</label>
 					<br />

@@ -1,6 +1,6 @@
 """
     Module initialization code
-    
+
     Used by PloneFormGen/__init__.py
 
 """

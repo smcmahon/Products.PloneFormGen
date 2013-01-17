@@ -3,16 +3,16 @@ from collective.funkload import testcase
 
 class PFGLoadTest(testcase.FLTestCase):
     """Let's see how the saved data adapter performs under load..."""
-    
+
     def setUp(self):
         self.logd("setUp")
         self.label = 'PFG load test'
         self.server_url = self.conf_get('main', 'url')
-    
+
     def test_submitForm(self):
         self.get(self.server_url + '/testform',
                  description = 'Load form')
-        
+
         self.post(
             self.server_url + '/testform',
             params = [
@@ -23,7 +23,7 @@ class PFGLoadTest(testcase.FLTestCase):
                 ],
             description = 'Submit form'
             )
-    
+
     def tearDown(self):
         self.logd('tearDown')
 
