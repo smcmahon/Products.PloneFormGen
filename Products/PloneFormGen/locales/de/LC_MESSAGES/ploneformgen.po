@@ -43,7 +43,7 @@ msgstr "Ein Ordner, der Formularfelder in einem Formularsatz gruppiert."
 msgid "A form action adapter that will e-mail form input"
 msgstr ""
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr ""
@@ -458,7 +458,7 @@ msgstr "Dieser Text wird nach den Formularfeldern angezeigt."
 #. PLEASE NOTE: errors in the evaluation of this expression will cause
 #. an error on form display.
 #. """
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr "Ein TALES-Ausdruck, der ausgewertet wird, um zu bestimmen, ob die Verarbeitung ausgeführt werden soll oder nicht. Leer lassen, wenn nicht benötigt; das Formular wird dann verarbeitet. Der Ausdruck sollte einen boolschen Wert ergeben. Wird \"True\" zurückgegeben, wird das Formular verarbeitet. ACHTUNG: Fehler in der Berechnung dieses Ausdrucks bewirken einen Fehler bei der Anzeige des Formulars."
@@ -678,13 +678,13 @@ msgid "help_formmailer_body_pre"
 msgstr "Text, der vor den in der E-Mail aufgelisteten Feldern eingefügt wird."
 
 #. Mailer Adapter
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr "Dies ist die ZPT-Vorlage, die zur Anzeige des Textkörpers in der E-Mail verwendet wird. Sie muss in der Regel nicht geändert werden. Mit TAL, der Template-Attribut-Sprache von Zope können Sie ausgehende Mails weitgehend personalisieren."
 
 #. Mailer Adapter
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 msgid "help_formmailer_body_type"
 msgstr "Mime-Typ des Mail-Textkörpers. Diese Einstellung nur ändern, wenn Sie genau wissen was Sie tun. Leer lassen, um das Standard-Verhalten zu bewahren."

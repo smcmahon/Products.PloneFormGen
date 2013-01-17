@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2010-08-06 10:24+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
-"Language-Team: \n"
+"Language-Team:\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,7 +47,7 @@ msgstr "Een map voor het groeperen van velden."
 msgid "A form action adapter that will e-mail form input"
 msgstr ""
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr ""
@@ -469,7 +469,7 @@ msgstr "Deze tekst zal worden getoond onder de velden van het formulier."
 #. PLEASE NOTE: errors in the evaluation of this expression will cause
 #. an error on form display.
 #. """
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr "Een TALES-expressie die zal worden geëvalueerd om te bepalen of deze actie moet worden uitgevoerd of niet. Laat leeg indien dit niet nodig is en de actie wordt uitgevoerd. "
@@ -677,13 +677,13 @@ msgid "help_formmailer_body_pre"
 msgstr "Tekst die voor de genoemde velden in het E-mailhoofdtekst wordt geplakt."
 
 #. Mailer Adapter
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr "Dit is een Zope Page Template die gebruikt wordt voor de weergave van de tekst van de e-mail. Het is niet nodig dit aan te passen, maar als u TAL kent (de Template Attribute Language van Zope) heeft u de volledige controle over de lay-out van de uitgaande e-mails."
 
 #. Mailer Adapter
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 msgid "help_formmailer_body_type"
 msgstr "Stel het MIME-type in van de e-mailtekst. Verander deze instelling alleen als u exact weet wat u aan het doen bent. Leeg laten voor standaard gedrag."

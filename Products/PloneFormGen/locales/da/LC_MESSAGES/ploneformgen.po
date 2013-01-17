@@ -1,7 +1,7 @@
 # 'This name is not a valid identifier'
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PloneFormGen 1.7\n"
 "POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2007-03-09 09:14+0100\n"
 "Last-Translator: Jacob Vestergaard <jacobv@headnet.dk>\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "A form action adapter that will e-mail form input"
 msgstr ""
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr ""
@@ -476,7 +476,7 @@ msgstr "Denne tekst vises nedenfor formularfelterne"
 #. an error on form display.
 #. """,
 #. """
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr ""
@@ -699,13 +699,13 @@ msgid "help_formmailer_body_pre"
 msgstr "Tekst, som er foranstillet felter listet i mail-bodyen"
 
 #. Mailer Adapter
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr ""
 
 #. Mailer Adapter
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 #, fuzzy
 msgid "help_formmailer_body_type"

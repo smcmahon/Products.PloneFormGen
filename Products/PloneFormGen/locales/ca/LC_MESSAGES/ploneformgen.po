@@ -43,11 +43,11 @@ msgstr "Una carpeta amb grups d'elements de formulari com a conjunt de camps."
 msgid "A form action adapter that will e-mail form input"
 msgstr "Un adaptador d'acció per formularis que envia l'entrada per correu electrònic."
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr ""
-"Un adaptador d'acció per formularis que desa les dades d'entrada i \n"
+"Un adaptador d'acció per formularis que desa les dades d'entrada i\n"
 " les retorna en format CSV o delimitat per tabuladors."
 
 #. Default: "A line entry field. This appears as a textarea without wordwrap."
@@ -373,8 +373,8 @@ msgstr "Configura els valors per defecte pels adaptadors de dades."
 #, fuzzy
 msgid "description_server_side_text"
 msgstr ""
-"Marca això com valor per afegir a la \n"
-" petició de formulari per utilitzar als adaptadors d'accions i \n"
+"Marca això com valor per afegir a la\n"
+" petició de formulari per utilitzar als adaptadors d'accions i\n"
 " que no sigui modificable o visible pel client."
 
 #. Default: "Field"
@@ -428,7 +428,7 @@ msgstr ""
 "assigna valors per omissió per a múltiples camps pre-omplint\n"
 "\"request.form\".\n"
 "Qualsevol valor retornat per la expressió serà ignorat.\n"
-"SI US PLAU: errors a l'avaluació d'aquesta expressió causaran \n"
+"SI US PLAU: errors a l'avaluació d'aquesta expressió causaran\n"
 "errors al mostrar el formulari."
 
 #. Default: "\n                To make your form do something useful when submitted:\n                add one or more form action adapters to the form folder,\n                configure them, then return to this\n                form and select the active ones.\n                "
@@ -474,7 +474,7 @@ msgstr "Esculli el delimitador per defecte per descarregar els contingut amb un 
 msgid "help_epilogue_text"
 msgstr "Aquest text es mostrarà després dels camps del formulari."
 
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr ""
@@ -606,7 +606,7 @@ msgstr ""
 "Una expressió TALES que serà avaluada quant el formulari es mostri\n"
 "per a obtenir el valor per omissió del camp.\n"
 "La seva expressió s'haurà d'avaluar a True si\n"
-"el camp s'ha d'incloure al formulari, i si s'ha d'ometre com False.Deixi-la buida si no la necessita: el camp s'inclourà al formulari. \n"
+"el camp s'ha d'incloure al formulari, i si s'ha d'ometre com False.Deixi-la buida si no la necessita: el camp s'inclourà al formulari.\n"
 "NOTAR, SI US PLAU: errors en l'avaluació d'aquesta expressió causaran\n"
 "un error al mostrar el formulari."
 
@@ -670,7 +670,7 @@ msgstr "Introdueixi 0 per no tenir límit."
 #: ./content/form.py:115
 msgid "help_force_ssl"
 msgstr ""
-"Activa aquesta opció per fer una redirecció SSL de si mateix (https://) en cas d'accedir a través d'una adreça no-SSL (http://). \n"
+"Activa aquesta opció per fer una redirecció SSL de si mateix (https://) en cas d'accedir a través d'una adreça no-SSL (http://).\n"
 "Per funcionar correctament, requereix un servidor web configurat amb protocol HTTPS en el port 443 i ho reenviarà a Zope."
 
 #. Default: "\n                Use this field to override the form action attribute.\n                Specify a URL to which the form will post.\n                This will bypass form validation, success action\n                adapter and thanks page.\n            "
@@ -678,7 +678,7 @@ msgstr ""
 msgid "help_formactionoverride_text"
 msgstr ""
 "Utilitzi aquest camp per sobreescriure l'atribut ACTION del formulari.\n"
-"Especifiqui una URL a on el formulari enviarà les dades.  Això \n"
+"Especifiqui una URL a on el formulari enviarà les dades.  Això\n"
 "evitarà la validació del formulari, adaptadors d'acció amb èxit i\n"
 "plana de agraïments."
 
@@ -707,7 +707,7 @@ msgstr "Text afegit als camps llistats"
 msgid "help_formmailer_body_pre"
 msgstr "Text afegit al principi dels camps llistats al cos del missatge."
 
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr ""
@@ -716,7 +716,7 @@ msgstr ""
 "TAL (Llenguatge d'atributs per plantilles Zope)\n"
 "té control total per personalitzar els seus missatges enviats."
 
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 msgid "help_formmailer_body_type"
 msgstr ""
@@ -828,7 +828,7 @@ msgstr ""
 #: ./content/formMailerAdapter.py:254
 msgid "help_mailfields_text"
 msgstr ""
-"Seleccioni els camps que voldria incloure al \n"
+"Seleccioni els camps que voldria incloure al\n"
 "correu."
 
 #. Default: "\n                    The form will not accept values greater than the number you enter here.\n                "

@@ -2,7 +2,7 @@
 # Karyn Nassif <karyn@simplesconsultoria.com.br>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version:\n"
 "POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2011-09-21 12:05-0300\n"
 "Last-Translator: Andre Nogueira <andre@simplesconsultoria.com.br>\n"
@@ -41,7 +41,7 @@ msgstr "Uma pasta que agrupa campos como um fieldset."
 msgid "A form action adapter that will e-mail form input"
 msgstr "Um adaptador de ação do formulário que envia os dados do formulário por e-mail"
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr "Um adaptador de ação do formulário que salva os dados do formulário em um arquivo no formato CSV"
@@ -467,7 +467,7 @@ msgstr "Escolha um delimitador padrão para ser usado quando fazer o download de
 msgid "help_epilogue_text"
 msgstr "Este texto será exibido abaixo dos campos do formulário."
 
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr "Uma expressão TALES que será avaliada quando o formulário for exibido para capturar um valor padrão. Deixe em branco caso não seja necessário. Sua expressão deverá avaliar como uma lista ou tupla. Por favor, observe: erros na execução da expressão irão gerar erro na exibição do formulário."
@@ -648,12 +648,12 @@ msgstr "Texto após os campos listados"
 msgid "help_formmailer_body_pre"
 msgstr "Texto que será exibido antes dos campos listados no corpo do e-mail"
 
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr "Este é um Zope Page Template utilizado para renderizar o corpo da mensagem. Você não precisa modificá-lo, mas se você conhece TAL (a linguagem de atributos do tempalte do Zope) você tem todo o conhecimento para customizar a mensagem."
 
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 msgid "help_formmailer_body_type"
 msgstr "Defina o mime-type do corpo da mensagem. Modifique esta configuração somente se você souber exatamente o que você está fazendo. Deixe em branco para o comportamento padrão."

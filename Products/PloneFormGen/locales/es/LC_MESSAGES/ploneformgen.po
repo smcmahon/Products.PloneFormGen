@@ -3,7 +3,7 @@
 # -------------------------------------------------------
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version:\n"
 "POT-Creation-Date: 2012-04-16 14:57+0000\n"
 "PO-Revision-Date: 2011-10-26 17:09+0100\n"
 "Last-Translator: Corina Riba Santos <corina.riba@upcnet.es>\n"
@@ -43,7 +43,7 @@ msgstr "Una carpeta que agrupa campos de formulario como un conjunto."
 msgid "A form action adapter that will e-mail form input"
 msgstr "Un adaptador de acción de formulario que envía los datos por correo."
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr "Un adaptador de acción de formulario que guarda los datos y los devuelve en formato CSV o delimitado por tabuladores."
@@ -498,7 +498,7 @@ msgstr "Escoja un delimitador por defecto para usar al descargar el contenido co
 msgid "help_epilogue_text"
 msgstr "El texto se mostrará después de los campos del formulario."
 
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 msgid "help_execcondition_text"
 msgstr ""
@@ -747,7 +747,7 @@ msgstr ""
 "Texto adicionado al principio de los campos listados en el cuerpo del\n"
 "correo."
 
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr ""
@@ -756,7 +756,7 @@ msgstr ""
 "pero si conoce TAL (Lenguaje de Atributos para plantillas de Zope)\n"
 "usted puede personalizar sus mensajes salientes."
 
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 msgid "help_formmailer_body_type"
 msgstr ""
@@ -784,7 +784,7 @@ msgstr "Nombre completo del destinatario del formulario enviado."
 msgid "help_formmailer_replyto_extract"
 msgstr ""
 "Escoja un campo del formulario del cual usted desea extraer\n"
-"la entrada para el encabezado Responder-A. NOTA: Usted habrá de activar la \n"
+"la entrada para el encabezado Responder-A. NOTA: Usted habrá de activar la\n"
 "verificación de la dirección de correo electrónico para el campo designado."
 
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "

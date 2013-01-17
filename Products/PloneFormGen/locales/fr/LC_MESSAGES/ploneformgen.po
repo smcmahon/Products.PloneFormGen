@@ -41,7 +41,7 @@ msgstr "Un dossier qui regroupe les champs de formulaire en tant que fieldset."
 msgid "A form action adapter that will e-mail form input"
 msgstr "Une action de formulaire qui enverra les entrées du formulaire par courriel"
 
-#. Default: "A form action adapter that will save form input data and \n         return it in csv- or tab-delimited format."
+#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
 #: ./profiles/default/types/FormSaveDataAdapter.xml
 msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
 msgstr "Une action de formulaire qui sauvegardera les entrées du formulaire dans un fichier délimité par des virgules (CSV) ou par des tabulations."
@@ -444,7 +444,7 @@ msgstr "Choisissez un séparateur par défaut à utiliser lors du téléchargeme
 msgid "help_epilogue_text"
 msgstr "Ce texte sera affiché aprés les champs du formulaire."
 
-#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed. \n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#. Default: "\n                A TALES expression that will be evaluated to determine whether or not\n                to execute this action.\n                Leave empty if unneeded, and the action will be executed.\n                Your expression should evaluate as a boolean; return True if you wish\n                the action to execute.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/actionAdapter.py:40
 #, fuzzy
 msgid "help_execcondition_text"
@@ -648,13 +648,13 @@ msgid "help_formmailer_body_pre"
 msgstr "Texte précédant la liste des champ dans le corps du courriel"
 
 #. Mailer Adapter
-#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify \n            it, but if you know TAL (Zope's Template Attribute Language) \n            you have the full power to customize your outgoing mails."
+#. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:279
 msgid "help_formmailer_body_pt"
 msgstr "Ceci est un template Zope (ZPT) utilisé pour calculer le rendu du corps de texte. Vous n'avez pas besoin de le modifier, mais si vous connaissez TAL (langage d'attribut des gabarits Zope) vous avez toute la liberté de personnaliser vos courriels."
 
 #. Mailer Adapter
-#. Default: "Set the mime-type of the mail-body. \n            Change this setting only if you know exactly what you are doing. \n            Leave it blank for default behaviour."
+#. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:296
 msgid "help_formmailer_body_type"
 msgstr "Configurer le type mime du corps du courriel. Changer cette valeur seulement si vous savez exactement ce que vous faites. Lassiez blanc pour le comportement par défaut."
