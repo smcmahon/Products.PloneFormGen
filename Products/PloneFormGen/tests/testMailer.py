@@ -3,20 +3,14 @@
 # Integeration tests specific to the mailer
 #
 
-import os, sys, email, base64
+import email
+import os
+import sys
 
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen.tests import pfgtc
-
-from Products.CMFCore.utils import getToolByName
-
-try:
-    import plone.app.upgrade
-    HAS_PLONE4 = True
-except ImportError:
-    HAS_PLONE4 = False
 
 
 class TestFunctions(pfgtc.PloneFormGenTestCase):
@@ -26,15 +20,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.mfrom = mfrom
         self.mto = mto
         self.messageText = messageText
-        if HAS_PLONE4:
-            self.messageBody = '\n\n'.join(messageText.split('\n\n')[1:])
-        else:
-            body = messageText.split('\n\n')[-1]
-            try:
-                self.messageBody = base64.b64decode(body)
-            except TypeError:
-                self.messageBody = body
-
+        self.messageBody = '\n\n'.join(messageText.split('\n\n')[1:])
 
     def afterSetUp(self):
         pfgtc.PloneFormGenTestCase.afterSetUp(self)
@@ -119,11 +105,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = self.LoadRequestForm(topic = 'test ${subject}', replyto='test@test.org', comments='test comments')
         self.messageText = ''
         self.assertEqual( self.ff1.fgvalidate(REQUEST=request), {} )
-        if HAS_PLONE4:
-            self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_=24=7Bsubject=7D?=') > 0 )
-        else:
-            # note: we expect the subject to be base64 encoded when braces are present
-            self.failUnless( self.messageText.find('Subject: =?utf-8?b?dGVzdCAke3N1YmplY3R9?=') > 0 )
+        self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_=24=7Bsubject=7D?=') > 0 )
 
         # we should get substitution in a basic override
         mailer.subject_field = ''

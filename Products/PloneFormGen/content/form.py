@@ -42,7 +42,6 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
-from Products.PloneFormGen import HAS_PLONE40
 
 from types import StringTypes
 

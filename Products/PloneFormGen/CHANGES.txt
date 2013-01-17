@@ -4,6 +4,9 @@ Change History
 1.7.7 unreleased
 ----------------
 
+- Removed backwards compatibility. The 1.7 series requires Plone 4.1.
+  [maurits]
+
 - If an active action adapter is renamed, keep it active.
   [maurits]
 
