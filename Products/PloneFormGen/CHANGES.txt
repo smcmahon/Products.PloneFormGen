@@ -1,8 +1,8 @@
 Change History
 ==============
 
-1.6.6 unreleased
-----------------
+1.6.6 (2013-01-18)
+------------------
 
 - If an active action adapter is renamed, keep it active.
   [maurits]
@@ -16,8 +16,8 @@ Change History
   Issue #29
   [potar]
 
-1.6.5 2011-07-12
-----------------
+1.6.5 (2011-07-12)
+------------------
 
 - Backport save-data delete confirmation dialog from 1.7.
   [smcmahon]
