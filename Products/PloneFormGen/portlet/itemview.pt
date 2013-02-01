@@ -2,6 +2,13 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
+<script type="text/javascript" charset="iso-8859-1"
+    tal:attributes="src string:${here/portal_url}/jscalendar/calendar_stripped.js">
+</script>
+<script type="text/javascript" charset="iso-8859-1"
+    tal:attributes="src string:${here/portal_url}/jscalendar/calendar-en.js">
+</script>
+<link rel="stylesheet" type="text/css" media="all" tal:attributes="href string:${here/portal_url}/jscalendar/calendar-system.css" />
 <dl class="portlet" i18n:domain="">
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
