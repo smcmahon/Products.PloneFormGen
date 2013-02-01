@@ -82,6 +82,8 @@
           Title or id
         </h1>
 
+		<div tal:replace="structure provider:plone.belowcontenttitle" />
+
         <p class="documentDescription"
            tal:content="here/Description"
            tal:condition="here/Description">
