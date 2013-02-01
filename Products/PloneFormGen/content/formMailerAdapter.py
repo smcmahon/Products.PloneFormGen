@@ -43,6 +43,7 @@ from email.MIMEBase import MIMEBase
 from email.MIMEImage import MIMEImage
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
+from email.utils import formataddr
 
 from types import StringTypes
 
@@ -817,6 +818,7 @@ class FormMailerAdapter(FormActionAdapter):
             ownerinfo = self.getOwner()
             ownerid = ownerinfo.getId()
             userdest = pms.getMemberById(ownerid)
+            fullname = userdest.getProperty('fullname', '') 
             toemail = ''
             if userdest is not None:
                 toemail = userdest.getProperty('email', '')
@@ -827,7 +829,7 @@ class FormMailerAdapter(FormActionAdapter):
                     Please check the recipient settings of the PloneFormGen "Mailer" within the
                     current form folder.
                 """
-            to = '%s <%s>' % (ownerid, toemail)
+            to = formataddr((fullname or ownerid, toemail))
         else:
             to = to_addr or '%s %s' % (recip_name, recip_email)
 
