@@ -41,6 +41,7 @@ from AccessControl import ClassSecurityInfo
 from Products.PloneFormGen.content import fieldsBase
 
 from Products.PloneFormGen.content.likertField import LikertField
+from Products.PloneFormGen.widgets import LikertWidget
 from Products.PloneFormGen.config import PROJECTNAME
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
@@ -107,6 +108,7 @@ class FGLikertField(fieldsBase.BaseFormField):
             write_permission = View,
             questionSet = default_questions,
             answerSet = default_answers,
+            widget = LikertWidget()
         )
 
     security.declareProtected(ModifyPortalContent, 'setLikertAnswers')

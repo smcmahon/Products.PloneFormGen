@@ -4,6 +4,11 @@ Change History
 1.7.7 unreleased
 ----------------
 
+- fix problem where multiple rating scales on one page
+  would all have the same title. Will have to re-create
+  rating scale fields to fix existing.
+  [vangheem]
+
 - Add the calendar javascripts needed to display correctly
   the calendar widget in a portlet
   [sgeulette]
