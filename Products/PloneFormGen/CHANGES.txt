@@ -4,6 +4,9 @@ Change History
 1.7.7 unreleased
 ----------------
 
+- fix quickedit not working when using form as default view.
+  [vangheem]
+
 - use full name when getting a default to address
   of the form.
   [vangheem]

@@ -1,8 +1,13 @@
-from Acquisition import aq_inner
-from zope.component import getMultiAdapter
+from urllib import quote_plus
+
+from Acquisition import aq_inner, aq_parent
+from zope.component import getMultiAdapter, queryUtility
 from zope.interface import alsoProvides
 from Products.Five import BrowserView
+from Products.CMFCore.Expression import createExprContext
 
+from Products.CMFCore.utils import getToolByName
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.view import memoize
 
 from plone.app.layout.globals.interfaces import IViewView
@@ -27,12 +32,16 @@ class QuickEditView(BrowserView):
 
     @memoize
     def _addableTypes(self):
-        folder_factories = getMultiAdapter((self.context, self.request),
-                                           name='folder_factories')
-        return [atype
-                for atype in folder_factories.addable_types()
-                if atype['id'] not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder')
-               ]
+        results = []
+        for t in self.context.allowedContentTypes():
+            typeId = t.getId()
+            if t.id not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder'):
+                results.append({
+                    'id': typeId,
+                    'title': t.Title(),
+                    'description': t.Description()
+                })
+        return results
 
     def addablePrioritizedFields(self):
         """Return a prioritized list of the addable fields in context"""
