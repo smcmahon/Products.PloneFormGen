@@ -4,6 +4,9 @@ Change History
 1.7.7 unreleased
 ----------------
 
+- add new ccOverride field
+  [znbn]
+
 - toolbar position is now fixed
   [vangheem]
 
