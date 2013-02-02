@@ -263,3 +263,9 @@ td.draggable.draggingHook {
     border: none;
     padding: 0.5em 1em;
 }
+
+#pfgWidgetWrapper {
+    position: fixed;
+    top: 300px;
+    right: 100px;
+}

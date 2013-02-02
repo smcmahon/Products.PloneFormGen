@@ -23,8 +23,10 @@ pfgQEdit.qedit = function (e) {
 	jQuery("#pfgqedit").hide();
 	// hide the error messages
 	jQuery(".error").hide();
-	// show widgets manager
+	var wrapper = jQuery("#pfgWidgetWrapper")
+	// show widgets manager and position
 	jQuery("#pfgWidgetWrapper").fadeIn();
+	
 
 	jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
 
@@ -62,6 +64,9 @@ pfgQEdit.qedit = function (e) {
     jQuery("#allWidgets").tabs(".widgetPane", {tabs:"h2",effect:'slide'});
 
 	pfgWidgets.init();
+
+	//position the wrapper.
+	jQuery("#pfgWidgetWrapper").css('top', $('#pfg-fieldwrapper').offset().top);
 };
 
 
