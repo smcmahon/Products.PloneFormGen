@@ -1,13 +1,8 @@
 from urllib import quote_plus
 
-from Acquisition import aq_inner, aq_parent
-from zope.component import getMultiAdapter, queryUtility
 from zope.interface import alsoProvides
 from Products.Five import BrowserView
-from Products.CMFCore.Expression import createExprContext
 
-from Products.CMFCore.utils import getToolByName
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.view import memoize
 
 from plone.app.layout.globals.interfaces import IViewView
@@ -35,9 +30,9 @@ class QuickEditView(BrowserView):
         results = []
         for t in self.context.allowedContentTypes():
             typeId = t.getId()
-            if t.id not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder'):
+            if typeId not in ('FieldsetStart', 'FieldsetEnd', 'FieldsetFolder'):
                 results.append({
-                    'id': typeId,
+                    'id': quote_plus(typeId),
                     'title': t.Title(),
                     'description': t.Description()
                 })

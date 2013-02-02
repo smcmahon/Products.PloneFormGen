@@ -4,6 +4,9 @@ Change History
 1.7.7 unreleased
 ----------------
 
+- types with spaces in their ids should work with quickedit
+  [datakurre]
+
 - fix problem where multiple rating scales on one page
   would all have the same title. Will have to re-create
   rating scale fields to fix existing.
