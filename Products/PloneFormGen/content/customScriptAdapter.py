@@ -20,7 +20,7 @@ from Products.PythonScripts.PythonScript import PythonScript
 
 
 # Plone imports
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 from Products.Archetypes.utils import contentDispositionHeader
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
