@@ -4,7 +4,7 @@ __author__  = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
 from Products.CMFCore.permissions import setDefaultRoles
-from Products.Archetypes.public import DisplayList
+from Products.Archetypes.utils import DisplayList
 from Products.validation.validators.BaseValidators import protocols, EMAIL_RE
 
 
