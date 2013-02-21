@@ -11,7 +11,7 @@ from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.permissions import View, ModifyPortalContent
 
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 from Products.Archetypes.utils import shasattr
 from Products.Archetypes.interfaces.field import IField
 
