@@ -588,9 +588,7 @@ class FGDateField(BaseFormField):
             return cgi.escape(value)
 
         if self.fgField.widget.show_hm:
-            ppt = getToolByName(self, 'portal_properties')
-            long_format = ppt.site_properties.localLongTimeFormat
-            value = self._toLocalizedTime(dt, long_format=long_format)
+            value = self._toLocalizedTime(dt, long_format=True)
         else:
             value = self._toLocalizedTime(dt)
 
