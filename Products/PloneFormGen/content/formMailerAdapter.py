@@ -435,7 +435,7 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
         widget=StringWidget(label=_(u'label_cc_override_text', default=u"CC Expression"),
             description=_(u'help_cc_override_text', default=u"""
                 A TALES expression that will be evaluated to override any value
-                otherwise entered for the BCC list. You are strongly
+                otherwise entered for the CC list. You are strongly
                 cautioned against using unvalidated data from the request for this purpose.
                 Leave empty if unneeded. Your expression should evaluate as a sequence of strings.
                 PLEASE NOTE: errors in the evaluation of this expression will cause
@@ -443,7 +443,7 @@ formMailerAdapterSchema = formMailerAdapterSchema + Schema((
             """),
             size=70,
         ),
-    ),    
+    ),
     TALESString('bccOverride',
         schemata='overrides',
         searchable=0,
@@ -839,7 +839,7 @@ class FormMailerAdapter(FormActionAdapter):
             ownerinfo = self.getOwner()
             ownerid = ownerinfo.getId()
             userdest = pms.getMemberById(ownerid)
-            fullname = userdest.getProperty('fullname', '') 
+            fullname = userdest.getProperty('fullname', '')
             toemail = ''
             if userdest is not None:
                 toemail = userdest.getProperty('email', '')
