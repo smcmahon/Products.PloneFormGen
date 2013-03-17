@@ -4,6 +4,10 @@ Change History
 1.7.7 unreleased
 ----------------
 
+- Fix incompatability of localtime formatting for datetime fields
+  with Plone 4.3.
+  [lewicki]
+
 - types with spaces in their ids should work with quickedit
   [datakurre]
 
