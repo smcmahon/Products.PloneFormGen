@@ -1,8 +1,14 @@
 Change History
 ==============
 
-1.7.7 unreleased
+1.7.7 2012-03-18
 ----------------
+
+- Added inline js to fg_base_viewp3.cpt to disable Plone 4.3's non-kss
+  inline validation for Archetypes. Note that this depends on a fix pushed
+  to 4.3.x after 4.3rc1. Without that fix, inline validation will be
+  attempted anyway; it's invisible except for log entries.
+  [smcmahon]
 
 - Fix incompatability of localtime formatting for datetime fields
   with Plone 4.3.
