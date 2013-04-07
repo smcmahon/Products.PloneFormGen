@@ -39,7 +39,7 @@ class MaxLengthValidator:
         if maxlength == 0:
             return 1
 
-        nval = len(value)
+        nval = len(value.replace('\r\n', '\n'))
 
         if nval <= maxlength:
             return 1
