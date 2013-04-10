@@ -192,7 +192,7 @@ Change History
   [yomatters]
 
 - Re-add ability to override edit macros like for other Archetypes content types
-  (Megaphone relies on this).
+1.7.8 (2013-04-10)
   [davisagli]
 
 - change i18n domain of quickedit template from plone to ploneformgen
