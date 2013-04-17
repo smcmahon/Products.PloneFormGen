@@ -1,13 +1,13 @@
 Change History
 ==============
 
-1.7.8 2012-04-10
+1.7.8 2013-04-10
 ----------------
 
 - Added zcml autoinclude. Looks like "Products" packages are no longer blessed.
   [smcmahon
 
-1.7.7 2012-03-18
+1.7.7 2013-03-18
 ----------------
 
 - Added inline js to fg_base_viewp3.cpt to disable Plone 4.3's non-kss
