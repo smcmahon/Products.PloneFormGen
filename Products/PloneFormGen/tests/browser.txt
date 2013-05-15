@@ -97,6 +97,12 @@ Attempts to use gpg_services TTW should be fruitless::
     ...
     HTTPError: HTTP Error 404: Not Found
 
+Attempts to set mailer body TTW should fail
+    >>> browser.open(self.portal_url + '/testform/mailer/setBody_pt?value=stuff')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
 We want to test security on the custom script adapter. Let's add one::
 
     >>> browser.open(self.portal_url + '/testform')
@@ -106,6 +112,8 @@ We want to test security on the custom script adapter. Let's add one::
     >>> browser.open(self.portal_url + '/testform/test-script-adapter')
     >>> browser.url
     'http://nohost/plone/testform/test-script-adapter'
+
+Attempts to set script body TTW should fail::
 
     >>> browser.open(self.portal_url + '/testform/test-script-adapter/updateScript?body=raise%2010&role=none')
     Traceback (most recent call last):

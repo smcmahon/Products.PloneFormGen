@@ -566,10 +566,10 @@ class FormMailerAdapter(FormActionAdapter):
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailAddHdrs()
 
-    security.declarePublic('setBody_pt')
+    security.declarePrivate('setBody_pt')
 
     def setBody_pt(self, value, **kw):
-        """ set body template with BBB for accessors """
+        # """ set body template with BBB for accessors """
 
         if shasattr(value, 'replace'):
             template = value
