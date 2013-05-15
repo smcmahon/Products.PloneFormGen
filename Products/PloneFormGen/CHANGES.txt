@@ -19,6 +19,10 @@ Change History
   (Thanks, The Code Distillery)
   [smcmahon]
 
+- remove undesirable doc string from fgGetSuccessAction.
+  (Thanks, The Code Distillery)
+  [smcmahon]
+
 1.7.8 2012-04-10
 ----------------
 

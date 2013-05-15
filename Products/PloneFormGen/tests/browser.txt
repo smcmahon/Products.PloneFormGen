@@ -97,6 +97,20 @@ Attempts to use gpg_services TTW should be fruitless::
     ...
     HTTPError: HTTP Error 404: Not Found
 
+Attempts to read the success action TTW should be fruitless::
+
+    >>> browser.open(self.portal_url + '/testform/fgGetSuccessAction')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+That should also be true for fields::
+
+    >>> browser.open(self.portal_url + '/testform/comments/fgGetSuccessAction')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
 Attempts to set mailer body TTW should fail
     >>> browser.open(self.portal_url + '/testform/mailer/setBody_pt?value=stuff')
     Traceback (most recent call last):

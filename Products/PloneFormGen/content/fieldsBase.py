@@ -804,10 +804,10 @@ class BaseFormField(ATCTContent):
 
     security.declareProtected(View, 'fgGetSuccessAction')
     def fgGetSuccessAction(self):
-        """
-             Returns string id of success action template or script.
-             Controller will traverse to this on successful validation.
-         """
+        # """
+        #      Returns string id of success action template or script.
+        #      Controller will traverse to this on successful validation.
+        # """
 
         return 'traverse_to:string:fg_result_view'
 

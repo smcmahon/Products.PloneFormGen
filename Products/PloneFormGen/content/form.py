@@ -628,10 +628,10 @@ class FormFolder(ATFolder):
     security.declareProtected(View, 'fgGetSuccessAction')
 
     def fgGetSuccessAction(self):
-        """
-             Returns string id of success action template or script.
-             Controller will traverse to this on successful validation.
-         """
+        # """
+        #      Returns string id of success action template or script.
+        #      Controller will traverse to this on successful validation.
+        #  """
 
         target = 'fg_result_view'
 
