@@ -10,7 +10,8 @@ Change History
 - Clean up Popen handling in encryption, add some logging. (Thanks, The Code Distillery)
   [smcmahon]
 
-- Remove undesirable doc strings from custom script adapter methods.
+- Remove undesirable doc strings from custom script adapter methods. Add
+  private declarations.
   (Thanks, The Code Distillery)
   [smcmahon]
 

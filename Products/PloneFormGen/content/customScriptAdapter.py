@@ -134,6 +134,7 @@ class FormCustomScriptAdapter(FormActionAdapter):
         # as an attribute of context.
         self.FORM_ERROR_MARKER = config.FORM_ERROR_MARKER
 
+    security.declarePrivate('updateScript')
     def updateScript(self, body, role):
         # Regenerate Python script object
 
@@ -154,16 +155,18 @@ class FormCustomScriptAdapter(FormActionAdapter):
         PythonField.set(bodyField, self, script)
         StringField.set(proxyField, self, role)
 
+    security.declarePrivate('setScriptBody')
     def setScriptBody(self, body):
-
         # Make PythonScript construction to take parameters
         proxy = self.getProxyRole()
         self.updateScript(body, proxy)
 
+    security.declarePrivate('setProxyRole')
     def setProxyRole(self, role):
         sourceCode = self.getRawScriptBody()
         self.updateScript(sourceCode, role)
 
+    security.declarePrivate('getProxyRoleChoices')
     def getProxyRoleChoices(self):
         # Get proxy role choices
 
@@ -173,6 +176,7 @@ class FormCustomScriptAdapter(FormActionAdapter):
             ("Manager", "Manager"),
             ))
 
+    security.declarePrivate('onSuccess')
     def onSuccess(self, fields, REQUEST=None):
         # Executes the custom script
 
@@ -186,6 +190,7 @@ class FormCustomScriptAdapter(FormActionAdapter):
 
         return self.executeCustomScript(resultData, form, REQUEST)
 
+    security.declarePrivate('checkWarningsAndErrors')
     def checkWarningsAndErrors(self):
         # Raise exception if there has been bad things with the script compiling
 
@@ -200,6 +205,7 @@ class FormCustomScriptAdapter(FormActionAdapter):
             logger.error("Python script "  + self.title_or_id() +  " has errors: " + str(script.errors))
             raise ValueError("Python script "  + self.title_or_id() + " has errors: " + str(script.errors))
 
+    security.declarePrivate('executeCustomScript')
     def executeCustomScript(self, result, form, req):
         # Execute in-place script
 
@@ -219,6 +225,7 @@ class FormCustomScriptAdapter(FormActionAdapter):
         response = script(result, form, req)
         return response
 
+    security.declarePrivate('sanifyFields')
     def sanifyFields(self, form):
         # Makes request.form fields accessible in a script
         #
