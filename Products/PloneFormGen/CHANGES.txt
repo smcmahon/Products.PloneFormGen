@@ -1,6 +1,12 @@
 Change History
 ==============
 
+1.7.9 (unreleased)
+------------------
+
+- Remove doc string for @@gpg_services/encrypt. (Thanks, The Code Distillery)
+  [smcmahon]
+
 1.7.8 2012-04-10
 ----------------
 
@@ -193,7 +199,7 @@ Change History
 
 - Re-add ability to override edit macros like for other Archetypes content types
 1.7.9 (unreleased)
-                  
+
 
 - Nothing changed yet.
 

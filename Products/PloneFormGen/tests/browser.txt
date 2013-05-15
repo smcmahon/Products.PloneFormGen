@@ -90,6 +90,13 @@ We should be able to view an individual field::
     </div>
     ...
 
+Attempts to use gpg_services TTW should be fruitless::
+
+    >>> browser.open(self.portal_url + '/testform/@@gpg_services/encrypt?data=XXX&recipient_key_id=yyy')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
 
 # Embedded form
 # -------------

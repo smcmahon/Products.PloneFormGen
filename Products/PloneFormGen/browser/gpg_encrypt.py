@@ -11,6 +11,6 @@ from Products.PloneFormGen.content.ya_gpg import gpg
 class GnuPGView(BrowserView):
 
     def encrypt(self, data, recipient_key_id):
-        "Encrypt the message contained in the string 'data'"
+        # Encrypt the message contained in the string 'data'
 
         return gpg.encrypt(data, recipient_key_id)
