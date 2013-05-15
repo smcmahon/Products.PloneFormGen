@@ -7,6 +7,9 @@ Change History
 - Remove doc string for @@gpg_services/encrypt. (Thanks, The Code Distillery)
   [smcmahon]
 
+- Clean up Popen handling in encryption, add some logging. (Thanks, The Code Distillery)
+  [smcmahon]
+
 1.7.8 2012-04-10
 ----------------
 

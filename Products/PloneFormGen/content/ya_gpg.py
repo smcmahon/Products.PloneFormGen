@@ -38,7 +38,9 @@ __docformat__ = 'plaintext'
 #    repeated path searches, and make it easy to detect
 #    when gpg binary is available.
 
+import logging
 import os
+import shlex
 import subprocess
 
 
@@ -53,12 +55,12 @@ class gpg_subprocess:
     DEFAULT_PATH = ['/bin', '/usr/bin', '/usr/local/bin']
 
     def __init__(self, gpg_binary=None):
-        """Initialize an object instance.  Options are:
+        # Initialize an object instance.  Options are:
 
-        gpg_binary -- full pathname for GPG binary.  If not supplied,
-        the current value of PATH will be searched, falling back to the
-        DEFAULT_PATH class variable if PATH isn't available.
-        """
+        # gpg_binary -- full pathname for GPG binary.  If not supplied,
+        # the current value of PATH will be searched, falling back to the
+        # DEFAULT_PATH class variable if PATH isn't available.
+
         # If needed, look for the gpg binary along the path
         if gpg_binary is None:
             if os.name == 'nt':
@@ -68,7 +70,9 @@ class gpg_subprocess:
             gpg_binary = self._findbinary(bin_name)
         self.gpg_binary = gpg_binary
         if gpg_binary is None:
-            raise IOError, "Unable to find gpg binary"
+            raise IOError("Unable to find gpg binary")
+        self._logger = logging.getLogger('Products.PloneFormGen')
+        self._logger.info("gpg_subprocess intialized, using %s" % gpg_binary)
 
     def _findbinary(self, binname):
         if 'PATH' in os.environ:
@@ -82,32 +86,27 @@ class gpg_subprocess:
                 return fullname
         return None
 
-    def _open_subprocess(self, *args):
-        # Internal method: open a pipe to a GPG subprocess and return
-        # the file objects for communicating with it.
-        # cmd = self.gpg_binary + ' --yes --status-fd 2 ' + string.join(args)
-        cmd = str(self.gpg_binary + ' --batch --yes --trust-model always --no-secmem-warning ' + " ".join(args))
-        PIPE = subprocess.PIPE
-        p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-        child_stdout, child_stdin, child_stderr = (p.stdout, p.stdin, p.stderr)
-        return child_stdout, child_stdin, child_stderr
-
     def encrypt(self, data, recipient_key_id):
-        "Encrypt the message contained in the string 'data'"
+        # Encrypt the message contained in the string 'data'
+
+        self._logger.info("Encrypting for recipient: %s" % recipient_key_id)
 
         PIPE = subprocess.PIPE
         cmd = '%s --batch --yes --trust-model always --no-secmem-warning --encrypt -a -r %s' % (self.gpg_binary, recipient_key_id)
-        p = subprocess.Popen(str(cmd), stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+        cmd = shlex.split(cmd)
+        p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=False)
 
         # feed data
         p.stdin.write(data)
         p.stdin.close()
 
         if p.returncode:
-            raise GPGError, p.stderr.read().replace('\n', '; ')
+            raise GPGError(p.stderr.read().replace('\n', '; '))
 
         # get response
         datagpg = p.stdout.read()
+        if len(datagpg) == 0:
+            raise GPGError("Encryption failure: probably a recipient address without a public key.")
 
         return datagpg
 
@@ -120,6 +119,8 @@ except IOError:
 
 if __name__ == '__main__':
     if gpg:
+        print "Testing ya_gpg"
+        # we expect an exception if recipient is not in public keyring
         data = gpg.encrypt('BLABLA', 'steve@...')
         print data
     else:
