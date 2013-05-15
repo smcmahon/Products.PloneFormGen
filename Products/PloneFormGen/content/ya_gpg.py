@@ -72,7 +72,7 @@ class gpg_subprocess:
         if gpg_binary is None:
             raise IOError("Unable to find gpg binary")
         self._logger = logging.getLogger('Products.PloneFormGen')
-        self._logger.info("gpg_subprocess intialized, using %s" % gpg_binary)
+        self._logger.info("gpg_subprocess initialized, using %s" % gpg_binary)
 
     def _findbinary(self, binname):
         if 'PATH' in os.environ:
