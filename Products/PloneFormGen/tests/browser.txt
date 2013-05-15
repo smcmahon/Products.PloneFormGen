@@ -97,6 +97,21 @@ Attempts to use gpg_services TTW should be fruitless::
     ...
     HTTPError: HTTP Error 404: Not Found
 
+We want to test security on the custom script adapter. Let's add one::
+
+    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.getLink('Custom Script Adapter').click()
+    >>> browser.getControl('Title').value = 'Test Script Adapter'
+    >>> browser.getControl('Save').click()
+    >>> browser.open(self.portal_url + '/testform/test-script-adapter')
+    >>> browser.url
+    'http://nohost/plone/testform/test-script-adapter'
+
+    >>> browser.open(self.portal_url + '/testform/test-script-adapter/updateScript?body=raise%2010&role=none')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
 
 # Embedded form
 # -------------
