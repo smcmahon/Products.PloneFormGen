@@ -1,26 +1,26 @@
 id: comments
 title: Comments
-description: 
+description:
 required: True
 hidden: False
-fgTDefault: 
+fgTDefault:
 fgTValidator: python:False
-fgTEnabled: 
+fgTEnabled:
 serverSide: False
-fgDefault: 
+fgDefault:
 fgRows: 5
 fgmaxlength: 0
-subject: 
-relatedItems: 
-location: 
-language: 
+subject:
+relatedItems:
+location:
+language:
 effectiveDate: None
 expirationDate: None
 creation_date: 2009/11/24 20:48:58.086 US/Pacific
 modification_date: 2009/11/24 20:48:58.108 US/Pacific
 creators: admin
-contributors: 
-rights: 
+contributors:
+rights:
 allowDiscussion: False
 excludeFromNav: False
 validateNoLinkSpam: False
