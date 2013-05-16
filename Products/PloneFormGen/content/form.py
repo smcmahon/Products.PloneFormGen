@@ -281,6 +281,12 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         ),
     ))
 
+NO_TRAVERSE = (
+    'onDisplayOverride',
+    'afterValidationOverride',
+    'headerInjection',
+)
+
 
 class FormFolder(ATFolder):
     """A folder which can contain form fields."""
@@ -300,6 +306,12 @@ class FormFolder(ATFolder):
         'A folder which creates a form view from contained form fields.'
 
     security = ClassSecurityInfo()
+
+    def __bobo_traverse__(self, REQUEST, name):
+        # prevent traversal to attributes we want to protect
+        if name in NO_TRAVERSE:
+            raise AttributeError
+        return super(FormFolder, self).__bobo_traverse__(REQUEST, name)
 
     security.declarePrivate('_getFieldObjects')
 

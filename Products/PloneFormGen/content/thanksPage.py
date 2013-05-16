@@ -157,6 +157,11 @@ for afield in ('subject',
     ThanksPageSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
     ThanksPageSchema[afield].schemata = 'default'
 
+NO_TRAVERSE = (
+    'thanksPrologue',
+    'thanksEpilogue',
+    'noSubmitMessage',
+    )
 
 class FormThanksPage(ATCTContent):
     """A thank-you page that can display form input"""
@@ -180,6 +185,11 @@ class FormThanksPage(ATCTContent):
 
     security       = ClassSecurityInfo()
 
+    def __bobo_traverse__(self, REQUEST, name):
+        # prevent traversal to attributes we want to protect
+        if name in NO_TRAVERSE:
+            raise AttributeError
+        return super(FormThanksPage, self).__bobo_traverse__(REQUEST, name)
 
     def initializeArchetype(self, **kwargs):
         """ Translate the adapter in the current langage

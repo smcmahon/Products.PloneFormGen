@@ -23,6 +23,15 @@ Change History
   (Thanks, The Code Distillery)
   [smcmahon]
 
+- Add traversal hacks to block TTW reads of several text, template, tales and python
+  attributes.
+  (Thanks, The Code Distillery)
+  [smcmahon]
+
+- remove undesirable doc string from onSuccess.
+  (Thanks, The Code Distillery)
+  [smcmahon]
+
 1.7.8 2012-04-10
 ----------------
 

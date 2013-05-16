@@ -134,6 +134,12 @@ class FormCustomScriptAdapter(FormActionAdapter):
         # as an attribute of context.
         self.FORM_ERROR_MARKER = config.FORM_ERROR_MARKER
 
+    def __bobo_traverse__(self, REQUEST, name):
+        # prevent traversal to attributes we want to protect
+        if name == 'ScriptBody':
+            raise AttributeError
+        return super(FormCustomScriptAdapter, self).__bobo_traverse__(REQUEST, name)
+
     security.declarePrivate('updateScript')
     def updateScript(self, body, role):
         # Regenerate Python script object

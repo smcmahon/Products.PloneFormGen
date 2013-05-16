@@ -117,6 +117,12 @@ Attempts to set mailer body TTW should fail
     ...
     HTTPError: HTTP Error 404: Not Found
 
+Attempts to read mailer body TTW should fail
+    >>> browser.open(self.portal_url + '/testform/mailer/body_pt')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
 We want to test security on the custom script adapter. Let's add one::
 
     >>> browser.open(self.portal_url + '/testform')
@@ -133,6 +139,24 @@ Attempts to set script body TTW should fail::
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
+
+We want to test security on the custom script adapter. Let's add one::
+
+    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.getLink('Save Data Adapter').click()
+    >>> browser.getControl('Title').value = 'saver'
+    >>> browser.getControl('Save').click()
+    >>> browser.open(self.portal_url + '/testform/saver')
+    >>> browser.url
+    'http://nohost/plone/testform/saver'
+
+Attempts to save TTW should fail::
+
+    >>> browser.open(self.portal_url + '/testform/saver/onSuccess?fields=&request=')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
 
 
 # Embedded form

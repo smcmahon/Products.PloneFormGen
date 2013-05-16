@@ -466,6 +466,18 @@ class LinesVocabularyField(StringField):
             res.add(key, val)
         return res
 
+NO_TRAVERSE = (
+    'fgTValidator',
+    'fgTVocabulary',
+    'fgTDefault',
+    'fgTEnabled',
+    'fgTDefault',
+    'fgDefault',
+    'fgTDefault',
+    'fgDefault',
+    'fgTDefault',
+    )
+
 
 class BaseFormField(ATCTContent):
     """
@@ -490,6 +502,12 @@ class BaseFormField(ATCTContent):
     # Let's not pollute the global "add"
     global_allow = 0
 
+    def __bobo_traverse__(self, REQUEST, name):
+        # prevent traversal to attributes we want to protect
+        if name in NO_TRAVERSE:
+            print name
+            raise AttributeError
+        return super(BaseFormField, self).__bobo_traverse__(REQUEST, name)
 
     security.declareProtected(ModifyPortalContent, 'setDescription')
     def setDescription(self, value, **kw):

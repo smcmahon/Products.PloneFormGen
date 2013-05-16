@@ -1,6 +1,6 @@
 """ A form action adapter that saves form submissions for download """
 
-__author__  = 'Steve McMahon <steve@dcn.org>'
+__author__ = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
 from AccessControl import ClassSecurityInfo
@@ -23,7 +23,6 @@ from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import contentDispositionHeader
-from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
@@ -40,7 +39,6 @@ from StringIO import StringIO
 from types import StringTypes
 
 logger = logging.getLogger("PloneFormGen")
-
 
 ExLinesField = LinesField
 
@@ -70,13 +68,13 @@ class FormSaveDataAdapter(FormActionAdapter):
                     """),
                 format='checkbox',
                 ),
-            vocabulary = 'vocabExtraDataDL',
+            vocabulary='vocabExtraDataDL',
             ),
         StringField('DownloadFormat',
             searchable=0,
             required=1,
             default='csv',
-            vocabulary = 'vocabFormatDL',
+            vocabulary='vocabFormatDL',
             widget=SelectionWidget(
                 label=_(u'label_downloadformat_text', default=u'Download Format'),
                 ),
@@ -85,8 +83,8 @@ class FormSaveDataAdapter(FormActionAdapter):
             required=False,
             searchable=False,
             widget=BooleanWidget(
-                label = _(u'label_usecolumnnames_text', default=u"Include Column Names"),
-                description = _(u'help_usecolumnnames_text', default=u"Do you wish to have column names on the first line of downloaded input?"),
+                label=_(u'label_usecolumnnames_text', default=u"Include Column Names"),
+                description=_(u'help_usecolumnnames_text', default=u"Do you wish to have column names on the first line of downloaded input?"),
                 ),
             ),
         ExLinesField('SavedFormInput',
@@ -177,7 +175,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         sbuf = StringIO()
         writer = csv.writer(sbuf, delimiter=delimiter)
         for row in self.getSavedFormInput():
-            writer.writerow( row )
+            writer.writerow(row)
         res = sbuf.getvalue()
         sbuf.close()
 
@@ -197,7 +195,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         if len(value):
             delimiter = self.csvDelimiter()
-            sbuf = StringIO( value )
+            sbuf = StringIO(value)
             reader = csv.reader(sbuf, delimiter=delimiter)
             for row in reader:
                 if row:
@@ -231,7 +229,7 @@ class FormSaveDataAdapter(FormActionAdapter):
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputById')
     def getSavedFormInputById(self, id):
         """ Return the data stored for record with 'id' """
-        lst =  [field.replace('\r','').replace('\n', r'\n') for field in self._inputStorage[id]]
+        lst = [field.replace('\r', '').replace('\n', r'\n') for field in self._inputStorage[id]]
         return lst
 
 
@@ -274,7 +272,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         else:
             # 64-bit LOBTree
             id = int(time.time() * 1000)
-            while id in self._inputStorage: # avoid collisions during testing
+            while id in self._inputStorage:  # avoid collisions during testing
                 id += 1
         self._inputStorage[id] = value
         self._length.change(1)
@@ -282,15 +280,16 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declareProtected(ModifyPortalContent, 'addDataRow')
     def addDataRow(self, value):
-        """ a wrapper for the _addDataRow method """
+        # """ a wrapper for the _addDataRow method """
 
         self._addDataRow(value)
 
 
+    security.declarePrivate('onSuccess')
     def onSuccess(self, fields, REQUEST=None, loopstop=False):
-        """
-        saves data.
-        """
+        # """
+        # saves data.
+        # """
 
         if LP_SAVE_TO_CANONICAL and not loopstop:
             # LinguaPlone functionality:
@@ -325,13 +324,13 @@ class FormSaveDataAdapter(FormActionAdapter):
                     if mimetype.find('text/') >= 0:
                         # convert to native eols
                         fdata = fdata.replace('\x0d\x0a', '\n').replace('\x0a', '\n').replace('\x0d', '\n')
-                        data.append( '%s:%s:%s:%s' %  (filename, mimetype, enc, fdata) )
+                        data.append('%s:%s:%s:%s' % (filename, mimetype, enc, fdata))
                     else:
-                        data.append( '%s:%s:%s:Binary upload discarded' %  (filename, mimetype, enc) )
+                        data.append('%s:%s:%s:Binary upload discarded' %  (filename, mimetype, enc))
                 else:
-                    data.append( 'NO UPLOAD' )
+                    data.append('NO UPLOAD')
             elif not f.isLabel():
-                val = REQUEST.form.get(f.fgField.getName(),'')
+                val = REQUEST.form.get(f.fgField.getName(), '')
                 if not type(val) in StringTypes:
                     # Zope has marshalled the field into
                     # something other than a string
@@ -341,23 +340,23 @@ class FormSaveDataAdapter(FormActionAdapter):
         if self.ExtraData:
             for f in self.ExtraData:
                 if f == 'dt':
-                    data.append( str(DateTime()) )
+                    data.append(str(DateTime()))
                 else:
-                    data.append( getattr(REQUEST, f, '') )
+                    data.append(getattr(REQUEST, f, ''))
 
 
-        self._addDataRow( data )
+        self._addDataRow(data)
 
 
     security.declareProtected(ModifyPortalContent, 'allFieldDisplayList')
     def allFieldDisplayList(self):
-        """ returns a DisplayList of all fields """
+        # """ returns a DisplayList of all fields """
         return self.fgFieldsDisplayList()
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnNames')
     def getColumnNames(self):
-        """Returns a list of column names"""
+        # """Returns a list of column names"""
 
         showFields = getattr(self, 'showFields', [])
         names = [field.getName() for field in self.fgFields(displayOnly=True)
@@ -370,7 +369,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnTitles')
     def getColumnTitles(self):
-        """Returns a list of column titles"""
+        # """Returns a list of column titles"""
 
         names = [field.widget.label for field in self.fgFields(displayOnly=True)]
         for f in self.ExtraData:
@@ -387,8 +386,8 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download_tsv')
     def download_tsv(self, REQUEST=None, RESPONSE=None):
-        """Download the saved data
-        """
+        # """Download the saved data
+        # """
 
         filename = self.id
         if filename.find('.') < 0:
@@ -398,22 +397,22 @@ class FormSaveDataAdapter(FormActionAdapter):
         RESPONSE.setHeader("Content-Type", 'text/tab-separated-values;charset=%s' % self.getCharset())
 
         if getattr(self, 'UseColumnNames', False):
-            res = "%s\n" % '\t'.join( self.getColumnNames() )
+            res = "%s\n" % '\t'.join(self.getColumnNames())
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
             res = ''
 
         for row in self.getSavedFormInput():
-            res = '%s%s\n' % (res, '\t'.join( [self._cleanInputForTSV(col) for col in row] ))
+            res = '%s%s\n' % (res, '\t'.join([self._cleanInputForTSV(col) for col in row]))
 
         return res
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download_csv')
     def download_csv(self, REQUEST=None, RESPONSE=None):
-        """Download the saved data
-        """
+        # """Download the saved data
+        # """
 
         filename = self.id
         if filename.find('.') < 0:
@@ -424,7 +423,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         if getattr(self, 'UseColumnNames', False):
             delimiter = self.csvDelimiter()
-            res = "%s\n" % delimiter.join( self.getColumnNames() )
+            res = "%s\n" % delimiter.join(self.getColumnNames())
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
@@ -448,10 +447,10 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'rowAsColDict')
     def rowAsColDict(self, row, cols):
-        """ Where row is a data sequence and cols is a column name sequence,
-            returns a dict of colname:column. This is a convenience method
-            used in the record view.
-        """
+        # """ Where row is a data sequence and cols is a column name sequence,
+        #     returns a dict of colname:column. This is a convenience method
+        #     used in the record view.
+        # """
 
         colcount = len(cols)
 
@@ -466,8 +465,8 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'inputAsDictionaries')
     def inputAsDictionaries(self):
-        """returns saved data as an iterable of dictionaries
-        """
+        # """returns saved data as an iterable of dictionaries
+        # """
 
         cols = self.getColumnNames()
 
@@ -482,8 +481,8 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'formatMIME')
     def formatMIME(self):
-        """MIME format selected for download
-        """
+        # """MIME format selected for download
+        # """
 
         format = getattr(self, 'DownloadFormat', 'tsv')
         if format == 'tsv':
@@ -494,16 +493,15 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     security.declarePrivate('csvDelimiter')
     def csvDelimiter(self):
-
-        """Delimiter character for CSV downloads
-        """
+        # """Delimiter character for CSV downloads
+        # """
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getCSVDelimiter()
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'itemsSaved')
     def itemsSaved(self):
-        """Download the saved data
-        """
+        # """Download the saved data
+        # """
 
         if base_hasattr(self, '_length'):
             return self._length()
@@ -512,37 +510,36 @@ class FormSaveDataAdapter(FormActionAdapter):
         else:
             return len(self.SavedFormInput)
 
-
     def vocabExtraDataDL(self):
-        """ returns vocabulary for extra data """
+        # """ returns vocabulary for extra data """
 
-        return DisplayList( (
+        return DisplayList((
                 ('dt',
-                    self.translate( msgid='vocabulary_postingdt_text',
+                    self.translate(msgid='vocabulary_postingdt_text',
                     domain='ploneformgen',
                     default='Posting Date/Time')
                     ),
-                ('HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED_FOR',),
-                ('REMOTE_ADDR','REMOTE_ADDR',),
-                ('HTTP_USER_AGENT','HTTP_USER_AGENT',),
-                ) )
+                ('HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED_FOR',),
+                ('REMOTE_ADDR', 'REMOTE_ADDR',),
+                ('HTTP_USER_AGENT', 'HTTP_USER_AGENT',),
+                ))
 
 
     def vocabFormatDL(self):
-        """ returns vocabulary for format """
+        # """ returns vocabulary for format """
 
-        return DisplayList( (
+        return DisplayList((
                 ('tsv',
-                    self.translate( msgid='vocabulary_tsv_text',
+                    self.translate(msgid='vocabulary_tsv_text',
                     domain='ploneformgen',
                     default='Tab-Separated Values')
                     ),
                 ('csv',
-                    self.translate( msgid='vocabulary_csv_text',
+                    self.translate(msgid='vocabulary_csv_text',
                     domain='ploneformgen',
                     default='Comma-Separated Values')
                     ),
-            ) )
+            ))
 
 
 

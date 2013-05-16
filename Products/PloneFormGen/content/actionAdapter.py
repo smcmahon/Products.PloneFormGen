@@ -35,7 +35,7 @@ FormAdapterSchema = ATContentTypeSchema.copy() + Schema((
         default='',
         write_permission=EDIT_TALES_PERMISSION,
         read_permission=ModifyPortalContent,
-        isMetadata=True, # just to hide from base view
+        isMetadata=True,  # just to hide from base view
         widget=StringWidget(label=_(u'label_execcondition_text', default=u"Execution Condition"),
             description=_(u'help_execcondition_text', default=u"""
                 A TALES expression that will be evaluated to determine whether or not
@@ -94,33 +94,38 @@ class FormActionAdapter(ATCTContent):
 
     security       = ClassSecurityInfo()
 
+    def __bobo_traverse__(self, REQUEST, name):
+        # prevent traversal to attributes we want to protect
+        if name == 'execCondition':
+            raise AttributeError
+        return super(FormActionAdapter, self).__bobo_traverse__(REQUEST, name)
 
+    security.declarePrivate('onSuccess')
     def onSuccess(self, fields, REQUEST=None):
-        """ Called by form to invoke custom success processing.
-            return None (or don't use "return" at all) if processing is
-            error-free.
+        # Called by #form to invoke custom success processing.
+        # return None (or don't use "return" at all) if processing is
+        # error-free.
 
-            Return a dictionary like {'field_id':'Error Message'}
-            and PFG will stop processing action adapters and
-            return back to the form to display your error messages
-            for the matching field(s).
+        # Return a dictionary like {'field_id':'Error Message'}
+        # and PFG will stop processing action adapters and
+        # return back to the form to display your error messages
+        # for the matching field(s).
 
-            You may also use Products.PloneFormGen.config.FORM_ERROR_MARKER
-            as a marker for a message to replace the top-of-the-form error
-            message.
+        # You may also use Products.PloneFormGen.config.FORM_ERROR_MARKER
+        # as a marker for a message to replace the top-of-the-form error
+        # message.
 
-            For example, to set a message for the whole form, but not an
-            individual field:
+        # For example, to set a message for the whole form, but not an
+        # individual field:
 
-            {FORM_ERROR_MARKER:'Yuck! You will need to submit again.'}
+        # {FORM_ERROR_MARKER:'Yuck! You will need to submit again.'}
 
-            For both a field and form error:
+        # For both a field and form error:
 
-            {FORM_ERROR_MARKER:'Yuck! You will need to submit again.',
-             'field_id':'Error Message for field.'}
+        # {FORM_ERROR_MARKER:'Yuck! You will need to submit again.',
+        #  'field_id':'Error Message for field.'}
 
-            Messages may be string types or zope.i18nmessageid objects.
-        """
+        # Messages may be string types or zope.i18nmessageid objects.
 
         # fields will be a sequence of objects with an IPloneFormGenField interface
 
@@ -128,7 +133,7 @@ class FormActionAdapter(ATCTContent):
 
 
     def at_post_create_script(self):
-        """ activate action adapter in parent folder """
+        # """ activate action adapter in parent folder """
 
         # XXX TODO - change to use events when we give up on Plone 2.1.x
 

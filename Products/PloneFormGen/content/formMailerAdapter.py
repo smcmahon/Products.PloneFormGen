@@ -18,6 +18,7 @@ __docformat__ = 'plaintext'
 #######################
 
 from AccessControl import ClassSecurityInfo
+from AccessControl import Unauthorized
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import OrderedDict
@@ -229,6 +230,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         searchable=0,
         schemata='message',
         default='1',
+        read_permission=ModifyPortalContent,
         widget=BooleanWidget(
             label=_(u'label_mailallfields_text', default=u"Include All Fields"),
             description=_(u'help_mailallfields_text', default=u"""
@@ -244,6 +246,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         searchable=0,
         schemata='message',
         vocabulary='allFieldDisplayList',
+        read_permission=ModifyPortalContent,
         widget=PicklistWidget(
             label=_(u'label_mailfields_text', default=u"Show Responses"),
             description=_(u'help_mailfields_text', default=u"""
@@ -257,6 +260,7 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         searchable=0,
         schemata='message',
         default='1',
+        read_permission=ModifyPortalContent,
         widget=BooleanWidget(
             label=_(u'label_mailEmpties_text', default=u"Include Empties"),
             description=_(u'help_mailEmpties_text', default=u"""
@@ -474,6 +478,17 @@ formMailerAdapterSchema['additional_headers'].schemata = 'template'
 
 formMailerAdapterSchema.moveField('execCondition', pos='bottom')
 
+NEED_PROTECTION = (
+    'body_pre',
+    'body_post',
+    'body_footer',
+    'body_pt',
+    'subjectOverride',
+    'senderOverride',
+    'recipientOverride',
+    'ccOverride',
+    'bccOverride',
+    )
 
 class FormMailerAdapter(FormActionAdapter):
     """ A form action adapter that will e-mail form input. """
@@ -484,6 +499,12 @@ class FormMailerAdapter(FormActionAdapter):
     content_icon = 'mailaction.gif'
 
     security = ClassSecurityInfo()
+
+    def __bobo_traverse__(self, REQUEST, name):
+        # prevent traversal to attributes we want to protect
+        if name in NEED_PROTECTION:
+            raise AttributeError
+        return super(FormMailerAdapter, self).__bobo_traverse__(REQUEST, name)
 
     def initializeArchetype(self, **kwargs):
         """ Translate the adapter in the current langage
