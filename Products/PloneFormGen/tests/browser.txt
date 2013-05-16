@@ -140,7 +140,24 @@ Attempts to set script body TTW should fail::
     ...
     HTTPError: HTTP Error 404: Not Found
 
-We want to test security on the custom script adapter. Let's add one::
+Attempts to run the script TTW should fail::
+
+    >>> browser.open(self.portal_url + '/testform/test-script-adapter/onSuccess?fields=')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+    >>> browser.open(self.portal_url + '/testform/test-script-adapter/scriptBody?fields=')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+    >>> browser.open(self.portal_url + '/testform/test-script-adapter/executeCustomScript?fields=&form=&req=')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+We want to test security on the save data adapter. Let's add one::
 
     >>> browser.open(self.portal_url + '/testform')
     >>> browser.getLink('Save Data Adapter').click()
@@ -157,6 +174,22 @@ Attempts to save TTW should fail::
     ...
     HTTPError: HTTP Error 404: Not Found
 
+Attempts to read our special member attributes TTW should fail::
+
+    >>> browser.open(self.portal_url + '/testform/memberId')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+    >>> browser.open(self.portal_url + '/testform/memberFullName')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
+
+    >>> browser.open(self.portal_url + '/testform/memberEmail')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 404: Not Found
 
 
 # Embedded form

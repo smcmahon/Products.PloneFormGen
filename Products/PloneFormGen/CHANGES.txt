@@ -32,6 +32,10 @@ Change History
   (Thanks, The Code Distillery)
   [smcmahon]
 
+- Protect "member*" convenience methods from traversal TTW.
+  (Thanks, The Code Distillery)
+  [smcmahon]
+
 1.7.8 2012-04-10
 ----------------
 

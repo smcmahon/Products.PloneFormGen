@@ -285,6 +285,9 @@ NO_TRAVERSE = (
     'onDisplayOverride',
     'afterValidationOverride',
     'headerInjection',
+    'memberId',
+    'memberFullName',
+    'memberEmail',
 )
 
 
@@ -916,42 +919,45 @@ class FormFolder(ATFolder):
 
             self.thanksPage = 'thank-you'
 
-
     security.declareProtected(View, 'memberFullName')
 
     def memberFullName(self):
-        """ convenience method meant for use in default overrides.
-            returns full name of authenticated user, if available,
-            empty string otherwise.
-        """
+        # convenience method meant for use in default overrides.
+        # returns full name of authenticated user, if available,
+        # empty string otherwise.
+        # This can't be fully private, or we wouldn't be able to
+        # use it in TALES expressions. Instead, we prevent
+        # traversal in __bobo_traverse__
 
         pm = getToolByName(self, 'portal_membership')
         member = pm.getAuthenticatedMember()
 
         return member.getProperty('fullname', '')
 
-
     security.declareProtected(View, 'memberEmail')
 
     def memberEmail(self):
-        """ convenience method meant for use in default overrides.
-            returns e-mail address of authenticated user, if available,
-            empty string otherwise.
-        """
+        # convenience method meant for use in default overrides.
+        # returns e-mail address of authenticated user, if available,
+        # empty string otherwise.
+        # This can't be fully private, or we wouldn't be able to
+        # use it in TALES expressions. Instead, we prevent
+        # traversal in __bobo_traverse__
 
         pm = getToolByName(self, 'portal_membership')
         member = pm.getAuthenticatedMember()
 
         return member.getProperty('email', '')
 
-
     security.declareProtected(View, 'memberId')
 
     def memberId(self):
-        """ convenience method meant for use in default overrides.
-            returns login id of authenticated user, if available,
-            empty string otherwise.
-        """
+        # convenience method meant for use in default overrides.
+        # returns login id of authenticated user, if available,
+        # empty string otherwise.
+        # This can't be fully private, or we wouldn't be able to
+        # use it in TALES expressions. Instead, we prevent
+        # traversal in __bobo_traverse__
 
         pm = getToolByName(self, 'portal_membership')
         if pm.isAnonymousUser():
@@ -959,7 +965,6 @@ class FormFolder(ATFolder):
 
         member = pm.getAuthenticatedMember()
         return member.id
-
 
     # security is inherited
     def checkIdAvailable(self, id):
@@ -1014,7 +1019,7 @@ class FormFolder(ATFolder):
             self.formEpilogue = value
 
 
-    security.declareProtected(ModifyPortalContent, 'setFormPrologue')
+    security.declareProtected(ModifyPortalContent, 'toggleActionActive')
 
     def toggleActionActive(self, item_id, **kw):
         """ toggle the active status of an action adapter """
