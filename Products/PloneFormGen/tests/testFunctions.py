@@ -7,6 +7,8 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+import plone.protect
+
 from Products.PloneFormGen.tests import pfgtc
 
 from Testing.makerequest import makerequest
@@ -31,7 +33,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
     def fakeRequest(self, **kwargs):
         self.request.form.clear()
+        self.request._authenticator = plone.protect.createToken()
         self.request.form.update(kwargs)
+        self.request.form['_authenticator'] = self.request._authenticator
         return self.request
 
 

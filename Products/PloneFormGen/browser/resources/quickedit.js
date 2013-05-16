@@ -8,7 +8,7 @@ var pfgQEdit = {};
 var pfgWidgets;
 
 pfgQEdit.qedit = function (e) {
-	var tool, blurrable;
+	var tool, blurrable, wrapper;
 
 	// Turn off form-unload protection so that we don't receive
 	// misleading notifications.
@@ -23,10 +23,10 @@ pfgQEdit.qedit = function (e) {
 	jQuery("#pfgqedit").hide();
 	// hide the error messages
 	jQuery(".error").hide();
-	var wrapper = jQuery("#pfgWidgetWrapper")
+	wrapper = jQuery("#pfgWidgetWrapper");
 	// show widgets manager and position
 	jQuery("#pfgWidgetWrapper").fadeIn();
-	
+
 
 	jQuery(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
 
@@ -71,12 +71,23 @@ pfgQEdit.qedit = function (e) {
 
 
 jQuery(function ($) {
+
+    getToken = function () {
+        return $('#auth_hold input').val();
+    };
+
 	// activate toggles on actions and thanks pages
 	$("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
-		$.post('toggleActionActive', {item_id: this.name.substr('cbaction-'.length)});
+		$.post('toggleActionActive', {
+            item_id: this.name.substr('cbaction-'.length),
+            _authenticator: getToken()
+        });
 	});
 	jQuery("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
-		$.post('setThanksPage', {value: this.value});
+		$.post('setThanksPageTTW', {
+            value: this.value,
+            _authenticator: getToken()
+        });
 	});
 
 	// set up edit and delete popups
@@ -239,7 +250,8 @@ jQuery(function ($) {
 			}
 			var args = {
 				item_id: i,
-				target_id: t
+				target_id: t,
+                _authenticator: getToken()
 			};
 			$.post('reorderField', args, function () {
 				$("img.ajax-loader").css('visibility', 'hidden');
@@ -276,7 +288,8 @@ jQuery(function ($) {
 					jqt.parent().html(jqt.val());
 					args = {
 						item_id: tmpfor,
-						title: jqt.val()
+						title: jqt.val(),
+                        _authenticator: getToken()
 					};
 					if (args.title !== content) { // only update if we actually changed the field
 						$("img.ajax-loader").css('visibility', 'visible');
@@ -313,7 +326,10 @@ jQuery(function ($) {
 				item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
 				$("img.ajax-loader").css('visibility', 'visible');
 				// AJAX
-				$.post('toggleRequired', {item_id: item }, function () {
+				$.post('toggleRequired', {
+                    item_id: item,
+                    _authenticator: getToken()
+                    }, function () {
 					$("img.ajax-loader").css('visibility', 'hidden');
 				});
 				$('#archetypes-fieldname-' + item).find('[name^=' + item + ']').attr("required", "required");
@@ -330,7 +346,10 @@ jQuery(function ($) {
 				item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
 				$("img.ajax-loader").css('visibility', 'visible');
 				// AJAX
-				$.post('toggleRequired', {item_id: item }, function () {
+				$.post('toggleRequired', {
+                    item_id: item,
+                    _authenticator: getToken()
+                    }, function () {
 					$("img.ajax-loader").css('visibility', 'hidden');
 				});
 				$('#archetypes-fieldname-' + item).find('[name^=' + item + ']').removeAttr("required");
@@ -414,9 +433,9 @@ jQuery(function ($) {
 						//	$(item).height($(item).height());
 						// AJAX stuff
 						item.children("div.widget-inside")
-						    .load("createObject?type_name=" +
-						          ui.item.context.id + " #content > div:last",
-						           function (response, status, xhr) {
+                        .load("createObject?type_name=" +
+                              ui.item.context.id + " #content > div:last",
+                               function (response, status, xhr) {
 							var inputElem, formElem, msg, jqt;
 
 							jqt = $(this);
@@ -641,7 +660,10 @@ jQuery(function ($) {
 						}
 						$("img.ajax-loader").css('visibility', 'visible');
 						ui.item.remove();	// remove the original item (from the DOM and thus the form)
-						$.post("removeFieldFromForm", {item_id: iid}, function () {
+						$.post("removeFieldFromForm", {
+                            item_id: iid,
+                            _authenticator: getToken()
+                            }, function () {
 							$("img.ajax-loader").css('visibility', 'hidden');
 						});
 						return;

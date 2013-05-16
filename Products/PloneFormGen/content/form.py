@@ -1024,7 +1024,8 @@ class FormFolder(ATFolder):
     def toggleActionActive(self, item_id, **kw):
         """ toggle the active status of an action adapter """
 
-        work = set(list(self.actionAdapter)) # use sets to avoid duplicates
+        plone.protect.CheckAuthenticator(self.REQUEST)
+        work = set(list(self.actionAdapter))  # use sets to avoid duplicates
         if item_id in work:
             work.remove(item_id)
         else:
@@ -1032,11 +1033,12 @@ class FormFolder(ATFolder):
         self.actionAdapter = list(work)
         return "<done />"
 
-    security.declareProtected(ModifyPortalContent, 'setThanksPage')
+    security.declareProtected(ModifyPortalContent, 'setThanksPageTTW')
 
-    def setThanksPage(self, value, *kw):
-        """ Set the thanks page """
+    def setThanksPageTTW(self, value, *kw):
+        """ Set the thanks page TTW """
 
+        plone.protect.CheckAuthenticator(self.REQUEST)
         self.thanksPage = value
         return "<done />"
 
@@ -1046,6 +1048,7 @@ class FormFolder(ATFolder):
     def reorderField(self, item_id, target_id, **kw):
         """ move item to target"""
 
+        plone.protect.CheckAuthenticator(self.REQUEST)
         itemPos = self.getObjectPosition(item_id)
         targetPos = self.getObjectPosition(target_id)
 
@@ -1058,6 +1061,8 @@ class FormFolder(ATFolder):
 
     def updateFieldTitle(self, item_id, title, **kw):
         """ update item's title"""
+
+        plone.protect.CheckAuthenticator(self.REQUEST)
         self[item_id].setTitle(title)
 
         return "<done />"
@@ -1067,6 +1072,7 @@ class FormFolder(ATFolder):
     def toggleRequired(self, item_id, **kw):
       """ toggle required Field attribute """
 
+      plone.protect.CheckAuthenticator(self.REQUEST)
       field = self[item_id].fgField
       field.required = not field.required
 
@@ -1077,6 +1083,7 @@ class FormFolder(ATFolder):
     def removeFieldFromForm(self, item_id, **kw):
       """ remove field on the fly from the form"""
 
+      plone.protect.CheckAuthenticator(self.REQUEST)
       self.manage_delObjects([item_id])
 
       return "<done />"
