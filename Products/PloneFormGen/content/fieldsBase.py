@@ -752,8 +752,7 @@ class BaseFormField(ATCTContent):
 
     security.declareProtected(View, 'fgvalidate')
     def fgvalidate(self, REQUEST=None, errors=None, data=None, metadata=None):
-        """Validates the field data from the request.
-        """
+        # Validates the field data from the request.
 
         _marker = []
         if errors is None:
