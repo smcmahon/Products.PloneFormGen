@@ -13,10 +13,22 @@ Add a new Form Folder::
     >>> browser.getControl('Title').value = 'testform'
     >>> browser.getControl('Save').click()
 
-And confirm that it renders properly::
+We'll want to test the save data adapter later.
+Let's add one now::
 
+    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.getLink('Save Data Adapter').click()
+    >>> browser.getControl('Title').value = 'saver'
+    >>> browser.getControl('Save').click()
+    >>> browser.open(self.portal_url + '/testform/saver')
     >>> browser.url
-    'http://nohost/plone/testform/...'
+    'http://nohost/plone/testform/saver'
+
+Return to form and confirm that it renders properly::
+
+    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.url
+    'http://nohost/plone/testform'
     >>> print browser.contents
     <!DOCTYPE...
     ...
@@ -90,6 +102,48 @@ We should be able to view an individual field::
     </div>
     ...
 
+Let's take a look at the save-data adapter::
+
+    >>> browser.open(self.portal_url + '/testform/saver')
+    >>> browser.url
+    'http://nohost/plone/testform/saver'
+
+It ought to tell us we have a saved input::
+
+    >>> print browser.contents
+    <!DOCTYPE...
+    ...
+    <span>1</span> input(s) saved
+    ...
+
+And a form offering to clear input::
+
+    >>> print browser.contents
+    <!DOCTYPE...
+    ...
+    <form action="http://nohost/plone/testform/saver/clearSavedFormInput" method="post"...>
+        <input type="hidden" name="_authenticator" value="..."/>
+        <input type="submit" ... value="Clear Saved Input" ... />
+          ...
+              Clear all saved input?
+          ...
+    </form>
+    ...
+
+    Let's try it out; we should redirect back to form::
+
+    >>> browser.getControl('Clear Saved Input').click()
+    >>> browser.url
+    'http://nohost/plone/testform/saver'
+
+Attempts to use clearSavedFormInput without auth should be forbidden::
+
+    >>> browser.open(self.portal_url + '/testform/saver/clearSavedFormInput')
+    Traceback (most recent call last):
+    ...
+    HTTPError: HTTP Error 403: Forbidden
+
+
 Attempts to use gpg_services TTW should be fruitless::
 
     >>> browser.open(self.portal_url + '/testform/@@gpg_services/encrypt?data=XXX&recipient_key_id=yyy')
@@ -157,17 +211,7 @@ Attempts to run the script TTW should fail::
     ...
     HTTPError: HTTP Error 404: Not Found
 
-We want to test security on the save data adapter. Let's add one::
-
-    >>> browser.open(self.portal_url + '/testform')
-    >>> browser.getLink('Save Data Adapter').click()
-    >>> browser.getControl('Title').value = 'saver'
-    >>> browser.getControl('Save').click()
-    >>> browser.open(self.portal_url + '/testform/saver')
-    >>> browser.url
-    'http://nohost/plone/testform/saver'
-
-Attempts to save TTW should fail::
+Attempts to use onSuccess TTW should fail::
 
     >>> browser.open(self.portal_url + '/testform/saver/onSuccess?fields=&request=')
     Traceback (most recent call last):

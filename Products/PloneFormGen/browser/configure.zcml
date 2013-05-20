@@ -58,7 +58,7 @@
       for="*"
       name="gpg_services"
       class=".gpg_encrypt.GnuPGView"
-      permission="zope.Public"
+      permission="zope2.View"
       allowed_attributes="encrypt"
       />
 

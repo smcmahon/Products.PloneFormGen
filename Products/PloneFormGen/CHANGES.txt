@@ -36,6 +36,14 @@ Change History
   (Thanks, The Code Distillery)
   [smcmahon]
 
+- Add plone.protect auth checks to quick editor AJAX functions.
+  (Thanks, The Code Distillery)
+  [smcmahon]
+
+- Require authenticator for clearing form data TTW
+  [smcmahon]
+
+
 1.7.8 2012-04-10
 ----------------
 

@@ -13,16 +13,25 @@ import zExceptions
 from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
-from plone.protect.authenticator import AuthenticatorView
+import plone.protect
 
 # dummy class
 class cd:
     pass
 
-class FakeRequest(dict):
+def FakeRequest(method="GET", add_auth=False, **kwargs):
+    environ = {}
+    environ.setdefault('SERVER_NAME', 'foo')
+    environ.setdefault('SERVER_PORT', '80')
+    environ.setdefault('REQUEST_METHOD', method)
+    request = HTTPRequest(sys.stdin,
+                environ,
+                HTTPResponse(stdout=sys.stdout))
+    request.form = kwargs
+    if add_auth:
+        request.form['_authenticator'] = plone.protect.createToken()
+    return request
 
-    def __init__(self, **kwargs):
-        self.form = kwargs
 
 class TestFunctions(pfgtc.PloneFormGenTestCase):
     """ test save data adapter """
@@ -49,7 +58,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         res = saver.getSavedFormInputForEdit()
         self.assertEqual(res, '')
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = FakeRequest(add_auth=True, method='POST', topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -69,7 +78,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         self.ff1.setActionAdapter( ('saver',) )
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = FakeRequest(add_auth=True, method='POST', topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -77,12 +86,12 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         row = iter(saver.getSavedFormInput()).next()
         self.assertEqual(len(row), 3)
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = FakeRequest(add_auth=True, method='POST', topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
         self.assertEqual(saver.itemsSaved(), 2)
 
-        self.ff1.saver.clearSavedFormInput()
+        self.ff1.saver._clearSavedFormInput()
         self.assertEqual(saver.itemsSaved(), 0)
 
 
@@ -181,7 +190,12 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         setattr(data, 'item-1', 'five')
         setattr(data, 'item-2', 'six')
 
+        # We should need an authenticator
+        self.assertRaises(zExceptions.Forbidden, saver.manage_saveData, *[saver._inputStorage.keys()[0], data])
+
+        saver.REQUEST = FakeRequest(add_auth=True, method="POST")
         saver.manage_saveData(saver._inputStorage.keys()[0], data)
+
         self.assertEqual(saver.itemsSaved(), 1)
         self.assertEqual(saver._inputStorage.values()[0], ['four', 'five', 'six'])
 
@@ -208,6 +222,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         setattr(data, 'item-1', 'five')
         setattr(data, 'item-2', 'six')
 
+        saver.REQUEST = FakeRequest(add_auth=True, method="POST")
         saver.manage_saveData(saver._inputStorage.keys()[0], data)
         self.assertEqual(saver.itemsSaved(), 1)
         self.assertEqual(saver._inputStorage.values()[0], ['four', 'five', 'six'])
@@ -268,7 +283,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         self.assertEqual(saver.itemsSaved(), 0)
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = FakeRequest(add_auth=True, method='POST', topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -358,7 +373,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         self.ff1.setActionAdapter( ('saver',) )
 
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
+        request = FakeRequest(add_auth=True, method='POST', topic='test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
 
@@ -368,41 +383,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual(row[0], 'test subject')
         self.assertEqual(row[1], 'test comments')
 
-
-    def testCSRF(self):
-        """ test CSRF check on data clear """
-
-        # create a saver and add a record
-        self.ff1.invokeFactory('FormSaveDataAdapter', 'saver')
-        saver = self.ff1.saver
-        self.ff1.setActionAdapter( ('saver',) )
-        request = FakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
-        errors = self.ff1.fgvalidate(REQUEST=request)
-        self.assertEqual( errors, {} )
-
-        # for the rest of this test, we need a bit more serious request simulation
-        environ = {}
-        environ.setdefault('SERVER_NAME', 'foo')
-        environ.setdefault('SERVER_PORT', '80')
-        environ.setdefault('REQUEST_METHOD',  'POST')
-        request = HTTPRequest(sys.stdin,
-                    environ,
-                    HTTPResponse(stdout=sys.stdout))
-
-        # clearSavedFormInput is part of the API, so it should work if there's no
-        # request
-        saver.clearSavedFormInput()
-
-        # But, if this is from a form, we should need a valid authenticator
-        request.form = {'clearSavedFormInput':'1',}
-        self.assertRaises(zExceptions.Forbidden, saver.clearSavedFormInput, **{'request':request})
-
-        # with authenticator... no error
-        tag = AuthenticatorView('context', 'request').authenticator()
-        token = tag.split('"')[5]
-        request.form['_authenticator'] = token
-        saver.clearSavedFormInput(request=request)
-
+    # the csrf test has moved to browser.txt
 
 def test_suite():
     from unittest import TestSuite, makeSuite

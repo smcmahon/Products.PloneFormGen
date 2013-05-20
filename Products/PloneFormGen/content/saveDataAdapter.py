@@ -207,17 +207,8 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         # logger.debug("setSavedFormInput: %s items" % self._inputItems)
 
-
-    security.declareProtected(ModifyPortalContent, 'clearSavedFormInput')
-    def clearSavedFormInput(self, **kwargs):
-        """ convenience method to clear input buffer """
-
-        REQUEST = kwargs.get('request', self.REQUEST)
-        if REQUEST.form.has_key('clearSavedFormInput'):
-            # we're processing a request from the web;
-            # check for CSRF
-            plone.protect.CheckAuthenticator(REQUEST)
-            plone.protect.PostOnly(REQUEST)
+    def _clearSavedFormInput(self):
+        # convenience method to clear input buffer
 
         self._migrateStorage()
 
@@ -225,6 +216,14 @@ class FormSaveDataAdapter(FormActionAdapter):
         self._inputItems = 0
         self._length.set(0)
 
+    security.declareProtected(ModifyPortalContent, 'clearSavedFormInput')
+    def clearSavedFormInput(self, **kwargs):
+        """ clear input buffer TTW """
+
+        plone.protect.CheckAuthenticator(self.REQUEST)
+        plone.protect.PostOnly(self.REQUEST)
+        self._clearSavedFormInput()
+        self.REQUEST.response.redirect(self.absolute_url())
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getSavedFormInputById')
     def getSavedFormInputById(self, id):
@@ -232,10 +231,12 @@ class FormSaveDataAdapter(FormActionAdapter):
         lst = [field.replace('\r', '').replace('\n', r'\n') for field in self._inputStorage[id]]
         return lst
 
-
     security.declareProtected(ModifyPortalContent, 'manage_saveData')
     def manage_saveData(self, id,  data):
         """ Save the data for record with 'id' """
+
+        plone.protect.CheckAuthenticator(self.REQUEST)
+        plone.protect.PostOnly(self.REQUEST)
 
         self._migrateStorage()
 

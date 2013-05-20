@@ -20,10 +20,6 @@
            tal:define="content_type here/get_content_type|here/Format;
                        canEdit python:checkPermission('Modify portal content', here);
                       ">
-        <tal:block condition="exists: request/clearSavedFormInput">
-          <span tal:define="dummy here/clearSavedFormInput" />
-        </tal:block>
-
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
         <h1 tal:content="view/object_title" class="documentFirstHeading">
@@ -57,7 +53,7 @@
                 <span tal:content="here/itemsSaved" i18n:name="items">
                 257
                 </span>
-            	inputs saved
+            	input(s) saved
             </span>
 
               -
@@ -72,7 +68,7 @@
           <form action="#"
            method="post"
            tal:condition="canEdit"
-           tal:attributes="action here/absolute_url"
+           tal:attributes="action string:${here/absolute_url}/clearSavedFormInput"
            style="padding-top:2em">
             <input tal:replace="structure context/@@authenticator/authenticator">
             <input type="submit"

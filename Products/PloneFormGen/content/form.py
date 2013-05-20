@@ -497,8 +497,8 @@ class FormFolder(ATFolder):
                    data=None,
                    metadata=None,
                    skip_action_adapters=False):
-        """Validates the field data from the request.
-        """
+        # """Validates the field data from the request.
+        # """
 
         if getattr(self, 'checkAuthenticator', True):
             # CSRF check.

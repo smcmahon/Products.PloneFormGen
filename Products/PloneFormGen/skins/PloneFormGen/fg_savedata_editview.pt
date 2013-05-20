@@ -17,6 +17,7 @@
           </h1>
 
           <form tal:attributes="action string:${context/absolute_url}/" method="POST">
+              <input tal:replace="structure context/@@authenticator/authenticator">
               <input type="hidden" name="id:int" tal:attributes="value request/id" />
 
               <table tal:define="coltitles context/getColumnTitles;
