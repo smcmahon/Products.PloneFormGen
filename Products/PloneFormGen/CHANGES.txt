@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.9 (unreleased)
+1.7.9 (2013-05-28)
 ------------------
 
 - Remove doc string for @@gpg_services/encrypt. (Thanks, The Code Distillery)
