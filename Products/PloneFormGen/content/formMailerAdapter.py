@@ -278,8 +278,8 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         read_permission=ModifyPortalContent,
         widget=TextAreaWidget(description = _(u'help_formmailer_body_pt',
             default=u"""This is a Zope Page Template
-            used for rendering of the mail-body. You don\'t need to modify 
-            it, but if you know TAL (Zope\'s Template Attribute Language) 
+            used for rendering of the mail-body. You don\'t need to modify
+            it, but if you know TAL (Zope\'s Template Attribute Language)
             you have the full power to customize your outgoing mails."""),
             label = _(u'label_formmailer_body_pt', default=u'Mail-Body Template'),
             rows = 20,
@@ -294,8 +294,8 @@ formMailerAdapterSchema = FormAdapterSchema.copy() + Schema((
         write_permission=EDIT_ADVANCED_PERMISSION,
         read_permission=ModifyPortalContent,
         widget=SelectionWidget(description = _(u'help_formmailer_body_type',
-            default=u"""Set the mime-type of the mail-body. 
-            Change this setting only if you know exactly what you are doing. 
+            default=u"""Set the mime-type of the mail-body.
+            Change this setting only if you know exactly what you are doing.
             Leave it blank for default behaviour."""),
             label = _(u'label_formmailer_body_type', default=u'Mail-Body Type'),
             ),
@@ -474,8 +474,7 @@ class FormMailerAdapter(FormActionAdapter):
 
 
     def initializeArchetype(self, **kwargs):
-        """ Translate the adapter in the current langage
-        """
+        # Translate the adapter in the current langage
 
         FormActionAdapter.initializeArchetype(self, **kwargs)
 
@@ -484,16 +483,14 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('onSuccess')
     def onSuccess(self, fields, REQUEST=None):
-        """
-        e-mails data.
-        """
+        # e-mails data.
 
         self.send_form(fields, REQUEST)
 
 
     security.declarePrivate('getMailBodyDefault')
     def getMailBodyDefault(self):
-        """ Get default mail body from our tool """
+        # Get default mail body from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailTemplateBody()
@@ -501,7 +498,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getMailBodyTypeDefault')
     def getMailBodyTypeDefault(self):
-        """ Get default mail body type from our tool """
+        # Get default mail body type from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailBodyType()
@@ -509,7 +506,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getDefaultRecipient')
     def getDefaultRecipient(self):
-        """ Get default mail recipient from our tool """
+        # Get default mail recipient from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailRecipient()
@@ -517,7 +514,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getDefaultRecipientName')
     def getDefaultRecipientName(self):
-        """ Get default mail recipient from our tool """
+        # Get default mail recipient from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailRecipientName()
@@ -525,7 +522,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getDefaultCC')
     def getDefaultCC(self):
-        """ Get default mail cc from our tool """
+        # Get default mail cc from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailCC()
@@ -533,7 +530,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getDefaultBCC')
     def getDefaultBCC(self):
-        """ Get default mail bcc from our tool """
+        # Get default mail bcc from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailBCC()
@@ -541,7 +538,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getDefaultXInfo')
     def getDefaultXInfo(self):
-        """ Get default mail xinfo hdrs from our tool """
+        # Get default mail xinfo hdrs from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailXInfo()
@@ -549,20 +546,20 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('getDefaultAddHdrs')
     def getDefaultAddHdrs(self):
-        """ Get default mail add headers from our tool """
+        # Get default mail add headers from our tool
 
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getDefaultMailAddHdrs()
 
 
-    security.declarePublic('setBody_pt')
+    security.declarePrivate('setBody_pt')
     def setBody_pt(self, value, **kw):
-        """ set body template with BBB for accessors """
-        
+        # set body template with BBB for accessors
+
         if shasattr(value, 'replace'):
             template = value
             for s, t in [('body_pre', 'getBody_pre'),
-                         ('body_post', 'getBody_post'), 
+                         ('body_post', 'getBody_post'),
                          ('body_footer', 'getBody_footer')]:
                 template = template.replace('here/%s' % s, 'here/%s' % t)
             myField = self.getField('body_pt')
@@ -574,32 +571,31 @@ class FormMailerAdapter(FormActionAdapter):
         return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
 
 
-    security.declarePublic('getBody_pre')
+    security.declarePrivate('getBody_pre')
     def getBody_pre(self):
-        """ get expanded mail body prefix """
-        
+        # get expanded mail body prefix
+
         return self._dreplace( self.getRawBody_pre() )
 
 
-    security.declarePublic('getBody_post')
+    security.declarePrivate('getBody_post')
     def getBody_post(self):
-        """ get expanded mail body postfix """
+        # get expanded mail body postfix
 
         return self._dreplace( self.getRawBody_post() )
 
 
-    security.declarePublic('getBody_footer')
+    security.declarePrivate('getBody_footer')
     def getBody_footer(self):
-        """ get expanded mail body footer """
+        # get expanded mail body footer
 
         return self._dreplace( self.getRawBody_footer() )
 
 
     security.declarePrivate('get_mail_text')
     def get_mail_text(self, fields, request, **kwargs):
-        """Get header and body of e-mail as text (string)
-        """
-        
+        # Get header and body of e-mail as text (string)
+
         (headerinfo, additional_headers,
          body) = self.get_header_body_tuple(fields, request, **kwargs)
 
@@ -658,8 +654,7 @@ class FormMailerAdapter(FormActionAdapter):
 
 
     def get_attachments(self, fields, request):
-        """Return all attachments uploaded in form.
-        """
+        # Return all attachments uploaded in form.
 
         from ZPublisher.HTTPRequest import FileUpload
 
@@ -679,8 +674,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('get_mail_body')
     def get_mail_body(self, fields, **kwargs):
-        """Returns the mail-body with footer.
-        """
+        # Returns the mail-body with footer.
 
         if kwargs.has_key('request'):
             request = kwargs['request']
@@ -692,7 +686,7 @@ class FormMailerAdapter(FormActionAdapter):
 
         # which fields should we show?
         if getattr(self, 'showAll', True):
-            live_fields = all_fields 
+            live_fields = all_fields
         else:
             live_fields = \
                 [f for f in all_fields
@@ -705,10 +699,10 @@ class FormMailerAdapter(FormActionAdapter):
                 value = f.htmlValue(request)
                 if value and value != 'No Input':
                     live_fields.append(f)
-                
+
         bare_fields = [f.fgField for f in live_fields]
         bodyfield = self.getField('body_pt')
-        
+
         # pass both the bare_fields (fgFields only) and full fields.
         # bare_fields for compatability with older templates,
         # full fields to enable access to htmlValue
@@ -741,17 +735,17 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('_destFormat')
     def _destFormat(self, input):
-        """ Format destination (To) input.
-            Input may be a string or sequence of strings;
-            returns a well-formatted address field
-        """
+        # Format destination (To) input.
+        # Input may be a string or sequence of strings;
+        # returns a well-formatted address field
+
 
         if type(input) in StringTypes:
             input = [s for s in input.split(',')]
         input = [s for s in input if s]
         filtered_input = [s.strip().encode('utf-8') for s in input]
-        
-        if filtered_input:        
+
+        if filtered_input:
             return "<%s>" % '>, <'.join( filtered_input )
         else:
             return ''
@@ -761,21 +755,20 @@ class FormMailerAdapter(FormActionAdapter):
     def get_header_body_tuple(self, fields, request,
                               from_addr=None, to_addr=None,
                               subject=None, **kwargs):
-        """Return header and body of e-mail as an 3-tuple:
-        (header, additional_header, body)
+        # Return header and body of e-mail as an 3-tuple:
+        # (header, additional_header, body)
 
-        header is a dictionary, additional header is a list, body is a StringIO
+        # header is a dictionary, additional header is a list, body is a StringIO
 
-        Keyword arguments:
-        request -- (optional) alternate request object to use
-        """
+        # Keyword arguments:
+        # request -- (optional) alternate request object to use
 
         pprops = getToolByName(self, 'portal_properties')
         site_props = getToolByName(pprops, 'site_properties')
         portal = getToolByName(self, 'portal_url').getPortalObject()
         pms = getToolByName(self, 'portal_membership')
         utils = getToolByName(self, 'plone_utils')
-        
+
         body = self.get_mail_body(fields, **kwargs)
 
         # fields = self.fgFields()
@@ -830,7 +823,7 @@ class FormMailerAdapter(FormActionAdapter):
             if userdest is not None:
                 toemail = userdest.getProperty('email', '')
             if not toemail:
-                toemail = portal.getProperty('email_from_address')                
+                toemail = portal.getProperty('email_from_address')
             assert toemail, """
                     Unable to mail form input because no recipient address has been specified.
                     Please check the recipient settings of the PloneFormGen "Mailer" within the
@@ -851,9 +844,9 @@ class FormMailerAdapter(FormActionAdapter):
         email_charset = portal.getProperty('email_charset', 'utf-8')
 
         if not isinstance(subject, unicode):
-            site_charset = utils.getSiteEncoding()            
-            subject = unicode(subject, site_charset, 'replace')        
-        
+            site_charset = utils.getSiteEncoding()
+            subject = unicode(subject, site_charset, 'replace')
+
         msgSubject = self.secure_header_line(subject).encode(email_charset, 'replace')
         msgSubject = str(Header(msgSubject, email_charset))
         headerinfo['Subject'] = msgSubject
@@ -902,7 +895,7 @@ class FormMailerAdapter(FormActionAdapter):
 
 
     def fieldsDisplayList(self):
-        """ returns display list of fields with simple values """
+        # returns display list of fields with simple values
 
         return self.fgFieldsDisplayList(
             withNone=True,
@@ -916,7 +909,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declareProtected(ModifyPortalContent, 'setShowFields')
     def setShowFields(self, value, **kw):
-        """ Reorder form input to match field order """
+        # Reorder form input to match field order
         # This wouldn't be desirable if the PickWidget
         # retained order.
 

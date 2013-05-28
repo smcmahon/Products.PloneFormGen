@@ -47,14 +47,14 @@ except ImportError:
         # 2.1
         from OFS.content_types import guess_content_type
 
-logger = logging.getLogger("PloneFormGen")    
+logger = logging.getLogger("PloneFormGen")
 
 
 ExLinesField = LinesField
 
 
 class FormSaveDataAdapter(FormActionAdapter):
-    """A form action adapter that will save form input data and 
+    """A form action adapter that will save form input data and
        return it in csv- or tab-delimited format."""
 
     schema = FormAdapterSchema.copy() + Schema((
@@ -230,7 +230,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         lst =  [field.replace('\r','').replace('\n', r'\n') for field in self._inputStorage[id]]
         return lst
 
- 
+
     security.declareProtected(ModifyPortalContent, 'manage_saveData')
     def manage_saveData(self, id,  data):
         """ Save the data for record with 'id' """
@@ -240,7 +240,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         lst = list()
         for i in range(0, len(self.getColumnNames())):
             lst.append(getattr(data, 'item-%d' % i, '').replace(r'\n', '\n'))
- 
+
         self._inputStorage[id] = lst
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
@@ -254,7 +254,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         del self._inputStorage[id]
         self._inputItems -= 1
         self._length.change(-1)
-        
+
         self.REQUEST.RESPONSE.redirect(self.absolute_url() + '/view')
 
 
@@ -279,14 +279,13 @@ class FormSaveDataAdapter(FormActionAdapter):
     security.declareProtected(ModifyPortalContent, 'addDataRow')
     def addDataRow(self, value):
         """ a wrapper for the _addDataRow method """
-        
+
         self._addDataRow(value)
 
-    
+
+    security.declarePrivate('onSuccess')
     def onSuccess(self, fields, REQUEST=None, loopstop=False):
-        """
-        saves data.
-        """
+        # saves data.
 
         if LP_SAVE_TO_CANONICAL and not loopstop:
             # LinguaPlone functionality:
@@ -345,24 +344,24 @@ class FormSaveDataAdapter(FormActionAdapter):
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnNames')
     def getColumnNames(self):
         """Returns a list of column names"""
-        
+
         names = [field.getName() for field in self.fgFields(displayOnly=True)]
         for f in self.ExtraData:
             names.append(f)
-        
+
         return names
-        
+
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnTitles')
     def getColumnTitles(self):
         """Returns a list of column titles"""
-        
+
         names = [field.widget.label for field in self.fgFields(displayOnly=True)]
         for f in self.ExtraData:
             names.append(self.vocabExtraDataDL().getValue(f, ''))
-        
+
         return names
-        
+
 
     def _cleanInputForTSV(self, value):
         # make data safe to store in tab-delimited format
@@ -437,7 +436,7 @@ class FormSaveDataAdapter(FormActionAdapter):
             returns a dict of colname:column. This is a convenience method
             used in the record view.
         """
-    
+
         colcount = len(cols)
 
         rdict = {}
@@ -458,7 +457,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         for row in self.getSavedFormInput():
             yield self.rowAsColDict(row, cols)
-        
+
 
     # alias for old mis-naming
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'InputAsDictionaries')
@@ -476,15 +475,15 @@ class FormSaveDataAdapter(FormActionAdapter):
         else:
             assert format == 'csv', 'Unknown download format'
             return 'text/comma-separated-values'
-    
+
     security.declarePrivate('csvDelimiter')
     def csvDelimiter(self):
-    
+
         """Delimiter character for CSV downloads
         """
         fgt = getToolByName(self, 'formgen_tool')
         return fgt.getCSVDelimiter()
-    
+
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'itemsSaved')
     def itemsSaved(self):
         """Download the saved data

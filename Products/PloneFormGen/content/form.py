@@ -1013,7 +1013,7 @@ class FormFolder(ATFolder):
             self.formEpilogue = value
 
 
-    security.declareProtected(ModifyPortalContent, 'setFormPrologue')
+    security.declareProtected(ModifyPortalContent, 'toggleActionActive')
 
     def toggleActionActive(self, item_id, **kw):
         """ toggle the active status of an action adapter """
