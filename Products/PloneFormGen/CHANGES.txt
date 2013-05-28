@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.6.7 (unreleased)
+1.6.7 (2013-05-28)
 ------------------
 
 - Backport docstring/setPrivate fixes from 1.7.9
