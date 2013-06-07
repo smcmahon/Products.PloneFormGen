@@ -1,7 +1,12 @@
 Change History
 ==============
 
-1.7.10 (unreleased)
+1.7.12 (unreleased)
+
+- QuickEdit toolbox covered by footer in sunburst 4.3. Fixed.
+  [smcmahon]
+
+1.7.10 (brown bag)
 -------------------
 
 - Nothing changed yet.
