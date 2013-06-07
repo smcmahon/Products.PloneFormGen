@@ -7,6 +7,7 @@ from plone.memoize.view import memoize
 
 from plone.app.layout.globals.interfaces import IViewView
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
+from Products.PloneFormGen import HAVE_43
 
 
 class QuickEditView(BrowserView):
@@ -81,3 +82,12 @@ class QuickEditView(BrowserView):
                 result.append(item)
 
         return result
+
+    def iconExt(self):
+        """ icon extension for this version """
+
+        if HAVE_43:
+            return u"png"
+        else:
+            return u"gif"
+

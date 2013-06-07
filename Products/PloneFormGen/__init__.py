@@ -24,6 +24,12 @@ except ImportError:
     logger.error("PloneFormGen requires Plone >= 4.1.")
     raise
 
+try:
+    from plone.app.upgrade import v43
+    HAVE_43 = True
+except ImportError:
+    HAVE_43 = False
+
 
 from Products.Archetypes.public import process_types, listTypes
 from Products.CMFCore import utils
