@@ -103,11 +103,11 @@ jQuery(function ($) {
 			subtype: 'ajax',
 			filter: "#content",
 			formselector: 'form:has(input[value=Delete])',
-			noform: function (athis) {
+			noform: function (athis, opts) {
 				var match;
 
 				// remove the deleted field/action's node
-				match = athis.url.match(/.+\/(.+?)\/delete_confirmation/);
+				match = opts.src.match(/.+\/(.+?)\/delete_confirmation/);
 				if (match) {
 					$('#archetypes-fieldname-' + match[1]).parent().remove();
 					$('#action-name-' + match[1]).remove();

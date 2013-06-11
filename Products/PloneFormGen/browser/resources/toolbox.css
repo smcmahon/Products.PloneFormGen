@@ -9,7 +9,7 @@
     float: right;
     clear: right;
     background:none repeat scroll 0 0 #ddd !important;
-    z-index: 10;
+    z-index: 1;
 }
 
 .header {
