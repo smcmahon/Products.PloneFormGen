@@ -107,7 +107,7 @@ jQuery(function ($) {
 				var match;
 
 				// remove the deleted field/action's node
-				match = opts.src.match(/.+\/(.+?)\/delete_confirmation/);
+				match = opts.src.match(/.*?([^/]*)\/delete_confirmation/);
 				if (match) {
 					$('#archetypes-fieldname-' + match[1]).parent().remove();
 					$('#action-name-' + match[1]).remove();
