@@ -3,7 +3,11 @@ Change History
 
 1.7.12 (unreleased)
 
+- Delete confirmation cleanup wasn't working; fixed.
+  [smcmahon]
+
 - Edit/delete icons missing in quickeditor in 4.3. Fixed.
+  [smcmahon]
 
 - QuickEdit toolbox covered by footer in sunburst 4.3. Fixed.
   [smcmahon]
