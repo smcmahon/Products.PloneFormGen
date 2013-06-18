@@ -28,8 +28,12 @@ def update_kupu_resources(out, site):
     """
     # Add FormFolder to kupu's linkable types
 
-    typesTool = getToolByName(site, 'portal_types')
     kupuTool = getToolByName(site, 'kupu_library_tool', None)
+    # skip if no kupuTools
+    if kupuTool is None or getattr(kupuTool, 'getPortalTypesForResourceType', None) is None:
+        return
+
+    typesTool = getToolByName(site, 'portal_types')
     if kupuTool is not None:
         linkable = list(kupuTool.getPortalTypesForResourceType('linkable'))
 

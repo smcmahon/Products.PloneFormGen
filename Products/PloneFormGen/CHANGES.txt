@@ -3,6 +3,9 @@ Change History
 
 1.7.12 (unreleased)
 
+- Don't fail on install if the kupu tool doesn't have getPortalTypesForResourceType.
+  [smcmahon]
+
 - Delete confirmation cleanup wasn't working; fixed.
   [smcmahon]
 
