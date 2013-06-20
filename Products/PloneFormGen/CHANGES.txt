@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.12 (unreleased)
+1.7.12 (2013-06-20)
 
 - Fix exception in mailer if no recipient set. Thanks, dpc22.
   [smcmahon]
@@ -21,10 +21,15 @@ Change History
 - QuickEdit toolbox covered by footer in sunburst 4.3. Fixed.
   [smcmahon]
 
+1.7.11 (2013-05-29)
+-------------------
+
+- Packaging fixes.
+
 1.7.10 (brown bag)
 -------------------
 
-- Nothing changed yet.
+- Packaging fixes.
 
 
 1.7.9 (2013-05-29)
