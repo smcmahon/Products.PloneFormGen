@@ -266,6 +266,7 @@ Change History
   [yomatters]
 
 - Re-add ability to override edit macros like for other Archetypes content types
+
 1.7.9 (unreleased)
 
 
