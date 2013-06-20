@@ -859,8 +859,10 @@ class FormMailerAdapter(FormActionAdapter):
         if not recip_email and not to_addr:
             ownerinfo = self.getOwner()
             ownerid = ownerinfo.getId()
+            fullname = ownerid
             userdest = pms.getMemberById(ownerid)
-            fullname = userdest.getProperty('fullname', '')
+            if userdest is not None:
+                fullname = userdest.getProperty('fullname', ownerid)
             toemail = ''
             if userdest is not None:
                 toemail = userdest.getProperty('email', '')
@@ -871,7 +873,7 @@ class FormMailerAdapter(FormActionAdapter):
                     Please check the recipient settings of the PloneFormGen "Mailer" within the
                     current form folder.
                 """
-            to = formataddr((fullname or ownerid, toemail))
+            to = formataddr((fullname, toemail))
         else:
             to = to_addr or '%s %s' % (recip_name, recip_email)
 
