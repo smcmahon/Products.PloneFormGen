@@ -8,7 +8,12 @@ var pfgQEdit = {};
 var pfgWidgets;
 
 pfgQEdit.qedit = function (e) {
-	var tool, blurrable, wrapper;
+	var tool,
+        blurrable,
+        wrapper,
+        tbox,
+        tbox_top,
+        tbox_height;
 
 	// Turn off form-unload protection so that we don't receive
 	// misleading notifications.
@@ -65,8 +70,17 @@ pfgQEdit.qedit = function (e) {
 
 	pfgWidgets.init();
 
-	//position the wrapper.
-	jQuery("#pfgWidgetWrapper").css('top', $('#pfg-fieldwrapper').offset().top);
+	// if our window is tall enough, fix position the wrapper.
+    tbox = jQuery("#pfgWidgetWrapper");
+    tbox_height = tbox.outerHeight();
+    tbox_top = tbox.offset().top;
+    if ($(window).height() > (tbox_height + tbox_top + 100)) {
+        jQuery("#pfgWidgetWrapper")
+            .css('top', tbox_top)
+            .css('right', 50)
+            .css('position', 'fixed')
+            ;
+    }
 };
 
 
