@@ -39,7 +39,14 @@ class MaxLengthValidator:
         if maxlength == 0:
             return 1
 
-        nval = len(value)
+        # The char count must match the javascript char count. To do so, 
+        # we have to replace the newlines and use the unicode value of the 
+        # string to get an accurate count when special chars are present.
+        value = value.replace('\r\n', '\n')
+        try:
+            nval = len(value.decode('utf-8'))
+        except UnicodeDecodeError:
+            nval = len(value)
 
         if nval <= maxlength:
             return 1
