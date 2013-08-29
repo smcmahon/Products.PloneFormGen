@@ -20,7 +20,7 @@ before_install:
   - mkdir -p buildout-cache/eggs
   - mkdir -p buildout-cache/downloads
 install:
-  - python bootstrap.py -c test-$PLONE.x.cfg
-  - bin/buildout -t 5 -Nc test-$PLONE.x.cfg
+  - python bootstrap.py -c test-plone-$PLONE.x.cfg
+  - bin/buildout -t 5 -Nc test-plone-$PLONE.x.cfg
 script:
   - bin/test
