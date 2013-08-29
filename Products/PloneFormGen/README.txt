@@ -2,6 +2,9 @@
 PloneFormGen - HTML Forms with Plone
 ====================================
 
+.. image:: https://travis-ci.org/FHNW/Products.PloneFormGen.png
+       :target: https://travis-ci.org/FHNW/Products.PloneFormGen
+
 Product home is http://plone.org/products/ploneformgen .
 A documentation area is at http://developer.plone.org/reference_manuals/active/ploneformgen/
 and an issue tracker at https://github.com/smcmahon/Products.PloneFormGen/issues
