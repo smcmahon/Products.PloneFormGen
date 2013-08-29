@@ -1,0 +1,26 @@
+language: python
+python:
+  - 2.6
+  - 2.7
+env:
+  - PLONE=4.1
+  - PLONE=4.2
+  - PLONE=4.3
+matrix:
+  exclude:
+    - python: 2.7
+      env: PLONE=4.1
+    - python: 2.6
+      env: PLONE=4.2
+    - python: 2.6
+      env: PLONE=4.3
+before_install:
+  - pip install http://effbot.org/downloads/Imaging-1.1.6.tar.gz
+  - sudo apt-get install -qq libxml2-dev libxslt-dev
+  - mkdir -p buildout-cache/eggs
+  - mkdir -p buildout-cache/downloads
+install:
+  - python bootstrap.py -c test-$PLONE.x.cfg
+  - bin/buildout -t 5 -Nc test-$PLONE.x.cfg
+script:
+  - bin/test
