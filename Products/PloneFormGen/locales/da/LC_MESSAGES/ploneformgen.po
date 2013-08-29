@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen 1.7\n"
-"POT-Creation-Date: 2013-08-28 15:07+0000\n"
+"POT-Creation-Date: 2013-08-29 14:41+0000\n"
 "PO-Revision-Date: 2007-03-09 09:14+0100\n"
 "Last-Translator: Jacob Vestergaard <jacobv@headnet.dk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -377,6 +377,31 @@ msgstr ""
 #. Default: "This is not a valid list of email addresses (separated by commas)."
 #: ./config.py:68
 msgid "err_isemailaddresslist_text"
+msgstr ""
+
+#. Default: "This is not a valid international phone number."
+#: ./config.py:98
+msgid "err_isintphone_text"
+msgstr ""
+
+#. Default: "This text appears to contain links."
+#: ./config.py:114
+msgid "err_isnotlinkspam_text"
+msgstr ""
+
+#. Default: "This is not a valid us phone number."
+#: ./config.py:90
+msgid "err_isusphone_text"
+msgstr ""
+
+#. Default: "This is not a valid postal code."
+#: ./config.py:106
+msgid "err_iszipcode_text"
+msgstr ""
+
+#. Default: "This value contains unprintable characters."
+#: ./config.py:76
+msgid "err_onlyprintable_text"
 msgstr ""
 
 #. Default: "Field"
@@ -1713,11 +1738,6 @@ msgstr "Dette er ikke et decimal-tal"
 msgid "pfg_isInt"
 msgstr "Dette felt skal indeholde en talværdi"
 
-#. Default: "This is not a valid international phone number."
-#: ./config.py:98
-msgid "pfg_isInternationalPhoneNumber"
-msgstr ""
-
 # 'This is not a valid mailto: url.'
 #. Default: "This is not a valid mailto: url."
 #: ./content/validationMessages.py:36
@@ -1726,7 +1746,6 @@ msgstr "Dette er ikke en gyldig mailto: url."
 
 # 'This value contains unprintable characters'
 #. Default: "This value contains unprintable characters."
-#: ./config.py:76
 #: ./content/validationMessages.py:29
 #, fuzzy
 msgid "pfg_isPrintable"
@@ -1749,11 +1768,6 @@ msgstr "Dette er ikke en gyldigt SSN"
 msgid "pfg_isURL"
 msgstr ""
 
-#. Default: "This is not a valid us phone number."
-#: ./config.py:90
-msgid "pfg_isUSPhoneNumber"
-msgstr ""
-
 # 'This box must be unchecked.'
 #. Default: "This box must be unchecked."
 #: ./content/validationMessages.py:39
@@ -1773,13 +1787,7 @@ msgstr ""
 msgid "pfg_isValidDate"
 msgstr ""
 
-#. Default: "This is not a valid postal code."
-#: ./config.py:106
-msgid "pfg_isZipCode"
-msgstr ""
-
 #. Default: "This text appears to contain links."
-#: ./config.py:114
 #: ./content/validationMessages.py:41
 msgid "pfg_isnotlinkspam"
 msgstr ""

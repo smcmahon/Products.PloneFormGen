@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2013-08-28 15:07+0000\n"
+"POT-Creation-Date: 2013-08-29 14:41+0000\n"
 "PO-Revision-Date: 2011-10-26 17:09+0100\n"
 "Last-Translator: Corina Riba Santos <corina.riba@upcnet.es>\n"
 "Language-Team: Plone i18n <plone-i18n@lista.plone.org>\n"
@@ -385,6 +385,31 @@ msgstr ""
 #. Default: "This is not a valid list of email addresses (separated by commas)."
 #: ./config.py:68
 msgid "err_isemailaddresslist_text"
+msgstr ""
+
+#. Default: "This is not a valid international phone number."
+#: ./config.py:98
+msgid "err_isintphone_text"
+msgstr ""
+
+#. Default: "This text appears to contain links."
+#: ./config.py:114
+msgid "err_isnotlinkspam_text"
+msgstr ""
+
+#. Default: "This is not a valid us phone number."
+#: ./config.py:90
+msgid "err_isusphone_text"
+msgstr ""
+
+#. Default: "This is not a valid postal code."
+#: ./config.py:106
+msgid "err_iszipcode_text"
+msgstr ""
+
+#. Default: "This value contains unprintable characters."
+#: ./config.py:76
+msgid "err_onlyprintable_text"
 msgstr ""
 
 #. Default: "Field"
@@ -1701,11 +1726,6 @@ msgstr "Este campo requiere un valor decimal."
 msgid "pfg_isInt"
 msgstr "Este campo requiere un valor entero."
 
-#. Default: "This is not a valid international phone number."
-#: ./config.py:98
-msgid "pfg_isInternationalPhoneNumber"
-msgstr ""
-
 # 'This is not a valid mailto: url.'
 #. Default: "This is not a valid mailto: url."
 #: ./content/validationMessages.py:36
@@ -1714,7 +1734,6 @@ msgstr "Esto no es un enlace 'mailto:' válido."
 
 # 'This value contains unprintable characters'
 #. Default: "This value contains unprintable characters."
-#: ./config.py:76
 #: ./content/validationMessages.py:29
 msgid "pfg_isPrintable"
 msgstr "Este valor contiene caracteres no imprimibles."
@@ -1736,11 +1755,6 @@ msgstr "Esto no es un SSN bien formado."
 msgid "pfg_isURL"
 msgstr ""
 
-#. Default: "This is not a valid us phone number."
-#: ./config.py:90
-msgid "pfg_isUSPhoneNumber"
-msgstr ""
-
 # 'This box must be unchecked.'
 #. Default: "This box must be unchecked."
 #: ./content/validationMessages.py:39
@@ -1758,13 +1772,7 @@ msgstr "Este nombre no es un identificador válido"
 msgid "pfg_isValidDate"
 msgstr "La fecha introducida no es correcta."
 
-#. Default: "This is not a valid postal code."
-#: ./config.py:106
-msgid "pfg_isZipCode"
-msgstr ""
-
 #. Default: "This text appears to contain links."
-#: ./config.py:114
 #: ./content/validationMessages.py:41
 msgid "pfg_isnotlinkspam"
 msgstr "Parece que el texto contiene enlaces."
