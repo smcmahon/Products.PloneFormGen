@@ -39,4 +39,13 @@
         handler=".upgrades.upgrade_to_171"
         />
 
+    <genericsetup:upgradeStep
+        source="171"
+        destination="172"
+        title="Reload profile"
+        description=""
+        profile="Products.PloneFormGen:default"
+        handler=".upgrades.upgrade_to_172"
+        />
+
 </configure>
