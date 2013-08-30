@@ -13,3 +13,9 @@ def upgrade_to_171(context):
     # just reload profile
     setup = getToolByName(context, 'portal_setup')
     setup.runAllImportStepsFromProfile('profile-Products.PloneFormGen:default')
+
+def upgrade_to_172(context):
+    # reset string validators
+    formgen_tool = getToolByName(context, 'formgen_tool')
+    formgen_tool._initStringValidators()
+

@@ -1,7 +1,14 @@
 Change History
 ==============
 
+1.17.13 (unreleased)
+--------------------
+
+- Fix translation of string validators
+  [tom_gross]
+
 1.7.12 (2013-06-20)
+-------------------
 
 - Fix exception in mailer if no recipient set. Thanks, dpc22.
   [smcmahon]

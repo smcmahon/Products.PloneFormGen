@@ -56,24 +56,16 @@ class FormGenTool(UniqueObject, SimpleItem):
             id = kwa['id']
 
             title = kwa.get('title', id)
-            i18nid = kwa.get('i18nid', title)
 
-            errmsg = kwa.get('errmsg', 'Validation failed: %s' % id)
-            errid = kwa.get('errid', errmsg)
-            errmsg = _(errid, errmsg)
-
+            errmsg = kwa.get('errmsg', _('Validation failed: $id',
+                                         mapping={'id': id}))
             validatorId = 'pfgv_%s' % id
             self.stringValidators[id] = {
                 'title'  : title,
-                'i18nid' : i18nid,
                 'errmsg' : errmsg,
-                'errid'  : errid,
-                # 'revalid': revalid,
-                'id'     : validatorId,
-                }
+                'id'     : validatorId}
 
-            self.stringValidatorsDL.add( id, title, msgid=i18nid )
-
+            self.stringValidatorsDL.add(id, title)
 
     def getStringValidatorsDL(self):
         """ return a display list of string validators
@@ -82,8 +74,6 @@ class FormGenTool(UniqueObject, SimpleItem):
         if not getattr(self, 'stringValidators', False):
             # on-demand migration from PFG < 1.2
             self._initStringValidators()
-
-        # self._initStringValidators()
 
         return self.stringValidatorsDL
 
@@ -246,9 +236,8 @@ def _registerStringValidators():
     for kwa in config.stringValidators:
         id = kwa['id']
 
-        errmsg = kwa.get('errmsg', 'Validation failed: %s' % id)
-        errid = kwa.get('errid', errmsg)
-        errmsg = _(errid, errmsg)
+        errmsg = kwa.get('errmsg', _('Validation failed: $id',
+                                     mapping={'id': id}))
 
         # create a validator to match, register it.
         validatorId = 'pfgv_%s' % id
