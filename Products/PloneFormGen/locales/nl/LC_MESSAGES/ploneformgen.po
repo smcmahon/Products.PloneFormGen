@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2013-08-29 14:41+0000\n"
+"POT-Creation-Date: 2013-08-30 07:20+0000\n"
 "PO-Revision-Date: 2010-08-06 10:24+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: \n"
@@ -1755,6 +1755,46 @@ msgstr ""
 msgid "plain_text"
 msgstr ""
 
+#. Default: "Is an E-Mail Address"
+#: ./config.py:58
+msgid "validator_isemailaddress_text"
+msgstr ""
+
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+#: ./config.py:66
+msgid "validator_isemailaddresslist_text"
+msgstr ""
+
+#. Default: "Is a valid international phone number"
+#: ./config.py:96
+msgid "validator_isintphone_text"
+msgstr ""
+
+#. Default: "Does not contain link spam"
+#: ./config.py:112
+msgid "validator_isnotlinkspam_text"
+msgstr ""
+
+#. Default: "Is a well-formed URL"
+#: ./config.py:82
+msgid "validator_isurl_text"
+msgstr ""
+
+#. Default: "Is a valid US phone number"
+#: ./config.py:88
+msgid "validator_isusphone_text"
+msgstr ""
+
+#. Default: "Is a valid postal code"
+#: ./config.py:104
+msgid "validator_iszipcode_text"
+msgstr ""
+
+#. Default: "Contains only printable characters"
+#: ./config.py:74
+msgid "validator_onlyprintable_text"
+msgstr ""
+
 # default="Checkbox list"
 #. Default: "Checkbox list"
 #: ./content/fields.py:871
@@ -1773,31 +1813,11 @@ msgstr "Flexibel (radioknop voor korte, selectieveld voor lange lijsten)"
 msgid "vocabulary_ischecked_text"
 msgstr "is geselecteerd"
 
-#. Default: "Is an E-Mail Address"
-#: ./config.py:58
-msgid "vocabulary_isemailaddress_text"
-msgstr ""
-
-#. Default: "Is one or more E-Mail Addresses separated by commas"
-#: ./config.py:66
-msgid "vocabulary_isemailaddresslist_text"
-msgstr ""
-
-#. Default: "Is a valid international phone number"
-#: ./config.py:96
-msgid "vocabulary_isintphone_text"
-msgstr ""
-
 # default="Is not checked"
 #. Default: "Is not checked"
 #: ./content/fields.py:417
 msgid "vocabulary_isnotchecked_text"
 msgstr "is niet gecontroleerd"
-
-#. Default: "Does not contain link spam"
-#: ./config.py:112
-msgid "vocabulary_isnotlinkspam_text"
-msgstr ""
 
 # default='Is Tidy HTML (fails on errors and warnings)')
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
@@ -1811,21 +1831,6 @@ msgstr "Is Tidy HTML (stopt op fouten of waarschuwingen)"
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "Tidy HTML met opschonen (stopt op fouten, verwijdert de rest)"
 
-#. Default: "Is a well-formed URL"
-#: ./config.py:82
-msgid "vocabulary_isurl_text"
-msgstr ""
-
-#. Default: "Is a valid US phone number"
-#: ./config.py:88
-msgid "vocabulary_isusphone_text"
-msgstr ""
-
-#. Default: "Is a valid postal code"
-#: ./config.py:104
-msgid "vocabulary_iszipcode_text"
-msgstr ""
-
 # *** Vocabularies
 # default="None"
 #. Default: "None"
@@ -1833,11 +1838,6 @@ msgstr ""
 #: ./content/form.py:734
 msgid "vocabulary_none_text"
 msgstr "Geen"
-
-#. Default: "Contains only printable characters"
-#: ./config.py:74
-msgid "vocabulary_onlyprintable_text"
-msgstr ""
 
 # default="Selection list"
 # sgid "vocabulary_selection_text"

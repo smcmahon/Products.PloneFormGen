@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-29 14:41+0000\n"
+"POT-Creation-Date: 2013-08-30 07:20+0000\n"
 "PO-Revision-Date: 2011-10-24 11:58+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: eu <eu@li.org>\n"
@@ -1630,6 +1630,46 @@ msgstr "Gaia"
 msgid "plain_text"
 msgstr "Testu arrunta"
 
+#. Default: "Is an E-Mail Address"
+#: ./config.py:58
+msgid "validator_isemailaddress_text"
+msgstr ""
+
+#. Default: "Is one or more E-Mail Addresses separated by commas"
+#: ./config.py:66
+msgid "validator_isemailaddresslist_text"
+msgstr ""
+
+#. Default: "Is a valid international phone number"
+#: ./config.py:96
+msgid "validator_isintphone_text"
+msgstr ""
+
+#. Default: "Does not contain link spam"
+#: ./config.py:112
+msgid "validator_isnotlinkspam_text"
+msgstr ""
+
+#. Default: "Is a well-formed URL"
+#: ./config.py:82
+msgid "validator_isurl_text"
+msgstr ""
+
+#. Default: "Is a valid US phone number"
+#: ./config.py:88
+msgid "validator_isusphone_text"
+msgstr ""
+
+#. Default: "Is a valid postal code"
+#: ./config.py:104
+msgid "validator_iszipcode_text"
+msgstr ""
+
+#. Default: "Contains only printable characters"
+#: ./config.py:74
+msgid "validator_onlyprintable_text"
+msgstr ""
+
 #. Default: "Checkbox list"
 #: ./content/fields.py:871
 msgid "vocabulary_checkbox_text"
@@ -1645,30 +1685,10 @@ msgstr "Malgua (gutxi direnean irrati-botoiak, asko badira aukeraketa kutxa)"
 msgid "vocabulary_ischecked_text"
 msgstr "Aukeratuta dago"
 
-#. Default: "Is an E-Mail Address"
-#: ./config.py:58
-msgid "vocabulary_isemailaddress_text"
-msgstr ""
-
-#. Default: "Is one or more E-Mail Addresses separated by commas"
-#: ./config.py:66
-msgid "vocabulary_isemailaddresslist_text"
-msgstr ""
-
-#. Default: "Is a valid international phone number"
-#: ./config.py:96
-msgid "vocabulary_isintphone_text"
-msgstr ""
-
 #. Default: "Is not checked"
 #: ./content/fields.py:417
 msgid "vocabulary_isnotchecked_text"
 msgstr "Ez dago aukeratuta"
-
-#. Default: "Does not contain link spam"
-#: ./config.py:112
-msgid "vocabulary_isnotlinkspam_text"
-msgstr ""
 
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
 #: ./content/fields.py:1077
@@ -1680,31 +1700,11 @@ msgstr "Tidy HTML da (huts egiten du erroreak eta oharrak daudenean)"
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "Tidy HTML garbiketarekin (huts egiten du erroreak daudenean, gainontzekoak garbitu egiten ditu)"
 
-#. Default: "Is a well-formed URL"
-#: ./config.py:82
-msgid "vocabulary_isurl_text"
-msgstr ""
-
-#. Default: "Is a valid US phone number"
-#: ./config.py:88
-msgid "vocabulary_isusphone_text"
-msgstr ""
-
-#. Default: "Is a valid postal code"
-#: ./config.py:104
-msgid "vocabulary_iszipcode_text"
-msgstr ""
-
 #. Default: "None"
 #: ./content/fields.py:411
 #: ./content/form.py:734
 msgid "vocabulary_none_text"
 msgstr "Bat ere ez"
-
-#. Default: "Contains only printable characters"
-#: ./config.py:74
-msgid "vocabulary_onlyprintable_text"
-msgstr ""
 
 #. Default: "Radio buttons"
 #: ./content/fields.py:763
