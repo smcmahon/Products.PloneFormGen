@@ -32,9 +32,10 @@
 
             <p tal:replace="structure here/getThanksPrologue | nothing" />
 
-            <blockquote>
+            <blockquote tal:define="fields python:here.displayInputs(request)"
+                        tal:condition="fields">
                 <dl>
-                    <tal:block repeat="field python:here.displayInputs(request)">
+                    <tal:block repeat="field fields">
                         <dt tal:content="field/label" />
                         <dd tal:content="structure field/value" />
                     </tal:block>
