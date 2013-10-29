@@ -34,7 +34,7 @@ setup(name='Products.PloneFormGen',
       install_requires=[
           'setuptools',
           'Products.Archetypes',
-          'Plone',
+          'Products.CMFPlone',
           'Products.TALESField>=1.1.3',
           'Products.TemplateFields>=1.2.4',
           'Products.PythonField>=1.1.3',
