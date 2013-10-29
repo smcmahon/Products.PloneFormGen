@@ -6,17 +6,22 @@ version = open(os.path.join("Products", "PloneFormGen", "version.txt")).read().s
 setup(name='Products.PloneFormGen',
       version=version,
       description="A through-the-web form generator for Plone",
-      long_description=open(os.path.join("Products", "PloneFormGen", "README.txt")).read() \
-                       + "\n\n" + \
-                       # CHANGES.txt has lots of UTF8, which PyPI won't accept
-                       open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read().decode('UTF8').encode('ASCII', 'replace'),
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      long_description=(
+          open(os.path.join("Products", "PloneFormGen", "README.txt")).read()
+          + "\n\n" +
+          # CHANGES.txt has lots of UTF8, which PyPI won't accept
+          open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read().decode('UTF8').encode('ASCII', 'replace')),
+      # Get more strings from
+      # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
-        "Programming Language :: Python",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-        "Framework :: Zope2",
-        "Framework :: Plone",
-        ],
+          "Programming Language :: Python",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Framework :: Zope2",
+          "Framework :: Plone",
+          "Framework :: Plone :: 4.1",
+          "Framework :: Plone :: 4.2",
+          "Framework :: Plone :: 4.3",
+          ],
       keywords='Plone PloneFormGen',
       author='Steve McMahon',
       author_email='steve@dcn.org',
@@ -35,11 +40,10 @@ setup(name='Products.PloneFormGen',
           'Products.PythonField>=1.1.3',
           'plone.app.jquerytools>=1.2dev',
           'collective.js.jqueryui',
-          # -*- Extra requirements: -*-
       ],
       extras_require={
-        'test': ['collective.funkload'],
-        },
+          'test': ['collective.funkload'],
+          },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
