@@ -130,7 +130,8 @@ class FieldsetFolder(ATFolder):
         if includeFSMarkers:
             myObjs.append(self.fsStartField)
 
-        for obj in self.objectValues(objTypes):
+        for obj in self.getFolderContents(contentFilter=objTypes, 
+                                          full_objects=True):
             # use shasattr to make sure we're not aquiring
             # fgField by acquisition
             if base_hasattr(obj, 'fgField'):
