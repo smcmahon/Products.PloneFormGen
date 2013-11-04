@@ -332,8 +332,9 @@ class FormFolder(ATFolder):
 
         myObjs = []
 
-        for obj in self.getFolderContents(contentFilter=objTypes, 
-                                          full_objects=True):
+        for obj in self.getFolderContents(contentFilter={
+                                            'portal_type':objTypes},
+                                             full_objects=True):
             # use shasattr to make sure we're not aquiring
             # fgField by acquisition
 
@@ -977,10 +978,9 @@ class FormFolder(ATFolder):
             result = id not in BAD_IDS
             if result:
                 # check the fieldsets
-                fieldsets = self.getFolderContents(contentFilter=
-                                                      'FieldsetFolder', 
-                                                   full_objects=
-                                                       True)
+                fieldsets = self.getFolderContents(contentFilter={
+                                               'portal_type':'FieldsetFolder'}, 
+                                                full_objects= True)
                 for fs in fieldsets:
                     if id in fs.objectIds():
                         return False
