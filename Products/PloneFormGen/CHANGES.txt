@@ -7,6 +7,13 @@ Change History
 - Fix translation of string validators
   [tom_gross]
 
+- Updated german translation
+  [tom_gross]
+
+- Use getFolderContents-method instead of objectValues to gather form fields
+  [rristow]
+
+
 1.7.12 (2013-06-20)
 -------------------
 
