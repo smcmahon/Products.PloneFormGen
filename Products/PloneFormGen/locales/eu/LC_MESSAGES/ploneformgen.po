@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-30 07:20+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2011-10-24 11:58+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: eu <eu@li.org>\n"
@@ -23,34 +23,25 @@ msgstr ""
 msgid "A Likert form entry"
 msgstr ""
 
-#. Default: "A captcha field to prevent spam."
 #: ./profiles/default/types/FormCaptchaField.xml
-msgid "A captcha field to prevent spam"
-msgstr "Spama ekiditeko captcha eremua"
+msgid "A captcha field to prevent spam."
+msgstr ""
 
-#. Default: "A folder which can contain form fields."
 #: ./profiles/default/types/FormFolder.xml
-msgid "A folder which can contain form fields"
-msgstr "Formulario baten datuak izan ditzakeen karpeta"
+msgid "A folder which can contain form fields."
+msgstr ""
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
 msgstr "Eremuak biltzeko karpeta"
 
-#. Default: "A form action adapter that will e-mail form input."
 #: ./profiles/default/types/FormMailerAdapter.xml
-msgid "A form action adapter that will e-mail form input"
-msgstr "Formularioaren datuak e-postaz bidaliko dituen akzioa."
+msgid "A form action adapter that will e-mail form input."
+msgstr ""
 
-#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
-#: ./profiles/default/types/FormSaveDataAdapter.xml
-msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
-msgstr "Formularioaren datuak gorde eta csv formatuan emango dituen akzioa."
-
-#. Default: "A line entry field. This appears as a textarea without wordwrap."
 #: ./profiles/default/types/FormLinesField.xml
-msgid "A line entry field. This appears as a textarea without wordwrap"
-msgstr "Lerro bat idazteko eremua."
+msgid "A line entry field. This appears as a textarea without wordwrap."
+msgstr ""
 
 #. Default: "A string entry field"
 #: ./profiles/default/types/FormStringField.xml
@@ -84,25 +75,23 @@ msgstr "Egia/Gezurra erako eremua (checkbox)"
 msgid "Captcha Field"
 msgstr "Captcha eremua"
 
-#. Default: "Checkbox Field"
 #: ./profiles/default/types/FormBooleanField.xml
-msgid "Checkbox"
-msgstr "Checkbox"
+msgid "Checkbox Field"
+msgstr ""
 
 #. Default: "Custom Script Adapter"
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Custom Script Adapter"
 msgstr "Script pertsonalizatua"
 
-#. Default: "Date/Time Field"
-#: ./profiles/default/types/FormDateField.xml
-msgid "Date/Time"
-msgstr "Data/Ordua"
-
 #. Default: "Date/Time Entry Field"
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
 msgstr "Data/Ordua idazteko eremua"
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Field"
+msgstr ""
 
 #. Default: "Decimal Number Field"
 #: ./profiles/default/types/FormFixedPointField.xml

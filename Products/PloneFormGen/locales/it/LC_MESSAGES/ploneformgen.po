@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-08-30 07:20+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2012-04-04 16:38+0100\n"
 "Last-Translator: Giacomo Spettoli <giacomo.spettoli@gmail.com>\n"
 "Language-Team: Italian Translation Team <plone-i18n@lists.sourceforge.net>\n"
@@ -23,34 +23,25 @@ msgstr ""
 msgid "A Likert form entry"
 msgstr "Un campo Likert"
 
-#. Default: "A captcha field to prevent spam."
 #: ./profiles/default/types/FormCaptchaField.xml
-msgid "A captcha field to prevent spam"
-msgstr "Un campo captcha per prevenire lo spam"
+msgid "A captcha field to prevent spam."
+msgstr ""
 
-#. Default: "A folder which can contain form fields."
 #: ./profiles/default/types/FormFolder.xml
-msgid "A folder which can contain form fields"
-msgstr "Una cartella che può contenere dei campi form"
+msgid "A folder which can contain form fields."
+msgstr ""
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "A folder which groups form fields as a fieldset."
 msgstr "Una cartella che raggruppa i campi in fieldsets"
 
-#. Default: "A form action adapter that will e-mail form input."
 #: ./profiles/default/types/FormMailerAdapter.xml
-msgid "A form action adapter that will e-mail form input"
-msgstr "Un adattatore di azione del form che invierà i dati del form via mail"
+msgid "A form action adapter that will e-mail form input."
+msgstr ""
 
-#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
-#: ./profiles/default/types/FormSaveDataAdapter.xml
-msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
-msgstr "Un adattatore di azione del form che salva i dati inseriti nel form e li restituisce in formato csv- o in un formato con delimitatore di tabulazione"
-
-#. Default: "A line entry field. This appears as a textarea without wordwrap."
 #: ./profiles/default/types/FormLinesField.xml
-msgid "A line entry field. This appears as a textarea without wordwrap"
-msgstr "Un campo linea di testo. Questa appare come una textarea senza WordWrap."
+msgid "A line entry field. This appears as a textarea without wordwrap."
+msgstr ""
 
 #. Default: "A string entry field"
 #: ./profiles/default/types/FormStringField.xml
@@ -84,25 +75,23 @@ msgstr "Campo Booleano (checkbox)"
 msgid "Captcha Field"
 msgstr "Campo Captcha"
 
-#. Default: "Checkbox Field"
 #: ./profiles/default/types/FormBooleanField.xml
-msgid "Checkbox"
-msgstr "Checkbox"
+msgid "Checkbox Field"
+msgstr ""
 
 #. Default: "Custom Script Adapter"
 #: ./profiles/default/types/FormCustomScriptAdapter.xml
 msgid "Custom Script Adapter"
 msgstr "Adattatore per script personalizzato"
 
-#. Default: "Date/Time Field"
-#: ./profiles/default/types/FormDateField.xml
-msgid "Date/Time"
-msgstr "Data/Orario"
-
 #. Default: "Date/Time Entry Field"
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
 msgstr "Campo Data/Orario"
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Field"
+msgstr ""
 
 #. Default: "Decimal Number Field"
 #: ./profiles/default/types/FormFixedPointField.xml

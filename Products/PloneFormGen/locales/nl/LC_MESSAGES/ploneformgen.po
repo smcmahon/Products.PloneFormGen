@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PloneFormGen\n"
-"POT-Creation-Date: 2013-08-30 07:20+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: 2010-08-06 10:24+0200\n"
 "Last-Translator: Maurits van Rees <m.van.rees@zestsoftware.nl>\n"
 "Language-Team: \n"
@@ -27,14 +27,12 @@ msgstr ""
 msgid "A Likert form entry"
 msgstr "Waardering-keuze veld"
 
-#. Default: "A captcha field to prevent spam."
 #: ./profiles/default/types/FormCaptchaField.xml
-msgid "A captcha field to prevent spam"
+msgid "A captcha field to prevent spam."
 msgstr ""
 
-#. Default: "A folder which can contain form fields."
 #: ./profiles/default/types/FormFolder.xml
-msgid "A folder which can contain form fields"
+msgid "A folder which can contain form fields."
 msgstr ""
 
 #. Default: "A folder which groups form fields as a fieldset."
@@ -42,19 +40,12 @@ msgstr ""
 msgid "A folder which groups form fields as a fieldset."
 msgstr "Een map voor het groeperen van velden."
 
-#. Default: "A form action adapter that will e-mail form input."
 #: ./profiles/default/types/FormMailerAdapter.xml
-msgid "A form action adapter that will e-mail form input"
+msgid "A form action adapter that will e-mail form input."
 msgstr ""
 
-#. Default: "A form action adapter that will save form input data and\n         return it in csv- or tab-delimited format."
-#: ./profiles/default/types/FormSaveDataAdapter.xml
-msgid "A form action adapter that will save form input data and return it in csv- or tab-delimited format"
-msgstr ""
-
-#. Default: "A line entry field. This appears as a textarea without wordwrap."
 #: ./profiles/default/types/FormLinesField.xml
-msgid "A line entry field. This appears as a textarea without wordwrap"
+msgid "A line entry field. This appears as a textarea without wordwrap."
 msgstr ""
 
 #. Default: "A string entry field"
@@ -89,9 +80,8 @@ msgstr "Aan/Uit veld"
 msgid "Captcha Field"
 msgstr "Captcha veld"
 
-#. Default: "Checkbox Field"
 #: ./profiles/default/types/FormBooleanField.xml
-msgid "Checkbox"
+msgid "Checkbox Field"
 msgstr ""
 
 #. Default: "Custom Script Adapter"
@@ -99,15 +89,14 @@ msgstr ""
 msgid "Custom Script Adapter"
 msgstr "Script actie"
 
-#. Default: "Date/Time Field"
-#: ./profiles/default/types/FormDateField.xml
-msgid "Date/Time"
-msgstr ""
-
 #. Default: "Date/Time Entry Field"
 #: ./profiles/default/types/FormDateField.xml
 msgid "Date/Time Entry Field"
 msgstr "Datum/tijd veld"
+
+#: ./profiles/default/types/FormDateField.xml
+msgid "Date/Time Field"
+msgstr ""
 
 #. Default: "Decimal Number Field"
 #: ./profiles/default/types/FormFixedPointField.xml
