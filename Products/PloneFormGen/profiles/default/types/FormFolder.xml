@@ -3,9 +3,9 @@
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
    i18n:domain="ploneformgen">
- <property name="title" i18n:translate="Form Folder">Form Folder</property>
+ <property name="title" i18n:translate="">Form Folder</property>
  <property
-    name="description" i18n:translate="A folder which can contain form fields">A folder which can contain form fields.</property>
+    name="description" i18n:translate="">A folder which can contain form fields.</property>
  <property name="content_icon">Form.gif</property>
  <property name="content_meta_type">FormFolder</property>
  <property name="product">PloneFormGen</property>

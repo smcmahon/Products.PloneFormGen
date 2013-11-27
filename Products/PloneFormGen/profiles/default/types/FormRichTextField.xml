@@ -3,8 +3,8 @@
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
    i18n:domain="ploneformgen">
- <property name="title" i18n:translate="RichText Field">RichText Field</property>
- <property name="description" i18n:translate="Rich-text (visual editor) field">Rich-text (visual editor) field</property>
+ <property name="title" i18n:translate="">RichText Field</property>
+ <property name="description" i18n:translate="">Rich-text (visual editor) field</property>
  <property name="content_icon">RichTextField.gif</property>
  <property name="content_meta_type">FormRichTextField</property>
  <property name="product">PloneFormGen</property>

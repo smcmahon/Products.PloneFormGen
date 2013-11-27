@@ -3,9 +3,9 @@
    meta_type="Factory-based Type Information with dynamic views"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
    i18n:domain="ploneformgen">
- <property name="title" i18n:translate="Thanks Page">Thanks Page</property>
+ <property name="title" i18n:translate="">Thanks Page</property>
  <property
-    name="description" i18n:translate="A thank-you page that can display form input">A thank-you page that can display form input</property>
+    name="description" i18n:translate="">A thank-you page that can display form input</property>
  <property name="content_icon">ThanksPage.gif</property>
  <property name="content_meta_type">FormThanksPage</property>
  <property name="product">PloneFormGen</property>
