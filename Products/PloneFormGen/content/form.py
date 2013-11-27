@@ -332,7 +332,9 @@ class FormFolder(ATFolder):
 
         myObjs = []
 
-        for obj in self.objectValues(objTypes):
+        for obj in self.getFolderContents(contentFilter={
+                                            'portal_type':objTypes},
+                                             full_objects=True):
             # use shasattr to make sure we're not aquiring
             # fgField by acquisition
 
@@ -756,7 +758,7 @@ class FormFolder(ATFolder):
 
         tpages = [('', _(u'vocabulary_none_text', u'None')), ]
 
-        for obj in self.objectValues():
+        for obj in self.getFolderContents(full_objects=True):
             if IPloneFormGenThanksPage.providedBy(obj) or \
               getattr(obj.aq_explicit, 'portal_type', 'none') in defaultPageTypes:
                 tpages.append((obj.getId(), obj.title))
@@ -976,7 +978,9 @@ class FormFolder(ATFolder):
             result = id not in BAD_IDS
             if result:
                 # check the fieldsets
-                fieldsets = self.objectValues('FieldsetFolder')
+                fieldsets = self.getFolderContents(contentFilter={
+                                               'portal_type':'FieldsetFolder'}, 
+                                                full_objects= True)
                 for fs in fieldsets:
                     if id in fs.objectIds():
                         return False
@@ -1093,7 +1097,7 @@ class FormFolder(ATFolder):
 
         lastField = ''
         myFields = []
-        for field in self.objectValues():
+        for field in self.getFolderContents(full_objects=True):
             if shasattr(field, 'fgField') or shasattr(field, 'fieldsetFields'):
                 myFields.append(field)
 
