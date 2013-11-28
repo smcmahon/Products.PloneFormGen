@@ -318,6 +318,15 @@ class FormFolder(ATFolder):
 
     security.declarePrivate('_getFieldObjects')
 
+    def _folder_contents(self, portal_type=None):
+        catalog = getToolByName(self, 'portal_catalog')
+        query = {'sort_on': 'getObjPositionInParent',
+                 'path': {'query': '/'.join(self.getPhysicalPath()),
+                          'depth': 1}}
+        if portal_type:
+            query['portal_type'] = portal_type
+        return [item.getObject() for item in catalog(query)]
+
     def _getFieldObjects(self, objTypes=None, includeFSMarkers=False, checkEnabled=True):
         """ return list of enclosed fields """
 
@@ -332,9 +341,7 @@ class FormFolder(ATFolder):
 
         myObjs = []
 
-        for obj in self.getFolderContents(contentFilter={
-                                            'portal_type':objTypes},
-                                             full_objects=True):
+        for obj in self._folder_contents(portal_type=objTypes):
             # use shasattr to make sure we're not aquiring
             # fgField by acquisition
 
@@ -758,7 +765,7 @@ class FormFolder(ATFolder):
 
         tpages = [('', _(u'vocabulary_none_text', u'None')), ]
 
-        for obj in self.getFolderContents(full_objects=True):
+        for obj in self._folder_contents():
             if IPloneFormGenThanksPage.providedBy(obj) or \
               getattr(obj.aq_explicit, 'portal_type', 'none') in defaultPageTypes:
                 tpages.append((obj.getId(), obj.title))
@@ -978,9 +985,7 @@ class FormFolder(ATFolder):
             result = id not in BAD_IDS
             if result:
                 # check the fieldsets
-                fieldsets = self.getFolderContents(contentFilter={
-                                               'portal_type':'FieldsetFolder'}, 
-                                                full_objects= True)
+                fieldsets = self._folder_contents(portal_type='FieldsetFolder')
                 for fs in fieldsets:
                     if id in fs.objectIds():
                         return False
@@ -1097,7 +1102,7 @@ class FormFolder(ATFolder):
 
         lastField = ''
         myFields = []
-        for field in self.getFolderContents(full_objects=True):
+        for field in self._folder_contents():
             if shasattr(field, 'fgField') or shasattr(field, 'fieldsetFields'):
                 myFields.append(field)
 
