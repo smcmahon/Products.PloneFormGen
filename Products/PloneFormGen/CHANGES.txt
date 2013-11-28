@@ -1,14 +1,8 @@
 Change History
 ==============
 
-1.7.12-FHNW5 (unreleased)
--------------------------
-
-- Nothing changed yet.
-
-
-1.7.12-FHNW4 (2013-11-28)
--------------------------
+1.7.13 (unreleased)
+-------------------
 
 - Fix translation of string validators
   [tom_gross]
