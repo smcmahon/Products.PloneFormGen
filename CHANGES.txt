@@ -4,6 +4,10 @@ Change History
 1.7.13 (unreleased)
 -------------------
 
+- Move most text files into package root. Eliminate version.txt. The
+  old locations were old Zope artifacts.
+  [smcmahon]
+
 - Fixed type definition for FieldsetStart type
   [naro]
 

@@ -1,16 +1,15 @@
 from setuptools import setup, find_packages
-import os
 
-version = open(os.path.join("Products", "PloneFormGen", "version.txt")).read().strip()
+version = '1.7.13.dev0'
 
 setup(name='Products.PloneFormGen',
       version=version,
       description="A through-the-web form generator for Plone",
       long_description=(
-          open(os.path.join("Products", "PloneFormGen", "README.txt")).read()
+          open("README.rst").read()
           + "\n\n" +
           # CHANGES.txt has lots of UTF8, which PyPI won't accept
-          open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read().decode('UTF8').encode('ASCII', 'replace')),
+          open("CHANGES.txt").read().decode('UTF8').encode('ASCII', 'replace')),
       # Get more strings from
       # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
