@@ -4,6 +4,10 @@ Change History
 1.7.13 (unreleased)
 -------------------
 
+- Don't show blockquote tag on thankspage if there are no fields for it.
+  Thanks, spereverde.
+  [smcmahon]
+
 - Fix #82, "missing attribute REQUEST on copy & paste of a site containing a PFG form".
   Thanks, tkimnguyen.
   [smcmahon]
