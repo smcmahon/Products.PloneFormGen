@@ -283,7 +283,8 @@ class FormThanksPage(ATCTContent):
 
     security.declarePrivate('_dreplace')
     def _dreplace(self, s):
-        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+        if hasattr(self, 'REQUEST'):
+            return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
 
 
     security.declarePublic('getThanksPrologue')

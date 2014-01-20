@@ -603,8 +603,9 @@ class FormMailerAdapter(FormActionAdapter):
 
     security.declarePrivate('_dreplace')
 
-    def _dreplace(self, s):
-        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+    def _dreplace(self, s):                                                                               
+        if hasattr(self, 'REQUEST'):                                                                      
+            return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)              
 
     security.declarePublic('getBody_pre')
 
