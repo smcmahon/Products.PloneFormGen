@@ -18,7 +18,7 @@ from Products.CMFPlone.utils import safe_hasattr, base_hasattr
 
 from Products.Archetypes.public import *
 
-from plone.app.folder.folder import ATFolderSchema, ATFolder
+from Products.ATContentTypes.content.folder import ATFolderSchema, ATFolder
 
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from Products.ATContentTypes.content.base import registerATCT
