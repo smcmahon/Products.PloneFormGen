@@ -4,6 +4,10 @@ Change History
 1.7.13 (unreleased)
 -------------------
 
+- Fix #82, "missing attribute REQUEST on copy & paste of a site containing a PFG form".
+  Thanks, tkimnguyen.
+  [smcmahon]
+
 - Correct maxtextlength to avoid double counting of newlines. Thanks, mjfinney.
   [smcmahon]
 

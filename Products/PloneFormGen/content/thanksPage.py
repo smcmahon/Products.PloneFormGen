@@ -1,12 +1,10 @@
 """thanksPage -- A smart(er) thank-you page for PloneFormGen"""
 
-__author__  = 'Steve McMahon <steve@dcn.org>'
+__author__ = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
 from zope.interface import implements
 
-import transaction
-import zExceptions
 from AccessControl import ClassSecurityInfo
 
 from Products.CMFCore.permissions import View, ModifyPortalContent
@@ -76,15 +74,15 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=False,
         primary=False,
         accessor='getThanksPrologue',
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATDocument.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
-            label = _(u"label_thanksprologue_text", default=u"Thanks Prologue"),
-            description = _(u"help_thanksprologue_text", default=u"This text will be displayed above the selected field inputs."),
-            rows = 8,
-            allow_file_upload = zconf.ATDocument.allow_document_upload,
+        validators=('isTidyHtmlWithCleanup',),
+        default_content_type=zconf.ATDocument.default_content_type,
+        default_output_type='text/x-html-safe',
+        allowable_content_types=zconf.ATDocument.allowed_content_types,
+        widget=RichWidget(
+            label=_(u"label_thanksprologue_text", default=u"Thanks Prologue"),
+            description=_(u"help_thanksprologue_text", default=u"This text will be displayed above the selected field inputs."),
+            rows=8,
+            allow_file_upload=zconf.ATDocument.allow_document_upload,
             ),
         ),
     TextField('thanksEpilogue',
@@ -93,15 +91,15 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         searchable=False,
         primary=False,
         accessor='getThanksEpilogue',
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATDocument.default_content_type,
-        default_output_type = 'text/x-html-safe',
-        allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
-            label = _(u"label_thanksepilogue_text", default=u"Thanks Epilogue"),
-            description = _(u"help_thanksepilogue_text", default=u"The text will be displayed after the field inputs."),
-            rows = 8,
-            allow_file_upload = zconf.ATDocument.allow_document_upload,
+        validators=('isTidyHtmlWithCleanup',),
+        default_content_type=zconf.ATDocument.default_content_type,
+        default_output_type='text/x-html-safe',
+        allowable_content_types=zconf.ATDocument.allowed_content_types,
+        widget=RichWidget(
+            label=_(u"label_thanksepilogue_text", default=u"Thanks Epilogue"),
+            description=_(u"help_thanksepilogue_text", default=u"The text will be displayed after the field inputs."),
+            rows=8,
+            allow_file_upload=zconf.ATDocument.allow_document_upload,
             ),
         ),
     TextField('noSubmitMessage',
@@ -109,22 +107,22 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         required=False,
         searchable=False,
         primary=False,
-        validators = ('isTidyHtmlWithCleanup',),
-        default_content_type = zconf.ATDocument.default_content_type,
-        default_output_type = 'text/x-html-safe',
+        validators=('isTidyHtmlWithCleanup',),
+        default_content_type=zconf.ATDocument.default_content_type,
+        default_output_type='text/x-html-safe',
         default="""
             <p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>
             """,
-        allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
-            label = _(u"label_nosubmit_text", default=u"No Submit Message"),
-            description = _(u"help_nosubmit_text", default=u"""
+        allowable_content_types=zconf.ATDocument.allowed_content_types,
+        widget=RichWidget(
+            label=_(u"label_nosubmit_text", default=u"No Submit Message"),
+            description=_(u"help_nosubmit_text", default=u"""
                 The text to display if the browser reaches this
                 thanks page without submitting a form. Typically, this
                 would direct the reader to the form.
                 """),
-            rows = 4,
-            allow_file_upload = zconf.ATDocument.allow_document_upload,
+            rows=4,
+            allow_file_upload=zconf.ATDocument.allow_document_upload,
             ),
         ),
     ))
@@ -154,7 +152,7 @@ for afield in ('subject',
                'rights',
                'allowDiscussion',
                'excludeFromNav', ):
-    ThanksPageSchema[afield].widget.visible = {'view':'invisible','edit':'invisible'}
+    ThanksPageSchema[afield].widget.visible = {'view': 'invisible', 'edit': 'invisible'}
     ThanksPageSchema[afield].schemata = 'default'
 
 NO_TRAVERSE = (
@@ -163,12 +161,13 @@ NO_TRAVERSE = (
     'noSubmitMessage',
     )
 
+
 class FormThanksPage(ATCTContent):
     """A thank-you page that can display form input"""
 
     implements(IPloneFormGenThanksPage)
 
-    schema         =  ThanksPageSchema
+    schema = ThanksPageSchema
 
     content_icon   = 'ThanksPage.gif'
     meta_type      = 'FormThanksPage'
@@ -179,7 +178,7 @@ class FormThanksPage(ATCTContent):
     default_view   = 'fg_thankspage_view'
     suppl_views = ()
 
-    typeDescription= 'A thank-you page that can display form input.'
+    typeDescription = 'A thank-you page that can display form input.'
 
     global_allow = 0
 
@@ -199,13 +198,11 @@ class FormThanksPage(ATCTContent):
 
         self.setNoSubmitMessage(zope.i18n.translate(_(u'pfg_thankspage_nosubmitmessage', u'<p>No input was received. Please visit the form.</p>'), context=self.REQUEST))
 
-
     security.declareProtected(View, 'fieldDisplayList')
     def fieldDisplayList(self):
         """ returns a DisplayList of all fields """
 
         return self.fgFieldsDisplayList()
-
 
     security.declareProtected(View, 'displayFields')
     def displayFields(self):
@@ -226,7 +223,6 @@ class FormThanksPage(ATCTContent):
                     res.append(f)
                     break
         return res
-
 
     security.declareProtected(View, 'displayInputs')
     def displayInputs(self, request):
@@ -260,10 +256,10 @@ class FormThanksPage(ATCTContent):
         for obj in sFields:
             value = obj.htmlValue(request)
             if self.includeEmpties or (value and (value != 'No Input')):
-                res.append( {
-                    'label' : obj.fgField.widget.label,
-                    'value' : value,
-                    } )
+                res.append({
+                    'label': obj.fgField.widget.label,
+                    'value': value,
+                    })
 
         return res
 
@@ -283,21 +279,22 @@ class FormThanksPage(ATCTContent):
 
     security.declarePrivate('_dreplace')
     def _dreplace(self, s):
-        return dollarReplace.DollarVarReplacer(getattr(self.REQUEST, 'form', {})).sub(s)
+        request = getattr(self, 'REQUEST', {})
+        return dollarReplace.DollarVarReplacer(getattr(request, 'form', {})).sub(s)
 
 
     security.declarePublic('getThanksPrologue')
     def getThanksPrologue(self):
         """ get expanded prologue """
 
-        return self._dreplace( self.getRawThanksPrologue() )
+        return self._dreplace(self.getRawThanksPrologue())
 
 
     security.declarePublic('getThanksEpilogue')
     def getThanksEpilogue(self):
         """ get expanded epilogue """
 
-        return self._dreplace( self.getRawThanksEpilogue() )
+        return self._dreplace(self.getRawThanksEpilogue())
 
 
 registerATCT(FormThanksPage, PROJECTNAME)
