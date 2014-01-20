@@ -4,6 +4,9 @@ Change History
 1.7.13 (unreleased)
 -------------------
 
+- Correct maxtextlength to avoid double counting of newlines. Thanks, mjfinney.
+  [smcmahon]
+
 - Import folder for fieldsets from ATContentTypes rather than plone.app.folder
   for LinguaPlone compatability. Thanks, Tom Gross.
   [smcmahon]
