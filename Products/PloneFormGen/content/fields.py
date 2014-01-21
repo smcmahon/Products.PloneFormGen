@@ -1097,7 +1097,7 @@ class FGRichLabelField(BaseFormField):
     security  = ClassSecurityInfo()
 
     schema = BareFieldSchema.copy() + Schema((
-        TextField('fgDefault',
+        HtmlTextField('fgDefault',
             searchable=0,
             required=0,
             validators = ('isTidyHtmlWithCleanup',),

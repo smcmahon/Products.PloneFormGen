@@ -4,6 +4,9 @@ Change History
 1.7.13 (unreleased)
 -------------------
 
+- Get TinyMCE working on rich text label editing. Not yet done for quickeditor.
+  [smcmahon]
+
 - Move most text files into package root. Eliminate version.txt. The
   old locations were old Zope artifacts.
   [smcmahon]
