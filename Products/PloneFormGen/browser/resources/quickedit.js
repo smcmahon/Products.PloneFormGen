@@ -111,7 +111,14 @@ jQuery(function ($) {
 			filter: "#content",
 			formselector: 'form[name=edit_form]:not(.fgBaseEditForm)',
 			noform: 'reload',
-			closeselector: '[name="form.button.cancel"]'
+			closeselector: '[name="form.button.cancel"]',
+			config: {
+				onLoad: function () {
+					if (window.initTinyMCE) {
+					    window.initTinyMCE(document);
+					}
+				}
+			}
 		});
 		$('.editHook a[href$=delete_confirmation]').prepOverlay({
 			subtype: 'ajax',
