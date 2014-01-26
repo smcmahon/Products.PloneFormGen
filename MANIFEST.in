@@ -1,2 +1,5 @@
+include *
+recursive-include docs *
+recursive-include Products/PloneFormGen *
+global-exclude *.pyc
 prune Products/PloneFormGen/tests
-recursive-include Products/PloneFormGen *.mo
