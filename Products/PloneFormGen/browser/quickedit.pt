@@ -227,7 +227,7 @@
                                     Rich Label
                                 </div>
                                 <div class="editHook qechild">
-                                    <a title="Edit Field" href="edit" tal:attributes="href string:${field/getName}/edit"><img alt="Edit" src="edit.gif"
+                                    <a title="Edit Field" href="edit" tal:attributes="href string:${field/getName}/edit"><img alt="Edit" src="edit.png"
                                         tal:attributes="src string:${portal_url}/edit.$icon_ext"
                                         /></a><a title="Delete Field" href="delete_confirmation" tal:attributes="href string:${field/getName}/delete_confirmation"><img alt="Delete" src="delete_icon.gif"
                                         tal:attributes="src string:${portal_url}/delete_icon.$icon_ext"
@@ -267,7 +267,7 @@
                              <a href="#"
                                 tal:attributes="href python:'%s/edit' % row[0]" i18n:attributes="title"
                                 title="Edit Field"
-                                ><img src="edit.gif" alt="Edit"
+                                ><img src="edit.png" alt="Edit"
                                         tal:attributes="src string:${portal_url}/edit.$icon_ext"
                                 /></a>
                             <a href="#"
@@ -307,7 +307,7 @@
                            <a href="#" tal:condition="python:row[0]"
                               tal:attributes="href python:'%s/edit' % row[0]"
                               title="Edit Page"
-                              ><img src="edit.gif" alt="Edit"
+                              ><img src="edit.png" alt="Edit"
                                         tal:attributes="src string:${portal_url}/edit.$icon_ext"
                               /></a>
                           <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
