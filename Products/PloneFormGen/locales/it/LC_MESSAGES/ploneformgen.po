@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-17 15:20+0000\n"
+"POT-Creation-Date: 2014-02-27 07:52+0000\n"
 "PO-Revision-Date: 2012-04-04 16:38+0100\n"
 "Last-Translator: Giacomo Spettoli <giacomo.spettoli@gmail.com>\n"
 "Language-Team: Italian Translation Team <plone-i18n@lists.sourceforge.net>\n"
@@ -62,15 +62,15 @@ msgstr "Un campo stringa"
 msgid "A thank-you page that can display form input"
 msgstr "Una pagina di ringraziamento che mostra i dati del form"
 
-#: ./browser/quickedit.pt:240
+#: ./browser/quickedit.pt:249
 msgid "Action"
 msgstr "Azione"
 
-#: ./browser/quickedit.pt:170
+#: ./browser/quickedit.pt:175
 msgid "Actions"
 msgstr "Azioni"
 
-#: ./browser/quickedit.py:66
+#: ./browser/quickedit.py:71
 msgid "Begin a fieldset"
 msgstr "Inizia un nuovo fieldset"
 
@@ -109,19 +109,19 @@ msgstr "Campo Data/Orario"
 msgid "Decimal Number Field"
 msgstr "Campo Numero Decimale"
 
-#: ./browser/quickedit.pt:262
+#: ./browser/quickedit.pt:273
 msgid "Delete Action"
 msgstr "Elimina"
 
-#: ./browser/quickedit.pt:258
+#: ./browser/quickedit.pt:267
 msgid "Edit Field"
 msgstr "Modifica il campo"
 
-#: ./browser/quickedit.pt:201
+#: ./browser/quickedit.pt:206
 msgid "Edit/Delete"
 msgstr "Modifica/Elimina"
 
-#: ./browser/quickedit.py:67
+#: ./browser/quickedit.py:72
 msgid "End a fieldset"
 msgstr "Chiude un fieldset"
 
@@ -135,17 +135,17 @@ msgstr "Chiude un fieldset (nessun componente di input)"
 msgid "Executes a Python script for form data"
 msgstr "Esegue uno Script Python con i dati del form"
 
-#: ./browser/quickedit.pt:200
+#: ./browser/quickedit.pt:205
 msgid "Field"
 msgstr "Campo"
 
 #. Default: "Basic Fields"
-#: ./browser/quickedit.pt:122
+#: ./browser/quickedit.pt:127
 msgid "Fields"
 msgstr "Campi"
 
 #. Default: "Fieldset End"
-#: ./browser/quickedit.py:67
+#: ./browser/quickedit.py:72
 #: ./profiles/default/types/FieldsetEnd.xml
 msgid "Fieldset End"
 msgstr "Fine del Fieldset"
@@ -154,11 +154,11 @@ msgstr "Fine del Fieldset"
 msgid "Fieldset Folder"
 msgstr "Cartella Fieldset"
 
-#: ./browser/quickedit.py:66
+#: ./browser/quickedit.py:71
 msgid "Fieldset Start"
 msgstr "Inizio del fieldset"
 
-#: ./browser/quickedit.pt:154
+#: ./browser/quickedit.pt:159
 msgid "Fieldsets"
 msgstr ""
 
@@ -221,7 +221,7 @@ msgstr "Campo selezione multipla"
 msgid "Multiple selection field (select with multiple or check boxes)"
 msgstr "Un campo di selezione multipla (un multi-select o dei check box)"
 
-#: ./browser/quickedit.pt:199
+#: ./browser/quickedit.pt:204
 msgid "Order"
 msgstr "Ordine"
 
@@ -303,12 +303,12 @@ msgstr "Campo di Testo"
 msgid "Thanks Page"
 msgstr "Pagina di ringraziamento"
 
-#: ./browser/quickedit.pt:279
+#: ./browser/quickedit.pt:292
 msgid "Thanks Pages"
 msgstr "Pagine di ringraziamento"
 
 #. Default: "Toolbox <span> <img alt=\"Ajax Loader\" style=\"visibility:hidden\" class=\"ajax-loader\" src=\"${DYNAMIC_CONTENT}\" /> </span> <span id=\"deactivate-widget\">Deactivate</span>"
-#: ./browser/quickedit.pt:111
+#: ./browser/quickedit.pt:116
 msgid "Toolbox"
 msgstr ""
 
@@ -334,12 +334,12 @@ msgstr "Impossibile caricare la risorsa: "
 # value="Clear Saved Input"
 #. Save Data Adapter
 #. Default: "Clear Saved Input"
-#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:78
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:74
 msgid "clear-save-input"
 msgstr "Elimina i dati salvati"
 
 #. Default: "Clear all saved input?"
-#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:85
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:81
 msgid "clear-saved-input-confirm"
 msgstr "Cancellare tutti i dati salvati?"
 
@@ -394,12 +394,12 @@ msgid "heading_ploneformgen_savedata"
 msgstr "Valori predefiniti degli adattatori PloneFormGen per la memorizzazione dei dati"
 
 #. Default: "A TALES expression that will be called after the form issuccessfully validated, but before calling an action adapter(if any) or displaying a thanks page.Form input will be in the request.form dictionary.Leave empty if unneeded.The most common use of this field is to call a python scriptto clean up form input or to script an alternative action.Any value returned by the expression is ignored.PLEASE NOTE: errors in the evaluation of this expression willcause an error on form display."
-#: ./content/form.py:236
+#: ./content/form.py:234
 msgid "help_AfterValidationOverride_text"
 msgstr "Un'espressione TALES che sarà valutata dopo la validazione del form ma prima dell'attivazione di eventuali adattatori di azione o della pagina di ringraziamento. I dati del form saranno disponibili nel dizionario 'request.form'. Lascia vuoto se non hai necessità di utilizzarlo. L'uso più comune di questo campo è richiamare uno script per ripulire i dati del form o per eseguire un'azione alternativa. Il valore di ritorno sarà ignorato. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
 #. Default: "\n                A TALES expression that will be called when the form is\n                displayed.\n                Leave empty if unneeded.\n                The most common use of this field is to call a python script\n                that sets defaults for multiple fields by pre-populating\n                request.form.\n                Any value returned by the expression is ignored.\n                PLEASE NOTE: errors in the evaluation of this expression\n                will cause an error on form display.\n            "
-#: ./content/form.py:212
+#: ./content/form.py:210
 msgid "help_OnDisplayOverride_text"
 msgstr "Un'espressione TALES che sarà valutata quando il form verrà visualizzato. Lasciare vuota se non serve. L'utilizzo più comune di questo campo è quello di chiamare uno script Python che inizializzi i campi del form inserendo preventivamente dei valori predefiniti nel dizionario request.form. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
@@ -409,12 +409,12 @@ msgstr "Un'espressione TALES che sarà valutata quando il form verrà visualizza
 #. configure them, then return to this
 #. form and select the active ones.
 #. Default: "\n                To make your form do something useful when submitted:\n                add one or more form action adapters to the form folder,\n                configure them, then return to this\n                form and select the active ones.\n                "
-#: ./content/form.py:86
+#: ./content/form.py:84
 msgid "help_actionadapter_text"
 msgstr "Serve per far eseguire al vostro form qualche operazione utile quando viene inviato: aggiungi uno o più adattatori di azione nella cartella del form, configurali e poi torna in questa pagina per selezionare quelli da attivare."
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the BCC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:435
+#: ./content/formMailerAdapter.py:461
 msgid "help_bcc_override_text"
 msgstr "Un'espressione TALES che verrà valutata per sovrascrivere qualsiasi valore inserito per la lista BCC. Attenzione a non utilizzare dati non validati provenienti dalla richiesta per questo scopo. Lasciare vuoto se non utilizzato. L'espressione dovrebbe essere valutabile come una sequenza di stringhe. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
@@ -424,8 +424,13 @@ msgstr "Un'espressione TALES che verrà valutata per sovrascrivere qualsiasi val
 msgid "help_boolrequired_text"
 msgstr "NOTA: In un campo checkbox, il flag obbligatorio non farà altro che mettere un simbolo 'obbligatorio' affianco all'etichetta. Se si desidera forzare l'inserimento di un particolare tipo di input scegliere un validatore qui sotto."
 
+#. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the CC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
+#: ./content/formMailerAdapter.py:440
+msgid "help_cc_override_text"
+msgstr ""
+
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
-#: ./content/form.py:278
+#: ./content/form.py:276
 msgid "help_csrf"
 msgstr "Seleziona questo per attivare la protezione contro le false richieste cross-site. Saranno permesse solo le richieste HTTP Post."
 
@@ -436,7 +441,7 @@ msgstr "Scegli un delimititatore predefinito da utilizzare nei download di conte
 
 #. Form Folder
 #. Default: "The text will be displayed after the form fields."
-#: ./content/form.py:156
+#: ./content/form.py:154
 msgid "help_epilogue_text"
 msgstr "Il testo sarà mostrato dopo tutti i campi del modulo."
 
@@ -485,7 +490,7 @@ msgstr "Il valore predefinito del campo quando il form viene mostrato per la pri
 msgid "help_fgendingyear_text"
 msgstr "L'ultimo anno da mostrare nel menu a tendina. Lascialo vuoto se preferisci inserire il numero di anni nel futuro da mostrare."
 
-#: ./content/fields.py:710
+#: ./content/fields.py:708
 msgid "help_fgformat_text"
 msgstr ""
 
@@ -500,17 +505,17 @@ msgstr "Numero di anni da mostratre nel menu a tendina. (Questo sarà utilizzato
 #. Rich Label Field
 #. Default "The text to display in the form."
 #. Default: "\n                    The text to display in the form.\n                "
-#: ./content/fields.py:1110
+#: ./content/fields.py:1108
 msgid "help_fglabelbody_text"
 msgstr "Testo da mostrare nel modulo"
 
 #. Default: "List of possible answers for each of the questions;\n                    these will be the columns of the table."
-#: ./content/formLikertField.py:80
+#: ./content/formLikertField.py:81
 msgid "help_fglikert_answers"
 msgstr "Lista di possibili risposte per ogniuna delle domande; queste saranno le colonne della tabella."
 
 #. Default: "List of questions; these will be the rows of the table."
-#: ./content/formLikertField.py:70
+#: ./content/formLikertField.py:71
 msgid "help_fglikert_questions"
 msgstr "Lista delle domande; queste saranno le righe della tabella."
 
@@ -530,14 +535,14 @@ msgid "help_fgmaxlength_text"
 msgstr "Il numero massimo di caratteri che l'utente potrà inserire. 0 = (nessun limite)."
 
 #. Default: "Useful for stopping spam"
-#: ./content/fields.py:807
+#: ./content/fields.py:805
 msgid "help_fgmsformat_text"
 msgstr "Utile per prevenire lo spam"
 
 # Rich Text Field
 # description="""Input tests using HTMLTidy (if installed).""",
 #. Default: "Input tests using HTMLTidy (if installed)."
-#: ./content/fields.py:1030
+#: ./content/fields.py:1028
 msgid "help_fgrtvalidator_text"
 msgstr "Testo verificato con HTMLTidy (se installato)"
 
@@ -566,7 +571,7 @@ msgstr "Verifica i dati inseriti rispetto a semplici pattern di stringhe."
 
 #. String Field
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a string.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
-#: ./content/fields.py:1124
+#: ./content/fields.py:1122
 #: ./content/fieldsBase.py:215
 msgid "help_fgtdefault_text"
 msgstr "Un'espressione TALES che sarà valutata quando il form viene visualizzato per determinare il valore predefinito del campo. Lasciare vuota se non serve. L'espressione sarà valutata come stringa. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
@@ -610,12 +615,12 @@ msgstr "Inserisci un'opzione per linea. Queste possono essere sovrascritte dinam
 
 #. File Field
 #. Default: "Set to 0 for no limit."
-#: ./content/fields.py:1199
+#: ./content/fields.py:1197
 msgid "help_filemaxmb_text"
 msgstr "Mettere 0 se illimitato"
 
 #. Default: "\n                Check this to make the form redirect to an SSL-enabled\n                version of itself (https://) if accessed via a non-SSL\n                URL (http://).  In order to function properly,\n                this requires a web server that has been configured to\n                handle the HTTPS protocol on port 443 and forward it to Zope.\n            "
-#: ./content/form.py:115
+#: ./content/form.py:113
 msgid "help_force_ssl"
 msgstr "Seleziona per farzare il reindirizzamento degli utenti che accedono al form tramite url non-SSL (http://) verso lo stesso form con sessione SSL (https://). Per il corretto funzionamento, questo necessita che il web server sia stato configurato per gestire il protocollo HTTPS sulla porta 443 e per instradarlo verso Zope."
 
@@ -627,90 +632,90 @@ msgstr "Seleziona per farzare il reindirizzamento degli utenti che accedono al f
 # adapter and thanks page.
 # """
 #. Default: "\n                Use this field to override the form action attribute.\n                Specify a URL to which the form will post.\n                This will bypass form validation, success action\n                adapter and thanks page.\n            "
-#: ./content/form.py:193
+#: ./content/form.py:191
 msgid "help_formactionoverride_text"
 msgstr "Utilizza questo campo per sostituire l'attributo azione del form. Specifica un URL verso cui inviare i dati del form. Questo bypasserà la validazione dei dati del form, l'azione predefinita e la pagina di ringraziamento."
 
 #. Mailer Adapter
 #. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
-#: ./content/formMailerAdapter.py:330
+#: ./content/formMailerAdapter.py:335
 msgid "help_formmailer_additional_headers"
 msgstr "Linee di intestazione aggiuntive dell'email. Utilizza solo intestazioni compatibili con la RFC822."
 
 #. Mailer Adapter
 #. Default: "E-mail addresses which receive a blind carbon copy."
-#: ./content/formMailerAdapter.py:130
+#: ./content/formMailerAdapter.py:132
 msgid "help_formmailer_bcc_recipients"
 msgstr "Destinatari che riceveranno una Copia Carbone nascosta (Bcc o Ccn)"
 
 #. Mailer Adapter
 #. Default: "Text used as the footer at bottom, delimited from the body by a dashed line."
-#: ./content/formMailerAdapter.py:219
+#: ./content/formMailerAdapter.py:221
 msgid "help_formmailer_body_footer"
 msgstr "Testo usato a piè di pagina, separato dal corpo da una linea tratteggiata"
 
 #. Mailer Adapter
 #. Default: "Text appended to fields listed in mail-body"
-#: ./content/formMailerAdapter.py:206
+#: ./content/formMailerAdapter.py:208
 msgid "help_formmailer_body_post"
 msgstr "Testo inserito in fondo ai campi nel testo dell'email"
 
 #. Mailer Adapter
 #. Default: "Text prepended to fields listed in mail-body"
-#: ./content/formMailerAdapter.py:194
+#: ./content/formMailerAdapter.py:196
 msgid "help_formmailer_body_pre"
 msgstr "Testo inserito prima dei campi nel testo dell'email"
 
 #. Mailer Adapter
 #. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
-#: ./content/formMailerAdapter.py:273
+#: ./content/formMailerAdapter.py:278
 msgid "help_formmailer_body_pt"
 msgstr "Questo è lo Zope Page Template usato per generare il testo dell'email. Non sei obbligato a modificarlo, ma se conosci il linguaggio TAL (Template Attribute Language) hai pieni poteri per personalizzare le email in uscita."
 
 #. Mailer Adapter
 #. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
-#: ./content/formMailerAdapter.py:290
+#: ./content/formMailerAdapter.py:295
 msgid "help_formmailer_body_type"
 msgstr "Imposta il tipo MIME del testo dell'email. Cambia questa impostazione solo se sai esattamente cosa stai facendo. Lascialo vuoto per avere il comportamento predefinito."
 
 #. Mailer Adapter
 #. Default: "E-mail addresses which receive a carbon copy."
-#: ./content/formMailerAdapter.py:116
+#: ./content/formMailerAdapter.py:118
 msgid "help_formmailer_cc_recipients"
 msgstr "Indirizzi email che riceveranno una copia carbone (Cc)"
 
 #. Mailer Adapter
 #. Default: "The recipients e-mail address."
-#: ./content/formMailerAdapter.py:82
+#: ./content/formMailerAdapter.py:84
 msgid "help_formmailer_recipient_email"
 msgstr "Indirizzo emai del destinatario"
 
 #. Mailer Adapter
 #. Default: "\n                The full name of the recipient of the mailed form.\n                "
-#: ./content/formMailerAdapter.py:67
+#: ./content/formMailerAdapter.py:69
 msgid "help_formmailer_recipient_fullname"
 msgstr "Il nome completo del destinatario dell'email con i dati del form."
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
-#: ./content/formMailerAdapter.py:144
+#: ./content/formMailerAdapter.py:146
 msgid "help_formmailer_replyto_extract"
 msgstr "Scegli un campo del modulo da cui estrare i dati per l'intestazione 'Rispondi a'. NOTA: si consiglia di attivare la validazione come email sul campo scelto."
 
 #. Mailer Adapter
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
-#: ./content/formMailerAdapter.py:160
+#: ./content/formMailerAdapter.py:162
 msgid "help_formmailer_subject"
 msgstr "Oggetto del messaggio. Viene utilizzato se non hai specificato un campo come oggetto dell'email o se il campo è vuoto."
 
 #. Mailer Adapter
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the mail subject line.\n                "
-#: ./content/formMailerAdapter.py:179
+#: ./content/formMailerAdapter.py:181
 msgid "help_formmailer_subject_extract"
 msgstr "Scegli un campo del modulo da cui estrarre l'oggetto dell'email"
 
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the To header. If you choose anything other\n                than \"None\", this will override the \"Recipient's e-mail address\"\n                setting above. Be very cautious about allowing unguarded user\n                input for this purpose.\n                "
-#: ./content/formMailerAdapter.py:96
+#: ./content/formMailerAdapter.py:98
 msgid "help_formmailer_to_extract"
 msgstr "Scegli un campo del form dal quale estrarre il destinatario dell'email. Se inserisci qualsiasi valore diverso da 'None', questo sovrascriverà l'impostazione 'Indirizzo emai del destinatario' qui sopra. Fai molta attenzione sul permettere o meno ad utenti non verificati di inserire un valore per questo scopo."
 
@@ -731,34 +736,34 @@ msgstr "NOTA: Nei campo a virgola fissa, il flag 'obbligatorio' impedirà di ins
 #. Default template to plain text if you're using encryption.
 #. Default TEST THIS FEATURE BEFORE GOING PUBLIC!
 #. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body (not attachments).\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
-#: ./content/formMailerAdapter.py:347
+#: ./content/formMailerAdapter.py:352
 #, fuzzy
 msgid "help_gpg_key_id"
 msgstr "Inserisci la tua chiave, l'indirizzo email o qualunque cosa possa servire come chiave pubblica per il tuo keyring. Verrà usata per criptare il corpo dell'email. Contatta l'amministratore del sito se hai bisogno di installare una nuova chiave pubblica. Probabilmente dovrai mettere il tuo template dell'email in plain text prima di criptare. TESTA QUESTA FUNZIONALITÀ PRIMA DI PUBBLICARE IL SITO."
 
 #. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
-#: ./content/form.py:260
+#: ./content/form.py:258
 msgid "help_headerInjection_text"
 msgstr "Questo campo permette di inserire dei contenuti nell'intestazione della pagina XHTML. L'utilizzo tipico è quello di aggiungere CSS o JavaScript personalizzati. Specificare un'espressione TALES che restituisca una stringa. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
 #. Thanks Page
 #. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
-#: ./content/thanksPage.py:67
+#: ./content/thanksPage.py:64
 msgid "help_includeEmpties_text"
 msgstr "Seleziona per mostrare i titoli dei campi che non hanno ricevuto input. Deseleziona per non mostrare nella lista i campi vuoti."
 
 #. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
-#: ./content/formMailerAdapter.py:261
+#: ./content/formMailerAdapter.py:266
 msgid "help_mailEmpties_text"
 msgstr "Seleziona questo per includere i titoli dei campi vuoti. Deseleziona per non mostrare nell'email i campi vuoti"
 
 #. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
-#: ./content/formMailerAdapter.py:233
+#: ./content/formMailerAdapter.py:236
 msgid "help_mailallfields_text"
 msgstr "Seleziona questo per includere i dati di tutti i campi (tranne le etichette o i campi file). Se selezionato, le impostazioni del box di selezione qui sotto saranno ignorate."
 
 #. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
-#: ./content/formMailerAdapter.py:248
+#: ./content/formMailerAdapter.py:252
 msgid "help_mailfields_text"
 msgstr "Seleziona i campi i da includere nell'email"
 
@@ -781,12 +786,12 @@ msgstr "Il form non accetterà valori inferiori al numero qui indicato."
 # """
 #. Thanks Page
 #. Default: "\n                The text to display if the browser reaches this\n                thanks page without submitting a form. Typically, this\n                would direct the reader to the form.\n                "
-#: ./content/thanksPage.py:122
+#: ./content/thanksPage.py:119
 msgid "help_nosubmit_text"
 msgstr "Il testo da mostrare se il browser raggiunge questa pagina di ringraziamento senza inviare il form. Di solito questa dovrebbe redirigere al form."
 
 #. Default: "Not displayed on form."
-#: ./content/fields.py:1137
+#: ./content/fields.py:1135
 msgid "help_notdisplayed_text"
 msgstr "Non visualizzato sul form"
 
@@ -797,7 +802,7 @@ msgstr "ATTENZIONE: il contenuto non è validato. Espressioni XHTML o TAL non va
 
 #. Form Folder
 #. Default: "This text will be displayed above the form fields."
-#: ./content/form.py:137
+#: ./content/form.py:135
 msgid "help_prologue_text"
 msgstr "Questo testo verrà mostrato in cima ai campi del form"
 
@@ -809,7 +814,7 @@ msgstr "Questo testo verrà mostrato in cima ai campi del form"
 # adapter and thanks page.
 # """
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:414
+#: ./content/formMailerAdapter.py:419
 msgid "help_recipient_override_text"
 msgstr "Un'espression TALES che verrà valutata per sovrascrivere qualsiasi valore inserito per il destinatario dell'email. Fai molta attenzione nel utilizzare dati non validati dalla request per questo scopo. Lasciare vuoto se non serve. L'espressione dovrebbe essere valutata come una stringa. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
@@ -819,52 +824,52 @@ msgstr ""
 
 #. Save Data Adapter
 #. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
-#: ./content/saveDataAdapter.py:68
+#: ./content/saveDataAdapter.py:66
 msgid "help_savedataextra_text"
 msgstr "Seleziona qualsiasi dato aggiuntivo che vuoi salvare con i dati del form"
 
-#: ./content/saveDataAdapter.py:102
+#: ./content/saveDataAdapter.py:100
 msgid "help_savedatainput_text"
 msgstr ""
 
 #. Default: "\n                    Pick the fields whose inputs you'd like to include in\n                    the saved data. If empty, all fields will be saved.\n                    "
-#: ./content/saveDataAdapter.py:59
+#: ./content/saveDataAdapter.py:57
 msgid "help_savefields_text"
 msgstr ""
 
 #. Default: " Write your script here. "
-#: ./content/customScriptAdapter.py:108
+#: ./content/customScriptAdapter.py:110
 msgid "help_script_body"
 msgstr "Scrivi il tuo Script qui"
 
 #. Default: " Role under which to run the script. "
-#: ./content/customScriptAdapter.py:94
+#: ./content/customScriptAdapter.py:96
 msgid "help_script_proxy"
 msgstr "Ruolo con cui eseguire lo script"
 
 #. Default: "\n                A TALES expression that will be evaluated to override the \"From\" header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:395
+#: ./content/formMailerAdapter.py:400
 msgid "help_sender_override_text"
 msgstr "Un'espressione TALES che verrà valutata per sovrascrivere il mittente dell'email. Lasciare vuoto se non serve. L'espressione dovrebbe essere valutata come una stringa. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
 #. Thanks Page
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
-#: ./content/thanksPage.py:41
+#: ./content/thanksPage.py:38
 msgid "help_showallfields_text"
 msgstr "Seleziona per mostrare tutti i campi (eccetto etichette e campi file). Se selezionato, le impostazioni del box si selezione qui sotto saranno ignorate."
 
-#: ./content/form.py:71
+#: ./content/form.py:69
 msgid "help_showcancel_text"
 msgstr ""
 
 #. Thanks Page
 #. Default: "\n                Pick the fields whose inputs you'd like to display on\n                the success page.\n                "
-#: ./content/thanksPage.py:55
+#: ./content/thanksPage.py:52
 msgid "help_showfields_text"
 msgstr "Seleziona i campi che vuoi mostrare nella pagina di successo."
 
-#: ./content/fields.py:1333
-#: ./content/fieldset.py:46
+#: ./content/fields.py:1331
+#: ./content/fieldset.py:42
 msgid "help_showlegend_text"
 msgstr ""
 
@@ -876,51 +881,51 @@ msgstr ""
 # adapter and thanks page.
 # """
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the e-mail subject header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
-#: ./content/formMailerAdapter.py:374
+#: ./content/formMailerAdapter.py:379
 msgid "help_subject_override_text"
 msgstr "Un'espression TALES che verrà valutata per sovrascrivere qualsiasi valore inserito per l'oggetto dell'email. Lasciare vuoto se non serve. L'espressione dovrebbe essere valutata come una stringa. NOTA: eventuali errori nella valutazione dell'espressione impediranno la corretta visualizzazione del form."
 
-#: ./content/form.py:61
+#: ./content/form.py:59
 msgid "help_submitlabel_text"
 msgstr ""
 
 #. Thanks Page
 #. Default: "The text will be displayed after the field inputs."
-#: ./content/thanksPage.py:103
+#: ./content/thanksPage.py:100
 msgid "help_thanksepilogue_text"
 msgstr "Il testo verrà mostrato dopo i dati dei campi."
 
 #. Form Folder
 #. Default: "\n                Pick a contained page you wish to show on a successful\n                form submit. (If none are available, add one.)\n                Choose none to simply display the form\n                field values.\n            "
-#: ./content/form.py:101
+#: ./content/form.py:99
 msgid "help_thankspage_text"
 msgstr "Seleziona una delle pagine contenute nella cartella del form per mostrarla dopo l'invio con successo del form. Se ci sono pagine disponibili, agggiungine una. Non selezionare alcuna pagina per mostrare semplicemente i dati inseriti."
 
 #. Form Folder
 #. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
-#: ./content/form.py:170
+#: ./content/form.py:168
 msgid "help_thankspageoverride_text"
 msgstr "Utilizza questo campo al posto di una pagina di ringraziamento per determinare l'azione da compiere dopo l'adattatore di azione (se presente). Solitamente viene utilizzato per un page template o uno script. Lasciare vuoto se non serve. Altrimenti specifica con la sintassi di CMFFormController un tipo di azione e i suoi argomenti, completa con il tipo di azione da eseguire (come \"redirect_to\" o \"traverse_to\") e un'espressione TALES. Per esempio, \"redirect_to:string:pagina-ringraziamenti\" redirezione sulla pagina pagina-ringraziamenti."
 
 #. Thanks Page
 #. Default: "This text will be displayed above the selected field inputs."
-#: ./content/thanksPage.py:86
+#: ./content/thanksPage.py:83
 msgid "help_thanksprologue_text"
 msgstr "Questo testo verrà mostrato prima dei campi selezionati."
 
 #. Default: "Do you wish to have column names on the first line of downloaded input?"
-#: ./content/saveDataAdapter.py:89
+#: ./content/saveDataAdapter.py:87
 msgid "help_usecolumnnames_text"
 msgstr "Vuoi inserire i nomi delle colonne come prima riga del CSV?"
 
 #. Default: "Useful for stopping spam"
-#: ./content/fields.py:941
+#: ./content/fields.py:939
 msgid "help_validate_link_spam_text"
 msgstr ""
 
 #. Mailer Adapter
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
-#: ./content/formMailerAdapter.py:313
+#: ./content/formMailerAdapter.py:318
 msgid "help_xinfo_headers_text"
 msgstr "Seleziona un elemento dell'intestazione HTTP che vorresti inserire nelle intestazioni 'X-' dell'email."
 
@@ -928,53 +933,59 @@ msgstr "Seleziona un elemento dell'intestazione HTTP che vorresti inserire nelle
 msgid "import"
 msgstr ""
 
-#. Default: "${items} inputs saved"
-#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:57
+#. Default: "${items} input(s) saved"
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:53
+#, fuzzy
 msgid "items_saved"
 msgstr "${items} dati salvati"
 
 #. Default: "After Validation Script"
-#: ./content/form.py:234
+#: ./content/form.py:232
 msgid "label_AfterValidationOverride_text"
 msgstr "Script post validazione"
 
 # Form Folder
 #. Default "Form Setup Script"
 #. Default: "Form Setup Script"
-#: ./content/form.py:210
+#: ./content/form.py:208
 msgid "label_OnDisplayOverride_text"
 msgstr "Script di configurazione del form"
 
 #. Form Folder
 #. Default: "Action Adapter"
-#: ./content/form.py:85
+#: ./content/form.py:83
 msgid "label_actionadapter_text"
 msgstr "Adattatore per l'azione del form"
 
 #. Default: "BCC Expression"
-#: ./content/formMailerAdapter.py:434
+#: ./content/formMailerAdapter.py:460
 msgid "label_bcc_override_text"
 msgstr "Espression BCC"
 
+#. Default: "CC Expression"
+#: ./content/formMailerAdapter.py:439
+msgid "label_cc_override_text"
+msgstr ""
+
 #. Default: "Click here to get the saved input"
-#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:49
+#: ./skins/PloneFormGen/fg_savedata_view_p3.pt:45
 msgid "label_click_to_get_input"
 msgstr "Clicca qui per avere i dati salvati"
 
 #. Default: "CSRF Protection"
-#: ./content/form.py:277
+#: ./content/form.py:275
 msgid "label_csrf"
 msgstr "Protezione CSRF"
 
 #. Save Data Adapter
 #. Default: "Download Format"
-#: ./content/saveDataAdapter.py:81
+#: ./content/saveDataAdapter.py:79
 msgid "label_downloadformat_text"
 msgstr "Formato per il download"
 
 #. Form Folder
 #. Default: "Form Epilogue"
-#: ./content/form.py:155
+#: ./content/form.py:153
 msgid "label_epilogue_text"
 msgstr "Epilogo del form"
 
@@ -1017,7 +1028,7 @@ msgstr "Ultimo anno"
 
 #. Selection Field
 #. Default: "Presentation Widget"
-#: ./content/fields.py:709
+#: ./content/fields.py:707
 msgid "label_fgformat_text"
 msgstr "Tipo di widget"
 
@@ -1031,17 +1042,17 @@ msgstr "Numero di anni da mostrare"
 
 #. Rich Label Field
 #. Default: "Label body"
-#: ./content/fields.py:1109
+#: ./content/fields.py:1107
 msgid "label_fglabelbody_text"
 msgstr "Etichetta del corpo del testo"
 
 #. Default: "Answers"
-#: ./content/formLikertField.py:79
+#: ./content/formLikertField.py:80
 msgid "label_fglikert_answers"
 msgstr "Risposte"
 
 #. Default: "Questions"
-#: ./content/formLikertField.py:69
+#: ./content/formLikertField.py:70
 msgid "label_fglikert_questions"
 msgstr "Domande"
 
@@ -1059,7 +1070,7 @@ msgstr "Massima lunghezza"
 
 #. Multi-Select Field
 #. Default: "Presentation Widget"
-#: ./content/fields.py:806
+#: ./content/fields.py:804
 msgid "label_fgmsformat_text"
 msgstr "Tipo di widget"
 
@@ -1091,7 +1102,7 @@ msgstr "Validatore"
 
 #. String Field
 #. Default: "Default Expression"
-#: ./content/fields.py:1123
+#: ./content/fields.py:1121
 #: ./content/fieldsBase.py:213
 msgid "label_fgtdefault_text"
 msgstr "Valore predefinito"
@@ -1146,121 +1157,121 @@ msgid "label_fieldlabel_text"
 msgstr "Etichetta del campo"
 
 #. Default: "Fieldset Help"
-#: ./content/fieldset.py:51
+#: ./content/fieldset.py:47
 msgid "label_fieldsethelp_text"
 msgstr "Testo d'aiuto del fieldset"
 
 #. File Field
 #. Default: "Maximum Upload Size (Megabytes)"
-#: ./content/fields.py:1198
+#: ./content/fields.py:1196
 msgid "label_filemaxmb_text"
 msgstr "Massima dimensione del file (in Megabyte)"
 
 #. Default: "Force SSL connection"
-#: ./content/form.py:114
+#: ./content/form.py:112
 msgid "label_force_ssl"
 msgstr "Forza la connessione SSL"
 
 # Form Folder
 # label="Custom Form Action",
 #. Default: "Custom Form Action"
-#: ./content/form.py:192
+#: ./content/form.py:190
 msgid "label_formactionoverride_text"
 msgstr "Azione personalizzata del form"
 
 #. Mailer Adapter
 #. Default: "Additional Headers"
-#: ./content/formMailerAdapter.py:329
+#: ./content/formMailerAdapter.py:334
 msgid "label_formmailer_additional_headers"
 msgstr "Intestazioni aggiuntive"
 
 #. Mailer Adapter
 #. Default: "BCC Recipients"
-#: ./content/formMailerAdapter.py:128
+#: ./content/formMailerAdapter.py:130
 msgid "label_formmailer_bcc_recipients"
 msgstr "Destinatari in Copia Carbone nascosta (BCC o CCn)"
 
 #. Mailer Adapter
 #. Default: "Body (signature)"
-#: ./content/formMailerAdapter.py:222
+#: ./content/formMailerAdapter.py:224
 msgid "label_formmailer_body_footer"
 msgstr "Corpo (firma)"
 
 #. Mailer Adapter
 #. Default: "Body (appended)"
-#: ./content/formMailerAdapter.py:208
+#: ./content/formMailerAdapter.py:210
 msgid "label_formmailer_body_post"
 msgstr "Corpo (inserito alla fine)"
 
 #. Mailer Adapter
 #. Default: "Body (prepended)"
-#: ./content/formMailerAdapter.py:196
+#: ./content/formMailerAdapter.py:198
 msgid "label_formmailer_body_pre"
 msgstr "Corpo (inserito all'inizio)"
 
 #. Mailer Adapter
 #. Default: "Mail-Body Template"
-#: ./content/formMailerAdapter.py:278
+#: ./content/formMailerAdapter.py:283
 msgid "label_formmailer_body_pt"
 msgstr "Modello per il corpo dell'email"
 
 #. Mailer Adapter
 #. Default: "Mail Format"
-#: ./content/formMailerAdapter.py:294
+#: ./content/formMailerAdapter.py:299
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:87
 msgid "label_formmailer_body_type"
 msgstr "Formato dell'email"
 
 #. Mailer Adapter
 #. Default: "CC Recipients"
-#: ./content/formMailerAdapter.py:114
+#: ./content/formMailerAdapter.py:116
 msgid "label_formmailer_cc_recipients"
 msgstr "Destinatari in Copia Carbone (CC)"
 
 #. Mailer Adapter
 #. Default: "Recipient's e-mail address"
-#: ./content/formMailerAdapter.py:80
+#: ./content/formMailerAdapter.py:82
 msgid "label_formmailer_recipient_email"
 msgstr "Indirizzo email del destinatario"
 
 #. Mailer Adapter
 #. Default: "Recipient's full name"
-#: ./content/formMailerAdapter.py:65
+#: ./content/formMailerAdapter.py:67
 msgid "label_formmailer_recipient_fullname"
 msgstr "Nome completo del destinatario"
 
 #. Mailer Adapter
 #. Default: "Extract Reply-To From"
-#: ./content/formMailerAdapter.py:142
+#: ./content/formMailerAdapter.py:144
 msgid "label_formmailer_replyto_extract"
 msgstr "Estrai il 'Rispondi a' da"
 
 #. Mailer Adapter
 #. Default: "Subject"
-#: ./content/formMailerAdapter.py:166
+#: ./content/formMailerAdapter.py:168
 msgid "label_formmailer_subject"
 msgstr "Oggetto"
 
 #. Mailer Adapter
 #. Default: "Extract Subject From"
-#: ./content/formMailerAdapter.py:177
+#: ./content/formMailerAdapter.py:179
 msgid "label_formmailer_subject_extract"
 msgstr "Estrai l'oggetto da"
 
 #. Default: "Extract Recipient From"
-#: ./content/formMailerAdapter.py:95
+#: ./content/formMailerAdapter.py:97
 msgid "label_formmailer_to_extract"
 msgstr "Estrai il destinatario da"
 
 #. Mailer Adapter
 #. Default "Key-Id"
 #. Default: "Key-Id"
-#: ./content/formMailerAdapter.py:357
+#: ./content/formMailerAdapter.py:362
 msgid "label_gpg_key_id"
 msgstr "Key-Id"
 
 #. Default: "Header Injection"
-#: ./content/form.py:258
+#: ./content/form.py:256
 msgid "label_headerInjection_text"
 msgstr "Inserimento di intestazioni HTML"
 
@@ -1272,22 +1283,22 @@ msgstr "Nascosto"
 
 #. Thanks Page
 #. Default: "Include Empties"
-#: ./content/thanksPage.py:66
+#: ./content/thanksPage.py:63
 msgid "label_includeEmpties_text"
 msgstr "Includi i campi vuoti"
 
 #. Default: "Include Empties"
-#: ./content/formMailerAdapter.py:260
+#: ./content/formMailerAdapter.py:265
 msgid "label_mailEmpties_text"
 msgstr "Includi i campi vuoti"
 
 #. Default: "Include All Fields"
-#: ./content/formMailerAdapter.py:232
+#: ./content/formMailerAdapter.py:235
 msgid "label_mailallfields_text"
 msgstr "Includi tutti i campi"
 
 #. Default: "Show Responses"
-#: ./content/formMailerAdapter.py:247
+#: ./content/formMailerAdapter.py:251
 msgid "label_mailfields_text"
 msgstr "Mostra le risposte"
 
@@ -1305,7 +1316,7 @@ msgstr "Valore minimo consentito"
 
 #. Thanks Page
 #. Default: "No Submit Message"
-#: ./content/thanksPage.py:121
+#: ./content/thanksPage.py:118
 msgid "label_nosubmit_text"
 msgstr "Nessun messaggio di invio"
 
@@ -1376,14 +1387,14 @@ msgstr "Dati salvati"
 
 #. Form Folder
 #. Default: "Form Prologue"
-#: ./content/form.py:136
+#: ./content/form.py:134
 msgid "label_prologue_text"
 msgstr "Intestazione del modulo"
 
 # Form Folder
 # label="Custom Form Action",
 #. Default: "Recipient Expression"
-#: ./content/formMailerAdapter.py:413
+#: ./content/formMailerAdapter.py:418
 msgid "label_recipient_override_text"
 msgstr "Azione personalizzata del form"
 
@@ -1394,7 +1405,7 @@ msgid "label_required_text"
 msgstr "Obbligatorio"
 
 #. Default: "Reset Button Label"
-#: ./content/form.py:79
+#: ./content/form.py:77
 msgid "label_reset_button"
 msgstr "Etichetta del pulsante di annullamento"
 
@@ -1406,33 +1417,33 @@ msgstr "Linee"
 
 #. Save Data Adapter
 #. Default: "Extra Data"
-#: ./content/saveDataAdapter.py:67
+#: ./content/saveDataAdapter.py:65
 msgid "label_savedataextra_text"
 msgstr "Dati extra"
 
 #. Save Data Adapter
 #. Default: "Saved Form Input"
-#: ./content/saveDataAdapter.py:101
+#: ./content/saveDataAdapter.py:99
 msgid "label_savedatainput_text"
 msgstr "Dati salvati"
 
 #. Default: "Saved Fields"
-#: ./content/saveDataAdapter.py:58
+#: ./content/saveDataAdapter.py:56
 msgid "label_savefields_text"
 msgstr ""
 
 #. Default: "Script body"
-#: ./content/customScriptAdapter.py:105
+#: ./content/customScriptAdapter.py:107
 msgid "label_script_body"
 msgstr "Testo dello Script"
 
 #. Default: "Proxy role"
-#: ./content/customScriptAdapter.py:93
+#: ./content/customScriptAdapter.py:95
 msgid "label_script_proxy"
 msgstr "Ruolo Proxy"
 
 #. Default: "Sender Expression"
-#: ./content/formMailerAdapter.py:393
+#: ./content/formMailerAdapter.py:398
 msgid "label_sender_override_text"
 msgstr "Espression del mittente"
 
@@ -1443,83 +1454,83 @@ msgstr "Variabile server-side"
 
 #. Thanks Page
 #. Default: "Show All Fields"
-#: ./content/thanksPage.py:40
+#: ./content/thanksPage.py:37
 msgid "label_showallfields_text"
 msgstr "Mostra tutti i campi"
 
 #. Form Folder
 #. Default: "Show Reset Button"
-#: ./content/form.py:69
+#: ./content/form.py:67
 msgid "label_showcancel_text"
 msgstr "Mostra il pulsante per annullare"
 
 #. Thanks Page
 #. Default: "Show Responses"
-#: ./content/thanksPage.py:54
+#: ./content/thanksPage.py:51
 msgid "label_showfields_text"
 msgstr "Mostra le risposte"
 
 #. Default: "Show Title as Legend"
-#: ./content/fields.py:1332
-#: ./content/fieldset.py:45
+#: ./content/fields.py:1330
+#: ./content/fieldset.py:41
 msgid "label_showlegend_text"
 msgstr "Mastra il titolo e la legenda"
 
 # Form Folder
 # label="Custom Form Action",
 #. Default: "Subject Expression"
-#: ./content/formMailerAdapter.py:373
+#: ./content/formMailerAdapter.py:378
 msgid "label_subject_override_text"
 msgstr "Espressione per l'oggetto"
 
 #. Form Folder
 #. Default: "Submit Button Label"
-#: ./content/form.py:60
+#: ./content/form.py:58
 msgid "label_submitlabel_text"
 msgstr "Etichetta del pulsante di conferma"
 
 #. Thanks Page
 #. Default: "Thanks Epilogue"
-#: ./content/thanksPage.py:102
+#: ./content/thanksPage.py:99
 msgid "label_thanksepilogue_text"
 msgstr "Epilogo di ringraziamento"
 
 #. Form Folder
 #. Default: "Thanks Page"
-#: ./content/form.py:100
+#: ./content/form.py:98
 msgid "label_thankspage_text"
 msgstr "Pagina di ringraziamento"
 
 #. Form Folder
 #. Default: "Custom Success Action"
-#: ./content/form.py:168
+#: ./content/form.py:166
 msgid "label_thankspageoverride_text"
 msgstr "Azione personalizzata da usare quando l'invio del form ha successo"
 
 #. Thanks Page
 #. Default: "Thanks Prologue"
-#: ./content/thanksPage.py:85
+#: ./content/thanksPage.py:82
 msgid "label_thanksprologue_text"
 msgstr "Prologo di ringraziamento"
 
 #. Default: "Title"
-#: ./content/fields.py:1136
+#: ./content/fields.py:1134
 msgid "label_title"
 msgstr "Titolo"
 
 #. Default: "Include Column Names"
-#: ./content/saveDataAdapter.py:88
+#: ./content/saveDataAdapter.py:86
 msgid "label_usecolumnnames_text"
 msgstr "Includi i nomi delle colonne"
 
 #. Default: "Reject Text with Links?"
-#: ./content/fields.py:940
+#: ./content/fields.py:938
 msgid "label_validate_link_spam_text"
 msgstr "Rifiuta testo con dei link?"
 
 #. Mailer Adapter
 #. Default: "HTTP Headers"
-#: ./content/formMailerAdapter.py:312
+#: ./content/formMailerAdapter.py:317
 msgid "label_xinfo_headers_text"
 msgstr "Intestazioni HTTP"
 
@@ -1529,7 +1540,7 @@ msgid "less_fields_msg"
 msgstr "Meno campi..."
 
 #. Default: "More Fields"
-#: ./browser/quickedit.pt:138
+#: ./browser/quickedit.pt:143
 msgid "more-fields"
 msgstr "Più campi..."
 
@@ -1554,26 +1565,26 @@ msgid "pfg_allRequired"
 msgstr "Un risposta è richiesta per ogni domanda."
 
 #. Default: "Comments"
-#: ./content/form.py:887
+#: ./content/form.py:899
 msgid "pfg_commentsfield_title"
 msgstr "Commenti"
 
 #. Form Folder
 #. Initial value for Reset Button Label
 #. Default: "Reset"
-#: ./content/form.py:816
+#: ./content/form.py:828
 msgid "pfg_formfolder_reset"
 msgstr "Annulla"
 
 #. Form Folder
 #. Initial value for Submit Button Label
 #. Default: "Submit"
-#: ./content/form.py:815
+#: ./content/form.py:827
 msgid "pfg_formfolder_submit"
 msgstr "Invia"
 
 #. Default: "Form Submission"
-#: ./content/formMailerAdapter.py:472
+#: ./content/formMailerAdapter.py:515
 msgid "pfg_formmaileradapter_msg_subject"
 msgstr "Invio del form"
 
@@ -1638,12 +1649,12 @@ msgid "pfg_isnotlinkspam"
 msgstr "Questo testo sembra contenere dei link."
 
 #. Default: "E-Mails Form Input"
-#: ./content/form.py:835
+#: ./content/form.py:847
 msgid "pfg_mailer_description"
 msgstr "Campo mittente dell'email"
 
 #. Default: "Mailer"
-#: ./content/form.py:831
+#: ./content/form.py:843
 msgid "pfg_mailer_title"
 msgstr ""
 
@@ -1666,22 +1677,22 @@ msgid "pfg_number_too_small"
 msgstr "'${value}' è troppo piccolo. Inserire almeno ${min}."
 
 #. Default: "Your E-Mail Address"
-#: ./content/form.py:852
+#: ./content/form.py:864
 msgid "pfg_replytofield_title"
 msgstr "Il vostro indirizzo email"
 
 #. Default: "<p>No input was received. Please visit the form.</p>"
-#: ./content/thanksPage.py:191
+#: ./content/thanksPage.py:199
 msgid "pfg_thankspage_nosubmitmessage"
 msgstr "<p>Nessun dato ricevuto. Si prega di <a title=\"Test Folder\" href=\".\">compilare il form</a>.</p>"
 
 #. Default: "Thanks for your input."
-#: ./content/form.py:902
+#: ./content/form.py:914
 msgid "pfg_thankyou_description"
 msgstr "Grazie per aver compilato il form"
 
 #. Default: "Thank You"
-#: ./content/form.py:900
+#: ./content/form.py:912
 msgid "pfg_thankyou_title"
 msgstr "Grazie"
 
@@ -1692,7 +1703,7 @@ msgid "pfg_too_long"
 msgstr "Stringa troppo lunga. Inserire al massimo ${max} caratteri."
 
 #. Default: "Subject"
-#: ./content/form.py:871
+#: ./content/form.py:883
 msgid "pfg_topicfield_title"
 msgstr "Oggetto"
 
@@ -1703,13 +1714,13 @@ msgstr "Testo semplice"
 
 # default="Checkbox list"
 #. Default: "Checkbox list"
-#: ./content/fields.py:873
+#: ./content/fields.py:871
 msgid "vocabulary_checkbox_text"
 msgstr "Lista di checkbox"
 
 # default="Flexible (radio for short, select for longer)"
 #. Default: "Flexible (radio for short, select for longer)"
-#: ./content/fields.py:759
+#: ./content/fields.py:757
 msgid "vocabulary_flex_text"
 msgstr "Flessibile (usa i radio per una lista corta e una select per la lunga)"
 
@@ -1727,13 +1738,13 @@ msgstr "Non è selezionato"
 
 # default='Is Tidy HTML (fails on errors and warnings)')
 #. Default: "Is Tidy HTML (fails on errors and warnings)"
-#: ./content/fields.py:1079
+#: ./content/fields.py:1077
 msgid "vocabulary_istidyhtml_text"
 msgstr "É HTML Tidy (si blocca su errori e  avvisi)"
 
 # default='Tidy HTML With Cleanup (fails on errors, cleans up rest)')
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
-#: ./content/fields.py:1082
+#: ./content/fields.py:1080
 msgid "vocabulary_istidyhtmlwithcleanup_text"
 msgstr "HTML Tidy con pulizia (si blocca su errori e pulisce il resto)"
 
@@ -1741,7 +1752,7 @@ msgstr "HTML Tidy con pulizia (si blocca su errori e pulisce il resto)"
 # default="None"
 #. Default: "None"
 #: ./content/fields.py:411
-#: ./content/form.py:722
+#: ./content/form.py:734
 msgid "vocabulary_none_text"
 msgstr "Nessuno"
 
@@ -1750,13 +1761,13 @@ msgstr "Nessuno"
 # sgstr ""
 # default="Radio buttons"
 #. Default: "Radio buttons"
-#: ./content/fields.py:765
+#: ./content/fields.py:763
 msgid "vocabulary_radio_text"
 msgstr "Pulsanti radio"
 
 # default="Selection list"
 #. Default: "Selection list"
-#: ./content/fields.py:762
+#: ./content/fields.py:760
 msgid "vocabulary_selection_text"
 msgstr "Lista di selezione"
 
