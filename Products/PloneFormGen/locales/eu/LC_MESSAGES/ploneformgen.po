@@ -3,9 +3,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Products.PloneFormGen\n"
 "POT-Creation-Date: 2014-02-27 07:52+0000\n"
-"PO-Revision-Date: 2011-10-24 11:58+0100\n"
+"PO-Revision-Date: 2014-02-27 10:33+0100\n"
 "Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
 "Language-Team: eu <eu@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. Default: "A Likert form entry"
 #: ./profiles/default/types/FormLikertField.xml
 msgid "A Likert form entry"
-msgstr ""
+msgstr "Balorazio-eremua"
 
 #. Default: "A captcha field to prevent spam."
 #: ./profiles/default/types/FormCaptchaField.xml
@@ -72,7 +72,7 @@ msgstr "Akzioak"
 
 #: ./browser/quickedit.py:71
 msgid "Begin a fieldset"
-msgstr ""
+msgstr "Eremu-multzoaren hasiera"
 
 #. Default: "Boolean (checkbox) field"
 #: ./profiles/default/types/FormBooleanField.xml
@@ -111,11 +111,11 @@ msgstr "Komadun zenbaki-eremua"
 
 #: ./browser/quickedit.pt:273
 msgid "Delete Action"
-msgstr ""
+msgstr "Akzioa ezabatu"
 
 #: ./browser/quickedit.pt:267
 msgid "Edit Field"
-msgstr ""
+msgstr "Eremua editatu"
 
 #: ./browser/quickedit.pt:206
 msgid "Edit/Delete"
@@ -123,7 +123,7 @@ msgstr "Editatu/Ezabatu"
 
 #: ./browser/quickedit.py:72
 msgid "End a fieldset"
-msgstr ""
+msgstr "Eremu-multozaren bukaera"
 
 #. Default: "End a fieldset (no input component)"
 #: ./profiles/default/types/FieldsetEnd.xml
@@ -148,7 +148,7 @@ msgstr "Eremuak"
 #: ./browser/quickedit.py:72
 #: ./profiles/default/types/FieldsetEnd.xml
 msgid "Fieldset End"
-msgstr "Eremu-multzoa bukatu"
+msgstr "Eremu-multzoaren bukaera"
 
 #: ./profiles/default/types/FieldsetFolder.xml
 msgid "Fieldset Folder"
@@ -156,7 +156,7 @@ msgstr "Eremu-multzo karpeta"
 
 #: ./browser/quickedit.py:71
 msgid "Fieldset Start"
-msgstr ""
+msgstr "Eremu-multzoaren hasiera"
 
 #: ./browser/quickedit.pt:159
 msgid "Fieldsets"
@@ -242,7 +242,7 @@ msgstr "Zuzendu adierazitako erroreak"
 #. Default: "Rating-Scale Field"
 #: ./profiles/default/types/FormLikertField.xml
 msgid "Rating-Scale Field"
-msgstr "Baloratzeko eremua"
+msgstr "Balorazio eremua"
 
 #: ./interfaces/exportimport.py:23
 msgid "Remove Existing Form Items?"
@@ -319,7 +319,7 @@ msgstr "Kargatu"
 #. Default: "Whole Number Field"
 #: ./profiles/default/types/FormIntegerField.xml
 msgid "Whole Number Field"
-msgstr "Zenabki osoko eremua"
+msgstr "Zenbaki osoko eremua"
 
 #. Default: "Actions"
 #: ./browser/jsvariables.py:18
@@ -363,14 +363,8 @@ msgstr "Datuak gordetzeko akzioen defektuzko balioak."
 
 #. Default: "Mark this field as a value to be injected into therequest form for use by action adapters and is notmodifiable by or exposed to the client."
 #: ./content/fieldsBase.py:253
-#, fuzzy
 msgid "description_server_side_text"
-msgstr ""
-"\"\n"
-"Eremu hau eskaeran txertatzekoa dela markatu\n"
-"horrela akzioek erabili dezaten eta\n"
-"erabiltzaileak ezin dezan ez ikusi eta ezta aldatu ere.\n"
-"\""
+msgstr "Eremu hau eskaeran txertatzekoa dela markatu horrela akzioek erabili dezaten eta erabiltzaileak ezin dezan ez ikusi eta ezta aldatu ere."
 
 #. Default: "Field"
 #: ./browser/jsvariables.py:17
@@ -455,7 +449,7 @@ msgstr ""
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the CC list. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a sequence of strings.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:440
 msgid "help_cc_override_text"
-msgstr ""
+msgstr "CC zerrendaren balioa gainidatziko duen TALES espresioa. Kontuz ibili honetarako egiaztatu gabeko datuak erabiltzearekin. Utzi hutsik ez badakizu zertarako den. Zure espresioak string zerrenda bat itzuli beharko luke. OHARRA: espresio hau ebaluatzean erroreren bat sortzen bada, formularioa erakustean errore bat gertatuko da."
 
 #. Default: "\n                Check this to employ Cross-Site Request Forgery protection.\n                Note that only HTTP Post actions will be allowed.\n            "
 #: ./content/form.py:276
@@ -493,7 +487,6 @@ msgstr "Checkbox eremua aukeratu gabe uzten duzunean eskertza-orrian agertuko de
 
 #. Default: "String to use in thanks page and mail when the field's checkbox is checked."
 #: ./content/fields.py:346
-#, fuzzy
 msgid "help_fgbooleantruestring_text"
 msgstr "Checkbox eremua aukeratzen duzunean eskertza-orrian agertuko den balioa"
 
@@ -506,7 +499,7 @@ msgstr "Erantzun jakin bat egiaztatzeko balidadorea aukeratu"
 #: ./content/fields.py:328
 #: ./content/fieldsBase.py:271
 msgid "help_fgdefault_text"
-msgstr ""
+msgstr "Eremua lehenengo aldiz erakusten denean izan behar duen balioa. Kontuan izan balio hau dinamikoki gainidatzi daitekeela."
 
 #. Default: "The last year to offer in the year drop-down.\n                 Leave this empty if you wish to instead use a number of future years."
 #: ./content/fields.py:469
@@ -517,7 +510,7 @@ msgstr ""
 
 #: ./content/fields.py:708
 msgid "help_fgformat_text"
-msgstr ""
+msgstr " "
 
 #. Default: "The number of future years to offer in the year drop-down.\n                 (This is only applicable if you have not specified an ending year.)"
 #: ./content/fields.py:479
@@ -551,16 +544,13 @@ msgstr ""
 
 #. Default: "The maximum number of characters the user will be able to input.Use 0 for no limit."
 #: ./content/fieldsBase.py:104
-#, fuzzy
 msgid "help_fgmaxlength_text"
-msgstr ""
-"Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa.\n"
-"Erabili 0 mugarik ez jartzeko."
+msgstr "Erabiltzaileak idatzi ahal izango duen karaktere kopuru maximoa. Erabili 0 mugarik ez jartzeko."
 
 #. Default: "Useful for stopping spam"
 #: ./content/fields.py:805
 msgid "help_fgmsformat_text"
-msgstr ""
+msgstr "Spama geldiarazteko egokia"
 
 #. Default: "Input tests using HTMLTidy (if installed)."
 #: ./content/fields.py:1028
@@ -569,7 +559,7 @@ msgstr "Testua egiaztatu HTMLTidy erabiliz (instalatuta badago)."
 
 #: ./content/fields.py:451
 msgid "help_fgshowhm_text"
-msgstr ""
+msgstr " "
 
 #. Default: "The size of the text-entry box, in characters."
 #: ./content/fieldsBase.py:137
@@ -578,7 +568,7 @@ msgstr "Testua idazteko kutxaren tamaina, karakteretan."
 
 #: ./content/fields.py:460
 msgid "help_fgstartingyear_text"
-msgstr ""
+msgstr " "
 
 #. Default: "Tests input against simple string patterns."
 #: ./content/fields.py:57
@@ -589,12 +579,12 @@ msgstr "Testu patroien arabera egiaztatu."
 #: ./content/fields.py:1122
 #: ./content/fieldsBase.py:215
 msgid "help_fgtdefault_text"
-msgstr ""
+msgstr "Eremuaren balioa erabakitzeko formularioa erakustean exekutatuko den TALES espresioa. Utzi hutsik ez baduzu erabili behar. Espresioak string bat itzuli beharko luke. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "A TALES expression that will be evaluated when the form is displayedto determine whether or not the field is enabled.Your expression should evaluate as True ifthe field should be included in the form, False if it should be omitted.Leave this expression field empty if unneeded: the field will be included.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:234
 msgid "help_fgtenable_text"
-msgstr ""
+msgstr "Eremua erakutsiko den ala ez erabakitzeko formularioa erakustean exekutatuko den TALES espresioa. Espresioak True itzuli beharko luke eremua erakutsi nahi bada, False ez bada erakutsi behar. Utzi hutsik erabili behar ez baduzu, kasu honetan eremua erakutsi egingo da. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "\n                    The text the field should contain when the form is first displayed.\n                    Note that this may be overridden dynamically.\n                "
 #: ./content/fieldsBase.py:327
@@ -606,17 +596,17 @@ msgstr ""
 #. Default: "\n                    A TALES expression that will be evaluated when the form is displayed\n                    to get the field default value.\n                    Leave empty if unneeded. Your expression should evaluate as a list or tuple.\n                    PLEASE NOTE: errors in the evaluation of this expression will cause\n                    an error on form display.\n                "
 #: ./content/fieldsBase.py:304
 msgid "help_fgtlinesdefault_text"
-msgstr ""
+msgstr "Eremuaren balioa erabakitzeko formularioa erakustean exekutatuko den TALES espresioa. Utzi hutsik ez baduzu erabili behar. Espresioak zerrenda edo tupla bat itzuli beharko luke. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "A TALES expression that will be evaluated when the form is validated.Validate against 'value', which will contain the field input.Return False if valid; if not valid return a string error message.E.G., \"python: test(value=='eggs', False, 'input must be eggs')\" willrequire \"eggs\" for input.PLEASE NOTE: errors in the evaluation of this expression will causean error on form display."
 #: ./content/fieldsBase.py:77
 msgid "help_fgtvalidator_text"
-msgstr ""
+msgstr "Formularioa balidatzean exekutatuko den TALES espresioa. Balidazioa 'value' izeneko aldagaian egin beharko da, horrek izango du-eta balioa. Itzuli False balidazioa zuzena bada; erroreren bat badago itzuli agertuko den errore mezua. Adb.: \"python:test(value=='arrautzak', False, 'arrautzak idatzi behar duzu formularioan')\" espresioa idazten baduzu 'arrautzak' balioa idatzi beharko da formularioan. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "\n                A TALES expression that will be evaluated when the form is displayed\n                to get the field options.\n                Leave empty if unneeded.\n                Your TALES expression should evaluate as a list of (key, value) tuples.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/fieldsBase.py:165
 msgid "help_fgtvocabulary_text"
-msgstr ""
+msgstr "Eremuaren balioa erabakitzeko formularioa erakustean exekutatuko den TALES espresioa. Utzi hutsik ez baduzu erabili behar. Espresioak (gakoa, balioa) erako zerrenda bat itzuli beharko luke. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "\n                Use one line per option.\n                Note that this may be overridden dynamically.\n                [Note, you may optionally use a \"value|label\" format.]\n                "
 #: ./content/fieldsBase.py:147
@@ -629,22 +619,22 @@ msgstr ""
 #. Default: "Set to 0 for no limit."
 #: ./content/fields.py:1197
 msgid "help_filemaxmb_text"
-msgstr ""
+msgstr "Idatzi 0 mugarik ez jartzeko"
 
 #. Default: "\n                Check this to make the form redirect to an SSL-enabled\n                version of itself (https://) if accessed via a non-SSL\n                URL (http://).  In order to function properly,\n                this requires a web server that has been configured to\n                handle the HTTPS protocol on port 443 and forward it to Zope.\n            "
 #: ./content/form.py:113
 msgid "help_force_ssl"
-msgstr ""
+msgstr "Aukeratu kutxa hau formulario hau SSLrekin (hau da https:// helbide baten) erakusteko eta beraz berbideraketa egiteko. Ondo funtzionatzeko, zure zerbitzarian SSL ziurtagiri bat instalatuta eta HTTPS modua aktibatuta izan behar dituzu. Jarri harremanetan sistemaren kudeatzailearekin informazio gehiago lortzeko."
 
 #. Default: "\n                Use this field to override the form action attribute.\n                Specify a URL to which the form will post.\n                This will bypass form validation, success action\n                adapter and thanks page.\n            "
 #: ./content/form.py:191
 msgid "help_formactionoverride_text"
-msgstr ""
+msgstr "Erabili eremu hau formularioaren akzioaren helbidea gainidazteko. Idatzi URL bat eta formularioak bertara bidaliko ditu datuak POST bidez. Hau egiten baduzu ondoko hauek ez dira exekutatuko: formularioaren balidazioa, bidalketa-akzioa eta eskertza-orria."
 
 #. Default: "\n                Additional e-mail-header lines.\n                Only use RFC822-compliant headers.\n                "
 #: ./content/formMailerAdapter.py:335
 msgid "help_formmailer_additional_headers"
-msgstr ""
+msgstr "E-posta mezuaren goiburuko gehigarriak. RFC822rekin bat datozen goiburuak bakarrik erabili."
 
 #. Default: "E-mail addresses which receive a blind carbon copy."
 #: ./content/formMailerAdapter.py:132
@@ -669,12 +659,12 @@ msgstr "Eremuen aurretik joango den testua"
 #. Default: "This is a Zope Page Template\n            used for rendering of the mail-body. You don't need to modify\n            it, but if you know TAL (Zope's Template Attribute Language)\n            you have the full power to customize your outgoing mails."
 #: ./content/formMailerAdapter.py:278
 msgid "help_formmailer_body_pt"
-msgstr ""
+msgstr "E-posta mezuaren edukia sortzeko erabiliko den ZPTa. Ez duzu zertan aldatu, baina TAL lengoaia baldin badakizu (Zope Template Attribute Language), e-posta mezua pertsonalizatzeko aukera duzu."
 
 #. Default: "Set the mime-type of the mail-body.\n            Change this setting only if you know exactly what you are doing.\n            Leave it blank for default behaviour."
 #: ./content/formMailerAdapter.py:295
 msgid "help_formmailer_body_type"
-msgstr ""
+msgstr "E-posta gorputzaren mime-type-a ezarri dezakezu. Zertan zabiltzan bakarrik badakizu aldatu. Utzi hutsik defektuzko balioa hartzeko."
 
 #. Default: "E-mail addresses which receive a carbon copy."
 #: ./content/formMailerAdapter.py:118
@@ -694,7 +684,7 @@ msgstr "Mezua jasoko duenaren izena"
 #. Default: "\n                Choose a form field from which you wish to extract\n                input for the Reply-To header. NOTE: You should\n                activate e-mail address verification for the designated\n                field.\n                "
 #: ./content/formMailerAdapter.py:146
 msgid "help_formmailer_replyto_extract"
-msgstr ""
+msgstr "Mezuaren Reply-To goiburua formularioaren zein baliotatik aterako den. OHARRA: aukeratu duzun eremuan e-posta helbidea den ziurtatzeko balidazioa aktibatu beharko zenuke."
 
 #. Default: "\n                Subject line of message. This is used if you\n                do not specify a subject field or if the field\n                is empty.\n                "
 #: ./content/formMailerAdapter.py:162
@@ -719,32 +709,32 @@ msgstr ""
 #. Default: "NOTE: For a fixed-point field, the required flag will not allow\n           entry of a '0' value.\n        "
 #: ./content/fields.py:267
 msgid "help_fprequired_text"
-msgstr ""
+msgstr "OHARRA: komadun zenbakiko eremu baten 'beharrezkoa' ezartzeak ez du utziko '0' balioa sartzen."
 
 #. Default: "\n                    Give your key-id, e-mail address or\n                    whatever works to match a public key from current keyring.\n                    It will be used to encrypt the message body (not attachments).\n                    Contact the site administrator if you need to\n                    install a new public key.\n                    Note that you will probably wish to change your message\n                    template to plain text if you're using encryption.\n                    TEST THIS FEATURE BEFORE GOING PUBLIC!\n                    "
 #: ./content/formMailerAdapter.py:352
 msgid "help_gpg_key_id"
-msgstr ""
+msgstr "Idatzi zure gako-zenbakia, e-posta helbidea edo dena-delakoa, gako-publikoa zure uneko giltzakotik hartzeko. Mezuaren gorputza enkriptatzeko erabiliko da (atatxatutako fitxategiak ez). Jarri kontaktuan sistemaren kudeatzailearekin gako-publiko berri bat gehitu nahi baduzu. Mezuaren txantiloia testu-arruntean erabiltzea gomendatzen dizugu enkriptatu behar baduzu. FORMULARIOA ARGITARATU AURRETIK PROBATU AUKERA HAU."
 
 #. Default: "\n                This override field allows you to insert content into the xhtml\n                head. The typical use is to add custom CSS or JavaScript.\n                Specify a TALES expression returning a string. The string will\n                be inserted with no interpretation.\n                PLEASE NOTE: errors in the evaluation of this expression will\n                cause an error on form display.\n            "
 #: ./content/form.py:258
 msgid "help_headerInjection_text"
-msgstr ""
+msgstr "Eremu honek html-ren goiburuan edukia txertatzeko aukera ematen dizu. Adibidez CSS edo JavaScript pertsonalizatua. Idatzi TALES espresio bat eta itzuli string bat. String hori interpretatu gabe bere horretan sartuko da. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "\n                Check this to display field titles\n                for fields that received no input. Uncheck\n                to leave fields with no input off the list.\n                "
 #: ./content/thanksPage.py:64
 msgid "help_includeEmpties_text"
-msgstr ""
+msgstr "Aukeratu hau baliorik idatzi ez zaien eremuen izenburuak agertzeko. Desaktibatu eremu hutsak zerrendatik kentzeko."
 
 #. Default: "\n                Check this to include titles\n                for fields that received no input. Uncheck\n                to leave fields with no input out of the e-mail.\n                "
 #: ./content/formMailerAdapter.py:266
 msgid "help_mailEmpties_text"
-msgstr ""
+msgstr "Aukeratu hau baliorik idatzi ez zaien eremuen izenburuak agertzeko. Desaktibatu eremu hutsak mezutik kentzeko."
 
 #. Default: "\n                Check this to include input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/formMailerAdapter.py:236
 msgid "help_mailallfields_text"
-msgstr ""
+msgstr "Aukeratu hau eremu guztiak sartzeko (etiketak eta fitxategiak ezik). Aukeratzen baduzu, beheko aukeraketa-kutxako balioak ez dira kontuan hartuko."
 
 #. Default: "\n                Pick the fields whose inputs you'd like to include in\n                the e-mail.\n                "
 #: ./content/formMailerAdapter.py:252
@@ -776,7 +766,7 @@ msgstr "Formularioan ez da erakutsiko"
 #. Default: "CAUTION: Input for the body is not validated. Invalid XHTML or TAL will cause errors on form processing. Try your code out in a mail adapter before pasting here."
 #: ./skins/PloneFormGen/prefs_pfg_mtemplate.cpt:74
 msgid "help_novalidation_caution"
-msgstr ""
+msgstr "OHARRA: honen balioa ez da balidatuko. XHTML edo TAL okerrak formularioa prozesatzean errorea sortuko du. E-posta akzio baten probatu kodea hemen itsatsi aurretik."
 
 #. Default: "This text will be displayed above the form fields."
 #: ./content/form.py:135
@@ -786,11 +776,11 @@ msgstr "Formularioko eremuen aurretik agertuko da testu hau"
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the recipient e-mail address. You are strongly\n                cautioned against using unvalidated data from the request for this purpose.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:419
 msgid "help_recipient_override_text"
-msgstr ""
+msgstr "E-posta jasotzailearen helbidea gainidazteko TALES espresioa. Kontuz ibili balidatu gabeko datuak erabiltzearekin. Utzi hutsik ez baduzu erabili behar. Espresioak string bat itzuli beharko luke. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #: ./content/fieldsBase.py:95
 msgid "help_rows_text"
-msgstr ""
+msgstr " "
 
 #. Default: "\n                    Pick any extra data you'd like saved with the form input.\n                    "
 #: ./content/saveDataAdapter.py:66
@@ -799,12 +789,12 @@ msgstr "Aukeratu datuekin batera gordeko den informazio gehigarria"
 
 #: ./content/saveDataAdapter.py:100
 msgid "help_savedatainput_text"
-msgstr ""
+msgstr " "
 
 #. Default: "\n                    Pick the fields whose inputs you'd like to include in\n                    the saved data. If empty, all fields will be saved.\n                    "
 #: ./content/saveDataAdapter.py:57
 msgid "help_savefields_text"
-msgstr ""
+msgstr "Aukeratu zein eremu gorde behar diren. Hutsik uzten baduzu, guztiak gordeko dira."
 
 #. Default: " Write your script here. "
 #: ./content/customScriptAdapter.py:110
@@ -819,7 +809,7 @@ msgstr "Aukeratu zein rolekin exekutatuko den scripta."
 #. Default: "\n                A TALES expression that will be evaluated to override the \"From\" header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:400
 msgid "help_sender_override_text"
-msgstr ""
+msgstr "E-posta mezuaren \"From\" goiburukoa gainidazteko exekutatuko den TALES espresioa. Utzi hutsik ez baduzu erabili behar.  Espresioak string bat itzuli beharko luke. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #. Default: "\n                Check this to display input for all fields\n                (except label and file fields). If you check\n                this, the choices in the pick box below\n                will be ignored.\n                "
 #: ./content/thanksPage.py:38
@@ -831,7 +821,7 @@ msgstr ""
 
 #: ./content/form.py:69
 msgid "help_showcancel_text"
-msgstr ""
+msgstr " "
 
 #. Default: "\n                Pick the fields whose inputs you'd like to display on\n                the success page.\n                "
 #: ./content/thanksPage.py:52
@@ -841,16 +831,16 @@ msgstr "Aukeratu zein eremu agertuko diren eskertza-orrian."
 #: ./content/fields.py:1331
 #: ./content/fieldset.py:42
 msgid "help_showlegend_text"
-msgstr ""
+msgstr " "
 
 #. Default: "\n                A TALES expression that will be evaluated to override any value\n                otherwise entered for the e-mail subject header.\n                Leave empty if unneeded. Your expression should evaluate as a string.\n                PLEASE NOTE: errors in the evaluation of this expression will cause\n                an error on form display.\n            "
 #: ./content/formMailerAdapter.py:379
 msgid "help_subject_override_text"
-msgstr ""
+msgstr "E-posta mezuaren Gaia gainidazteko exekutatuko den TALES espresioa. Utzi hutsik ez baduzu erabili behar.  Espresioak string bat itzuli beharko luke. OHARRA: espresioa ebaluatzerakoan erroreren bat gertatzen bada, formularioa erakustean errorea gertatuko da."
 
 #: ./content/form.py:59
 msgid "help_submitlabel_text"
-msgstr ""
+msgstr " "
 
 #. Default: "The text will be displayed after the field inputs."
 #: ./content/thanksPage.py:100
@@ -869,7 +859,7 @@ msgstr ""
 #. Default: "\n                Use this field in place of a thanks-page designation\n                to determine final action after calling\n                your action adapter (if you have one). You would usually use\n                this for a custom success template or script.\n                Leave empty if unneeded. Otherwise, specify as you would a\n                CMFFormController action type and argument,\n                complete with type of action to execute\n                (e.g., \"redirect_to\" or \"traverse_to\")\n                and a TALES expression. For example,\n                \"redirect_to:string:thanks-page\" would redirect to\n                'thanks-page'.\n            "
 #: ./content/form.py:168
 msgid "help_thankspageoverride_text"
-msgstr ""
+msgstr "Eskertza-orri gisa zein helbidetara joan erabakitzeko erabili eremu hau. Utzi hutsik ez baduzu erabili behar. Bestela, CMFFormController akzio baten gisa idatzi behar duzu, adb.: redirect_to:TALES edo traverse_to:TALES. Esaterako: redirect_to:string:eskerrik-asko."
 
 #. Default: "This text will be displayed above the selected field inputs."
 #: ./content/thanksPage.py:83
@@ -884,12 +874,12 @@ msgstr "Deskargatzen duzun fitxategiaren lehenengo lerroan zutabeen izenak agert
 #. Default: "Useful for stopping spam"
 #: ./content/fields.py:939
 msgid "help_validate_link_spam_text"
-msgstr ""
+msgstr "Spama geldiarazteko erabili daiteke"
 
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
 #: ./content/formMailerAdapter.py:318
 msgid "help_xinfo_headers_text"
-msgstr ""
+msgstr "Mezuan X-header gisa sartu nahi duzun edozein HTTP goiburuko aukeratu"
 
 #: ./browser/exportimport.py:48
 msgid "import"
@@ -897,7 +887,6 @@ msgstr "Inportatu"
 
 #. Default: "${items} input(s) saved"
 #: ./skins/PloneFormGen/fg_savedata_view_p3.pt:53
-#, fuzzy
 msgid "items_saved"
 msgstr "${items} elementu gorde dira."
 
@@ -924,7 +913,7 @@ msgstr "BCC espresioa"
 #. Default: "CC Expression"
 #: ./content/formMailerAdapter.py:439
 msgid "label_cc_override_text"
-msgstr ""
+msgstr "CC espresioa"
 
 #. Default: "Click here to get the saved input"
 #: ./skins/PloneFormGen/fg_savedata_view_p3.pt:45
@@ -1327,7 +1316,7 @@ msgstr "Gordetako formularioaren datuak"
 #. Default: "Saved Fields"
 #: ./content/saveDataAdapter.py:56
 msgid "label_savefields_text"
-msgstr ""
+msgstr "Gordetako eremuak"
 
 #. Default: "Script body"
 #: ./content/customScriptAdapter.py:107
@@ -1428,7 +1417,7 @@ msgstr "Eremu gutxiago..."
 #. Default: "More Fields"
 #: ./browser/quickedit.pt:143
 msgid "more-fields"
-msgstr ""
+msgstr "Eremu gehiago"
 
 #. Default: "More fields..."
 #: ./browser/jsvariables.py:21
@@ -1557,9 +1546,8 @@ msgstr "Zure e-posta helbidea"
 
 #. Default: "<p>No input was received. Please visit the form.</p>"
 #: ./content/thanksPage.py:199
-#, fuzzy
 msgid "pfg_thankspage_nosubmitmessage"
-msgstr "<p>Ez duzu formularioa bete. Mesedez joan formulariorea eta saiatu berriro.</p>"
+msgstr "<p>Ez duzu formularioa bete. Mesedez joan formulariora eta saiatu berriro.</p>"
 
 #. Default: "Thanks for your input."
 #: ./content/form.py:914
