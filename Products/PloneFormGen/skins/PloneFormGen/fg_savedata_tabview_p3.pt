@@ -53,7 +53,10 @@
                         <td tal:repeat="cell python:row[1]" tal:content="cell">cell</td>
                         <td tal:condition="canEdit" style="text-align: center">
                             <a tal:attributes="href string:${context/absolute_url}/fg_savedata_editview?id:int=${record_id}">
-                                <img src="edit.gif" />
+                                <img src="edit.gif" alt="Edit" 
+                                    tal:define="view nocall:context/@@quickedit;
+                                                icon_ext view/iconExt;" 
+                                    tal:attributes="src string:${portal_url}/edit.$icon_ext">
                             </a>
                         </td>
                         </tal:index>
