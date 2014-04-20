@@ -71,7 +71,7 @@ msgstr "Ações"
 
 #: ./browser/quickedit.py:66
 msgid "Begin a fieldset"
-msgstr ""
+msgstr "Inicia um grupo de campos"
 
 #. Default: "Boolean (checkbox) field"
 #: ./profiles/default/types/FormBooleanField.xml
@@ -110,11 +110,11 @@ msgstr "Campo Número Decimal"
 
 #: ./browser/quickedit.pt:262
 msgid "Delete Action"
-msgstr ""
+msgstr "Apagar ação"
 
 #: ./browser/quickedit.pt:258
 msgid "Edit Field"
-msgstr ""
+msgstr "Editar campo"
 
 #: ./browser/quickedit.pt:201
 msgid "Edit/Delete"
@@ -122,7 +122,7 @@ msgstr "Editar/Remover"
 
 #: ./browser/quickedit.py:67
 msgid "End a fieldset"
-msgstr ""
+msgstr "Finaliza um grupo de campos"
 
 #. Default: "End a fieldset (no input component)"
 #: ./profiles/default/types/FieldsetEnd.xml
@@ -155,11 +155,11 @@ msgstr "Pasta de Fieldset"
 
 #: ./browser/quickedit.py:66
 msgid "Fieldset Start"
-msgstr ""
+msgstr "Início de Grupo de Campos"
 
 #: ./browser/quickedit.pt:154
 msgid "Fieldsets"
-msgstr "Fieldsets"
+msgstr "Grupo de Campos"
 
 #. Default: "File (upload) field"
 #: ./profiles/default/types/FormFileField.xml
@@ -533,7 +533,7 @@ msgstr "O número máximo de caracteres que o usuário estará habilitado a digi
 #. Default: "Useful for stopping spam"
 #: ./content/fields.py:807
 msgid "help_fgmsformat_text"
-msgstr ""
+msgstr "Útil para evitar spam"
 
 # Rich Text Field
 # description="""Input tests using HTMLTidy (if installed)."""
@@ -879,7 +879,7 @@ msgstr "Você gostaria de ter o nome das colunas na primeira linha do arquivo pa
 #. Default: "Useful for stopping spam"
 #: ./content/fields.py:941
 msgid "help_validate_link_spam_text"
-msgstr ""
+msgstr "Útil para evitar spam"
 
 #. Default: "\n                Pick any items from the HTTP headers that\n                you'd like to insert as X- headers in the\n                message.\n                "
 #: ./content/formMailerAdapter.py:313
@@ -888,7 +888,7 @@ msgstr "Capture qualquer item do cabeçalho HTTP que você deseje para inserir c
 
 #: ./browser/exportimport.py:48
 msgid "import"
-msgstr ""
+msgstr "importar"
 
 #. Default: "${items} inputs saved"
 #: ./skins/PloneFormGen/fg_savedata_view_p3.pt:57
@@ -1324,7 +1324,7 @@ msgstr "Dados Armazenados do Formulário"
 #. Default: "Saved Fields"
 #: ./content/saveDataAdapter.py:58
 msgid "label_savefields_text"
-msgstr ""
+msgstr "Campos salvos"
 
 #. Default: "Script body"
 #: ./content/customScriptAdapter.py:105
@@ -1433,7 +1433,7 @@ msgstr "Menos campos..."
 #. Default: "More Fields"
 #: ./browser/quickedit.pt:138
 msgid "more-fields"
-msgstr ""
+msgstr "Mais campos"
 
 #. Default: "More fields..."
 #: ./browser/jsvariables.py:21
@@ -1621,7 +1621,7 @@ msgstr "É Tidy HTML (falha em erros e avisos)"
 #. Default: "Tidy HTML With Cleanup (fails on errors, cleans up rest)"
 #: ./content/fields.py:1082
 msgid "vocabulary_istidyhtmlwithcleanup_text"
-msgstr ""
+msgstr "Tidy HTML com limpeza (falha em erros, limpa o restante)"
 
 # *** Vocabularies
 #. Default: "None"
