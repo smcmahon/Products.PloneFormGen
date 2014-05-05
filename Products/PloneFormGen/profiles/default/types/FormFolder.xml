@@ -35,6 +35,7 @@
   <element value="FormFileField"/>
   <element value="FormLikertField"/>
   <element value="FormSaveDataAdapter"/>
+  <element value="FormSubmissionFolderAdapter"/>
   <element value="FormMailerAdapter"/>
   <element value="FormCustomScriptAdapter"/>
   <element value="FormThanksPage"/>

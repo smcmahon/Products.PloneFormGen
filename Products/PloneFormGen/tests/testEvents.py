@@ -15,6 +15,7 @@ class TestAdapterPaste(pfgtc.PloneFormGenTestCase):
 
     adapterTypes = (
         'FormSaveDataAdapter',
+        'FormSubmissionFolderAdapter',
         'FormMailerAdapter',
         'FormCustomScriptAdapter',
     )

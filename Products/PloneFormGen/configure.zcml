@@ -69,6 +69,9 @@
       class=".content.saveDataAdapter.FormSaveDataAdapter" />
 
   <five:deprecatedManageAddDelete
+      class=".content.submissionFolderAdapter.FormSubmissionFolderAdapter" />
+
+  <five:deprecatedManageAddDelete
       class=".content.formLikertField.FGLikertField" />
 
   <!-- exportimport -->
@@ -133,5 +136,8 @@
 
   <subscriber handler=".events.form_adapter_pasted" />
   <subscriber handler=".events.form_adapter_moved" />
+  
+  <adapter factory=".content.submissionFolderAdapter.FormSubmissionModifier"
+           name="form_submission_modifier" />
 
 </configure>

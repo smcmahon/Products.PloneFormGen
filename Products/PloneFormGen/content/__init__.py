@@ -6,6 +6,6 @@
 """
 import fields, form, fieldset
 import actionAdapter, saveDataAdapter, formMailerAdapter
-import customScriptAdapter
+import customScriptAdapter, submissionFolderAdapter
 import thanksPage
 import likertField, formLikertField

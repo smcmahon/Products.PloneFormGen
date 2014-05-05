@@ -15,6 +15,7 @@ from transaction import commit
 from StringIO import StringIO
 
 from zope.component import getMultiAdapter
+from zope.site.hooks import setSite
 
 from Products.Five import zcml
 from Products.Five import fiveconfigure
@@ -58,6 +59,7 @@ class TestFormGenGSLayer(PloneSite):
         from AccessControl.SecurityManagement import newSecurityManager, noSecurityManager
         user = portal.getWrappedOwner()
         newSecurityManager(None, user)
+        setSite(portal)
 
         portal_setup = portal.portal_setup
 

@@ -1,10 +1,12 @@
 Change History
 ==============
 
-1.7.15 (unreleased)
+1.8 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add a Submission Folder Adapter that saves submissions as content in a
+  folder.
+  [rpatterson]
 
 
 1.7.14 (2014-01-26)

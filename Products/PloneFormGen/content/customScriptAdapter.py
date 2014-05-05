@@ -117,9 +117,6 @@ class FormCustomScriptAdapter(FormActionAdapter):
 
     content_icon   = 'scriptaction.gif'
 
-    #immediate_view = 'fg_savedata_view'
-    #default_view   = 'fg_savedata_view'
-
     security = ClassSecurityInfo()
 
     def __init__(self, oid, **kwargs):

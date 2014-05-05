@@ -60,6 +60,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.fieldTypes = tuple(fieldTypes)
         self.adapterTypes = (
             'FormSaveDataAdapter',
+            'FormSubmissionFolderAdapter',
             'FormMailerAdapter',
             'FormCustomScriptAdapter',
         )
@@ -112,10 +113,14 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         CSA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Custom Scripts'
         MA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Mailers'
         SDA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Data Savers'
+        SFA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Submission Folders'
 
         self.assertEqual( getAddPermission('PloneFormGen', 'Form Folder'), ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Mailer Adapter'), MA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Save Data Adapter'), SDA_ADD_CONTENT_PERMISSION)
+        self.assertEqual(
+            getAddPermission('PloneFormGen', 'Submission Folder Adapter'),
+            SFA_ADD_CONTENT_PERMISSION)
         self.assertEqual( getAddPermission('PloneFormGen', 'Custom Script Adapter'), CSA_ADD_CONTENT_PERMISSION)
 
     def testActionsInstalled(self):
@@ -255,6 +260,7 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
 
     adapterTypes = (
         'FormSaveDataAdapter',
+        'FormSubmissionFolderAdapter',
         'FormMailerAdapter',
     )
 
