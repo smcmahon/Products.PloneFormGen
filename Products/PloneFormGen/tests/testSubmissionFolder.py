@@ -30,8 +30,8 @@ class TestCustomScript(pfgtc.PloneFormGenTestCase):
         self.form.checkAuthenticator = False
         self.form.manage_delObjects(['replyto', 'comments', 'mailer'])
         self.form.invokeFactory(
-            'FormSubmissionFolderAdapter',
-            'foo-submissions', title='Foo Submissions')
+            'FormSubmissionFolderAdapter', 'foo-submissions',
+            title='Foo Submissions', submissionTransitions=['hide'])
         self.adapter = self.form['foo-submissions']
 
         self.app.REQUEST.form['topic'] = 'Foo Submission Topic'

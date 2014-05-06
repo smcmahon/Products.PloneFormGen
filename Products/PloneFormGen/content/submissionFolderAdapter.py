@@ -95,7 +95,6 @@ You may select a folder in which submissions will be saved.  If left blank,
 submissions will be saved inside this adapter."""))),
         public.LinesField(
             'submissionTransitions',
-            default=['hide'],
             vocabulary='getAvilableSubmissionTransitions',
             widget=public.PicklistWidget(
                 label=_(u'label_submissiontransitions_text',
