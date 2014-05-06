@@ -347,7 +347,7 @@ class FormSubmissionModifier(object):
             'titleField'].get(adapters[0]) or 'title'
         showFields = adapters[0].Schema()['showFields'].get(adapters[0])
         visible = set()
-        for fg_field in form.fgFields():
+        for fg_field in form.fgFields(excludeServerSide=False):
             if showFields and fg_field.__name__ not in showFields:
                 continue
             field = fg_field.copy()
@@ -358,6 +358,7 @@ class FormSubmissionModifier(object):
             schema[field.__name__] = field
 
             # Generate accessor/mutator methods for use in views
+            field.accessor = field.edit_accessor = field.mutator = None
             for mode in self.modes.itervalues():
                 attr = 'get{0}{1}'.format(
                     mode['attr'][0].capitalize(), mode['attr'][1:])
@@ -390,6 +391,10 @@ class FormSubmissionModifier(object):
     
                     return instanceMethod
                 setattr(field, attr, fieldMethod)
+
+            if not isinstance(field.widget.visible, dict):
+                field.widget.visible = dict()
+            field.widget.visible['view'] = 'visible'
 
         for field in schema.filterFields(isMetadata=0):
             if field.__name__ in visible:
