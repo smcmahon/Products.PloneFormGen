@@ -391,9 +391,9 @@ class FormSubmissionModifier(object):
                     return instanceMethod
                 setattr(field, attr, fieldMethod)
 
-            for field in schema.filterFields(isMetadata=0):
-                if field.__name__ in visible:
-                    continue
-                if not isinstance(field.widget.visible, dict):
-                    field.widget.visible = dict()
-                field.widget.visible['view'] = 'invisible'
+        for field in schema.filterFields(isMetadata=0):
+            if field.__name__ in visible:
+                continue
+            if not isinstance(field.widget.visible, dict):
+                field.widget.visible = dict()
+            field.widget.visible['view'] = 'invisible'
