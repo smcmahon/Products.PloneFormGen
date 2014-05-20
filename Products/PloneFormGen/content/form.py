@@ -824,8 +824,12 @@ class FormFolder(ATFolder):
 
         ATFolder.initializeArchetype(self, **kwargs)
 
-        self.setSubmitLabel(zope.i18n.translate(_(u'pfg_formfolder_submit', u'Submit'), context=self.REQUEST))
-        self.setResetLabel(zope.i18n.translate(_(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
+        if 'submitLabel' not in kwargs:
+            self.setSubmitLabel(zope.i18n.translate(
+                _(u'pfg_formfolder_submit', u'Submit'), context=self.REQUEST))
+        if 'resetLabel' not in kwargs:
+            self.setResetLabel(zope.i18n.translate(
+                _(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
 
         oids = self.objectIds()
 
