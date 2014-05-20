@@ -4,6 +4,12 @@ Change History
 1.8 (unreleased)
 -------------------
 
+- Fix translation support that was overwriting constructor kwargs.
+  [rpatterson]
+
+- Fix attribute error when gpg binary isn't available.
+  [rpatterson]
+
 - Add a Submission Folder Adapter that saves submissions as content in a
   folder.
   [rpatterson]
