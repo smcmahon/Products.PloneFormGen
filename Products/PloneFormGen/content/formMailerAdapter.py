@@ -752,13 +752,12 @@ class FormMailerAdapter(FormActionAdapter):
         if isinstance(body, unicode):
             body = body.encode(self.getCharset())
 
-        keyid = self.getGPGKeyId()
-        encryption = gpg and keyid
-
-        if encryption:
-            bodygpg = gpg.encrypt(body, keyid)
-            if bodygpg.strip():
-                body = bodygpg
+        if gpg:
+            keyid = self.getGPGKeyId()
+            if keyid:
+                bodygpg = gpg.encrypt(body, keyid)
+                if bodygpg.strip():
+                    body = bodygpg
 
         return body
 
