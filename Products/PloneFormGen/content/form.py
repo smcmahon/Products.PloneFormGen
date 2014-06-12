@@ -690,8 +690,8 @@ class FormFolder(ATFolder):
         if isinstance(value, (str, unicode)):
             value = [value]
         sorted_value = sorted(
-            value,
-            key=lambda adapter: adapter in self and self.getObjectPosition)
+            value, key=lambda adapter:
+            adapter in self and self.getObjectPosition(adapter))
         self.getField('actionAdapter').set(self, sorted_value)
 
     def getRawActionAdapter(self):
