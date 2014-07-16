@@ -151,7 +151,11 @@ submissions from being publicly available."""))),
             # Record the submission object where the CMFFormController
             # machinery can get at it.
             REQUEST['controller_state'].kwargs.update(**changed)
-            REQUEST['form_submission'] = '/'.join(submission.getPhysicalPath())
+
+            # Use the catalog brain for anonymous access in TAL expressions
+            catalog = getToolByName(self, 'portal_catalog')
+            REQUEST['form_submission'] = catalog._catalog[
+                catalog.getrid('/'.join(submission.getPhysicalPath()))]
 
     def addSubmission(self, REQUEST, folder, portal_type):
         """

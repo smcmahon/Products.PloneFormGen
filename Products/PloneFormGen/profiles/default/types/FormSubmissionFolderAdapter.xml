@@ -11,7 +11,7 @@
     a folder.  To have logged-in users be redirected to the saved submission,
     set the "Custom Success Action" field in the "Overrides" tab of the Form
     Folder's edit form to "redirect_to:python:member is not None and
-    request['form_submission'] or 'fg_result_view'"
+    request['form_submission'].getPath() or 'fg_result_view'"
   </property>
   <property name="content_icon">FormAction.gif</property>
   <property name="content_meta_type">FormSubmissionFolderAdapter</property>
