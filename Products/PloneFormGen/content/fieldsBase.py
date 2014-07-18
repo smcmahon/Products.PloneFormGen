@@ -29,7 +29,7 @@ from Products.CMFCore.Expression import getExprContext
 from Products.CMFCore.exceptions import BadRequest
 from Products.CMFCore.utils import getToolByName
 
-from Products.CMFPlone.utils import base_hasattr, safe_hasattr
+from Products.CMFPlone.utils import base_hasattr, safe_hasattr, safe_unicode
 
 from Products.validation.validators import RangeValidator
 from AccessControl import ClassSecurityInfo
@@ -872,7 +872,7 @@ class BaseFormField(ATCTContent):
 
         value = REQUEST.form.get(self.__name__, 'No Input')
         valueType = type(value)
-        value = str(value)
+        value = safe_unicode(value)
 
         # eliminate square brackets around lists --
         # they mean nothing to end users
