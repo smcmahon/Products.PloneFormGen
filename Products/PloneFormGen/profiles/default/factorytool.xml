@@ -15,6 +15,7 @@
   <type portal_type="FormThanksPage"/>
   <type portal_type="FormBooleanField"/>
   <type portal_type="FormSaveDataAdapter"/>
+  <type portal_type="FormSubmissionFolderAdapter"/>
   <type portal_type="FormLabelField"/>
   <type portal_type="FormDateField"/>
   <type portal_type="FormIntegerField"/>

@@ -39,7 +39,7 @@ from AccessControl import ModuleSecurityInfo
 from Products.PloneFormGen.config import PROJECTNAME, \
     ADD_CONTENT_PERMISSION, CSA_ADD_CONTENT_PERMISSION, \
     MA_ADD_CONTENT_PERMISSION, SDA_ADD_CONTENT_PERMISSION, \
-    SKINS_DIR, GLOBALS
+    SFA_ADD_CONTENT_PERMISSION, SKINS_DIR, GLOBALS
 
 registerDirectory(SKINS_DIR + '/PloneFormGen', GLOBALS)
 
@@ -78,6 +78,8 @@ def initialize(context):
             permission = MA_ADD_CONTENT_PERMISSION
         elif atype.portal_type == 'FormSaveDataAdapter':
             permission = SDA_ADD_CONTENT_PERMISSION
+        elif atype.portal_type == 'FormSubmissionFolderAdapter':
+            permission = SFA_ADD_CONTENT_PERMISSION
         else:
             permission = ADD_CONTENT_PERMISSION
         utils.ContentInit(

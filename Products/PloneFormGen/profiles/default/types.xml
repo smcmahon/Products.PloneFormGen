@@ -36,6 +36,8 @@
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="FormSaveDataAdapter"
     meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="FormSubmissionFolderAdapter"
+    meta_type="Factory-based Type Information with dynamic views"/>
  <object name="FormSelectionField"
     meta_type="Factory-based Type Information with dynamic views"/>
  <object name="FormStringField"

@@ -683,6 +683,17 @@ class FormFolder(ATFolder):
             # traversal will work fine
             return 'traverse_to:string:%s' % target
 
+    def setActionAdapter(self, value):
+        """
+        Preserve folder order when setting the action adapters.
+        """
+        if isinstance(value, (str, unicode)):
+            value = [value]
+        sorted_value = sorted(
+            value, key=lambda adapter:
+            adapter in self and self.getObjectPosition(adapter))
+        self.getField('actionAdapter').set(self, sorted_value)
+
     def getRawActionAdapter(self):
         """ Returns selected action adapters as tuple """
 
@@ -721,7 +732,7 @@ class FormFolder(ATFolder):
         aa = set(list(self.getRawActionAdapter())) # use sets to avoid duplicates
         if id not in aa:
             aa.add(id.decode(self.getCharset()))
-        self.actionAdapter = list(aa)
+        self.setActionAdapter(aa)
 
 
     security.declareProtected(ModifyPortalContent, 'fgFieldsDisplayList')
@@ -824,8 +835,12 @@ class FormFolder(ATFolder):
 
         ATFolder.initializeArchetype(self, **kwargs)
 
-        self.setSubmitLabel(zope.i18n.translate(_(u'pfg_formfolder_submit', u'Submit'), context=self.REQUEST))
-        self.setResetLabel(zope.i18n.translate(_(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
+        if 'submitLabel' not in kwargs:
+            self.setSubmitLabel(zope.i18n.translate(
+                _(u'pfg_formfolder_submit', u'Submit'), context=self.REQUEST))
+        if 'resetLabel' not in kwargs:
+            self.setResetLabel(zope.i18n.translate(
+                _(u'pfg_formfolder_reset', u'Reset'), context=self.REQUEST))
 
         oids = self.objectIds()
 
@@ -1029,7 +1044,7 @@ class FormFolder(ATFolder):
             work.remove(item_id)
         else:
             work.add(item_id)
-        self.actionAdapter = list(work)
+        self.setActionAdapter(work)
         return "<done />"
 
     security.declareProtected(ModifyPortalContent, 'setThanksPageTTW')

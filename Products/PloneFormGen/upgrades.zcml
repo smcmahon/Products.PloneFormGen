@@ -39,4 +39,19 @@
         handler=".upgrades.upgrade_to_171"
         />
 
+    <genericsetup:upgradeSteps
+        profile="Products.PloneFormGen:default"
+        source="171"
+        destination="180">
+      <genericsetup:upgradeDepends
+        title="Add Submission Folder Adapter"
+        description="Add support for the new Submission Folder Adapter type"
+        import_steps="propertiestool
+                      typeinfo
+                      workflow
+                      archetypetool
+                      factorytool"
+        />
+    </genericsetup:upgradeSteps>
+
 </configure>

@@ -167,6 +167,7 @@ fieldTypes = (
 
 adapterTypes = (
     'FormSaveDataAdapter',
+    'FormSubmissionFolderAdapter',
     'FormMailerAdapter',
     'FormCustomScriptAdapter',
 )
@@ -188,6 +189,8 @@ MA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Mailers'
 setDefaultRoles(MA_ADD_CONTENT_PERMISSION, ('Manager','Owner','Site Administrator'))
 SDA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Data Savers'
 setDefaultRoles(SDA_ADD_CONTENT_PERMISSION, ('Manager','Owner','Site Administrator'))
+SFA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Submission Folders'
+setDefaultRoles(SFA_ADD_CONTENT_PERMISSION, ('Manager','Owner','Site Administrator'))
 CSA_ADD_CONTENT_PERMISSION = 'PloneFormGen: Add Custom Scripts'
 setDefaultRoles(CSA_ADD_CONTENT_PERMISSION, ('Manager',))
 
@@ -220,6 +223,7 @@ pfgPermitList = [
     ADD_CONTENT_PERMISSION,
     MA_ADD_CONTENT_PERMISSION,
     SDA_ADD_CONTENT_PERMISSION,
+    SFA_ADD_CONTENT_PERMISSION,
     CSA_ADD_CONTENT_PERMISSION,
     EDIT_TALES_PERMISSION,
     EDIT_PYTHON_PERMISSION,
