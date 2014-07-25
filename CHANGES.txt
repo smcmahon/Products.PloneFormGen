@@ -11,6 +11,8 @@ Change History
   in saved data downloads.
   [davidjb]
 
+- Fixed issue that raise errors if gpg module is not found.
+  [keul] 
 
 1.7.14 (2014-01-26)
 -------------------
