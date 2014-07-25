@@ -4,6 +4,10 @@ Change History
 1.7.15 (unreleased)
 -------------------
 
+- str() of form field value containing unicode characters causes UnicodeEncodeError.
+  Updating to safe_unicode per smcmahon.
+  [tsimkins]
+
 - Update pt_BR translation
   [ericof]
 
