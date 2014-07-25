@@ -872,7 +872,23 @@ class BaseFormField(ATCTContent):
 
         value = REQUEST.form.get(self.__name__, 'No Input')
         valueType = type(value)
-        value = safe_unicode(value)
+
+        # value may be a string or a unicode string;
+        # it may be an array of string/unicode strings.
+        # establish a UTF-8 baseline. UTF-8 not because it's right,
+        # but because it will have backword compatability with previous
+        # versions.
+        if valueType is unicode:
+            value = value.encode('utf8')
+        elif valueType is type([]):
+            a = []
+            for item in value:
+                if type(item) is unicode:
+                    item = item.encode('utf8')
+                a.append(item)
+            value = a
+
+        value = str(value)
 
         # eliminate square brackets around lists --
         # they mean nothing to end users
