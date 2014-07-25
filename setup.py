@@ -10,16 +10,20 @@ setup(name='Products.PloneFormGen',
           + "\n\n" +
           # CHANGES.txt has lots of UTF8, which PyPI won't accept
           open("CHANGES.txt").read().decode('UTF8').encode('ASCII', 'replace')),
-      # Get more strings from
-      # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
-          "Programming Language :: Python",
+          "Development Status :: 6 - Mature",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Framework :: Zope2",
           "Framework :: Plone",
           "Framework :: Plone :: 4.1",
           "Framework :: Plone :: 4.2",
           "Framework :: Plone :: 4.3",
+          'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+          'Operating System :: OS Independent',
+          'Programming Language :: JavaScript',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
           ],
       keywords='Plone PloneFormGen',
       author='Steve McMahon',
