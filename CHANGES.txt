@@ -7,6 +7,10 @@ Change History
 - Update pt_BR translation
   [ericof]
 
+- Fix column headings not being included for server-side only fields
+  in saved data downloads.
+  [davidjb]
+
 
 1.7.14 (2014-01-26)
 -------------------
