@@ -11,4 +11,4 @@ before_script:
 script: bin/test
 env:
   matrix:
-  - PLONE_VERSION=4.3
+  - PLONE_VERSION=4.2
