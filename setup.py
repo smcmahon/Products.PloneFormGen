@@ -41,7 +41,7 @@ setup(name='Products.PloneFormGen',
           'collective.js.jqueryui',
       ],
       extras_require={
-          'test': ['collective.funkload', 'Products.PloneTestCase'],
+          'test': ['Products.PloneTestCase'],
           'loadtest': ['collective.funkload'],
           },
       entry_points="""
