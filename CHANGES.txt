@@ -4,7 +4,8 @@ Change History
 1.7.15 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Update pt_BR translation
+  [ericof]
 
 
 1.7.14 (2014-01-26)
