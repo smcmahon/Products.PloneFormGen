@@ -4,6 +4,9 @@ Change History
 1.7.15 (unreleased)
 -------------------
 
+- Add Travis CI testing for Plone 4.2 and 4.3.
+  [smcmahon]
+
 - Tell collective.cover that we act like a folder when dropped into a list tile.
   [smcmahon]
 
