@@ -4,6 +4,9 @@ Change History
 1.7.15 (unreleased)
 -------------------
 
+- Tell collective.cover that we act like a folder when dropped into a list tile.
+  [smcmahon]
+
 - str() of form field value containing unicode characters causes UnicodeEncodeError.
   Updating to safe_unicode per smcmahon.
   [tsimkins]
@@ -16,7 +19,7 @@ Change History
   [davidjb]
 
 - Fixed issue that raise errors if gpg module is not found.
-  [keul] 
+  [keul]
 
 1.7.14 (2014-01-26)
 -------------------
