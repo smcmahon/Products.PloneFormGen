@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.15 (unreleased)
+1.7.15 (2014-07-25)
 -------------------
 
 - Add Travis CI testing for Plone 4.2 and 4.3.
