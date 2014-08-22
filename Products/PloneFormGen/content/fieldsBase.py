@@ -256,6 +256,14 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                     "modifiable by or exposed to the client."),
                 ),
             ),
+        StringField('placeholder',
+            searchable=0,
+            required=0,
+            widget=StringWidget(
+                label=_(u'label_placeholder', default=u'Placeholder'),
+                description=_(u'help_placeholder', default=u"A placeholder for text input fields."),
+            ),
+        ),
     ))
 
 
@@ -509,12 +517,26 @@ class BaseFormField(ATCTContent):
             raise AttributeError
         return super(BaseFormField, self).__bobo_traverse__(REQUEST, name)
 
+
     security.declareProtected(ModifyPortalContent, 'setDescription')
     def setDescription(self, value, **kw):
         """ set description for field widget """
 
         self.fgField.widget.description = value
         self.getField('description').set(self, value, **kw)
+
+
+    security.declareProtected(ModifyPortalContent, 'setPlaceholder')
+    def setPlaceholder(self, value, **kw):
+        """ set placeholder for field widget """
+
+        self.fgField.widget.placeholder = value
+
+
+    security.declareProtected(View, 'getPlaceholder')
+    def getPlaceholder(self, **kw):
+        """ get placeholder for field widget """
+        return getattr(self.fgField.widget, 'placeholder', None)
 
 
     security.declareProtected(ModifyPortalContent, 'setRequired')
