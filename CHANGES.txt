@@ -1,8 +1,11 @@
 Change History
 ==============
 
-1.7.16 (unreleased)
+1.7.16 (2014-09-24)
 -------------------
+
+- Mailer adapter looks for data grid fields that contain new File
+  columns and includes those files as attachments [tkimnguyen]
 
 - Add/fix trove classifiers.
   [smcmahon]

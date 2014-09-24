@@ -700,15 +700,31 @@ class FormMailerAdapter(FormActionAdapter):
         attachments = []
 
         for field in fields:
-            if field.isFileField() and (getattr(self, 'showAll', True) \
+            if (field.isFileField() or field.Type() == 'DataGrid Field') \
+                and (getattr(self, 'showAll', True) \
                 or field.fgField.getName() in getattr(self, 'showFields', ())):
-                file = request.form.get('%s_file' % field.__name__, None)
-                if file and isinstance(file, FileUpload) and file.filename != '':
-                    file.seek(0)  # rewind
-                    data = file.read()
-                    filename = file.filename
-                    mimetype, enc = guess_content_type(filename, data, None)
-                    attachments.append((filename, mimetype, enc, data))
+                if field.Type() == 'DataGrid Field':
+                    # check if it contains any File columns
+                    for c in field.columnDefs:
+                        if c['columnType'] == 'File':
+                            for row in request.form.get('%s' % field.__name__, None):
+                                if row['orderindex_'] != 'template_row_marker':
+                                    file = row[c['columnId']]
+                                    if file and isinstance(file, FileUpload) \
+                                       and file.filename != '':
+                                        file.seek(0)  # rewind
+                                        data = file.read()
+                                        filename = file.filename
+                                        mimetype, enc = guess_content_type(filename, data, None)
+                                        attachments.append((filename, mimetype, enc, data))
+                else:
+                    file = request.form.get('%s_file' % field.__name__, None)
+                    if file and isinstance(file, FileUpload) and file.filename != '':
+                        file.seek(0)  # rewind
+                        data = file.read()
+                        filename = file.filename
+                        mimetype, enc = guess_content_type(filename, data, None)
+                        attachments.append((filename, mimetype, enc, data))
         return attachments
 
     security.declarePrivate('get_mail_body')
