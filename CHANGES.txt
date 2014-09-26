@@ -5,7 +5,7 @@ Change History
 -------------------
 
 - Add support for the placeholder attribute for input fields.
-  Requires Plone >= 4.2, or an update of Archetypes.
+  Requires Plone >= 4.2, or Archetypes >= 1.7.14.
   [thet]
 
 - Mailer adapter looks for data grid fields that contain new File
