@@ -4,6 +4,9 @@ Change History
 1.7.16 (unreleased)
 -------------------
 
+- Add support for the placeholder attribute for input fields.
+  [thet]
+
 - Add/fix trove classifiers.
   [smcmahon]
 
