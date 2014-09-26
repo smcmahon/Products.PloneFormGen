@@ -5,7 +5,11 @@ Change History
 -------------------
 
 - Add support for the placeholder attribute for input fields.
+  Requires Plone >= 4.2, or an update of Archetypes.
   [thet]
+
+- Mailer adapter looks for data grid fields that contain new File
+  columns and includes those files as attachments [tkimnguyen]
 
 - Add/fix trove classifiers.
   [smcmahon]
