@@ -5,7 +5,12 @@ env:
   - PLONE_VERSION=4.3
   - PLONE_VERSION=5.0
 matrix:
+  include:
+    - python: 2.6
+      env: PLONE_VERSION=4.1
   allow_failures:
+    - python: 2.6
+      env: PLONE_VERSION=4.1
     - env: PLONE_VERSION=5.0
   fast_finish: true
 install:
