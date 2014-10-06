@@ -24,7 +24,7 @@ setup(name='Products.PloneFormGen',
           'Programming Language :: Python',
           'Programming Language :: Python :: 2.6',
           'Programming Language :: Python :: 2.7',
-          ],
+      ],
       keywords='Plone PloneFormGen',
       author='Steve McMahon',
       author_email='steve@dcn.org',
@@ -45,9 +45,14 @@ setup(name='Products.PloneFormGen',
           'collective.js.jqueryui',
       ],
       extras_require={
-          'test': ['Products.PloneTestCase'],
+          'test': [
+              'Products.PloneTestCase',
+              # needed in Plone 5.0
+              'plone.app.testing',
+              'plone.testing',
+          ],
           'loadtest': ['collective.funkload'],
-          },
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
