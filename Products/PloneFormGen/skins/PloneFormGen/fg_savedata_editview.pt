@@ -35,7 +35,7 @@
                             <input type="text"
                                    size="60"
                                    tal:attributes="name  string:data.item-$index:record;
-                                                   value python: data[index];
+                                                   value python: ((len(data) > index) and data[index]) or '';
                                                   "
                             />
                         </td>
