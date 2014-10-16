@@ -356,11 +356,12 @@ class FormSaveDataAdapter(FormActionAdapter):
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnNames')
-    def getColumnNames(self):
+    def getColumnNames(self, excludeServerSide=True):
         # """Returns a list of column names"""
 
         showFields = getattr(self, 'showFields', [])
-        names = [field.getName() for field in self.fgFields(displayOnly=True)
+        names = [field.getName() for field
+                 in self.fgFields(displayOnly=True, excludeServerSide=excludeServerSide)
                  if not showFields or field.getName() in showFields]
         for f in self.ExtraData:
             names.append(f)
@@ -369,10 +370,11 @@ class FormSaveDataAdapter(FormActionAdapter):
 
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'getColumnTitles')
-    def getColumnTitles(self):
+    def getColumnTitles(self, excludeServerSide=True):
         # """Returns a list of column titles"""
 
-        names = [field.widget.label for field in self.fgFields(displayOnly=True)]
+        names = [field.widget.label for field
+                 in self.fgFields(displayOnly=True, excludeServerSide=excludeServerSide)]
         for f in self.ExtraData:
             names.append(self.vocabExtraDataDL().getValue(f, ''))
 
@@ -398,7 +400,7 @@ class FormSaveDataAdapter(FormActionAdapter):
         RESPONSE.setHeader("Content-Type", 'text/tab-separated-values;charset=%s' % self.getCharset())
 
         if getattr(self, 'UseColumnNames', False):
-            res = "%s\n" % '\t'.join(self.getColumnNames())
+            res = "%s\n" % '\t'.join(self.getColumnNames(excludeServerSide=False))
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
@@ -424,7 +426,7 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         if getattr(self, 'UseColumnNames', False):
             delimiter = self.csvDelimiter()
-            res = "%s\n" % delimiter.join(self.getColumnNames())
+            res = "%s\n" % delimiter.join(self.getColumnNames(excludeServerSide=False))
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:

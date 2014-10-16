@@ -1,4 +1,10 @@
-Product home is http://plone.org/products/ploneformgen .
+Introduction
+============
+
+This package provides a generic Plone form generator.
+Use it to build simple, one-of-a-kind, web forms that save or mail form input.
+
+Repository for this add on is at https://github.com/smcmahon/Products.PloneFormGen.
 A documentation area is at http://developer.plone.org/reference_manuals/active/ploneformgen/
 and an issue tracker at https://github.com/smcmahon/Products.PloneFormGen/issues
 
@@ -6,6 +12,11 @@ Please use the Plone users' mailing list or the #plone irc channel for
 support requests. If you are unable to get your questions answered
 there, or are interested in helping develop the product, contact Steve
 McMahon: steve@dcn.org.
+
+.. image:: https://travis-ci.org/smcmahon/Products.PloneFormGen.svg?branch=master
+    :alt: Travis CI badge; if you break it, you fix it.
+    :target: https://travis-ci.org/smcmahon/Products.PloneFormGen
+
 
 1.7 Notes
 =========
@@ -16,11 +27,18 @@ will be a better choice.
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
 
+jQuery UI
+---------
+
+PloneFormGen depends on collective.js.jqueryui. Depending on the version
+of Plone you're on, you'll have to install a different version of
+collective.js.jqueryui. Please refer to collective.js.jqueryui documentation
+for more information: https://pypi.python.org/pypi/collective.js.jqueryui/1.10.3
 
 Overview
 ========
 
-This product provides a generic Plone form generator using fields,
+PloneFormGen is a generic Plone form generator using fields,
 widgets and validators from Archetypes. Use it to build simple,
 one-of-a-kind, web forms that save or mail form input.
 
@@ -55,9 +73,6 @@ See README_CAPTCHA.txt for details.
 
 Installation
 ============
-
-Buildout
---------
 
 *   Just add ``Products.PloneFormGen`` to the eggs section of your buildout
     configuration and run buildout.

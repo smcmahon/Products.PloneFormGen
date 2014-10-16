@@ -1,26 +1,29 @@
 from setuptools import setup, find_packages
-import os
 
-version = open(os.path.join("Products", "PloneFormGen", "version.txt")).read().strip()
+version = '1.7.17.dev0'
 
 setup(name='Products.PloneFormGen',
       version=version,
       description="A through-the-web form generator for Plone",
       long_description=(
-          open(os.path.join("Products", "PloneFormGen", "README.txt")).read()
+          open("README.rst").read()
           + "\n\n" +
           # CHANGES.txt has lots of UTF8, which PyPI won't accept
-          open(os.path.join("Products", "PloneFormGen", "CHANGES.txt")).read().decode('UTF8').encode('ASCII', 'replace')),
-      # Get more strings from
-      # http://pypi.python.org/pypi?%3Aaction=list_classifiers
+          open("CHANGES.txt").read().decode('UTF8').encode('ASCII', 'replace')),
       classifiers=[
-          "Programming Language :: Python",
+          "Development Status :: 6 - Mature",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Framework :: Zope2",
           "Framework :: Plone",
           "Framework :: Plone :: 4.1",
           "Framework :: Plone :: 4.2",
           "Framework :: Plone :: 4.3",
+          'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+          'Operating System :: OS Independent',
+          'Programming Language :: JavaScript',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
           ],
       keywords='Plone PloneFormGen',
       author='Steve McMahon',
@@ -33,7 +36,7 @@ setup(name='Products.PloneFormGen',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.Archetypes',
+          'Products.Archetypes>=1.7.14',  # placeholder support
           'Products.CMFPlone',
           'Products.TALESField>=1.1.3',
           'Products.TemplateFields>=1.2.4',
@@ -42,7 +45,8 @@ setup(name='Products.PloneFormGen',
           'collective.js.jqueryui',
       ],
       extras_require={
-          'test': ['collective.funkload'],
+          'test': ['Products.PloneTestCase'],
+          'loadtest': ['collective.funkload'],
           },
       entry_points="""
       # -*- Entry points: -*-

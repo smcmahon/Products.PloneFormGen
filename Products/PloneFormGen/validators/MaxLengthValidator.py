@@ -4,6 +4,7 @@ from Products.validation import validation
 
 from Products.CMFPlone.utils import safe_hasattr
 
+
 class MaxLengthValidator:
     """ Validates whether or not a value's length is at or under
         maxlength. maxlength may come from initialization,
@@ -22,13 +23,11 @@ class MaxLengthValidator:
 
     def __call__(self, value, *args, **kwargs):
 
-        #import pdb; pdb.set_trace()
-
         field = kwargs.get('field', None)
         widget = getattr(field, 'widget', None)
 
         # get maxlength
-        if kwargs.has_key('maxlength'):
+        if 'maxlength' in kwargs:
             maxlength = kwargs.get('maxlength')
         elif safe_hasattr(widget, 'maxlength'):
             maxlength = int(widget.maxlength or 0)
@@ -39,12 +38,12 @@ class MaxLengthValidator:
         if maxlength == 0:
             return 1
 
-        nval = len(value)
+        nval = len(value.replace('\r\n', '\n'))
 
         if nval <= maxlength:
             return 1
         else:
             return ("Validation failed(%(name)s): '%(value)s' is too long. Must be no longer than %(max)s characters." %
-                    { 'name' : self.name, 'value': getattr(widget, 'label', 'Entry'), 'max' : maxlength,})
+                    {'name': self.name, 'value': getattr(widget, 'label', 'Entry'), 'max': maxlength})
 
 validation.register(MaxLengthValidator('isNotTooLong'))

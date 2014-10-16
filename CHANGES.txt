@@ -1,11 +1,85 @@
 Change History
 ==============
 
-1.7.13 (unreleased)
+1.7.17 (unreleased)
 -------------------
+
+- Nothing changed yet.
+
+
+1.7.16 (2014-09-26)
+-------------------
+
+- Add support for the placeholder attribute for input fields.
+  Requires Plone >= 4.2, or Archetypes >= 1.7.14.
+  [thet]
+
+- Mailer adapter looks for data grid fields that contain new File
+  columns and includes those files as attachments [tkimnguyen]
+
+- Add/fix trove classifiers.
+  [smcmahon]
+
+
+1.7.15 (2014-07-25)
+-------------------
+
+- Add Travis CI testing for Plone 4.2 and 4.3.
+  [smcmahon]
+
+- Tell collective.cover that we act like a folder when dropped into a list tile.
+  [smcmahon]
+
+- str() of form field value containing unicode characters causes UnicodeEncodeError.
+  Updating to safe_unicode per smcmahon.
+  [tsimkins]
+
+- Update pt_BR translation
+  [ericof]
+
+- Fix column headings not being included for server-side only fields
+  in saved data downloads.
+  [davidjb]
+
+- Fixed issue that raise errors if gpg module is not found.
+  [keul]
+
+1.7.14 (2014-01-26)
+-------------------
+
+- Packaging fix.
+
+
+1.7.13 (2014-01-26)
+-------------------
+
+- Get TinyMCE working on rich text popup editing in quickeditor.
+  [smcmahon]
+
+- Move most text files into package root. Eliminate version.txt. The
+  old locations were old Zope artifacts.
+  [smcmahon]
 
 - Fixed type definition for FieldsetStart type
   [naro]
+
+- Handle unicode in gpg encrypt. Thanks, davidblewett.
+  [smcmahon]
+
+- Don't show blockquote tag on thankspage if there are no fields for it.
+  Thanks, spereverde.
+  [smcmahon]
+
+- Fix #82, "missing attribute REQUEST on copy & paste of a site containing a PFG form".
+  Thanks, tkimnguyen.
+  [smcmahon]
+
+- Correct maxtextlength to avoid double counting of newlines. Thanks, mjfinney.
+  [smcmahon]
+
+- Import folder for fieldsets from ATContentTypes rather than plone.app.folder
+  for LinguaPlone compatability. Thanks, Tom Gross.
+  [smcmahon]
 
 - Depend on Products.CMFPlone instead of Plone.
   [maurits]

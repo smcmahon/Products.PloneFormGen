@@ -1,1 +1,1 @@
-Please see ./Products/PloneFormGen/README.txt
+README.rst

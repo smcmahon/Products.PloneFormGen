@@ -171,13 +171,25 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = self.fakeRequest(topic = 'test subject')
         self.assertEqual( self.ff1['topic'].htmlValue(request), 'test subject')
 
+        # check utf-8 encoded
+        request = self.fakeRequest(topic = 'test \xc3\x91 subject')
+        self.assertEqual( self.ff1['topic'].htmlValue(request), 'test \xc3\x91 subject')
+
+        # check unicode
+        request = self.fakeRequest(topic = u'test \xd1 subject')
+        self.assertEqual( self.ff1['topic'].htmlValue(request), 'test \xc3\x91 subject')
+
         # test html escaping
         request = self.fakeRequest(topic = 'test < & > subject')
         self.assertEqual( self.ff1['topic'].htmlValue(request), 'test &lt; &amp; &gt; subject')
 
         # test list cleanup
-        request = self.fakeRequest(topic = ['one',])
+        request = self.fakeRequest(topic = ['one'])
         self.assertEqual( self.ff1['topic'].htmlValue(request), "'one'")
+
+        # test list cleanup with mixed values
+        request = self.fakeRequest(topic = ['test \xc3\x91 subject', u'test \xd1 subject', 1])
+        self.assertEqual( self.ff1['topic'].htmlValue(request), "'test \\xc3\\x91 subject', 'test \\xc3\\x91 subject', 1")
 
         # test non-list non-cleanup
         request = self.fakeRequest(topic = "['one',]")

@@ -9,7 +9,7 @@
     tal:attributes="src string:${here/portal_url}/jscalendar/calendar-en.js">
 </script>
 <link rel="stylesheet" type="text/css" media="all" tal:attributes="href string:${here/portal_url}/jscalendar/calendar-system.css" />
-<dl class="portlet" i18n:domain="">
+<dl class="portlet pfgportlet" i18n:domain="" tal:attributes="id string:portletid-${view/portletid}">
     <dt class="portletHeader">
         <span class="portletTopLeft"></span>
         <span tal:content="view/title">
