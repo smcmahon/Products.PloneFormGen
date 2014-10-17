@@ -4,7 +4,9 @@ Change History
 1.7.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- If the form is displayed in embedded mode, display thank you page
+  in embedded mode as well.
+  [naro]
 
 
 1.7.16 (2014-09-26)
