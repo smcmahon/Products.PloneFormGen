@@ -1,3 +1,6 @@
+<tal:block tal:define="portal_state context/plone_portal_state">
+<link rel="stylesheet" type="text/css" media="all"
+      tal:attributes="href string:${portal_state/portal_url}/embedded-thankspage.css"/>
 <metal:main tal:define="view context/@@plone_context_state"
     define-macro="main">
 
@@ -42,3 +45,4 @@
     <div tal:replace="structure provider:plone.belowcontentbody" />
 
 </metal:main>
+</tal:block>
