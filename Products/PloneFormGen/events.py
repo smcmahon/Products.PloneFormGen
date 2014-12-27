@@ -1,10 +1,10 @@
+# -*- coding: UTF-8 -*-
 from Acquisition import aq_parent, aq_inner
+from Products.ATContentTypes.interfaces import IFactoryTool
+from Products.PloneFormGen import interfaces
 from zope.component import adapter
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 from zope.lifecycleevent.interfaces import IObjectMovedEvent
-from Products.CMFPlone.interfaces import IFactoryTool
-
-from Products.PloneFormGen import interfaces
 
 
 @adapter(interfaces.IPloneFormGenActionAdapter, IObjectAddedEvent)
