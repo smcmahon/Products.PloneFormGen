@@ -6,13 +6,14 @@
                    default_fieldset string:default;
                    fieldset default_fieldset;
                    fields python:here.fgFields(request);
+                   addable_fields view/addableFields;
                    portal_type python:here.getPortalTypeName().lower().replace(' ', '_');
                    base_macros here/fg_edit_macros_p3/macros;
                    header_macro base_macros/header;
                    typedescription_macro base_macros/typedescription;
                    footer_macro base_macros/footer;
-                   css python:here.getUniqueWidgetAttr(fields, 'helper_css');
-                   js python:here.getUniqueWidgetAttr(fields, 'helper_js');
+                   css python:here.getUniqueWidgetAttr(addable_fields, 'helper_css');
+                   js python:here.getUniqueWidgetAttr(addable_fields, 'helper_js');
                    portal portal | context/@@plone_portal_state/portal;
                    disable_column_one python:request.set('disable_plone.leftcolumn',1);
                    disable_column_two python:request.set('disable_plone.rightcolumn',1);

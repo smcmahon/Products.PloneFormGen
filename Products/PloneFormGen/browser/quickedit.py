@@ -6,6 +6,7 @@ from Products.Five import BrowserView
 from plone.memoize.view import memoize
 
 from plone.app.layout.globals.interfaces import IViewView
+from Products.CMFCore.utils import getToolByName
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from Products.PloneFormGen import HAVE_43
 
@@ -38,6 +39,15 @@ class QuickEditView(BrowserView):
                     'description': t.Description()
                 })
         return results
+
+    def addableFields(self):
+        results = set()
+        at_tool = getToolByName(self.context, 'archetype_tool')
+        for t in self.context.allowedContentTypes():
+            if t.product == 'PloneFormGen':
+                type_spec = at_tool.lookupType(t.product, t.content_meta_type)
+                results |= set(type_spec['schema'].fields())
+        return list(results)
 
     def addablePrioritizedFields(self):
         """Return a prioritized list of the addable fields in context"""
