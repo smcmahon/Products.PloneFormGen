@@ -4,7 +4,7 @@ Change History
 1.7.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- fixed loading of widget javascripts in quickedit (#95) [reinhardt]
 
 
 1.7.16 (2014-09-26)
