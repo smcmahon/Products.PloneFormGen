@@ -5,6 +5,7 @@ Change History
 -------------------
 
 - fixed loading of widget javascripts in quickedit (#95) [reinhardt]
+- left placeholder only for fields where it makes sense [montypie]
 
 
 1.7.16 (2014-09-26)
