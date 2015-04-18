@@ -1,8 +1,3 @@
-import os, sys
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from Products.PloneFormGen.tests import pfgtc
 
 import transaction
@@ -37,8 +32,8 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
             form[key] = kwargs[key]
         return self.app.REQUEST
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
         self.ff1.checkAuthenticator = False # no csrf protection
@@ -141,10 +136,3 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
 
         # clean up
         transaction.commit = real_transaction_commit
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestEmbedding))
-    return suite

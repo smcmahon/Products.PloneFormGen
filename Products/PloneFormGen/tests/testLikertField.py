@@ -1,17 +1,10 @@
 #
 # Likert Field related tests
 #
-
-import os, sys, email
-
 from ZPublisher.HTTPRequest import record
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen.tests import pfgtc
 
-from Products.CMFCore.utils import getToolByName
 
 class FakeRequest(dict):
 
@@ -24,10 +17,10 @@ class TestLikertField(pfgtc.PloneFormGenTestCase):
         so we don't bother with it here.
     """
 
-    def afterSetUp(self):
+    def setUp(self):
         # build a form folder, add a Likert Field and
         # a saver.
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+        pfgtc.PloneFormGenTestCase.setUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
         self.ff1.invokeFactory('FormLikertField', 'lf')
@@ -78,14 +71,3 @@ class TestLikertField(pfgtc.PloneFormGenTestCase):
         request = FakeRequest(topic = 'test subject', replyto='test@test.org',
                               comments='test comments', lf=rating_req_val)
         self.failUnless("1: 2, 2: 3" in self.ff1.lf.htmlValue(request))
-
-
-
-if  __name__ == '__main__':
-    framework()
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestLikertField))
-    return suite

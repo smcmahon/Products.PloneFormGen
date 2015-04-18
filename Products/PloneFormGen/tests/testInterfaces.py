@@ -1,11 +1,6 @@
 #
 # Integration tests for interaction with GenericSetup infrastructure
 #
-
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from zope.interface.verify import verifyObject, verifyClass
 from zope.component import getMultiAdapter
 
@@ -19,8 +14,8 @@ class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
     """ Some boilerplate-ish tests to confirm that that classes
         and instances confirm to the interface contracts intended.
     """
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
 
         # add form folder for use in tests
         self.folder.invokeFactory('FormFolder', 'ff1')
@@ -40,13 +35,3 @@ class TestFormGenInterfaces(pfgtc.PloneFormGenTestCase):
     def testContentClassInterfaces(self):
         self.failUnless(interfaces.IPloneFormGenFieldset.implementedBy(content.fieldset.FieldsetFolder))
         self.failUnless(verifyClass(interfaces.IPloneFormGenFieldset, content.fieldset.FieldsetFolder))
-
-
-if  __name__ == '__main__':
-    framework()
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestFormGenInterfaces))
-    return suite
