@@ -1,7 +1,20 @@
 <metal:block use-macro="here/global_defines/macros/defines" />
 <div class="pfg-embedded">
     <tal:block tal:condition="python:request.other.get('pfg_form_submitted', False)">
-        <tal:block metal:use-macro="context/global_statusmessage/macros/portal_message"/>
+
+    <tal:statusmsg tal:define="messages request/messages|python:[]"
+                   tal:repeat="message messages">
+        <div tal:define="mtype message/type | nothing;"
+             tal:attributes="class string:portalMessage ${mtype};">
+            <strong
+                i18n:translate="" tal:content="python:mtype.capitalize()">Info</strong>
+            <span class="content"
+                  tal:replace="message/message | nothing" i18n:translate="">
+                The status message.
+            </span>
+        </div>
+    </tal:statusmsg>
+
     </tal:block>
     <tal:block
         tal:define="errors options/state/getErrors | nothing;

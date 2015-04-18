@@ -8,12 +8,6 @@
 __author__  = 'Mikko Ohtamaa <mikko@redinnovation.com>'
 __docformat__ = 'plaintext'
 
-import os, sys
-
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 try:
     from App.class_init import InitializeClass
 except ImportError:
@@ -142,8 +136,8 @@ InitializeClass(SecureFakeRequest)
 class TestCustomScript(pfgtc.PloneFormGenTestCase):
     """ Test FormCustomScriptAdapter functionality in PloneFormGen """
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
 
         self.loginAsPortalOwner()
 
@@ -374,15 +368,3 @@ class TestCustomScript(pfgtc.PloneFormGenTestCase):
 #        req = FakeRequest(test_field="123")
 #        reply = adapter.onSuccess([], req)
 #        assert reply == "foo", "Script returned:" + str(reply)
-
-
-if  __name__ == '__main__':
-    framework()
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    from Products.PloneTestCase.layer import ZCMLLayer
-    suite = TestSuite()
-    suite.layer = ZCMLLayer
-    suite.addTest(makeSuite(TestCustomScript))
-    return suite

@@ -1,78 +1,56 @@
 #
 # Integration tests for interaction with GenericSetup infrastructure
 #
-
-import os, sys
+import os
 import re
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from tarfile import TarFile
 from ZPublisher.HTTPRequest import FileUpload
 from cgi import FieldStorage
 
-from transaction import commit
 from StringIO import StringIO
 
 from zope.component import getMultiAdapter
-
-from Products.Five import zcml
-from Products.Five import fiveconfigure
 
 from Products.GenericSetup.tests.common import DummyExportContext
 from Products.GenericSetup.tests.common import TarballTester
 
 from Products.PloneFormGen.tests import pfgtc
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing.bbb import PTC_FIXTURE
+from plone.testing import z2
 
-from Testing import ZopeTestCase
-from Products.PloneTestCase.layer import PloneSite
+import Products.PloneFormGen
 
-zcml_string = """\
-<configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:gs="http://namespaces.zope.org/genericsetup"
-           package="Products.PloneFormGen">
 
-    <gs:registerProfile
-        name="testing"
-        title="PloneFormGen testing"
-        description="Used for testing only"
-        directory="tests/profiles/testing"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+class TestFormGenGSLayer(PloneSandboxLayer):
 
-</configure>
-"""
+    defaultBases = (PTC_FIXTURE,)
 
-class TestFormGenGSLayer(PloneSite):
-    @classmethod
-    def setUp(cls):
-        fiveconfigure.debug_mode = True
-        zcml.load_string(zcml_string)
-        fiveconfigure.debug_mode = False
+    def setUpZope(self, app, configurationContext):
+        self.loadZCML(package=Products.PloneFormGen)
+        self.loadZCML(name="testExportImport.zcml",
+                      package=Products.PloneFormGen.tests)
+        z2.installProduct(app, 'Products.PloneFormGen')
 
-        app = ZopeTestCase.app()
-        portal = app.plone
+    def setUpPloneSite(self, portal):
+        # Install into Plone site using portal_setup
+        self.applyProfile(portal, 'Products.PloneFormGen:default')
+        self.applyProfile(portal, 'Products.PloneFormGen:testing')
 
-        # elevate permissions
-        from AccessControl.SecurityManagement import newSecurityManager, noSecurityManager
-        user = portal.getWrappedOwner()
-        newSecurityManager(None, user)
 
-        portal_setup = portal.portal_setup
+GS_FIXTURE = TestFormGenGSLayer()
 
-        portal_setup.runAllImportStepsFromProfile('profile-Products.PloneFormGen:testing')
+GS_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(GS_FIXTURE,),
+    name='Products.PloneFormGen:Integration',
+)
 
-        # drop elevated perms
-        noSecurityManager()
-
-        commit()
-        ZopeTestCase.close(app)
 
 class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
     """Base class for integration test suite for export/import """
 
-    layer = TestFormGenGSLayer
+    layer = GS_INTEGRATION_TESTING
 
     def _makeForm(self):
         self.folder.invokeFactory('FormFolder', 'ff1')
@@ -383,11 +361,3 @@ class TestFormImport(ExportImportTester):
         import_form.update()
         self._verifyProfileForm(self.ff1)
         self._verifyFormStockFields(self.ff1, purge=True)
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestFormExport))
-    suite.addTest(makeSuite(TestFormImport))
-    return suite
