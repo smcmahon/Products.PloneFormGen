@@ -17,6 +17,7 @@ from Products.GenericSetup.tests.common import TarballTester
 from Products.PloneFormGen.tests import pfgtc
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import TEST_USER_ID
 from plone.app.testing.bbb import PTC_FIXTURE
 from plone.testing import z2
 
@@ -51,6 +52,12 @@ class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
     """Base class for integration test suite for export/import """
 
     layer = GS_INTEGRATION_TESTING
+
+    def setUp(self):
+        super(ExportImportTester, self).setUp()
+        # This folder is created by the importer
+        self.folder = self.portal.Members.test_user_1_
+        self.folder.manage_setLocalRoles(TEST_USER_ID, ["Owner"])
 
     def _makeForm(self):
         self.folder.invokeFactory('FormFolder', 'ff1')

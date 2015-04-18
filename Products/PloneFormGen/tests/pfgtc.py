@@ -1,12 +1,13 @@
 
 import email
-import unittest
 
 # Import the base test case classes
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing.bbb import PTC_FIXTURE, PloneTestCase
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import setRoles
 from plone.testing import z2
 
 import Products.PloneFormGen
@@ -73,3 +74,8 @@ class PloneFormGenTestCase(PloneTestCase):
         Products.PloneFormGen.config.PLONE_25_PUBLISHER_MONKEYPATCH = True
         self.request.set('SESSION', Session())
         super(PloneFormGenTestCase, self).setUp()
+        if getattr(self, 'folder', None) is None:
+            setRoles(self.portal, TEST_USER_ID, ['Manager'])
+            self.portal.invokeFactory('Folder', 'test-folder')
+            setRoles(self.portal, TEST_USER_ID, ['Member'])
+            self.folder = self.portal['test-folder']
