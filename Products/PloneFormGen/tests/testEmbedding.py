@@ -1,8 +1,3 @@
-import os, sys
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from Products.PloneFormGen.tests import pfgtc
 
 import transaction
@@ -37,8 +32,8 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
             form[key] = kwargs[key]
         return self.app.REQUEST
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
         self.ff1.checkAuthenticator = False # no csrf protection
@@ -128,7 +123,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.assertRaises(Retry, view)
 
         self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
-            '/plone/Members/test_user_1_/ff1/thank-you')
+            '/'.join(self.folder.getPhysicalPath()) + '/ff1/thank-you')
 
         # make sure the transaction was committed
         self.failUnless(committed)
@@ -137,14 +132,9 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.app.REQUEST._orig_env['PATH_TRANSLATED'] = '/VirtualHostBase/http/nohost:80/VirtualHostRoot'
         self.assertRaises(Retry, view)
         self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
-            '/VirtualHostBase/http/nohost:80/VirtualHostRoot/plone/Members/test_user_1_/ff1/thank-you')
+            '/VirtualHostBase/http/nohost:80/VirtualHostRoot' +
+            '/'.join(self.folder.getPhysicalPath()) +
+            '/ff1/thank-you')
 
         # clean up
         transaction.commit = real_transaction_commit
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestEmbedding))
-    return suite

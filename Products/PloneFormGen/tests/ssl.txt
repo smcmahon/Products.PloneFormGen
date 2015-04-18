@@ -3,12 +3,36 @@
 
 First let's get our test browser and make sure that it won't re-raise Redirect errors::
 
-    >>> browser = self.browser
-    >>> self.setStatusCode('Redirect', 200)
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> from Products.PloneFormGen.tests.pfgtc import MailHostMock
+    >>> portal.MailHost = MailHostMock()
+    >>> portal_url = portal.portal_url()
+    >>> request = layer['request']
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> from ZPublisher import HTTPResponse
+    >>> HTTPResponse.status_codes['redirect'] = 200
+
+Login to the portal:
+
+    >>> from plone.app.testing import setRoles
+    >>> from plone.app.testing import login
+    >>> from plone.app.testing import TEST_USER_NAME
+    >>> from plone.app.testing import TEST_USER_PASSWORD
+    >>> from plone.app.testing import TEST_USER_ID
+    >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+    >>> login(portal, TEST_USER_NAME)
+    >>> import transaction
+    >>> transaction.commit()
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = TEST_USER_NAME
+    >>> browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
+    >>> browser.getControl(name='submit').click()
 
 Set up a form with the 'force SSL' setting on::
 
-    >>> browser.open(self.portal_url)
+    >>> browser.open(portal_url)
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
     
@@ -17,7 +41,7 @@ Set up a form with the 'force SSL' setting on::
     >>> browser.getControl('Save').click()
     >>> browser.url
     '.../testform/...'
-    >>> 'Bobo-Exception-Type' in self.browser.headers
+    >>> 'Bobo-Exception-Type' in browser.headers
     False
 
 Note that we didn't get forced to SSL immediately after creating the form.  (Which
@@ -34,9 +58,8 @@ Finally, let's use a new browser that isn't authenticated, and confirm that for 
 who doesn't have permission to edit the form, SSL will be forced on initial form load as
 well (so the user sees a security icon in their browser.) ::
 
-    >>> from Products.Five.testbrowser import Browser
-    >>> browser = Browser()
-    >>> browser.open(self.portal_url + '/testform')
+    >>> browser = Browser(app)
+    >>> browser.open(portal_url + '/testform')
     >>> browser.headers['Bobo-Exception-Type'] in ('Redirect', "<class 'zExceptions.Redirect'>")
     True
     

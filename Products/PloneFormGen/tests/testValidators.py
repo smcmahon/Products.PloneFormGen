@@ -2,10 +2,6 @@
 # Test PloneFormGen initialisation and set-up
 #
 
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from Products.PloneFormGen.tests import pfgtc
 
 from Products.PloneFormGen.content import validationMessages
@@ -126,14 +122,3 @@ class TestCustomValidatorMessages(pfgtc.PloneFormGenTestCase):
         self.failUnlessEqual( v.validate('pfgv_isZipCode', 'T2X 1V4'), 1)
         self.failUnlessEqual( v.validate('pfgv_isZipCode', 'T2X1V4'), 1)
         self.failUnlessEqual( v.validate('pfgv_isZipCode', 't2x 1v4'), 1)
-
-
-if  __name__ == '__main__':
-    framework()
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestCustomValidators))
-    suite.addTest(makeSuite(TestCustomValidatorMessages))
-    return suite
