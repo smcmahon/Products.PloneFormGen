@@ -540,6 +540,7 @@ jQuery(function ($) {
 							$.each($(formParent).serializeArray(), function (i, field) {
 								values[field.name] = field.value;
 							});
+							debugger;
 							$.ajax({
 								type: "POST",
 								url: formAction,
