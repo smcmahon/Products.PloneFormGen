@@ -286,7 +286,7 @@ jQuery(function ($) {
 			node.setAttribute("type", "text");
 
 			// then we attach a new event to label fields
-			$("#pfg-qetable .qefield label.formQuestion").live('dblclick', function (e) {
+			$("#pfg-qetable .qefield label.formQuestion").off('dblclick').on('dblclick', function (e) {
 				var content, tmpfor, jqt;
 
 				jqt = $(this);
@@ -340,7 +340,7 @@ jQuery(function ($) {
 				}
 			});
 
-			$("span.not-required").live("click", function (event) {
+			$("span.not-required").off('click').on("click", function (event) {
 				var item, jqt;
 
 				jqt = $(this);
@@ -360,7 +360,7 @@ jQuery(function ($) {
 				jqt.attr("title", "Remove required flag?");
 			});
 
-			$("span.required").live("click", function (event) {
+			$("span.required").off('click').on("click", function (event) {
 				var item, jqt;
 
 				jqt = $(this);
@@ -406,11 +406,11 @@ jQuery(function ($) {
 		},
 
 		deinit: function () {
-			$("label.formQuestion").die(); // removes event handlers setup by .live
+			$("label.formQuestion").off(); // removes event handlers setup by .on
 			$(".more").remove();		// remove the item with bounded events to avoid conflict when "quick-edit mode" is called again
-			$("span.not-required").die();
+			$("span.not-required").off();
 			$("span.not-required").remove(); // we don't want blank square showed in the form
-			$("span.required").die(); // remove live() event listener
+			$("span.required").off(); // remove on() event listener
 			// hide all the error messages so far!
 			if ($("div.error").length > 0) {
 				$("div.error").hide();
@@ -455,7 +455,7 @@ jQuery(function ($) {
 						// AJAX stuff
 						item.children("div.widget-inside")
                         .load("createObject?type_name=" +
-                              ui.item.context.id + " #content > div:last",
+                              ui.item.context.id + "&_authenticator=" + getToken() + " #content > div:last",
                                function (response, status, xhr) {
 							var inputElem, formElem, msg, jqt;
 
@@ -527,7 +527,7 @@ jQuery(function ($) {
 						// current position in the table
 						currpos = $(".item_" + i).parent().index();
 
-						$("#pfg-qetable [name='form.button.save'], #pfgActionEdit [name='form.button.save']").live('click', function (e) {
+						$("#pfg-qetable [name='form.button.save'], #pfgActionEdit [name='form.button.save']").off('click').on('click', function (e) {
 							var button = $(this),
                                 formParent = $(this).closest('form'),
                                 formAction = formParent.attr('action'),
@@ -536,6 +536,7 @@ jQuery(function ($) {
 							$.each($(formParent).serializeArray(), function (i, field) {
 								values[field.name] = field.value;
 							});
+							debugger;
 							$.ajax({
 								type: "POST",
 								url: formAction,
@@ -577,7 +578,7 @@ jQuery(function ($) {
 							return false;
 						});
 
-						$("#pfg-qetable [name='form.button.cancel'], #pfgActionEdit [name='form.button.cancel']").live('click', function (e) {
+						$("#pfg-qetable [name='form.button.cancel'], #pfgActionEdit [name='form.button.cancel']").off('click').on('click', function (e) {
 							var widgetParent;
 
 							e.preventDefault();
@@ -665,7 +666,11 @@ jQuery(function ($) {
 				},
 				stop: function (e, ui) {
 					if (ui.item.hasClass('ui-draggable')) {
-						ui.item.draggable('destroy');
+						try{
+							ui.item.draggable('destroy');
+						}catch(e){
+
+						}
 					}
 					// AJAX action to remove the item from the form
 					if (ui.item.hasClass('deleting')) {
