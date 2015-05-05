@@ -5,7 +5,7 @@ This package provides a generic Plone form generator.
 Use it to build simple, one-of-a-kind, web forms that save or mail form input.
 
 Repository for this add on is at https://github.com/smcmahon/Products.PloneFormGen.
-A documentation area is at http://developer.plone.org/reference_manuals/active/ploneformgen/
+A documentation area is at http://docs.plone.org/working-with-content/managing-content/ploneformgen/
 and an issue tracker at https://github.com/smcmahon/Products.PloneFormGen/issues
 
 Please use the Plone users' mailing list or the #plone irc channel for
