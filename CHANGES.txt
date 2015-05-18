@@ -1,8 +1,11 @@
 Change History
 ==============
 
-1.7.17 (unreleased)
--------------------
+2.0.0 (unreleased)
+------------------
+
+- plone 5 fixes
+  [alecpm]
 
 - be able to install on Plone 5
   [vangheem]
