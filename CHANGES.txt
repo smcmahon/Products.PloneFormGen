@@ -4,6 +4,9 @@ Change History
 1.7.17 (unreleased)
 -------------------
 
+- be able to install on Plone 5
+  [vangheem]
+
 - fixed loading of widget javascripts in quickedit (#95) [reinhardt]
 
 
