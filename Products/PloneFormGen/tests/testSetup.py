@@ -154,8 +154,6 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             linkable = self.kupu.getPortalTypesForResourceType('linkable')
             self.failUnless('FormFolder' in linkable) # make sure we made it in ...
             self.failIf(len(linkable) <= 1) # without clobbering everything else
-        else:
-            print "Skipping kupu resource tests."
 
     def test_FormGenTool(self):
         self.failUnless( getToolByName(self.portal, 'formgen_tool'))
