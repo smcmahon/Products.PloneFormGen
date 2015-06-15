@@ -4,6 +4,8 @@ Change History
 1.7.17 (unreleased)
 -------------------
 
+- Change edit.gif to edit.png in quickedit.pt and fg_savedata [ableeb]
+
 - fixed loading of widget javascripts in quickedit (#95) [reinhardt]
 
 
