@@ -10,6 +10,7 @@ Change History
 - Change edit.gif to edit.png in quickedit.pt and fg_savedata [ableeb]
 
 - fixed loading of widget javascripts in quickedit (#95) [reinhardt]
+- left placeholder only for fields where it makes sense [montypie]
 
 - Fixed MaxLengthValidator when string is Unicode
   [gotcha]
