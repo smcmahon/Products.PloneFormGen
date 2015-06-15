@@ -8,6 +8,9 @@ Change History
 
 - fixed loading of widget javascripts in quickedit (#95) [reinhardt]
 
+- for save data adapter: handle the case in which the HTTP POST date time is added 
+  after some data had already been submitted [tkimnguyen]
+
 
 1.7.16 (2014-09-26)
 -------------------
