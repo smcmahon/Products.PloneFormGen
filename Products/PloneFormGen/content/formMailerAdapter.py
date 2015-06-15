@@ -871,7 +871,10 @@ class FormMailerAdapter(FormActionAdapter):
                 recip_email = self.recipient_email
         recip_email = self._destFormat(recip_email)
 
-        recip_name = self.recipient_name.encode('utf-8')
+        recip_name = self.recipient_name
+        if ',' in recip_name and '"' not in recip_name:
+            recip_name = '"%s"' % recip_name
+        recip_name = recip_name.encode('utf-8')
 
         # if no to_addr and no recip_email specified, use owner adress if possible.
         # if not, fall back to portal email_from_address.

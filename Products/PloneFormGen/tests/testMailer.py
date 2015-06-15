@@ -29,6 +29,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.ff1.checkAuthenticator = False # no csrf protection
         self.mailhost = self.folder.MailHost
         self.mailhost._send = self.dummy_send
+        self.ff1.mailer.setRecipient_name('Mail Dummy')
         self.ff1.mailer.setRecipient_email('mdummy@address.com')
 
 
@@ -47,7 +48,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( self.messageText.endswith('messageText') )
         self.assertEqual(self.mto, ['dummy@address.com'])
         self.failUnless( self.messageText.find('To: dummy@address.com') > 0 )
-        self.assertEqual(self.mfrom,'dummy1@address.com')
+        self.assertEqual(self.mfrom, 'dummy1@address.com')
         self.failUnless( self.messageText.find('From: dummy1@address.com') > 0 )
         # print "|%s" % self.messageText
 
@@ -63,7 +64,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         mailer.onSuccess(fields, request)
 
-        self.failUnless( self.messageText.find('To: <mdummy@address.com>') > 0 )
+        self.failUnless( self.messageText.find('To: Mail Dummy <mdummy@address.com>') > 0 )
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?test_subject?=') > 0 )
         msg = email.message_from_string(self.messageText)
         self.failUnless( msg.get_payload(decode=True).find('test comments') > 0 )
@@ -200,7 +201,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # print "|%s" % self.messageText
         self.failUnless( self.messageText.find('Subject: =?utf-8?q?eggs_and_spam?=') > 0 )
         self.failUnless( self.messageText.find('From: spam@eggs.com') > 0 )
-        self.failUnless( self.messageText.find('To: <eggs@spam.com>') > 0 )
+        self.failUnless( self.messageText.find('To: Mail Dummy <eggs@spam.com>') > 0 )
 
 
     def testMultiRecipientOverrideByString(self):
@@ -215,7 +216,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         mailer.onSuccess(fields, request)
 
-        self.failUnless( self.messageText.find('To: <eggs@spam.com>, <spam@spam.com>') > 0 )
+        self.failUnless( self.messageText.find('To: Mail Dummy <eggs@spam.com>, <spam@spam.com>') > 0 )
 
 
 
@@ -232,7 +233,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         mailer.onSuccess(fields, request)
 
         # print "|%s" % self.messageText
-        self.failUnless( self.messageText.find('To: <eggs@spam.com>, <spam.spam.com>') > 0 )
+        self.failUnless( self.messageText.find('To: Mail Dummy <eggs@spam.com>, <spam.spam.com>') > 0 )
 
 
 
@@ -249,14 +250,14 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         mailer.onSuccess(fields, request)
 
         # print "|%s" % self.messageText
-        self.failUnless( self.messageText.find('To: <eggs@spamandeggs.com>') > 0 )
+        self.failUnless( self.messageText.find('To: Mail Dummy <eggs@spamandeggs.com>') > 0 )
 
         request = self.LoadRequestForm(topic = 'test subject', selField = ['eggs@spam.com', 'spam@spam.com'])
 
         mailer.onSuccess(fields, request)
 
         # print "|%s" % self.messageText
-        self.failUnless( self.messageText.find('To: <eggs@spam.com>, <spam@spam.com>') > 0 )
+        self.failUnless( self.messageText.find('To: Mail Dummy <eggs@spam.com>, <spam@spam.com>') > 0 )
 
 
 

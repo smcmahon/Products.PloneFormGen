@@ -4,6 +4,10 @@ Change History
 1.7.17 (unreleased)
 -------------------
 
+- Check recipient name as well as address in mailing tests;
+  deal with commas in recipient name. Thanks, uschwarz.
+  [smcmahon]
+
 - Fix misleading test in exportimport.
   [smcmahon]
 
@@ -19,7 +23,7 @@ Change History
 - Fixed loading of widget javascripts in quickedit (#95)
   [reinhardt]
 
-- for save data adapter: handle the case in which the HTTP POST date time is added 
+- for save data adapter: handle the case in which the HTTP POST date time is added
   after some data had already been submitted [tkimnguyen]
 
 - If the form is displayed in embedded mode, display thank you page
