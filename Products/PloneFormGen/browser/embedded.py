@@ -102,3 +102,11 @@ class EmbeddedPFGView(BrowserView):
             del self.request.form['pfg_form_marker']
             del self.request.other['pfg_form_action']
             del self.request.other['pfg_form_submitted']
+
+
+class EmbeddedThanksPageView(BrowserView):
+
+    def __call__(self):
+        context = aq_inner(self.context)
+        res = context.fg_thankspage_embedded_view()
+        return res

@@ -1,0 +1,48 @@
+<tal:block tal:define="portal_state context/plone_portal_state">
+<link rel="stylesheet" type="text/css" media="all"
+      tal:attributes="href string:${portal_state/portal_url}/embedded-thankspage.css"/>
+<metal:main tal:define="view context/@@plone_context_state"
+    define-macro="main">
+
+    <div tal:condition="exists:request/form/fieldset" tal:omit-tag="">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 tal:content="view/object_title" class="documentFirstHeading">
+            Title or id
+        </h1>
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <p tal:replace="structure here/getThanksPrologue | nothing" />
+
+        <blockquote tal:define="fields python:here.displayInputs(request)"
+                    tal:condition="fields">
+            <dl>
+                <tal:block repeat="field fields">
+                    <dt tal:content="field/label" />
+                    <dd tal:content="structure field/value" />
+                </tal:block>
+            </dl>
+        </blockquote>
+
+        <p tal:replace="structure here/getThanksEpilogue | nothing" />
+
+    </div>
+
+    <div tal:condition="not: exists:request/form/fieldset" tal:replace="structure here/noSubmitMessage | nothing">
+      No input was received.
+    </div>
+
+    <div tal:replace="structure provider:plone.belowcontentbody" />
+
+</metal:main>
+</tal:block>
