@@ -37,8 +37,8 @@ class MaxLengthValidator:
 
         if maxlength == 0:
             return 1
-
-        nval = len(value.replace('\r\n', '\n'))
+        decoded = value.replace('\r\n', '\n').decode('utf8')
+        nval = len(decoded)
 
         if nval <= maxlength:
             return 1

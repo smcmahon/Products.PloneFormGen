@@ -4,9 +4,16 @@ Change History
 1.7.17 (unreleased)
 -------------------
 
+<<<<<<< HEAD
 - Change edit.gif to edit.png in quickedit.pt and fg_savedata [ableeb]
 
 - fixed loading of widget javascripts in quickedit (#95) [reinhardt]
+
+- Fixed MaxLengthValidator when string is Unicode
+  [gotcha]
+
+- Fixed loading of widget javascripts in quickedit (#95)
+  [reinhardt]
 
 - for save data adapter: handle the case in which the HTTP POST date time is added 
   after some data had already been submitted [tkimnguyen]
@@ -1476,7 +1483,7 @@ Change History
    exception if the user tries to injure themselves this way. (tracker
    #32, thanks, Rocky Burt)
 
- - Fixed a problem with the MaxLengthValdiator where sometimes an unset
+ - Fixed a problem with the MaxLengthValidator where sometimes an unset
    (by the user) widget.maxlength actually has an empty string as the
    value which would make the int(widget.maxlength) call fail (Rocky
    Burt).
