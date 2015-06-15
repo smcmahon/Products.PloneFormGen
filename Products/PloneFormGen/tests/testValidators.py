@@ -33,6 +33,7 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         self.failUnlessEqual(v('1234567890', maxlength=0), 1)
         self.failIfEqual(v('1234567890', maxlength=9), 1)
         self.failIfEqual(v('1234567890', maxlength=1), 1)
+        self.failUnlessEqual(v('cons\xc3\xa9quence', maxlength=11), 1)
 
     def test_isChecked(self):
         v = validation.validatorFor('isChecked')
