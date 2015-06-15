@@ -1,10 +1,12 @@
 Change History
 ==============
 
-1.7.18 (unreleased)
--------------------
+1.8.0 (unreleased)
+------------------
 
 - Nothing changed yet.
+
+- 1.8 will target Plone 5. Maintenance branch is 1.7-maintenance.
 
 
 1.7.17 (2015-06-15)

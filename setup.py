@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.7.18.dev0'
+version = '1.8.0.dev0'
 
 setup(name='Products.PloneFormGen',
       version=version,
@@ -15,14 +15,11 @@ setup(name='Products.PloneFormGen',
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Framework :: Zope2",
           "Framework :: Plone",
-          "Framework :: Plone :: 4.1",
-          "Framework :: Plone :: 4.2",
-          "Framework :: Plone :: 4.3",
+          "Framework :: Plone :: 5.0",
           'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
           'Operating System :: OS Independent',
           'Programming Language :: JavaScript',
           'Programming Language :: Python',
-          'Programming Language :: Python :: 2.6',
           'Programming Language :: Python :: 2.7',
       ],
       keywords='Plone PloneFormGen',
