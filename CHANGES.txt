@@ -11,6 +11,10 @@ Change History
 - for save data adapter: handle the case in which the HTTP POST date time is added 
   after some data had already been submitted [tkimnguyen]
 
+- If the form is displayed in embedded mode, display thank you page
+  in embedded mode as well.
+  [naro]
+
 
 1.7.16 (2014-09-26)
 -------------------

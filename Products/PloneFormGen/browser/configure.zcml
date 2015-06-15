@@ -27,6 +27,13 @@
       />
 
   <browser:page
+      name="embedded"
+      for="Products.PloneFormGen.interfaces.IPloneFormGenThanksPage"
+      class=".embedded.EmbeddedThanksPageView"
+      permission="zope2.View"
+      />
+
+  <browser:page
       name="pfg-captcha-settings"
       for="Products.CMFCore.interfaces.ISiteRoot"
       class=".captcha.CaptchaControlPanel"

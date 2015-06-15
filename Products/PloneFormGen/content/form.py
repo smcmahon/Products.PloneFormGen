@@ -654,13 +654,18 @@ class FormFolder(ATFolder):
             if s:
                 return s
 
+        is_embedded = self.REQUEST.form.get('pfg_form_marker', False)
+        if is_embedded:
+            target = 'fg_result_embedded_view'
+
         s = getattr(self, 'thanksPage', None)
         if s:
             obj = getattr(self, s, None)
             if obj:
                 target = obj.getId()
+                if is_embedded:
+                    target = target + '/@@embedded'
 
-        is_embedded = self.REQUEST.form.get('pfg_form_marker', False)
         if is_embedded:
             # Change the request URL and then raise a Retry exception
             # so the traversed page renders using the same request
