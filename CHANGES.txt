@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.17 (unreleased)
+1.7.17 (2015-06-15)
 -------------------
 
 - Check recipient name as well as address in mailing tests;
