@@ -209,9 +209,7 @@ class ExportImportTester(pfgtc.PloneFormGenTestCase, TarballTester):
                 if k == 'subfields':
                     self._verifyProfileForm(sub_form_item, v)
                 else:
-                    # self.assertEqual(v, self._extractFieldValue(sub_form_item[k]),
-                    #     "Expected '%s' for field %s, Got '%s'" % (v, k, sub_form_item[k]))
-                    val = getattr(sub_form_item, k)
+                    val = getattr(sub_form_item, k, sub_form_item[k])
                     # if there is a 'raw' attribute, that's what we want to check
                     val = getattr(val, 'raw', val)
                     # might also be a TALES field, in which case we need
