@@ -1,11 +1,48 @@
 Change History
 ==============
 
-1.7.15 (unreleased)
+1.7.17 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- fixed loading of widget javascripts in quickedit (#95) [reinhardt]
 
+
+1.7.16 (2014-09-26)
+-------------------
+
+- Add support for the placeholder attribute for input fields.
+  Requires Plone >= 4.2, or Archetypes >= 1.7.14.
+  [thet]
+
+- Mailer adapter looks for data grid fields that contain new File
+  columns and includes those files as attachments [tkimnguyen]
+
+- Add/fix trove classifiers.
+  [smcmahon]
+
+
+1.7.15 (2014-07-25)
+-------------------
+
+- Add Travis CI testing for Plone 4.2 and 4.3.
+  [smcmahon]
+
+- Tell collective.cover that we act like a folder when dropped into a list tile.
+  [smcmahon]
+
+- str() of form field value containing unicode characters causes UnicodeEncodeError.
+  Updating to safe_unicode per smcmahon.
+  [tsimkins]
+
+- Update pt_BR translation
+  [ericof]
+
+- Fix column headings not being included for server-side only fields
+  in saved data downloads.
+  [davidjb]
+
+- Fixed issue that raise errors if gpg module is not found.
+  [keul]
 
 1.7.14 (2014-01-26)
 -------------------

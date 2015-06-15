@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.7.15.dev0'
+version = '1.7.17.dev0'
 
 setup(name='Products.PloneFormGen',
       version=version,
@@ -10,17 +10,21 @@ setup(name='Products.PloneFormGen',
           + "\n\n" +
           # CHANGES.txt has lots of UTF8, which PyPI won't accept
           open("CHANGES.txt").read().decode('UTF8').encode('ASCII', 'replace')),
-      # Get more strings from
-      # http://pypi.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
-          "Programming Language :: Python",
+          "Development Status :: 6 - Mature",
           "Topic :: Software Development :: Libraries :: Python Modules",
           "Framework :: Zope2",
           "Framework :: Plone",
           "Framework :: Plone :: 4.1",
           "Framework :: Plone :: 4.2",
           "Framework :: Plone :: 4.3",
-          ],
+          'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+          'Operating System :: OS Independent',
+          'Programming Language :: JavaScript',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2.6',
+          'Programming Language :: Python :: 2.7',
+      ],
       keywords='Plone PloneFormGen',
       author='Steve McMahon',
       author_email='steve@dcn.org',
@@ -32,8 +36,8 @@ setup(name='Products.PloneFormGen',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.Archetypes',
-          'Products.CMFPlone',
+          'Products.Archetypes>=1.7.14',  # placeholder support
+          'Products.CMFPlone>=4.1',
           'Products.TALESField>=1.1.3',
           'Products.TemplateFields>=1.2.4',
           'Products.PythonField>=1.1.3',
@@ -41,8 +45,14 @@ setup(name='Products.PloneFormGen',
           'collective.js.jqueryui',
       ],
       extras_require={
-          'test': ['collective.funkload'],
-          },
+          'test': [
+              'Products.PloneTestCase',
+              # needed in Plone 5.0
+              'plone.app.testing',
+              'plone.testing',
+          ],
+          'loadtest': ['collective.funkload'],
+      },
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

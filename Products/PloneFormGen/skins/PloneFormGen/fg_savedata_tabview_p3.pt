@@ -12,6 +12,7 @@
                        Batch python:modules['Products.CMFPlone'].Batch;
                        b_size python:30;
                        b_start python:0;
+                       b_size request/b_size | b_size;
                        b_start request/b_start | b_start;">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />

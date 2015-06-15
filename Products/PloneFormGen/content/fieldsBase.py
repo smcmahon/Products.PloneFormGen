@@ -29,7 +29,7 @@ from Products.CMFCore.Expression import getExprContext
 from Products.CMFCore.exceptions import BadRequest
 from Products.CMFCore.utils import getToolByName
 
-from Products.CMFPlone.utils import base_hasattr, safe_hasattr
+from Products.CMFPlone.utils import base_hasattr, safe_hasattr, safe_unicode
 
 from Products.validation.validators import RangeValidator
 from AccessControl import ClassSecurityInfo
@@ -256,6 +256,14 @@ BaseFieldSchema = BareFieldSchema.copy() + Schema((
                     "modifiable by or exposed to the client."),
                 ),
             ),
+        StringField('placeholder',
+            searchable=0,
+            required=0,
+            widget=StringWidget(
+                label=_(u'label_placeholder', default=u'Placeholder'),
+                description=_(u'help_placeholder', default=u"A placeholder for text input fields."),
+            ),
+        ),
     ))
 
 
@@ -509,12 +517,26 @@ class BaseFormField(ATCTContent):
             raise AttributeError
         return super(BaseFormField, self).__bobo_traverse__(REQUEST, name)
 
+
     security.declareProtected(ModifyPortalContent, 'setDescription')
     def setDescription(self, value, **kw):
         """ set description for field widget """
 
         self.fgField.widget.description = value
         self.getField('description').set(self, value, **kw)
+
+
+    security.declareProtected(ModifyPortalContent, 'setPlaceholder')
+    def setPlaceholder(self, value, **kw):
+        """ set placeholder for field widget """
+
+        self.fgField.widget.placeholder = value
+
+
+    security.declareProtected(View, 'getPlaceholder')
+    def getPlaceholder(self, **kw):
+        """ get placeholder for field widget """
+        return getattr(self.fgField.widget, 'placeholder', None)
 
 
     security.declareProtected(ModifyPortalContent, 'setRequired')
@@ -872,6 +894,22 @@ class BaseFormField(ATCTContent):
 
         value = REQUEST.form.get(self.__name__, 'No Input')
         valueType = type(value)
+
+        # value may be a string or a unicode string;
+        # it may be an array of string/unicode strings.
+        # establish a UTF-8 baseline. UTF-8 not because it's right,
+        # but because it will have backword compatability with previous
+        # versions.
+        if valueType is unicode:
+            value = value.encode('utf8')
+        elif valueType is type([]):
+            a = []
+            for item in value:
+                if type(item) is unicode:
+                    item = item.encode('utf8')
+                a.append(item)
+            value = a
+
         value = str(value)
 
         # eliminate square brackets around lists --
