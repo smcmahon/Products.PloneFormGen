@@ -1,8 +1,8 @@
 import unittest
 import doctest
+from plone.testing import layered
 
-from Testing import ZopeTestCase as ztc
-from Products.PloneFormGen.tests.pfgtc import PloneFormGenFunctionalTestCase
+from Products.PloneFormGen.tests.pfgtc import PFG_FUNCTIONAL_TESTING
 
 testfiles = (
     'browser.txt',
@@ -15,10 +15,10 @@ testfiles = (
 def test_suite():
     return unittest.TestSuite([
 
-        ztc.FunctionalDocFileSuite(
+        layered(doctest.DocFileSuite(
             f, package='Products.PloneFormGen.tests',
-            test_class=PloneFormGenFunctionalTestCase,
-            optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
+            optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS),
+        layer=PFG_FUNCTIONAL_TESTING)
 
             for f in testfiles
         ])

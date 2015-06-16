@@ -1,11 +1,6 @@
 #
 # Test PloneFormGen initialisation and set-up
 #
-
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
 from AccessControl import Unauthorized
 
 from Products.PloneFormGen.tests import pfgtc
@@ -26,8 +21,8 @@ def getAddPermission(product, name):
 class TestInstallation(pfgtc.PloneFormGenTestCase):
     """Ensure product is properly installed"""
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
 
         self.kupu         = getattr(self.portal, 'kupu_library_tool', None)
         self.skins        = self.portal.portal_skins
@@ -267,8 +262,8 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
     sampleContentIds = ('mailer', 'replyto', 'topic', 'comments', 'thank-you')
 
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
 
@@ -560,11 +555,3 @@ class TestGPG(pfgtc.PloneFormGenTestCase):
             print "\nSkipping GPG tests; gpg binary not found"
         else:
             self.assertRaises(GPGError, gpg.encrypt, 'spam', 'eggs')
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestInstallation))
-    suite.addTest(makeSuite(TestContentCreation))
-    suite.addTest(makeSuite(TestGPG))
-    return suite

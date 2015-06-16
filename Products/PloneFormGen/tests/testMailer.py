@@ -2,13 +2,7 @@
 #
 # Integeration tests specific to the mailer
 #
-
 import email
-import os
-import sys
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Products.PloneFormGen.tests import pfgtc
 
@@ -22,8 +16,8 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.messageText = messageText
         self.messageBody = '\n\n'.join(messageText.split('\n\n')[1:])
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
         self.ff1.checkAuthenticator = False # no csrf protection
@@ -376,12 +370,3 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
             'test@testme.com' in self.mto and
             'test1@testme.com' in self.mto
         )
-
-if  __name__ == '__main__':
-    framework()
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestFunctions))
-    return suite

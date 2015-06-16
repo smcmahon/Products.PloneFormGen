@@ -1,14 +1,38 @@
 Integration tests
 =================
 
-    >>> browser = self.browser
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> from Products.PloneFormGen.tests.pfgtc import MailHostMock
+    >>> portal.MailHost = MailHostMock()
+    >>> portal_url = portal.portal_url()
+    >>> request = layer['request']
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+
+Login to the portal:
+
+    >>> from plone.app.testing import setRoles
+    >>> from plone.app.testing import login
+    >>> from plone.app.testing import TEST_USER_NAME
+    >>> from plone.app.testing import TEST_USER_PASSWORD
+    >>> from plone.app.testing import TEST_USER_ID
+    >>> setRoles(portal, TEST_USER_ID, ['Manager'])
+    >>> login(portal, TEST_USER_NAME)
+    >>> import transaction
+    >>> transaction.commit()
+    >>> browser.open(portal_url + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = TEST_USER_NAME
+    >>> browser.getControl(name='__ac_password').value = TEST_USER_PASSWORD
+    >>> browser.getControl(name='submit').click()
+
 
 Standalone form
 ---------------
 
 Add a new Form Folder::
 
-    >>> browser.open(self.portal_url)
+    >>> browser.open(portal_url)
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
     >>> browser.getControl('Save').click()
@@ -16,24 +40,24 @@ Add a new Form Folder::
 We'll want to test the save data adapter later.
 Let's add one now::
 
-    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.open(portal_url + '/testform')
     >>> browser.getLink('Save Data Adapter').click()
     >>> browser.getControl('Title').value = 'saver'
     >>> browser.getControl('Save').click()
-    >>> browser.open(self.portal_url + '/testform/saver')
+    >>> browser.open(portal_url + '/testform/saver')
     >>> browser.url
-    'http://nohost/plone/testform/saver'
+    '.../testform/saver'
 
 Return to form and confirm that it renders properly::
 
-    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.open(portal_url + '/testform')
     >>> browser.url
-    'http://nohost/plone/testform'
+    '.../testform'
     >>> print browser.contents
     <!DOCTYPE...
     ...
      <div class="pfg-form formid-testform">
-      <form ...action="http://nohost/plone/testform"...>
+      <form ...action=".../testform"...>
           ...
           <input...name="replyto".../>
           ...
@@ -55,12 +79,13 @@ Return to form and confirm that it renders properly::
 
 Submit the form.  An incomplete submission should give validation errors::
 
-    >>> self.portal.testform.mailer.setRecipient_email('mdummy@address.com')
+    >>> portal.testform.mailer.setRecipient_email('mdummy@address.com')
+    >>> transaction.commit()
     >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
     >>> browser.getControl('Subject').value = 'test'
     >>> browser.getControl('Submit').click()
     >>> browser.url
-    'http://nohost/plone/testform'
+    '.../testform'
     >>> 'Please correct the indicated errors.' in browser.contents
     True
 
@@ -73,15 +98,15 @@ base class)::
     >>> browser.getControl('Submit').click()
     <sent mail from ...to ['mdummy@address.com']>
     >>> browser.url
-    'http://nohost/plone/testform'
+    '.../plone/testform'
     >>> 'Thanks for your input.' in browser.contents
     True
 
 We should be able to view an individual field::
 
-    >>> browser.open(self.portal_url + '/testform/comments')
+    >>> browser.open(portal_url + '/testform/comments')
     >>> browser.url
-    'http://nohost/plone/testform/comments'
+    '.../plone/testform/comments'
 
     >>> print browser.contents
     <!DOCTYPE...
@@ -104,16 +129,16 @@ We should be able to view an individual field::
 
 Let's take a look at the save-data adapter::
 
-    >>> browser.open(self.portal_url + '/testform/saver')
+    >>> browser.open(portal_url + '/testform/saver')
     >>> browser.url
-    'http://nohost/plone/testform/saver'
+    '.../plone/testform/saver'
 
 It ought to tell us we have a saved input::
 
     >>> print browser.contents
     <!DOCTYPE...
     ...
-    <span>1</span> input(s) saved
+    ...<span>1</span> input(s) saved...
     ...
 
 And a form offering to clear input::
@@ -121,12 +146,10 @@ And a form offering to clear input::
     >>> print browser.contents
     <!DOCTYPE...
     ...
-    <form action="http://nohost/plone/testform/saver/clearSavedFormInput" method="post"...>
-        <input type="hidden" name="_authenticator" value="..."/>
-        <input type="submit" ... value="Clear Saved Input" ... />
-          ...
-              Clear all saved input?
-          ...
+    <form action=".../testform/saver/clearSavedFormInput" method="post"...>
+        <input type="hidden" name="_authenticator" value="...
+        <input type="submit" ... value="Clear Saved Input" ...
+          ...Clear all saved input?...
     </form>
     ...
 
@@ -134,11 +157,11 @@ And a form offering to clear input::
 
     >>> browser.getControl('Clear Saved Input').click()
     >>> browser.url
-    'http://nohost/plone/testform/saver'
+    '.../testform/saver'
 
 Attempts to use clearSavedFormInput without auth should be forbidden::
 
-    >>> browser.open(self.portal_url + '/testform/saver/clearSavedFormInput')
+    >>> browser.open(portal_url + '/testform/saver/clearSavedFormInput')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 403: Forbidden
@@ -146,91 +169,91 @@ Attempts to use clearSavedFormInput without auth should be forbidden::
 
 Attempts to use gpg_services TTW should be fruitless::
 
-    >>> browser.open(self.portal_url + '/testform/@@gpg_services/encrypt?data=XXX&recipient_key_id=yyy')
+    >>> browser.open(portal_url + '/testform/@@gpg_services/encrypt?data=XXX&recipient_key_id=yyy')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 Attempts to read the success action TTW should be fruitless::
 
-    >>> browser.open(self.portal_url + '/testform/fgGetSuccessAction')
+    >>> browser.open(portal_url + '/testform/fgGetSuccessAction')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 That should also be true for fields::
 
-    >>> browser.open(self.portal_url + '/testform/comments/fgGetSuccessAction')
+    >>> browser.open(portal_url + '/testform/comments/fgGetSuccessAction')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 Attempts to set mailer body TTW should fail
-    >>> browser.open(self.portal_url + '/testform/mailer/setBody_pt?value=stuff')
+    >>> browser.open(portal_url + '/testform/mailer/setBody_pt?value=stuff')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 Attempts to read mailer body TTW should fail
-    >>> browser.open(self.portal_url + '/testform/mailer/body_pt')
+    >>> browser.open(portal_url + '/testform/mailer/body_pt')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 We want to test security on the custom script adapter. Let's add one::
 
-    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.open(portal_url + '/testform')
     >>> browser.getLink('Custom Script Adapter').click()
     >>> browser.getControl('Title').value = 'Test Script Adapter'
     >>> browser.getControl('Save').click()
-    >>> browser.open(self.portal_url + '/testform/test-script-adapter')
+    >>> browser.open(portal_url + '/testform/test-script-adapter')
     >>> browser.url
-    'http://nohost/plone/testform/test-script-adapter'
+    '.../testform/test-script-adapter'
 
 Attempts to set script body TTW should fail::
 
-    >>> browser.open(self.portal_url + '/testform/test-script-adapter/updateScript?body=raise%2010&role=none')
+    >>> browser.open(portal_url + '/testform/test-script-adapter/updateScript?body=raise%2010&role=none')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 Attempts to run the script TTW should fail::
 
-    >>> browser.open(self.portal_url + '/testform/test-script-adapter/onSuccess?fields=')
+    >>> browser.open(portal_url + '/testform/test-script-adapter/onSuccess?fields=')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
-    >>> browser.open(self.portal_url + '/testform/test-script-adapter/scriptBody?fields=')
+    >>> browser.open(portal_url + '/testform/test-script-adapter/scriptBody?fields=')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
-    >>> browser.open(self.portal_url + '/testform/test-script-adapter/executeCustomScript?fields=&form=&req=')
+    >>> browser.open(portal_url + '/testform/test-script-adapter/executeCustomScript?fields=&form=&req=')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 Attempts to use onSuccess TTW should fail::
 
-    >>> browser.open(self.portal_url + '/testform/saver/onSuccess?fields=&request=')
+    >>> browser.open(portal_url + '/testform/saver/onSuccess?fields=&request=')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
 Attempts to read our special member attributes TTW should fail::
 
-    >>> browser.open(self.portal_url + '/testform/memberId')
+    >>> browser.open(portal_url + '/testform/memberId')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
-    >>> browser.open(self.portal_url + '/testform/memberFullName')
+    >>> browser.open(portal_url + '/testform/memberFullName')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
 
-    >>> browser.open(self.portal_url + '/testform/memberEmail')
+    >>> browser.open(portal_url + '/testform/memberEmail')
     Traceback (most recent call last):
     ...
     HTTPError: HTTP Error 404: Not Found
@@ -249,7 +272,7 @@ Attempts to read our special member attributes TTW should fail::
 #
 # Now we should be able to render the same form as above, but located at @@form-wrapper::
 #
-#     >>> browser.open(self.portal_url + '/@@form-wrapper')
+#     >>> browser.open(portal_url + '/@@form-wrapper')
 #     >>> print browser.contents
 #     <!DOCTYPE...
 #     ...
