@@ -123,7 +123,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.assertRaises(Retry, view)
 
         self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
-            '/'.join(self.folder.getPhysicalPath()) + '/ff1/thank-you')
+            '/'.join(self.folder.getPhysicalPath()) + '/ff1/thank-you/@@embedded')
 
         # make sure the transaction was committed
         self.failUnless(committed)
@@ -134,7 +134,7 @@ class TestEmbedding(pfgtc.PloneFormGenTestCase):
         self.assertEqual(self.app.REQUEST._orig_env['PATH_INFO'],
             '/VirtualHostBase/http/nohost:80/VirtualHostRoot' +
             '/'.join(self.folder.getPhysicalPath()) +
-            '/ff1/thank-you')
+            '/ff1/thank-you/@@embedded')
 
         # clean up
         transaction.commit = real_transaction_commit
