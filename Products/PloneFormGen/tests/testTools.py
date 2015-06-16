@@ -2,12 +2,6 @@
 # Test PloneFormGen top-level functionality
 #
 
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
-import zope
-
 from Products.PloneFormGen.tests import pfgtc
 
 from Products.CMFCore.utils import getToolByName
@@ -119,14 +113,3 @@ class TestTools(pfgtc.PloneFormGenTestCase):
                 oid = role['id']
         self.failUnless( mid )
         self.failUnless( oid )
-
-
-
-if  __name__ == '__main__':
-    framework()
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestTools))
-    return suite

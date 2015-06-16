@@ -1,5 +1,6 @@
 from Acquisition import aq_inner
 from Products.Five import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 
 DEFAULT_SUBMISSION_MARKER = 'form.submitted'
 
@@ -84,13 +85,16 @@ class EmbeddedPFGView(BrowserView):
         else:
             self.request.set('pfg_form_action', self.request['URL'])
 
+        self.status = IStatusMessage(self.request)
+        self.request.set('messages', self.status.show())
         # Delegate to CMFFormController page template so we can share logic with the standalone form
         try:
             context = aq_inner(self.context)
+            self.request.view = self
             return context.fg_embedded_view_p3(
                 enable_unload_protection=self.enable_unload_protection,
                 enable_auto_focus=self.enable_auto_focus
-                )
+            )
         finally:
             # Clean up
             if fiddled_submission_marker is not None:
@@ -99,9 +103,12 @@ class EmbeddedPFGView(BrowserView):
                 del self.request.form['form.submitted']
             if fiddled_controller_state is not None:
                 self.request.set('controller_state', fiddled_controller_state)
-            del self.request.form['pfg_form_marker']
-            del self.request.other['pfg_form_action']
-            del self.request.other['pfg_form_submitted']
+            try:
+                del self.request.other['pfg_form_action']
+                del self.request.other['pfg_form_submitted']
+                del self.request.form['pfg_form_marker']
+            except KeyError:
+                pass
 
 
 class EmbeddedThanksPageView(BrowserView):

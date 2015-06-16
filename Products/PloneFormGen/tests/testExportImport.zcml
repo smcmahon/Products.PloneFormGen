@@ -1,0 +1,14 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:gs="http://namespaces.zope.org/genericsetup"
+           package="Products.PloneFormGen">
+
+    <gs:registerProfile
+        name="testing"
+        title="PloneFormGen testing"
+        description="Used for testing only"
+        directory="tests/profiles/testing"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>

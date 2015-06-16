@@ -1,12 +1,7 @@
 #
 # Integration tests. See other test modules for specific components.
 #
-
-import os, sys
-
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
+import sys
 import plone.protect
 
 from Products.PloneFormGen.tests import pfgtc
@@ -39,8 +34,8 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         return self.request
 
 
-    def afterSetUp(self):
-        pfgtc.PloneFormGenTestCase.afterSetUp(self)
+    def setUp(self):
+        pfgtc.PloneFormGenTestCase.setUp(self)
         self.folder.invokeFactory('FormFolder', 'ff1')
         self.ff1 = getattr(self.folder, 'ff1')
         self.mailhost = self.folder.MailHost
@@ -668,10 +663,3 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         res = jsvars()
         self.assertEqual(res.find("pfgQEdit.messages = {"), 0)
         self.failUnless(res.find("ORDER_MSG: 'Order'") > 0)
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestFunctions))
-    return suite
