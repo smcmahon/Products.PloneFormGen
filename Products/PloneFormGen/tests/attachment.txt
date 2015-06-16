@@ -43,14 +43,14 @@ Add a File field::
     >>> browser.getControl('Save').click()
 
 And confirm that it renders properly::
-    
+
     >>> browser.open(portal_url + '/attachmentform')
     >>> browser.url
     '.../attachmentform...'
     >>> print browser.contents
     <!DOCTYPE...
     ...
-    <input type="file" ... />
+    <input type="file"...name="attachment_file"...id="attachment_file"...
     ...
 
 Submit the form with an attachment::
@@ -82,7 +82,7 @@ the file field is not listed in the mailer's showFields::
     >>> portal.attachmentform.mailer.setShowAll(False)
     >>> portal.MailHost.msg = None
     >>> transaction.commit()
-    
+
     >>> browser.open(portal_url + '/attachmentform')
     >>> browser.getControl('Your E-Mail Address').value = 'test@example.com'
     >>> browser.getControl('Subject').value = 'test'
