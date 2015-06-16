@@ -18,10 +18,16 @@ McMahon: steve@dcn.org.
     :target: https://travis-ci.org/smcmahon/Products.PloneFormGen
 
 
+1.8 Notes
+=========
+
+PFG 1.8 is intended for use with Plone 5+. If you're using Plone < 5, PFG 1.7
+will be a better choice.
+
 1.7 Notes
 =========
 
-PFG 1.7 is intended for use with Plone 4.1+. If you're using Plone < 4.1, PFG 1.6
+PFG 1.7 is intended for use with Plone 4.1-4.3. If you're using Plone < 4.1, PFG 1.6
 will be a better choice.
 
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
@@ -29,6 +35,8 @@ functionality.
 
 jQuery UI
 ---------
+
+Not applicable for Plone 5 yet.
 
 PloneFormGen depends on collective.js.jqueryui. Depending on the version
 of Plone you're on, you'll have to install a different version of

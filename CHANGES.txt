@@ -4,7 +4,7 @@ Change History
 1.8.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Check commit log for changes related to P5 update.
 
 - 1.8 will target Plone 5. Maintenance branch is 1.7-maintenance.
 

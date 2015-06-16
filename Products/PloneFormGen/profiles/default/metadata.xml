@@ -3,8 +3,10 @@
   <version>171</version>
   <dependencies>
       <dependency>profile-Products.ATContentTypes:base</dependency>
+<!--
       <dependency>profile-plone.app.jquerytools:default</dependency>
       <dependency>profile-collective.js.jqueryui:default</dependency>
+-->
   </dependencies>
 </metadata>
 
