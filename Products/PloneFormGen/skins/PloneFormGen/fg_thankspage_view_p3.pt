@@ -12,7 +12,7 @@
       <metal:block define-macro="content-core">
 
           <metal:main_macro
-              use-macro="context/fg_thankspage_embedded_view/macros/main">
+              use-macro="context/fg_thankspage_embedded_view/macros/content-core">
           </metal:main_macro>
 
       </metal:block>
