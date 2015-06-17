@@ -8,6 +8,12 @@ Change History
 
 - 1.8 will target Plone 5. Maintenance branch is 1.7-maintenance.
 
+- Use content-core instead of main macro for templates using the
+  main_template's master macro. Among fitting better in the standard plone
+  environment and prepares for displaying in a full view (some modifications
+  needed).
+  [thet]
+
 
 1.7.17 (2015-06-15)
 -------------------

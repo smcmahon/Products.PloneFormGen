@@ -1,4 +1,5 @@
-<metal:macro metal:define-macro="main">
+<metal:macro metal:define-macro="content-core">
+
   <dl>
     <tal:block repeat="field here/fgFields">
       <tal:block tal:define="fname field/getName">
