@@ -84,14 +84,6 @@
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
 
-<a href="topic/edit" class="pat-plone-modal"
-                  data-pat-plone-modal="">Modal basic</a>
-
-<div id="modal1" style="display: none">
-  <h1>Basic modal!</h1>
-  <p>Indeed. Whoa whoa whoa whoa. Wait.</p>
-</div>
-
         <form id="auth_hold" style="display:none">
             <span tal:replace="structure context/@@authenticator/authenticator"/>
         </form>
@@ -193,11 +185,8 @@
 
             <metal:block define-slot="widgets">
                 <div id="pfg-fieldwrapper">
-                    <div class="theader">
-                        <div style="width: 5%;" i18n:translate="Order">Order</div>
-                        <div style="width: 53%;" i18n:translate="Field">Field</div>
-                        <div style="width: 26%;" i18n:translate="Edit/Delete">Edit/Delete</div>
-                    </div>
+                    <h2 i18n:translate="Fields">Fields</h2>
+
                     <div id="pfg-qetable" class="listing" summary="Field listing">
                         <tal:fields repeat="field fields">
                             <form class="qefield">
@@ -244,11 +233,7 @@
                    summary="Field listing"
                    style="float: left"
                    tal:define="liveAdapters here/getActionAdapter">
-                <div class="theader">
-                    <div style="width: 5%;" i18n:translate="Order">Order</div>
-                    <div style="width: 53%;" i18n:translate="Action">Action</div>
-                    <div style="width: 26%;" i18n:translate="Edit/Delete">Edit/Delete</div>
-                </div>
+                <h2 i18n:translate="Actions">Actions</h2>
                 <div id="pfgActionEdit">
                     <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
                         <div
@@ -288,28 +273,22 @@
                 </div>
             </div>
 
-            <table tal:condition="canModify"
-                   id="pfgThanksEdit"
+            <div tal:condition="canModify"
+                   class="listing"
                    summary="Field listing"
-                   style="clear: none"
+                   style="float: left"
                    tal:define="liveThanks here/thanksPage">
-                <thead>
-                    <tr class="theader">
-                        <th i18n:translate="Thanks Pages" style="width:68%">Thanks Pages</th>
-                        <th i18n:translate="Edit/Delete">Edit/Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <h2 i18n:translate="thanks_page">Thanks page</h2>
+                <div id="pfgThanksEdit">
                     <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
-                    <tr tal:attributes="class python:repeat['row'].index % 2 and 'even' or 'odd'">
-
-                        <td>
+                    <div class="qefield" tal:define="tyid python:row[0]">
+                        <div class="action qechild">
                             <input type="radio" name="thanksRadio"
-                                   tal:attributes="value python:row[0];
-                                   checked python:row[0] == liveThanks and 'checked' or None" />
+                                   tal:attributes="value tyid;
+                                   checked python:tyid == liveThanks and 'checked' or None" />&nbsp;
                            <span tal:content="python:row[1]" />
-                        </td>
-                        <td tal:define="tyid python:row[0]">
+                        </div>
+                        <div class="qechild">
                            <a href="#"
                               class="plone-btn plone-btn-primary pat-plone-modal"
                               data-pat-plone-modal="width: 500"
@@ -318,20 +297,17 @@
                               title="Edit Page"
                               >Edit</a>
                           <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-
                             <a href="#"
                                tal:condition="python:tyid"
                                class="plone-btn plone-btn-primary pat-plone-modal"
                                data-pat-plone-modal="width: 300"
-                               tal:attributes="href string:${tyid}/delete_confirmation?_authenticator=${auth_token}'"
+                               tal:attributes="href string:${tyid}/delete_confirmation?_authenticator=${auth_token}"
                                title="Delete Page"
                                >Delete</a>
-                            <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                     </tal:block>
-                </tbody>
-            </table>
+                </div>
         </div>
 
         <p tal:replace="structure here/formEpilogue | nothing" />
