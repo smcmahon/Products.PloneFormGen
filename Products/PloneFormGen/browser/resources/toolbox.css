@@ -6,8 +6,8 @@
 }
 
 #pfgWidgetWrapper {
-    float: right;
-    clear: right;
+    position: fixed;
+    left: 65%;
     background:none repeat scroll 0 0 #ddd !important;
     z-index: 1;
     -moz-box-shadow: 2px 2px 11px #666;
