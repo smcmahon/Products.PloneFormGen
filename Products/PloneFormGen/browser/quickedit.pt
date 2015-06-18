@@ -17,7 +17,10 @@
                    portal portal | context/@@plone_portal_state/portal;
                    disable_column_one python:request.set('disable_plone.leftcolumn',1);
                    disable_column_two python:request.set('disable_plone.rightcolumn',1);
-                   icon_ext view/iconExt">
+                   icon_ext view/iconExt;
+                   authenticatorView context/@@authenticator;
+                   auth_token python:authenticatorView.token();
+                   ">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en"
@@ -80,6 +83,14 @@
                   tal:define="isLocked python:False;
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
+
+<a href="topic/edit" class="pat-plone-modal"
+                  data-pat-plone-modal="">Modal basic</a>
+
+<div id="modal1" style="display: none">
+  <h1>Basic modal!</h1>
+  <p>Indeed. Whoa whoa whoa whoa. Wait.</p>
+</div>
 
         <form id="auth_hold" style="display:none">
             <span tal:replace="structure context/@@authenticator/authenticator"/>
@@ -209,11 +220,18 @@
                                     Rich Label
                                 </div>
                                 <div class="editHook qechild">
-                                    <a title="Edit Field" href="edit" tal:attributes="href string:${field/getName}/edit"><img alt="Edit" src="edit.png"
-                                        tal:attributes="src string:${portal_url}/edit.$icon_ext"
-                                        /></a><a title="Delete Field" href="delete_confirmation" tal:attributes="href string:${field/getName}/delete_confirmation"><img alt="Delete" src="delete_icon.gif"
-                                        tal:attributes="src string:${portal_url}/delete_icon.$icon_ext"
-                                        /></a>
+                                    <a title="Edit Field"
+                                        class="plone-btn plone-btn-primary pat-plone-modal"
+                                        href="edit"
+                                        tal:attributes="href string:${context/absolute_url}/${field/getName}/edit?_authenticator=${auth_token}"
+                                        data-pat-plone-modal="width: 600"
+                                        >Edit</a>
+                                        <a title="Delete Field"
+                                            class="plone-btn plone-btn-primary pat-plone-modal"
+                                            href="delete_confirmation"
+                                            data-pat-plone-modal="width: 300"
+                                            tal:attributes="href string:${context/absolute_url}/${field/getName}/delete_confirmation?_authenticator=${auth_token}"
+                                            >Delete</a>
                                 </div>
                             </form>
                         </tal:fields>
@@ -233,31 +251,37 @@
                 </div>
                 <div id="pfgActionEdit">
                     <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
-                        <div tal:attributes="id python:'action-name-%s'%row[0]" class="qefield">
-                            <div class="draggable draggingHook editHook qechild"><span class="dhcenter"></span>⣿</div>
+                        <div
+                            tal:define="aaid python:row[0]"
+                            tal:attributes="id python:'action-name-%s' % aaid"
+                            class="qefield">
+                            <div
+                                class="draggable draggingHook editHook qechild"
+                                ><span class="dhcenter"></span>⣿</div>
                             <div class="qechild action">
                                 <form action="#">
                                     <input type="checkbox" value="1"
-                                        tal:attributes="checked python:row[0] in liveAdapters and 'checked' or None;
-                                        id python:'cbaction-%s' % row[0];
-                                        name python:'cbaction-%s' % row[0]" />
+                                        tal:attributes="checked python:aaid in liveAdapters and 'checked' or None;
+                                        id python:'cbaction-%s' % aaid;
+                                        name python:'cbaction-%s' % aaid" />
                                     &nbsp;
-                                    <span tal:replace="python:row[1]" />
+                                    <span tal:replace="aaid" />
                                 </form>
                             </div>
                             <div class="editHook qechild">
                              <a href="#"
-                                tal:attributes="href python:'%s/edit' % row[0]" i18n:attributes="title"
+                                class="plone-btn plone-btn-primary pat-plone-modal"
+                                data-pat-plone-modal="width: 600"
+                                tal:attributes="href string:${aaid}/edit?_authenticator=${auth_token}"
+                                i18n:attributes="title"
                                 title="Edit Field"
-                                ><img src="edit.png" alt="Edit"
-                                        tal:attributes="src string:${portal_url}/edit.$icon_ext"
-                                /></a>
+                                >Edit</a>
                             <a href="#"
-                               tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                               class="plone-btn plone-btn-primary pat-plone-modal"
+                               data-pat-plone-modal="width: 300"
+                               tal:attributes="href string:${aaid}/delete_confirmation?_authenticator=${auth_token}"
                                title="Delete Action" i18n:attributes="title"
-                               ><img src="delete_icon.gif" alt="Delete"
-                                        tal:attributes="src string:${portal_url}/delete_icon.$icon_ext"
-                               /></a>
+                               >Delete</a>
                             </div>
                         </div>
                     </tal:block>
@@ -285,21 +309,23 @@
                                    checked python:row[0] == liveThanks and 'checked' or None" />
                            <span tal:content="python:row[1]" />
                         </td>
-                        <td>
-                           <a href="#" tal:condition="python:row[0]"
-                              tal:attributes="href python:'%s/edit' % row[0]"
+                        <td tal:define="tyid python:row[0]">
+                           <a href="#"
+                              class="plone-btn plone-btn-primary pat-plone-modal"
+                              data-pat-plone-modal="width: 500"
+                              tal:condition="python:tyid"
+                              tal:attributes="href string:${tyid}/base_edit?_authenticator=${auth_token}"
                               title="Edit Page"
-                              ><img src="edit.png" alt="Edit"
-                                        tal:attributes="src string:${portal_url}/edit.$icon_ext"
-                              /></a>
+                              >Edit</a>
                           <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
 
-                            <a href="#" tal:condition="python:row[0]"
-                               tal:attributes="href python:'%s/delete_confirmation' % row[0]"
+                            <a href="#"
+                               tal:condition="python:tyid"
+                               class="plone-btn plone-btn-primary pat-plone-modal"
+                               data-pat-plone-modal="width: 300"
+                               tal:attributes="href string:${tyid}/delete_confirmation?_authenticator=${auth_token}'"
                                title="Delete Page"
-                               ><img src="delete_icon.gif" alt="Delete"
-                                        tal:attributes="src string:${portal_url}/delete_icon.$icon_ext"
-                               /></a>
+                               >Delete</a>
                             <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
                         </td>
                     </tr>
