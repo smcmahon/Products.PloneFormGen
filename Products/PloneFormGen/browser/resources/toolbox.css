@@ -7,7 +7,7 @@
 
 #pfgWidgetWrapper {
     position: fixed;
-    left: 65%;
+    left: 70%;
     background:none repeat scroll 0 0 #ddd !important;
     z-index: 1;
     -moz-box-shadow: 2px 2px 11px #666;
@@ -268,10 +268,8 @@ td.draggable.draggingHook {
     padding: 0.5em 1em;
 }
 
-/*
-#pfgWidgetWrapper {
-    position: fixed;
-    top: 300px;
-    right: 100px;
+.drag-proxy {
+    position: absolute;
+    background-color: #ccc;
+    width: 60%;
 }
-*/
