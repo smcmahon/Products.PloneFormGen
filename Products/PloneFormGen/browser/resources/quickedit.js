@@ -1,33 +1,32 @@
 // Support for PFG Quick Edit
 
-/*global jQuery, alert, window */
+/*global console, require */
 
-/*jslint white: true, browser: true, onevar: false, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, newcap: true, immed: true, regexp: false */
+/*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: false */
+
 
 var pfgQEdit = {};
 
-jQuery(function ($) {
+require(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($) {
+    'use strict';
 
-    // initial styling
-
-    $(".ArchetypesCaptchaWidget .captchaImage").replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
+    $(".ArchetypesCaptchaWidget .captchaImage")
+        .replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
 
     // disable and dim input elements
     $("#pfg-fieldwrapper .field :input")
         .css('opacity', 0.5)
         .each(function () {
-            if (typeof this.disabled !== "undefined") {
+            if (this.disabled !== undefined) {
                 this.disabled = true;
             }
         });
 
-    $("#allWidgets").tabs(".widgetPane", {tabs:"h2", effect:'slide'});
-
-
-    // field drag and drop
+    // widget accordion
+    $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
 
     $('#pfg-qetable .qefield')
-        .drag("start",function( ev, dd ){
+        .drag("start", function(ev, dd){
             var jqt = $(this);
 
             console.log('starting drag');
@@ -47,7 +46,7 @@ jQuery(function ($) {
                 left: dd.offsetX
             });
 
-            if ( drop && ( drop != dd.current || method != dd.method ) ){
+            if ( drop && ( drop !== dd.current || method !== dd.method ) ){
                 console.log('drag action');
                 $( this )[ method ]( drop );
                 dd.current = drop;
@@ -62,18 +61,7 @@ jQuery(function ($) {
         })
         .drop("init",function( ev, dd ){
             console.log('dropinit', this, dd.drag);
-            return !( this == dd.drag );
+            return !( this === dd.drag );
         });
-
-    $.drop({
-        tolerance: function( event, proxy, target ){
-            var test = event.pageY > ( target.top + target.height / 2 );
-
-            console.log('tolerance', this, event, proxy, target);
-
-            $.data( target.elem, "drop+reorder", test ? "insertAfter" : "insertBefore" );
-            return this.contains( target, [ event.pageX, event.pageY ] );
-        }
-    });
 
 });
