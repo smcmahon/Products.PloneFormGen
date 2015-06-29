@@ -7,8 +7,10 @@
 
 var pfgQEdit = {};
 
-require(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($) {
+require(['jquery'], function ($) {
     'use strict';
+
+    console.log($);
 
     $(".ArchetypesCaptchaWidget .captchaImage")
         .replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
@@ -25,43 +27,62 @@ require(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($) {
     // widget accordion
     $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
 
-    $('#pfg-qetable .qefield')
-        .drag("start", function(ev, dd){
-            var jqt = $(this);
+    require(['jquery.event.drag'], function(drag) {
+        console.log(drag);
 
-            console.log('starting drag');
-            jqt.addClass('dragging');
-            return jqt.clone()
-                .addClass('drag-proxy')
-                .appendTo( document.body );
-        })
-        .drag(function( ev, dd ){
-            var drop = dd.drop[0],
-            method = $.data( drop || {}, "drop+reorder" );
+        require(['jquery.event.drop'], function(drop) {
+            console.log(drop);
 
-            // console.log('drag event', dd.drop);
+            $('#pfg-qetable .qefield')
+                .drag("start", function(ev, dd){
 
-            $( dd.proxy ).css({
-                top: dd.offsetY,
-                left: dd.offsetX
-            });
+                    drop({
+                      tolerance: function(event, proxy, target) {
+                        console.log('tolerance');
+                      }
+                    });
 
-            if ( drop && ( drop !== dd.current || method !== dd.method ) ){
-                console.log('drag action');
-                $( this )[ method ]( drop );
-                dd.current = drop;
-                dd.method = method;
-                dd.update();
-            }
-        })
-        .drag("end",function( ev, dd ){
-            console.log('drag end');
-            $( this ).removeClass('dragging');
-            $( dd.proxy ).remove();
-        })
-        .drop("init",function( ev, dd ){
-            console.log('dropinit', this, dd.drag);
-            return !( this === dd.drag );
+                    var jqt = $(this), proxy;
+
+                    console.log('starting drag');
+
+                    jqt.addClass('dragging');
+                    proxy = jqt.clone()
+                        .addClass('drag-proxy')
+                        .appendTo( document.body );
+
+                    return proxy;
+                })
+                .drag(function( ev, dd ){
+                    console.log('drag event');
+                    // var drop = dd.drop[0],
+                    // method = $.data( drop || {}, "drop+reorder" );
+
+                    $( dd.proxy ).css({
+                        top: dd.offsetY,
+                        left: dd.offsetX
+                    });
+
+                    // if ( drop && ( drop != dd.current || method != dd.method ) ){
+                    //     console.log('drag action');
+                    //     $( this )[ method ]( drop );
+                    //     dd.current = drop;
+                    //     dd.method = method;
+                    //     dd.update();
+                    // }
+                })
+                .drag("end",function( ev, dd ){
+                    console.log('drag end');
+                    $( this ).removeClass('dragging');
+                    $( dd.proxy ).remove();
+                })
+                .drop("init",function( ev, dd ){
+                    console.log('dropinit', this, this != dd.drag);
+                    return (this == dd.drag) ? false: true;
+                })
+                ;
         });
+    });
+
 
 });
