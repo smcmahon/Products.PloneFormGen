@@ -3,18 +3,15 @@
     metal:use-macro="here/prefs_main_template/macros/master"
     i18n:domain="plone">
 
-<metal:block metal:fill-slot="top_slot"
-             tal:define="dummy python:request.set('disable_border',1)" />
-
 <body>
 
-<div metal:fill-slot="prefs_configlet_content"
+<div metal:fill-slot="prefs_configlet_main"
     tal:define="pfgTool python: modules['Products.CMFCore.utils'].getToolByName(here, 'formgen_tool');">
 
     <div class="documentEditable" i18n:domain="ploneformgen"
          tal:condition="python:checkPermission('Manage portal', here)">
 
-        <div id="edit-bar">
+        <div id="edit-bar" style="display:none">
              <ul id="content-views" class="contentViews">
                  <li>
                  <a href="prefs_pfg_permits"

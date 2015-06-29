@@ -1,4 +1,6 @@
 
+- Recaptcha config form
+
 - Re-enable and fix export-import
 
 - Re-enable and fix quickedit
