@@ -41,9 +41,6 @@ will be a better choice.
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
 
-jQuery UI
----------
-
 PloneFormGen 1.7.x depends on collective.js.jqueryui. Depending on the version
 of Plone you're on, you'll have to install a different version of
 collective.js.jqueryui. Please refer to collective.js.jqueryui documentation
