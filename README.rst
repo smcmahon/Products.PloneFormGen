@@ -21,8 +21,16 @@ McMahon: steve@dcn.org.
 1.8 Notes
 =========
 
-PFG 1.8 is intended for use with Plone 5+. If you're using Plone < 5, PFG 1.7
-will be a better choice.
+PFG 1.8 is intended for use with Plone 5+. If you're using Plone 4.1.x-4.3.x, choose PFG 1.7.x. PFG 1.6.x targets Plone < 4.1.
+
+collective.js.jqueryui is no longer required. If you've migrated from Plone 4.x and no other package is using it, you may uninstall it.
+
+Known Issues
+------------
+
+ * The QuickEditor is not yet working;
+ * Export/Import is not yet working;
+ * The ReCAPTCHA config form is primitive.
 
 1.7 Notes
 =========
@@ -36,9 +44,7 @@ functionality.
 jQuery UI
 ---------
 
-Not applicable for Plone 5 yet.
-
-PloneFormGen depends on collective.js.jqueryui. Depending on the version
+PloneFormGen 1.7.x depends on collective.js.jqueryui. Depending on the version
 of Plone you're on, you'll have to install a different version of
 collective.js.jqueryui. Please refer to collective.js.jqueryui documentation
 for more information: https://pypi.python.org/pypi/collective.js.jqueryui/1.10.3
