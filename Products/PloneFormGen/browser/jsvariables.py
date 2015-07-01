@@ -23,7 +23,7 @@ messages = {
 
 }
 
-messageTemplate = "pfgQEdit.messages = {\n%s}\n"
+messageTemplate = "pfgQEdit_messages = {\n%s}\n"
 
 class JSVariables(BrowserView):
 

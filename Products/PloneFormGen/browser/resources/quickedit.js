@@ -1,17 +1,14 @@
 // Support for PFG Quick Edit
 
-/*global console, requirejs */
+/*global pfgQEdit_messages, requirejs */
 
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: false */
-
-var pfgQEdit = {};
-
 
 requirejs(['jquery'], function ($) {
     'use strict';
 
-    // $(".ArchetypesCaptchaWidget .captchaImage")
-    //     .replaceWith("<div>" + pfgQEdit.messages.NO_CAPTCHA_MSG + "</div>");
+    $(".ArchetypesCaptchaWidget .captchaImage")
+        .replaceWith("<div>" + pfgQEdit_messages.NO_CAPTCHA_MSG + "</div>");
 
     // disable and dim input elements
     $("#pfg-fieldwrapper .field :input")
