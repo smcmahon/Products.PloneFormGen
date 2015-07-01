@@ -4,7 +4,7 @@
 
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: false */
 
-requirejs(['jquery'], function ($) {
+requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, drag, drop) {
     'use strict';
 
     $(".ArchetypesCaptchaWidget .captchaImage")
@@ -21,5 +21,36 @@ requirejs(['jquery'], function ($) {
 
     // widget accordion
     $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
+
+    var dd_defaults = {
+        dragClass: 'item-dragging',
+        cloneClass: 'drag-proxy',
+        drop: null // function to handle drop event
+        };
+
+    function dd_init(drag_selector, drop_selector, opts) {
+        var options = $.extend({}, dd_defaults, opts);
+
+        $(drag_selector)
+            .drag("start", function(ev, dd) {
+                return $(this).clone()
+                    .addClass(options.cloneClass)
+                    .appendTo($('body'));
+            })
+            .drag(function(ev, dd){
+                $(dd.proxy).css({
+                    top: dd.offsetY,
+                    left: dd.offsetX
+                });
+            })
+            .drag("end",function(ev, dd){
+                $(dd.proxy).remove();
+            });
+        // $(drop_selector).drop(function(ev, dd){
+        //     console.log('drop');
+        // });
+    }
+
+    dd_init('.qefield', '.qefield', {});
 
 });

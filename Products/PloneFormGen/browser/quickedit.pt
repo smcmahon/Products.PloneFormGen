@@ -84,24 +84,6 @@
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
 
-<table classx="table table-stripped pat-sortable"
-       data-pat-sortable="selector:tr;">
-  <tbody>
-    <tr>
-      <td>One One</td>
-      <td>One Two</td>
-    </tr>
-    <tr>
-      <td>Two One</td>
-      <td>Two Two</td>
-    </tr>
-    <tr>
-      <td>Three One</td>
-      <td>Three Two</td>
-    </tr>
-  </tbody>
-</table>
-
         <form id="auth_hold" style="display:none">
             <span tal:replace="structure context/@@authenticator/authenticator"/>
         </form>
@@ -205,7 +187,7 @@
                 <div id="pfg-fieldwrapper">
                     <h2 i18n:translate="Fields">Fields</h2>
 
-                    <div id="pfg-qetable" class="listing pat-sortable" summary="Field listing"
+                    <div id="pfg-qetable" class="listing xpat-sortable" summary="Field listing"
                         data-pat-sortable="selector:div.qefield;">
                         <tal:fields repeat="field fields">
                             <div class="qefield">
