@@ -1,19 +1,37 @@
+sudo: false
+
 language: python
+
 python: 2.7
+
 env:
   - PLONE_VERSION=5
+
 matrix:
   fast_finish: true
+
+cache:
+  pip: true
+  directories:
+    - $HOME/buildout-cache
+
+before_install:
+  - mkdir -p $HOME/buildout-cache/{eggs,downloads}
+  - virtualenv .
+  - bin/pip install --upgrade pip setuptools zc.buildout
+
 install:
   - sed -ie "s#travis-4.x.cfg#travis-$PLONE_VERSION.x.cfg#" travis.cfg
-  - mkdir -p buildout-cache/downloads
-  - python bootstrap.py -c travis.cfg
-  - bin/buildout -c travis.cfg annotate
   - bin/buildout -c travis.cfg -N -q
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-script: bin/test
-after_success: bin/coverage.sh && pip install -q coveralls && coveralls || true
+
+# before_script:
+#   - export DISPLAY=:99.0
+#   - sh -e /etc/init.d/xvfb start
+
+script:
+  - bin/test
+
+# after_success: bin/coverage.sh && pip install -q coveralls && coveralls || true
+
 notifications:
   irc: irc.freenode.org#plone-testing
