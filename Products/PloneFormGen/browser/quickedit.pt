@@ -57,10 +57,10 @@
         tal:attributes="src string:$portal_url/++resource++Products.PloneFormGen.resources/quickedit.js"
         tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
     </script>
-    <script src="pfg_javascript_variables.js"
+    <!-- script src="pfg_javascript_variables.js"
         type="text/javascript"
         tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
-    </script>
+    </script -->
 
     <tal:block define="macro edit_macros/javascript_head | nothing"
                     condition="macro">
@@ -83,6 +83,24 @@
                   tal:define="isLocked python:False;
                               canModify python:checkPermission('Modify portal content', here);
                               quickEdit python:True">
+
+<table classx="table table-stripped pat-sortable"
+       data-pat-sortable="selector:tr;">
+  <tbody>
+    <tr>
+      <td>One One</td>
+      <td>One Two</td>
+    </tr>
+    <tr>
+      <td>Two One</td>
+      <td>Two Two</td>
+    </tr>
+    <tr>
+      <td>Three One</td>
+      <td>Three Two</td>
+    </tr>
+  </tbody>
+</table>
 
         <form id="auth_hold" style="display:none">
             <span tal:replace="structure context/@@authenticator/authenticator"/>
@@ -187,9 +205,11 @@
                 <div id="pfg-fieldwrapper">
                     <h2 i18n:translate="Fields">Fields</h2>
 
-                    <div id="pfg-qetable" class="listing" summary="Field listing">
+                    <div id="pfg-qetable" class="listing pat-sortable" summary="Field listing"
+                        data-pat-sortable="selector:div.qefield;">
                         <tal:fields repeat="field fields">
-                            <form class="qefield">
+                            <div class="qefield">
+                            <form>
                                 <div class="draggable draggingHook editHook qechild"><span class="dhcenter"></span>⣿</div>
                                 <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
                                     <tal:block tal:condition="python:field.widget.visible != -1">
@@ -223,6 +243,7 @@
                                             >Delete</a>
                                 </div>
                             </form>
+                            </div>
                         </tal:fields>
                     </div>
                 </div>
