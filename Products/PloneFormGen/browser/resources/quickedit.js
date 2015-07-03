@@ -20,18 +20,21 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         });
 
     // widget accordion
-    $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
+    // $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
 
-    var dd_defaults = {
-        drag_selector: null,
-        drop_selector: null,
-        dragClass: 'item-dragging',
-        cloneClass: 'drag-proxy',
-        reorder: false,
-        drop: null // function to handle drop event
-        };
 
+    /*
+        drag & drop support
+    */
     function dd_init(config) {
+        var dd_defaults = {
+            drag_selector: null,
+            drop_selector: null,
+            dragClass: 'item-dragging',
+            cloneClass: 'drag-proxy',
+            reorder: false,
+            drop: null // function to handle drop event
+        };
         var options = $.extend({}, dd_defaults, config),
             drop_targets;
 
@@ -40,6 +43,8 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
 
                 // drop is a global; we need to use it here so that our configuration
                 // takes control from any previous settings.
+                // set tolerance function to determine insertion point
+                // and mark it with a class on the target
                 drop({
                     tolerance: function(event, proxy, target) {
                         var test = event.pageY > ( target.top + target.height / 2 );
@@ -82,9 +87,8 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
                     jqt = $(this),
                     method;
                 
-                console.log('drag end');
                 $(dd.proxy).remove();
-                if (dd.drop) {
+                if (dd.drop.length) {
                     target = $(dd.drop[0]);
                     if (target.hasClass('insert_before')) {
                         method = 'insertBefore';
@@ -94,11 +98,11 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
                     if (options.reorder) {
                         jqt[method](target);
                     }
+                    if (options.drop) {
+                        options.drop(jqt, target, method);
+                    }
                 }
                 $(this).removeClass(options.dragClass);
-                if (dd.drop && options.drop) {
-                    options.drop(this, dd.drop[0], method);
-                }
                 drop_targets.removeClass("insert_before insert_after");
             });
 
@@ -109,12 +113,36 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
             });
     }
 
+
+    function getAuthToken () {
+        return $('#auth_hold input').val();
+    }
+
+
+	function updatePositionOnServer (item, target, method) {
+		var post_args = {
+			item_id: item,
+			target_id: target,
+			method: method,
+            _authenticator: getAuthToken()
+		};
+		$.post('reorderField', post_args, function () {
+			console.log('reordered');
+		});
+	}
+
+
     dd_init({
         drag_selector: '#pfg-qetable .qefield',
         drop_selector: '#pfg-qetable .qefield',
         reorder: true,
         drop: function (dd, target, method) {
             console.log('drop field', dd, target, method);
+            updatePositionOnServer(
+                dd.find('.field').attr('data-fieldname'),
+                target.find('.field').attr('data-fieldname'),
+                method
+            );
         }
     });
 
