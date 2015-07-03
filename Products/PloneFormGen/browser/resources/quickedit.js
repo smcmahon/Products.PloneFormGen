@@ -27,12 +27,12 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         drop_selector: null,
         dragClass: 'item-dragging',
         cloneClass: 'drag-proxy',
+        reorder: false,
         drop: null // function to handle drop event
         };
 
     function dd_init(config) {
         var options = $.extend({}, dd_defaults, config),
-            last_target,
             drop_targets;
 
         $(options.drag_selector)
@@ -78,52 +78,68 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
                 });
             })
             .drag("end",function(ev, dd){
+                var target,
+                    jqt = $(this),
+                    method;
+                
+                console.log('drag end');
                 $(dd.proxy).remove();
+                if (dd.drop) {
+                    target = $(dd.drop[0]);
+                    if (target.hasClass('insert_before')) {
+                        method = 'insertBefore';
+                    } else {
+                        method = 'insertAfter';
+                    }
+                    if (options.reorder) {
+                        jqt[method](target);
+                    }
+                }
                 $(this).removeClass(options.dragClass);
+                if (dd.drop && options.drop) {
+                    options.drop(this, dd.drop[0], method);
+                }
                 drop_targets.removeClass("insert_before insert_after");
             });
 
         drop_targets = $(options.drop_selector);
         drop_targets
             .drop("init",function( ev, dd ){
-                return !( this == dd.drag );
-            })
-            .drop(function(ev, dd){
-                if (options.drop) {
-                    options.drop(dd);
-                }
+                return (this != dd.drag);
             });
     }
 
     dd_init({
         drag_selector: '#pfg-qetable .qefield',
         drop_selector: '#pfg-qetable .qefield',
-        drop: function (dd, target) {
-            console.log(dd, 'drop');
+        reorder: true,
+        drop: function (dd, target, method) {
+            console.log('drop field', dd, target, method);
         }
     });
 
     dd_init({
         drag_selector: '#fieldWidgets .widget, #fieldsetWidgets .widget',
         drop_selector: '#pfg-qetable .qefield',
-        drop: function (dd, target) {
-            console.log(dd, 'drop');
+        drop: function (dd, target, method) {
+            console.log('drop new field', dd, target, method);
         }
     });
 
     dd_init({
         drag_selector: '#pfgActionEdit .qefield',
         drop_selector: '#pfgActionEdit .qefield',
-        drop: function (dd, target) {
-            console.log(dd, 'drop');
+        reorder: true,
+        drop: function (dd, target, method) {
+            console.log('drop action', dd, target, method);
         }
     });
 
     dd_init({
         drag_selector: '#actionWidgets .widget',
         drop_selector: '#pfgActionEdit .qefield',
-        drop: function (dd, target) {
-            console.log(dd, 'drop');
+        drop: function (dd, target, method) {
+            console.log('drop new action', dd, target, method);
         }
     });
 
