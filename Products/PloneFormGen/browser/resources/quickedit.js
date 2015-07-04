@@ -20,7 +20,7 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         });
 
     // widget accordion
-    // $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
+    $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
 
 
     /*
@@ -174,6 +174,20 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         drop: function (dd, target, method) {
             console.log('drop new action', dd, target, method);
         }
+    });
+
+    // activate toggles on actions and thanks pages
+    $("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
+        $.post('toggleActionActive', {
+            item_id: this.name.substr('cbaction-'.length),
+            _authenticator: getAuthToken()
+        });
+    });
+    jQuery("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
+        $.post('setThanksPageTTW', {
+            value: this.value,
+            _authenticator: getAuthToken()
+        });
     });
 
 });
