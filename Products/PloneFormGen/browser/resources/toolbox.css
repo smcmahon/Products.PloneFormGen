@@ -226,12 +226,6 @@ div.qefield div.field span,
     cursor: default;
 }
 
-span.not-required {
-    border:1px solid red;
-    width:7px; height:7px;
-    display:none;
-}
-
 div.deleting {
     opacity: 0.6;
     z-index: 99;
@@ -280,12 +274,16 @@ td.draggable.draggingHook {
     border-bottom: 3px dashed red;
 }
 
+span.not-required::after,
 span.required::after {
     color: #C4183C;
-    content: "•";
-    font-size: 200%;
+    content: "◼︎";
+    font-size: 100%;
     line-height: 0;
     position: relative;
-    top: 7px;
+    top: 0;
     margin-left: 2px;
+}
+span.not-required::after {
+    content: "◻︎";
 }
