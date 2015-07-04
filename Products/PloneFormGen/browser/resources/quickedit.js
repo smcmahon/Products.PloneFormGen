@@ -4,6 +4,19 @@
 
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: false */
 
+
+/*
+
+TODO:
+
+    widget d&d
+
+    deletion by ajax
+
+    clean out old styles and css selectors
+
+*/
+
 requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, drag, drop) {
     'use strict';
 
@@ -247,63 +260,69 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         });
     })();
 
-    // The function is used as a closure.
-    (function toggleRequired () {
-        var target, jqt;
+
+    /*
+        Label editing
+    */
+
+    // initialize the markers
+    $("div.field label").next().each(function () {
+        var jqt;
 
         jqt = $(this);
-        target = $("div.field label").next();
-
-        target.each(function () {
-            var jqt;
-
-            jqt = $(this);
-            if (!jqt.is("span")) {
-                $("<span class='not-required' title='Make it required?'></span>")
-                    .insertBefore(this);
-            } else {
-                jqt.attr("title", "Remove required flag?");
-            }
-        });
-
-        $(document).on("click", "span.not-required", function (event) {
-            var item, jqt;
-
-            jqt = $(this);
-            item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
-            // AJAX
-            $.post('toggleRequired', {
-                item_id: item,
-                _authenticator: getAuthToken()
-                }, function () {
-                console.log('toggle required');
-            });
-            $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').attr("required", "required");
-            jqt.removeClass("not-required");
-            jqt.addClass("required");
-            // jqt.html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
+        if (!jqt.is("span")) {
+            $("<span class='not-required' title='Make it required?'></span>")
+                .insertBefore(this);
+        } else {
             jqt.attr("title", "Remove required flag?");
+        }
+    });
+
+    // click to edit event
+    $(document).on("click", "span.not-required", function (event) {
+        var item, jqt;
+
+        jqt = $(this);
+        item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
+        // AJAX
+        $.post('toggleRequired', {
+            item_id: item,
+            _authenticator: getAuthToken()
+            }, function () {
+            console.log('toggle required');
         });
+        $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').attr("required", "required");
+        jqt.removeClass("not-required");
+        jqt.addClass("required");
+        // jqt.html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
+        jqt.attr("title", "Remove required flag?");
+    });
 
-        $(document).on("click", "span.required", function (event) {
-            var item, jqt;
+    /*
+        Required flag toggling
+    */
+    $(document).on("click", "span.required", function (event) {
+        var item, jqt;
 
-            jqt = $(this);
-            item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
-            // AJAX
-            $.post('toggleRequired', {
-                item_id: item,
-                _authenticator: getAuthToken()
-                }, function () {
-                console.log('toggle required');
-            });
-            $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').removeAttr("required");
-            jqt.removeClass("required");
-            jqt.addClass("not-required");
-            // jqt.html("").fadeIn().css("display", "inline-block");
-            jqt.attr("title", "Make it required?");
+        jqt = $(this);
+        item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
+        // AJAX
+        $.post('toggleRequired', {
+            item_id: item,
+            _authenticator: getAuthToken()
+            }, function () {
+            console.log('toggle required');
         });
-    })();
+        $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').removeAttr("required");
+        jqt.removeClass("required");
+        jqt.addClass("not-required");
+        // jqt.html("").fadeIn().css("display", "inline-block");
+        jqt.attr("title", "Make it required?");
+    });
 
+    /* handle global AJAX error */
+    $(document).ajaxError(function (event, request, settings) {
+        alert(pfgQEdit.messages.AJAX_FAILED_MSG + settings.url);
+    });
 
 });
