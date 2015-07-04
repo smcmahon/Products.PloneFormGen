@@ -34,8 +34,8 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
             cloneClass: 'drag-proxy',
             reorder: false,
             drop: null // function to handle drop event
-        };
-        var options = $.extend({}, dd_defaults, config),
+            },
+            options = $.extend({}, dd_defaults, config),
             drop_targets;
 
         $(options.drag_selector)
@@ -183,11 +183,66 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
             _authenticator: getAuthToken()
         });
     });
-    jQuery("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
+    $("#pfgThanksEdit input[name^=thanksRadio]").bind('click', function (e) {
         $.post('setThanksPageTTW', {
             value: this.value,
             _authenticator: getAuthToken()
         });
     });
+
+
+    // We need the required markers outside the label
+    $("div.field label span.required").each(function () {
+        var jqt = $(this);
+
+        jqt.insertAfter(jqt.parent());
+    });
+
+
+    /*
+        Initialize title editing.
+        The function is only needed to put a closure around the node
+        variable.
+     */
+    (function editTitles () {
+        // first we create a new dynamic node (which will be used to edit content)
+        var node = document.createElement("input");
+        node.setAttribute('name', "change");
+        node.setAttribute("type", "text");
+
+        // then we attach a new event to label fields
+        $("#pfg-qetable").on('dblclick', ".qefield label.formQuestion", function (e) {
+            var jqt = $(this),
+                content = jqt.text(),
+                tmpfor = jqt.attr('for');
+
+            content = content.replace(/^\s*(.*?)\s*$/, '$1');
+            jqt.html($(node).val(content));
+            jqt.append(node);
+            $(node).fadeIn();
+            jqt.children().unwrap();
+            node.focus();
+            node.select();
+
+            $(node).blur(function (e) {
+                var jqt = $(this),
+                    args;
+
+                jqt.wrap("<label class='formQuestion' for='" + tmpfor + "'></label>");
+                jqt.parent().html(jqt.val());
+                args = {
+                    item_id: tmpfor,
+                    title: jqt.val(),
+                    _authenticator: getAuthToken()
+                };
+                if (args.title !== content) { // only update if we actually changed the field
+                    $("img.ajax-loader").css('visibility', 'visible');
+                    $.post("updateFieldTitle", args, function () {
+                        console.log('title updated');
+                    });
+                }
+            });
+        });
+    })();
 
 });

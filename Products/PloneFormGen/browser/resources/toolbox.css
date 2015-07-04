@@ -273,13 +273,19 @@ td.draggable.draggingHook {
     background-color: #ccc;
     width: 60%;
 }
-.qefield {
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-}
 .insert_before {
-    border-top: 2px dashed red;
+    border-top: 3px dashed red;
 }
 .insert_after {
-    border-bottom: 2px dashed red;
+    border-bottom: 3px dashed red;
+}
+
+span.required::after {
+    color: #C4183C;
+    content: "•";
+    font-size: 200%;
+    line-height: 0;
+    position: relative;
+    top: 7px;
+    margin-left: 2px;
 }
