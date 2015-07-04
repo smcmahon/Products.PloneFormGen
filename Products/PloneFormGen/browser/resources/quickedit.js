@@ -86,7 +86,7 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
                 var target,
                     jqt = $(this),
                     method;
-                
+
                 $(dd.proxy).remove();
                 if (dd.drop.length) {
                     target = $(dd.drop[0]);
@@ -160,6 +160,11 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         reorder: true,
         drop: function (dd, target, method) {
             console.log('drop action', dd, target, method);
+            updatePositionOnServer(
+                dd.attr('id').slice(12),
+                target.attr('id').slice(12),
+                method
+            );
         }
     });
 
