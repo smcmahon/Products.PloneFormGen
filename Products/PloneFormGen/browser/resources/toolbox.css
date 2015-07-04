@@ -148,6 +148,7 @@ tr.theader th {
     overflow: hidden;
     margin-bottom: 1em;
     clear:both;
+    cursor: ns-resize;
 }
 
 .field {
@@ -273,12 +274,14 @@ td.draggable.draggingHook {
 .insert_after {
     border-bottom: 3px dashed red;
 }
-
+#pfg-qetable label.formQuestion {
+    cursor: pointer;
+}
 span.not-required::after,
 span.required::after {
     color: #C4183C;
     content: "◼︎";
-    font-size: 100%;
+    font-size: 150%;
     line-height: 0;
     position: relative;
     top: 0;

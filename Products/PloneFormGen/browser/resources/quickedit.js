@@ -210,8 +210,10 @@ requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, dra
         node.setAttribute('name', "change");
         node.setAttribute("type", "text");
 
+        $('#pfg-qetable label.formQuestion').attr('title', 'Edit label')
+
         // then we attach a new event to label fields
-        $("#pfg-qetable").on('dblclick', ".qefield label.formQuestion", function (e) {
+        $("#pfg-qetable").on('click', ".qefield label.formQuestion", function (e) {
             var jqt = $(this),
                 content = jqt.text(),
                 tmpfor = jqt.attr('for');
