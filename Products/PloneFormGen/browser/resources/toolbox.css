@@ -280,7 +280,7 @@ td.draggable.draggingHook {
 span.not-required::after,
 span.required::after {
     color: #C4183C;
-    content: "◼︎";
+    content: "■";
     font-size: 150%;
     line-height: 0;
     position: relative;
@@ -288,5 +288,5 @@ span.required::after {
     margin-left: 2px;
 }
 span.not-required::after {
-    content: "◻︎";
+    content: "□";
 }
