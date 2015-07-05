@@ -17,7 +17,14 @@ TODO:
 
 */
 
-requirejs(['jquery', 'jquery.event.drag', 'jquery.event.drop'], function ($, drag, drop) {
+// recurrenceinput has the jquerytools tabs code
+requirejs([
+        'jquery', 
+        'jquery.event.drag', 
+        'jquery.event.drop', 
+        'jquery.recurrenceinput'
+        ], function ($, drag, drop) {
+
     'use strict';
 
     $(".ArchetypesCaptchaWidget .captchaImage")
