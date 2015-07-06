@@ -1,6 +1,6 @@
 // Support for PFG Quick Edit
 
-/*global pfgQEdit_messages, requirejs */
+/*global alert, pfgQEdit_messages, requirejs */
 
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: false */
 
@@ -19,13 +19,47 @@ TODO:
 
 // recurrenceinput has the jquerytools tabs code
 requirejs([
-        'jquery', 
-        'jquery.event.drag', 
-        'jquery.event.drop', 
-        'jquery.recurrenceinput'
-        ], function ($, drag, drop) {
+        'jquery',
+        'jquery.event.drag',
+        'jquery.event.drop',
+        'jquery.recurrenceinput',
+        'mockup-patterns-modal'
+        ], function ($, drag, drop, recurrenceinput, Modal) {
 
     'use strict';
+
+    $('.pfgdelbutton').patPloneModal({
+        width:400,
+        automaticallyAddButtonActions: false,
+        actions: {
+            '#form-buttons-Delete': {
+                displayInModal: false,
+                redirectOnResponse: false,
+                reloadWindowOnClose: false,
+                onSuccess: function(self, response, state, xhr, form) {
+                    var amatch;
+
+                    // remove the deleted field/action's node
+                    amatch = form[0].action.match(/.*?([^/]*)\/delete_confirmation.*/);
+                    if (amatch) {
+                        console.log('deleting node #archetypes-fieldname-' + amatch[1]);
+                        $('#archetypes-fieldname-' + amatch[1]).parent().remove();
+                        $('#action-name-' + amatch[1]).remove();
+                        $('#pfgThanksEdit')
+                            .find('[data-field=' + amatch[1] + ']')
+                            .remove();
+                    }
+                }
+            },
+            '#form-buttons-Cancel': {
+                displayInModal: false,
+                redirectOnResponse: false,
+                reloadWindowOnClose: false
+            }
+        }
+
+
+    });
 
     $(".ArchetypesCaptchaWidget .captchaImage")
         .replaceWith("<div>" + pfgQEdit_messages.NO_CAPTCHA_MSG + "</div>");
@@ -171,6 +205,165 @@ requirejs([
         drop_selector: '#pfg-qetable .qefield',
         drop: function (dd, target, method) {
             console.log('drop new field', dd, target, method);
+
+            var item = dd.clone(),
+                i = 1,
+                create_url;
+
+            item[method](target);
+			// perform the operations on the newly dragged element from the widgets manager
+			item.addClass("qechild");
+			item.addClass("item_" + i);
+			item.wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
+			item.before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
+			item.width($(item).width());
+			create_url = "createObject?type_name=" + item.context.id;
+			create_url += '&_authenticator=' + getAuthToken();
+			//	$(item).height($(item).height());
+			// AJAX stuff
+			item.children("div.widget-inside")
+            .load(create_url + " #content > div:last", function (response, status, xhr) {
+				var inputElem,
+				    formElem,
+				    msg,
+				    jqt;
+
+				jqt = $(this);
+
+				if (status === "error") {
+					msg = "Sorry but there was an error: ";
+					jqt.html(msg + xhr.status + " " + xhr.statusText);
+				}
+				else {
+					jqt.find("legend").remove();
+					jqt.find("#fieldset-overrides").remove();
+					jqt.find(".formHelp").remove();
+				}
+				// set the required attribute for the on the fly validation
+				inputElem = jqt.find("span.required").parent().find("input");
+				formElem = jqt.find('form');
+				inputElem.attr({required: "required"});
+				// formElem.validator({
+				// 	messageClass: formElem.attr("id") + "_" + (i - 1)  + " error",
+				// 	position: "center right",
+				// 	offset: [-10, 3]
+				// }).submit(function (e) {
+				// 	var tmpArray = [];
+				// 	inputElem.each(function (i, v) {
+				// 		if (!$(v).val()) {
+				// 			tmpArray.push($(v));
+				// 		}
+				// 	});
+				// 	if (tmpArray.length) {
+				// 		tmpArray[0].focus();
+				// 	}
+				// });
+				// hide all the error messages so far!
+				if ($("div.error").length > 0) {
+					$("div.error").hide();
+				}
+				jqt.slideDown();
+
+			});
+
+// 			// bind the toggle event for toggling slideUp/slideDown
+// 			$(".qefield div.item_" + i + " .widget-header").toggle(
+// 				function () {
+// 					var getId, itemNo, jqt;
+
+// 					jqt = $(this);
+
+// 					// hide all the error messages so far!
+// 					if ($("div.error").length > 0) {
+// 						$("div.error").hide();
+// 					}
+// 					// hide the error messages when manipulating with the widgets
+// 					jqt.siblings("div.widget-inside").slideUp();
+// 					getId = jqt.siblings("div.widget-inside").find("form").attr("id");
+// 					itemNo = jqt.parent().attr("class").substr(jqt.parent().attr("class").indexOf("item") + "item_".length);
+// 					$("div." + getId + "_" + itemNo).hide();
+// 				},
+// 				function () {
+// 					// hide all the error messages so far!
+// 					if ($("div.error").length > 0) {
+// 						$("div.error").hide();
+// 					}
+// 					$(this).siblings("div.widget-inside").slideDown();
+// 				}
+// 			);
+
+// 			// current position in the table
+// 			currpos = $(".item_" + i).parent().index();
+
+			$("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.save']", function (e) {
+				var button = $(this),
+                    formParent = $(this).closest('form'),
+                    formAction = formParent.attr('action'),
+                    values = {};
+				// json like structure, storing names and values of the form fields
+				$.each($(formParent).serializeArray(), function (i, field) {
+					values[field.name] = field.value;
+				});
+				$.ajax({
+					type: "POST",
+					url: formAction,
+					data: values,
+					async: false,
+					success: function () {
+						//we have to calculate the position where the field
+						//was dropped
+						var itemPos = pfgWidgets.getPos($('.new-widget')),
+                            formFields = $('#pfg-qetable .qefield:not(.new-widget) .field, #pfg-qetable .PFGFieldsetWidget'),
+                            targetElement,
+                            targetId,
+                            itemId,
+                            widgetParent;
+						if (formFields.length !== itemPos) {
+							targetElement = formFields[itemPos];
+							if ($(targetElement).hasClass('PFGFieldsetWidget') === true) {
+								targetId = $(targetElement).attr('id').substr('pfg-fieldsetname-'.length);
+							} else {
+								targetId = $(targetElement).attr('id').substr('archetypes-fieldname-'.length);
+							}
+							$.ajax({
+								url: 'lastFieldIdFromForm',
+								async: false,
+								success: function (data) {
+									itemId = data;
+									pfgWidgets.updatePositionOnServer(itemId, targetId);
+								}
+							});
+						}
+
+						widgetParent = button.parents("div.qefield");
+						widgetParent.find("div.widget-inside").slideUp('fast', function () {
+							location.reload();
+						});
+					}
+				});
+				e.preventDefault();
+				return false;
+			});
+
+			$("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.cancel']", function (e) {
+				var widgetParent;
+
+				e.preventDefault();
+				// hide all the error messages so far!
+				if ($("div.error").length > 0) {
+					$("div.error").hide();
+				}
+				widgetParent = $(this).parents("div.qefield");
+				widgetParent.find("div.widget-inside").slideUp('fast', function () {
+					widgetParent.fadeOut('slow', function () {
+						widgetParent.remove();
+					});
+				});
+			});
+
+// 			i += 1; // increment i on each addition
+
+
         }
     });
 
@@ -196,6 +389,7 @@ requirejs([
         }
     });
 
+
     // activate toggles on actions and thanks pages
     $("#pfgActionEdit input[name^=cbaction-]").bind('change', function (e) {
         $.post('toggleActionActive', {
@@ -211,7 +405,14 @@ requirejs([
     });
 
 
-    // We need the required markers outside the label
+    // We need the form help outside the label
+    $("div.field label span.formHelp").each(function () {
+        var jqt = $(this);
+
+        jqt.insertAfter(jqt.parent());
+    });
+    // Also, the required markers; as a separate operation from help
+    // to get the order right.
     $("div.field label span.required").each(function () {
         var jqt = $(this);
 
@@ -329,7 +530,7 @@ requirejs([
 
     /* handle global AJAX error */
     $(document).ajaxError(function (event, request, settings) {
-        alert(pfgQEdit.messages.AJAX_FAILED_MSG + settings.url);
+        alert(pfgQEdit_messages.AJAX_FAILED_MSG + settings.url);
     });
 
 });

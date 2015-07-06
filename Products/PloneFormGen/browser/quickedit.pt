@@ -217,12 +217,19 @@
                                         tal:attributes="href string:${context/absolute_url}/${field/getName}/edit?_authenticator=${auth_token}"
                                         data-pat-plone-modal="width: 600"
                                         >Edit</a>
-                                        <a title="Delete Field"
-                                            class="plone-btn plone-btn-primary pat-plone-modal"
-                                            href="delete_confirmation"
-                                            data-pat-plone-modal="width: 300"
-                                            tal:attributes="href string:${context/absolute_url}/${field/getName}/delete_confirmation?_authenticator=${auth_token}"
-                                            >Delete</a>
+<!--
+                                    <a title="Delete Field"
+                                        class="plone-btn plone-btn-primary pat-plone-modal"
+                                        href="delete_confirmation"
+                                        data-pat-plone-modal="{width: '300', actions:{'#form-buttons-Cancel':{redirectOnResponse:false, reloadWindowOnClose:false}}}"
+                                        tal:attributes="href string:${context/absolute_url}/${field/getName}/delete_confirmation?_authenticator=${auth_token}"
+                                        >Delete</a>
+-->
+                                    <a title="Delete Field"
+                                        class="plone-btn plone-btn-primary pfgdelbutton"
+                                        href="delete_confirmation"
+                                        tal:attributes="href string:${context/absolute_url}/${field/getName}/delete_confirmation?_authenticator=${auth_token}"
+                                        >Delete</a>
                                 </div>
                             </form>
                             </div>
@@ -265,8 +272,7 @@
                                 title="Edit Field"
                                 >Edit</a>
                             <a href="#"
-                               class="plone-btn plone-btn-primary pat-plone-modal"
-                               data-pat-plone-modal="width: 300"
+                               class="plone-btn plone-btn-primary pfgdelbutton"
                                tal:attributes="href string:${aaid}/delete_confirmation?_authenticator=${auth_token}"
                                title="Delete Action" i18n:attributes="title"
                                >Delete</a>
@@ -284,7 +290,10 @@
                 <h2 i18n:translate="thanks_page">Thanks page</h2>
                 <div id="pfgThanksEdit">
                     <tal:block tal:repeat="row python:here.thanksPageVocabulary().items()">
-                    <div class="qefield" tal:define="tyid python:row[0]">
+                    <div class="qefield"
+                         tal:define="tyid python:row[0]"
+                         tal:attributes="data-field tyid"
+                         >
                         <div class="action qechild">
                             <input type="radio" name="thanksRadio"
                                    tal:attributes="value tyid;
@@ -302,8 +311,7 @@
                           <tal:block tal:condition="python:not row[0]">&nbsp;</tal:block>
                             <a href="#"
                                tal:condition="python:tyid"
-                               class="plone-btn plone-btn-primary pat-plone-modal"
-                               data-pat-plone-modal="width: 300"
+                               class="plone-btn plone-btn-primary pfgdelbutton"
                                tal:attributes="href string:${tyid}/delete_confirmation?_authenticator=${auth_token}"
                                title="Delete Page"
                                >Delete</a>
