@@ -192,7 +192,7 @@
                         <tal:fields repeat="field fields">
                             <div class="qefield">
                             <form>
-                                <div class="draggable draggingHook editHook qechild"><span class="dhcenter"></span>⣿</div>
+                                <div class="draggable qechild"><span class="dhcenter"></span>⣿</div>
                                 <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
                                     <tal:block tal:condition="python:field.widget.visible != -1">
                                         <metal:fieldMacro use-macro="python:here.widget(field.getName(), mode='edit', field=field)" />

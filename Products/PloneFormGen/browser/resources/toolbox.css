@@ -49,8 +49,7 @@ h4.widget-header:before {
     content: "⣿ ";
 }
 
-h4.widget-header, h4.widget-header-helper,
-.draggable .dragginghook {
+h4.widget-header, h4.widget-header-helper {
     background-color: LightBlue;
     padding: 5px;
     cursor: move;
@@ -146,7 +145,7 @@ tr.theader th {
 .qefield {
     width: 100%;
     overflow: hidden;
-    margin-bottom: 1em;
+    margin-bottom: 0;
     clear:both;
     cursor: ns-resize;
 }
@@ -189,11 +188,6 @@ div.editHook * {
     margin-right: 5px;
 }
 
-div.draggable {
-    border-bottom: 1px solid white;
-    padding: 0.4em 0.4em 0px 0.5em;
-}
-
 #content .ui-sortable h4.widget-header {
     margin: 0;
     border: 0;
@@ -231,14 +225,6 @@ div.deleting {
     z-index: 99;
 }
 
-.editHook a {
-    border-bottom:none !important;
-}
-td.draggable.draggingHook {
-    cursor:ns-resize;
-    vertical-align:middle;
-}
-
 .fsbegin, .fsend {
     border: 1px dashed black;
     margin: 0 6px;
@@ -265,6 +251,7 @@ td.draggable.draggingHook {
 .drag-proxy {
     position: absolute;
     background-color: #ccc;
+    opacity: 0.75;
     width: 60%;
 }
 .insert_before {
@@ -288,4 +275,9 @@ span.required::after {
 }
 span.not-required::after {
     content: "□";
+}
+
+
+.icon-quickedit::before {
+    content: "QE";
 }

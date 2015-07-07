@@ -1,17 +1,15 @@
 // Support for PFG Quick Edit
 
-/*global alert, pfgQEdit_messages, requirejs */
+/*global console, alert, pfgQEdit_messages, requirejs */
 
-/*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: false */
+/*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: true */
 
 
 /*
 
 TODO:
 
-    Add new via d&d
-
-    clean out old styles and css selectors
+    Generalize add new via d&d
 
 */
 
@@ -39,7 +37,7 @@ requirejs([
                     var amatch;
 
                     // remove the deleted field/action's node
-                    amatch = form[0].action.match(/.*?([^/]*)\/delete_confirmation.*/);
+                    amatch = form[0].action.match(/.*?([^\/]*)\/delete_confirmation.*/);
                     if (amatch) {
                         console.log('deleting node #archetypes-fieldname-' + amatch[1]);
                         $('#archetypes-fieldname-' + amatch[1]).parent().remove();
@@ -145,7 +143,7 @@ requirejs([
                     drop_targets.removeClass("insert_before insert_after");
                 }
 
-                if (drop && (drop != dd.current || method != dd.method)){
+                if (drop && (drop !== dd.current || method !== dd.method)){
                     drop_targets.removeClass("insert_before insert_after");
                     $(drop).addClass(method);
                     dd.current = drop;
@@ -185,7 +183,7 @@ requirejs([
         drop_targets = $(options.drop_selector);
         drop_targets
             .drop("init",function( ev, dd ){
-                return (this != dd.drag);
+                return (this !== dd.drag);
             });
     }
 
@@ -223,115 +221,114 @@ requirejs([
         }
     });
 
+    function dropNew(dd, target, method) {
+        console.log('drop new field', dd, target, method);
+
+        var item = dd.clone(),
+            create_url;
+
+        item[method](target);
+        // perform the operations on the newly dragged element from the widgets manager
+        item.addClass("qechild");
+        item.wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
+        item.before("<div class='qechild'>⣿</div>");
+        item.width($(item).width());
+        create_url = "createObject?type_name=" + item.context.id;
+        create_url += '&_authenticator=' + getAuthToken();
+        //  $(item).height($(item).height());
+        // AJAX stuff
+        item.children("div.widget-inside")
+        .load(create_url + " #content > div:last", function (response, status, xhr) {
+            var inputElem,
+                msg,
+                jqt;
+
+            jqt = $(this);
+
+            if (status === "error") {
+                msg = "Sorry but there was an error: ";
+                jqt.html(msg + xhr.status + " " + xhr.statusText);
+            }
+            else {
+                jqt.find("legend").remove();
+                jqt.find("#fieldset-overrides").remove();
+                jqt.find(".formHelp").remove();
+            }
+            // set the required attribute for the on the fly validation
+            inputElem = jqt.find("span.required").parent().find("input");
+            inputElem.attr({required: "required"});
+            // hide all the error messages so far!
+            if ($("div.error").length > 0) {
+                $("div.error").hide();
+            }
+            jqt.slideDown();
+
+        });
+
+
+        $("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.save']", function (e) {
+            var formParent = $(this).closest('form'),
+                formAction = formParent.attr('action'),
+                values = {};
+
+            e.preventDefault();
+
+            // json like structure, storing names and values of the form fields
+            $.each($(formParent).serializeArray(), function (i, field) {
+                values[field.name] = field.value;
+            });
+            $.ajax({
+                type: "POST",
+                url: formAction,
+                data: values,
+                async: false,
+                success: function (response, status, xhr) {
+                    var item_id,
+                        widgetParent;
+
+                    item_id = $('#fg-base-edit', response)
+                                .find('.field')
+                                .attr('id')
+                                .replace('archetypes-fieldname-', '');
+
+                    updatePositionOnServer(
+                        item_id,
+                        target.find('.field').attr('data-fieldname'),
+                        method
+                    );
+
+                    // TODO: do something more to show we're loading
+                    widgetParent = formParent.parents("div.qefield");
+                    widgetParent.find("div.widget-inside").slideUp('fast', function () {
+                        location.reload();
+                    });
+                }
+            });
+            return false;
+        });
+
+        $("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.cancel']", function (e) {
+            var widgetParent;
+
+            e.preventDefault();
+            // hide all the error messages so far!
+            if ($("div.error").length > 0) {
+                $("div.error").hide();
+            }
+            widgetParent = $(this).parents("div.qefield");
+            widgetParent.find("div.widget-inside").slideUp('fast', function () {
+                widgetParent.fadeOut('slow', function () {
+                    widgetParent.remove();
+                });
+            });
+        });
+    }
+
+
     dd_init({
         drag_selector: '#fieldWidgets .widget, #fieldsetWidgets .widget',
         drop_selector: '#pfg-qetable .qefield',
-        drop: function (dd, target, method) {
-            console.log('drop new field', dd, target, method);
-
-            var item = dd.clone(),
-                i = 1,
-                create_url;
-
-            item[method](target);
-			// perform the operations on the newly dragged element from the widgets manager
-			item.addClass("qechild");
-			item.addClass("item_" + i);
-			item.wrap("<div class='qefield new-widget'></div>"); // on the fly wrapping with necessary table elements
-			item.before("<div class='draggable draggingHook editHook qechild'>⣿</div>");
-			item.width($(item).width());
-			create_url = "createObject?type_name=" + item.context.id;
-			create_url += '&_authenticator=' + getAuthToken();
-			//	$(item).height($(item).height());
-			// AJAX stuff
-			item.children("div.widget-inside")
-            .load(create_url + " #content > div:last", function (response, status, xhr) {
-				var inputElem,
-    			    formElem,
-    			    msg,
-    			    jqt;
-
-				jqt = $(this);
-
-				if (status === "error") {
-					msg = "Sorry but there was an error: ";
-					jqt.html(msg + xhr.status + " " + xhr.statusText);
-				}
-				else {
-					jqt.find("legend").remove();
-					jqt.find("#fieldset-overrides").remove();
-					jqt.find(".formHelp").remove();
-				}
-				// set the required attribute for the on the fly validation
-				inputElem = jqt.find("span.required").parent().find("input");
-				formElem = jqt.find('form');
-				inputElem.attr({required: "required"});
-				// hide all the error messages so far!
-				if ($("div.error").length > 0) {
-					$("div.error").hide();
-				}
-				jqt.slideDown();
-
-			});
-
-
-			$("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.save']", function (e) {
-				var button = $(this),
-                    formParent = $(this).closest('form'),
-                    formAction = formParent.attr('action'),
-                    values = {};
-
-                e.preventDefault();
-
-				// json like structure, storing names and values of the form fields
-				$.each($(formParent).serializeArray(), function (i, field) {
-					values[field.name] = field.value;
-				});
-				$.ajax({
-					type: "POST",
-					url: formAction,
-					data: values,
-					async: false,
-					success: function (response, status, xhr) {
-                        var item_id;
-
-                        item_id = $('#fg-base-edit', response)
-                                    .find('.field')
-                                    .attr('id')
-                                    .replace('archetypes-fieldname-', '');
-
-                        updatePositionOnServer(
-                            item_id,
-                            target.find('.field').attr('data-fieldname'),
-                            method);
-
-                        // TODO: do something to show we're loading
-                        location.reload();
-					}
-				});
-				return false;
-			});
-
-			$("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.cancel']", function (e) {
-				var widgetParent;
-
-				e.preventDefault();
-				// hide all the error messages so far!
-				if ($("div.error").length > 0) {
-					$("div.error").hide();
-				}
-				widgetParent = $(this).parents("div.qefield");
-				widgetParent.find("div.widget-inside").slideUp('fast', function () {
-					widgetParent.fadeOut('slow', function () {
-						widgetParent.remove();
-					});
-				});
-			});
-
-// 			i += 1; // increment i on each addition
-
-
-        }
+        drop: dropNew
     });
 
     dd_init({
@@ -351,9 +348,7 @@ requirejs([
     dd_init({
         drag_selector: '#actionWidgets .widget',
         drop_selector: '#pfgActionEdit .qefield',
-        drop: function (dd, target, method) {
-            console.log('drop new action', dd, target, method);
-        }
+        drop: dropNew
     });
 
 
@@ -398,7 +393,7 @@ requirejs([
         node.setAttribute('name', "change");
         node.setAttribute("type", "text");
 
-        $('#pfg-qetable label.formQuestion').attr('title', 'Edit label')
+        $('#pfg-qetable label.formQuestion').attr('title', 'Edit label');
 
         // then we attach a new event to label fields
         $("#pfg-qetable").on('click', ".qefield label.formQuestion", function (e) {
