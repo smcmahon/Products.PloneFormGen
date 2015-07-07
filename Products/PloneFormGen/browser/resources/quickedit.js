@@ -57,9 +57,26 @@ requirejs([
                 reloadWindowOnClose: false
             }
         }
-
-
     });
+
+
+    $('.pfgeditbutton').patPloneModal({
+        width:600,
+        automaticallyAddButtonActions: false,
+        actions: {
+            "input[name='form.button.save']": {
+                displayInModal: false,
+                redirectOnResponse: false,
+                reloadWindowOnClose: true
+            },
+            "input[name='form.button.cancel']": {
+                displayInModal: false,
+                redirectOnResponse: false,
+                reloadWindowOnClose: false
+            }
+        }
+    });
+
 
     $(".ArchetypesCaptchaWidget .captchaImage")
         .replaceWith("<div>" + pfgQEdit_messages.NO_CAPTCHA_MSG + "</div>");

@@ -212,19 +212,10 @@
                                 </div>
                                 <div class="editHook qechild">
                                     <a title="Edit Field"
-                                        class="plone-btn plone-btn-primary pat-plone-modal"
+                                        class="plone-btn plone-btn-primary pfgeditbutton"
                                         href="edit"
                                         tal:attributes="href string:${context/absolute_url}/${field/getName}/edit?_authenticator=${auth_token}"
-                                        data-pat-plone-modal="width: 600"
                                         >Edit</a>
-<!--
-                                    <a title="Delete Field"
-                                        class="plone-btn plone-btn-primary pat-plone-modal"
-                                        href="delete_confirmation"
-                                        data-pat-plone-modal="{width: '300', actions:{'#form-buttons-Cancel':{redirectOnResponse:false, reloadWindowOnClose:false}}}"
-                                        tal:attributes="href string:${context/absolute_url}/${field/getName}/delete_confirmation?_authenticator=${auth_token}"
-                                        >Delete</a>
--->
                                     <a title="Delete Field"
                                         class="plone-btn plone-btn-primary pfgdelbutton"
                                         href="delete_confirmation"
@@ -265,8 +256,7 @@
                             </div>
                             <div class="editHook qechild">
                              <a href="#"
-                                class="plone-btn plone-btn-primary pat-plone-modal"
-                                data-pat-plone-modal="width: 600"
+                                class="plone-btn plone-btn-primary pfgeditbutton"
                                 tal:attributes="href string:${aaid}/edit?_authenticator=${auth_token}"
                                 i18n:attributes="title"
                                 title="Edit Field"
@@ -302,8 +292,7 @@
                         </div>
                         <div class="qechild">
                            <a href="#"
-                              class="plone-btn plone-btn-primary pat-plone-modal"
-                              data-pat-plone-modal="width: 500"
+                              class="plone-btn plone-btn-primary pfgeditbutton"
                               tal:condition="python:tyid"
                               tal:attributes="href string:${tyid}/base_edit?_authenticator=${auth_token}"
                               title="Edit Page"
