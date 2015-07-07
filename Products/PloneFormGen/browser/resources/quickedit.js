@@ -21,8 +21,9 @@ requirejs([
         'jquery.event.drag',
         'jquery.event.drop',
         'jquery.recurrenceinput',
-        'mockup-patterns-modal'
-        ], function ($, drag, drop, recurrenceinput, Modal) {
+        'mockup-patterns-modal',
+        'mockup-utils'
+        ], function ($, drag, drop, recurrenceinput, Modal, utils) {
 
     'use strict';
 
@@ -246,9 +247,9 @@ requirejs([
 			item.children("div.widget-inside")
             .load(create_url + " #content > div:last", function (response, status, xhr) {
 				var inputElem,
-				    formElem,
-				    msg,
-				    jqt;
+    			    formElem,
+    			    msg,
+    			    jqt;
 
 				jqt = $(this);
 
@@ -265,21 +266,6 @@ requirejs([
 				inputElem = jqt.find("span.required").parent().find("input");
 				formElem = jqt.find('form');
 				inputElem.attr({required: "required"});
-				// formElem.validator({
-				// 	messageClass: formElem.attr("id") + "_" + (i - 1)  + " error",
-				// 	position: "center right",
-				// 	offset: [-10, 3]
-				// }).submit(function (e) {
-				// 	var tmpArray = [];
-				// 	inputElem.each(function (i, v) {
-				// 		if (!$(v).val()) {
-				// 			tmpArray.push($(v));
-				// 		}
-				// 	});
-				// 	if (tmpArray.length) {
-				// 		tmpArray[0].focus();
-				// 	}
-				// });
 				// hide all the error messages so far!
 				if ($("div.error").length > 0) {
 					$("div.error").hide();
@@ -288,40 +274,15 @@ requirejs([
 
 			});
 
-// 			// bind the toggle event for toggling slideUp/slideDown
-// 			$(".qefield div.item_" + i + " .widget-header").toggle(
-// 				function () {
-// 					var getId, itemNo, jqt;
-
-// 					jqt = $(this);
-
-// 					// hide all the error messages so far!
-// 					if ($("div.error").length > 0) {
-// 						$("div.error").hide();
-// 					}
-// 					// hide the error messages when manipulating with the widgets
-// 					jqt.siblings("div.widget-inside").slideUp();
-// 					getId = jqt.siblings("div.widget-inside").find("form").attr("id");
-// 					itemNo = jqt.parent().attr("class").substr(jqt.parent().attr("class").indexOf("item") + "item_".length);
-// 					$("div." + getId + "_" + itemNo).hide();
-// 				},
-// 				function () {
-// 					// hide all the error messages so far!
-// 					if ($("div.error").length > 0) {
-// 						$("div.error").hide();
-// 					}
-// 					$(this).siblings("div.widget-inside").slideDown();
-// 				}
-// 			);
-
-// 			// current position in the table
-// 			currpos = $(".item_" + i).parent().index();
 
 			$("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.save']", function (e) {
 				var button = $(this),
                     formParent = $(this).closest('form'),
                     formAction = formParent.attr('action'),
                     values = {};
+
+                e.preventDefault();
+
 				// json like structure, storing names and values of the form fields
 				$.each($(formParent).serializeArray(), function (i, field) {
 					values[field.name] = field.value;
@@ -331,39 +292,23 @@ requirejs([
 					url: formAction,
 					data: values,
 					async: false,
-					success: function () {
-						//we have to calculate the position where the field
-						//was dropped
-						var itemPos = pfgWidgets.getPos($('.new-widget')),
-                            formFields = $('#pfg-qetable .qefield:not(.new-widget) .field, #pfg-qetable .PFGFieldsetWidget'),
-                            targetElement,
-                            targetId,
-                            itemId,
-                            widgetParent;
-						if (formFields.length !== itemPos) {
-							targetElement = formFields[itemPos];
-							if ($(targetElement).hasClass('PFGFieldsetWidget') === true) {
-								targetId = $(targetElement).attr('id').substr('pfg-fieldsetname-'.length);
-							} else {
-								targetId = $(targetElement).attr('id').substr('archetypes-fieldname-'.length);
-							}
-							$.ajax({
-								url: 'lastFieldIdFromForm',
-								async: false,
-								success: function (data) {
-									itemId = data;
-									pfgWidgets.updatePositionOnServer(itemId, targetId);
-								}
-							});
-						}
+					success: function (response, status, xhr) {
+                        var item_id;
 
-						widgetParent = button.parents("div.qefield");
-						widgetParent.find("div.widget-inside").slideUp('fast', function () {
-							location.reload();
-						});
+                        item_id = $('#fg-base-edit', response)
+                                    .find('.field')
+                                    .attr('id')
+                                    .replace('archetypes-fieldname-', '');
+
+                        updatePositionOnServer(
+                            item_id,
+                            target.find('.field').attr('data-fieldname'),
+                            method);
+
+                        // TODO: do something to show we're loading
+                        location.reload();
 					}
 				});
-				e.preventDefault();
 				return false;
 			});
 
