@@ -9,9 +9,7 @@
 
 TODO:
 
-    widget d&d
-
-    deletion by ajax
+    Add new via d&d
 
     clean out old styles and css selectors
 
@@ -67,7 +65,12 @@ requirejs([
             "input[name='form.button.save']": {
                 displayInModal: false,
                 redirectOnResponse: false,
-                reloadWindowOnClose: true
+                reloadWindowOnClose: true,
+                onSuccess: function(self, response, state, xhr, form) {
+                    self.hide();
+                    // do something to show we're loading
+                    self.loading.show(false);
+                }
             },
             "input[name='form.button.cancel']": {
                 displayInModal: false,
@@ -89,6 +92,7 @@ requirejs([
                 this.disabled = true;
             }
         });
+
 
     // widget accordion
     $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
@@ -203,6 +207,7 @@ requirejs([
 	}
 
 
+    /* Drag and Drop initializations */
     dd_init({
         drag_selector: '#pfg-qetable .qefield',
         drop_selector: '#pfg-qetable .qefield',
@@ -476,14 +481,13 @@ requirejs([
                     _authenticator: getAuthToken()
                 };
                 if (args.title !== content) { // only update if we actually changed the field
-                    $("img.ajax-loader").css('visibility', 'visible');
                     $.post("updateFieldTitle", args, function () {
                         console.log('title updated');
                     });
                 }
             });
         });
-    })();
+    }());
 
 
     /*
