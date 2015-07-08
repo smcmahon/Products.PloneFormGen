@@ -227,7 +227,7 @@ div.deleting {
 
 .fsbegin, .fsend {
     border: 1px dashed black;
-    margin: 0 6px;
+    margin: 0 -1px;
     height: auto !important;
 }
 .fsbegin {

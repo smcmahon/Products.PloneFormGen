@@ -1,6 +1,6 @@
 // Support for PFG Quick Edit
 
-/*global console, alert, pfgQEdit_messages, requirejs */
+/*global console, confirm, alert, pfgQEdit_messages, requirejs */
 
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: true */
 
@@ -25,36 +25,85 @@ requirejs([
 
     'use strict';
 
-    $('.pfgdelbutton').patPloneModal({
-        width:400,
-        automaticallyAddButtonActions: false,
-        actions: {
-            '#form-buttons-Delete': {
-                displayInModal: false,
-                redirectOnResponse: false,
-                reloadWindowOnClose: false,
-                onSuccess: function(self, response, state, xhr, form) {
-                    var amatch;
 
-                    // remove the deleted field/action's node
-                    amatch = form[0].action.match(/.*?([^\/]*)\/delete_confirmation.*/);
-                    if (amatch) {
-                        console.log('deleting node #archetypes-fieldname-' + amatch[1]);
-                        $('#archetypes-fieldname-' + amatch[1]).parent().remove();
-                        $('#action-name-' + amatch[1]).remove();
-                        $('#pfgThanksEdit')
-                            .find('[data-field=' + amatch[1] + ']')
-                            .remove();
-                    }
-                }
-            },
-            '#form-buttons-Cancel': {
-                displayInModal: false,
-                redirectOnResponse: false,
-                reloadWindowOnClose: false
-            }
+    function getAuthToken () {
+        return $('#auth_hold input').val();
+    }
+
+
+    function updatePositionOnServer (item, target, method) {
+        var post_args = {
+            item_id: item,
+            target_id: target,
+            method: method,
+            _authenticator: getAuthToken()
+        };
+        console.log(item, target, method);
+        $.post('reorderField', post_args, function () {
+            console.log('reordered');
+        });
+    }
+
+
+    function removeFieldFromForm(item) {
+        var post_args = {
+            item_id: item,
+            _authenticator: getAuthToken()
+        };
+        $.post('removeFieldFromForm', post_args, function () {
+            console.log('removed');
+        });
+    }
+
+    $('.qefield').click('.pfgdelbutton', function (e){
+        var jqt = $(this),
+            item_id = jqt.attr('data-fieldname');
+
+        e.preventDefault();
+
+        if (confirm('Do you really want to delete this item?\n\n• ' + item_id)) {
+            console.log('delete me');
+            jqt.remove();
+            removeFieldFromForm(item_id);
         }
     });
+
+    // $('.qefield').on('click', '.pfgdelbutton', function(e) {
+    //     $(this).preventDefault();
+    //     alert('clicked');
+    //     console.log($(this).parents('["data-fieldname"]').attr('data-fieldname'));
+    // });
+
+    // $('.pfgdelbutton').patPloneModal({
+    //     width:400,
+    //     automaticallyAddButtonActions: false,
+    //     actions: {
+    //         '#form-buttons-Delete': {
+    //             displayInModal: false,
+    //             redirectOnResponse: false,
+    //             reloadWindowOnClose: false,
+    //             onSuccess: function(self, response, state, xhr, form) {
+    //                 var amatch;
+
+    //                 // remove the deleted field/action's node
+    //                 amatch = form[0].action.match(/.*?([^\/]*)\/delete_confirmation.*/);
+    //                 if (amatch) {
+    //                     console.log('deleting node #archetypes-fieldname-' + amatch[1]);
+    //                     $('#archetypes-fieldname-' + amatch[1]).parent().remove();
+    //                     $('#action-name-' + amatch[1]).remove();
+    //                     $('#pfgThanksEdit')
+    //                         .find('[data-field=' + amatch[1] + ']')
+    //                         .remove();
+    //                 }
+    //             }
+    //         },
+    //         '#form-buttons-Cancel': {
+    //             displayInModal: false,
+    //             redirectOnResponse: false,
+    //             reloadWindowOnClose: false
+    //         }
+    //     }
+    // });
 
 
     $('.pfgeditbutton').patPloneModal({
@@ -190,25 +239,6 @@ requirejs([
                 return $(this).is(options.drop_selector);
             });
     }
-
-
-    function getAuthToken () {
-        return $('#auth_hold input').val();
-    }
-
-
-	function updatePositionOnServer (item, target, method) {
-		var post_args = {
-			item_id: item,
-			target_id: target,
-			method: method,
-            _authenticator: getAuthToken()
-		};
-        console.log(item, target, method);
-		$.post('reorderField', post_args, function () {
-			console.log('reordered');
-		});
-	}
 
 
     /* Drag and Drop initializations */
@@ -501,5 +531,6 @@ requirejs([
     $(document).ajaxError(function (event, request, settings) {
         alert(pfgQEdit_messages.AJAX_FAILED_MSG + settings.url);
     });
+
 
 });
