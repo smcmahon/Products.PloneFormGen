@@ -190,7 +190,7 @@
                     <div id="pfg-qetable" class="listing xpat-sortable" summary="Field listing"
                         data-pat-sortable="selector:div.qefield;">
                         <tal:fields repeat="field fields">
-                            <div class="qefield">
+                            <div class="qefield" tal:attributes="data-fieldname field/getName">
                             <form>
                                 <div class="draggable qechild"><span class="dhcenter"></span>⣿</div>
                                 <tal:block tal:condition="python:field.widget.macro != 'widget_richlabel'">
@@ -239,7 +239,10 @@
                     <tal:block tal:repeat="row python:here.actionAdaptersDL().items()">
                         <div
                             tal:define="aaid python:row[0]"
-                            tal:attributes="id python:'action-name-%s' % aaid"
+                            tal:attributes="
+                                id python:'action-name-%s' % aaid;
+                                data-fieldname aaid
+                                "
                             class="qefield">
                             <div
                                 class="draggable draggingHook editHook qechild"

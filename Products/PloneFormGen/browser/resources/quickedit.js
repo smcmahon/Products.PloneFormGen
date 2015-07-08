@@ -137,13 +137,14 @@ requirejs([
             })
             .drag(function(ev, dd) {
                 var drop = dd.drop[0],
+                    valid_drop = drop && $(drop).is(options.drop_selector),
                     method = $.data( drop || {}, "drop+reorder" );
 
-                if (!drop) {
+                if (!valid_drop) {
                     drop_targets.removeClass("insert_before insert_after");
                 }
 
-                if (drop && (drop !== dd.current || method !== dd.method)){
+                if (valid_drop && (drop !== dd.current || method !== dd.method)){
                     drop_targets.removeClass("insert_before insert_after");
                     $(drop).addClass(method);
                     dd.current = drop;
@@ -184,6 +185,9 @@ requirejs([
         drop_targets
             .drop("init",function( ev, dd ){
                 return (this !== dd.drag);
+            })
+            .drop("start", function() {
+                return $(this).is(options.drop_selector);
             });
     }
 
@@ -200,6 +204,7 @@ requirejs([
 			method: method,
             _authenticator: getAuthToken()
 		};
+        console.log(item, target, method);
 		$.post('reorderField', post_args, function () {
 			console.log('reordered');
 		});
@@ -286,14 +291,15 @@ requirejs([
                     var item_id,
                         widgetParent;
 
-                    item_id = $('#fg-base-edit', response)
-                                .find('.field')
-                                .attr('id')
-                                .replace('archetypes-fieldname-', '');
+                    item_id = $(response)
+                        .find('#contentview-view a')
+                        .attr('href')
+                        .split('/')
+                        .reverse()[1];
 
                     updatePositionOnServer(
                         item_id,
-                        target.find('.field').attr('data-fieldname'),
+                        target.attr('data-fieldname'),
                         method
                     );
 
@@ -338,8 +344,10 @@ requirejs([
         drop: function (dd, target, method) {
             console.log('drop action', dd, target, method);
             updatePositionOnServer(
-                dd.attr('id').slice(12),
-                target.attr('id').slice(12),
+                // dd.attr('data-field').slice(12),
+                // target.attr('id').slice(12),
+                dd.attr('data-fieldname'),
+                target.attr('data-fieldname'),
                 method
             );
         }
