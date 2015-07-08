@@ -9,7 +9,8 @@
 
 TODO:
 
-    Generalize add new via d&d
+    actions on/around fieldset ends
+    add at end (doesn't need reorder)
 
 */
 
@@ -55,55 +56,19 @@ requirejs([
         });
     }
 
-    $('.qefield').click('.pfgdelbutton', function (e){
+    $('.pfgdelbutton').click(function (e){
         var jqt = $(this),
-            item_id = jqt.attr('data-fieldname');
+            item = jqt.parents('.qefield'),
+            item_id = item.attr('data-fieldname');
 
         e.preventDefault();
 
         if (confirm('Do you really want to delete this item?\n\n• ' + item_id)) {
             console.log('delete me');
-            jqt.remove();
+            item.remove();
             removeFieldFromForm(item_id);
         }
     });
-
-    // $('.qefield').on('click', '.pfgdelbutton', function(e) {
-    //     $(this).preventDefault();
-    //     alert('clicked');
-    //     console.log($(this).parents('["data-fieldname"]').attr('data-fieldname'));
-    // });
-
-    // $('.pfgdelbutton').patPloneModal({
-    //     width:400,
-    //     automaticallyAddButtonActions: false,
-    //     actions: {
-    //         '#form-buttons-Delete': {
-    //             displayInModal: false,
-    //             redirectOnResponse: false,
-    //             reloadWindowOnClose: false,
-    //             onSuccess: function(self, response, state, xhr, form) {
-    //                 var amatch;
-
-    //                 // remove the deleted field/action's node
-    //                 amatch = form[0].action.match(/.*?([^\/]*)\/delete_confirmation.*/);
-    //                 if (amatch) {
-    //                     console.log('deleting node #archetypes-fieldname-' + amatch[1]);
-    //                     $('#archetypes-fieldname-' + amatch[1]).parent().remove();
-    //                     $('#action-name-' + amatch[1]).remove();
-    //                     $('#pfgThanksEdit')
-    //                         .find('[data-field=' + amatch[1] + ']')
-    //                         .remove();
-    //                 }
-    //             }
-    //         },
-    //         '#form-buttons-Cancel': {
-    //             displayInModal: false,
-    //             redirectOnResponse: false,
-    //             reloadWindowOnClose: false
-    //         }
-    //     }
-    // });
 
 
     $('.pfgeditbutton').patPloneModal({
@@ -296,8 +261,9 @@ requirejs([
             if ($("div.error").length > 0) {
                 $("div.error").hide();
             }
-            jqt.slideDown();
-
+            jqt.slideDown(function () {
+                jqt.find('.firstToFocus').eq(0).focus();
+            });
         });
 
 
