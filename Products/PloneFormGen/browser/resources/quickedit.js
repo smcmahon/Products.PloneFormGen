@@ -9,8 +9,8 @@
 
 TODO:
 
-    actions on/around fieldset ends
-    add at end (doesn't need reorder)
+  Loss of required marker.
+  Reordering fieldset end marker.
 
 */
 
@@ -36,7 +36,7 @@ requirejs([
         var post_args = {
             item_id: item,
             target_id: target,
-            method: method,
+            insert_method: method,
             _authenticator: getAuthToken()
         };
         console.log(item, target, method);

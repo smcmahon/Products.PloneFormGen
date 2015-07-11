@@ -1049,17 +1049,18 @@ class FormFolder(ATFolder):
 
     security.declareProtected(ModifyPortalContent, 'reorderField')
 
-    def reorderField(self, item_id, target_id, method, **kw):
+    def reorderField(self, item_id, target_id, insert_method, **kw):
         """ move item to target"""
 
         plone.protect.CheckAuthenticator(self.REQUEST)
+        
         itemPos = self.getObjectPosition(item_id)
         targetPos = self.getObjectPosition(target_id)
 
         delta = targetPos - itemPos
-        if delta < 0 and method == 'insertAfter':
+        if delta < 0 and insert_method == 'insertAfter':
             delta += 1
-        elif delta > 0 and method == 'insertBefore':
+        elif delta > 0 and insert_method == 'insertBefore':
             delta -= 1
         self.moveObjectsByDelta(item_id, delta)
         self.plone_utils.reindexOnReorder(self)
