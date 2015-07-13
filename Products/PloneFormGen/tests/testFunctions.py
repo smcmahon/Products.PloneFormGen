@@ -651,15 +651,3 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org', comments='test comments')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( errors, {} )
-
-
-    def testJSTranslate(self):
-        """test the browser view that supplies translations for javascript
-        """
-        jsvars = getMultiAdapter(
-            (self.ff1, self.fakeRequest()),
-            name='pfg_javascript_variables.js'
-        )
-        res = jsvars()
-        self.assertEqual(res.find("pfgQEdit.messages = {"), 0)
-        self.failUnless(res.find("ORDER_MSG: 'Order'") > 0)
