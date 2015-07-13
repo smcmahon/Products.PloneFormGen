@@ -1,6 +1,6 @@
 // Support for PFG Quick Edit
 
-/*global console, confirm, alert, pfgQEdit_messages, requirejs */
+/*global console, confirm, alert, requirejs */
 
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: true */
 
@@ -21,8 +21,9 @@ requirejs([
         'jquery.event.drop',
         'jquery.recurrenceinput',
         'mockup-patterns-modal',
-        'mockup-utils'
-        ], function ($, drag, drop, recurrenceinput, Modal, utils) {
+        'mockup-utils',
+        'translate'
+        ], function ($, drag, drop, recurrenceinput, Modal, utils, _t) {
 
     'use strict';
 
@@ -63,7 +64,7 @@ requirejs([
 
         e.preventDefault();
 
-        if (confirm('Do you really want to delete this item?\n\n• ' + item_id)) {
+        if (confirm(_t('Do you really want to delete this item?') + '\n\n• ' + item_id)) {
             console.log('delete me');
             item.remove();
             removeFieldFromForm(item_id);
@@ -95,7 +96,7 @@ requirejs([
 
 
     $(".ArchetypesCaptchaWidget .captchaImage")
-        .replaceWith("<div>" + pfgQEdit_messages.NO_CAPTCHA_MSG + "</div>");
+        .replaceWith("<div>" + _t('Captcha field hidden by form editor. Refresh to view it.') + "</div>");
 
     // disable and dim input elements
     $("#pfg-fieldwrapper .field :input")
@@ -397,7 +398,7 @@ requirejs([
         node.setAttribute('name', "change");
         node.setAttribute("type", "text");
 
-        $('#pfg-qetable label.formQuestion').attr('title', 'Edit label');
+        $('#pfg-qetable label.formQuestion').attr('title', _t('Edit label'));
 
         // then we attach a new event to label fields
         $("#pfg-qetable").on('click', ".qefield label.formQuestion", function (e) {
@@ -444,10 +445,10 @@ requirejs([
 
         jqt = $(this);
         if (!jqt.is("span")) {
-            $("<span class='not-required' title='Make it required?'></span>")
+            $('<span class="not-required" title="' + _t('Make it required?') + '"></span>')
                 .insertBefore(this);
         } else {
-            jqt.attr("title", "Remove required flag?");
+            jqt.attr("title", _t("Remove required flag?"));
         }
     });
 
@@ -467,8 +468,7 @@ requirejs([
         $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').attr("required", "required");
         jqt.removeClass("not-required");
         jqt.addClass("required");
-        // jqt.html("            ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
-        jqt.attr("title", "Remove required flag?");
+        jqt.attr("title", _t("Remove required flag?"));
     });
 
     /*
@@ -495,7 +495,7 @@ requirejs([
 
     /* handle global AJAX error */
     $(document).ajaxError(function (event, request, settings) {
-        alert(pfgQEdit_messages.AJAX_FAILED_MSG + settings.url);
+        alert(_t('Unable to load resource: ') + settings.url);
     });
 
 
