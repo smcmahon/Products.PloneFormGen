@@ -19,6 +19,12 @@ requirejs([
 
     'use strict';
 
+$(function () {
+
+    if ($('#pfgWidgetWrapper').length === 0) {
+        return;
+    }
+
     var log = logger.getLogger('pfgquickedit');
     log.setLevel('DEBUG');
 
@@ -240,14 +246,13 @@ requirejs([
         // AJAX stuff
         item.children("div.widget-inside")
         .load(create_url + " #content > div:last", function (response, status, xhr) {
-            var inputElem,
-                msg,
+            var msg,
                 jqt;
 
             jqt = $(this);
 
             if (status === "error") {
-                msg = "Sorry but there was an error: ";
+                msg = _t("Sorry but there was an error: ");
                 jqt.html(msg + xhr.status + " " + xhr.statusText);
             }
             else {
@@ -256,8 +261,10 @@ requirejs([
                 jqt.find(".formHelp").remove();
             }
             // set the required attribute for the on the fly validation
-            inputElem = jqt.find("span.required").parent().find("input");
-            inputElem.attr({required: "required"});
+            jqt.find('span.required')
+                .parent()
+                .siblings(':input')
+                .attr('required', "required");
             // hide all the error messages so far!
             if ($("div.error").length > 0) {
                 $("div.error").hide();
@@ -265,67 +272,72 @@ requirejs([
             jqt.slideDown(function () {
                 jqt.find('.firstToFocus').eq(0).focus();
             });
-        });
 
+            $("div.w-field form").submit(function (e) {
+                var formParent = $(this),
+                    formAction = formParent.attr('action'),
+                    values = {};
 
-        $("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.save']", function (e) {
-            var formParent = $(this).closest('form'),
-                formAction = formParent.attr('action'),
-                values = {};
+                e.preventDefault();
 
-            e.preventDefault();
+                // json like structure, storing names and values of the form fields
+                $.each($(formParent).serializeArray(), function (i, field) {
+                    values[field.name] = field.value;
+                });
+                $.ajax({
+                    type: "POST",
+                    url: formAction,
+                    data: values,
+                    async: false,
+                    success: function (response, status, xhr) {
+                        var item_id,
+                            widgetParent;
 
-            // json like structure, storing names and values of the form fields
-            $.each($(formParent).serializeArray(), function (i, field) {
-                values[field.name] = field.value;
+                        item_id = $(response)
+                            .find('#contentview-view a')
+                            .attr('href')
+                            .split('/')
+                            .reverse()[1];
+
+                        updatePositionOnServer(
+                            item_id,
+                            target.attr('data-fieldname'),
+                            method
+                        );
+
+                        // TODO: do something more to show we're loading
+                        widgetParent = formParent.parents("div.qefield");
+                        widgetParent.find("div.widget-inside").slideUp('fast', function () {
+                            location.reload();
+                        });
+                    }
+                });
+                return false;
             });
-            $.ajax({
-                type: "POST",
-                url: formAction,
-                data: values,
-                async: false,
-                success: function (response, status, xhr) {
-                    var item_id,
-                        widgetParent;
 
-                    item_id = $(response)
-                        .find('#contentview-view a')
-                        .attr('href')
-                        .split('/')
-                        .reverse()[1];
+            $("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.cancel']", function (e) {
+                var widgetParent;
 
-                    updatePositionOnServer(
-                        item_id,
-                        target.attr('data-fieldname'),
-                        method
-                    );
-
-                    // TODO: do something more to show we're loading
-                    widgetParent = formParent.parents("div.qefield");
-                    widgetParent.find("div.widget-inside").slideUp('fast', function () {
-                        location.reload();
-                    });
+                e.preventDefault();
+                // hide all the error messages so far!
+                if ($("div.error").length > 0) {
+                    $("div.error").hide();
                 }
-            });
-            return false;
-        });
-
-        $("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.cancel']", function (e) {
-            var widgetParent;
-
-            e.preventDefault();
-            // hide all the error messages so far!
-            if ($("div.error").length > 0) {
-                $("div.error").hide();
-            }
-            widgetParent = $(this).parents("div.qefield");
-            widgetParent.find("div.widget-inside").slideUp('fast', function () {
-                widgetParent.fadeOut('slow', function () {
-                    widgetParent.remove();
+                widgetParent = $(this).parents("div.qefield");
+                widgetParent.find("div.widget-inside").slideUp('fast', function () {
+                    widgetParent.fadeOut('slow', function () {
+                        widgetParent.remove();
+                    });
                 });
             });
+
         });
-    }
+
+
+        // $("#pfg-qetable, #pfgActionEdit").on('click', "[name='form.button.save']", function (e) {
+        //     var formParent = $(this).closest('form'),
+
+        } // function dropNew
 
 
     dd_init({
@@ -498,4 +510,5 @@ requirejs([
     });
 
 
+});
 });

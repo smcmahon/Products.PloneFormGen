@@ -51,24 +51,10 @@
               tal:attributes="src string:$portal_url/$item">
       </script>
     </tal:js>
-
-    <script src="pfgQuickEdit.js"
-        type="text/javascript"
-        tal:attributes="src string:$portal_url/++resource++Products.PloneFormGen.resources/quickedit.js"
-        tal:condition="python:checkPermission('Modify portal content', here) and here.portal_type=='FormFolder'">
-    </script>
-
     <tal:block define="macro edit_macros/javascript_head | nothing"
                     condition="macro">
       <metal:block use-macro="macro" />
     </tal:block>
-
-    <link rel="stylesheet" type="text/css" href="validator.css"
-        tal:attributes="href string:$portal_url/++resource++Products.PloneFormGen.resources/validator.css"
-    />
-    <link rel="stylesheet" type="text/css" href="css/widgets.css" tal:condition="python:checkPermission('Modify portal content', here)"
-        tal:attributes="href string:$portal_url/++resource++Products.PloneFormGen.resources/toolbox.css"
-    />
     <tal:expr replace="structure here/getHeaderInjection | nothing" />
   </metal:javascript_head>
 

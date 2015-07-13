@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<registry>
+
+
+    <records prefix="plone.resources/pfgquickedit"
+             interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+        <value key="js">++plone++pfgquickedit/quickedit.js</value>
+        <value key="css">
+            <element>++plone++pfgquickedit/quickedit.less</element>
+        </value>
+    </records>
+
+    <records prefix="plone.bundles/pfgquickedit"
+             interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+        <value key="resources">
+            <element>pfgquickedit</element>
+        </value>
+        <value key="enabled">True</value>
+        <value key="compile">False</value>
+        <value key="jscompilation">++plone++pfgquickedit/quickedit-min.js</value>
+        <value key="csscompilation">++plone++pfgquickedit/quickedit.css</value>
+        <!-- value key="csscompilation">++resource++Products.PloneFormGen.resources/quickedit.css</value -->
+        <value key="last_compilation">2015-05-28 00:00:00</value>
+    </records>
+
+</registry>

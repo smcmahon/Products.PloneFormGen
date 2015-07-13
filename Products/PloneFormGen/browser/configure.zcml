@@ -1,5 +1,6 @@
 <configure
     xmlns:zope="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:browser="http://namespaces.zope.org/browser">
 <!--
   <browser:page
@@ -45,6 +46,12 @@
       name="Products.PloneFormGen.resources"
       directory="resources"
       />
+
+  <plone:static
+    directory="resources"
+    type="plone"
+    name="pfgquickedit"
+    />
 
   <browser:page
       for="*"
