@@ -9,7 +9,6 @@
 
 TODO:
 
-  Loss of required marker.
   Reordering fieldset end marker.
 
 */
