@@ -22,10 +22,14 @@ requirejs([
         'jquery.recurrenceinput',
         'mockup-patterns-modal',
         'mockup-utils',
-        'translate'
-        ], function ($, drag, drop, recurrenceinput, Modal, utils, _t) {
+        'translate',
+        'pat-logger'
+        ], function ($, drag, drop, recurrenceinput, Modal, utils, _t, logger) {
 
     'use strict';
+
+    var log = logger.getLogger('pfgquickedit');
+    log.setLevel('DEBUG');
 
 
     function getAuthToken () {
@@ -40,9 +44,9 @@ requirejs([
             insert_method: method,
             _authenticator: getAuthToken()
         };
-        console.log(item, target, method);
+        log.debug(item, target, method);
         $.post('reorderField', post_args, function () {
-            console.log('reordered');
+            log.debug('reordered');
         });
     }
 
@@ -53,9 +57,10 @@ requirejs([
             _authenticator: getAuthToken()
         };
         $.post('removeFieldFromForm', post_args, function () {
-            console.log('removed');
+            log.debug('removed');
         });
     }
+
 
     $('.pfgdelbutton').click(function (e){
         var jqt = $(this),
@@ -65,7 +70,7 @@ requirejs([
         e.preventDefault();
 
         if (confirm(_t('Do you really want to delete this item?') + '\n\n• ' + item_id)) {
-            console.log('delete me');
+            log.debug('delete me');
             item.remove();
             removeFieldFromForm(item_id);
         }
@@ -213,7 +218,7 @@ requirejs([
         drop_selector: '#pfg-qetable .qefield',
         reorder: true,
         drop: function (dd, target, method) {
-            console.log('drop field', dd, target, method);
+            log.debug('drop field', dd, target, method);
             updatePositionOnServer(
                 dd.find('.field').attr('data-fieldname'),
                 target.find('.field').attr('data-fieldname'),
@@ -223,7 +228,7 @@ requirejs([
     });
 
     function dropNew(dd, target, method) {
-        console.log('drop new field', dd, target, method);
+        log.debug('drop new field', dd, target, method);
 
         var item = dd.clone(),
             create_url;
@@ -339,7 +344,7 @@ requirejs([
         drop_selector: '#pfgActionEdit .qefield',
         reorder: true,
         drop: function (dd, target, method) {
-            console.log('drop action', dd, target, method);
+            log.debug('drop action', dd, target, method);
             updatePositionOnServer(
                 // dd.attr('data-field').slice(12),
                 // target.attr('id').slice(12),
@@ -427,7 +432,7 @@ requirejs([
                 };
                 if (args.title !== content) { // only update if we actually changed the field
                     $.post("updateFieldTitle", args, function () {
-                        console.log('title updated');
+                        log.debug('title updated');
                     });
                 }
             });
@@ -463,7 +468,7 @@ requirejs([
             item_id: item,
             _authenticator: getAuthToken()
             }, function () {
-            console.log('toggle required');
+            log.debug('toggle required');
         });
         $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').attr("required", "required");
         jqt.removeClass("not-required");
@@ -484,18 +489,20 @@ requirejs([
             item_id: item,
             _authenticator: getAuthToken()
             }, function () {
-            console.log('toggle required');
+            log.debug('toggle required');
         });
         $('#archetypes-fieldname-' + item).find('[name^=' + item + ']').removeAttr("required");
         jqt.removeClass("required");
         jqt.addClass("not-required");
-        // jqt.html("").fadeIn().css("display", "inline-block");
-        jqt.attr("title", "Make it required?");
+        jqt.attr("title", _t("Make it required?"));
     });
 
     /* handle global AJAX error */
     $(document).ajaxError(function (event, request, settings) {
-        alert(_t('Unable to load resource: ') + settings.url);
+        var message = _t('Unable to load resource: ') + settings.url;
+
+        log.error(message);
+        alert(message);
     });
 
 
