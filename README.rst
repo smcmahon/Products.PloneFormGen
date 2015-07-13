@@ -28,7 +28,6 @@ collective.js.jqueryui is no longer required. If you've migrated from Plone 4.x 
 Known Issues
 ------------
 
- * The QuickEditor is not yet working;
  * Export/Import is not yet working;
  * The ReCAPTCHA config form is primitive.
 
