@@ -19,12 +19,12 @@ requirejs([
         'jquery',
         'jquery.event.drag',
         'jquery.event.drop',
-        'jquery.recurrenceinput',
         'mockup-patterns-modal',
         'mockup-utils',
         'translate',
-        'pat-logger'
-        ], function ($, drag, drop, recurrenceinput, Modal, utils, _t, logger) {
+        'pat-logger',
+        'jquery.recurrenceinput'
+        ], function ($, drag, drop, Modal, utils, _t, logger) {
 
     'use strict';
 
@@ -62,6 +62,7 @@ requirejs([
     }
 
 
+    // delete button click
     $('.pfgdelbutton').click(function (e){
         var jqt = $(this),
             item = jqt.parents('.qefield'),
@@ -77,6 +78,7 @@ requirejs([
     });
 
 
+    // edit button click
     $('.pfgeditbutton').patPloneModal({
         width:600,
         automaticallyAddButtonActions: false,
@@ -100,8 +102,10 @@ requirejs([
     });
 
 
+    // replace CAPTCHA widget
     $(".ArchetypesCaptchaWidget .captchaImage")
         .replaceWith("<div>" + _t('Captcha field hidden by form editor. Refresh to view it.') + "</div>");
+
 
     // disable and dim input elements
     $("#pfg-fieldwrapper .field :input")
@@ -113,7 +117,7 @@ requirejs([
         });
 
 
-    // widget accordion
+    // toolbox accordion
     $("#allWidgets").tabs(".widgetPane", {tabs: "h2", effect: 'slide'});
 
 
@@ -389,6 +393,13 @@ requirejs([
         var jqt = $(this);
 
         jqt.insertAfter(jqt.parent());
+        jqt.attr('title', _t('Remove required flag'));
+    });
+    // and, the not-required markers
+    $('.qefield .field').filter(function () {
+        return ($(this).has('.required').length === 0);
+    }).each(function () {
+        $(this).find('label').after($('<span class="not-required" title="' + _t('Make field required') + '""> </span>'));
     });
 
 
@@ -443,19 +454,6 @@ requirejs([
     /*
         Label editing
     */
-
-    // initialize the markers
-    $("div.field label").next().each(function () {
-        var jqt;
-
-        jqt = $(this);
-        if (!jqt.is("span")) {
-            $('<span class="not-required" title="' + _t('Make it required?') + '"></span>')
-                .insertBefore(this);
-        } else {
-            jqt.attr("title", _t("Remove required flag?"));
-        }
-    });
 
     // click to edit event
     $(document).on("click", "span.not-required", function (event) {
