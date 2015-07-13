@@ -5,14 +5,6 @@
 /*jslint unparam: true, white: true, browser: true, nomen: true, plusplus: true, bitwise: true, newcap: true, regexp: true */
 
 
-/*
-
-TODO:
-
-  Reordering fieldset end marker.
-
-*/
-
 // recurrenceinput has the jquerytools tabs code
 requirejs([
         'jquery',
@@ -223,8 +215,8 @@ requirejs([
         drop: function (dd, target, method) {
             log.debug('drop field', dd, target, method);
             updatePositionOnServer(
-                dd.find('.field').attr('data-fieldname'),
-                target.find('.field').attr('data-fieldname'),
+                dd.find('.field').attr('data-fieldname') || dd.attr('data-fieldname'),
+                target.find('.field').attr('data-fieldname') || target.attr('data-fieldname'),
                 method
             );
         }
@@ -386,7 +378,10 @@ requirejs([
 
         jqt.insertAfter(jqt.parent());
     });
-    // Also, the required markers; as a separate operation from help
+
+    // Remove required markers on fieldsets
+    $('div.fsbegin label span.required').remove();
+    // Move remaining required markers; as a separate operation from help
     // to get the order right.
     $("div.field label span.required").each(function () {
         var jqt = $(this);
@@ -394,8 +389,8 @@ requirejs([
         jqt.insertAfter(jqt.parent());
         jqt.attr('title', _t('Remove required flag'));
     });
-    // and, the not-required markers
-    $('.qefield .field').filter(function () {
+    // and, create the not-required markers
+    $('.qefield .field :not(.fsbegin)').filter(function () {
         return ($(this).has('.required').length === 0);
     }).each(function () {
         $(this).find('label').after($('<span class="not-required" title="' + _t('Make field required') + '""> </span>'));
