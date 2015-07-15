@@ -31,20 +31,6 @@ Known Issues
  * Export/Import is not yet working;
  * The ReCAPTCHA config form is primitive.
 
-1.7 Notes
-=========
-
-PFG 1.7 is intended for use with Plone 4.1-4.3. If you're using Plone < 4.1, PFG 1.6
-will be a better choice.
-
-If upgrading from an earlier version, uninstall and reinstall PFG to add new
-functionality.
-
-PloneFormGen 1.7.x depends on collective.js.jqueryui. Depending on the version
-of Plone you're on, you'll have to install a different version of
-collective.js.jqueryui. Please refer to collective.js.jqueryui documentation
-for more information: https://pypi.python.org/pypi/collective.js.jqueryui/1.10.3
-
 Overview
 ========
 
@@ -69,7 +55,7 @@ pre-populated to act as a simple e-mail response form.
 Dependencies
 ============
 
-Plone: Plone 4.1+
+Plone: Plone 5.0b2+
 
 Requires PythonField, TALESField and TemplateFields from Jens W.
 Klein's ScriptableFields bundle: http://plone.org/products/scriptablefields/
@@ -118,40 +104,18 @@ defaults and validators. You may wish to add additional roles, but keep
 in mind that this is a potential security risk; it basically gives the
 same powers as scripting or skin editing.
 
-Javascript/CSS Support for Some Fields
-======================================
+History
+=======
 
-Some fields, like the rich text editor and the calendar widget on the
-date/time field require JS or CSS support that often is not loaded
-for anonymous users. If you wish this support for anon users, you'll
-need to remove the "not: portal/portal_membership/isAnonymousUser"
-condition for their support code in portal_css and portal_javascripts.
-
-
-Rationale For This Product
-==========================
-
-*   Plone needs a general-purpose form generator that may be used for
-    mail forms, RDBMS database interactions and other functions that don't
-    require the Archetypes' persistence machinery;
-
-*   Designing a form using such a form generator should not require a)
-    work on the file system, b) creation of new content types, c) use of
-    the ZMI (except for scripting field population or custom validation).
-    [PloneFormMailer is an outstanding, useful product, that suffers only
-    for its reliance on the ZMI/Formulator for design.]
-
-*   Archetypes, in conjunction with the CMF Form Controller, has a form
-    generator built-in. Ideally, it should be possible to repurpose the
-    Archetypes widgets and validators (which were evidently intended to be
-    generally useful) for a more general-purpose form generator.
+PloneFormGen has been continually updated since Plone 2. The maintainers
+are proud it's still maintained and reliable, but it should not be used
+as a good example of a current Plone packages. It contains too many
+historical layers.
 
 Credits
 =======
 
 Archetypes has been ruthlessly mined for concepts and functionality.
-The base view and edit macro templates are very slightly modified
-versions of Archetype's base_edit and edit_macros.
 
 Form and field icons are scavenged from Martijn Faassen's Formulator,
 and were edited only to add transparency to make them look a bit better
@@ -159,7 +123,8 @@ on the add items menu.
 
 The mail adapter is basically a tailored version of PloneFormMailer,
 minus the Formulator adapter machinery. Thanks to PloneFormMailer's
-authors, Jens Klein and Reinout van Rees.
+authors, Jens Klein and Reinout van Rees for this code and for
+continual assistance since the package's introduction.
 
 Pierre-Yves Landure provided tremendous help with the i18n machinery.
 Sebastien Douche and Pierre-Yves Landure provided the French translation.
@@ -189,12 +154,15 @@ Nenad Mancevic (Manca) added the widget toolbox and dramatically enhanced
 the quick edit mode for his Google Summer of Code 2010 project. Thanks to
 Manca and Google!
 
+Alec Mitchell, Nathan Van Gheem and Eric Steele provided vital assistance
+with the Plone 5 update.
+
 See the CHANGES.txt file for the very long list of people who helped
 with particular features or bugs.
 
 License
 =======
 
-Distributed under the GPL.
+Distributed under the GPL v 2.
 
 See LICENSE.txt and LICENSE.GPL for details.
