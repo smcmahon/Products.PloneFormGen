@@ -1,8 +1,15 @@
 Change History
 ==============
 
-1.8.0.beta1 (unreleased)
--------------------------
+1.8.0.beta2
+-----------
+
+- Doc update.
+
+- travis config fixes.
+
+1.8.0.beta1
+-----------
 
 - Quick Editor working!
 
