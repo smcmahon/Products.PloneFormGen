@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.8.0.beta2'
+version = '1.8.0.beta3'
 
 setup(name='Products.PloneFormGen',
       version=version,
@@ -38,8 +38,6 @@ setup(name='Products.PloneFormGen',
           'Products.TALESField>=1.1.3',
           'Products.TemplateFields>=1.2.4',
           'Products.PythonField>=1.1.3',
-          # 'plone.app.jquerytools>=1.2dev',
-          # 'collective.js.jqueryui',
       ],
       extras_require={
           'test': [

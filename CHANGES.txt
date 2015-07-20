@@ -1,6 +1,11 @@
 Change History
 ==============
 
+1.8.0.beta3
+-----------
+
+- Show loading on new form OK.
+
 1.8.0.beta2
 -----------
 
