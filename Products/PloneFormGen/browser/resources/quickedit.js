@@ -26,7 +26,7 @@ $(function () {
     }
 
     var log = logger.getLogger('pfgquickedit');
-    log.setLevel('DEBUG');
+    // log.setLevel('DEBUG');
 
 
     function getAuthToken () {
@@ -291,8 +291,10 @@ $(function () {
                     async: false,
                     success: function (response, status, xhr) {
                         var item_id,
-                            widgetParent;
+                            widgetParent,
+                            loading = new utils.Loading();
 
+                        loading.show(false);
                         item_id = $(response)
                             .find('#contentview-view a')
                             .attr('href')
@@ -305,7 +307,6 @@ $(function () {
                             method
                         );
 
-                        // TODO: do something more to show we're loading
                         widgetParent = formParent.parents("div.qefield");
                         widgetParent.find("div.widget-inside").slideUp('fast', function () {
                             location.reload();
