@@ -4,6 +4,8 @@ Change History
 1.7.20 (unreleased)
 -------------------
 
+- Use formActionOverride action in embedded view [fRiSi]
+
 - Updated Spanish translations
   [macagua]
 
