@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_properties">
  <object name="navtree_properties" >
-  <property name="metaTypesNotToList" purge="False">
+  <property name="metaTypesNotToList" type="lines" purge="False">
    <element value="FormSelectionField"/>
    <element value="FormMultiSelectionField"/>
    <element value="FormLabelField"/>
@@ -55,11 +55,11 @@
    <element value="FormFolder"/>
    <element value="FieldsetFolder"/>
   </property>
-  <property name="typesLinkToFolderContentsInFC" purge="False">
+  <property name="typesLinkToFolderContentsInFC" type="lines" purge="False">
    <element value="FormFolder"/>
    <element value="FieldsetFolder"/>
   </property>
-  <property name="types_not_searched" purge="False">
+  <property name="types_not_searched" type="lines" purge="False">
    <element value="FormSelectionField"/>
    <element value="FormMultiSelectionField"/>
    <element value="FormLabelField"/>
@@ -84,7 +84,7 @@
    <element value="FieldsetStart"/>
    <element value="FieldsetEnd"/>
   </property>
-  <property name="default_page_types" purge="False">
+  <property name="default_page_types" type="lines" purge="False">
    <element value="FormFolder"/>
   </property>
  </object>
