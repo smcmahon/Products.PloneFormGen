@@ -373,7 +373,7 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
             default_content_type='text/html',
             default_output_type='text/x-html-safe',
             allowable_content_types=zconf.ATDocument.allowed_content_types,
-            widget=RichWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
+            widget=TinyMCEWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
                 description=_(u'help_fgtextdefault_text', default=u"""
                     The text the field should contain when the form is first displayed.
                     Note that this may be overridden dynamically.

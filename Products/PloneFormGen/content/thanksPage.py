@@ -78,7 +78,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         default_content_type=zconf.ATDocument.default_content_type,
         default_output_type='text/x-html-safe',
         allowable_content_types=zconf.ATDocument.allowed_content_types,
-        widget=RichWidget(
+        widget=TinyMCEWidget(
             label=_(u"label_thanksprologue_text", default=u"Thanks Prologue"),
             description=_(u"help_thanksprologue_text", default=u"This text will be displayed above the selected field inputs."),
             rows=8,
@@ -95,7 +95,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
         default_content_type=zconf.ATDocument.default_content_type,
         default_output_type='text/x-html-safe',
         allowable_content_types=zconf.ATDocument.allowed_content_types,
-        widget=RichWidget(
+        widget=TinyMCEWidget(
             label=_(u"label_thanksepilogue_text", default=u"Thanks Epilogue"),
             description=_(u"help_thanksepilogue_text", default=u"The text will be displayed after the field inputs."),
             rows=8,
@@ -114,7 +114,7 @@ ThanksPageSchema = ATContentTypeSchema.copy() + Schema((
             <p>No input was received. Please <a title="Test Folder" href=".">visit the form</a>.</p>
             """,
         allowable_content_types=zconf.ATDocument.allowed_content_types,
-        widget=RichWidget(
+        widget=TinyMCEWidget(
             label=_(u"label_nosubmit_text", default=u"No Submit Message"),
             description=_(u"help_nosubmit_text", default=u"""
                 The text to display if the browser reaches this

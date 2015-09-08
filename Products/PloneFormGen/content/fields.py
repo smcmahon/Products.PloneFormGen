@@ -1050,7 +1050,7 @@ class FGRichTextField(BaseFormField):
             default_content_type = 'text/html',
             default_output_type = 'text/x-html-safe',
             allowable_content_types = zconf.ATDocument.allowed_content_types,
-            widget = RichWidget(
+            widget = TinyMCEWidget(
                     allow_file_upload = False,
                     ),
             )
@@ -1104,7 +1104,7 @@ class FGRichLabelField(BaseFormField):
             default_content_type = 'text/html',
             default_output_type = 'text/x-html-safe',
             allowable_content_types = zconf.ATDocument.allowed_content_types,
-            widget=RichWidget(label=_(u'label_fglabelbody_text', default=u'Label body'),
+            widget=TinyMCEWidget(label=_(u'label_fglabelbody_text', default=u'Label body'),
                 description=_(u'help_fglabelbody_text', default=u"""
                     The text to display in the form.
                 """),

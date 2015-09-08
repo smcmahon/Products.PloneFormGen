@@ -130,7 +130,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
+        widget = TinyMCEWidget(
             label = _(u'label_prologue_text', default=u"Form Prologue"),
             description = _(u'help_prologue_text',
                 default=u"This text will be displayed above the form fields."),
@@ -149,7 +149,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
+        widget = TinyMCEWidget(
             label = _(u'label_epilogue_text', default=u"Form Epilogue"),
             description = _(u'help_epilogue_text',
                 default=u"The text will be displayed after the form fields."),
@@ -770,7 +770,7 @@ class FormFolder(ATFolder):
 
 
     ###
-    # A few widgets (TextArea and RichWidget in particular) call the content
+    # A few widgets (TextArea and TinyMCEWidget in particular) call the content
     # object rather than the field for this method. IMHO, this is unnecessary,
     # and should be fixed in the Widget. Meanwhile, this hack ...
     #

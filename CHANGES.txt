@@ -5,6 +5,10 @@ Change History
 1.8.0.beta4 (unreleased)
 ------------------------
 
+- Changed our content types to use TinyMCEWidget instead of
+  RichWidget.  The old one only showed a plain textarea.  Fixes issue
+  #152.
+
 - Fixed ``propertiestool.xml`` to not break importing
   ``types_not_searched``.
 
