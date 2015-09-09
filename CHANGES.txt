@@ -2,8 +2,8 @@ Change History
 ==============
 
 
-1.8.0.beta4 (unreleased)
-------------------------
+1.8.0b4 (2015-09-09)
+--------------------
 
 - Changed our content types to use TinyMCEWidget instead of
   RichWidget.  The old one only showed a plain textarea.  Fixes issue
