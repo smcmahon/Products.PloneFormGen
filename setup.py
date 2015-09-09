@@ -6,10 +6,9 @@ setup(name='Products.PloneFormGen',
       version=version,
       description="A through-the-web form generator for Plone",
       long_description=(
-          open("README.rst").read()
-          + "\n\n" +
-          # CHANGES.txt has lots of UTF8, which PyPI won't accept
-          open("CHANGES.txt").read().decode('UTF8').encode('ASCII', 'replace')),
+          open("README.rst").read() +
+          "\n\n" +
+          open("CHANGES.txt").read()),
       classifiers=[
           "Development Status :: 6 - Mature",
           "Topic :: Software Development :: Libraries :: Python Modules",
