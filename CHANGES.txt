@@ -5,7 +5,11 @@ Change History
 1.8.0b5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Removed inline javascript that tried to block inline validation.  It
+  had no effect anymore on Plone 5, as no inline validation is done
+  here anyway.  And it interferes with themes that load jQuery near
+  the bottom instead of in the head.
+  [maurits]
 
 
 1.8.0b4 (2015-09-09)

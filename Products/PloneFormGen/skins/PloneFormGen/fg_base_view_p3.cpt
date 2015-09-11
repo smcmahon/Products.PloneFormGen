@@ -91,13 +91,6 @@
               </metal:field>
             </tal:if>
 
-<script>
-    // block inline validation
-    jQuery(function ($) {
-        $("#pfg-fieldwrapper .field").removeAttr('data-uid');
-    });
-</script>
-
         </tal:def_macro>
       </metal:block>
     </metal:content-core>
