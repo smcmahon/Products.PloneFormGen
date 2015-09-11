@@ -5,7 +5,7 @@ Change History
 1.8.0b5 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Fix embedded view by removing deprecated global defines macro.
 
 
 1.8.0b4 (2015-09-09)
