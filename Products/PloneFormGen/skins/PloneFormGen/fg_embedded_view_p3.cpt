@@ -1,4 +1,3 @@
-<metal:block use-macro="here/global_defines/macros/defines" />
 <div class="pfg-embedded">
     <tal:block tal:condition="python:request.other.get('pfg_form_submitted', False)">
 
