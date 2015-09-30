@@ -593,8 +593,7 @@ class BaseFormField(ATCTContent):
         if isinstance(value, unicode):
             uvalue = value
         else:
-            utils = getToolByName(self, 'plone_utils')
-            charset = utils.getSiteEncoding()
+            charset = 'utf-8'
             uvalue = unicode(value, charset)
         self.fgField.widget.label = uvalue
 

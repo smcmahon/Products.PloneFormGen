@@ -768,8 +768,7 @@ class FGSelectionField(BaseFormField):
     def htmlValue(self, REQUEST):
         """ Return value instead of key """
 
-        utils = getToolByName(self, 'plone_utils')
-        charset = utils.getSiteEncoding()
+        charset = 'utf-8'
 
         value = REQUEST.form.get(self.__name__, '')
 
@@ -876,8 +875,7 @@ class FGMultiSelectField(BaseFormField):
     def htmlValue(self, REQUEST):
         """ Return value instead of key """
 
-        utils = getToolByName(self, 'plone_utils')
-        charset = utils.getSiteEncoding()
+        charset = 'utf-8'
 
         value = REQUEST.form.get(self.__name__, [])
 
