@@ -459,10 +459,10 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual( xlation, u"Clear Saved Input" )
 
         # xlation = translate(msg, target_language='fr')
-        # self.assertEqual( xlation, 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
+        # self.assertEqual( xlation, 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8') )
 
         # xlation = translate(msg, target_language='de')
-        # self.assertEqual( xlation, 'Die gespeicherten Eingaben l\xc3\xb6schen'.decode('utf8') )
+        # self.assertEqual( xlation, 'Die gespeicherten Eingaben l\xc3\xb6schen'.decode('utf-8') )
 
 
     def testDateValidation(self):

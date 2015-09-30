@@ -1,4 +1,4 @@
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 from Acquisition import aq_parent, aq_inner
 from Products.PloneFormGen import interfaces
 from zope.component import adapter

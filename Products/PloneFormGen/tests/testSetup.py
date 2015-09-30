@@ -487,9 +487,9 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         """
 
         self.ff1.invokeFactory('FormStringField', 'sf1',
-         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8'))
+         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8'))
 
-        self.ff1.sf1.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
+        self.ff1.sf1.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8') )
         # force a reindex
         self.ff1.sf1.reindexObject()
 
@@ -499,9 +499,9 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         """
 
         self.folder.invokeFactory('FormFolder', 'ff2',
-         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8'))
+         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8'))
 
-        self.folder.ff2.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
+        self.folder.ff2.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8') )
         # force a reindex
         self.folder.ff2.reindexObject()
 

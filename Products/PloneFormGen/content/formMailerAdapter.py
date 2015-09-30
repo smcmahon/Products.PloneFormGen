@@ -951,7 +951,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     # translation and encodings
     def _site_encoding(self):
-        return 'UTF-8'
+        return 'utf-8'
 
     security.declareProtected(View, 'allFieldDisplayList')
 

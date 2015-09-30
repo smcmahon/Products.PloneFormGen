@@ -896,16 +896,16 @@ class BaseFormField(ATCTContent):
 
         # value may be a string or a unicode string;
         # it may be an array of string/unicode strings.
-        # establish a UTF-8 baseline. UTF-8 not because it's right,
+        # establish a utf-8 baseline. utf-8 not because it's right,
         # but because it will have backword compatability with previous
         # versions.
         if valueType is unicode:
-            value = value.encode('utf8')
+            value = value.encode('utf-8')
         elif valueType is type([]):
             a = []
             for item in value:
                 if type(item) is unicode:
-                    item = item.encode('utf8')
+                    item = item.encode('utf-8')
                 a.append(item)
             value = a
 
