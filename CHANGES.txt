@@ -5,6 +5,9 @@ Change History
 1.8.0b5 (unreleased)
 --------------------
 
+- Load widget specific css on quickedit form.
+  [maurits]
+
 - Fix embedded view by removing deprecated global defines macro.
   [buchi]
 
