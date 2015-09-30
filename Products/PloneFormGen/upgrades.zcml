@@ -39,4 +39,14 @@
         handler=".upgrades.upgrade_to_171"
         />
 
+    <genericsetup:upgradeSteps
+        source="171"
+        destination="180"
+        profile="Products.PloneFormGen:default">
+      <genericsetup:upgradeDepends
+          title="Import registry.xml"
+          import_steps="plone.app.registry propertiestool"
+          />
+    </genericsetup:upgradeSteps>
+
 </configure>

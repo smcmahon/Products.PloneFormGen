@@ -42,6 +42,8 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 
 from types import StringTypes
 
@@ -755,10 +757,8 @@ class FormFolder(ATFolder):
     def thanksPageVocabulary(self):
         """ returns a DisplayList of contained page-ish documents """
 
-        propsTool = getToolByName(self, 'portal_properties')
-        siteProperties = getattr(propsTool, 'site_properties')
-        defaultPageTypes = siteProperties.getProperty('default_page_types')
-
+        registry = getUtility(IRegistry)
+        defaultPageTypes = registry['plone.default_page_types']
         tpages = [('', _(u'vocabulary_none_text', u'None')), ]
 
         for obj in self.objectValues():

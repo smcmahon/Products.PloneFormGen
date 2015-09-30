@@ -84,8 +84,5 @@
    <element value="FieldsetStart"/>
    <element value="FieldsetEnd"/>
   </property>
-  <property name="default_page_types" type="lines" purge="False">
-   <element value="FormFolder"/>
-  </property>
  </object>
 </object>

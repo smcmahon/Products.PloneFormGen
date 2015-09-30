@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <registry>
 
+  <record name="plone.default_page_types">
+    <value purge="False">
+      <element>FormFolder</element>
+    </value>
+  </record>
 
     <records prefix="plone.resources/pfgquickedit"
              interface='Products.CMFPlone.interfaces.IResourceRegistry'>

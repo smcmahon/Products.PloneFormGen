@@ -5,6 +5,9 @@ Change History
 1.8.0b5 (unreleased)
 --------------------
 
+- Moved our default_page_types setting to the registry.
+  [maurits]
+
 - Get email settings from registry.  Fixes several Plone 5 errors.
   Do not use ``plone_utils.getSiteEncoding()``, because this is
   deprecated and always returns ``utf-8''.
