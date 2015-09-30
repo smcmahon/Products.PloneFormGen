@@ -77,6 +77,16 @@
     <tal:expr replace="structure here/getHeaderInjection | nothing" />
   </metal:javascript_head>
 
+  <metal:css fill-slot="style_slot">
+    <tal:css condition="css"
+             repeat="item css">
+      <style type="text/css"
+             media="all"
+             tal:condition="python:exists('portal/%s' % item)"
+             tal:content="structure string:&lt;!-- @import url($portal_url/$item); --&gt;">
+      </style>
+    </tal:css>
+  </metal:css>
 
   <body>
 

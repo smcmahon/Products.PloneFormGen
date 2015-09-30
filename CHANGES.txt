@@ -4,7 +4,8 @@ Change History
 1.7.18 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Load widget specific css on quickedit form.
+  [maurits]
 
 
 1.7.17 (2015-06-15)
