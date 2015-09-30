@@ -47,6 +47,7 @@ setup(name='Products.PloneFormGen',
       extras_require={
           'test': [
               'Products.PloneTestCase',
+              'plone.protect>=2.0.2',
           ],
           'loadtest': ['collective.funkload'],
       },
