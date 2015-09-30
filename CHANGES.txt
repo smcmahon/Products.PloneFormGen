@@ -5,7 +5,8 @@ Change History
 1.8.0b5 (unreleased)
 --------------------
 
-- Moved our default_page_types setting to the registry.
+- Moved our default_page_types and types_not_searched settings to the
+  registry.
   [maurits]
 
 - Get email settings from registry.  Fixes several Plone 5 errors.

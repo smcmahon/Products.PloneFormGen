@@ -7,6 +7,35 @@
     </value>
   </record>
 
+  <record name="plone.types_not_searched">
+    <value purge="False">
+      <element>FormSelectionField</element>
+      <element>FormMultiSelectionField</element>
+      <element>FormLabelField</element>
+      <element>FormDateField</element>
+      <element>FormLinesField</element>
+      <element>FormIntegerField</element>
+      <element>FormBooleanField</element>
+      <element>FormPasswordField</element>
+      <element>FormFixedPointField</element>
+      <element>FormStringField</element>
+      <element>FormTextField</element>
+      <element>FormRichTextField</element>
+      <element>FormRichLabelField</element>
+      <element>FormFileField</element>
+      <element>FormLikertField</element>
+      <element>FormSaveDataAdapter</element>
+      <element>FormMailerAdapter</element>
+      <element>FormCustomScriptAdapter</element>
+      <element>FormThanksPage</element>
+      <element>FieldsetFolder</element>
+      <element>FormCaptchaField</element>
+      <element>FieldsetStart</element>
+      <element>FieldsetEnd</element>
+    </value>
+  </record>
+
+
     <records prefix="plone.resources/pfgquickedit"
              interface='Products.CMFPlone.interfaces.IResourceRegistry'>
         <value key="js">++plone++pfgquickedit/quickedit.js</value>
