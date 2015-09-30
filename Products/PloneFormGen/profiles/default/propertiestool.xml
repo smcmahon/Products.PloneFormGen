@@ -59,5 +59,30 @@
    <element value="FormFolder"/>
    <element value="FieldsetFolder"/>
   </property>
+  <property name="types_not_searched" type="lines" purge="False">
+   <element value="FormSelectionField"/>
+   <element value="FormMultiSelectionField"/>
+   <element value="FormLabelField"/>
+   <element value="FormDateField"/>
+   <element value="FormLinesField"/>
+   <element value="FormIntegerField"/>
+   <element value="FormBooleanField"/>
+   <element value="FormPasswordField"/>
+   <element value="FormFixedPointField"/>
+   <element value="FormStringField"/>
+   <element value="FormTextField"/>
+   <element value="FormRichTextField"/>
+   <element value="FormRichLabelField"/>
+   <element value="FormFileField"/>
+   <element value="FormLikertField"/>
+   <element value="FormSaveDataAdapter"/>
+   <element value="FormMailerAdapter"/>
+   <element value="FormCustomScriptAdapter"/>
+   <element value="FormThanksPage"/>
+   <element value="FieldsetFolder"/>
+   <element value="FormCaptchaField"/>
+   <element value="FieldsetStart"/>
+   <element value="FieldsetEnd"/>
+  </property>
  </object>
 </object>

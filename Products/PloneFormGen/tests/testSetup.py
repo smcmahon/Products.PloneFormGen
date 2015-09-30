@@ -124,8 +124,7 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
             self.failUnless(f in self.factory.getFactoryTypes())
 
     def testTypesNotSearched(self):
-        registry = getUtility(IRegistry)
-        types_not_searched = registry['plone.types_not_searched']
+        types_not_searched = self.properties.site_properties.getProperty('types_not_searched')
         for f in self.fieldTypes + self.adapterTypes + self.thanksTypes + self.fieldsetTypes:
             self.failUnless(f in types_not_searched)
 
@@ -180,16 +179,10 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         self.assertEquals(newprop, self.properties.ploneformgen_properties.getProperty('mail_body_type'))
 
     def testModificationsToRegistryLinesNotPurged(self):
-        from plone.dexterity.fti import DexterityFTI
         registry = getUtility(IRegistry)
         settings = [
             'plone.default_page_types',
-            'plone.types_not_searched',
         ]
-        # We need to register portal_type foo, otherwise we will fail
-        # validation of the types_not_searched vocabulary.
-        fti = DexterityFTI('foo')
-        self.portal.portal_types._setObject('foo', fti)
 
         # add garbage prop element to each lines property
         for option in settings:
