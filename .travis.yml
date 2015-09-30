@@ -1,5 +1,9 @@
+sudo: false
 language: python
 python: 2.7
+cache:
+  directories:
+    - buildout-cache
 env:
   - PLONE_VERSION=4.2
   - PLONE_VERSION=4.3
