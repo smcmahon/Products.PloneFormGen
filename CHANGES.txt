@@ -10,7 +10,7 @@ Change History
 
 - Get email settings from registry.  Fixes several Plone 5 errors.
   Do not use ``plone_utils.getSiteEncoding()``, because this is
-  deprecated and always returns ``utf-8''.
+  deprecated and always returns ``utf-8``.
   [maurits]
 
 - Load widget specific css on quickedit form.
