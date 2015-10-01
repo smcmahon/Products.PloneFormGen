@@ -47,9 +47,7 @@ setup(name='Products.PloneFormGen',
       extras_require={
           'test': [
               'Products.PloneTestCase',
-              # needed in Plone 5.0
-              'plone.app.testing',
-              'plone.testing',
+              'plone.protect>=2.0.2',
           ],
           'loadtest': ['collective.funkload'],
       },
