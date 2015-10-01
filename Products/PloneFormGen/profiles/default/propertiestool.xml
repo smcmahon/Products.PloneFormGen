@@ -55,10 +55,6 @@
    <element value="FormFolder"/>
    <element value="FieldsetFolder"/>
   </property>
-  <property name="typesLinkToFolderContentsInFC" type="lines" purge="False">
-   <element value="FormFolder"/>
-   <element value="FieldsetFolder"/>
-  </property>
   <property name="types_not_searched" type="lines" purge="False">
    <element value="FormSelectionField"/>
    <element value="FormMultiSelectionField"/>
