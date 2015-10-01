@@ -2,8 +2,8 @@ Change History
 ==============
 
 
-1.8.0b5 (unreleased)
---------------------
+1.8.0 (2015-10-01)
+------------------
 
 - Moved our default_page_types setting to the registry.
   [maurits]
