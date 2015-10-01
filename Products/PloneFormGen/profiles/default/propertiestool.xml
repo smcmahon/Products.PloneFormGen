@@ -51,10 +51,6 @@
   <property name="mail_add_headers" type="lines" purge="False"/>
  </object>
  <object name="site_properties" >
-  <property name="use_folder_tabs" type="lines" purge="False">
-   <element value="FormFolder"/>
-   <element value="FieldsetFolder"/>
-  </property>
   <property name="types_not_searched" type="lines" purge="False">
    <element value="FormSelectionField"/>
    <element value="FormMultiSelectionField"/>
