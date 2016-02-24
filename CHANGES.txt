@@ -5,7 +5,9 @@ Change History
 1.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add option to download data from saveDataAdapter in excel format 
+  Excel download depends on the availability of the 'xlwt' python package.
+  [tmog]
 
 
 1.8.0 (2015-10-01)

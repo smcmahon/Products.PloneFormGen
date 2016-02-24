@@ -3,6 +3,12 @@
 __author__ = 'Steve McMahon <steve@dcn.org>'
 __docformat__ = 'plaintext'
 
+try:
+    import xlwt
+    has_xls = True
+except ImportError:
+    has_xls = False
+
 from AccessControl import ClassSecurityInfo
 
 from BTrees.IOBTree import IOBTree
@@ -434,6 +440,36 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         return '%s%s' % (res, self.getSavedFormInputForEdit())
 
+    security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download_xls')
+    def download_xls(self, REQUEST=None, RESPONSE=None):
+        # """Download the saved data
+        # """
+        filename = self.id
+        if filename.find('.') < 0:
+            filename = '%s.xls' % filename
+        header_value = contentDispositionHeader('attachment', self.getCharset(), filename=filename)
+        RESPONSE.setHeader("Content-Disposition", header_value)
+        RESPONSE.setHeader("Content-Type", 'application/vnd.ms-excel')
+
+        xldoc = xlwt.Workbook(encoding=self.getCharset())
+        sheet = xldoc.add_sheet(self.Title())
+
+        row_num = 0
+
+        if getattr(self, 'UseColumnNames', False):
+            col_names = self.getColumnNames(excludeServerSide=False)
+            for idx, label in enumerate(col_names):
+                sheet.write(0, idx, label.encode(self.getCharset()))
+            row_num += 1
+
+        for row in self.getSavedFormInput():
+            for col_num, col in enumerate(row):
+                sheet.write(row_num, col_num, col.encode(self.getCharset()))
+            row_num += 1
+
+        string_buffer = StringIO()
+        xldoc.save(string_buffer)
+        return string_buffer.getvalue()
 
     security.declareProtected(DOWNLOAD_SAVED_PERMISSION, 'download')
     def download(self, REQUEST=None, RESPONSE=None):
@@ -443,6 +479,9 @@ class FormSaveDataAdapter(FormActionAdapter):
         format = getattr(self, 'DownloadFormat', 'tsv')
         if format == 'tsv':
             return self.download_tsv(REQUEST, RESPONSE)
+        if format == 'xls':
+            assert has_xls, 'xls download not available'
+            return self.download_xls(REQUEST, RESPONSE)
         else:
             assert format == 'csv', 'Unknown download format'
             return self.download_csv(REQUEST, RESPONSE)
@@ -490,6 +529,8 @@ class FormSaveDataAdapter(FormActionAdapter):
         format = getattr(self, 'DownloadFormat', 'tsv')
         if format == 'tsv':
             return 'text/tab-separated-values'
+        if format == 'xls':
+            return 'application/vnd.ms-excel'
         else:
             assert format == 'csv', 'Unknown download format'
             return 'text/comma-separated-values'
@@ -530,19 +571,27 @@ class FormSaveDataAdapter(FormActionAdapter):
 
     def vocabFormatDL(self):
         # """ returns vocabulary for format """
-
-        return DisplayList((
-                ('tsv',
-                    self.translate(msgid='vocabulary_tsv_text',
+        formats = [
+            ('tsv',
+                self.translate(msgid='vocabulary_tsv_text',
+                domain='ploneformgen',
+                default='Tab-Separated Values')
+                ),
+            ('csv',
+                self.translate(msgid='vocabulary_csv_text',
+                domain='ploneformgen',
+                default='Comma-Separated Values')
+                ),
+        ]
+        if has_xls:
+            formats.append(
+                ('xls',
+                    self.translate(msgid='vocabulary_xls_doc',
                     domain='ploneformgen',
-                    default='Tab-Separated Values')
+                    default='Excel document')
                     ),
-                ('csv',
-                    self.translate(msgid='vocabulary_csv_text',
-                    domain='ploneformgen',
-                    default='Comma-Separated Values')
-                    ),
-            ))
+            )
+        return DisplayList(formats)
 
 
 
