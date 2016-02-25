@@ -464,7 +464,9 @@ class FormSaveDataAdapter(FormActionAdapter):
 
         for row in self.getSavedFormInput():
             for col_num, col in enumerate(row):
-                sheet.write(row_num, col_num, col.encode(self.getCharset()))
+                if type(col) is unicode:
+                    col = col.encode(self.getCharset())
+                sheet.write(row_num, col_num, col)
             row_num += 1
 
         string_buffer = StringIO()
