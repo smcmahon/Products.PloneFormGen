@@ -9,6 +9,8 @@ try:
 except ImportError:
     has_xls = False
 
+from urlparse import urlparse
+
 from AccessControl import ClassSecurityInfo
 
 from BTrees.IOBTree import IOBTree
@@ -466,6 +468,17 @@ class FormSaveDataAdapter(FormActionAdapter):
             for col_num, col in enumerate(row):
                 if type(col) is unicode:
                     col = col.encode(self.getCharset())
+
+                if urlparse(col).scheme in ('http', 'https'):
+                    col = xlwt.Formula('HYPERLINK("%(url)s")' % dict(url=col))
+                else:
+                    for format in (int, float):
+                        try:
+                            col = format(col)
+                            break
+                        except ValueError:
+                            pass
+
                 sheet.write(row_num, col_num, col)
             row_num += 1
 
