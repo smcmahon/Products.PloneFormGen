@@ -45,6 +45,8 @@ from Products.PloneFormGen import PloneFormGenMessageFactory as _
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 
+import field_utils
+
 from types import StringTypes
 
 import zope.i18n
@@ -1053,7 +1055,7 @@ class FormFolder(ATFolder):
         """ move item to target"""
 
         plone.protect.CheckAuthenticator(self.REQUEST)
-        
+
         itemPos = self.getObjectPosition(item_id)
         targetPos = self.getObjectPosition(target_id)
 
@@ -1111,6 +1113,10 @@ class FormFolder(ATFolder):
         if myFields:
             lastField = myFields[-1].id
         return lastField
+
+    security.declareProtected(View, 'widget')
+    def widget(self, field_name, mode="view", field=None, **kwargs):
+        return field_utils.widget(self, field_name, mode, field, **kwargs)
 
 
 registerATCT(FormFolder, PROJECTNAME)

@@ -86,9 +86,11 @@
             <metal:use_body use-macro="body_macro" />
 
             <tal:if tal:condition="here/getFormEpilogue | nothing">
-              <metal:field use-macro="python:context.widget('formEpilogue', mode='view')">
+              <div style="clear:both">
+                <metal:field use-macro="python:context.widget('formEpilogue', mode='view')">
                   Body text
-              </metal:field>
+                </metal:field>
+              </div>
             </tal:if>
 
         </tal:def_macro>

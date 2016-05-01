@@ -1,11 +1,13 @@
 Change History
 ==============
 
-
-1.8.1 (unreleased)
+1.8.1 (2016-05-01)
 ------------------
 
-- Nothing changed yet.
+- CGI escape field help (description); prevent method call.
+  Eliminates XSS vulnerability that could be exploited by users with the ability
+  to create forms.
+  [smcmahon]
 
 
 1.8.0 (2015-10-01)
