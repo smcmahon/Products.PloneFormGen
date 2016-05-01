@@ -1,8 +1,13 @@
 Change History
 ==============
 
-1.7.18 (unreleased)
+1.7.18 (2016-05-01)
 -------------------
+
+- CGI escape field help (description); prevent method call.
+  Eliminates XSS vulnerability that could be exploited by users with the ability
+  to create forms.
+  [smcmahon]
 
 - Load widget specific css on quickedit form.
   [maurits]

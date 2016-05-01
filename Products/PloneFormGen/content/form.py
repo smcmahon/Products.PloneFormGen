@@ -42,10 +42,12 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
+from Products.PloneFormGen.content import field_utils
 
 from types import StringTypes
 
 import zope.i18n
+
 
 logger = logging.getLogger("PloneFormGen")
 
@@ -1105,6 +1107,10 @@ class FormFolder(ATFolder):
         if myFields:
             lastField = myFields[-1].id
         return lastField
+
+    security.declareProtected(View, 'widget')
+    def widget(self, field_name, mode="view", field=None, **kwargs):
+        return field_utils.widget(self, field_name, mode, field, **kwargs)
 
 
 registerATCT(FormFolder, PROJECTNAME)

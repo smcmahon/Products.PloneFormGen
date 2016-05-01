@@ -236,6 +236,57 @@ Attempts to read our special member attributes TTW should fail::
     HTTPError: HTTP Error 404: Not Found
 
 
+Archetypes does not quote an input widget's description. That's fine for Archetypes,
+where descriptions are set in code, but it's not OK when form help may be
+set by untrusted users.
+Check for quoting.
+
+    >>> browser.open(self.portal_url + '/testform')
+    >>> browser.getLink('String Field').click()
+    >>> browser.getControl('Field Label').value = 'stringtest'
+    >>> browser.getControl('Field Help').value = '<img id="fhelp" />'
+    >>> browser.getControl('Save').click()
+
+Check Form Field display
+
+    >>> browser.open(self.portal_url + '/testform/stringtest')
+    >>> '<img id="fhelp" />' in browser.contents
+    False
+    >>> '&lt;img id="fhelp" /&gt;' in browser.contents
+    True
+
+Check Form display
+
+    >>> browser.open(self.portal_url + '/testform')
+    >>> '<img id="fhelp" />' in browser.contents
+    False
+    >>> '&lt;img id="fhelp" /&gt;' in browser.contents
+    True
+
+Archetypes also allows a widget description field to contain the name of
+a method, which it will call to get the description value. We must not do that.
+
+    >>> browser.open(self.portal_url + '/testform/stringtest/edit')
+    >>> browser.getControl('Field Help').value = 'absolute_url'
+    >>> browser.getControl('Save').click()
+
+Check Form Field display
+
+    >>> browser.open(self.portal_url + '/testform/stringtest')
+    >>> '<span class="formHelp" id="stringtest_help">http' in browser.contents
+    False
+    >>> '<span class="formHelp" id="stringtest_help">absolute_url' in browser.contents
+    True
+
+Check Form display
+
+    >>> browser.open(self.portal_url + '/testform')
+    >>> '<span class="formHelp" id="stringtest_help">http' in browser.contents
+    False
+    >>> '<span class="formHelp" id="stringtest_help">absolute_url' in browser.contents
+    True
+
+
 # Embedded form
 # -------------
 #

@@ -39,6 +39,9 @@ from Products.PloneFormGen.interfaces import IPloneFormGenField
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
+from Products.PloneFormGen.content import field_utils
+
+
 
 def finalizeFieldSchema(schema, folderish=True, moveDiscussion=False):
     """ cleanup typical field schema """
@@ -954,3 +957,7 @@ class BaseFormField(ATCTContent):
         id = self.getId()
         if self.fgField.__name__ != id:
             self.fgField.__name__ = id
+
+
+    def widget(self, field_name, mode="view", field=None, **kwargs):
+        return field_utils.widget(self, field_name, mode, field, **kwargs)
