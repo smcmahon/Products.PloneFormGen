@@ -1,13 +1,15 @@
 Change History
 ==============
 
-1.7.19 (unreleased)
+1.7.19 (2016-05-01)
 -------------------
 
-- Nothing changed yet.
+- Updated history: 1.7.18 was accidentally released as version 1.7.19.
+  Both versions are valid and contain the fix.  We recommend using
+  1.7.19.  [maurits]
 
 
-1.7.18 (2016-05-03)
+1.7.18 (2016-05-01)
 -------------------
 
 - CGI escape field help (description); prevent method call.
