@@ -82,7 +82,11 @@ class EmbeddedPFGView(BrowserView):
         if self.action is not None:
             self.request.set('pfg_form_action', self.action)
         else:
-            self.request.set('pfg_form_action', self.request['URL'])
+            actionOverride = getattr(self.context, 'formActionOverride', None)
+            if actionOverride:
+                self.request.set('pfg_form_action', actionOverride)
+            else:
+                self.request.set('pfg_form_action', self.request['URL'])
 
         # Delegate to CMFFormController page template so we can share logic with the standalone form
         try:
