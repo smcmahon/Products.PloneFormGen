@@ -4,7 +4,8 @@ Change History
 1.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use datepicker widget for datetime input
+  [tomgross]
 
 
 1.8.1 (2016-05-01)

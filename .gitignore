@@ -17,3 +17,4 @@ parts
 src
 var
 ._*
+.idea

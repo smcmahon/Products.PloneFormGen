@@ -9,6 +9,7 @@ from ZPublisher.HTTPRequest import FileUpload
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
+from Products.Archetypes.Widget import DatetimeWidget
 
 from Products.ATContentTypes.content.base import registerATCT
 from Products.ATContentTypes.content.base import ATCTContent
@@ -505,10 +506,10 @@ class FGDateField(BaseFormField):
         self.fgField = DateTimeField('fg_date_field',
             searchable=0,
             required=0,
+            accessor = 'nullAccessor',
             write_permission = View,
-            widget=CalendarWidget(),
+            widget=DatetimeWidget(),
             )
-
 
     security.declareProtected(ModifyPortalContent, 'setFgShowHM')
     def setFgShowHM(self, value, **kw):
@@ -571,7 +572,6 @@ class FGDateField(BaseFormField):
         tool = getToolByName(self, 'translation_service')
         return tool.ulocalized_time(time, long_format=long_format)
 
-
     def htmlValue(self, REQUEST):
         """ return from REQUEST, this field's value, rendered as XHTML.
         """
@@ -594,23 +594,19 @@ class FGDateField(BaseFormField):
 
         return cgi.escape(value)
 
-
     def specialValidator(self, value, field, REQUEST, errors):
         """ Archetypes isn't validating non-required dates --
             so we need to.
         """
-
         fname = field.getName()
-        month = REQUEST.form.get('%s_month'%fname, '01')
-        day = REQUEST.form.get('%s_month'%fname, '01')
-
-        if (month == '00') and (day == '00'):
-            value = ''
-            REQUEST.form[fname] = ''
-
         if value and not field.required:
             try:
-                dt = DateTime(value)
+                DateTime(value)
+            except (DateTimeSyntaxError, DateError):
+                return "Validation failed(isValidDate): this is not a valid date."
+        elif not value:
+            try:
+                DateTime(REQUEST.form.get(fname))
             except (DateTimeSyntaxError, DateError):
                 return "Validation failed(isValidDate): this is not a valid date."
         return 0

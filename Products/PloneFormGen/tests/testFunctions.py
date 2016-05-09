@@ -468,9 +468,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
     def testDateValidation(self):
         """ Dates should be validated """
 
-
         self.ff1.invokeFactory('FormDateField', 'fdf')
-
         # set non-date fields in request
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
 
@@ -488,7 +486,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         # try with bad date. should not validate.
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
-         fdf='2007/02/31', fdf_year='2007', fdf_month='02', fdf_day='31')
+         fdf='2007-02-31')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( len(errors), 1 )
@@ -496,7 +494,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # try required and bad date. should not validate.
         self.ff1.fdf.setRequired(True)
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
-         fdf='2007/02/31', fdf_year='2007', fdf_month='02', fdf_day='31')
+         fdf='2007-02-31')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( len(errors), 1 )
@@ -511,7 +509,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # try required and good date. should validate.
         self.ff1.fdf.setRequired(True)
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
-         fdf='2007/02/21', fdf_year='2007', fdf_month='02', fdf_day='21')
+         fdf='2007-02-21')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( errors, {} )
