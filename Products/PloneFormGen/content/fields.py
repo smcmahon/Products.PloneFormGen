@@ -9,6 +9,7 @@ from ZPublisher.HTTPRequest import FileUpload
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
+from Products.Archetypes.Widget import DatetimeWidget
 
 from Products.ATContentTypes.content.base import registerATCT
 from Products.ATContentTypes.content.base import ATCTContent
@@ -505,10 +506,10 @@ class FGDateField(BaseFormField):
         self.fgField = DateTimeField('fg_date_field',
             searchable=0,
             required=0,
+            accessor = 'nullAccessor',
             write_permission = View,
-            widget=CalendarWidget(),
+            widget=DatetimeWidget(),
             )
-
 
     security.declareProtected(ModifyPortalContent, 'setFgShowHM')
     def setFgShowHM(self, value, **kw):
