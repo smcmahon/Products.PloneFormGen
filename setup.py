@@ -44,6 +44,7 @@ setup(name='Products.PloneFormGen',
               # needed in Plone 5.0
               'plone.app.testing',
               'plone.testing',
+              'plone.app.upgrade',
           ],
           'loadtest': ['collective.funkload'],
       },
