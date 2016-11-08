@@ -514,12 +514,18 @@ class FGDateField(BaseFormField):
     security.declareProtected(ModifyPortalContent, 'setFgShowHM')
     def setFgShowHM(self, value, **kw):
         """ set show_hm """
+        if not type(value) == BooleanType:
+            value = value == '1'
 
-        if type(value) == BooleanType:
-            self.fgField.widget.show_hm = value
+        if not value:
+            self.fgField.widget._properties['pattern_options']['time'] = value
+            self.fgField.widget.pattern_options['time'] = value
         else:
-            self.fgField.widget.show_hm = value == '1'
-
+            try:
+                del self.fgField.widget.pattern_options['time']
+                del self.fgField.widget._properties['pattern_options']['time']
+            except KeyError:
+                pass
         self.fgShowHM = value
 
 
@@ -597,16 +603,13 @@ class FGDateField(BaseFormField):
     def specialValidator(self, value, field, REQUEST, errors):
         """ Archetypes isn't validating non-required dates --
             so we need to.
+            BBB: this not seem true anymore on Plone 5
         """
         fname = field.getName()
-        if value and not field.required:
+        value = value or REQUEST.form.get(fname)
+        if value or field.required:
             try:
                 DateTime(value)
-            except (DateTimeSyntaxError, DateError):
-                return "Validation failed(isValidDate): this is not a valid date."
-        elif not value:
-            try:
-                DateTime(REQUEST.form.get(fname))
             except (DateTimeSyntaxError, DateError):
                 return "Validation failed(isValidDate): this is not a valid date."
         return 0
