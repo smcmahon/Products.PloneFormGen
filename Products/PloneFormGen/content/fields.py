@@ -517,6 +517,7 @@ class FGDateField(BaseFormField):
         """ set show_hm """
         if not type(value) == BooleanType:
             value = value == '1'
+        old_widget = self.fgField.widget
         if not value:
             # BBB: changing patters options is not working so we re-init the
             # inner widget
@@ -530,6 +531,12 @@ class FGDateField(BaseFormField):
                 del self.fgField.widget._properties['pattern_options']['time']
             except KeyError:
                 pass
+
+        # Copy data from the old widget
+        self.fgField.__name__
+        for attr in ('label', 'description'):
+            setattr(self.fgField.widget, attr, getattr(old_widget, attr))
+
         self.fgField.widget.show_hm = value
         self.fgShowHM = value
 
