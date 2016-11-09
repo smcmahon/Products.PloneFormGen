@@ -9,6 +9,7 @@ from ZPublisher.HTTPRequest import FileUpload
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
+from Products.Archetypes.Widget import DateWidget
 from Products.Archetypes.Widget import DatetimeWidget
 
 from Products.ATContentTypes.content.base import registerATCT
@@ -516,16 +517,20 @@ class FGDateField(BaseFormField):
         """ set show_hm """
         if not type(value) == BooleanType:
             value = value == '1'
-
         if not value:
+            # BBB: changing patters options is not working so we re-init the
+            # inner widget
+            self.fgField.widget = DateWidget()
             self.fgField.widget._properties['pattern_options']['time'] = value
             self.fgField.widget.pattern_options['time'] = value
         else:
+            self.fgField.widget = DatetimeWidget()
             try:
                 del self.fgField.widget.pattern_options['time']
                 del self.fgField.widget._properties['pattern_options']['time']
             except KeyError:
                 pass
+        self.fgField.widget.show_hm = value
         self.fgShowHM = value
 
 
