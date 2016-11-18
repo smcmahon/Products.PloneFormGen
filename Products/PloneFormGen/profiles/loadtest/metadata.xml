@@ -2,6 +2,7 @@
 <metadata>
   <version>1</version>
   <dependencies>
+    <dependency>profile-plonetheme.classic:default</dependency>
     <dependency>profile-Products.PloneFormGen:default</dependency>
   </dependencies>
 </metadata>
