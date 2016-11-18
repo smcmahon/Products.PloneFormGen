@@ -4,7 +4,14 @@ Change History
 1.7.20 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Updated Spanish translations
+  [macagua]
+
+- locales rebuild adding more new strings for Gettext files
+  [macagua]
+
+- Enabled the Plone Theme Classic for loadtest profile
+  [macagua]
 
 
 1.7.19 (2016-05-01)
