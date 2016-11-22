@@ -4,6 +4,12 @@ Change History
 1.8.2 (unreleased)
 ------------------
 
+- Fixed showing translations of help text.  Since security release
+  1.8.1, help text was showing up with only the message id, for
+  example ``help_placeholder``.
+  Fixes `issue #178 <https://github.com/smcmahon/Products.PloneFormGen/issues/178>`_.
+  [maurits]
+
 - Use formActionOverride action in embedded view.  [fRiSi]
 
 - Add option to download data from saveDataAdapter in excel format
