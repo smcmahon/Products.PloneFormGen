@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.20 (unreleased)
+1.7.20 (2016-11-22)
 -------------------
 
 - Fixed showing translations of help text.  Since security release
