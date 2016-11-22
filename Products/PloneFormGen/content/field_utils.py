@@ -1,5 +1,7 @@
-import cgi
 from Products.Archetypes.Renderer import renderer
+from zope.i18n import translate
+
+import cgi
 
 
 class ATWidgetWrapper(object):
@@ -22,6 +24,7 @@ class ATWidgetWrapper(object):
     def wDescription(self, instance, **kwargs):
         value = self.obj.description
         if value:
+            value = translate(value, context=instance.REQUEST)
             return cgi.escape(value)
         else:
             return value
