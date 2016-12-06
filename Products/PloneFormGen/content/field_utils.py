@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from Products.Archetypes.Renderer import renderer
+from Products.CMFPlone.utils import safe_unicode
 from zope.i18n import translate
 
 import cgi
@@ -24,7 +26,7 @@ class ATWidgetWrapper(object):
     def wDescription(self, instance, **kwargs):
         value = self.obj.description
         if value:
-            value = translate(value, context=instance.REQUEST)
+            value = translate(safe_unicode(value), context=instance.REQUEST)
             return cgi.escape(value)
         else:
             return value
