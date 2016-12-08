@@ -779,7 +779,10 @@ class FGSelectionField(BaseFormField):
         vocabulary = self.fgField.Vocabulary(self)
         v = vocabulary.getValue(vu) or vu
 
-        return cgi.escape(v.encode(charset))
+        # v might be unicode or string.  We need string.
+        if isinstance(v, unicode):
+            v = v.encode(charset)
+        return cgi.escape(v)
 
 
 registerATCT(FGSelectionField, PROJECTNAME)
@@ -888,11 +891,14 @@ class FGMultiSelectField(BaseFormField):
                 # so decode the key before lookup
                 ku = k.decode(charset)
                 v = vocabulary.getValue(ku) or ku
+                # v might be unicode or string.  We need string.
+                if isinstance(v, unicode):
+                    v = v.encode(charset)
                 result.append(v)
 
-        value = u', '.join(result)
+        value = ', '.join(result)
 
-        return cgi.escape(value.encode(charset))
+        return cgi.escape(value)
 
 
 registerATCT(FGMultiSelectField, PROJECTNAME)
