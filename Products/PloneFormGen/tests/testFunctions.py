@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Integration tests. See other test modules for specific components.
 #
@@ -199,7 +200,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ Test field htmlValue method of selection field """
 
         self.ff1.invokeFactory('FormSelectionField', 'fsf')
-        self.ff1.fsf.fgVocabulary = ('1|one', '2|two', '3|three',)
+        # Let's mix ascii and non-ascii strings and unicode.
+        self.ff1.fsf.fgVocabulary = (
+            '1|one', '2|two', '3|three', u'4|fo\xfcr', '5|f\xc3\xacve')
 
         # first test inside the vocabulary
         request = self.fakeRequest(fsf = '2')
@@ -217,12 +220,23 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, '&amp;')
 
+        # Now test unicode
+        request = self.fakeRequest(fsf = '4')
+        val = self.ff1['fsf'].htmlValue(request)
+        self.assertEqual(val, u'fo\xfcr'.encode('utf-8'))
+
+        # And test a non-ascii string
+        request = self.fakeRequest(fsf = '5')
+        val = self.ff1['fsf'].htmlValue(request)
+        self.assertEqual(val, 'f\xc3\xacve')
 
     def testHtmlValueMultiSelectionField(self):
         """ Test field htmlValue method of multi-selection field """
 
         self.ff1.invokeFactory('FormMultiSelectionField', 'fsf')
-        self.ff1.fsf.fgVocabulary = ('1|one', '2|two', '3|three',)
+        # Let's mix ascii and non-ascii strings and unicode.
+        self.ff1.fsf.fgVocabulary = (
+            '1|one', '2|two', '3|three', u'4|fo\xfcr', '5|f\xc3\xacve')
 
         # first test inside the vocabulary
         request = self.fakeRequest(fsf = ['2', '3', ''])
@@ -245,6 +259,11 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, 'one, 7')
 
+        # Now test ascii and non-ascii strings and unicode.
+        request = self.fakeRequest(fsf = ['1', '4', '5'])
+        val = self.ff1['fsf'].htmlValue(request)
+        self.assertEqual(val, 'one, fo\xc3\xbcr, f\xc3\xacve')
+        self.assertEqual(val.decode('utf-8'), u'one, fo\xfcr, f\xecve')
 
     def testHtmlValueDateField(self):
         """ Test field htmlValue method of date field """
