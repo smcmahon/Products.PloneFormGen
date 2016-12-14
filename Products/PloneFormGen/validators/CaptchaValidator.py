@@ -24,7 +24,7 @@ class CaptchaValidator:
         request = kwargs.get('REQUEST')
         captcha = getMultiAdapter((context, request), name='captcha')
         if not captcha.verify(value):
-            return ("Verification failed: Please type the characters you see below.")
+            return ("Verification failed: Please respond to the captcha below.")
         return 1
 
 validation.register(CaptchaValidator('isCorrectCaptcha'))

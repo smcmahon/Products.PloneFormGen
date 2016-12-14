@@ -8,6 +8,9 @@ Change History
   This could happen in selection and multi selection fields.
   [maurits]
 
+- change captcha verification message for #186
+  [tkimnguyen]
+
 
 1.7.21 (2016-12-06)
 -------------------
