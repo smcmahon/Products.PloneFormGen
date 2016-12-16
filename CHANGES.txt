@@ -4,7 +4,9 @@ Change History
 1.7.22 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed UnicodeDecodeError when vocabulary value is a non-ascii string.
+  This could happen in selection and multi selection fields.
+  [maurits]
 
 
 1.7.21 (2016-12-06)
