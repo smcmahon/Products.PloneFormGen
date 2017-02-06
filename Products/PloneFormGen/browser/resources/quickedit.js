@@ -326,17 +326,52 @@ jQuery(function ($) {
 		toggleRequired: function () {
 			var target, jqt;
 
-			jqt = $(this);
-			target = $("div.field label").next();
+			var getFieldIdForSpan = function (jqt) {
+				item = jqt.parent().attr('id');
+ 				if (!item) {
+					// In some cases we need to look one level higher, like for selection field.
+					// It will contain the exact field id.
+					item = jqt.parent().parent().attr('id');
+				} else {
+					// Here we need to remove part of the string.
+					item = item.substr('archetypes-fieldname-'.length);
+				}
+				return item;
+			};
 
-			target.each(function () {
-				var jqt;
-
-				jqt = $(this);
+			var addToggle = function (jqt) {
 				if (!jqt.is("span")) {
 					$("<span class='not-required' style='display:inline-block' title='Make it required?'></span>").insertBefore(this);
 				} else {
 					jqt.attr("title", "Remove required flag?");
+				}
+			};
+
+			jqt = $(this);
+			target = $("div.field > label").next();
+			target.each(function () {
+				addToggle($(this));
+			});
+
+			// Selection fields are structured differently.
+			target = $("div.field div.label");
+			target.each(function () {
+				var jqt, span, new_span;
+				jqt = $(this);
+				span = jqt.find("span.required");
+				if (span.length === 1) {
+					span.attr("title", "Remove required flag?");
+				} else {
+					new_span = $("<span class='not-required' style='display:inline-block' title='Make it required?'></span>");
+					// Now the trick is to insert the new span at the correct point.
+					// Especially we prefer it at the end, but on the same line as the label.
+					// Best is before any other span, as other span may be displayed as block.
+					span = jqt.find("span");
+					if (span.length) {
+						span.before(new_span);
+					} else {
+						jqt.after(new_span);
+					}
 				}
 			});
 
@@ -344,7 +379,7 @@ jQuery(function ($) {
 				var item, jqt;
 
 				jqt = $(this);
-				item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
+				item = getFieldIdForSpan(jqt);
 				$("img.ajax-loader").css('visibility', 'visible');
 				// AJAX
 				$.post('toggleRequired', {
@@ -356,7 +391,8 @@ jQuery(function ($) {
 				$('#archetypes-fieldname-' + item).find('[name^=' + item + ']').attr("required", "required");
 				jqt.removeClass("not-required");
 				jqt.addClass("required");
-				jqt.html("			  ■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
+				// This is done in css already:
+				// jqt.html("				■").css({'color' : 'rgb(255,0,0)', 'display' : 'none'}).fadeIn().css("display", "inner-block");
 				jqt.attr("title", "Remove required flag?");
 			});
 
@@ -364,7 +400,7 @@ jQuery(function ($) {
 				var item, jqt;
 
 				jqt = $(this);
-				item = jqt.parent().attr('id').substr('archetypes-fieldname-'.length);
+				item = getFieldIdForSpan(jqt);
 				$("img.ajax-loader").css('visibility', 'visible');
 				// AJAX
 				$.post('toggleRequired', {

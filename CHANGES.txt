@@ -4,7 +4,10 @@ Change History
 1.7.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed toggling the required setting for selection fields in quickedit.
+  The extra spans for this were being added to the individual selection options,
+  and clicking on them gave a KeyError because they did not get a field id.
+  [maurits]
 
 
 1.7.22 (2017-02-09)
