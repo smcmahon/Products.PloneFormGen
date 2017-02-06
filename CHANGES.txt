@@ -11,6 +11,10 @@ Change History
 - change captcha verification message for #186
   [tkimnguyen]
 
+- add jQuery 1.9+ support with `.delegate()`. This also ensures
+  jQuery 1.4.2+ and Plone 4.1+ compatibility. Fixes #188
+  [petschki]
+
 
 1.7.21 (2016-12-06)
 -------------------

@@ -286,7 +286,7 @@ jQuery(function ($) {
 			node.setAttribute("type", "text");
 
 			// then we attach a new event to label fields
-			$("#pfg-qetable .qefield label.formQuestion").live('dblclick', function (e) {
+			$("div.pfg-form").delegate("#pfg-qetable .qefield label.formQuestion", 'dblclick', function (e) {
 				var content, tmpfor, jqt;
 
 				jqt = $(this);
@@ -340,7 +340,7 @@ jQuery(function ($) {
 				}
 			});
 
-			$("span.not-required").live("click", function (event) {
+			$("div.pfg-form").delegate("span.not-required", "click", function (event) {
 				var item, jqt;
 
 				jqt = $(this);
@@ -360,7 +360,7 @@ jQuery(function ($) {
 				jqt.attr("title", "Remove required flag?");
 			});
 
-			$("span.required").live("click", function (event) {
+			$("div.pfg-form").delegate("span.required", "click", function (event) {
 				var item, jqt;
 
 				jqt = $(this);
@@ -527,7 +527,7 @@ jQuery(function ($) {
 						// current position in the table
 						currpos = $(".item_" + i).parent().index();
 
-						$("#pfg-qetable [name='form.button.save'], #pfgActionEdit [name='form.button.save']").live('click', function (e) {
+						$("div.pfg-form").delegate("#pfg-qetable [name='form.button.save'], #pfgActionEdit [name='form.button.save']", 'click', function (e) {
 							var button = $(this),
                                 formParent = $(this).closest('form'),
                                 formAction = formParent.attr('action'),
@@ -577,7 +577,7 @@ jQuery(function ($) {
 							return false;
 						});
 
-						$("#pfg-qetable [name='form.button.cancel'], #pfgActionEdit [name='form.button.cancel']").live('click', function (e) {
+						$("div.pfg-form").delegate("#pfg-qetable [name='form.button.cancel'], #pfgActionEdit [name='form.button.cancel']", 'click', function (e) {
 							var widgetParent;
 
 							e.preventDefault();
