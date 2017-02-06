@@ -1084,7 +1084,7 @@ class FormFolder(ATFolder):
 
       return "<done />"
 
-    security.declareProtected(ModifyPortalContent, 'toggleRequired')
+    security.declareProtected(ModifyPortalContent, 'removeFieldFromForm')
 
     def removeFieldFromForm(self, item_id, **kw):
       """ remove field on the fly from the form"""
