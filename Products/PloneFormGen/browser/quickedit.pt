@@ -303,6 +303,7 @@
                     </div>
                     </tal:block>
                 </div>
+            </div>
         </div>
 
         <p tal:replace="structure here/formEpilogue | nothing" />
