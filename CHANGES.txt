@@ -11,6 +11,10 @@ Change History
 - change captcha verification message for #186
   [tkimnguyen]
 
+- Fix issue where quickedit view caused rendering issues because
+  of a tag not being closed
+  [datakurre]
+
 
 1.8.3 (2016-12-06)
 ------------------
