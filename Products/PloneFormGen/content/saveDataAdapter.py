@@ -381,8 +381,10 @@ class FormSaveDataAdapter(FormActionAdapter):
     def getColumnTitles(self, excludeServerSide=True):
         # """Returns a list of column titles"""
 
+        showFields = getattr(self, 'showFields', [])
         names = [field.widget.label for field
-                 in self.fgFields(displayOnly=True, excludeServerSide=excludeServerSide)]
+                 in self.fgFields(displayOnly=True, excludeServerSide=excludeServerSide)
+                 if not showFields or field.getName() in showFields]
         for f in self.ExtraData:
             names.append(self.vocabExtraDataDL().getValue(f, ''))
 

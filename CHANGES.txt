@@ -15,6 +15,9 @@ Change History
   of a tag not being closed
   [datakurre]
 
+- Fix issue where logic in FormSaveDataAdapter's getColumnTitles was
+  different than the logic for getColumnNames.
+  [mikerenfro]
 
 1.8.3 (2016-12-06)
 ------------------
