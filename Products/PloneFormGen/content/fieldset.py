@@ -16,7 +16,7 @@ from Products.CMFCore.exceptions import BadRequest
 
 from Products.CMFPlone.utils import safe_hasattr, base_hasattr
 
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 
 from Products.ATContentTypes.content.folder import ATFolderSchema, ATFolder
 

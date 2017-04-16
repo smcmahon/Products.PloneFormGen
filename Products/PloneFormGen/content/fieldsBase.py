@@ -12,7 +12,7 @@ import zExceptions
 
 from zope.interface import implements
 
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 from Products.ATContentTypes.content.base import registerATCT
 from Products.ATContentTypes.content.base import ATCTContent
 from Products.ATContentTypes.content.schemata import ATContentTypeSchema

@@ -29,7 +29,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.permissions import ModifyPortalContent
 from Products.CMFPlone.utils import base_hasattr, safe_hasattr
 
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 from Products.Archetypes.utils import contentDispositionHeader
 from Products.ATContentTypes.content.base import registerATCT
 

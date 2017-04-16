@@ -20,7 +20,7 @@ __docformat__ = 'plaintext'
 from AccessControl import ClassSecurityInfo
 from AccessControl import Unauthorized
 
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 from Products.Archetypes.utils import OrderedDict
 from Products.Archetypes.utils import shasattr
 

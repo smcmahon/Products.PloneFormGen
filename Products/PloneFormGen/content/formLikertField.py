@@ -23,7 +23,7 @@ __docformat__ = 'plaintext'
 
 import cgi
 
-from Products.Archetypes.public import *
+from Products.Archetypes.atapi import *
 from Products.Archetypes.utils import shasattr
 
 from Products.ATContentTypes.content.base import registerATCT
