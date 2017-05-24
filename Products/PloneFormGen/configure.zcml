@@ -134,11 +134,4 @@
   <subscriber handler=".events.form_adapter_pasted" />
   <subscriber handler=".events.form_adapter_moved" />
 
-  <adapter
-      zcml:condition="installed collective.cover"
-      for="Products.PloneFormGen.interfaces.form.IPloneFormGenForm"
-      provides="collective.cover.interfaces.ICoverUIDsProvider"
-      factory="collective.cover.tiles.list.GenericUIDsProvider"
-      />
-
 </configure>
