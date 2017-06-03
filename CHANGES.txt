@@ -4,7 +4,8 @@ Change History
 1.7.23 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Remove collective.cover adapter reference. (closes `#194`_).
+  [rodfersou]
 
 
 1.7.22 (2017-02-09)
@@ -1748,3 +1749,6 @@ Change History
  - Added simple interfaces IfgForm and IfgField, mainly as markers.
 
  - Made form fields invisible (to the add menu)
+
+
+.. _`#194`: https://github.com/smcmahon/Products.PloneFormGen/issues/194
