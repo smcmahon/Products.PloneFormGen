@@ -9,6 +9,7 @@ Integration tests
     >>> request = layer['request']
     >>> from plone.testing.z2 import Browser
     >>> browser = Browser(app)
+    >>> browser.handleErrors = False
 
 Login to the portal:
 
@@ -150,41 +151,40 @@ Attempts to use clearSavedFormInput without auth should be forbidden::
     >>> browser.open(portal_url + '/testform/saver/clearSavedFormInput')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 403: Forbidden
-
+    Forbidden: Form authenticator is invalid.
 
 Attempts to use gpg_services TTW should be fruitless::
 
     >>> browser.open(portal_url + '/testform/@@gpg_services/encrypt?data=XXX&recipient_key_id=yyy')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to read the success action TTW should be fruitless::
 
     >>> browser.open(portal_url + '/testform/fgGetSuccessAction')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 That should also be true for fields::
 
     >>> browser.open(portal_url + '/testform/comments/fgGetSuccessAction')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to set mailer body TTW should fail
     >>> browser.open(portal_url + '/testform/mailer/setBody_pt?value=stuff')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to read mailer body TTW should fail
     >>> browser.open(portal_url + '/testform/mailer/body_pt')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 We want to test security on the custom script adapter. Let's add one::
 
@@ -201,48 +201,48 @@ Attempts to set script body TTW should fail::
     >>> browser.open(portal_url + '/testform/test-script-adapter/updateScript?body=raise%2010&role=none')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to run the script TTW should fail::
 
     >>> browser.open(portal_url + '/testform/test-script-adapter/onSuccess?fields=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/test-script-adapter/scriptBody?fields=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/test-script-adapter/executeCustomScript?fields=&form=&req=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to use onSuccess TTW should fail::
 
     >>> browser.open(portal_url + '/testform/saver/onSuccess?fields=&request=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to read our special member attributes TTW should fail::
 
     >>> browser.open(portal_url + '/testform/memberId')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/memberFullName')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/memberEmail')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Archetypes does not quote an input widget's description. That's fine for Archetypes,
 where descriptions are set in code, but it's not OK when form help may be
