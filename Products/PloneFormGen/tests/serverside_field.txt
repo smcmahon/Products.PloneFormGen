@@ -2,7 +2,7 @@ Server-side only field
 ----------------------
 
 Get our test browser::
-    
+
     >>> app = layer['app']
     >>> portal = layer['portal']
     >>> from Products.PloneFormGen.tests.pfgtc import MailHostMock
@@ -11,10 +11,11 @@ Get our test browser::
     >>> request = layer['request']
     >>> from plone.testing.z2 import Browser
     >>> browser = Browser(app)
+    >>> browser.handleErrors = False
 
 Add a new form folder and mark the subject input variable as a server side variable.
 (It needs a non-empty default value because it's set as required.) ::
-  
+
     >>> from plone.app.testing import setRoles
     >>> from plone.app.testing import login
     >>> from plone.app.testing import TEST_USER_NAME
@@ -40,7 +41,7 @@ Login to the portal:
     >>> browser.getControl(name='submit').click()
 
 And confirm that the server-side field is absent from the rendered form::
-    
+
     >>> browser.open(portal_url + '/testform')
     >>> 'id="archetypes-fieldname-topic"' in  browser.contents
     False

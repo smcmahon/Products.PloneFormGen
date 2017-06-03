@@ -11,6 +11,7 @@ First let's get our test browser and make sure that it won't re-raise Redirect e
     >>> request = layer['request']
     >>> from plone.testing.z2 import Browser
     >>> browser = Browser(app)
+    >>> browser.handleErrors = False
     >>> from ZPublisher import HTTPResponse
     >>> HTTPResponse.status_codes['redirect'] = 200
 
@@ -35,9 +36,9 @@ Set up a form with the 'force SSL' setting on::
     >>> browser.open(portal_url)
     >>> browser.getLink('Form Folder').click()
     >>> browser.getControl('Title').value = 'testform'
-    
+
     >>> browser.getControl(name='forceSSL:boolean').value = '1'
-    
+
     >>> browser.getControl('Save').click()
     >>> browser.url
     '.../testform/...'
@@ -62,4 +63,4 @@ well (so the user sees a security icon in their browser.) ::
     >>> browser.open(portal_url + '/testform')
     >>> browser.headers['Bobo-Exception-Type'] in ('Redirect', "<class 'zExceptions.Redirect'>")
     True
-    
+
