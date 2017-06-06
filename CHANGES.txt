@@ -4,6 +4,9 @@ Change History
 1.8.4 (unreleased)
 ------------------
 
+- Remove collective.cover adapter reference. (closes `#194`_).
+  [rodfersou]
+
 - Fixed UnicodeDecodeError when vocabulary value is a non-ascii string.
   This could happen in selection and multi selection fields.
   [maurits]
@@ -122,3 +125,6 @@ Change History
   [thet]
 
 For previous changes, see docs/HISTORY.txt.
+
+
+.. _`#194`: https://github.com/smcmahon/Products.PloneFormGen/issues/194
