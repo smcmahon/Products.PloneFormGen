@@ -4,6 +4,11 @@ Change History
 1.8.4 (unreleased)
 ------------------
 
+- Fix UnicodeDecodeError: RateScaleField with non-ascii values and without
+  Thank-you-page.
+  ref: https://github.com/smcmahon/Products.PloneFormGen/issues/98
+  [vkarppinen]
+
 - Remove collective.cover adapter reference. (closes `#194`_).
   [rodfersou]
 
