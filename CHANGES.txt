@@ -6,29 +6,31 @@ Change History
 
 - Fix UnicodeDecodeError: RateScaleField with non-ascii values and without
   Thank-you-page.
-  ref: https://github.com/smcmahon/Products.PloneFormGen/issues/98
+  Fixes `issue #98 <https://github.com/smcmahon/Products.PloneFormGen/issues/98>`_.
   [vkarppinen]
 
-- Remove collective.cover adapter reference. (closes `#194`_).
+- Remove collective.cover adapter reference.
+  (Closes `#194 <https://github.com/smcmahon/Products.PloneFormGen/issues/194>`_.
   [rodfersou]
 
 - Fixed UnicodeDecodeError when vocabulary value is a non-ascii string.
   This could happen in selection and multi selection fields.
   [maurits]
 
-- change captcha verification message for #186
+- Change captcha verification message for `#186 <https://github.com/smcmahon/Products.PloneFormGen/issues/186>`_.
   [tkimnguyen]
 
 - Fix issue where quickedit view caused rendering issues because
-  of a tag not being closed
+  of a tag not being closed.
   [datakurre]
 
 - Fix issue where logic in FormSaveDataAdapter's getColumnTitles was
   different than the logic for getColumnNames.
   [mikerenfro]
 
-- Fix redundant template fallback value causing errors with RichText Field
+- Fix redundant template fallback value.
   [zemm]
+
 
 1.8.3 (2016-12-06)
 ------------------
@@ -134,5 +136,3 @@ Change History
 
 For previous changes, see docs/HISTORY.txt.
 
-
-.. _`#194`: https://github.com/smcmahon/Products.PloneFormGen/issues/194
