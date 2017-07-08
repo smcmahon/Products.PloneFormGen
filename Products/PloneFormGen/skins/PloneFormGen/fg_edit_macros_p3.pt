@@ -89,7 +89,7 @@
 
           <metal:block define-slot="extra_top" />
 
-          <div tal:replace="structure provider:archetypes.edit.beforefieldsets|nothing"
+          <div tal:replace="structure provider:archetypes.edit.beforefieldsets"
                tal:on-error="nothing" />
 
           <metal:block define-slot="widgets">

@@ -27,6 +27,9 @@ Change History
   different than the logic for getColumnNames.
   [mikerenfro]
 
+- Fix redundant template fallback value causing errors with RichText Field
+  [zemm]
+
 1.8.3 (2016-12-06)
 ------------------
 
