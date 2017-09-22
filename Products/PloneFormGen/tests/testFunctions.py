@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Integration tests. See other test modules for specific components.
 #
@@ -199,7 +200,9 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ Test field htmlValue method of selection field """
 
         self.ff1.invokeFactory('FormSelectionField', 'fsf')
-        self.ff1.fsf.fgVocabulary = ('1|one', '2|two', '3|three',)
+        # Let's mix ascii and non-ascii strings and unicode.
+        self.ff1.fsf.fgVocabulary = (
+            '1|one', '2|two', '3|three', u'4|fo\xfcr', '5|f\xc3\xacve')
 
         # first test inside the vocabulary
         request = self.fakeRequest(fsf = '2')
@@ -217,12 +220,23 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, '&amp;')
 
+        # Now test unicode
+        request = self.fakeRequest(fsf = '4')
+        val = self.ff1['fsf'].htmlValue(request)
+        self.assertEqual(val, u'fo\xfcr'.encode('utf-8'))
+
+        # And test a non-ascii string
+        request = self.fakeRequest(fsf = '5')
+        val = self.ff1['fsf'].htmlValue(request)
+        self.assertEqual(val, 'f\xc3\xacve')
 
     def testHtmlValueMultiSelectionField(self):
         """ Test field htmlValue method of multi-selection field """
 
         self.ff1.invokeFactory('FormMultiSelectionField', 'fsf')
-        self.ff1.fsf.fgVocabulary = ('1|one', '2|two', '3|three',)
+        # Let's mix ascii and non-ascii strings and unicode.
+        self.ff1.fsf.fgVocabulary = (
+            '1|one', '2|two', '3|three', u'4|fo\xfcr', '5|f\xc3\xacve')
 
         # first test inside the vocabulary
         request = self.fakeRequest(fsf = ['2', '3', ''])
@@ -245,6 +259,11 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         val = self.ff1['fsf'].htmlValue(request)
         self.assertEqual( val, 'one, 7')
 
+        # Now test ascii and non-ascii strings and unicode.
+        request = self.fakeRequest(fsf = ['1', '4', '5'])
+        val = self.ff1['fsf'].htmlValue(request)
+        self.assertEqual(val, 'one, fo\xc3\xbcr, f\xc3\xacve')
+        self.assertEqual(val.decode('utf-8'), u'one, fo\xfcr, f\xecve')
 
     def testHtmlValueDateField(self):
         """ Test field htmlValue method of date field """
@@ -459,18 +478,16 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.assertEqual( xlation, u"Clear Saved Input" )
 
         # xlation = translate(msg, target_language='fr')
-        # self.assertEqual( xlation, 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
+        # self.assertEqual( xlation, 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8') )
 
         # xlation = translate(msg, target_language='de')
-        # self.assertEqual( xlation, 'Die gespeicherten Eingaben l\xc3\xb6schen'.decode('utf8') )
+        # self.assertEqual( xlation, 'Die gespeicherten Eingaben l\xc3\xb6schen'.decode('utf-8') )
 
 
     def testDateValidation(self):
         """ Dates should be validated """
 
-
         self.ff1.invokeFactory('FormDateField', 'fdf')
-
         # set non-date fields in request
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments')
 
@@ -488,7 +505,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
 
         # try with bad date. should not validate.
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
-         fdf='2007/02/31', fdf_year='2007', fdf_month='02', fdf_day='31')
+         fdf='2007-02-31')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( len(errors), 1 )
@@ -496,7 +513,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # try required and bad date. should not validate.
         self.ff1.fdf.setRequired(True)
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
-         fdf='2007/02/31', fdf_year='2007', fdf_month='02', fdf_day='31')
+         fdf='2007-02-31')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( len(errors), 1 )
@@ -511,7 +528,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         # try required and good date. should validate.
         self.ff1.fdf.setRequired(True)
         request = self.fakeRequest(topic = 'test subject', replyto='test@test.org ', comments='test comments',
-         fdf='2007/02/21', fdf_year='2007', fdf_month='02', fdf_day='21')
+         fdf='2007-02-21')
         errors = self.ff1.fgvalidate(REQUEST=request)
         self.assertEqual( request.form['replyto'], 'test@test.org' )
         self.assertEqual( errors, {} )

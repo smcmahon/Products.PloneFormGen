@@ -9,6 +9,7 @@ Integration tests
     >>> request = layer['request']
     >>> from plone.testing.z2 import Browser
     >>> browser = Browser(app)
+    >>> browser.handleErrors = False
 
 Login to the portal:
 
@@ -56,8 +57,7 @@ Return to form and confirm that it renders properly::
     >>> print browser.contents
     <!DOCTYPE html>
     ...<div class="pfg-form formid-testform">
-        <form name="edit_form" method="post" enctype="multipart/form-data" class="fgBaseEditForm..." action="..." id="fg-base-edit">
-    ...
+        <form name="edit_form" method="post" enctype="multipart/form-data" class="fgBaseEditForm..." action="..." id="fg-base-edit">...
             <div id="pfg-fieldwrapper">
     ...
                 <input type="text" name="replyto" ... id="replyto"...
@@ -150,41 +150,40 @@ Attempts to use clearSavedFormInput without auth should be forbidden::
     >>> browser.open(portal_url + '/testform/saver/clearSavedFormInput')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 403: Forbidden
-
+    Forbidden: Form authenticator is invalid.
 
 Attempts to use gpg_services TTW should be fruitless::
 
     >>> browser.open(portal_url + '/testform/@@gpg_services/encrypt?data=XXX&recipient_key_id=yyy')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to read the success action TTW should be fruitless::
 
     >>> browser.open(portal_url + '/testform/fgGetSuccessAction')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 That should also be true for fields::
 
     >>> browser.open(portal_url + '/testform/comments/fgGetSuccessAction')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to set mailer body TTW should fail
     >>> browser.open(portal_url + '/testform/mailer/setBody_pt?value=stuff')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to read mailer body TTW should fail
     >>> browser.open(portal_url + '/testform/mailer/body_pt')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 We want to test security on the custom script adapter. Let's add one::
 
@@ -201,48 +200,99 @@ Attempts to set script body TTW should fail::
     >>> browser.open(portal_url + '/testform/test-script-adapter/updateScript?body=raise%2010&role=none')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to run the script TTW should fail::
 
     >>> browser.open(portal_url + '/testform/test-script-adapter/onSuccess?fields=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/test-script-adapter/scriptBody?fields=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/test-script-adapter/executeCustomScript?fields=&form=&req=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to use onSuccess TTW should fail::
 
     >>> browser.open(portal_url + '/testform/saver/onSuccess?fields=&request=')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
 Attempts to read our special member attributes TTW should fail::
 
     >>> browser.open(portal_url + '/testform/memberId')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/memberFullName')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
 
     >>> browser.open(portal_url + '/testform/memberEmail')
     Traceback (most recent call last):
     ...
-    HTTPError: HTTP Error 404: Not Found
+    NotFound:...
+
+Archetypes does not quote an input widget's description. That's fine for Archetypes,
+where descriptions are set in code, but it's not OK when form help may be
+set by untrusted users.
+Check for quoting.
+
+    >>> browser.open(portal_url + '/testform')
+    >>> browser.getLink('String Field').click()
+    >>> browser.getControl('Field Label').value = 'stringtest'
+    >>> browser.getControl('Field Help').value = '<img id="fhelp" />'
+    >>> browser.getControl('Save').click()
+
+Check Form Field display
+
+    >>> browser.open(portal_url + '/testform/stringtest')
+    >>> '<img id="fhelp" />' in browser.contents
+    False
+    >>> '&lt;img id="fhelp" /&gt;' in browser.contents
+    True
+
+Check Form display
+
+    >>> browser.open(portal_url + '/testform')
+    >>> '<img id="fhelp" />' in browser.contents
+    False
+    >>> '&lt;img id="fhelp" /&gt;' in browser.contents
+    True
+
+Archetypes also allows a widget description field to contain the name of
+a method, which it will call to get the description value. We must not do that.
+
+    >>> browser.open(portal_url + '/testform/stringtest/edit')
+    >>> browser.getControl('Field Help').value = 'absolute_url'
+    >>> browser.getControl('Save').click()
+
+Check Form Field
+
+    >>> browser.open(portal_url + '/testform/stringtest')
+    >>> '<span class="formHelp" id="stringtest_help">http' in browser.contents
+    False
+    >>> '<span class="formHelp" id="stringtest_help">absolute_url' in browser.contents
+    True
+
+Check Form display
+
+    >>> browser.open(portal_url + '/testform')
+    >>> '<span class="formHelp" id="stringtest_help">http' in browser.contents
+    False
+    >>> '<span class="formHelp" id="stringtest_help">absolute_url' in browser.contents
+    True
+
 
 
 # Embedded form

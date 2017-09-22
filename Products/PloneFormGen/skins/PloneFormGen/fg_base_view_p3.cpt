@@ -86,17 +86,12 @@
             <metal:use_body use-macro="body_macro" />
 
             <tal:if tal:condition="here/getFormEpilogue | nothing">
-              <metal:field use-macro="python:context.widget('formEpilogue', mode='view')">
+              <div style="clear:both">
+                <metal:field use-macro="python:context.widget('formEpilogue', mode='view')">
                   Body text
-              </metal:field>
+                </metal:field>
+              </div>
             </tal:if>
-
-<script>
-    // block inline validation
-    jQuery(function ($) {
-        $("#pfg-fieldwrapper .field").removeAttr('data-uid');
-    });
-</script>
 
         </tal:def_macro>
       </metal:block>

@@ -28,6 +28,7 @@ from Products.ATContentTypes.content.base import registerATCT
 
 from Products.CMFCore.permissions import View, ModifyPortalContent
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.interfaces import IMailSchema
 
 from Products.PloneFormGen.config import *
 from Products.PloneFormGen.content.actionAdapter import FormActionAdapter, FormAdapterSchema
@@ -35,6 +36,8 @@ from Products.PloneFormGen.content.actionAdapter import FormActionAdapter, FormA
 from Products.TALESField import TALESString
 from Products.TemplateFields import ZPTField as ZPTField
 
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 from ya_gpg import gpg
 
 from email import Encoders
@@ -636,8 +639,8 @@ class FormMailerAdapter(FormActionAdapter):
 
         if not isinstance(body, unicode):
             body = unicode(body, self._site_encoding())
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        email_charset = portal.getProperty('email_charset', 'utf-8')
+        registry = getUtility(IRegistry)
+        email_charset = registry['plone.email_charset'] or 'utf-8'
         # always use text/plain for encrypted bodies
         subtype = getattr(self, 'gpg_keyid', False) and 'plain' or self.body_type or 'html'
         mime_text = MIMEText(body.encode(email_charset, 'replace'),
@@ -784,6 +787,8 @@ class FormMailerAdapter(FormActionAdapter):
     security.declarePrivate('secure_header_line')
 
     def secure_header_line(self, line):
+        if line is None:
+            return ''
         nlpos = line.find('\x0a')
         if nlpos >= 0:
             line = line[:nlpos]
@@ -824,11 +829,9 @@ class FormMailerAdapter(FormActionAdapter):
         request -- (optional) alternate request object to use
         """
 
-        pprops = getToolByName(self, 'portal_properties')
-        site_props = getToolByName(pprops, 'site_properties')
-        portal = getToolByName(self, 'portal_url').getPortalObject()
         pms = getToolByName(self, 'portal_membership')
-        utils = getToolByName(self, 'plone_utils')
+        registry = getUtility(IRegistry)
+        mail_settings = registry.forInterface(IMailSchema, prefix='plone')
 
         body = self.get_mail_body(fields, **kwargs)
 
@@ -857,8 +860,7 @@ class FormMailerAdapter(FormActionAdapter):
         if shasattr(self, 'senderOverride') and self.getRawSenderOverride():
             from_addr = self.getSenderOverride().strip()
         else:
-            from_addr = from_addr or site_props.getProperty('email_from_address') or \
-                        portal.getProperty('email_from_address')
+            from_addr = from_addr or mail_settings.email_from_address
 
         # Get To address and full name
         if shasattr(self, 'recipientOverride') and self.getRawRecipientOverride():
@@ -890,7 +892,8 @@ class FormMailerAdapter(FormActionAdapter):
             if userdest is not None:
                 toemail = userdest.getProperty('email', '')
             if not toemail:
-                toemail = portal.getProperty('email_from_address')
+                toemail = mail_settings.email_from_address
+
             assert toemail, """
                     Unable to mail form input because no recipient address has been specified.
                     Please check the recipient settings of the PloneFormGen "Mailer" within the
@@ -908,10 +911,10 @@ class FormMailerAdapter(FormActionAdapter):
             headerinfo['Reply-To'] = self.secure_header_line(reply_addr)
 
         # transform subject into mail header encoded string
-        email_charset = portal.getProperty('email_charset', 'utf-8')
+        email_charset = registry['plone.email_charset'] or 'utf-8'
 
         if not isinstance(subject, unicode):
-            site_charset = utils.getSiteEncoding()
+            site_charset = 'utf-8'
             subject = unicode(subject, site_charset, 'replace')
 
         msgSubject = self.secure_header_line(subject).encode(email_charset, 'replace')
@@ -948,8 +951,7 @@ class FormMailerAdapter(FormActionAdapter):
 
     # translation and encodings
     def _site_encoding(self):
-        site_props = self.portal_properties.site_properties
-        return site_props.default_charset or 'UTF-8'
+        return 'utf-8'
 
     security.declareProtected(View, 'allFieldDisplayList')
 

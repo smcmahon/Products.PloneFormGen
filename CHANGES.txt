@@ -1,9 +1,106 @@
 Change History
 ==============
 
+1.8.5 (unreleased)
+------------------
 
-1.8.0.beta4 (unreleased)
-------------------------
+- Use datepicker widget for datetime input
+  [tomgross]
+
+
+1.8.4 (2017-07-08)
+------------------
+
+- Fix UnicodeDecodeError: RateScaleField with non-ascii values and without
+  Thank-you-page.
+  Fixes `issue #98 <https://github.com/smcmahon/Products.PloneFormGen/issues/98>`_.
+  [vkarppinen]
+
+- Remove collective.cover adapter reference.
+  (Closes `#194 <https://github.com/smcmahon/Products.PloneFormGen/issues/194>`_.
+  [rodfersou]
+
+- Fixed UnicodeDecodeError when vocabulary value is a non-ascii string.
+  This could happen in selection and multi selection fields.
+  [maurits]
+
+- Change captcha verification message for `#186 <https://github.com/smcmahon/Products.PloneFormGen/issues/186>`_.
+  [tkimnguyen]
+
+- Fix issue where quickedit view caused rendering issues because
+  of a tag not being closed.
+  [datakurre]
+
+- Fix issue where logic in FormSaveDataAdapter's getColumnTitles was
+  different than the logic for getColumnNames.
+  [mikerenfro]
+
+- Fix redundant template fallback value.
+  [zemm]
+
+
+1.8.3 (2016-12-06)
+------------------
+
+- Transform value to unicode before translating. Fix #182
+  [pbauer]
+
+
+1.8.2 (2016-11-22)
+------------------
+
+- Fixed showing translations of help text.  Since security release
+  1.8.1, help text was showing up with only the message id, for
+  example ``help_placeholder``.
+  Fixes `issue #178 <https://github.com/smcmahon/Products.PloneFormGen/issues/178>`_.
+  [maurits]
+
+- Use formActionOverride action in embedded view.  [fRiSi]
+
+- Add option to download data from saveDataAdapter in excel format
+  Excel download depends on the availability of the 'xlwt' python package.
+  [tmog]
+
+
+1.8.1 (2016-05-01)
+------------------
+
+- CGI escape field help (description); prevent method call.
+  Eliminates XSS vulnerability that could be exploited by users with the ability
+  to create forms.
+  [smcmahon]
+
+
+1.8.0 (2015-10-01)
+------------------
+
+- Moved our default_page_types setting to the registry.
+  [maurits]
+
+- Get email settings from registry.  Fixes several Plone 5 errors.
+  Do not use ``plone_utils.getSiteEncoding()``, because this is
+  deprecated and always returns ``utf-8``.
+  [maurits]
+
+- Load widget specific css on quickedit form.
+  [maurits]
+
+- Fix embedded view by removing deprecated global defines macro.
+  [buchi]
+
+- Removed inline javascript that tried to block inline validation.  It
+  had no effect anymore on Plone 5, as no inline validation is done
+  here anyway.  And it interferes with themes that load jQuery near
+  the bottom instead of in the head.
+  [maurits]
+
+
+1.8.0b4 (2015-09-09)
+--------------------
+
+- Changed our content types to use TinyMCEWidget instead of
+  RichWidget.  The old one only showed a plain textarea.  Fixes issue
+  #152.
 
 - Fixed ``propertiestool.xml`` to not break importing
   ``types_not_searched``.
@@ -45,3 +142,4 @@ Change History
   [thet]
 
 For previous changes, see docs/HISTORY.txt.
+

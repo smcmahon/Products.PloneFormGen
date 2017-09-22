@@ -2,12 +2,12 @@
 # Test PloneFormGen initialisation and set-up
 #
 from AccessControl import Unauthorized
-
-from Products.PloneFormGen.tests import pfgtc
-
 from Products.CMFCore.utils import getToolByName
-
+from Products.PloneFormGen.tests import pfgtc
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 import Products
+
 
 def getAddPermission(product, name):
     """ find the add permission for a meta_type """
@@ -17,6 +17,7 @@ def getAddPermission(product, name):
         if mt['name'] == name:
             return mt['permission']
     return ""
+
 
 class TestInstallation(pfgtc.PloneFormGenTestCase):
     """Ensure product is properly installed"""
@@ -177,45 +178,38 @@ class TestInstallation(pfgtc.PloneFormGenTestCase):
         # make sure we still have our new value for 'mail_body_type'
         self.assertEquals(newprop, self.properties.ploneformgen_properties.getProperty('mail_body_type'))
 
-    def testModificationsToPropSheetLinesNotPuged(self):
-        pfg_property_mappings = [
-            {"propsheet":"navtree_properties",
-             "added_props":["metaTypesNotToList",]},
-            {"propsheet":"ploneformgen_properties",
-             "added_props":["permissions_used", "mail_cc_recipients",
-                "mail_bcc_recipients", "mail_xinfo_headers","mail_add_headers", "csv_delimiter"]},
-            {"propsheet":"site_properties",
-             "added_props":["use_folder_tabs", "typesLinkToFolderContentsInFC",
-                "types_not_searched", "default_page_types"]},
+    def testModificationsToRegistryLinesNotPurged(self):
+        registry = getUtility(IRegistry)
+        settings = [
+            'plone.default_page_types',
         ]
 
         # add garbage prop element to each lines property
-        for mapping in pfg_property_mappings:
-            sheet = self.properties[mapping['propsheet']]
-            for lines_prop in mapping['added_props']:
-                propitems = list(sheet.getProperty(lines_prop))
-                propitems.append('foo')
-                sheet.manage_changeProperties({lines_prop:propitems})
+        for option in settings:
+            value = registry[option]
+            if isinstance(value, tuple):
+                value = list(value)
+                value.append(u'foo')
+                value = tuple(value)
+            else:
+                value.append(u'foo')
+            registry[option] = value
 
         # reinstall
         qi = self.portal.portal_quickinstaller
         qi.reinstallProducts(['PloneFormGen'])
 
         # now make sure our garbage values survived the reinstall
-        for mapping in pfg_property_mappings:
-            sheet = self.properties[mapping['propsheet']]
-            for lines_prop in mapping['added_props']:
-                self.failUnless('foo' in sheet.getProperty(lines_prop),
-                    "Our garbage item didn't survive reinstall for property %s"
-                    " within property sheet %s" % (lines_prop, mapping["propsheet"]))
-
+        for option in settings:
+            self.failUnless(
+                u'foo' in registry[option],
+                "Our garbage item didn't survive reinstall for property %s" %
+                option)
 
     def test_FormFolderInDefaultPageTypes(self):
-        propsTool = getToolByName(self.portal, 'portal_properties')
-        siteProperties = getattr(propsTool, 'site_properties')
-        defaultPageTypes = list(siteProperties.getProperty('default_page_types'))
+        registry = getUtility(IRegistry)
+        defaultPageTypes = registry['plone.default_page_types']
         self.failUnless('FormFolder' in defaultPageTypes)
-
 
     def testTypeViews(self):
             self.assertEqual(self.types.FormFolder.getAvailableViewMethods(self.types), ('fg_base_view_p3',))
@@ -487,9 +481,9 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         """
 
         self.ff1.invokeFactory('FormStringField', 'sf1',
-         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8'))
+         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8'))
 
-        self.ff1.sf1.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
+        self.ff1.sf1.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8') )
         # force a reindex
         self.ff1.sf1.reindexObject()
 
@@ -499,9 +493,9 @@ class TestContentCreation(pfgtc.PloneFormGenTestCase):
         """
 
         self.folder.invokeFactory('FormFolder', 'ff2',
-         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8'))
+         title='Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8'))
 
-        self.folder.ff2.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf8') )
+        self.folder.ff2.setDescription( 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'.decode('utf-8') )
         # force a reindex
         self.folder.ff2.reindexObject()
 

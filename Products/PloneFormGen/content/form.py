@@ -42,6 +42,10 @@ from Products.PloneFormGen.config import \
 from Products.PloneFormGen.content import validationMessages
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
+
+import field_utils
 
 from types import StringTypes
 
@@ -130,7 +134,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
+        widget = TinyMCEWidget(
             label = _(u'label_prologue_text', default=u"Form Prologue"),
             description = _(u'help_prologue_text',
                 default=u"This text will be displayed above the form fields."),
@@ -149,7 +153,7 @@ FormFolderSchema = ATFolderSchema.copy() + Schema((
         default_content_type = zconf.ATDocument.default_content_type,
         default_output_type = 'text/x-html-safe',
         allowable_content_types = zconf.ATDocument.allowed_content_types,
-        widget = RichWidget(
+        widget = TinyMCEWidget(
             label = _(u'label_epilogue_text', default=u"Form Epilogue"),
             description = _(u'help_epilogue_text',
                 default=u"The text will be displayed after the form fields."),
@@ -755,10 +759,8 @@ class FormFolder(ATFolder):
     def thanksPageVocabulary(self):
         """ returns a DisplayList of contained page-ish documents """
 
-        propsTool = getToolByName(self, 'portal_properties')
-        siteProperties = getattr(propsTool, 'site_properties')
-        defaultPageTypes = siteProperties.getProperty('default_page_types')
-
+        registry = getUtility(IRegistry)
+        defaultPageTypes = registry['plone.default_page_types']
         tpages = [('', _(u'vocabulary_none_text', u'None')), ]
 
         for obj in self.objectValues():
@@ -770,7 +772,7 @@ class FormFolder(ATFolder):
 
 
     ###
-    # A few widgets (TextArea and RichWidget in particular) call the content
+    # A few widgets (TextArea and TinyMCEWidget in particular) call the content
     # object rather than the field for this method. IMHO, this is unnecessary,
     # and should be fixed in the Widget. Meanwhile, this hack ...
     #
@@ -1053,7 +1055,7 @@ class FormFolder(ATFolder):
         """ move item to target"""
 
         plone.protect.CheckAuthenticator(self.REQUEST)
-        
+
         itemPos = self.getObjectPosition(item_id)
         targetPos = self.getObjectPosition(target_id)
 
@@ -1111,6 +1113,10 @@ class FormFolder(ATFolder):
         if myFields:
             lastField = myFields[-1].id
         return lastField
+
+    security.declareProtected(View, 'widget')
+    def widget(self, field_name, mode="view", field=None, **kwargs):
+        return field_utils.widget(self, field_name, mode, field, **kwargs)
 
 
 registerATCT(FormFolder, PROJECTNAME)

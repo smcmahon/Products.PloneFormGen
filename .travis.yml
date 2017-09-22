@@ -7,7 +7,7 @@ cache:
     - buildout-cache
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
-  - python bootstrap-buildout.py
+  - python bootstrap-buildout.py --buildout-version=2.5.3
   - bin/buildout
 script:
   - bin/test

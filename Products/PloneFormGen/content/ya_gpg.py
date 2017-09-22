@@ -94,7 +94,7 @@ class gpg_subprocess:
         PIPE = subprocess.PIPE
         cmd = '%s --batch --yes --trust-model always --no-secmem-warning --encrypt -a -r %s' % (self.gpg_binary, recipient_key_id)
         if isinstance(cmd, unicode):
-            cmd = cmd.encode('utf8')
+            cmd = cmd.encode('utf-8')
         cmd = shlex.split(cmd)
         p = subprocess.Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=False)
 

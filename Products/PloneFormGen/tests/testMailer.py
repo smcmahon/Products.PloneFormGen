@@ -143,7 +143,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         self.failUnless( self.messageBody.find('Eat my footer, test subject.') > 0 )
 
 
-    def test_UTF8Subject(self):
+    def test_utf8Subject(self):
         """ Test mailer with uft-8 encoded subject line """
 
         utf8_subject = 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'
@@ -164,7 +164,7 @@ class TestFunctions(pfgtc.PloneFormGenTestCase):
         """ Test mailer with Unicode encoded subject line """
 
         utf8_subject = 'Effacer les entr\xc3\xa9es sauvegard\xc3\xa9es'
-        unicode_subject= utf8_subject.decode('UTF-8')
+        unicode_subject= utf8_subject.decode('utf-8')
 
         mailer = self.ff1.mailer
         fields = self.ff1._getFieldObjects()

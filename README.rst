@@ -147,8 +147,8 @@ import.
 
 Thomas Buchberger provided the initial CAPTCHA field implementation.
 
-David Glick effectively has been co-maintainer for versions since
-1.2.5. Thanks, David!
+Maurits van Rees has been a co-maintainer for the 1.7.x and 1.8.x series. David Glick was co-maintainer for versions
+1.2.5 through 1.7.x. Thanks, Maurits and David!
 
 Nenad Mancevic (Manca) added the widget toolbox and dramatically enhanced
 the quick edit mode for his Google Summer of Code 2010 project. Thanks to

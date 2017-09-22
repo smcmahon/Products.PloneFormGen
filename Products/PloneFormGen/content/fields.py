@@ -9,6 +9,8 @@ from ZPublisher.HTTPRequest import FileUpload
 
 from Products.Archetypes.public import *
 from Products.Archetypes.utils import shasattr
+from Products.Archetypes.Widget import DateWidget
+from Products.Archetypes.Widget import DatetimeWidget
 
 from Products.ATContentTypes.content.base import registerATCT
 from Products.ATContentTypes.content.base import ATCTContent
@@ -505,20 +507,37 @@ class FGDateField(BaseFormField):
         self.fgField = DateTimeField('fg_date_field',
             searchable=0,
             required=0,
+            accessor = 'nullAccessor',
             write_permission = View,
-            widget=CalendarWidget(),
+            widget=DatetimeWidget(),
             )
-
 
     security.declareProtected(ModifyPortalContent, 'setFgShowHM')
     def setFgShowHM(self, value, **kw):
         """ set show_hm """
-
-        if type(value) == BooleanType:
-            self.fgField.widget.show_hm = value
+        if not type(value) == BooleanType:
+            value = value == '1'
+        old_widget = self.fgField.widget
+        if not value:
+            # BBB: changing patters options is not working so we re-init the
+            # inner widget
+            self.fgField.widget = DateWidget()
+            self.fgField.widget._properties['pattern_options']['time'] = value
+            self.fgField.widget.pattern_options['time'] = value
         else:
-            self.fgField.widget.show_hm = value == '1'
+            self.fgField.widget = DatetimeWidget()
+            try:
+                del self.fgField.widget.pattern_options['time']
+                del self.fgField.widget._properties['pattern_options']['time']
+            except KeyError:
+                pass
 
+        # Copy data from the old widget
+        self.fgField.__name__
+        for attr in ('label', 'description'):
+            setattr(self.fgField.widget, attr, getattr(old_widget, attr))
+
+        self.fgField.widget.show_hm = value
         self.fgShowHM = value
 
 
@@ -571,7 +590,6 @@ class FGDateField(BaseFormField):
         tool = getToolByName(self, 'translation_service')
         return tool.ulocalized_time(time, long_format=long_format)
 
-
     def htmlValue(self, REQUEST):
         """ return from REQUEST, this field's value, rendered as XHTML.
         """
@@ -594,23 +612,16 @@ class FGDateField(BaseFormField):
 
         return cgi.escape(value)
 
-
     def specialValidator(self, value, field, REQUEST, errors):
         """ Archetypes isn't validating non-required dates --
             so we need to.
+            BBB: this not seem true anymore on Plone 5
         """
-
         fname = field.getName()
-        month = REQUEST.form.get('%s_month'%fname, '01')
-        day = REQUEST.form.get('%s_month'%fname, '01')
-
-        if (month == '00') and (day == '00'):
-            value = ''
-            REQUEST.form[fname] = ''
-
-        if value and not field.required:
+        value = value or REQUEST.form.get(fname)
+        if value or field.required:
             try:
-                dt = DateTime(value)
+                DateTime(value)
             except (DateTimeSyntaxError, DateError):
                 return "Validation failed(isValidDate): this is not a valid date."
         return 0
@@ -768,8 +779,7 @@ class FGSelectionField(BaseFormField):
     def htmlValue(self, REQUEST):
         """ Return value instead of key """
 
-        utils = getToolByName(self, 'plone_utils')
-        charset = utils.getSiteEncoding()
+        charset = 'utf-8'
 
         value = REQUEST.form.get(self.__name__, '')
 
@@ -780,7 +790,10 @@ class FGSelectionField(BaseFormField):
         vocabulary = self.fgField.Vocabulary(self)
         v = vocabulary.getValue(vu) or vu
 
-        return cgi.escape(v.encode(charset))
+        # v might be unicode or string.  We need string.
+        if isinstance(v, unicode):
+            v = v.encode(charset)
+        return cgi.escape(v)
 
 
 registerATCT(FGSelectionField, PROJECTNAME)
@@ -876,8 +889,7 @@ class FGMultiSelectField(BaseFormField):
     def htmlValue(self, REQUEST):
         """ Return value instead of key """
 
-        utils = getToolByName(self, 'plone_utils')
-        charset = utils.getSiteEncoding()
+        charset = 'utf-8'
 
         value = REQUEST.form.get(self.__name__, [])
 
@@ -890,11 +902,14 @@ class FGMultiSelectField(BaseFormField):
                 # so decode the key before lookup
                 ku = k.decode(charset)
                 v = vocabulary.getValue(ku) or ku
+                # v might be unicode or string.  We need string.
+                if isinstance(v, unicode):
+                    v = v.encode(charset)
                 result.append(v)
 
-        value = u', '.join(result)
+        value = ', '.join(result)
 
-        return cgi.escape(value.encode(charset))
+        return cgi.escape(value)
 
 
 registerATCT(FGMultiSelectField, PROJECTNAME)
@@ -1050,7 +1065,7 @@ class FGRichTextField(BaseFormField):
             default_content_type = 'text/html',
             default_output_type = 'text/x-html-safe',
             allowable_content_types = zconf.ATDocument.allowed_content_types,
-            widget = RichWidget(
+            widget = TinyMCEWidget(
                     allow_file_upload = False,
                     ),
             )
@@ -1104,7 +1119,7 @@ class FGRichLabelField(BaseFormField):
             default_content_type = 'text/html',
             default_output_type = 'text/x-html-safe',
             allowable_content_types = zconf.ATDocument.allowed_content_types,
-            widget=RichWidget(label=_(u'label_fglabelbody_text', default=u'Label body'),
+            widget=TinyMCEWidget(label=_(u'label_fglabelbody_text', default=u'Label body'),
                 description=_(u'help_fglabelbody_text', default=u"""
                     The text to display in the form.
                 """),

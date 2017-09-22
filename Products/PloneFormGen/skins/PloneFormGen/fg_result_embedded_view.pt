@@ -4,7 +4,8 @@
     <tal:block repeat="field here/fgFields">
       <tal:block tal:define="fname field/getName">
         <dt tal:content="field/widget/label" />
-        <dd tal:content="python:request.form.get(fname, 'No Input')" />
+        <dd tal:define="field_value python:str(request.form.get(fname, 'No Input')).decode('utf-8')"
+            tal:content="field_value" />
       </tal:block>
     </tal:block>
   </dl>

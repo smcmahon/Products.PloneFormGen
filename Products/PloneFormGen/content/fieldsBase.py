@@ -39,6 +39,8 @@ from Products.PloneFormGen.interfaces import IPloneFormGenField
 
 from Products.PloneFormGen import PloneFormGenMessageFactory as _
 
+import field_utils
+
 
 def finalizeFieldSchema(schema, folderish=True, moveDiscussion=False):
     """ cleanup typical field schema """
@@ -373,7 +375,7 @@ BaseFieldSchemaRichTextDefault = BaseFieldSchema.copy() + Schema((
             default_content_type='text/html',
             default_output_type='text/x-html-safe',
             allowable_content_types=zconf.ATDocument.allowed_content_types,
-            widget=RichWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
+            widget=TinyMCEWidget(label=_(u'label_fgtextdefault_text', default=u'Default'),
                 description=_(u'help_fgtextdefault_text', default=u"""
                     The text the field should contain when the form is first displayed.
                     Note that this may be overridden dynamically.
@@ -593,8 +595,7 @@ class BaseFormField(ATCTContent):
         if isinstance(value, unicode):
             uvalue = value
         else:
-            utils = getToolByName(self, 'plone_utils')
-            charset = utils.getSiteEncoding()
+            charset = 'utf-8'
             uvalue = unicode(value, charset)
         self.fgField.widget.label = uvalue
 
@@ -897,16 +898,16 @@ class BaseFormField(ATCTContent):
 
         # value may be a string or a unicode string;
         # it may be an array of string/unicode strings.
-        # establish a UTF-8 baseline. UTF-8 not because it's right,
+        # establish a utf-8 baseline. utf-8 not because it's right,
         # but because it will have backword compatability with previous
         # versions.
         if valueType is unicode:
-            value = value.encode('utf8')
+            value = value.encode('utf-8')
         elif valueType is type([]):
             a = []
             for item in value:
                 if type(item) is unicode:
-                    item = item.encode('utf8')
+                    item = item.encode('utf-8')
                 a.append(item)
             value = a
 
@@ -954,3 +955,7 @@ class BaseFormField(ATCTContent):
         id = self.getId()
         if self.fgField.__name__ != id:
             self.fgField.__name__ = id
+
+
+    def widget(self, field_name, mode="view", field=None, **kwargs):
+        return field_utils.widget(self, field_name, mode, field, **kwargs)
