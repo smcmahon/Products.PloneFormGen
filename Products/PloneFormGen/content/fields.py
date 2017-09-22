@@ -533,7 +533,6 @@ class FGDateField(BaseFormField):
                 pass
 
         # Copy data from the old widget
-        self.fgField.__name__
         for attr in ('label', 'description'):
             setattr(self.fgField.widget, attr, getattr(old_widget, attr))
 

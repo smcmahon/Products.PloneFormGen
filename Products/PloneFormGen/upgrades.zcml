@@ -49,4 +49,13 @@
           />
     </genericsetup:upgradeSteps>
 
+    <genericsetup:upgradeStep
+        source="180"
+        destination="190"
+        title="Migrate old CalendarWidget to DatetimeWidget"
+        profile="Products.PloneFormGen:default"
+        handler=".upgrades.upgrade_to_190"
+        />
+
+
 </configure>
