@@ -2,6 +2,7 @@
 
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.Widget import CalendarWidget
+from Products.Archetypes.Field import DateTimeField
 from Products.Archetypes import atapi
 import logging
 
@@ -29,10 +30,16 @@ def upgrade_to_190(context):
     for brain in brains:
         date_field = brain.getObject()
         widget = date_field.fgField.widget
-        if isinstance(widget, CalendarWidget):
+        #save the label for the new widget
+        label = widget.label
             logger.info('Migrating old CalendarWidget %s' % date_field.absolute_url_path())
+            # cast the date_field into a DateTimeField to renew the accessor.
+            #need this import ----- to move into the import section ------
+            date_field.fgField = DateTimeField(accessor = 'nullAccessor', name = date_field.fgField.getName())
             show_hm = widget.show_hm
             klass = atapi.DatetimeWidget if widget.show_hm else atapi.DateWidget
             date_field.fgField.widget = widget = klass()
+            #update the label with the right value
+            date_field.fgField.widget.label = label
             if show_hm:
                 widget._properties['pattern_options']['time'] = widget.pattern_options['time'] = True
