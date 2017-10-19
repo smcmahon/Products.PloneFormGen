@@ -2,8 +2,8 @@
 
 from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.Widget import CalendarWidget
-from Products.Archetypes.Field import DateTimeField
 from Products.Archetypes import atapi
+from Products.Archetypes.Field import DateTimeField
 import logging
 
 
@@ -32,9 +32,9 @@ def upgrade_to_190(context):
         widget = date_field.fgField.widget
         #save the label for the new widget
         label = widget.label
+        if isinstance(widget, CalendarWidget):
             logger.info('Migrating old CalendarWidget %s' % date_field.absolute_url_path())
             # cast the date_field into a DateTimeField to renew the accessor.
-            #need this import ----- to move into the import section ------
             date_field.fgField = DateTimeField(accessor = 'nullAccessor', name = date_field.fgField.getName())
             show_hm = widget.show_hm
             klass = atapi.DatetimeWidget if widget.show_hm else atapi.DateWidget
