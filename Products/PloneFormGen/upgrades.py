@@ -31,15 +31,20 @@ def upgrade_to_190(context):
         date_field = brain.getObject()
         widget = date_field.fgField.widget
         #save the label for the new widget
-        label = widget.label
         if isinstance(widget, CalendarWidget):
             logger.info('Migrating old CalendarWidget %s' % date_field.absolute_url_path())
-            # cast the date_field into a DateTimeField to renew the accessor.
-            date_field.fgField = DateTimeField(accessor = 'nullAccessor', name = date_field.fgField.getName())
+            label = widget.label
             show_hm = widget.show_hm
+            # cast the date_field into a DateTimeField to renew the accessor and reset the name.
+            date_field.fgField = DateTimeField(accessor = 'nullAccessor', name = date_field.fgField.getName())
             klass = atapi.DatetimeWidget if widget.show_hm else atapi.DateWidget
             date_field.fgField.widget = widget = klass()
-            #update the label with the right value
-            date_field.fgField.widget.label = label
+            if label:
+                #update the label with the right value
+                date_field.fgField.widget.label = label
             if show_hm:
                 widget._properties['pattern_options']['time'] = widget.pattern_options['time'] = True
+                date_field.fgField.widget.show_hm = True
+            else :
+                widget._properties['pattern_options']['time'] = widget.pattern_options['time'] = False
+                date_field.fgField.widget.show_hm = False

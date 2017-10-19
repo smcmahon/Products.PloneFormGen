@@ -603,7 +603,6 @@ class FGDateField(BaseFormField):
         except (DateTimeSyntaxError, DateError):
             # probably better to simply return the input
             return cgi.escape(value)
-
         if self.fgField.widget.show_hm:
             value = self._toLocalizedTime(dt, long_format=True)
         else:
