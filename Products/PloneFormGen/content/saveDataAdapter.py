@@ -87,6 +87,14 @@ class FormSaveDataAdapter(FormActionAdapter):
                 description=_(u'help_usecolumnnames_text', default=u"Do you wish to have column names on the first line of downloaded input?"),
                 ),
             ),
+        BooleanField("UseFieldTitleForColumn",
+            required=False,
+            searchable=False,
+            widget=BooleanWidget(
+                label=_(u'label_usefieldtitleforcolumn_text', default=u"Use Field Title for Column"),
+                description=_(u'help_usefieldtitleforcolumn_text', default=u"Do you wish to use the field title instead of the name for the column header?"),
+                ),
+            ),
         ExLinesField('SavedFormInput',
             edit_accessor='getSavedFormInputForEdit',
             mutator='setSavedFormInput',
@@ -400,7 +408,11 @@ class FormSaveDataAdapter(FormActionAdapter):
         RESPONSE.setHeader("Content-Type", 'text/tab-separated-values;charset=%s' % self.getCharset())
 
         if getattr(self, 'UseColumnNames', False):
-            res = "%s\n" % '\t'.join(self.getColumnNames(excludeServerSide=False))
+            if getattr(self, "UseFieldTitleForColumn", False):
+                meth = self.getColumnTitles
+            else:
+                meth = self.getColumnNames
+            res = "%s\n" % '\t'.join(meth(excludeServerSide=False))
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
@@ -425,8 +437,12 @@ class FormSaveDataAdapter(FormActionAdapter):
         RESPONSE.setHeader("Content-Type", 'text/comma-separated-values;charset=%s' % self.getCharset())
 
         if getattr(self, 'UseColumnNames', False):
+            if getattr(self, "UseFieldTitleForColumn", False):
+                meth = self.getColumnTitles
+            else:
+                meth = self.getColumnNames
             delimiter = self.csvDelimiter()
-            res = "%s\n" % delimiter.join(self.getColumnNames(excludeServerSide=False))
+            res = "%s\n" % delimiter.join(meth(excludeServerSide=False))
             if isinstance(res, unicode):
                 res = res.encode(self.getCharset())
         else:
