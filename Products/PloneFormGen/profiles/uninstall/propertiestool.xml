@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<object name="portal_properties">
+ <object name="navtree_properties" >
+  <property name="metaTypesNotToList" type="lines" purge="False">
+   <element value="FormSelectionField" remove="true" />
+   <element value="FormMultiSelectionField" remove="true" />
+   <element value="FormLabelField" remove="true" />
+   <element value="FormDateField" remove="true" />
+   <element value="FormLinesField" remove="true" />
+   <element value="FormIntegerField" remove="true" />
+   <element value="FormBooleanField" remove="true" />
+   <element value="FormPasswordField" remove="true" />
+   <element value="FormFixedPointField" remove="true" />
+   <element value="FormStringField" remove="true" />
+   <element value="FormTextField" remove="true" />
+   <element value="FormRichTextField" remove="true" />
+   <element value="FormRichLabelField" remove="true" />
+   <element value="FormFileField" remove="true" />
+   <element value="FormLikertField" remove="true" />
+   <element value="FormSaveDataAdapter" remove="true" />
+   <element value="FormMailerAdapter" remove="true" />
+   <element value="FormCustomScriptAdapter" remove="true" />
+   <element value="FormThanksPage" remove="true" />
+   <element value="FieldsetFolder" remove="true" />
+   <element value="FormCaptchaField" remove="true" />
+   <element value="FieldsetStart" remove="true" />
+   <element value="FieldsetEnd" remove="true" />
+  </property>
+ </object>
+ <object name="site_properties" >
+  <property name="types_not_searched" type="lines" purge="False">
+   <element value="FormSelectionField" remove="true" />
+   <element value="FormMultiSelectionField" remove="true" />
+   <element value="FormLabelField" remove="true" />
+   <element value="FormDateField" remove="true" />
+   <element value="FormLinesField" remove="true" />
+   <element value="FormIntegerField" remove="true" />
+   <element value="FormBooleanField" remove="true" />
+   <element value="FormPasswordField" remove="true" />
+   <element value="FormFixedPointField" remove="true" />
+   <element value="FormStringField" remove="true" />
+   <element value="FormTextField" remove="true" />
+   <element value="FormRichTextField" remove="true" />
+   <element value="FormRichLabelField" remove="true" />
+   <element value="FormFileField" remove="true" />
+   <element value="FormLikertField" remove="true" />
+   <element value="FormSaveDataAdapter" remove="true" />
+   <element value="FormMailerAdapter" remove="true" />
+   <element value="FormCustomScriptAdapter" remove="true" />
+   <element value="FormThanksPage" remove="true" />
+   <element value="FieldsetFolder" remove="true" />
+   <element value="FormCaptchaField" remove="true" />
+   <element value="FieldsetStart" remove="true" />
+   <element value="FieldsetEnd" remove="true" />
+  </property>
+ </object>
+</object>

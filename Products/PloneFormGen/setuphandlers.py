@@ -8,18 +8,17 @@ from Products.PloneFormGen.config import PROPERTY_SHEET_NAME, \
     DEFAULT_MAILTEMPLATE_BODY, EXTRA_ALLOWED
 
 from Products.PloneFormGen.interfaces.field import IPloneFormGenField
-from Products.PloneFormGen.interfaces.actionAdapter import \
-  IPloneFormGenActionAdapter
-from Products.PloneFormGen.interfaces.fieldset import \
-  IPloneFormGenFieldset
-from Products.PloneFormGen.interfaces.thanksPage import \
-  IPloneFormGenThanksPage
+from Products.PloneFormGen.interfaces.actionAdapter import IPloneFormGenActionAdapter
+from Products.PloneFormGen.interfaces.fieldset import IPloneFormGenFieldset
+from Products.PloneFormGen.interfaces.thanksPage import IPloneFormGenThanksPage
+
 
 class HiddenProfiles(object):
     implements(INonInstallable)
 
     def getNonInstallableProfiles(self):
-        return [u'Products.PloneFormGen:loadtest',]
+        return [u'Products.PloneFormGen:loadtest']
+
 
 def update_kupu_resources(out, site):
     """ At the time of this writing, kupu's GS export/import
@@ -41,13 +40,16 @@ def update_kupu_resources(out, site):
             # kupu's resource list can accumulate old, no longer valid types;
             # it will throw an exception if we try to resave them.
             # So, let's clean the list.
-            valid_types = dict([ (t.id, 1) for t in typesTool.listTypeInfo()])
+            valid_types = dict([(t.id, 1) for t in typesTool.listTypeInfo()])
             linkable = [pt for pt in linkable if pt in valid_types]
 
             linkable.append('FormFolder')
-            kupuTool.updateResourceTypes(({'resource_type' : 'linkable',
-                                           'old_type'      : 'linkable',
-                                           'portal_types'  :  linkable},))
+            kupuTool.updateResourceTypes(({
+                'resource_type': 'linkable',
+                'old_type': 'linkable',
+                'portal_types': linkable,
+            },))
+
 
 def safe_add_purgeable_properties(out, site):
     """ In order to avoid a possible "feature" regression and
@@ -111,10 +113,19 @@ def importVarious(context):
 
     # now, use our hard-won type lists to set allowed types
     ptt.getTypeInfo('FormFolder').manage_changeProperties(
-      allowed_content_types = fields + adapters + fieldsets + thankers + \
-        EXTRA_ALLOWED
-      )
+        allowed_content_types=fields + adapters + fieldsets + thankers + EXTRA_ALLOWED
+    )
     for fs in fieldsets:
         ptt.getTypeInfo(fs).manage_changeProperties(
-          allowed_content_types = fields
-          )
+            allowed_content_types=fields
+        )
+
+
+def uninstall(portal_setup, reinstall=False):
+    """Uninstall script"""
+
+    if not reinstall:
+        portal = portal_setup.aq_parent
+        portal.manage_delObjects(['formgen_tool'])
+
+        portal.portal_properties.manage_delObjects(['ploneformgen_properties'])
