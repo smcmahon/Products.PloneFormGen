@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.24 (unreleased)
+1.7.24 (2018-03-06)
 -------------------
 
 - Fix UnicodeDecodeError: RateScaleField with non-ascii values and without
