@@ -47,6 +47,10 @@ class ExRangeValidator:
                 { 'name' : self.name, 'min' : minval, 'max' : maxval,})
 
         try:
+            # As the underlying archetypes fields do allow using comma for
+            # decimal separation, we also want to do it here.
+            if isinstance(value, basestring):
+                value = value.replace(',', '.')
             nval = float(value)
         except ValueError:
             return ("Validation failed(%(name)s): could not convert '%(value)s' to number" %

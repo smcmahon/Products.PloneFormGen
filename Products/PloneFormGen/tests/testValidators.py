@@ -17,9 +17,13 @@ class TestCustomValidators(pfgtc.PloneFormGenTestCase):
         self.failUnlessEqual(v('10', minval=1, maxval=20), 1)
         self.failUnlessEqual(v('1', minval=1, maxval=20), 1)
         self.failUnlessEqual(v('20', minval=1, maxval=20), 1)
+        self.failUnlessEqual(v('2.1', minval=1, maxval=20), 1)
+        self.failUnlessEqual(v('2,1', minval=1, maxval=20), 1)
         self.failIfEqual(v(0, minval=1, maxval=5), 1)
         self.failIfEqual(v(6, minval=1, maxval=5), 1)
         self.failIfEqual(v(4, minval=5, maxval=3), 1)
+        self.failIfEqual(v('2.1', minval=1, maxval=2), 1)
+        self.failIfEqual(v('2,1', minval=1, maxval=2), 1)
 
     def test_isNotTooLong(self):
         v = validation.validatorFor('isNotTooLong')
