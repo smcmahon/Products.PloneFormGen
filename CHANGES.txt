@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.25 (unreleased)
+1.7.25 (2018-12-17)
 -------------------
 
 - Backport SaveData Excel Export from master branch.
