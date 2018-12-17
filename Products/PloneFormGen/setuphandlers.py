@@ -1,6 +1,8 @@
 from zope.component import queryMultiAdapter
 from zope.interface import implements
 
+from Acquisition import aq_inner
+from Acquisition import aq_parent
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import INonInstallable
 
@@ -125,7 +127,10 @@ def uninstall(portal_setup, reinstall=False):
     """Uninstall script"""
 
     if not reinstall:
-        portal = portal_setup.aq_parent
-        portal.manage_delObjects(['formgen_tool'])
-
-        portal.portal_properties.manage_delObjects(['ploneformgen_properties'])
+        portal = aq_parent(aq_inner(portal_setup))
+        tool_id = 'formgen_tool'
+        if tool_id in portal:
+            portal.manage_delObjects([tool_id])
+        prop_id = 'ploneformgen_properties'
+        if prop_id in portal.portal_properties:
+            portal.portal_properties.manage_delObjects([prop_id])
