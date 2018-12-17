@@ -4,7 +4,8 @@ Change History
 1.7.25 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Backport SaveData Excel Export from master branch.
+  [petschki]
 
 
 1.7.24 (2018-03-06)
