@@ -8,7 +8,7 @@ Repository for this add on is at https://github.com/smcmahon/Products.PloneFormG
 A documentation area is at http://docs.plone.org/working-with-content/managing-content/ploneformgen/
 and an issue tracker at https://github.com/smcmahon/Products.PloneFormGen/issues
 
-Please use the Plone users' mailing list or the #plone irc channel for
+Please use the Plone forum at https://community.plone.org for
 support requests. If you are unable to get your questions answered
 there, or are interested in helping develop the product, contact Steve
 McMahon: steve@dcn.org.
