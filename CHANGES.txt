@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.8.6 (unreleased)
+1.8.6 (2019-07-29)
 ------------------
 
 - Improve captcha error message.
