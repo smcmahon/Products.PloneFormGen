@@ -10,6 +10,11 @@ Change History
 - Add uninstall profile and setuphandler. Make Plone 5.1 happy.
   [smcmahon]
 
+- Allow comma for decimal separation in ExRangeValidator, because
+  it is allowed by the underlying archetypes fields. Make users in some
+  european countries happy.
+  [nilo]
+
 
 1.8.5 (2017-12-20)
 ------------------
