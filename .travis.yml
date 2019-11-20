@@ -3,15 +3,17 @@ language: python
 python:
   - 2.7
 cache:
+  pip: true
   directories:
-    - buildout-cache
+    - eggs
+before_install:
+  - virtualenv -p `which python` .
+  - bin/pip install -r requirements.txt
+  - bin/buildout -N -t 3 annotate
 install:
-  - mkdir -p buildout-cache/{eggs,downloads}
-  - python bootstrap-buildout.py --buildout-version=2.5.3
-  - bin/buildout
+  - bin/buildout -N -t 3
 script:
   - bin/test
-
 notifications:
   email:
     - steve@dcn.org
