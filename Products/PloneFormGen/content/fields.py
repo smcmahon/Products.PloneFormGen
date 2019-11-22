@@ -1015,6 +1015,24 @@ class HtmlTextField(TextField):
     def getContentType(self, instance, fromBaseUnit=True):
         return 'text/html'
 
+    def text_accessor(self):
+        return self.get(self)
+
+    def raw_text_accessor(self):
+        return self.getRaw(self)
+
+    def getAccessor(self, instance):
+        accessor = super(HtmlTextField, self).getAccessor(instance)
+        if accessor is None:
+            return self.text_accessor
+        return accessor
+
+    def getEditAccessor(self, instance):
+        accessor = super(HtmlTextField, self).getEditAccessor(instance)
+        if accessor is None:
+            return self.raw_text_accessor
+        return accessor
+
 
 class FGRichTextField(BaseFormField):
     """ Rich-text (visual editor) field """
