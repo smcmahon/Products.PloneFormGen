@@ -4,7 +4,7 @@ Change History
 1.8.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Only load quickedit resources on quickedit view.
 
 
 1.8.7 (2019-11-22)
