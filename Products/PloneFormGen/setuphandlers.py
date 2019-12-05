@@ -134,3 +134,9 @@ def uninstall(portal_setup, reinstall=False):
         prop_id = 'ploneformgen_properties'
         if prop_id in portal.portal_properties:
             portal.portal_properties.manage_delObjects([prop_id])
+
+        actionicons = portal.portal_actionicons
+        result = actionicons.queryActionIcon('controlpanel', 'PloneFormGen')
+
+        if result is not None:
+            actionicons.removeActionIcon('controlpanel', 'PloneFormGen')
