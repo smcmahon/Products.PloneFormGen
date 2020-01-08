@@ -16,9 +16,6 @@ install:
 # least, with setuptools as directory instead of zipped egg.
   - bin/buildout -c travis.cfg -N -q || true
   - bin/buildout -c travis.cfg -N -q
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
 script: bin/test
 after_success: bin/coverage.sh && pip install -q coveralls && coveralls || true
 notifications:
