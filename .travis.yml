@@ -7,14 +7,6 @@ cache:
 env:
   - PLONE_VERSION=4.2
   - PLONE_VERSION=4.3
-matrix:
-  include:
-    - python: 2.6
-      env: PLONE_VERSION=4.1
-  allow_failures:
-    - python: 2.6
-      env: PLONE_VERSION=4.1
-  fast_finish: true
 install:
   - sed -ie "s#travis-4.x.cfg#travis-$PLONE_VERSION.x.cfg#" travis.cfg
   - mkdir -p buildout-cache/downloads
