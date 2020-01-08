@@ -57,5 +57,12 @@
         handler=".upgrades.upgrade_to_190"
         />
 
+    <genericsetup:upgradeDepends
+        source="190"
+        destination="191"
+        profile="Products.PloneFormGen:default"
+        title="Import registry.xml"
+        import_steps="plone.app.registry"
+        />
 
 </configure>
