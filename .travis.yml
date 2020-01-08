@@ -14,4 +14,3 @@ install:
   - bin/buildout -c travis.cfg annotate
   - bin/buildout -c travis.cfg -N -q
 script: bin/test
-after_success: bin/coverage.sh && pip install -q coveralls && coveralls || true
