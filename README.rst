@@ -13,7 +13,7 @@ support requests. If you are unable to get your questions answered
 there, or are interested in helping develop the product, contact Steve
 McMahon: steve@dcn.org.
 
-.. image:: https://travis-ci.org/smcmahon/Products.PloneFormGen.svg?branch=master
+.. image:: https://api.travis-ci.org/smcmahon/Products.PloneFormGen.svg?branch=1.7-maintenance
     :alt: Travis CI badge; if you break it, you fix it.
     :target: https://travis-ci.org/smcmahon/Products.PloneFormGen
 
