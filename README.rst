@@ -21,11 +21,17 @@ McMahon: steve@dcn.org.
 1.7 Notes
 =========
 
-PFG 1.7 is intended for use with Plone 4.1+. If you're using Plone < 4.1, PFG 1.6
-will be a better choice.
+PFG 1.7.26 and higher are tested only on Plone 4.3 with Python 2.7.
+They might still work on Plone 4.1 and 4.2 and Python 2.6, but the effort to keep the tests running is not worth it.
+
+Earlier PFG 1.7 versions are intended for use with Plone 4.1+.
+If you are using Plone < 4.1, PFG 1.6 will be a better choice.
 
 If upgrading from an earlier version, uninstall and reinstall PFG to add new
 functionality.
+
+For Plone 5, use PFG 1.8.
+You can consider switching to `collective.easyform <https://pypi.org/project/collective.easyform/>`_.
 
 jQuery UI
 ---------
@@ -33,7 +39,7 @@ jQuery UI
 PloneFormGen depends on collective.js.jqueryui. Depending on the version
 of Plone you're on, you'll have to install a different version of
 collective.js.jqueryui. Please refer to collective.js.jqueryui documentation
-for more information: https://pypi.python.org/pypi/collective.js.jqueryui/1.10.3
+for more information: https://pypi.org/project/collective.js.jqueryui/1.10.3/
 
 Overview
 ========

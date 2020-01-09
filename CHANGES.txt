@@ -4,7 +4,9 @@ Change History
 1.7.26 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Only test on Plone 4.3 and Python 2.7.
+  It might still work on Plone 4.1 and 4.2 and Python 2.6, but the effort to keep the tests running is not worth it.
+  [maurits]
 
 
 1.7.25 (2018-12-17)
