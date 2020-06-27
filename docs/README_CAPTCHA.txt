@@ -11,8 +11,9 @@ of setting your public/private keypair. You get these by setting up an account
 at recaptcha.net. The account is free. You may specify your keypair in the PFG
 configlet in your site settings.
 
-If you add a captcha facility *after* installing PFG, you will need to 
-reinstall PFG (via add/remove products) to enable captcha support.
+If you add a captcha facility *after* installing PFG, to enable captcha support,
+you will need to add FormCaptchaField as an allowed content type to FormFolder
+in portal_types or reinstall PFG (via add/remove products).
 
 PFG's captcha support is based on Thomas Buchberger's PFGCaptchaField.  If you
 were using the separate PFGCaptchaField product with a version of PloneFormGen
