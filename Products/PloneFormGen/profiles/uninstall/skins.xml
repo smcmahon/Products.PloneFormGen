@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+ <skin-path name="*">
+  <layer name="PloneFormGen" remove="true" />
+ </skin-path>
+</object>

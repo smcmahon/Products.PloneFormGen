@@ -112,6 +112,15 @@
       />
 
   <gs:registerProfile
+      name="uninstall"
+      title="PloneFormGen"
+      directory="profiles/uninstall"
+      description="Uninstalls the PloneFormGen add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+  <gs:registerProfile
       name="loadtest"
       title="PloneFormGen load test fixtures"
       directory="profiles/loadtest"
