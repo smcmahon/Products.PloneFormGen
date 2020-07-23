@@ -46,6 +46,7 @@ setup(name='Products.PloneFormGen',
           'setuptools',
           'Products.Archetypes>=1.7.14',  # placeholder support
           'Products.CMFPlone>=4.1',
+          'Products.GenericSetup>=1.8.2',
           'Products.TALESField>=1.1.3',
           'Products.TemplateFields>=1.2.4',
           'Products.PythonField>=1.1.3',
