@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.26 (unreleased)
+1.7.26 (2020-08-03)
 -------------------
 
 - Only test on Plone 4.3 and Python 2.7.
