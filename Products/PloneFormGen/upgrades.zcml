@@ -65,4 +65,12 @@
         import_steps="plone.app.registry"
         />
 
+    <genericsetup:upgradeDepends
+        source="191"
+        destination="192"
+        profile="Products.PloneFormGen:default"
+        title="Update skin path"
+        import_steps="skins"
+        />
+
 </configure>

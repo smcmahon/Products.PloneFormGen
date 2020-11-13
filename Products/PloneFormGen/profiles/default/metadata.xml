@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>191</version>
+  <version>192</version>
   <dependencies>
       <dependency>profile-Products.ATContentTypes:base</dependency>
 <!--
