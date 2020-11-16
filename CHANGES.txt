@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.8.8 (unreleased)
+1.8.8 (2020-11-16)
 ------------------
 
 - Fixed portal_skins directory path on Plone 5.2
