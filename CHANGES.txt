@@ -11,6 +11,9 @@ Change History
   In fact the automatic tests completely fail on 5.2, so use at your own risk.
   [maurits]
 
+- Only apply quickedit bundle js and styles to the quickedit form.
+  [alecpm]
+
 
 1.8.7 (2019-11-22)
 ------------------
