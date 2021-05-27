@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 
-version = '1.7.27'
+version = '1.7.28.dev0'
 
 with open("README.rst") as myfile:
     readme = myfile.read()
