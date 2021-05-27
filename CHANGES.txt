@@ -4,7 +4,8 @@ Change History
 1.7.27 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fixed incompatibility with Products.PloneHotfix20210518.
+  [dhavlik, spereverde]
 
 
 1.7.26 (2020-08-03)
