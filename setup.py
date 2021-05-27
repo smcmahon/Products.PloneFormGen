@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.8.9.dev0'
+version = '1.8.9'
 
 setup(name='Products.PloneFormGen',
       version=version,
