@@ -1,7 +1,7 @@
 Change History
 ==============
 
-1.7.27 (unreleased)
+1.7.27 (2021-05-27)
 -------------------
 
 - Fixed incompatibility with Products.PloneHotfix20210518.
