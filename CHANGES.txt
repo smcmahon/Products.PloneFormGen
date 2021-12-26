@@ -4,7 +4,9 @@ Change History
 1.7.28 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add option to use field title instead of name when exporting using
+  save data adapter.
+  [malthe]
 
 
 1.7.27 (2021-05-27)

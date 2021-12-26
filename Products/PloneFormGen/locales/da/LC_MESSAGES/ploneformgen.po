@@ -1003,6 +1003,11 @@ msgstr "Denne tekst vil blive vist over de valgte inputs"
 msgid "help_usecolumnnames_text"
 msgstr "Vil du have kolonnenavne på første linie?"
 
+#. Default: "Do you wish to use the field title instead of the name for the column header?"
+#: ./content/saveDataAdapter.py:154
+msgid "help_usefieldtitleforcolumn_text"
+msgstr "Vil du anvende titel i stedet for navn på første linie?"
+
 #. Default: "Useful for stopping spam"
 #: ./content/fields.py:939
 msgid "help_validate_link_spam_text"
@@ -1635,6 +1640,11 @@ msgstr ""
 #: ./content/saveDataAdapter.py:86
 msgid "label_usecolumnnames_text"
 msgstr "Inkluder kolonnenavne"
+
+#. Default: "Use Field Title for Column"
+#: ./content/saveDataAdapter.py:98
+msgid "label_usefieldtitleforcolumn_text"
+msgstr "Brug titel i stedet for navn"
 
 #. Default: "Reject Text with Links?"
 #: ./content/fields.py:938
